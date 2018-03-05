@@ -67,8 +67,12 @@ export default {
   },
 
   computed: {
-    colorClasses () {
+    classesColor () {
       return this.addTextColorClassChecks()
+    },
+    // TODO: This may not be needed
+    classesWrapper () {
+      return this.classesColor
     },
     currentColor () {
       if (this.hasError) return 'error'
@@ -87,16 +91,13 @@ export default {
         'v-input--is-dirty': this.isDirty,
         'v-input--is-disabled': this.disabled,
         'v-input--has-state': this.hasState,
-        ...this.colorClasses,
+        ...this.classesColor,
         'theme--light': !this.dark,
         'theme--dark': this.dark
       }
     },
     isDirty () {
       return !!this.inputValue
-    },
-    wrapperClasses () {
-      return this.colorClasses
     }
   },
 
@@ -126,48 +127,6 @@ export default {
         }
       })
     },
-    genLabel () {
-      if (this.singleLine && this.isDirty) return null
-
-      const data = {
-        props: {
-          color: 'primary',
-          focused: this.isFocused,
-          value: this.isFocused || this.isDirty
-        }
-      }
-
-      if ((this.attrs || {}).id) data.props.for = this.attrs.id
-
-      return this.$createElement(VLabel, data, this.$slots.label || this.label)
-    },
-    genInputWrapper () {
-      return this.$createElement('div', {
-        staticClass: 'v-input__wrapper',
-        'class': this.wrapperClasses
-      }, [
-        this.genLabel(),
-        this.genInput(),
-        this.genAppendInner()
-      ])
-    },
-    genMessages () {
-      let messages = []
-
-      if (
-        this.hint &&
-        (this.isFocused || this.persistentHint) &&
-        !this.validations.length
-      ) {
-        messages = [this.hint]
-      } else if (this.validations.length) {
-        messages = [this.genError(this.validations[0])]
-      }
-
-      return this.$createElement(VMessages, {
-        props: { messages }
-      }, this.$slots.messages)
-    },
     genIcon (type, defaultCallback = null) {
       if (!this.hasIcon(type)) return null
 
@@ -192,8 +151,47 @@ export default {
         staticClass: `v-input__icon v-input__icon--${type}`
       }, [icon])
     },
-    hasIcon (icon) {
-      return this[`${icon}Icon`] || this.$slots[`${icon}Icon`]
+    genInputWrapper () {
+      return this.$createElement('div', {
+        staticClass: 'v-input__wrapper',
+        'class': this.classesWrapper
+      }, [
+        this.genLabel(),
+        this.genInput(),
+        this.genAppendInner()
+      ])
+    },
+    genLabel () {
+      if (this.singleLine && this.isDirty) return null
+
+      const data = {
+        props: {
+          color: 'primary',
+          focused: this.isFocused,
+          value: this.isFocused || this.isDirty
+        }
+      }
+
+      if ((this.attrs || {}).id) data.props.for = this.attrs.id
+
+      return this.$createElement(VLabel, data, [this.$slots.label || this.label])
+    },
+    genMessages () {
+      let messages = []
+
+      if (
+        this.hint &&
+        (this.isFocused || this.persistentHint) &&
+        !this.validations.length
+      ) {
+        messages = [this.hint]
+      } else if (this.validations.length) {
+        messages = [this.genError(this.validations[0])]
+      }
+
+      return this.$createElement(VMessages, {
+        props: { messages }
+      }, this.$slots.messages)
     },
     genSlot (ref, location, slot) {
       if (!slot.length) return null
@@ -216,17 +214,6 @@ export default {
 
       return this.genSlot('prepend', 'outer', slot)
     },
-    genAppendOuter () {
-      const slot = []
-
-      if (this.$slots['append-outer']) {
-        slot.push(this.$slots['append-outer'])
-      } else if (this.outerIcon) {
-        slot.push(this.genIcon('outer'))
-      }
-
-      return this.genSlot('append', 'outer', slot)
-    },
     genAppendInner () {
       const slot = []
 
@@ -245,10 +232,24 @@ export default {
 
       return this.genSlot('append', 'inner', slot)
     },
+    genAppendOuter () {
+      const slot = []
+
+      if (this.$slots['append-outer']) {
+        slot.push(this.$slots['append-outer'])
+      } else if (this.outerIcon) {
+        slot.push(this.genIcon('outer'))
+      }
+
+      return this.genSlot('append', 'outer', slot)
+    },
     genInputGroup (input, data = {}, defaultAppendCallback = null) {
       return this.$createElement('div', {
         staticClass: 'v-input',
-        'class': this.inputClasses
+        'class': this.inputClasses,
+        on: {
+          click: this.onClick
+        }
       }, [
         this.genPrependOuter(),
         this.genContent(),
@@ -321,6 +322,12 @@ export default {
       // )
 
       // return this.$createElement('div', data, children)
+    },
+    hasIcon (icon) {
+      return this[`${icon}Icon`] || this.$slots[`${icon}Icon`]
+    },
+    onClick () {
+      this.$emit('click')
     },
     shouldClear (type) {
       return type === 'append' &&

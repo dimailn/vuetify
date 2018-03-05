@@ -73,14 +73,13 @@ export default {
     classes () {
       return {
         'v-input--text': true,
-        'v-input--text--affix': (this.prefix || this.suffix),
-        'v-input--text--solo': this.solo
+        'v-input--text--prefix': this.prefix,
+        'v-input--text--single-line': this.isSingle,
+        'v-input--text--solo': this.solo,
+        'v-input--text--box': (this.box || this.solo)
       }
       // const classes = {
       // ...this.genSoloClasses(),
-      // 'input-group--text-field': true,
-      // 'input-group--text-field-box': this.box,
-      // 'input-group--single-line': this.singleLine || this.isSolo,
       // 'input-group--multi-line': this.multiLine,
       // 'input-group--full-width': this.fullWidth,
       // 'input-group--no-resize': this.noResizeHandle,
@@ -127,6 +126,9 @@ export default {
         this.lazyValue.toString().length > 0) ||
         this.badInput ||
         ['time', 'date', 'datetime-local', 'week', 'month'].includes(this.type)
+    },
+    isSingle () {
+      return this.solo || this.singleLine
     },
     isTextarea () {
       return this.multiLine || this.textarea
@@ -183,13 +185,7 @@ export default {
         this.inputHeight = Math.max(minHeight, height)
       })
     },
-    onInput (e) {
-      this.mask && this.resetSelections(e.target)
-      this.inputValue = e.target.value
-      this.badInput = e.target.validity && e.target.validity.badInput
-      this.shouldAutoGrow && this.calculateInputHeight()
-    },
-    blur (e) {
+    onBlur (e) {
       this.isFocused = false
       // Reset internalChange state
       // to allow external change
@@ -201,7 +197,10 @@ export default {
       })
       this.$emit('blur', e)
     },
-    focus (e) {
+    onClick () {
+      !this.isActive && this.onFocus()
+    },
+    onFocus (e) {
       if (!this.$refs.input) return
 
       this.isFocused = true
@@ -210,7 +209,13 @@ export default {
       }
       this.$emit('focus', e)
     },
-    keyDown (e) {
+    onInput (e) {
+      this.mask && this.resetSelections(e.target)
+      this.inputValue = e.target.value
+      this.badInput = e.target.validity && e.target.validity.badInput
+      this.shouldAutoGrow && this.calculateInputHeight()
+    },
+    onKeyDown (e) {
       // Prevents closing of a
       // dialog when pressing
       // enter
@@ -224,19 +229,14 @@ export default {
       this.internalChange = true
     },
     genLabel () {
-      if (this.singleLine && this.isDirty) return null
+      if (this.isDirty && this.isSingle) return null
 
+      const isSingleLine = this.isSingle
       const data = {
         props: {
           color: this.color,
-          left: this.prefix &&
-            (this.singleLine &&
-             (!this.isFocused ||
-              this.singleLine))
-            ? 14
-            : 0,
-          focused: !this.singleLine && this.isFocused,
-          value: !this.singleLine && (this.isFocused || this.isDirty)
+          focused: !isSingleLine && this.isFocused,
+          value: !isSingleLine && (this.isFocused || this.isDirty)
         }
       }
 
@@ -264,10 +264,10 @@ export default {
           'aria-label': (!this.$attrs || !this.$attrs.id) && this.label // Label `for` will be set if we have an id
         },
         on: Object.assign(listeners, {
-          blur: this.blur,
+          blur: this.onBlur,
           input: this.onInput,
-          focus: this.focus,
-          keydown: this.keyDown
+          focus: this.onFocus,
+          keydown: this.onKeyDown
         }),
         ref: 'input'
       }
@@ -290,12 +290,12 @@ export default {
 
       const children = [this.$createElement(tag, data)]
 
-      this.prefix && children.unshift(this.genFix('prefix'))
-      this.suffix && children.push(this.genFix('suffix'))
+      this.prefix && children.unshift(this.genAffix('prefix'))
+      this.suffix && children.push(this.genAffix('suffix'))
 
       return children
     },
-    genFix (type) {
+    genAffix (type) {
       return this.$createElement('div', {
         'class': `v-input--text__${type}`,
         ref: type

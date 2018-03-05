@@ -13,10 +13,6 @@ export default {
     color: String,
     focused: Boolean,
     for: String,
-    left: {
-      type: [Number, String],
-      default: 0
-    },
     value: Boolean
   },
 
@@ -32,7 +28,6 @@ export default {
     return h('label', {
       staticClass: 'v-label',
       'class': classes,
-      style: { left: `${props.left}px` },
       attrs: {
         for: props.for
       }
