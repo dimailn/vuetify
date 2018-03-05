@@ -70,20 +70,7 @@ export default {
     classesColor () {
       return this.addTextColorClassChecks()
     },
-    // TODO: This may not be needed
-    classesWrapper () {
-      return this.classesColor
-    },
-    currentColor () {
-      if (this.hasError) return 'error'
-      if (this.hasSuccess) return 'success'
-      if (this.isFocused) return this.color
-      return null
-    },
-    hasState () {
-      return this.hasError || this.hasSuccess || this.isFocused
-    },
-    inputClasses () {
+    classesInput () {
       return {
         ...this.classes,
         'v-input--is-focused': this.isFocused,
@@ -95,6 +82,15 @@ export default {
         'theme--light': !this.dark,
         'theme--dark': this.dark
       }
+    },
+    currentColor () {
+      if (this.hasError) return 'error'
+      if (this.hasSuccess) return 'success'
+      if (this.isFocused) return this.color
+      return null
+    },
+    hasState () {
+      return this.hasError || this.hasSuccess || this.isFocused
     },
     isDirty () {
       return !!this.inputValue
@@ -128,14 +124,15 @@ export default {
       })
     },
     genIcon (type, defaultCallback = null) {
-      if (!this.hasIcon(type)) return null
-
       const shouldClear = this.shouldClear(type)
       const callback = shouldClear
         ? this.clearableCallback
         : (this[`${type}IconCb`] || defaultCallback)
 
       const icon = this.$createElement('v-icon', {
+        'class': {
+          'v-icon--clickable': callback
+        },
         props: { disabled: this.disabled },
         on: {
           click: e => {
@@ -154,7 +151,7 @@ export default {
     genInputWrapper () {
       return this.$createElement('div', {
         staticClass: 'v-input__wrapper',
-        'class': this.classesWrapper
+        'class': this.classesColor
       }, [
         this.genLabel(),
         this.genInput(),
@@ -194,8 +191,6 @@ export default {
       }, this.$slots.messages)
     },
     genSlot (ref, location, slot) {
-      if (!slot.length) return null
-
       return this.$createElement('div', {
         staticClass: `v-input__${ref}-${location}`
       }, slot)
@@ -222,12 +217,9 @@ export default {
         // For backwards compat
       } else if (this.$slots['append-icon']) {
         slot.push(this.$slots['append-icon'])
-      } else if (this.appendIcon) {
-        slot.push(this.genIcon('append'))
-      }
-
-      if (this.clearIcon) {
-        slot.unshift(this.genIcon('clear'))
+      } else if (this.clearable) {
+        const icon = this.clearIcon ? 'clear' : 'append'
+        slot.push(this.genIcon(icon))
       }
 
       return this.genSlot('append', 'inner', slot)
@@ -246,7 +238,7 @@ export default {
     genInputGroup (input, data = {}, defaultAppendCallback = null) {
       return this.$createElement('div', {
         staticClass: 'v-input',
-        'class': this.inputClasses,
+        'class': this.classesInput,
         on: {
           click: this.onClick
         }
@@ -330,7 +322,7 @@ export default {
       this.$emit('click')
     },
     shouldClear (type) {
-      return type === 'append' &&
+      return (type === 'append' || type === 'clear') &&
         this.clearable &&
         this.isDirty
     }

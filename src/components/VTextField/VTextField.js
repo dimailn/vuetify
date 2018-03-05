@@ -27,14 +27,13 @@ export default {
 
   inheritAttrs: false,
 
-  data () {
-    return {
-      initialValue: null,
-      inputHeight: null,
-      internalChange: false,
-      badInput: false
-    }
-  },
+  data: vm => ({
+    badInput: false,
+    initialValue: null,
+    inputHeight: null,
+    internalChange: false,
+    isClearing: false
+  }),
 
   props: {
     autofocus: Boolean,
@@ -83,8 +82,6 @@ export default {
       // 'input-group--multi-line': this.multiLine,
       // 'input-group--full-width': this.fullWidth,
       // 'input-group--no-resize': this.noResizeHandle,
-      // 'input-group--prefix': this.prefix,
-      // 'input-group--suffix': this.suffix,
       // 'input-group--textarea': this.textarea
       // }
 
@@ -192,13 +189,13 @@ export default {
       // to persist
       this.internalChange = false
 
-      this.$nextTick(() => {
-        this.validate()
-      })
+      this.$nextTick(this.validate)
       this.$emit('blur', e)
     },
     onClick () {
-      !this.isActive && this.onFocus()
+      !this.isFocused &&
+        !this.disabled &&
+        this.onFocus()
     },
     onFocus (e) {
       if (!this.$refs.input) return
