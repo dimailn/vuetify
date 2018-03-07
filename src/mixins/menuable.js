@@ -109,6 +109,11 @@ export default {
 
       if (this.offsetX) left += this.left ? -a.width : a.width
       if (this.nudgeLeft) left -= parseInt(this.nudgeLeft)
+
+      // EKAM vue-material navigation workaround
+      if(window.NavigationDataBus)
+        left -= window.NavigationDataBus.navLeftOffset
+
       if (this.nudgeRight) left += parseInt(this.nudgeRight)
 
       return left
@@ -121,6 +126,12 @@ export default {
       if (!this.isAttached) top += this.pageYOffset
       if (this.offsetY) top += this.top ? -a.height : a.height
       if (this.nudgeTop) top -= this.nudgeTop
+
+      // EKAM vue-material navigation workaround
+      if(window.NavigationDataBus)
+        top -= window.NavigationDataBus.navTopOffset
+
+
       if (this.nudgeBottom) top += this.nudgeBottom
 
       return top
