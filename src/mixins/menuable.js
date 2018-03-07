@@ -111,8 +111,9 @@ export default {
       if (this.nudgeLeft) left -= parseInt(this.nudgeLeft)
 
       // EKAM vue-material navigation workaround
-      if(window.NavigationDataBus)
+      if (window.NavigationDataBus) {
         left -= window.NavigationDataBus.navLeftOffset
+      }
 
       if (this.nudgeRight) left += parseInt(this.nudgeRight)
 
@@ -128,9 +129,9 @@ export default {
       if (this.nudgeTop) top -= this.nudgeTop
 
       // EKAM vue-material navigation workaround
-      if(window.NavigationDataBus)
+      if (window.NavigationDataBus) {
         top -= window.NavigationDataBus.navTopOffset
-
+      }
 
       if (this.nudgeBottom) top += this.nudgeBottom
 
