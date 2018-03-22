@@ -11708,7 +11708,7 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
         on: Object(__WEBPACK_IMPORTED_MODULE_0__transitions_expand_transition__["a" /* default */])('datatable__expand-col--expanded')
       }, children);
 
-      return this.nowrapExpanded ? transition : this.genTR([transition], { class: 'datatable__expand-row' });
+      return this.nowrapExpanded ? children : this.genTR([transition], { class: 'datatable__expand-row' });
     },
     genFilteredItems: function genFilteredItems() {
       if (!this.$scopedSlots.items) {
