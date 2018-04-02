@@ -11436,7 +11436,7 @@ var VTableOverflow = Object(__WEBPACK_IMPORTED_MODULE_7__util_helpers__["d" /* c
       type: String,
       default: 'Rows per page:'
     },
-    nowrapExpanded: {
+    noWrappedExpandSlots: {
       type: Boolean,
       default: false
     },
@@ -11694,9 +11694,13 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
       var children = [];
 
       if (this.isExpanded(props.item)) {
-        var expand = this.nowrapExpanded ? this.$scopedSlots.expand(props) : this.genWrappedExpandedRow(props);
+        var expand = this.noWrappedExpandSlots ? this.$scopedSlots.expand(props) : this.genWrappedExpandedRow(props);
 
         children.push(expand);
+      }
+
+      if (this.noWrappedExpandSlots) {
+        return children;
       }
 
       var transition = this.$createElement('transition-group', {
@@ -11708,7 +11712,7 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
         on: Object(__WEBPACK_IMPORTED_MODULE_0__transitions_expand_transition__["a" /* default */])('datatable__expand-col--expanded')
       }, children);
 
-      return this.nowrapExpanded ? children : this.genTR([transition], { class: 'datatable__expand-row' });
+      return this.genTR([transition], { class: 'datatable__expand-row' });
     },
     genFilteredItems: function genFilteredItems() {
       if (!this.$scopedSlots.items) {
