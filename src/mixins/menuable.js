@@ -128,7 +128,7 @@ export default {
 
       if (!this.isAttached) top += this.pageYOffset
       if (this.offsetY) top += this.top ? -a.height : a.height
-        
+
       if (this.nudgeTop) top -= parseInt(this.nudgeTop)
 
       // EKAM vue-material navigation workaround
