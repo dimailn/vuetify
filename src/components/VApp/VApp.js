@@ -2,22 +2,21 @@ import '../../stylus/components/_app.styl'
 
 // Component level mixins
 import AppTheme from './mixins/app-theme'
-import AppBreakpoint from './mixins/app-breakpoint'
 
 // Directives
 import Resize from '../../directives/resize'
 
+/* @vue/component */
 export default {
   name: 'v-app',
-
-  mixins: [
-    AppBreakpoint,
-    AppTheme
-  ],
 
   directives: {
     Resize
   },
+
+  mixins: [
+    AppTheme
+  ],
 
   props: {
     id: {
@@ -30,13 +29,10 @@ export default {
   computed: {
     classes () {
       return {
-        [`theme--${this.dark ? 'dark' : 'light'}`]: true
+        [`theme--${this.dark ? 'dark' : 'light'}`]: true,
+        'application--is-rtl': this.$vuetify.rtl
       }
     }
-  },
-
-  mounted () {
-    this.$vuetify.dark = this.dark
   },
 
   watch: {
@@ -45,16 +41,16 @@ export default {
     }
   },
 
+  mounted () {
+    this.$vuetify.dark = this.dark
+  },
+
   render (h) {
     const data = {
       staticClass: 'application',
       'class': this.classes,
       attrs: { 'data-app': true },
-      domProps: { id: this.id },
-      directives: [{
-        name: 'resize',
-        value: this.onResize
-      }]
+      domProps: { id: this.id }
     }
 
     const wrapper = h('div', { staticClass: 'application--wrap' }, this.$slots.default)

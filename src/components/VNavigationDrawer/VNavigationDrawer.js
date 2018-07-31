@@ -11,8 +11,18 @@ import ClickOutside from '../../directives/click-outside'
 import Resize from '../../directives/resize'
 import Touch from '../../directives/touch'
 
+// Helpers
+import { convertToUnit } from '../../util/helpers'
+
+/* @vue/component */
 export default {
   name: 'v-navigation-drawer',
+
+  directives: {
+    ClickOutside,
+    Resize,
+    Touch
+  },
 
   mixins: [
     Applicationable(null, [
@@ -24,20 +34,6 @@ export default {
     SSRBootable,
     Themeable
   ],
-
-  directives: {
-    ClickOutside,
-    Resize,
-    Touch
-  },
-
-  data: () => ({
-    isActive: false,
-    touchArea: {
-      left: 0,
-      right: 0
-    }
-  }),
 
   props: {
     clipped: Boolean,
@@ -69,6 +65,14 @@ export default {
     value: { required: false }
   },
 
+  data: () => ({
+    isActive: false,
+    touchArea: {
+      left: 0,
+      right: 0
+    }
+  }),
+
   computed: {
     /**
      * Used for setting an app
@@ -80,9 +84,6 @@ export default {
      */
     applicationProperty () {
       return this.right ? 'right' : 'left'
-    },
-    calculatedHeight () {
-      return isNaN(this.height) ? this.height : `${this.height}px`
     },
     calculatedTransform () {
       if (this.isActive) return 0
@@ -98,28 +99,34 @@ export default {
     },
     classes () {
       return {
-        'navigation-drawer': true,
-        'navigation-drawer--absolute': this.absolute,
-        'navigation-drawer--clipped': this.clipped,
-        'navigation-drawer--close': !this.isActive,
-        'navigation-drawer--fixed': !this.absolute && (this.app || this.fixed),
-        'navigation-drawer--floating': this.floating,
-        'navigation-drawer--is-mobile': this.isMobile,
-        'navigation-drawer--mini-variant': this.miniVariant,
-        'navigation-drawer--open': this.isActive,
-        'navigation-drawer--right': this.right,
-        'navigation-drawer--temporary': this.temporary,
+        'v-navigation-drawer': true,
+        'v-navigation-drawer--absolute': this.absolute,
+        'v-navigation-drawer--clipped': this.clipped,
+        'v-navigation-drawer--close': !this.isActive,
+        'v-navigation-drawer--fixed': !this.absolute && (this.app || this.fixed),
+        'v-navigation-drawer--floating': this.floating,
+        'v-navigation-drawer--is-mobile': this.isMobile,
+        'v-navigation-drawer--mini-variant': this.miniVariant,
+        'v-navigation-drawer--open': this.isActive,
+        'v-navigation-drawer--right': this.right,
+        'v-navigation-drawer--temporary': this.temporary,
         'theme--dark': this.dark,
         'theme--light': this.light
       }
     },
+    hasApp () {
+      return this.app &&
+        (!this.isMobile && !this.temporary)
+    },
     isMobile () {
-      return !this.permanent &&
+      return !this.stateless &&
+        !this.permanent &&
         !this.temporary &&
         this.$vuetify.breakpoint.width < parseInt(this.mobileBreakPoint, 10)
     },
     marginTop () {
-      if (!this.app) return 0
+      if (!this.hasApp) return 0
+
       let marginTop = this.$vuetify.application.bar
 
       marginTop += this.clipped
@@ -129,11 +136,17 @@ export default {
       return marginTop
     },
     maxHeight () {
-      if (!this.app) return '100%'
+      if (!this.hasApp) return null
 
-      return this.clipped
-        ? this.$vuetify.application.top + this.$vuetify.application.bottom
-        : this.$vuetify.application.bottom
+      const maxHeight = (
+        this.$vuetify.application.bottom +
+        this.$vuetify.application.footer +
+        this.$vuetify.application.bar
+      )
+
+      if (!this.clipped) return maxHeight
+
+      return maxHeight + this.$vuetify.application.top
     },
     reactsToClick () {
       return !this.stateless &&
@@ -160,9 +173,9 @@ export default {
     },
     styles () {
       const styles = {
-        height: this.calculatedHeight,
+        height: convertToUnit(this.height),
         marginTop: `${this.marginTop}px`,
-        maxHeight: `calc(100% - ${this.maxHeight}px)`,
+        maxHeight: `calc(100% - ${+this.maxHeight}px)`,
         transform: `translateX(${this.calculatedTransform}px)`,
         width: `${this.calculatedWidth}px`
       }
@@ -323,13 +336,22 @@ export default {
           if (!this.miniVariant) return
 
           this.$emit('update:miniVariant', false)
+        },
+        transitionend: e => {
+          if (e.target !== e.currentTarget) return
+          this.$emit('transitionend', e)
+
+          // IE11 does not support new Event('resize')
+          const resizeEvent = document.createEvent('UIEvents')
+          resizeEvent.initUIEvent('resize', true, false, window, 0)
+          window.dispatchEvent(resizeEvent)
         }
       }
     }
 
     return h('aside', data, [
       this.$slots.default,
-      h('div', { 'class': 'navigation-drawer__border' })
+      h('div', { 'class': 'v-navigation-drawer__border' })
     ])
   }
 }

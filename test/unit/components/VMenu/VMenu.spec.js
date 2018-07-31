@@ -8,7 +8,8 @@ test('VMenu.js', ({ mount }) => {
   it('should work', async () => {
     const wrapper = mount(VMenu, {
       propsData: {
-        value: false
+        value: false,
+        fullWidth: true
       },
       slots: {
         activator: [VBtn],
@@ -16,7 +17,7 @@ test('VMenu.js', ({ mount }) => {
       }
     })
 
-    const activator = wrapper.find('.menu__activator')[0]
+    const activator = wrapper.find('.v-menu__activator')[0]
     const input = jest.fn()
     wrapper.instance().$on('input', input)
     activator.trigger('click')
@@ -223,7 +224,6 @@ test('VMenu.js', ({ mount }) => {
     })
 
     expect(wrapper.html()).toMatchSnapshot()
-    expect('Unable to locate target [data-app]').toHaveBeenTipped()
   })
 
   it('should render component with custom closeOnClick and match snapshot', () => {
@@ -346,7 +346,7 @@ test('VMenu.js', ({ mount }) => {
       }
     })
 
-    const content = wrapper.find('.menu__content')[0]
+    const content = wrapper.find('.v-menu__content')[0]
 
     const getBoundingClientRect = () => {
       return {
@@ -361,7 +361,7 @@ test('VMenu.js', ({ mount }) => {
       }
     }
 
-    wrapper.vm.$refs.activator.querySelector('.btn').getBoundingClientRect = getBoundingClientRect
+    wrapper.vm.$refs.activator.querySelector('.v-btn').getBoundingClientRect = getBoundingClientRect
     wrapper.vm.$refs.content.getBoundingClientRect = getBoundingClientRect
 
     wrapper.setProps({ value: true })
