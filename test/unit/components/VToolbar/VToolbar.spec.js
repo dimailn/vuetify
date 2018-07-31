@@ -126,10 +126,10 @@ test('VToolbar.vue', ({ mount }) => {
     })
     Vue.set(wrapper.vm.$vuetify.breakpoint, 'width', 200)
     Vue.set(wrapper.vm.$vuetify.breakpoint, 'height', 100)
-    expect(wrapper.vm.computedContentHeight).toBe(wrapper.vm.heights.mobileLandscape)
+    expect(wrapper.vm.computedContentHeight).toBe(wrapper.vm.heights.desktop)
     Vue.set(wrapper.vm.$vuetify.breakpoint, 'width', 100)
     Vue.set(wrapper.vm.$vuetify.breakpoint, 'height', 200)
-    expect(wrapper.vm.computedContentHeight).toBe(wrapper.vm.heights.mobile)
+    expect(wrapper.vm.computedContentHeight).toBe(wrapper.vm.heights.desktop)
   })
 
   it('should set margin top', () => {
@@ -189,5 +189,66 @@ test('VToolbar.vue', ({ mount }) => {
 
     await resizeWindow(200)
     expect(wrapper.vm.$vuetify.application.top).toBe(56)
+  })
+
+  it('should return different heights for scroll-{toolbar}-off-screen', async () => {
+    const app = mount(VApp)
+    const wrapper = mount(VToolbar, {
+      propsData: {
+        app: true,
+        extended: true
+      }
+    })
+
+    expect(wrapper.vm.computedTransform).toBe(0)
+
+    wrapper.setData({ isActive: false })
+
+    expect(wrapper.vm.computedTransform).toBe(-112)
+
+    wrapper.setProps({ scrollToolbarOffScreen: true })
+
+    expect(wrapper.vm.computedTransform).toBe(-56)
+  })
+
+  it('should have a custom extension height', () => {
+    const wrapper = mount(VToolbar, {
+      propsData: { tabs: true }
+    })
+
+    expect(wrapper.vm.computedExtensionHeight).toBe(48)
+  })
+
+  it('should scroll off screen', async () => {
+    const wrapper = mount(VToolbar, {
+      attachToDocument: true,
+      propsData: { scrollOffScreen: true }
+    })
+
+    expect(wrapper.vm.isActive).toBe(true)
+
+    await scrollWindow(100)
+
+    expect(wrapper.vm.currentScroll).toBe(100)
+
+    await scrollWindow(500)
+
+    expect(wrapper.vm.currentScroll).toBe(500)
+    expect(wrapper.vm.isActive).toBe(false)
+
+    await scrollWindow(0)
+
+    expect(wrapper.vm.isScrollingUp).toBe(true)
+    expect(wrapper.vm.isActive).toBe(true)
+
+    wrapper.setProps({ invertedScroll: true })
+
+    await wrapper.vm.$nextTick()
+
+    expect(wrapper.vm.isActive).toBe(false)
+
+    await scrollWindow(500)
+
+    expect(wrapper.vm.isActive).toBe(true)
   })
 })
