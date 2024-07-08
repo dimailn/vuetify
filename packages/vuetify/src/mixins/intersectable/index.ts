@@ -5,10 +5,10 @@ import Intersect from '../../directives/intersect'
 import { consoleWarn } from '../../util/console'
 
 // Types
-import Vue from 'vue'
+import {defineComponent, getCurrentInstance} from 'vue'
 
 export default function intersectable (options: { onVisible: string[] }) {
-  return Vue.extend({
+  return defineComponent({
     name: 'intersectable',
 
     data: () => ({
@@ -16,17 +16,20 @@ export default function intersectable (options: { onVisible: string[] }) {
     }),
 
     mounted () {
+      const {vnode} = getCurrentInstance()
       Intersect.inserted(this.$el as HTMLElement, {
         name: 'intersect',
         value: this.onObserve,
-      }, this.$vnode)
+      }, vnode)
     },
 
     destroyed () {
+      const {vnode} = getCurrentInstance()
+
       Intersect.unbind(this.$el as HTMLElement, {
         name: 'intersect',
         value: this.onObserve,
-      }, this.$vnode)
+      }, vnode)
     },
 
     methods: {

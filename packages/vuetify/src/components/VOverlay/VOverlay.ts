@@ -47,7 +47,7 @@ export default mixins(
   computed: {
     __scrim (): VNode {
       const data = this.setBackgroundColor(this.color, {
-        staticClass: 'v-overlay__scrim',
+        class: 'v-overlay__scrim',
         style: {
           opacity: this.computedOpacity,
         },
@@ -75,7 +75,7 @@ export default mixins(
   methods: {
     genContent () {
       return this.$createElement('div', {
-        staticClass: 'v-overlay__content',
+        class: 'v-overlay__content',
       }, getSlot(this))
     },
   },
@@ -86,7 +86,7 @@ export default mixins(
     if (this.isActive) children.push(this.genContent())
 
     return h('div', {
-      staticClass: 'v-overlay',
+      class: 'v-overlay',
       on: this.$listeners,
       class: this.classes,
       style: this.styles,

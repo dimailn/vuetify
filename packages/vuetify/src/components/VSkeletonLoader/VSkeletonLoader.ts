@@ -67,7 +67,7 @@ export default mixins(
       }
     },
     isLoading (): boolean {
-      return !('default' in this.$scopedSlots) || this.loading
+      return !('default' in this.$slots) || this.loading
     },
     rootTypes (): Record<string, string> {
       return {
@@ -199,7 +199,7 @@ export default mixins(
 
   render (h): VNode {
     return h('div', {
-      staticClass: 'v-skeleton-loader',
+      class: 'v-skeleton-loader',
       attrs: this.attrs,
       on: this.$listeners,
       class: this.classes,

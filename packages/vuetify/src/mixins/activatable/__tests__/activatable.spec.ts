@@ -1,5 +1,5 @@
 // Libraries
-import Vue from 'vue'
+import {defineComponent} from 'vue'
 
 // Mixins
 import Activatable from '../'

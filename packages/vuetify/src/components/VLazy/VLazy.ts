@@ -73,7 +73,7 @@ export default mixins(
 
   render (h): VNode {
     return h(this.tag, {
-      staticClass: 'v-lazy',
+      class: 'v-lazy',
       attrs: this.$attrs,
       directives: [{
         name: 'intersect',

@@ -10,10 +10,13 @@ import { keyCodes } from '../../util/helpers'
 
 // Types
 import { PropValidator } from 'vue/types/options'
+import { defineComponent } from 'vue'
 
 /* @vue/component */
-export default VAutocomplete.extend({
+export default defineComponent({
   name: 'v-combobox',
+
+  extends: VAutocomplete,
 
   props: {
     delimiters: {
@@ -37,7 +40,7 @@ export default VAutocomplete.extend({
         : (this.internalSearch || '').toString().length
     },
     hasSlot (): boolean {
-      return VSelect.options.computed.hasSlot.call(this) || this.multiple
+      return VSelect.computed.hasSlot.call(this) || this.multiple
     },
     isAnyValueAllowed (): boolean {
       return true
@@ -70,7 +73,7 @@ export default VAutocomplete.extend({
       this.updateMenuDimensions()
     },
     genInput () {
-      const input = VAutocomplete.options.methods.genInput.call(this)
+      const input = VAutocomplete.methods.genInput.call(this)
 
       delete input.data!.attrs!.name
       input.data!.on!.paste = this.onPaste
@@ -78,7 +81,7 @@ export default VAutocomplete.extend({
       return input
     },
     genChipSelection (item: object, index: number) {
-      const chip = VSelect.options.methods.genChipSelection.call(this, item, index)
+      const chip = VSelect.methods.genChipSelection.call(this, item, index)
 
       // Allow user to update an existing value
       if (this.multiple) {
@@ -95,7 +98,7 @@ export default VAutocomplete.extend({
       return chip
     },
     onChipInput (item: object) {
-      VSelect.options.methods.onChipInput.call(this, item)
+      VSelect.methods.onChipInput.call(this, item)
 
       this.editingIndex = -1
     },
@@ -115,7 +118,7 @@ export default VAutocomplete.extend({
         e.ctrlKey ||
         ![keyCodes.home, keyCodes.end].includes(keyCode)
       ) {
-        VSelect.options.methods.onKeyDown.call(this, e)
+        VSelect.methods.onKeyDown.call(this, e)
       }
 
       // If user is at selection index of 0
@@ -149,14 +152,14 @@ export default VAutocomplete.extend({
         return this.updateTags()
       }
 
-      VAutocomplete.options.methods.onTabDown.call(this, e)
+      VAutocomplete.methods.onTabDown.call(this, e)
     },
     selectItem (item: object) {
       // Currently only supports items:<string[]>
       if (this.editingIndex > -1) {
         this.updateEditing()
       } else {
-        VAutocomplete.options.methods.selectItem.call(this, item)
+        VAutocomplete.methods.selectItem.call(this, item)
 
         // if selected item contains search value,
         // remove the search string
@@ -179,7 +182,7 @@ export default VAutocomplete.extend({
       }
     },
     setValue (value?: any) {
-      VSelect.options.methods.setValue.call(this, value === undefined ? this.internalSearch : value)
+      VSelect.methods.setValue.call(this, value === undefined ? this.internalSearch : value)
     },
     updateEditing () {
       const value = this.internalValue.slice()
@@ -212,7 +215,7 @@ export default VAutocomplete.extend({
       if (this.internalSearch !== this.getText(this.internalValue)) this.setValue()
 
       // Reset search if using slot to avoid a double input
-      const isUsingSlot = Boolean(this.$scopedSlots.selection) || this.hasChips
+      const isUsingSlot = Boolean(this.$slots.selection) || this.hasChips
       if (isUsingSlot) this.internalSearch = null
     },
     updateSelf () {
@@ -267,13 +270,13 @@ export default VAutocomplete.extend({
       const pastedItemText = event.clipboardData?.getData('text/vnd.vuetify.autocomplete.item+plain')
       if (pastedItemText && this.findExistingIndex(pastedItemText as any) === -1) {
         event.preventDefault()
-        VSelect.options.methods.selectItem.call(this, pastedItemText as any)
+        VSelect.methods.selectItem.call(this, pastedItemText as any)
       }
     },
     clearableCallback () {
       this.editingIndex = -1
 
-      VAutocomplete.options.methods.clearableCallback.call(this)
+      VAutocomplete.methods.clearableCallback.call(this)
     },
   },
 })

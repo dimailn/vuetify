@@ -6,9 +6,9 @@ import { clamp, convertToUnit } from '../../util/helpers'
 import { fromHSVA, VColorPickerColor, fromRGBA } from './util'
 
 // Types
-import Vue, { VNode, PropType } from 'vue'
+import { defineComponent, VNode, PropType } from 'vue'
 
-export default Vue.extend({
+export default defineComponent({
   name: 'v-color-picker-canvas',
 
   props: {
@@ -133,7 +133,7 @@ export default Vue.extend({
       const y = convertToUnit(this.dot.y - radius)
 
       return this.$createElement('div', {
-        staticClass: 'v-color-picker__canvas-dot',
+        class: 'v-color-picker__canvas-dot',
         class: {
           'v-color-picker__canvas-dot--disabled': this.disabled,
         },
@@ -148,7 +148,7 @@ export default Vue.extend({
 
   render (h): VNode {
     return h('div', {
-      staticClass: 'v-color-picker__canvas',
+      class: 'v-color-picker__canvas',
       style: {
         width: convertToUnit(this.width),
         height: convertToUnit(this.height),

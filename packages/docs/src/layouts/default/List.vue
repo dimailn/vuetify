@@ -25,7 +25,7 @@
       />
 
       <slot
-        v-else-if="$scopedSlots.item"
+        v-else-if="$slots.item"
         name="item"
         :index="i"
         :item="item"

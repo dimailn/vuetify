@@ -2,7 +2,7 @@
 import './VCalendarWeekly.sass'
 
 // Types
-import { VNode } from 'vue'
+import { VNode, defineComponent } from 'vue'
 
 // Components
 import VBtn from '../VBtn'
@@ -22,8 +22,9 @@ import {
 import { CalendarTimestamp, CalendarFormatter } from 'vuetify/types'
 
 /* @vue/component */
-export default CalendarBase.extend({
+export default defineComponent({
   name: 'v-calendar-weekly',
+  extends: CalendarBase,
 
   props: props.weeks,
 
@@ -89,7 +90,7 @@ export default CalendarBase.extend({
     },
     genHead (): VNode {
       return this.$createElement('div', {
-        staticClass: 'v-calendar-weekly__head',
+        class: 'v-calendar-weekly__head',
         attrs: {
           role: 'row',
         },
@@ -100,7 +101,7 @@ export default CalendarBase.extend({
 
       if (this.showWeek) {
         header.unshift(this.$createElement('div', {
-          staticClass: 'v-calendar-weekly__head-weeknumber',
+          class: 'v-calendar-weekly__head-weeknumber',
         }))
       }
 
@@ -112,7 +113,7 @@ export default CalendarBase.extend({
 
       return this.$createElement('div', this.setTextColor(color, {
         key: day.date,
-        staticClass: 'v-calendar-weekly__head-weekday',
+        class: 'v-calendar-weekly__head-weekday',
         class: this.getRelativeClasses(day, outside),
         attrs: {
           role: 'columnheader',
@@ -139,7 +140,7 @@ export default CalendarBase.extend({
 
       return this.$createElement('div', {
         key: week[0].date,
-        staticClass: 'v-calendar-weekly__week',
+        class: 'v-calendar-weekly__week',
         attrs: {
           role: 'row',
         },
@@ -156,7 +157,7 @@ export default CalendarBase.extend({
     },
     genWeekNumber (weekNumber: number) {
       return this.$createElement('div', {
-        staticClass: 'v-calendar-weekly__weeknumber',
+        class: 'v-calendar-weekly__weeknumber',
       }, [
         this.$createElement('small', String(weekNumber)),
       ])
@@ -166,7 +167,7 @@ export default CalendarBase.extend({
 
       return this.$createElement('div', {
         key: day.date,
-        staticClass: 'v-calendar-weekly__day',
+        class: 'v-calendar-weekly__day',
         class: this.getRelativeClasses(day, outside),
         attrs: {
           role: 'cell',
@@ -181,7 +182,7 @@ export default CalendarBase.extend({
     },
     genDayLabel (day: CalendarTimestamp): VNode {
       return this.$createElement('div', {
-        staticClass: 'v-calendar-weekly__day-label',
+        class: 'v-calendar-weekly__day-label',
       }, getSlot(this, 'day-label', day) || [this.genDayLabelButton(day)])
     },
     genDayLabelButton (day: CalendarTimestamp): VNode {
@@ -208,7 +209,7 @@ export default CalendarBase.extend({
       const color = day.present ? this.color : undefined
 
       return this.$createElement('div', this.setTextColor(color, {
-        staticClass: 'v-calendar-weekly__day-month',
+        class: 'v-calendar-weekly__day-month',
       }), getSlot(this, 'day-month', day) || this.monthFormatter(day, this.shortMonths))
     },
   },

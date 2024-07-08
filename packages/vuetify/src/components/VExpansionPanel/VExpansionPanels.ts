@@ -7,13 +7,15 @@ import VExpansionPanel from './VExpansionPanel'
 
 // Utilities
 import { breaking } from '../../util/console'
+import { defineComponent } from 'vue'
 
 // Types
 interface VExpansionPanelInstance extends InstanceType<typeof VExpansionPanel> {}
 
 /* @vue/component */
-export default BaseItemGroup.extend({
+export default defineComponent({
   name: 'v-expansion-panels',
+  extends: BaseItemGroup,
 
   provide (): object {
     return {
@@ -36,7 +38,7 @@ export default BaseItemGroup.extend({
   computed: {
     classes (): object {
       return {
-        ...BaseItemGroup.options.computed.classes.call(this),
+        ...BaseItemGroup.computed.classes.call(this),
         'v-expansion-panels': true,
         'v-expansion-panels--accordion': this.accordion,
         'v-expansion-panels--flat': this.flat,

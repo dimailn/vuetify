@@ -24,7 +24,7 @@ export default mixins(
   name: 'v-data-iterator',
 
   props: {
-    ...VData.options.props, // TODO: filter out props not used
+    ...VData.props, // TODO: filter out props not used
     itemKey: {
       type: String,
       default: 'id',
@@ -39,7 +39,7 @@ export default mixins(
       default: () => [],
     } as PropValidator<any[]>,
     mobileBreakpoint: {
-      ...Mobile.options.props.mobileBreakpoint,
+      ...Mobile.props.mobileBreakpoint,
       default: 600,
     },
     singleExpand: Boolean,
@@ -272,8 +272,8 @@ export default mixins(
       const empty = this.genEmpty(props.originalItemsLength, props.pagination.itemsLength)
       if (empty) return [empty]
 
-      if (this.$scopedSlots.default) {
-        return this.$scopedSlots.default({
+      if (this.$slots.default) {
+        return this.$slots.default({
           ...props,
           isSelected: this.isSelected,
           select: this.select,
@@ -283,8 +283,8 @@ export default mixins(
         })
       }
 
-      if (this.$scopedSlots.item) {
-        return props.items.map((item: any, index) => this.$scopedSlots.item!(this.createItemProps(
+      if (this.$slots.item) {
+        return props.items.map((item: any, index) => this.$slots.item!(this.createItemProps(
           item,
           index
         )))
@@ -306,7 +306,7 @@ export default mixins(
         },
       }
 
-      const scopedSlots = getPrefixedScopedSlots('footer.', this.$scopedSlots)
+      const scopedSlots = getPrefixedScopedSlots('footer.', this.$slots)
 
       return this.$createElement(VDataFooter, {
         scopedSlots,
@@ -322,7 +322,7 @@ export default mixins(
       }
 
       return this.$createElement('div', {
-        staticClass: 'v-data-iterator',
+        class: 'v-data-iterator',
       }, [
         getSlot(this, 'header', outerProps, true),
         this.genItems(props),

@@ -24,7 +24,7 @@ export default mixins(header).extend({
       const isDesc = this.options.sortDesc[sortIndex]
 
       children.push(this.$createElement('div', {
-        staticClass: 'v-chip__close',
+        class: 'v-chip__close',
         class: {
           sortable: true,
           active: beingSorted,
@@ -34,7 +34,7 @@ export default mixins(header).extend({
       }, [this.genSortIcon()]))
 
       return this.$createElement(VChip, {
-        staticClass: 'sortable',
+        class: 'sortable',
         on: {
           click: (e: MouseEvent) => {
             e.stopPropagation()
@@ -91,13 +91,13 @@ export default mixins(header).extend({
     }
 
     const th = children.length
-      ? h('th', [h('div', { staticClass: 'v-data-table-header-mobile__wrapper' }, children)])
+      ? h('th', [h('div', { class: 'v-data-table-header-mobile__wrapper' }, children)])
       : undefined
 
     const tr = h('tr', [th])
 
     return h('thead', {
-      staticClass: 'v-data-table-header v-data-table-header-mobile',
+      class: 'v-data-table-header v-data-table-header-mobile',
     }, [tr])
   },
 })

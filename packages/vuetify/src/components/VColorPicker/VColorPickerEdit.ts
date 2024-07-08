@@ -9,7 +9,7 @@ import VIcon from '../VIcon'
 import { parseHex } from '../../util/colorUtils'
 
 // Types
-import Vue, { VNode, PropType } from 'vue'
+import { defineComponent, VNode, PropType } from 'vue'
 import { VColorPickerColor, fromRGBA, fromHexa, fromHSLA } from './util'
 
 type Input = [string, number, string]
@@ -43,7 +43,7 @@ export const modes = {
   },
 } as { [key: string]: Mode }
 
-export default Vue.extend({
+export default defineComponent({
   name: 'v-color-picker-edit',
 
   props: {
@@ -101,7 +101,7 @@ export default Vue.extend({
     },
     genInput (target: string, attrs: any, value: any, on: any): VNode {
       return this.$createElement('div', {
-        staticClass: 'v-color-picker__input',
+        class: 'v-color-picker__input',
       }, [
         this.$createElement('input', {
           key: target,
@@ -179,7 +179,7 @@ export default Vue.extend({
 
   render (h): VNode {
     return h('div', {
-      staticClass: 'v-color-picker__edit',
+      class: 'v-color-picker__edit',
     }, [
       this.genInputs(),
       !this.hideModeSwitch && this.genSwitch(),

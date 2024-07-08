@@ -21,7 +21,7 @@ export default mixins(
 
   render (h): VNode {
     return h('div', {
-      staticClass: 'v-subheader',
+      class: 'v-subheader',
       class: {
         'v-subheader--inset': this.inset,
         ...this.themeClasses,

@@ -14,7 +14,7 @@ const languageRegexp = new RegExp('^(' + languagePattern + ')$')
 export function abort (code = 404) {
   return {
     name: 'FourOhFour',
-    path: '*',
+    path: '/:pathMatch(.*)*',
     component: () => error(code),
   }
 }
@@ -56,7 +56,7 @@ export function preferredLocale (locale = 'en') {
 }
 
 export function redirect (
-  path = '*',
+  path = '/:pathMatch(.*)*',
   rhandler,
   fallback = fallbackLocale,
 ) {

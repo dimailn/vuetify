@@ -19,9 +19,10 @@ export function factory<T extends string, C extends VueConstructor | null = null
   child?: string,
   parent?: string
 ): Groupable<T, C> {
-  return RegistrableInject<T, C>(namespace, child, parent).extend({
+  return {
     name: 'groupable',
 
+    extends: RegistrableInject<T, C>(namespace, child, parent),
     props: {
       activeClass: {
         type: String,
@@ -70,7 +71,7 @@ export function factory<T extends string, C extends VueConstructor | null = null
         this.$emit('change')
       },
     },
-  })
+  }
 }
 
 /* eslint-disable-next-line @typescript-eslint/no-redeclare */

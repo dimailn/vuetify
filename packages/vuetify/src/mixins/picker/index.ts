@@ -41,7 +41,7 @@ export default mixins(
       return null
     },
     genPickerActionsSlot () {
-      return this.$scopedSlots.default ? this.$scopedSlots.default({
+      return this.$slots.default ? this.$slots.default({
         save: (this as any).save,
         cancel: (this as any).cancel,
       }) : getSlot(this)

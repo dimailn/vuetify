@@ -73,7 +73,7 @@ describe('VDataTable/header.ts', () => {
         'data-table-select' (props) {
           return this.$createElement('div', {
             on: props.on,
-            staticClass: 'test',
+            class: 'test',
           }, [JSON.stringify(props)])
         },
       },

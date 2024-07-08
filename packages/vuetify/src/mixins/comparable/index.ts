@@ -1,8 +1,8 @@
-import Vue from 'vue'
+import {defineComponent} from 'vue'
 import { PropValidator } from 'vue/types/options'
 import { deepEqual } from '../../util/helpers'
 
-export default Vue.extend({
+export default defineComponent({
   name: 'comparable',
   props: {
     valueComparator: {

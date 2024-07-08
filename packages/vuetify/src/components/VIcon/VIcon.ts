@@ -10,7 +10,7 @@ import Themeable from '../../mixins/themeable'
 import { convertToUnit, keys, remapInternalIcon } from '../../util/helpers'
 
 // Types
-import Vue, { CreateElement, VNode, VNodeChildren, VNodeData } from 'vue'
+import { defineComponent, CreateElement, VNode, VNodeChildren, VNodeData } from 'vue'
 import mixins from '../../util/mixins'
 import { VuetifyIcon, VuetifyIconComponent } from 'vuetify/types/services/icons'
 
@@ -89,7 +89,7 @@ const VIcon = mixins(
     // Component data for both font icon and SVG wrapper span
     getDefaultData (): VNodeData {
       return {
-        staticClass: 'v-icon notranslate',
+        class: 'v-icon notranslate',
         class: {
           'v-icon--disabled': this.disabled,
           'v-icon--left': this.left,
@@ -227,7 +227,7 @@ const VIcon = mixins(
   },
 })
 
-export default Vue.extend({
+export default defineComponent({
   name: 'v-icon',
 
   $_wrapperFor: VIcon,

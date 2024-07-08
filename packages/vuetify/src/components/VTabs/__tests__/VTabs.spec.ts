@@ -103,7 +103,7 @@ describe('VTabs.ts', () => {
         return h(VTabs, {
           props: { hideSlider: true },
         }, [
-          h('div', { staticClass: 'test-element' }, ['foobar']),
+          h('div', { class: 'test-element' }, ['foobar']),
         ])
       },
     }

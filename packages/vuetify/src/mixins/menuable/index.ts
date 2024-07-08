@@ -45,7 +45,7 @@ interface options extends ExtractVue<typeof baseMixins> {
 }
 
 /* @vue/component */
-export default baseMixins.extend<options>().extend({
+export default baseMixins.extend({
   name: 'menuable',
 
   props: {
@@ -168,7 +168,7 @@ export default baseMixins.extend<options>().extend({
       return top
     },
     hasActivator (): boolean {
-      return !!this.$slots.activator || !!this.$scopedSlots.activator || !!this.activator || !!this.inputActivator
+      return !!this.$slots.activator || !!this.$slots.activator || !!this.activator || !!this.inputActivator
     },
     absoluteYOffset (): number {
       return this.pageYOffset - this.relativeYOffset

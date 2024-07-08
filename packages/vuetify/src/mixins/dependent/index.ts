@@ -1,4 +1,4 @@
-import Vue from 'vue'
+import {defineComponent} from 'vue'
 
 import mixins from '../../util/mixins'
 import { VOverlay } from '../../components/VOverlay'

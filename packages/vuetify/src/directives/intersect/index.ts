@@ -27,7 +27,7 @@ function inserted (el: HTMLElement, binding: ObserveVNodeDirective, vnode: VNode
     entries: IntersectionObserverEntry[] = [],
     observer: IntersectionObserver
   ) => {
-    const _observe = el._observe?.[vnode.context!._uid]
+    const _observe = el._observe?.[vnode.ctx!.uid]
     if (!_observe) return // Just in case, should never fire
 
     const isIntersecting = entries.some(entry => entry.isIntersecting)
@@ -52,17 +52,17 @@ function inserted (el: HTMLElement, binding: ObserveVNodeDirective, vnode: VNode
   }, options)
 
   el._observe = Object(el._observe)
-  el._observe![vnode.context!._uid] = { init: false, observer }
+  el._observe![vnode.ctx!.uid] = { init: false, observer }
 
   observer.observe(el)
 }
 
 function unbind (el: HTMLElement, binding: ObserveVNodeDirective, vnode: VNode) {
-  const observe = el._observe?.[vnode.context!._uid]
+  const observe = el._observe?.[vnode.ctx!.uid]
   if (!observe) return
 
   observe.observer.unobserve(el)
-  delete el._observe![vnode.context!._uid]
+  delete el._observe![vnode.ctx!.uid]
 }
 
 export const Intersect = {

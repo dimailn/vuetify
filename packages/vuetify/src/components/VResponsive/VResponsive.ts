@@ -33,7 +33,7 @@ export default mixins(Measurable).extend({
 
       return this.$createElement('div', {
         style: this.aspectStyle,
-        staticClass: 'v-responsive__sizer',
+        class: 'v-responsive__sizer',
       })
     },
   },
@@ -41,7 +41,7 @@ export default mixins(Measurable).extend({
   methods: {
     genContent (): VNode {
       return this.$createElement('div', {
-        staticClass: 'v-responsive__content',
+        class: 'v-responsive__content',
         class: this.contentClass,
       }, getSlot(this))
     },
@@ -49,7 +49,7 @@ export default mixins(Measurable).extend({
 
   render (h): VNode {
     return h('div', {
-      staticClass: 'v-responsive',
+      class: 'v-responsive',
       style: this.measurableStyles,
       on: this.$listeners,
     }, [

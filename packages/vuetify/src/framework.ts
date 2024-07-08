@@ -73,6 +73,7 @@ export default class Vuetify {
 
     // TODO maybe a specific type for arg 2?
     this.framework[property] = new Service(this.preset, this as any)
+
     this.installed.push(property)
   }
 }

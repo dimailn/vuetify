@@ -174,7 +174,7 @@ describe('VBanner.ts', () => {
             on: {
               click: props.dismiss,
             },
-            staticClass: 'test',
+            class: 'test',
           })
         },
       },

@@ -1,4 +1,4 @@
-import Vue from 'vue'
+import {defineComponent} from 'vue'
 
 /**
  * Delayable
@@ -7,7 +7,7 @@ import Vue from 'vue'
  *
  * Changes the open or close delay time for elements
  */
-export default Vue.extend<Vue & { isActive?: boolean }>().extend({
+export default defineComponent({
   name: 'delayable',
 
   props: {

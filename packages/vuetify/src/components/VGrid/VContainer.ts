@@ -4,10 +4,12 @@ import './VGrid.sass'
 import Grid from './grid'
 
 import mergeData from '../../util/mergeData'
+import { defineComponent, h } from 'vue'
 
 /* @vue/component */
-export default Grid('container').extend({
+export default defineComponent({
   name: 'v-container',
+  extends: Grid('container'),
   functional: true,
   props: {
     id: String,
@@ -20,12 +22,14 @@ export default Grid('container').extend({
       default: false,
     },
   },
-  render (h, { props, data, children }) {
+  render () {
     let classes
-    const { attrs } = data
+    // const { attrs } = data
+
+    const attrs = this.$attrs
+
     if (attrs) {
       // reset attrs to extract utility clases like pa-3
-      data.attrs = {}
       classes = Object.keys(attrs).filter(key => {
         // TODO: Remove once resolved
         // https://github.com/vuejs/vue/issues/7841
@@ -36,7 +40,7 @@ export default Grid('container').extend({
         // add back data attributes like data-test="foo" but do not
         // add them as classes
         if (key.startsWith('data-')) {
-          data.attrs![key] = value
+          // data.attrs![key] = value
           return false
         }
 
@@ -44,20 +48,20 @@ export default Grid('container').extend({
       })
     }
 
-    if (props.id) {
-      data.domProps = data.domProps || {}
-      data.domProps.id = props.id
-    }
+    // if (props.id) {
+    //   data.domProps = data.domProps || {}
+    //   data.domProps.id = props.id
+    // }
 
     return h(
-      props.tag,
-      mergeData(data, {
-        staticClass: 'container',
+      this.tag,
+      mergeData(this.$attrs, {
+        class: 'container',
         class: Array<any>({
-          'container--fluid': props.fluid,
+          'container--fluid': this.fluid,
         }).concat(classes || []),
       }),
-      children
+      this.$slots.default()
     )
   },
 })

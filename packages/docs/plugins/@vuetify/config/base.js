@@ -31,12 +31,12 @@ module.exports = config => {
     .loader('frontmatter-markdown-loader')
     .tap(() => ({
       markdown: body => md.render(body),
-      mode: [Mode.VUE_COMPONENT, Mode.BODY],
+      mode: [Mode.HTML, Mode.BODY],
       vue: { root: 'markdown-body' },
     }))
 
   config.resolve.alias
-    .set('vue$', 'vue/dist/vue.runtime.common.js')
+    .set('vue$', 'vue/dist/vue.runtime.esm-browser.js')
 
   config.optimization
     .removeAvailableModules(IS_PROD)

@@ -83,7 +83,7 @@ export default baseMixins.extend({
   computed: {
     __cachedBackground (): VNode {
       return this.$createElement('div', this.setBackgroundColor(this.backgroundColor || this.color, {
-        staticClass: 'v-progress-linear__background',
+        class: 'v-progress-linear__background',
         style: this.backgroundStyle,
       }))
     },
@@ -95,7 +95,7 @@ export default baseMixins.extend({
     },
     __cachedBuffer (): VNode {
       return this.$createElement('div', {
-        staticClass: 'v-progress-linear__buffer',
+        class: 'v-progress-linear__buffer',
         style: this.styles,
       })
     },
@@ -109,7 +109,7 @@ export default baseMixins.extend({
     },
     __cachedIndeterminate (): VNode {
       return this.$createElement('div', {
-        staticClass: 'v-progress-linear__indeterminate',
+        class: 'v-progress-linear__indeterminate',
         class: {
           'v-progress-linear__indeterminate--active': this.active,
         },
@@ -122,7 +122,7 @@ export default baseMixins.extend({
       if (!this.stream) return null
 
       return this.$createElement('div', this.setTextColor(this.color, {
-        staticClass: 'v-progress-linear__stream',
+        class: 'v-progress-linear__stream',
         style: {
           width: convertToUnit(100 - this.normalizedBuffer, '%'),
         },
@@ -189,7 +189,7 @@ export default baseMixins.extend({
       if (!slot) return null
 
       return this.$createElement('div', {
-        staticClass: 'v-progress-linear__content',
+        class: 'v-progress-linear__content',
       }, slot)
     },
     genListeners () {
@@ -203,7 +203,7 @@ export default baseMixins.extend({
     },
     genProgressBar (name: 'long' | 'short') {
       return this.$createElement('div', this.setBackgroundColor(this.color, {
-        staticClass: 'v-progress-linear__indeterminate',
+        class: 'v-progress-linear__indeterminate',
         class: {
           [name]: true,
         },
@@ -228,7 +228,7 @@ export default baseMixins.extend({
 
   render (h): VNode {
     const data = {
-      staticClass: 'v-progress-linear',
+      class: 'v-progress-linear',
       attrs: {
         role: 'progressbar',
         'aria-valuemin': 0,

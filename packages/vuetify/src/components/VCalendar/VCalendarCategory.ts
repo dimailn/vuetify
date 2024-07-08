@@ -2,7 +2,7 @@
 import './VCalendarCategory.sass'
 
 // Types
-import { VNode } from 'vue'
+import { VNode, defineComponent } from 'vue'
 
 // Mixins
 import VCalendarDaily from './VCalendarDaily'
@@ -14,8 +14,9 @@ import props from './util/props'
 import { getParsedCategories } from './util/parser'
 
 /* @vue/component */
-export default VCalendarDaily.extend({
+export default defineComponent({
   name: 'v-calendar-category',
+  extends: VCalendarDaily,
 
   props: props.category,
 
@@ -34,7 +35,7 @@ export default VCalendarDaily.extend({
   methods: {
     genDayHeader (day: CalendarTimestamp, index: number): VNode[] {
       const data = {
-        staticClass: 'v-calendar-category__columns',
+        class: 'v-calendar-category__columns',
       }
       const scope = {
         week: this.days, ...day, index,
@@ -57,7 +58,7 @@ export default VCalendarDaily.extend({
     genDayHeaderCategory (day: CalendarTimestamp, scope: any): VNode {
       const headerTitle = typeof scope.category === 'object' ? scope.category.categoryName : scope.category
       return this.$createElement('div', {
-        staticClass: 'v-calendar-category__column-header',
+        class: 'v-calendar-category__column-header',
         on: this.getDefaultMouseEventHandlers(':day-category', e => {
           return this.getCategoryScope(this.getSlotScope(day), scope.category)
         }),
@@ -68,7 +69,7 @@ export default VCalendarDaily.extend({
     },
     genDayHeaderCategoryTitle (categoryName: string | null) {
       return this.$createElement('div', {
-        staticClass: 'v-calendar-category__category',
+        class: 'v-calendar-category__category',
       }, categoryName === null ? this.categoryForInvalid : categoryName)
     },
     genDays (): VNode[] {
@@ -84,7 +85,7 @@ export default VCalendarDaily.extend({
       const category = this.parsedCategories[categoryIndex]
       return this.$createElement('div', {
         key: day.date + '-' + categoryIndex,
-        staticClass: 'v-calendar-daily__day',
+        class: 'v-calendar-daily__day',
         class: this.getRelativeClasses(day),
         on: this.getDefaultMouseEventHandlers(':time', e => {
           return this.getSlotScope(this.getTimestampAtEvent(e, day))
@@ -103,7 +104,7 @@ export default VCalendarDaily.extend({
 
       const data = {
         key: interval.time,
-        staticClass: 'v-calendar-daily__day-interval',
+        class: 'v-calendar-daily__day-interval',
         style: {
           height,
           ...styler({ ...interval, category }),
@@ -118,7 +119,7 @@ export default VCalendarDaily.extend({
     },
     genDayBody (day: CalendarTimestamp, category: CalendarCategory): VNode[] {
       const data = {
-        staticClass: 'v-calendar-category__columns',
+        class: 'v-calendar-category__columns',
       }
 
       const children = [this.genDayBodyCategory(day, category)]
@@ -127,7 +128,7 @@ export default VCalendarDaily.extend({
     },
     genDayBodyCategory (day: CalendarTimestamp, category: CalendarCategory): VNode {
       const data = {
-        staticClass: 'v-calendar-category__column',
+        class: 'v-calendar-category__column',
         on: this.getDefaultMouseEventHandlers(':time-category', e => {
           return this.getCategoryScope(this.getSlotScope(this.getTimestampAtEvent(e, day)), category)
         }),

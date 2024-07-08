@@ -70,12 +70,12 @@ export default baseMixins.extend({
         'v-stepper--vertical': this.vertical,
         'v-stepper--alt-labels': this.altLabels,
         'v-stepper--non-linear': this.nonLinear,
-        ...VSheet.options.computed.classes.call(this),
+        ...VSheet.computed.classes.call(this),
       }
     },
     styles (): object {
       return {
-        ...VSheet.options.computed.styles.call(this),
+        ...VSheet.computed.styles.call(this),
       }
     },
   },
@@ -133,7 +133,7 @@ export default baseMixins.extend({
 
   render (h): VNode {
     return h(this.tag, {
-      staticClass: 'v-stepper',
+      class: 'v-stepper',
       class: this.classes,
       style: this.styles,
     }, getSlot(this))

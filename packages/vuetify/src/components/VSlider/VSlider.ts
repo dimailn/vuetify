@@ -104,7 +104,7 @@ export default mixins<options &
   computed: {
     classes (): object {
       return {
-        ...VInput.options.computed.classes.call(this),
+        ...VInput.computed.classes.call(this),
         'v-input__slider': true,
         'v-input__slider--vertical': this.vertical,
         'v-input__slider--inverse-label': this.inverseLabel,
@@ -188,7 +188,7 @@ export default mixins<options &
     showThumbLabel (): boolean {
       return !this.isDisabled && !!(
         this.thumbLabel ||
-        this.$scopedSlots['thumb-label']
+        this.$slots['thumb-label']
       )
     },
     computedTrackColor (): string | undefined {
@@ -297,17 +297,17 @@ export default mixins<options &
     genTrackContainer (): VNode {
       const children = [
         this.$createElement('div', this.setBackgroundColor(this.computedTrackColor, {
-          staticClass: 'v-slider__track-background',
+          class: 'v-slider__track-background',
           style: this.trackStyles,
         })),
         this.$createElement('div', this.setBackgroundColor(this.computedTrackFillColor, {
-          staticClass: 'v-slider__track-fill',
+          class: 'v-slider__track-fill',
           style: this.trackFillStyles,
         })),
       ]
 
       return this.$createElement('div', {
-        staticClass: 'v-slider__track-container',
+        class: 'v-slider__track-container',
         ref: 'track',
       }, children)
     },
@@ -326,7 +326,7 @@ export default mixins<options &
 
         if (this.tickLabels[index]) {
           children.push(this.$createElement('div', {
-            staticClass: 'v-slider__tick-label',
+            class: 'v-slider__tick-label',
           }, this.tickLabels[index]))
         }
 
@@ -335,7 +335,7 @@ export default mixins<options &
 
         return this.$createElement('span', {
           key: index,
-          staticClass: 'v-slider__tick',
+          class: 'v-slider__tick',
           class: {
             'v-slider__tick--filled': filled,
           },
@@ -349,7 +349,7 @@ export default mixins<options &
       })
 
       return this.$createElement('div', {
-        staticClass: 'v-slider__ticks-container',
+        class: 'v-slider__ticks-container',
         class: {
           'v-slider__ticks-container--always-show': this.ticks === 'always' || this.tickLabels.length > 0,
         },
@@ -372,7 +372,7 @@ export default mixins<options &
       return this.$createElement('div', this.setTextColor(this.computedThumbColor, {
         ref,
         key: ref,
-        staticClass: 'v-slider__thumb-container',
+        class: 'v-slider__thumb-container',
         class: {
           'v-slider__thumb-container--active': isActive,
           'v-slider__thumb-container--focused': isFocused,
@@ -397,8 +397,8 @@ export default mixins<options &
       }), children)
     },
     genThumbLabelContent (value: number | string): ScopedSlotChildren {
-      return this.$scopedSlots['thumb-label']
-        ? this.$scopedSlots['thumb-label']!({ value })
+      return this.$slots['thumb-label']
+        ? this.$slots['thumb-label']!({ value })
         : [this.$createElement('span', [String(value)])]
     },
     genThumbLabel (content: ScopedSlotChildren): VNode {
@@ -412,14 +412,14 @@ export default mixins<options &
         props: { origin: 'bottom center' },
       }, [
         this.$createElement('div', {
-          staticClass: 'v-slider__thumb-label-container',
+          class: 'v-slider__thumb-label-container',
           directives: [{
             name: 'show',
             value: this.isFocused || this.isActive || this.thumbLabel === 'always',
           }],
         }, [
           this.$createElement('div', this.setBackgroundColor(this.computedThumbColor, {
-            staticClass: 'v-slider__thumb-label',
+            class: 'v-slider__thumb-label',
             style: {
               height: size,
               width: size,
@@ -431,7 +431,7 @@ export default mixins<options &
     },
     genThumb (): VNode {
       return this.$createElement('div', this.setBackgroundColor(this.computedThumbColor, {
-        staticClass: 'v-slider__thumb',
+        class: 'v-slider__thumb',
       }))
     },
     getThumbContainerStyles (width: number): object {

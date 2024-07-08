@@ -49,7 +49,7 @@ interface options extends InstanceType<typeof baseMixins> {
 const dirtyTypes = ['color', 'file', 'time', 'date', 'datetime-local', 'week', 'month']
 
 /* @vue/component */
-export default baseMixins.extend<options>().extend({
+export default baseMixins.extend({
   name: 'v-text-field',
 
   directives: {
@@ -104,7 +104,7 @@ export default baseMixins.extend<options>().extend({
   computed: {
     classes (): object {
       return {
-        ...VInput.options.computed.classes.call(this),
+        ...VInput.computed.classes.call(this),
         'v-text-field': true,
         'v-text-field--full-width': this.fullWidth,
         'v-text-field--prefix': this.prefix,
@@ -123,7 +123,7 @@ export default baseMixins.extend<options>().extend({
       }
     },
     computedColor (): string | undefined {
-      const computedColor = Validatable.options.computed.computedColor.call(this)
+      const computedColor = Validatable.computed.computedColor.call(this)
 
       if (!this.soloInverted || !this.isFocused) return computedColor
 
@@ -139,7 +139,7 @@ export default baseMixins.extend<options>().extend({
       return this.counter !== false && this.counter != null
     },
     hasDetails (): boolean {
-      return VInput.options.computed.hasDetails.call(this) || this.hasCounter
+      return VInput.computed.hasDetails.call(this) || this.hasCounter
     },
     internalValue: {
       get (): any {
@@ -293,7 +293,7 @@ export default baseMixins.extend<options>().extend({
       return this.genSlot('append', 'inner', slot)
     },
     genInputSlot () {
-      const input = VInput.options.methods.genInputSlot.call(this)
+      const input = VInput.methods.genInputSlot.call(this)
 
       const prepend = this.genPrependInnerSlot()
 
@@ -331,10 +331,10 @@ export default baseMixins.extend<options>().extend({
         value: this.computedCounterValue,
       }
 
-      return this.$scopedSlots.counter?.({ props }) ?? this.$createElement(VCounter, { props })
+      return this.$slots.counter?.({ props }) ?? this.$createElement(VCounter, { props })
     },
     genControl () {
-      return VInput.options.methods.genControl.call(this)
+      return VInput.methods.genControl.call(this)
     },
     genDefaultSlot () {
       return [
@@ -378,7 +378,7 @@ export default baseMixins.extend<options>().extend({
       const width = !this.singleLine && (this.labelValue || this.isDirty) ? this.labelWidth : 0
       const span = this.$createElement('span', {
         domProps: { innerHTML: '&#8203;' },
-        staticClass: 'notranslate',
+        class: 'notranslate',
       })
 
       return this.$createElement('legend', {
@@ -394,24 +394,19 @@ export default baseMixins.extend<options>().extend({
 
       return this.$createElement('input', {
         style: {},
-        domProps: {
-          value: (this.type === 'number' && Object.is(this.lazyValue, -0)) ? '-0' : this.lazyValue,
-        },
-        attrs: {
-          ...inputAttrs,
-          autofocus: this.autofocus,
-          disabled: this.isDisabled,
-          id: this.computedId,
-          placeholder: this.persistentPlaceholder || this.isFocused || !this.hasLabel ? this.placeholder : undefined,
-          readonly: this.isReadonly,
-          type: this.type,
-        },
-        on: Object.assign(listeners, {
-          blur: this.onBlur,
-          input: this.onInput,
-          focus: this.onFocus,
-          keydown: this.onKeyDown,
-        }),
+        value: (this.type === 'number' && Object.is(this.lazyValue, -0)) ? '-0' : this.lazyValue,
+        ...inputAttrs,
+        autofocus: this.autofocus,
+        disabled: this.isDisabled,
+        id: this.computedId,
+        placeholder: this.persistentPlaceholder || this.isFocused || !this.hasLabel ? this.placeholder : undefined,
+        readonly: this.isReadonly,
+        type: this.type,
+        onBlur: this.onBlur,
+        onInput: this.onInput,
+        onFocus: this.onFocus,
+        onKeydown: this.onKeyDown,
+        ...listeners,
         ref: 'input',
         directives: [{
           name: 'resize',
@@ -423,11 +418,11 @@ export default baseMixins.extend<options>().extend({
     genMessages () {
       if (!this.showDetails) return null
 
-      const messagesNode = VInput.options.methods.genMessages.call(this)
+      const messagesNode = VInput.methods.genMessages.call(this)
       const counterNode = this.genCounter()
 
       return this.$createElement('div', {
-        staticClass: 'v-text-field__details',
+        class: 'v-text-field__details',
       }, [
         messagesNode,
         counterNode,
@@ -435,7 +430,7 @@ export default baseMixins.extend<options>().extend({
     },
     genTextFieldSlot () {
       return this.$createElement('div', {
-        staticClass: 'v-text-field__slot',
+        class: 'v-text-field__slot',
       }, [
         this.genLabel(),
         this.prefix ? this.genAffix('prefix') : null,
@@ -496,12 +491,12 @@ export default baseMixins.extend<options>().extend({
         e.stopPropagation()
       }
 
-      VInput.options.methods.onMouseDown.call(this, e)
+      VInput.methods.onMouseDown.call(this, e)
     },
     onMouseUp (e: Event) {
       if (this.hasMouseDown) this.focus()
 
-      VInput.options.methods.onMouseUp.call(this, e)
+      VInput.methods.onMouseUp.call(this, e)
     },
     setLabelWidth () {
       if (!this.outlined) return

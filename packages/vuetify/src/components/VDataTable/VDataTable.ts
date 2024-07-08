@@ -266,7 +266,7 @@ export default mixins(
     },
     createItemProps (item: any, index: number): DataTableItemProps {
       const data = {
-        ...VDataIterator.options.methods.createItemProps.call(this, item, index),
+        ...VDataIterator.methods.createItemProps.call(this, item, index),
         headers: this.computedHeaders,
       }
 
@@ -301,12 +301,12 @@ export default mixins(
     },
     genLoading () {
       const th = this.$createElement('th', {
-        staticClass: 'column',
+        class: 'column',
         attrs: this.colspanAttrs,
       }, [this.genProgress()])
 
       const tr = this.$createElement('tr', {
-        staticClass: 'v-data-table__progress',
+        class: 'v-data-table__progress',
       }, [th])
 
       return this.$createElement('thead', [tr])
@@ -339,7 +339,7 @@ export default mixins(
       })]
 
       if (!this.hideDefaultHeader) {
-        const scopedSlots = getPrefixedScopedSlots('header.', this.$scopedSlots)
+        const scopedSlots = getPrefixedScopedSlots('header.', this.$slots)
         children.push(this.$createElement(VDataTableHeader, {
           ...data,
           scopedSlots,
@@ -352,7 +352,7 @@ export default mixins(
     },
     genEmptyWrapper (content: VNodeChildrenArrayContents) {
       return this.$createElement('tr', {
-        staticClass: 'v-data-table__empty-wrapper',
+        class: 'v-data-table__empty-wrapper',
       }, [
         this.$createElement('td', {
           attrs: this.colspanAttrs,
@@ -371,8 +371,8 @@ export default mixins(
       return groupedItems.map(group => {
         if (!this.openCache.hasOwnProperty(group.name)) this.$set(this.openCache, group.name, true)
 
-        if (this.$scopedSlots.group) {
-          return this.$scopedSlots.group({
+        if (this.$slots.group) {
+          return this.$slots.group({
             group: group.name,
             options: props.options,
             isMobile: this.isMobile,
@@ -392,11 +392,11 @@ export default mixins(
       const toggleFn = () => this.$set(this.openCache, group, !this.openCache[group])
       const removeFn = () => props.updateOptions({ groupBy: [], groupDesc: [] })
 
-      if (this.$scopedSlots['group.header']) {
+      if (this.$slots['group.header']) {
         children.unshift(this.$createElement('template', { slot: 'column.header' }, [
-          this.$scopedSlots['group.header']!({
+          this.$slots['group.header']!({
             group,
-            groupBy: props.options.groupBy,
+            groupBy: props.groupBy,
             isMobile: this.isMobile,
             items,
             headers: this.computedHeaders,
@@ -407,7 +407,7 @@ export default mixins(
         ]))
       } else {
         const toggle = this.$createElement(VBtn, {
-          staticClass: 'ma-0',
+          class: 'ma-0',
           props: {
             icon: true,
             small: true,
@@ -418,7 +418,7 @@ export default mixins(
         }, [this.$createElement(VIcon, [isOpen ? '$minus' : '$plus'])])
 
         const remove = this.$createElement(VBtn, {
-          staticClass: 'ma-0',
+          class: 'ma-0',
           props: {
             icon: true,
             small: true,
@@ -429,18 +429,18 @@ export default mixins(
         }, [this.$createElement(VIcon, ['$close'])])
 
         const column = this.$createElement('td', {
-          staticClass: 'text-start',
+          class: 'text-start',
           attrs: this.colspanAttrs,
         }, [toggle, `${this.groupByText}: ${group}`, remove])
 
         children.unshift(this.$createElement('template', { slot: 'column.header' }, [column]))
       }
 
-      if (this.$scopedSlots['group.summary']) {
+      if (this.$slots['group.summary']) {
         children.push(this.$createElement('template', { slot: 'column.summary' }, [
-          this.$scopedSlots['group.summary']!({
+          this.$slots['group.summary']!({
             group,
-            groupBy: props.options.groupBy,
+            groupBy: props.groupBy,
             isMobile: this.isMobile,
             items,
             headers: this.computedHeaders,
@@ -458,20 +458,20 @@ export default mixins(
       }, children)
     },
     genRows (items: any[], props: DataScopeProps) {
-      return this.$scopedSlots.item ? this.genScopedRows(items, props) : this.genDefaultRows(items, props)
+      return this.$slots.item ? this.genScopedRows(items, props) : this.genDefaultRows(items, props)
     },
     genScopedRows (items: any[], props: DataScopeProps) {
       const rows = []
 
       for (let i = 0; i < items.length; i++) {
         const item = items[i]
-        rows.push(this.$scopedSlots.item!({
+        rows.push(this.$slots.item!({
           ...this.createItemProps(item, i),
           isMobile: this.isMobile,
         }))
 
         if (this.isExpanded(item)) {
-          rows.push(this.$scopedSlots['expanded-item']!({
+          rows.push(this.$slots['expanded-item']!({
             headers: this.computedHeaders,
             isMobile: this.isMobile,
             index: i,
@@ -483,7 +483,7 @@ export default mixins(
       return rows
     },
     genDefaultRows (items: any[], props: DataScopeProps) {
-      return this.$scopedSlots['expanded-item']
+      return this.$slots['expanded-item']
         ? items.map((item, index) => this.genDefaultExpandedRow(item, index))
         : items.map((item, index) => this.genDefaultSimpleRow(item, index))
     },
@@ -494,8 +494,8 @@ export default mixins(
       }
       const headerRow = this.genDefaultSimpleRow(item, index, classes)
       const expandedRow = this.$createElement('tr', {
-        staticClass: 'v-data-table__expanded v-data-table__expanded__content',
-      }, [this.$scopedSlots['expanded-item']!({
+        class: 'v-data-table__expanded v-data-table__expanded__content',
+      }, [this.$slots['expanded-item']!({
         headers: this.computedHeaders,
         isMobile: this.isMobile,
         item,
@@ -511,7 +511,7 @@ export default mixins(
       ])
     },
     genDefaultSimpleRow (item: any, index: number, classes: Record<string, boolean> = {}): VNode {
-      const scopedSlots = getPrefixedScopedSlots('item.', this.$scopedSlots)
+      const scopedSlots = getPrefixedScopedSlots('item.', this.$slots)
 
       const data = this.createItemProps(item, index)
 
@@ -521,7 +521,7 @@ export default mixins(
           ...data,
           isMobile: this.isMobile,
         }) : () => this.$createElement(VSimpleCheckbox, {
-          staticClass: 'v-data-table__checkbox',
+          class: 'v-data-table__checkbox',
           props: {
             value: data.isSelected,
             disabled: !this.isSelectable(item),
@@ -536,7 +536,7 @@ export default mixins(
       if (this.showExpand) {
         const slot = scopedSlots['data-table-expand']
         scopedSlots['data-table-expand'] = slot ? () => slot(data) : () => this.$createElement(VIcon, {
-          staticClass: 'v-data-table__expand-icon',
+          class: 'v-data-table__expand-icon',
           class: {
             'v-data-table__expand-icon--active': data.isExpanded,
           },
@@ -578,8 +578,8 @@ export default mixins(
         select: this.select,
       }
 
-      if (this.$scopedSlots.body) {
-        return this.$scopedSlots.body!(data)
+      if (this.$slots.body) {
+        return this.$slots.body!(data)
       }
 
       return this.$createElement('tbody', [
@@ -589,7 +589,7 @@ export default mixins(
       ])
     },
     genFoot (props: DataScopeProps): VNode[] | undefined {
-      return this.$scopedSlots.foot?.(props)
+      return this.$slots.foot?.(props)
     },
     genFooters (props: DataScopeProps) {
       const data = {
@@ -613,7 +613,7 @@ export default mixins(
       if (!this.hideDefaultFooter) {
         children.push(this.$createElement(VDataFooter, {
           ...data,
-          scopedSlots: getPrefixedScopedSlots('footer.', this.$scopedSlots),
+          scopedSlots: getPrefixedScopedSlots('footer.', this.$slots),
         }))
       }
 

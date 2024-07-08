@@ -58,7 +58,7 @@ export default mixins(
     },
     genAmPm () {
       return this.$createElement('div', {
-        staticClass: 'v-time-picker-title__ampm',
+        class: 'v-time-picker-title__ampm',
         class: {
           'v-time-picker-title__ampm--readonly': this.ampmReadonly,
         },
@@ -75,7 +75,7 @@ export default mixins(
     this.ampm && children.push(this.genAmPm())
 
     return h('div', {
-      staticClass: 'v-time-picker-title',
+      class: 'v-time-picker-title',
     }, children)
   },
 })

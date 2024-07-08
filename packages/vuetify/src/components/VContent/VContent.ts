@@ -1,13 +1,15 @@
 // Types
-import { VNode } from 'vue'
+import { VNode, defineComponent } from 'vue'
 
 // Extensions
 import VMain from '../VMain/VMain'
 import { deprecate } from '../../util/console'
 
 /* @vue/component */
-export default VMain.extend({
+export default defineComponent({
   name: 'v-main',
+
+  extends: VMain,
 
   created () {
     deprecate('v-content', 'v-main', this)
@@ -15,7 +17,7 @@ export default VMain.extend({
 
   render (h): VNode {
     // Add the legacy class names
-    const node = VMain.options.render.call(this, h)
+    const node = VMain.render.call(this, h)
 
     node.data!.staticClass += ' v-content'
     node.children![0]!.data!.staticClass += ' v-content__wrap'

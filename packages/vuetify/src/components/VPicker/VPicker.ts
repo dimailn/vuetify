@@ -46,7 +46,7 @@ export default mixins(
   methods: {
     genTitle () {
       return this.$createElement('div', this.setBackgroundColor(this.computedTitleColor, {
-        staticClass: 'v-picker__title',
+        class: 'v-picker__title',
         class: {
           'v-picker__title--landscape': this.landscape,
         },
@@ -61,7 +61,7 @@ export default mixins(
     },
     genBody () {
       return this.$createElement('div', {
-        staticClass: 'v-picker__body',
+        class: 'v-picker__body',
         class: {
           'v-picker__body--no-title': this.noTitle,
           ...this.themeClasses,
@@ -75,7 +75,7 @@ export default mixins(
     },
     genActions () {
       return this.$createElement('div', {
-        staticClass: 'v-picker__actions v-card__actions',
+        class: 'v-picker__actions v-card__actions',
         class: {
           'v-picker__actions--no-title': this.noTitle,
         },
@@ -85,7 +85,7 @@ export default mixins(
 
   render (h): VNode {
     return h('div', {
-      staticClass: 'v-picker v-card',
+      class: 'v-picker v-card',
       class: {
         'v-picker--flat': this.flat,
         'v-picker--landscape': this.landscape,

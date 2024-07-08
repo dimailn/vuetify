@@ -14,13 +14,15 @@ import {
 } from '../../util/helpers'
 
 // Types
-import { VNode } from 'vue'
+import { VNode, defineComponent } from 'vue'
 import { PropValidator } from 'vue/types/options'
 
-export default Measurable.extend({
+export default defineComponent({
   name: 'v-virtual-scroll',
 
   directives: { Scroll },
+
+  extends: Measurable,
 
   props: {
     bench: {
@@ -80,7 +82,7 @@ export default Measurable.extend({
       const top = convertToUnit(index * this.__itemHeight)
 
       return this.$createElement('div', {
-        staticClass: 'v-virtual-scroll__item',
+        class: 'v-virtual-scroll__item',
         style: { top },
         key: index,
       }, getSlot(this, 'default', { index, item }))
@@ -102,14 +104,14 @@ export default Measurable.extend({
 
   render (h): VNode {
     const content = h('div', {
-      staticClass: 'v-virtual-scroll__container',
+      class: 'v-virtual-scroll__container',
       style: {
         height: convertToUnit((this.items.length * this.__itemHeight)),
       },
     }, this.getChildren())
 
     return h('div', {
-      staticClass: 'v-virtual-scroll',
+      class: 'v-virtual-scroll',
       style: this.measurableStyles,
       directives: [{
         name: 'scroll',

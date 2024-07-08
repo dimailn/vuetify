@@ -27,7 +27,7 @@ interface options extends InstanceType<typeof baseMixins> {
   stepClick: (step: number | string) => void
 }
 /* @vue/component */
-export default baseMixins.extend<options>().extend({
+export default baseMixins.extend({
   name: 'v-stepper-step',
 
   directives: { ripple },
@@ -105,14 +105,14 @@ export default baseMixins.extend<options>().extend({
     },
     genLabel () {
       return this.$createElement('div', {
-        staticClass: 'v-stepper__label',
+        class: 'v-stepper__label',
       }, getSlot(this))
     },
     genStep () {
       const color = (!this.hasError && (this.complete || this.isActive)) ? this.color : false
 
       return this.$createElement('span', this.setBackgroundColor(color, {
-        staticClass: 'v-stepper__step__step',
+        class: 'v-stepper__step__step',
       }), this.genStepContent())
     },
     genStepContent () {
@@ -148,7 +148,7 @@ export default baseMixins.extend<options>().extend({
       attrs: {
         tabindex: this.editable ? 0 : -1,
       },
-      staticClass: 'v-stepper__step',
+      class: 'v-stepper__step',
       class: this.classes,
       directives: [{
         name: 'ripple',

@@ -2,7 +2,7 @@
 import './calendar-with-events.sass'
 
 // Types
-import { VNode, VNodeData } from 'vue'
+import { VNode, VNodeData, defineComponent } from 'vue'
 
 // Directives
 import ripple from '../../../directives/ripple'
@@ -72,8 +72,10 @@ const WIDTH_START = 95
 const MINUTES_IN_DAY = 1440
 
 /* @vue/component */
-export default CalendarBase.extend({
+export default defineComponent({
   name: 'calendar-with-events',
+
+  extends: CalendarBase,
 
   directives: {
     ripple,
@@ -248,7 +250,7 @@ export default CalendarBase.extend({
       const scope = { eventParsed: event, day, start, end, timed: false }
 
       return this.genEvent(event, scope, false, {
-        staticClass: 'v-event',
+        class: 'v-event',
         class: {
           'v-event-start': start,
           'v-event-end': end,
@@ -280,7 +282,7 @@ export default CalendarBase.extend({
       const scope = { eventParsed: event, day, start, end, timed: true }
 
       return this.genEvent(event, scope, true, {
-        staticClass: 'v-event-timed',
+        class: 'v-event-timed',
         style: {
           top: `${top}px`,
           height: `${height}px`,
@@ -290,7 +292,7 @@ export default CalendarBase.extend({
       })
     },
     genEvent (event: CalendarEventParsed, scopeInput: VEventScopeInput, timedEvent: boolean, data: VNodeData): VNode {
-      const slot = this.$scopedSlots.event
+      const slot = this.$slots.event
       const text = this.eventTextColorFunction(event.input)
       const background = this.eventColorFunction(event.input)
       const overlapsNoon = event.start.hour < 12 && event.end.hour >= 12
@@ -304,7 +306,7 @@ export default CalendarBase.extend({
             const time = timeSummary()
             const delimiter = singline ? ', ' : this.$createElement('br')
 
-            return this.$createElement('span', { staticClass: 'v-event-summary' }, [
+            return this.$createElement('span', { class: 'v-event-summary' }, [
               this.$createElement('strong', [name]),
               delimiter,
               time,
@@ -312,7 +314,7 @@ export default CalendarBase.extend({
           } else {
             const time = formatTime(event.start, true)
 
-            return this.$createElement('span', { staticClass: 'v-event-summary' }, [
+            return this.$createElement('span', { class: 'v-event-summary' }, [
               this.$createElement('strong', [time]),
               ' ',
               name,
@@ -320,7 +322,7 @@ export default CalendarBase.extend({
           }
         }
 
-        return this.$createElement('span', { staticClass: 'v-event-summary' }, [name])
+        return this.$createElement('span', { class: 'v-event-summary' }, [name])
       }
 
       const scope = {
@@ -351,7 +353,7 @@ export default CalendarBase.extend({
     },
     genName (eventSummary: () => string | VNode): VNode {
       return this.$createElement('div', {
-        staticClass: 'pl-1',
+        class: 'pl-1',
       }, [eventSummary()])
     },
     genPlaceholder (day: CalendarTimestamp): VNode {
@@ -373,7 +375,7 @@ export default CalendarBase.extend({
       const eventMarginBottom = this.eventMarginBottom
 
       return this.$createElement('div', {
-        staticClass: 'v-event-more pl-1',
+        class: 'v-event-more pl-1',
         class: {
           'v-outside': day.outside,
         },
@@ -441,7 +443,7 @@ export default CalendarBase.extend({
     },
     getScopedSlots () {
       if (this.noEvents) {
-        return { ...this.$scopedSlots }
+        return { ...this.$slots }
       }
 
       const mode = this.eventModeFunction(
@@ -475,7 +477,7 @@ export default CalendarBase.extend({
         return children
       }
 
-      const slots = this.$scopedSlots
+      const slots = this.$slots
       const slotDay = slots.day
       const slotDayHeader = slots['day-header']
       const slotDayBody = slots['day-body']
@@ -510,7 +512,7 @@ export default CalendarBase.extend({
           const events = getSlotChildren(day, this.getEventsForDayTimed, this.genTimedEvent, true)
           let children: VNode[] = [
             this.$createElement('div', {
-              staticClass: 'v-event-timed-container',
+              class: 'v-event-timed-container',
             }, events),
           ]
 

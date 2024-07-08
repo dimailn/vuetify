@@ -34,7 +34,7 @@ export default mixins(
   computed: {
     classes () {
       return {
-        ...BaseSlideGroup.options.computed.classes.call(this),
+        ...BaseSlideGroup.computed.classes.call(this),
         'v-tabs-bar': true,
         'v-tabs-bar--is-mobile': this.isMobile,
         // TODO: Remove this and move to v-slide-group
@@ -57,7 +57,7 @@ export default mixins(
       this.$emit('call:slider')
     },
     genContent () {
-      const render = BaseSlideGroup.options.methods.genContent.call(this)
+      const render = BaseSlideGroup.methods.genContent.call(this)
 
       render.data = render.data || {}
       render.data.staticClass += ' v-tabs-bar__content'
@@ -90,7 +90,7 @@ export default mixins(
   },
 
   render (h): VNode {
-    const render = BaseSlideGroup.options.render.call(this, h)
+    const render = BaseSlideGroup.render.call(this, h)
 
     render.data!.attrs = {
       role: 'tablist',

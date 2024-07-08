@@ -1,9 +1,8 @@
 <template>
   <v-container class="team-members">
     <v-row>
-      <template v-for="(member, i) in members">
+      <template v-for="(member, i) in members" :key="i">
         <v-col
-          :key="i"
           cols="12"
         >
           <team-member v-bind="{ member }" />

@@ -1,5 +1,6 @@
 import { FunctionalComponentOptions, VNode, VNodeData } from 'vue'
 import mergeData from '../../util/mergeData'
+import {h} from 'vue'
 
 function mergeTransitions (
   dest: Function | Function[] = [],
@@ -42,22 +43,22 @@ export function createSimpleTransition (
       },
     },
 
-    render (h, context): VNode {
-      const tag = `transition${context.props.group ? '-group' : ''}`
+    render (): VNode {
+      const tag = `transition${this.$props.group ? '-group' : ''}`
       const data: VNodeData = {
         props: {
           name,
-          mode: context.props.mode,
+          mode: this.$props.mode,
         },
         on: {
-          beforeEnter (el: HTMLElement) {
-            el.style.transformOrigin = context.props.origin
-            el.style.webkitTransformOrigin = context.props.origin
+          beforeEnter: (el: HTMLElement) => {
+            el.style.transformOrigin = this.$props.origin
+            el.style.webkitTransformOrigin = this.$props.origin
           },
         },
       }
 
-      if (context.props.leaveAbsolute) {
+      if (this.$props.leaveAbsolute) {
         data.on!.leave = mergeTransitions(data.on!.leave, (el: HTMLElement) => {
           const { offsetTop, offsetLeft, offsetWidth, offsetHeight } = el
           el._transitionInitialStyles = {
@@ -85,13 +86,13 @@ export function createSimpleTransition (
           }
         })
       }
-      if (context.props.hideOnLeave) {
+      if (this.$props.hideOnLeave) {
         data.on!.leave = mergeTransitions(data.on!.leave, (el: HTMLElement) => {
           el.style.setProperty('display', 'none', 'important')
         })
       }
 
-      return h(tag, mergeData(context.data, data), context.children)
+      return h(tag, mergeData(this.$attrs, data), this.$slots.default())
     },
   }
 }
@@ -113,14 +114,14 @@ export function createJavascriptTransition (
       },
     },
 
-    render (h, context): VNode {
+    render (): VNode {
       return h(
         'transition',
-        mergeData(context.data, {
+        mergeData(this.$attrs, {
           props: { name },
           on: functions,
         }),
-        context.children
+        this.$slots.default()
       )
     },
   }

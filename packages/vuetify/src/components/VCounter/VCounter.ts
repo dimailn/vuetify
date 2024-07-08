@@ -30,7 +30,7 @@ export default mixins(Themeable).extend({
     const isGreater = max && (value > max)
 
     return h('div', {
-      staticClass: 'v-counter',
+      class: 'v-counter',
       class: {
         'error--text': isGreater,
         ...functionalThemeClasses(ctx),

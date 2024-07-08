@@ -1,5 +1,5 @@
 // Types
-import Vue, { VNode, PropType } from 'vue'
+import { defineComponent, VNode, PropType } from 'vue'
 import { DataTableHeader } from 'vuetify/types'
 
 // Utils
@@ -10,7 +10,7 @@ function needsTd (slot: VNode[] | undefined) {
     !['td', 'th'].includes(slot![0]?.tag!)
 }
 
-export default Vue.extend({
+export default defineComponent({
   name: 'row',
 
   functional: true,

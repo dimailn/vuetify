@@ -289,7 +289,7 @@ export default baseMixins.extend({
         !this.$refs.content.contains(target)
     },
     genActivatorAttributes () {
-      const attributes = Activatable.options.methods.genActivatorAttributes.call(this)
+      const attributes = Activatable.methods.genActivatorAttributes.call(this)
 
       if (this.activeTile && this.activeTile.id) {
         return {
@@ -301,7 +301,7 @@ export default baseMixins.extend({
       return attributes
     },
     genActivatorListeners () {
-      const listeners = Menuable.options.methods.genActivatorListeners.call(this)
+      const listeners = Menuable.methods.genActivatorListeners.call(this)
 
       if (!this.disableKeys) {
         listeners.keydown = this.onKeyDown
@@ -347,7 +347,7 @@ export default baseMixins.extend({
           ...this.contentProps,
           role: 'role' in this.$attrs ? this.$attrs.role : 'menu',
         },
-        staticClass: 'v-menu__content',
+        class: 'v-menu__content',
         class: {
           ...this.rootThemeClasses,
           ...this.roundedClasses,
@@ -497,7 +497,7 @@ export default baseMixins.extend({
 
   render (h): VNode {
     const data = {
-      staticClass: 'v-menu',
+      class: 'v-menu',
       class: {
         'v-menu--attached':
           this.attach === '' ||

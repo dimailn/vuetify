@@ -120,7 +120,7 @@ export default mixins(Colorable, Themeable).extend({
       return this.$createElement(VSubheader, { props }, props.header)
     },
     genHighlight (text: string) {
-      return this.$createElement('span', { staticClass: 'v-list-item__mask' }, text)
+      return this.$createElement('span', { class: 'v-list-item__mask' }, text)
     },
     getMaskedCharacters (text: string): {
       start: string
@@ -174,7 +174,7 @@ export default mixins(Colorable, Themeable).extend({
         },
       }
 
-      if (!this.$scopedSlots.item) {
+      if (!this.$slots.item) {
         return this.$createElement(VListItem, tile, [
           this.action && !this.hideSelected && this.items.length > 0
             ? this.genAction(item, value)
@@ -184,7 +184,7 @@ export default mixins(Colorable, Themeable).extend({
       }
 
       const parent = this
-      const scopedSlot = this.$scopedSlots.item({
+      const scopedSlot = this.$slots.item({
         parent,
         item,
         attrs: {
@@ -211,7 +211,7 @@ export default mixins(Colorable, Themeable).extend({
     needsTile (slot: VNode[] | undefined) {
       return slot!.length !== 1 ||
         slot![0].componentOptions == null ||
-        slot![0].componentOptions.Ctor.options.name !== 'v-list-item'
+        slot![0].componentOptions.Ctor.name !== 'v-list-item'
     },
     getDisabled (item: object) {
       return Boolean(getPropertyFromItem(item, this.itemDisabled, false))
@@ -247,7 +247,7 @@ export default mixins(Colorable, Themeable).extend({
     this.$slots['append-item'] && children.push(this.$slots['append-item'])
 
     return this.$createElement(VList, {
-      staticClass: 'v-select-list',
+      class: 'v-select-list',
       class: this.themeClasses,
       attrs: {
         role: 'listbox',

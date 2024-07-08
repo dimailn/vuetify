@@ -100,7 +100,7 @@ export default mixins<options &
 
   render (): VNode {
     return this.$createElement('ul', {
-      staticClass: 'v-date-picker-years',
+      class: 'v-date-picker-years',
       ref: 'years',
     }, this.genYearItems())
   },

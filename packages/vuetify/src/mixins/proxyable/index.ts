@@ -1,6 +1,6 @@
-import Vue, { VueConstructor } from 'vue'
+import { defineComponent, VueConstructor, App } from 'vue'
 
-export type Proxyable<T extends string = 'value'> = VueConstructor<Vue & {
+export type Proxyable<T extends string = 'value'> = VueConstructor<App & {
   internalLazyValue: unknown
   internalValue: unknown
 } & Record<T, any>>
@@ -10,7 +10,7 @@ export function factory (
   prop = 'value',
   event = 'change'
 ) {
-  return Vue.extend({
+  return defineComponent({
     name: 'proxyable',
 
     model: {

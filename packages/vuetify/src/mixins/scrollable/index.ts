@@ -5,7 +5,7 @@ import { Scroll } from '../../directives'
 import { consoleWarn } from '../../util/console'
 
 // Types
-import Vue from 'vue'
+import {defineComponent} from 'vue'
 
 /**
  * Scrollable
@@ -16,7 +16,7 @@ import Vue from 'vue'
  * met.
  */
 /* @vue/component */
-export default Vue.extend({
+export default defineComponent({
   name: 'scrollable',
 
   directives: { Scroll },

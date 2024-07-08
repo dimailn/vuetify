@@ -1,17 +1,17 @@
-import OurVue, { VueConstructor } from 'vue'
+import { createApp, reactive } from 'vue'
 import { VuetifyUseOptions } from 'vuetify/types'
 import { consoleError } from './util/console'
 
-export function install (Vue: VueConstructor, args: VuetifyUseOptions = {}) {
+export function install (Vue: ReturnType<typeof createApp>, args: VuetifyUseOptions = {}) {
   if ((install as any).installed) return
   (install as any).installed = true
 
-  if (OurVue !== Vue) {
-    consoleError(`Multiple instances of Vue detected
-See https://github.com/vuetifyjs/vuetify/issues/4068
+//   if (OurVue !== Vue) {
+//     consoleError(`Multiple instances of Vue detected
+// See https://github.com/vuetifyjs/vuetify/issues/4068
 
-If you're seeing "$attrs is readonly", it's caused by this`)
-  }
+// If you're seeing "$attrs is readonly", it's caused by this`)
+//   }
 
   const components = args.components || {}
   const directives = args.directives || {}
@@ -21,6 +21,7 @@ If you're seeing "$attrs is readonly", it's caused by this`)
 
     Vue.directive(name, directive)
   }
+
 
   (function registerComponents (components: any) {
     if (components) {
@@ -45,12 +46,13 @@ If you're seeing "$attrs is readonly", it's caused by this`)
     beforeCreate () {
       const options = this.$options as any
 
-      if (options.vuetify) {
-        options.vuetify.init(this, this.$ssrContext)
-        this.$vuetify = Vue.observable(options.vuetify.framework)
-      } else {
-        this.$vuetify = (options.parent && options.parent.$vuetify) || this
-      }
+      // if (options.vuetify) {
+      //   options.vuetify.init(this, this.$ssrContext)
+      //   this.$vuetify = reactive(options.vuetify.framework)
+      // } else {
+      //   this.$vuetify = (options.parent && options.parent.$vuetify) || this
+      // }
+
     },
     beforeMount () {
       // @ts-ignore

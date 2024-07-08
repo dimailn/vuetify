@@ -22,7 +22,7 @@ interface options extends ExtractVue<typeof baseMixins> {
 }
 
 /* @vue/component */
-export default baseMixins.extend<options>().extend({
+export default baseMixins.extend({
   name: 'v-carousel-item',
 
   inject: {
@@ -46,14 +46,14 @@ export default baseMixins.extend<options>().extend({
     genDefaultSlot () {
       return [
         this.$createElement(VImg, {
-          staticClass: 'v-carousel__item',
+          class: 'v-carousel__item',
           props: {
             ...this.$attrs,
             height: this.windowGroup.internalHeight,
           },
           on: this.$listeners,
           scopedSlots: {
-            placeholder: this.$scopedSlots.placeholder,
+            placeholder: this.$slots.placeholder,
           },
         }, getSlot(this)),
       ]

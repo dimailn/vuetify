@@ -45,7 +45,7 @@ export default mixins(
     },
     classes (): object {
       return {
-        ...VSheet.options.computed.classes.call(this),
+        ...VSheet.computed.classes.call(this),
         'v-footer--absolute': this.absolute,
         'v-footer--fixed': !this.absolute && (this.app || this.fixed),
         'v-footer--padless': this.padless,
@@ -84,7 +84,7 @@ export default mixins(
       const height = parseInt(this.height)
 
       return {
-        ...VSheet.options.computed.styles.call(this),
+        ...VSheet.computed.styles.call(this),
         height: isNaN(height) ? height : convertToUnit(height),
         left: convertToUnit(this.computedLeft),
         right: convertToUnit(this.computedRight),
@@ -105,7 +105,7 @@ export default mixins(
 
   render (h): VNode {
     const data = this.setBackgroundColor(this.color, {
-      staticClass: 'v-footer',
+      class: 'v-footer',
       class: this.classes,
       style: this.styles,
     })

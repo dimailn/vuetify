@@ -1,13 +1,15 @@
 // Extensions
+import { defineComponent } from 'vue'
 import VWindow from '../VWindow/VWindow'
 
 // Types & Components
 import { BaseItemGroup, GroupableInstance } from './../VItemGroup/VItemGroup'
 
 /* @vue/component */
-export default VWindow.extend({
+export default defineComponent({
   name: 'v-tabs-items',
 
+  extends: VWindow,
   props: {
     mandatory: {
       type: Boolean,
@@ -18,7 +20,7 @@ export default VWindow.extend({
   computed: {
     classes (): object {
       return {
-        ...VWindow.options.computed.classes.call(this),
+        ...VWindow.computed.classes.call(this),
         'v-tabs-items': true,
       }
     },
@@ -29,7 +31,7 @@ export default VWindow.extend({
 
   methods: {
     getValue (item: GroupableInstance, i: number) {
-      return item.id || BaseItemGroup.options.methods.getValue.call(this, item, i)
+      return item.id || BaseItemGroup.methods.getValue.call(this, item, i)
     },
   },
 })

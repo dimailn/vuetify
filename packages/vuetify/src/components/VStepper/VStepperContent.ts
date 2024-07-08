@@ -28,7 +28,7 @@ interface options extends InstanceType<typeof baseMixins> {
 }
 
 /* @vue/component */
-export default baseMixins.extend<options>().extend({
+export default baseMixins.extend({
   name: 'v-stepper-content',
 
   inject: {
@@ -140,10 +140,10 @@ export default baseMixins.extend<options>().extend({
 
   render (h): VNode {
     const contentData = {
-      staticClass: 'v-stepper__content',
+      class: 'v-stepper__content',
     } as VNodeData
     const wrapperData = {
-      staticClass: 'v-stepper__wrapper',
+      class: 'v-stepper__wrapper',
       style: this.styles,
       ref: 'wrapper',
     }

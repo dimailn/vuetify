@@ -2,11 +2,12 @@
 import VAvatar from '../VAvatar'
 
 // Types
-import { VNode } from 'vue'
+import { VNode, defineComponent } from 'vue'
 
 /* @vue/component */
-export default VAvatar.extend({
+export default defineComponent({
   name: 'v-list-item-avatar',
+  extends: VAvatar,
 
   props: {
     horizontal: Boolean,
@@ -20,14 +21,14 @@ export default VAvatar.extend({
     classes (): object {
       return {
         'v-list-item__avatar--horizontal': this.horizontal,
-        ...VAvatar.options.computed.classes.call(this),
+        ...VAvatar.computed.classes.call(this),
         'v-avatar--tile': this.tile || this.horizontal,
       }
     },
   },
 
   render (h): VNode {
-    const render = VAvatar.options.render.call(this, h)
+    const render = VAvatar.render.call(this, h)
 
     render.data = render.data || {}
     render.data.staticClass += ' v-list-item__avatar'

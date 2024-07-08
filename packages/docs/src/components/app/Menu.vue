@@ -27,7 +27,7 @@
         :items="items"
       >
         <template
-          v-if="$scopedSlots.item"
+          v-if="$slots.item"
           #item="props"
         >
           <slot

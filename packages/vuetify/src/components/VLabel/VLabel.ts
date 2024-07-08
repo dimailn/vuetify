@@ -42,7 +42,7 @@ export default mixins(Themeable).extend({
   render (h, ctx): VNode {
     const { children, listeners, props, data } = ctx
     const newData = mergeData({
-      staticClass: 'v-label',
+      class: 'v-label',
       class: {
         'v-label--active': props.value,
         'v-label--is-disabled': props.disabled,
@@ -61,6 +61,6 @@ export default mixins(Themeable).extend({
       ref: 'label',
     }, data)
 
-    return h('label', Colorable.options.methods.setTextColor(props.focused && props.color, newData), children)
+    return h('label', Colorable.methods.setTextColor(props.focused && props.color, newData), children)
   },
 })

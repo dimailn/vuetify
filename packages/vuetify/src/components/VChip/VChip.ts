@@ -84,7 +84,7 @@ export default mixins(
     classes (): object {
       return {
         'v-chip': true,
-        ...Routable.options.computed.classes.call(this),
+        ...Routable.computed.classes.call(this),
         'v-chip--clickable': this.isClickable,
         'v-chip--disabled': this.disabled,
         'v-chip--draggable': this.draggable,
@@ -104,7 +104,7 @@ export default mixins(
     },
     isClickable (): boolean {
       return Boolean(
-        Routable.options.computed.isClickable.call(this) ||
+        Routable.computed.isClickable.call(this) ||
         this.chipGroup
       )
     },
@@ -136,7 +136,7 @@ export default mixins(
       if (this.isActive) {
         children.push(
           this.$createElement(VIcon, {
-            staticClass: 'v-chip__filter',
+            class: 'v-chip__filter',
             props: { left: true },
           }, this.filterIcon)
         )
@@ -146,7 +146,7 @@ export default mixins(
     },
     genClose (): VNode {
       return this.$createElement(VIcon, {
-        staticClass: 'v-chip__close',
+        class: 'v-chip__close',
         props: {
           right: true,
           size: 18,
@@ -167,7 +167,7 @@ export default mixins(
     },
     genContent (): VNode {
       return this.$createElement('span', {
-        staticClass: 'v-chip__content',
+        class: 'v-chip__content',
       }, [
         this.filter && this.genFilter(),
         getSlot(this),

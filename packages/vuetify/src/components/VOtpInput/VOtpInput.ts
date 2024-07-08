@@ -27,7 +27,7 @@ interface options extends InstanceType<typeof baseMixins> {
 }
 
 /* @vue/component */
-export default baseMixins.extend<options>().extend({
+export default baseMixins.extend({
   name: 'v-otp-input',
 
   directives: {
@@ -60,8 +60,8 @@ export default baseMixins.extend<options>().extend({
     },
     classes (): object {
       return {
-        ...VInput.options.computed.classes.call(this),
-        ...VTextField.options.computed.classes.call(this),
+        ...VInput.computed.classes.call(this),
+        ...VTextField.computed.classes.call(this),
         'v-otp-input--plain': this.plain,
       }
     },
@@ -95,7 +95,7 @@ export default baseMixins.extend<options>().extend({
     },
     genInputSlot (otpIdx: number) {
       return this.$createElement('div', this.setBackgroundColor(this.backgroundColor, {
-        staticClass: 'v-input__slot',
+        class: 'v-input__slot',
         style: { height: convertToUnit(this.height) },
         on: {
           click: () => this.onClick(otpIdx),
@@ -106,7 +106,7 @@ export default baseMixins.extend<options>().extend({
     },
     genControl (otpIdx: number) {
       return this.$createElement('div', {
-        staticClass: 'v-input__control',
+        class: 'v-input__control',
       }, [
         this.genInputSlot(otpIdx),
       ])
@@ -120,7 +120,7 @@ export default baseMixins.extend<options>().extend({
     genContent () {
       return Array.from({ length: +this.length }, (_, i) => {
         return this.$createElement('div', this.setTextColor(this.validationState, {
-          staticClass: 'v-input',
+          class: 'v-input',
           class: this.classes,
         }), [this.genControl(i)])
       })
@@ -175,7 +175,7 @@ export default baseMixins.extend<options>().extend({
     },
     genTextFieldSlot (otpIdx: number): VNode {
       return this.$createElement('div', {
-        staticClass: 'v-text-field__slot',
+        class: 'v-text-field__slot',
       }, [
         this.genInput(otpIdx),
       ])
@@ -252,12 +252,12 @@ export default baseMixins.extend<options>().extend({
         e.stopPropagation()
       }
 
-      VInput.options.methods.onMouseDown.call(this, e)
+      VInput.methods.onMouseDown.call(this, e)
     },
     onMouseUp (e: Event, otpIdx: number) {
       if (this.hasMouseDown) this.focus(e, otpIdx)
 
-      VInput.options.methods.onMouseUp.call(this, e)
+      VInput.methods.onMouseUp.call(this, e)
     },
     changeFocus (index: number) {
       this.onFocus(undefined, index || 0)
@@ -297,7 +297,7 @@ export default baseMixins.extend<options>().extend({
   },
   render (h): VNode {
     return h('div', {
-      staticClass: 'v-otp-input',
+      class: 'v-otp-input',
       class: this.themeClasses,
     }, this.genContent())
   },

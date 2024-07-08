@@ -207,7 +207,7 @@ export default mixins(
     genItem (i: number): VNode | VNodeChildren | string {
       const props = this.createProps(i)
 
-      if (this.$scopedSlots.item) return this.$scopedSlots.item(props)
+      if (this.$slots.item) return this.$slots.item(props)
 
       const listeners: Record<string, Function> = {
         click: props.click,
@@ -237,7 +237,7 @@ export default mixins(
     const children = createRange(Number(this.length)).map(i => this.genItem(i))
 
     return h('div', {
-      staticClass: 'v-rating',
+      class: 'v-rating',
       class: {
         'v-rating--readonly': this.readonly,
         'v-rating--dense': this.dense,

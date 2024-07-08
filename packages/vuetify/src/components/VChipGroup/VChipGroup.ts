@@ -30,7 +30,7 @@ export default mixins(
   computed: {
     classes () {
       return {
-        ...BaseSlideGroup.options.computed.classes.call(this),
+        ...BaseSlideGroup.computed.classes.call(this),
         'v-chip-group': true,
         'v-chip-group--column': this.column,
       }
@@ -48,7 +48,7 @@ export default mixins(
   methods: {
     genData () {
       return this.setTextColor(this.color, {
-        ...BaseSlideGroup.options.methods.genData.call(this),
+        ...BaseSlideGroup.methods.genData.call(this),
       })
     },
   },

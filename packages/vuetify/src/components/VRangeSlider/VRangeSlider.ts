@@ -14,10 +14,12 @@ import {
 
 // Types
 import { PropValidator } from 'vue/types/options'
+import { defineComponent } from 'vue'
 
 /* @vue/component */
-export default VSlider.extend({
+export default defineComponent({
   name: 'v-range-slider',
+  extends: VSlider,
 
   props: {
     value: {
@@ -36,7 +38,7 @@ export default VSlider.extend({
   computed: {
     classes (): object {
       return {
-        ...VSlider.options.computed.classes.call(this),
+        ...VSlider.computed.classes.call(this),
         'v-input--range-slider': true,
       }
     },
@@ -93,7 +95,7 @@ export default VSlider.extend({
     },
     genInput () {
       return createRange(2).map(i => {
-        const input = VSlider.options.methods.genInput.call(this)
+        const input = VSlider.methods.genInput.call(this)
 
         input.data = input.data || {}
         input.data.attrs = input.data.attrs || {}
@@ -133,7 +135,7 @@ export default VSlider.extend({
       }))))
 
       return this.$createElement('div', {
-        staticClass: 'v-slider__track-container',
+        class: 'v-slider__track-container',
         ref: 'track',
       }, children)
     },

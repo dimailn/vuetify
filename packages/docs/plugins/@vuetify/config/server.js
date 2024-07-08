@@ -1,6 +1,6 @@
 // Imports
 const nodeExternals = require('webpack-node-externals')
-const VueSSRServerPlugin = require('vue-server-renderer/server-plugin')
+// const VueSSRServerPlugin = require('@vue/server-renderer/server-plugin')
 
 process.env.VUE_ENV = 'server'
 
@@ -13,8 +13,8 @@ module.exports = config => {
     .add('./src/entry-server.js')
     .end()
 
-  config.plugin('VueSSRServerPlugin')
-    .use(VueSSRServerPlugin)
+  // config.plugin('VueSSRServerPlugin')
+  //   .use(VueSSRServerPlugin)
 
   config.plugins.delete('pwa')
 

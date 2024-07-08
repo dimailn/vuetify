@@ -74,7 +74,7 @@ export default baseMixins.extend({
     },
     canScroll (): boolean {
       return (
-        Scrollable.options.computed.canScroll.call(this) &&
+        Scrollable.computed.canScroll.call(this) &&
         (
           this.invertedScroll ||
           this.elevateOnScroll ||
@@ -90,7 +90,7 @@ export default baseMixins.extend({
     },
     classes (): object {
       return {
-        ...VToolbar.options.computed.classes.call(this),
+        ...VToolbar.computed.classes.call(this),
         'v-toolbar--collapse': this.collapse || this.collapseOnScroll,
         'v-app-bar': true,
         'v-app-bar--clipped': this.clippedLeft || this.clippedRight,
@@ -107,7 +107,7 @@ export default baseMixins.extend({
       return Math.max((threshold - this.currentScroll) / threshold, 0)
     },
     computedContentHeight (): number {
-      if (!this.shrinkOnScroll) return VToolbar.options.computed.computedContentHeight.call(this)
+      if (!this.shrinkOnScroll) return VToolbar.computed.computedContentHeight.call(this)
 
       const min = this.dense ? 48 : 56
       const max = this.computedOriginalHeight
@@ -138,7 +138,7 @@ export default baseMixins.extend({
       return this.scrollRatio
     },
     computedOriginalHeight (): number {
-      let height = VToolbar.options.computed.computedContentHeight.call(this)
+      let height = VToolbar.computed.computedContentHeight.call(this)
       if (this.isExtended) height += parseInt(this.extensionHeight)
       return height
     },
@@ -183,20 +183,20 @@ export default baseMixins.extend({
     },
     isCollapsed (): boolean {
       if (!this.collapseOnScroll) {
-        return VToolbar.options.computed.isCollapsed.call(this)
+        return VToolbar.computed.isCollapsed.call(this)
       }
 
       return this.currentScroll > 0
     },
     isProminent (): boolean {
       return (
-        VToolbar.options.computed.isProminent.call(this) ||
+        VToolbar.computed.isProminent.call(this) ||
         this.shrinkOnScroll
       )
     },
     styles (): object {
       return {
-        ...VToolbar.options.computed.styles.call(this),
+        ...VToolbar.computed.styles.call(this),
         fontSize: convertToUnit(this.computedFontSize, 'rem'),
         marginTop: convertToUnit(this.computedMarginTop),
         transform: `translateY(${convertToUnit(this.computedTransform)})`,
@@ -236,7 +236,7 @@ export default baseMixins.extend({
 
   methods: {
     genBackground () {
-      const render = VToolbar.options.methods.genBackground.call(this)
+      const render = VToolbar.methods.genBackground.call(this)
 
       render.data = this._b(render.data || {}, render.tag!, {
         style: { opacity: this.computedOpacity },
@@ -267,7 +267,7 @@ export default baseMixins.extend({
   },
 
   render (h): VNode {
-    const render = VToolbar.options.render.call(this, h)
+    const render = VToolbar.render.call(this, h)
 
     render.data = render.data || {}
 

@@ -18,10 +18,11 @@ import { convertToUnit } from '../../util/helpers'
 import { breaking } from '../../util/console'
 
 // Types
-import { VNode, PropType } from 'vue'
+import { VNode, PropType, defineComponent } from 'vue'
 
-export default VWindow.extend({
+export default defineComponent({
   name: 'v-carousel',
+  extends: VWindow,
 
   props: {
     continuous: {
@@ -77,7 +78,7 @@ export default VWindow.extend({
   computed: {
     classes (): object {
       return {
-        ...VWindow.options.computed.classes.call(this),
+        ...VWindow.computed.classes.call(this),
         'v-carousel': true,
         'v-carousel--hide-delimiter-background': this.hideDelimiterBackground,
         'v-carousel--vertical-delimiters': this.isVertical,
@@ -123,11 +124,11 @@ export default VWindow.extend({
     genControlIcons () {
       if (this.isVertical) return null
 
-      return VWindow.options.methods.genControlIcons.call(this)
+      return VWindow.methods.genControlIcons.call(this)
     },
     genDelimiters (): VNode {
       return this.$createElement('div', {
-        staticClass: 'v-carousel__controls',
+        class: 'v-carousel__controls',
         style: {
           left: this.verticalDelimiters === 'left' && this.isVertical ? 0 : 'auto',
           right: this.verticalDelimiters === 'right' ? 0 : 'auto',
@@ -140,7 +141,7 @@ export default VWindow.extend({
 
       for (let i = 0; i < length; i++) {
         const child = this.$createElement(VBtn, {
-          staticClass: 'v-carousel__controls__item',
+          class: 'v-carousel__controls__item',
           attrs: {
             'aria-label': this.$vuetify.lang.t('$vuetify.carousel.ariaLabel.delimiter', i + 1, length),
           },
@@ -173,7 +174,7 @@ export default VWindow.extend({
     },
     genProgress () {
       return this.$createElement(VProgressLinear, {
-        staticClass: 'v-carousel__progress',
+        class: 'v-carousel__progress',
         props: {
           color: this.progressColor,
           value: (this.internalIndex + 1) / this.items.length * 100,
@@ -194,7 +195,7 @@ export default VWindow.extend({
   },
 
   render (h): VNode {
-    const render = VWindow.options.render.call(this, h)
+    const render = VWindow.render.call(this, h)
 
     render.data!.style = `height: ${convertToUnit(this.height)};`
 

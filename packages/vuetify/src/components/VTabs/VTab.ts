@@ -29,9 +29,7 @@ interface options extends ExtractVue<typeof baseMixins> {
   tabsBar: VTabBarInstance
 }
 
-export default baseMixins.extend<options>().extend(
-  /* @vue/component */
-).extend({
+export default baseMixins.extend({
   name: 'v-tab',
 
   props: {
@@ -52,7 +50,7 @@ export default baseMixins.extend<options>().extend(
     classes (): object {
       return {
         'v-tab': true,
-        ...Routable.options.computed.classes.call(this),
+        ...Routable.computed.classes.call(this),
         'v-tab--disabled': this.disabled,
         ...this.groupClasses,
       }

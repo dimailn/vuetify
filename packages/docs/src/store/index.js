@@ -1,6 +1,5 @@
 // Vue
-import Vue from 'vue'
-import Vuex from 'vuex'
+import {createStore as _createStore} from 'vuex'
 
 // Utilities
 import pathify from '@/plugins/vuex-pathify'
@@ -8,10 +7,8 @@ import pathify from '@/plugins/vuex-pathify'
 // Modules
 import * as modules from './modules'
 
-Vue.use(Vuex)
-
 export function createStore () {
-  const store = new Vuex.Store({
+  const store = _createStore({
     modules,
     plugins: [pathify.plugin],
   })

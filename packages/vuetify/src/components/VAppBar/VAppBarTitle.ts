@@ -19,8 +19,9 @@ interface options extends ExtractVue<typeof base> {
   }
 }
 
-export default base.extend<options>().extend({
+export default {
   name: 'v-app-bar-title',
+  extends: base,
 
   data: () => ({
     contentWidth: 0,
@@ -77,4 +78,4 @@ export default base.extend<options>().extend({
       }, getSlot(this)),
     ])
   },
-})
+}

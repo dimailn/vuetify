@@ -19,7 +19,7 @@ import Touch from '../../directives/touch'
 import mixins, { ExtractVue } from '../../util/mixins'
 
 // Types
-import Vue, { VNode } from 'vue'
+import Vue, { VNode, defineComponent } from 'vue'
 import { composedPath, getSlot } from '../../util/helpers'
 
 interface TouchEvent {
@@ -163,7 +163,7 @@ export const BaseSlideGroup = mixins<options &
     },
     classes (): object {
       return {
-        ...BaseItemGroup.options.computed.classes.call(this),
+        ...BaseItemGroup.computed.classes.call(this),
         'v-slide-group': true,
         'v-slide-group--has-affixes': this.hasAffixes,
         'v-slide-group--is-overflowing': this.isOverflowing,
@@ -281,12 +281,12 @@ export const BaseSlideGroup = mixins<options &
     },
     // Always generate next for scrollable hint
     genNext (): VNode | null {
-      const slot = this.$scopedSlots.next
-        ? this.$scopedSlots.next({})
+      const slot = this.$slots.next
+        ? this.$slots.next({})
         : getSlot(this, 'next') || this.__cachedNext
 
       return this.$createElement('div', {
-        staticClass: 'v-slide-group__next',
+        class: 'v-slide-group__next',
         class: {
           'v-slide-group__next--disabled': !this.hasNext,
         },
@@ -298,7 +298,7 @@ export const BaseSlideGroup = mixins<options &
     },
     genContent (): VNode {
       return this.$createElement('div', {
-        staticClass: 'v-slide-group__content',
+        class: 'v-slide-group__content',
         ref: 'content',
         on: {
           focusin: this.onFocusin,
@@ -339,12 +339,12 @@ export const BaseSlideGroup = mixins<options &
     },
     // Always generate prev for scrollable hint
     genPrev (): VNode | null {
-      const slot = this.$scopedSlots.prev
-        ? this.$scopedSlots.prev({})
+      const slot = this.$slots.prev
+        ? this.$slots.prev({})
         : getSlot(this, 'prev') || this.__cachedPrev
 
       return this.$createElement('div', {
-        staticClass: 'v-slide-group__prev',
+        class: 'v-slide-group__prev',
         class: {
           'v-slide-group__prev--disabled': !this.hasPrev,
         },
@@ -359,7 +359,7 @@ export const BaseSlideGroup = mixins<options &
     },
     genWrapper (): VNode {
       return this.$createElement('div', {
-        staticClass: 'v-slide-group__wrapper',
+        class: 'v-slide-group__wrapper',
         directives: [{
           name: 'touch',
           value: {
@@ -525,8 +525,10 @@ export const BaseSlideGroup = mixins<options &
   },
 })
 
-export default BaseSlideGroup.extend({
+export default defineComponent({
   name: 'v-slide-group',
+
+  extends: BaseSlideGroup,
 
   provide (): object {
     return {

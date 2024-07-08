@@ -1,4 +1,4 @@
-import Vue from 'vue'
+import {defineComponent} from 'vue'
 import { filterObjectOnKeys } from '../../util/helpers'
 import { OptionsVue, VueConstructor } from 'vue/types/vue'
 
@@ -17,7 +17,7 @@ export type Positionable<S extends keyof props> = VueConstructor<Vue & { [P in S
 export function factory <S extends keyof props> (selected?: S[]): Positionable<S>
 export function factory (selected: undefined): OptionsVue<Vue, {}, {}, {}, props, typeof availableProps>
 export function factory (selected: any[] = []): any {
-  return Vue.extend({
+  return defineComponent({
     name: 'positionable',
     props: selected.length ? filterObjectOnKeys(availableProps, selected) : availableProps,
   })

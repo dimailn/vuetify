@@ -7,7 +7,7 @@ import VSheet from '../VSheet/VSheet'
 import { getSlot } from '../../util/helpers'
 
 // Types
-import { VNode } from 'vue'
+import { VNode, defineComponent } from 'vue'
 
 type VListGroupInstance = InstanceType<typeof VListGroup>
 
@@ -17,8 +17,9 @@ interface options extends InstanceType<typeof VSheet> {
 }
 
 /* @vue/component */
-export default VSheet.extend<options>().extend({
+export default defineComponent({
   name: 'v-list',
+  extends: VSheet,
 
   provide (): object {
     return {
@@ -55,7 +56,7 @@ export default VSheet.extend<options>().extend({
   computed: {
     classes (): object {
       return {
-        ...VSheet.options.computed.classes.call(this),
+        ...VSheet.computed.classes.call(this),
         'v-list--dense': this.dense,
         'v-list--disabled': this.disabled,
         'v-list--flat': this.flat,
@@ -88,7 +89,7 @@ export default VSheet.extend<options>().extend({
 
   render (h): VNode {
     const data = {
-      staticClass: 'v-list',
+      class: 'v-list',
       class: this.classes,
       style: this.styles,
       attrs: {

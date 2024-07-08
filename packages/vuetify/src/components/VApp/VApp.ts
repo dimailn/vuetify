@@ -7,12 +7,14 @@ import Themeable from '../../mixins/themeable'
 // Utilities
 import mixins from '../../util/mixins'
 import { getSlot } from '../../util/helpers'
+import {h} from 'vue'
 
 /* @vue/component */
-export default mixins(
-  Themeable
-).extend({
+export default {
   name: 'v-app',
+  mixins: [
+    Themeable
+  ],
 
   props: {
     dark: {
@@ -41,11 +43,11 @@ export default mixins(
     }
   },
 
-  render (h) {
-    const wrapper = h('div', { staticClass: 'v-application--wrap' }, getSlot(this))
+  render () {
+    const wrapper = h('div', { class: 'v-application--wrap' }, getSlot(this))
 
     return h('div', {
-      staticClass: 'v-application',
+      class: 'v-application',
       class: {
         'v-application--is-rtl': this.$vuetify.rtl,
         'v-application--is-ltr': !this.$vuetify.rtl,
@@ -55,4 +57,4 @@ export default mixins(
       domProps: { id: this.id },
     }, [wrapper])
   },
-})
+}

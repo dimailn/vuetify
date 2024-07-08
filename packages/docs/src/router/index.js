@@ -1,5 +1,5 @@
 // Imports
-import Router from 'vue-router'
+import {createRouter as _createRouter, createWebHistory} from 'vue-router'
 import scrollBehavior from './scroll-behavior'
 import Vue from 'vue'
 import VueGtag from 'vue-gtag'
@@ -18,13 +18,12 @@ import {
   trailingSlash,
 } from '@/util/routes'
 
-// Setup
-Vue.use(Router)
 
 export function createRouter (vuetify, store, i18n) {
   const loadedLocales = ['en']
-  const router = new Router({
+  const router = _createRouter({
     mode: 'history',
+    history: createWebHistory(),
     base: process.env.BASE_URL,
     scrollBehavior: (...args) => scrollBehavior(vuetify, store, ...args),
     routes: [
@@ -83,10 +82,10 @@ export function createRouter (vuetify, store, i18n) {
     }
   })
 
-  Vue.use(VueGtag, {
-    bootstrap: !IS_SERVER,
-    config: { id: 'UA-75262397-3' },
-  }, router)
+  // Vue.use(VueGtag, {
+  //   bootstrap: !IS_SERVER,
+  //   config: { id: 'UA-75262397-3' },
+  // }, router)
 
   return router
 }

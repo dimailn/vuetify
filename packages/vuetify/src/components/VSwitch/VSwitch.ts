@@ -17,13 +17,15 @@ import VProgressCircular from '../VProgressCircular/VProgressCircular'
 import { getSlot, keyCodes } from '../../util/helpers'
 
 // Types
-import { VNode, VNodeData } from 'vue'
+import { defineComponent, VNode, VNodeData } from 'vue'
 
 /* @vue/component */
-export default Selectable.extend({
+export default defineComponent({
   name: 'v-switch',
 
   directives: { Touch },
+
+  extends: Selectable,
 
   props: {
     inset: Boolean,
@@ -40,7 +42,7 @@ export default Selectable.extend({
   computed: {
     classes (): object {
       return {
-        ...VInput.options.computed.classes.call(this),
+        ...VInput.computed.classes.call(this),
         'v-input--selection-controls v-input--switch': true,
         'v-input--switch--flat': this.flat,
         'v-input--switch--inset': this.inset,
@@ -80,7 +82,7 @@ export default Selectable.extend({
       const { title, ...switchAttrs } = this.attrs$
 
       return this.$createElement('div', {
-        staticClass: 'v-input--selection-controls__input',
+        class: 'v-input--selection-controls__input',
       }, [
         this.genInput('checkbox', {
           ...this.attrs,
@@ -96,11 +98,11 @@ export default Selectable.extend({
           }],
         })),
         this.$createElement('div', {
-          staticClass: 'v-input--switch__track',
+          class: 'v-input--switch__track',
           ...this.switchData,
         }),
         this.$createElement('div', {
-          staticClass: 'v-input--switch__thumb',
+          class: 'v-input--switch__thumb',
           ...this.switchData,
         }, [this.genProgress()]),
       ])

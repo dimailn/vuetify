@@ -28,7 +28,7 @@ export default mixins(
   computed: {
     classes (): object {
       return {
-        ...ButtonGroup.options.computed.classes.call(this),
+        ...ButtonGroup.computed.classes.call(this),
         'v-btn-toggle': true,
         'v-btn-toggle--borderless': this.borderless,
         'v-btn-toggle--dense': this.dense,
@@ -44,7 +44,7 @@ export default mixins(
   methods: {
     genData () {
       const data = this.setTextColor(this.color, {
-        ...ButtonGroup.options.methods.genData.call(this),
+        ...ButtonGroup.methods.genData.call(this),
       })
 
       if (this.group) return data

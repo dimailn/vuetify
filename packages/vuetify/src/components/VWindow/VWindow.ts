@@ -3,7 +3,7 @@ import './VWindow.sass'
 
 // Types
 import { VNode, VNodeDirective } from 'vue/types/vnode'
-import { PropType } from 'vue'
+import { PropType, defineComponent } from 'vue'
 import { TouchHandlers } from 'vuetify/types'
 
 // Directives
@@ -16,8 +16,9 @@ import { BaseItemGroup } from '../VItemGroup/VItemGroup'
 import { getSlot } from '../../util/helpers'
 
 /* @vue/component */
-export default BaseItemGroup.extend({
+export default defineComponent({
   name: 'v-window',
+  extends: BaseItemGroup,
 
   directives: { Touch },
 
@@ -73,7 +74,7 @@ export default BaseItemGroup.extend({
     },
     classes (): object {
       return {
-        ...BaseItemGroup.options.computed.classes.call(this),
+        ...BaseItemGroup.computed.classes.call(this),
         'v-window--show-arrows-on-hover': this.showArrowsOnHover,
       }
     },
@@ -129,7 +130,7 @@ export default BaseItemGroup.extend({
       }
 
       return this.$createElement('div', {
-        staticClass: 'v-window__container',
+        class: 'v-window__container',
         class: {
           'v-window__container--is-active': this.isActive,
         },
@@ -153,7 +154,7 @@ export default BaseItemGroup.extend({
       const attrs = {
         'aria-label': this.$vuetify.lang.t(`$vuetify.carousel.${direction}`),
       }
-      const children = this.$scopedSlots[direction]?.({
+      const children = this.$slots[direction]?.({
         on,
         attrs,
       }) ?? [this.$createElement(VBtn, {
@@ -255,7 +256,7 @@ export default BaseItemGroup.extend({
 
   render (h): VNode {
     const data = {
-      staticClass: 'v-window',
+      class: 'v-window',
       class: this.classes,
       directives: [] as VNodeDirective[],
     }

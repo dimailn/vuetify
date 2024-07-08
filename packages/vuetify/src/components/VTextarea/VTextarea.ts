@@ -47,7 +47,7 @@ export default baseMixins.extend({
         'v-textarea': true,
         'v-textarea--auto-grow': this.autoGrow,
         'v-textarea--no-resize': this.noResizeHandle,
-        ...VTextField.options.computed.classes.call(this),
+        ...VTextField.computed.classes.call(this),
       }
     },
     noResizeHandle (): boolean {
@@ -90,7 +90,7 @@ export default baseMixins.extend({
       input.style.height = Math.max(minHeight, height) + 'px'
     },
     genInput () {
-      const input = VTextField.options.methods.genInput.call(this)
+      const input = VTextField.methods.genInput.call(this)
 
       input.tag = 'textarea'
       delete input.data!.attrs!.type
@@ -99,7 +99,7 @@ export default baseMixins.extend({
       return input
     },
     onInput (e: Event) {
-      VTextField.options.methods.onInput.call(this, e)
+      VTextField.methods.onInput.call(this, e)
       this.autoGrow && this.calculateInputHeight()
     },
     onKeyDown (e: KeyboardEvent) {

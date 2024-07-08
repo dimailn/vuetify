@@ -87,7 +87,7 @@ export default mixins(
     isDark (): boolean {
       return this.hasBackground
         ? !this.light
-        : Themeable.options.computed.isDark.call(this)
+        : Themeable.computed.isDark.call(this)
     },
     styles (): object {
       if (this.absolute || !this.app) return {}
@@ -136,7 +136,7 @@ export default mixins(
   methods: {
     genActions () {
       return this.$createElement('div', {
-        staticClass: 'v-snack__action ',
+        class: 'v-snack__action ',
       }, [
         getSlot(this, 'action', {
           attrs: { class: 'v-snack__btn' },
@@ -145,7 +145,7 @@ export default mixins(
     },
     genContent () {
       return this.$createElement('div', {
-        staticClass: 'v-snack__content',
+        class: 'v-snack__content',
         class: {
           [this.contentClass]: true,
         },
@@ -161,9 +161,9 @@ export default mixins(
         : this.setTextColor
 
       const data = setColor(this.color, {
-        staticClass: 'v-snack__wrapper',
-        class: VSheet.options.computed.classes.call(this),
-        style: VSheet.options.computed.styles.call(this),
+        class: 'v-snack__wrapper',
+        class: VSheet.computed.classes.call(this),
+        style: VSheet.computed.styles.call(this),
         directives: [{
           name: 'show',
           value: this.isActive,
@@ -205,7 +205,7 @@ export default mixins(
 
   render (h): VNode {
     return h('div', {
-      staticClass: 'v-snack',
+      class: 'v-snack',
       class: this.classes,
       style: this.styles,
     }, [

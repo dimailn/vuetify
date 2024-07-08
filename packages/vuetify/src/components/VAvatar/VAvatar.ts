@@ -49,7 +49,7 @@ export default mixins(
 
   render (h): VNode {
     const data = {
-      staticClass: 'v-avatar',
+      class: 'v-avatar',
       class: this.classes,
       style: this.styles,
       on: this.$listeners,

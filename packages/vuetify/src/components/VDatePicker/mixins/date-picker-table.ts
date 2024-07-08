@@ -138,7 +138,7 @@ export default mixins(
       }
 
       return this.$createElement('button', setColor(color, {
-        staticClass: 'v-btn',
+        class: 'v-btn',
         class: this.genButtonClasses(
           isAllowed && !isOtherMonth,
           isFloating,
@@ -156,7 +156,7 @@ export default mixins(
         on: this.genButtonEvents(value, isAllowed, mouseEventType),
       }), [
         this.$createElement('div', {
-          staticClass: 'v-btn__content',
+          class: 'v-btn__content',
         }, [formatter(value)]),
         this.genEvents(value),
       ])
@@ -196,7 +196,7 @@ export default mixins(
       const eventColors = this.getEventColors(date)
 
       return eventColors.length ? this.$createElement('div', {
-        staticClass: 'v-date-picker-table__events',
+        class: 'v-date-picker-table__events',
       }, eventColors.map(color => this.$createElement('div', this.setBackgroundColor(color)))) : null
     },
     isValidScroll (value: number, calculateTableDate: CalculateTableDateFunction) {

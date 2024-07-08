@@ -81,7 +81,7 @@
       if (this.isSamePage) children.push(this.$slots.default)
 
       return h(this.isExternal ? 'a' : 'router-link', {
-        staticClass: 'app-link text-decoration-none primary--text font-weight-medium d-inline-block',
+        class: 'app-link text-decoration-none primary--text font-weight-medium d-inline-block',
         attrs: this.attrs,
         [this.isExternal ? 'on' : 'nativeOn']: {
           click: this.onClick,

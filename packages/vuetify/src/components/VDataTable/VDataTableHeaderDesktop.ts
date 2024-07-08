@@ -73,8 +73,8 @@ export default mixins(header).extend({
       }
 
       children.push(
-        this.$scopedSlots.hasOwnProperty(header.value)
-          ? this.$scopedSlots[header.value]!({ header })
+        this.$slots.hasOwnProperty(header.value)
+          ? this.$slots[header.value]!({ header })
           : this.$createElement('span', [header.text])
       )
 
@@ -113,7 +113,7 @@ export default mixins(header).extend({
 
   render (): VNode {
     return this.$createElement('thead', {
-      staticClass: 'v-data-table-header',
+      class: 'v-data-table-header',
     }, [
       this.$createElement('tr', this.headers.map(header => this.genHeader(header))),
     ])

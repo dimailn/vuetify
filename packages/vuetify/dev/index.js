@@ -1,18 +1,27 @@
-import Vue from 'vue'
+import { createApp, h } from 'vue'
 import App from './App'
 import router from './router'
 import vuetify from './vuetify'
+import Vuetify from 'vuetify'
 
-Vue.config.performance = true
+// Vue.config.performance = true
 
-const vm = new Vue({
+const app = createApp({
   data: () => ({ isLoaded: document.readyState === 'complete' }),
-  vuetify,
+  // vuetify,
   router,
-  render (h) {
+  render () {
     return this.isLoaded ? h(App) : undefined
   },
-}).$mount('#app')
+})
+
+app.use(Vuetify)
+
+app.config.globalProperties.$vuetify = vuetify.framework
+app.config.globalProperties.$createElement = h
+
+const vm = app.mount('#app')
+
 
 // Prevent layout jump while waiting for styles
 vm.isLoaded || window.addEventListener('load', () => {

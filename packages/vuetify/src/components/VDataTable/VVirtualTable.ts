@@ -21,7 +21,7 @@ interface options extends InstanceType<typeof baseMixins> {
   cachedItems: VNodeChildren
 }
 
-export default baseMixins.extend<options>().extend({
+export default baseMixins.extend({
   name: 'v-virtual-table',
 
   props: {
@@ -120,7 +120,7 @@ export default baseMixins.extend<options>().extend({
       ])
     },
     genItems () {
-      return this.$scopedSlots.items!({ items: this.items.slice(this.startIndex, this.stopIndex) })
+      return this.$slots.items!({ items: this.items.slice(this.startIndex, this.stopIndex) })
     },
     onScroll (e: Event) {
       const target = e.target as Element
@@ -129,7 +129,7 @@ export default baseMixins.extend<options>().extend({
     genTable () {
       return this.$createElement('div', {
         ref: 'table',
-        staticClass: 'v-virtual-table__table',
+        class: 'v-virtual-table__table',
       }, [
         this.$createElement('table', [
           this.$slots['body.before'],
@@ -140,7 +140,7 @@ export default baseMixins.extend<options>().extend({
     },
     genWrapper () {
       return this.$createElement('div', {
-        staticClass: 'v-virtual-table__wrapper',
+        class: 'v-virtual-table__wrapper',
         style: {
           height: convertToUnit(this.height),
         },
@@ -152,7 +152,7 @@ export default baseMixins.extend<options>().extend({
 
   render (h): VNode {
     return h('div', {
-      staticClass: 'v-data-table v-virtual-table',
+      class: 'v-data-table v-virtual-table',
       class: this.classes,
     }, [
       getSlot(this, 'top'),

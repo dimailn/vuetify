@@ -1,6 +1,6 @@
 // Helpers
 import { wrapInArray, sortItems, deepEqual, groupItems, searchItems, fillArray } from '../../util/helpers'
-import Vue, { VNode } from 'vue'
+import { defineComponent, VNode } from 'vue'
 
 // Types
 import {
@@ -14,7 +14,7 @@ import {
 } from 'vuetify/types'
 import { PropValidator } from 'vue/types/options'
 
-export default Vue.extend({
+export default defineComponent({
   name: 'v-data',
 
   inheritAttrs: false,
@@ -376,6 +376,6 @@ export default Vue.extend({
   },
 
   render (): VNode {
-    return this.$scopedSlots.default && this.$scopedSlots.default(this.scopedProps) as any
+    return this.$slots.default && this.$slots.default(this.scopedProps) as any
   },
 })

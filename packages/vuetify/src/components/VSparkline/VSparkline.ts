@@ -184,7 +184,7 @@ export default mixins<options &
       return Boolean(
         this.showLabels ||
         this.labels.length > 0 ||
-        this.$scopedSlots.label
+        this.$slots.label
       )
     },
     parsedLabels (): SparklineText[] {
@@ -329,8 +329,8 @@ export default mixins<options &
       return this.genG(children)
     },
     genLabel (item: SparklineText, index: number) {
-      return this.$scopedSlots.label
-        ? this.$scopedSlots.label({ index, value: item.value })
+      return this.$slots.label
+        ? this.$slots.label({ index, value: item.value })
         : item.value
     },
     genBars () {

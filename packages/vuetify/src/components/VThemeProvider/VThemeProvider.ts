@@ -5,8 +5,9 @@ import Themeable from '../../mixins/themeable'
 import { VNode } from 'vue'
 
 /* @vue/component */
-export default Themeable.extend({
+export default {
   name: 'v-theme-provider',
+  extends: Themeable,
 
   props: { root: Boolean },
 
@@ -14,7 +15,7 @@ export default Themeable.extend({
     isDark (): boolean {
       return this.root
         ? this.rootIsDark
-        : Themeable.options.computed.isDark.call(this)
+        : Themeable.computed.isDark.call(this)
     },
   },
 
@@ -25,4 +26,4 @@ export default Themeable.extend({
       this.$slots.default!.find(node => !node.isComment && node.text !== ' ')!
     )
   },
-})
+}

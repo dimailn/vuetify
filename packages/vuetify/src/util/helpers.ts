@@ -1,4 +1,4 @@
-import Vue from 'vue'
+import {defineComponent} from 'vue'
 import { VNode, VNodeDirective } from 'vue/types'
 import { VuetifyIcon } from 'vuetify/types/services/icons'
 import { DataTableCompareFunction, SelectItemKey, ItemGroup } from 'vuetify/types'
@@ -8,7 +8,7 @@ export function createSimpleFunctional (
   el = 'div',
   name?: string
 ) {
-  return Vue.extend({
+  return defineComponent({
     name: name || c.replace(/__/g, '-'),
 
     functional: true,
@@ -375,11 +375,11 @@ export function searchItems<T extends any = any> (items: T[], search: string): T
  *  - 'v-slot' for unbound v-slot (`#default`) - only if the third param is true, otherwise counts as scoped
  */
 export function getSlotType<T extends boolean = false> (vm: Vue, name: string, split?: T): (T extends true ? 'v-slot' : never) | 'normal' | 'scoped' | void {
-  if (vm.$slots.hasOwnProperty(name) && vm.$scopedSlots.hasOwnProperty(name) && (vm.$scopedSlots[name] as any).name) {
+  if (vm.$slots.hasOwnProperty(name) && vm.$slots.hasOwnProperty(name) && (vm.$slots[name] as any).name) {
     return split ? 'v-slot' as any : 'scoped'
   }
   if (vm.$slots.hasOwnProperty(name)) return 'normal'
-  if (vm.$scopedSlots.hasOwnProperty(name)) return 'scoped'
+  if (vm.$slots.hasOwnProperty(name)) return 'scoped'
 }
 
 export function debounce (fn: Function, delay: number) {
@@ -410,10 +410,10 @@ export function getPrefixedScopedSlots (prefix: string, scopedSlots: any) {
 
 export function getSlot (vm: Vue, name = 'default', data?: object | (() => object), optional = false) {
   const kebabName = kebabCase(name)
-  if (vm.$scopedSlots.hasOwnProperty(name)) {
-    return vm.$scopedSlots[name]!(data instanceof Function ? data() : data)
-  } else if (vm.$scopedSlots.hasOwnProperty(kebabName)) {
-    return vm.$scopedSlots[kebabName]!(data instanceof Function ? data() : data)
+  if (vm.$slots.hasOwnProperty(name)) {
+    return vm.$slots[name]!(data instanceof Function ? data() : data)
+  } else if (vm.$slots.hasOwnProperty(kebabName)) {
+    return vm.$slots[kebabName]!(data instanceof Function ? data() : data)
   } else if (vm.$slots.hasOwnProperty(name) && (!data || optional)) {
     return vm.$slots[name]
   } else if (vm.$slots.hasOwnProperty(kebabName) && (!data || optional)) {

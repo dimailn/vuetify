@@ -14,7 +14,7 @@ import {
 } from '../../util/helpers'
 
 // Types
-import { PropType, VNode } from 'vue'
+import { PropType, VNode, defineComponent } from 'vue'
 import { PropValidator } from 'vue/types/options'
 
 const defaultMenuProps = {
@@ -25,8 +25,9 @@ const defaultMenuProps = {
 }
 
 /* @vue/component */
-export default VSelect.extend({
+export default defineComponent({
   name: 'v-autocomplete',
+  extends: VSelect,
 
   props: {
     autoSelectFirst: {
@@ -41,7 +42,7 @@ export default VSelect.extend({
     } as PropValidator<(item: any, queryText: string, itemText: string) => boolean>,
     hideNoData: Boolean,
     menuProps: {
-      type: VSelect.options.props.menuProps.type,
+      type: VSelect.props.menuProps.type,
       default: () => defaultMenuProps,
     },
     noFilter: Boolean,
@@ -59,7 +60,7 @@ export default VSelect.extend({
   computed: {
     classes (): object {
       return {
-        ...VSelect.options.computed.classes.call(this),
+        ...VSelect.computed.classes.call(this),
         'v-autocomplete': true,
         'v-autocomplete--is-selecting-index': this.selectedIndex > -1,
       }
@@ -124,7 +125,7 @@ export default VSelect.extend({
       return this.hasDisplayedItems || !this.hideNoData
     },
     $_menuProps (): object {
-      const props = VSelect.options.computed.$_menuProps.call(this);
+      const props = VSelect.computed.$_menuProps.call(this);
       (props as any).contentClass = `v-autocomplete__content ${(props as any).contentClass || ''}`.trim()
       return {
         ...defaultMenuProps,
@@ -143,7 +144,7 @@ export default VSelect.extend({
       })
     },
     listData () {
-      const data = VSelect.options.computed.listData.call(this) as any
+      const data = VSelect.computed.listData.call(this) as any
 
       data.props = {
         ...data.props,
@@ -307,10 +308,10 @@ export default VSelect.extend({
     clearableCallback () {
       this.internalSearch = null
 
-      VSelect.options.methods.clearableCallback.call(this)
+      VSelect.methods.clearableCallback.call(this)
     },
     genInput () {
-      const input = VTextField.options.methods.genInput.call(this)
+      const input = VTextField.methods.genInput.call(this)
 
       input.data = mergeData(input.data!, {
         attrs: {
@@ -323,7 +324,7 @@ export default VSelect.extend({
       return input
     },
     genInputSlot () {
-      const slot = VSelect.options.methods.genInputSlot.call(this)
+      const slot = VSelect.methods.genInputSlot.call(this)
 
       slot.data!.attrs!.role = 'combobox'
 
@@ -331,7 +332,7 @@ export default VSelect.extend({
     },
     genSelections (): VNode | never[] {
       return this.hasSlot || this.multiple
-        ? VSelect.options.methods.genSelections.call(this)
+        ? VSelect.methods.genSelections.call(this)
         : []
     },
     onClick (e: MouseEvent) {
@@ -367,7 +368,7 @@ export default VSelect.extend({
         e.ctrlKey ||
         ![keyCodes.home, keyCodes.end].includes(keyCode)
       ) {
-        VSelect.options.methods.onKeyDown.call(this, e)
+        VSelect.methods.onKeyDown.call(this, e)
       }
 
       // The ordering is important here
@@ -378,7 +379,7 @@ export default VSelect.extend({
     },
     onSpaceDown (e: KeyboardEvent) { /* noop */ },
     onTabDown (e: KeyboardEvent) {
-      VSelect.options.methods.onTabDown.call(this, e)
+      VSelect.methods.onTabDown.call(this, e)
       this.updateSelf()
     },
     onUpDown (e: Event) {
@@ -391,11 +392,11 @@ export default VSelect.extend({
       this.activateMenu()
     },
     selectItem (item: object) {
-      VSelect.options.methods.selectItem.call(this, item)
+      VSelect.methods.selectItem.call(this, item)
       this.setSearch()
     },
     setSelectedItems () {
-      VSelect.options.methods.setSelectedItems.call(this)
+      VSelect.methods.setSelectedItems.call(this)
 
       // #4273 Don't replace if searching
       // #4403 Don't replace if focused

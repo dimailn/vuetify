@@ -21,9 +21,8 @@
       </thead>
 
       <tbody>
-        <template v-for="item in items">
+        <template v-for="item in items" :key="item.name">
           <tr
-            :key="item.name"
             :class="['regular-row', hasExtraRow(item) && 'has-extra-row']"
           >
             <td

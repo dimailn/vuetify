@@ -13,18 +13,19 @@ import Themeable from '../../mixins/themeable'
 import mixins from '../../util/mixins'
 
 // Types
-import { VNode } from 'vue'
+import { VNode, defineComponent } from 'vue'
 
 /* @vue/component */
-export default mixins(
-  BindsAttrs,
-  Colorable,
-  Elevatable,
-  Measurable,
-  Roundable,
-  Themeable
-).extend({
+export default defineComponent({
   name: 'v-sheet',
+  mixins: [
+    BindsAttrs,
+    Colorable,
+    Elevatable,
+    Measurable,
+    Roundable,
+    Themeable
+  ],
 
   props: {
     outlined: Boolean,

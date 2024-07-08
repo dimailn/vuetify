@@ -9,11 +9,11 @@ import mixins from '../../util/mixins'
 import { consoleWarn } from '../../util/console'
 
 // Types
-import Vue from 'vue'
+import {defineComponent} from 'vue'
 import { VNode, ScopedSlotChildren } from 'vue/types/vnode'
 
 /* @vue/component */
-export const BaseItem = Vue.extend({
+export const BaseItem = defineComponent({
   props: {
     activeClass: String,
     value: {
@@ -33,7 +33,7 @@ export const BaseItem = Vue.extend({
   },
 
   render (): VNode {
-    if (!this.$scopedSlots.default) {
+    if (!this.$slots.default) {
       consoleWarn('v-item is missing a default scopedSlot', this)
 
       return null as any
@@ -42,8 +42,8 @@ export const BaseItem = Vue.extend({
     let element: VNode | ScopedSlotChildren
 
     /* istanbul ignore else */
-    if (this.$scopedSlots.default) {
-      element = this.$scopedSlots.default({
+    if (this.$slots.default) {
+      element = this.$slots.default({
         active: this.isActive,
         toggle: this.toggle,
       })

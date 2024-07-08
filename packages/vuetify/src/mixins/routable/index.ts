@@ -1,4 +1,4 @@
-import Vue, { VNodeData, PropType } from 'vue'
+import { VNodeData, PropType, defineComponent } from 'vue'
 
 // Directives
 import Ripple, { RippleOptions } from '../../directives/ripple'
@@ -6,7 +6,7 @@ import Ripple, { RippleOptions } from '../../directives/ripple'
 // Utilities
 import { getObjectValueByPath } from '../../util/helpers'
 
-export default Vue.extend({
+export default defineComponent({
   name: 'routable',
 
   directives: {
@@ -60,8 +60,8 @@ export default Vue.extend({
 
       return Boolean(
         this.isLink ||
-        this.$listeners.click ||
-        this.$listeners['!click'] ||
+        this.$attrs.onClick ||
+        this.$attrs['on!click'] ||
         this.$attrs.tabindex
       )
     },
@@ -85,9 +85,7 @@ export default Vue.extend({
       let tag
 
       const data: VNodeData = {
-        attrs: {
-          tabindex: 'tabindex' in this.$attrs ? this.$attrs.tabindex : undefined,
-        },
+        tabindex: 'tabindex' in this.$attrs ? this.$attrs.tabindex : undefined,
         class: this.classes,
         style: this.styles,
         props: {},
@@ -95,11 +93,9 @@ export default Vue.extend({
           name: 'ripple',
           value: this.computedRipple,
         }],
-        [this.to ? 'nativeOn' : 'on']: {
-          ...this.$listeners,
-          ...('click' in this ? { click: (this as any).click } : undefined), // #14447
-        },
-        ref: 'link',
+        ...this.$listeners,
+        ...('click' in this ? { click: (this as any).click } : undefined), // #14447
+        ref: 'link'
       }
 
       if (typeof this.exact === 'undefined') {

@@ -20,5 +20,9 @@
     name: 'VuetifyLogoAlt',
 
     inject: ['theme'],
+
+    created() {
+      console.log(this.$vuetify, this.theme, this)
+    }
   }
 </script>

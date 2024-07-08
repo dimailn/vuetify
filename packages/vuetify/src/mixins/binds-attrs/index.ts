@@ -1,4 +1,4 @@
-import Vue from 'vue'
+import {defineComponent} from 'vue'
 
 /**
  * This mixin provides `attrs$` and `listeners$` to work around
@@ -18,7 +18,7 @@ function makeWatcher (property: string): ThisType<Vue> & ((val: any, oldVal: any
   }
 }
 
-export default Vue.extend({
+export default defineComponent({
   data: () => ({
     attrs$: {} as Dictionary<string>,
     listeners$: {} as Dictionary<Function | Function[]>,

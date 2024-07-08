@@ -12,7 +12,7 @@ const {
 } = require('worker_threads')
 
 const ProgressBar = require('progress')
-const { createBundleRenderer } = require('vue-server-renderer')
+const { createBundleRenderer } = require('@vue/server-renderer')
 
 const { generateRoutes } = require('./generate-routes')
 const languages = require('../src/i18n/locales.js')

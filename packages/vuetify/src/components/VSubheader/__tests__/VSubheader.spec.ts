@@ -21,7 +21,7 @@ describe('VSubheader.ts', () => {
 
   it('should have custom class', () => {
     const wrapper = mount({
-      render: h => h(VSubheader, { staticClass: 'foo' }),
+      render: h => h(VSubheader, { class: 'foo' }),
     })
 
     expect(wrapper.element.classList.contains('foo')).toBe(true)

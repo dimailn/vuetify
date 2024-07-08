@@ -1,9 +1,11 @@
 // Extensions
+import { defineComponent } from 'vue'
 import { BaseItemGroup } from '../../components/VItemGroup/VItemGroup'
 
 /* @vue/component */
-export default BaseItemGroup.extend({
+export default defineComponent({
   name: 'button-group',
+  extends: BaseItemGroup,
 
   provide (): object {
     return {
@@ -13,12 +15,12 @@ export default BaseItemGroup.extend({
 
   computed: {
     classes (): object {
-      return BaseItemGroup.options.computed.classes.call(this)
+      return BaseItemGroup.classes.call(this)
     },
   },
 
   methods: {
     // Isn't being passed down through types
-    genData: BaseItemGroup.options.methods.genData,
+    genData: BaseItemGroup.methods.genData,
   },
 })

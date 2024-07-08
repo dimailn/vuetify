@@ -131,7 +131,7 @@ export default mixins<options &
       for (let value = this.min; value <= this.max; value = value + this.step) {
         const color = value === this.value && (this.color || 'accent')
         children.push(this.$createElement('span', this.setBackgroundColor(color, {
-          staticClass: 'v-time-picker-clock__item',
+          class: 'v-time-picker-clock__item',
           class: {
             'v-time-picker-clock__item--active': value === this.displayedValue,
             'v-time-picker-clock__item--disabled': this.disabled || !this.isAllowed(value),
@@ -148,7 +148,7 @@ export default mixins<options &
       const angle = this.rotate + this.degreesPerUnit * (this.displayedValue - this.min)
       const color = (this.value != null) && (this.color || 'accent')
       return this.$createElement('div', this.setBackgroundColor(color, {
-        staticClass: 'v-time-picker-clock__hand',
+        class: 'v-time-picker-clock__hand',
         class: {
           'v-time-picker-clock__hand--inner': this.isInner(this.value),
         },
@@ -248,7 +248,7 @@ export default mixins<options &
 
   render (h): VNode {
     const data: VNodeData = {
-      staticClass: 'v-time-picker-clock',
+      class: 'v-time-picker-clock',
       class: {
         'v-time-picker-clock--indeterminate': this.value == null,
         ...this.themeClasses,
@@ -271,7 +271,7 @@ export default mixins<options &
 
     return h('div', data, [
       h('div', {
-        staticClass: 'v-time-picker-clock__inner',
+        class: 'v-time-picker-clock__inner',
         ref: 'innerClock',
       }, [
         this.genHand(),

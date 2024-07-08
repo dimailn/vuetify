@@ -127,7 +127,7 @@ export default mixins(
       }, [header])
 
       return this.$createElement('div', {
-        staticClass: 'v-date-picker-header__value',
+        class: 'v-date-picker-header__value',
         class: {
           'v-date-picker-header__value--disabled': this.disabled,
         },
@@ -137,7 +137,7 @@ export default mixins(
 
   render (): VNode {
     return this.$createElement('div', {
-      staticClass: 'v-date-picker-header',
+      class: 'v-date-picker-header',
       class: {
         'v-date-picker-header--disabled': this.disabled,
         ...this.themeClasses,

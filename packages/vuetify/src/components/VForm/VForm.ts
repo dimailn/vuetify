@@ -132,7 +132,7 @@ export default mixins(
 
   render (h): VNode {
     return h('form', {
-      staticClass: 'v-form',
+      class: 'v-form',
       attrs: {
         novalidate: true,
         ...this.attrs$,

@@ -32,7 +32,7 @@ describe('VListItemAction.ts', () => {
 
   it('should render component with static class and match snapshot', () => {
     const wrapper = mountFunction(functionalContext({
-      staticClass: 'static-class',
+      class: 'static-class',
     }))
 
     expect(wrapper.html()).toMatchSnapshot()

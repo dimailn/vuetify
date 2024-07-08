@@ -72,8 +72,8 @@ function genProp (name, prop, mixins, cmp) {
 }
 
 function parseProps (component, array = [], mixin = false) {
-  const options = component.options
-  const name = component.options.name
+  const options = component
+  const name = component.name
   const mixins = [component.super].concat(options.extends).concat(options.mixins).filter(m => !!m)
   const props = options.props || {}
 
@@ -87,18 +87,18 @@ function parseProps (component, array = [], mixin = false) {
 }
 
 function parseMixins (component) {
-  if (!component.options.mixins) return []
+  if (!component.mixins) return []
 
   let mixins = []
-  for (let i = 0; i < component.options.mixins.length; i++) {
-    let mixin = component.options.mixins[i]
+  for (let i = 0; i < component.mixins.length; i++) {
+    let mixin = component.mixins[i]
 
     if (mixin.name !== 'VueComponent') mixin = Vue.extend(mixin)
 
-    if (mixin.options.name) {
-      mixins.push(mixin.options.name)
+    if (mixin.name) {
+      mixins.push(mixin.name)
 
-      if (mixin.options.mixins) {
+      if (mixin.mixins) {
         mixins = mixins.concat(parseMixins(mixin))
       }
     }

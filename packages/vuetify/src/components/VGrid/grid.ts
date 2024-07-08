@@ -1,9 +1,9 @@
 // Types
-import Vue, { VNode } from 'vue'
+import { defineComponent, VNode, h } from 'vue'
 
 export default function VGrid (name: string) {
   /* @vue/component */
-  return Vue.extend({
+  return defineComponent({
     name: `v-${name}`,
 
     functional: true,
@@ -16,7 +16,11 @@ export default function VGrid (name: string) {
       },
     },
 
-    render (h, { props, data, children }): VNode {
+    render (): VNode {
+      const data = this.$attrs
+      const children = this.$slots.default()
+      const props = this.$props
+
       data.staticClass = (`${name} ${data.staticClass || ''}`).trim()
 
       const { attrs } = data

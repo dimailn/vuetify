@@ -128,7 +128,7 @@ export default mixins(
       const label = this.$attrs['aria-label'] || lang.t(this.label)
 
       const data = this.setBackgroundColor(this.color, {
-        staticClass: 'v-badge__badge',
+        class: 'v-badge__badge',
         style: this.styles,
         attrs: {
           'aria-atomic': this.$attrs['aria-atomic'] || 'true',
@@ -169,7 +169,7 @@ export default mixins(
     },
     genBadgeWrapper () {
       return this.$createElement('span', {
-        staticClass: 'v-badge__wrapper',
+        class: 'v-badge__wrapper',
       }, [this.genBadge()])
     },
   },
@@ -190,7 +190,7 @@ export default mixins(
     else children.push(badge)
 
     return h('span', {
-      staticClass: 'v-badge',
+      class: 'v-badge',
       attrs,
       class: this.classes,
     }, children)

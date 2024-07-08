@@ -6,7 +6,7 @@ import Colorable from '../../mixins/colorable'
 import Themeable from '../../mixins/themeable'
 
 // Types
-import { VNode } from 'vue'
+import { VNode, h } from 'vue'
 import { PropValidator } from 'vue/types/options'
 import mixins from '../../util/mixins'
 
@@ -27,7 +27,7 @@ export default mixins(Colorable, Themeable).extend({
   methods: {
     genChildren () {
       return this.$createElement('transition-group', {
-        staticClass: 'v-messages__wrapper',
+        class: 'v-messages__wrapper',
         attrs: {
           name: 'message-transition',
           tag: 'div',
@@ -36,15 +36,15 @@ export default mixins(Colorable, Themeable).extend({
     },
     genMessage (message: string, key: number) {
       return this.$createElement('div', {
-        staticClass: 'v-messages__message',
+        class: 'v-messages__message',
         key,
       }, getSlot(this, 'default', { message, key }) || [message])
     },
   },
 
-  render (h): VNode {
+  render (): VNode {
     return h('div', this.setTextColor(this.color, {
-      staticClass: 'v-messages',
+      class: 'v-messages',
       class: this.themeClasses,
     }), [this.genChildren()])
   },

@@ -82,7 +82,7 @@ export default mixins(
 
   render (h): VNode {
     return h('div', {
-      staticClass: 'v-expansion-panel',
+      class: 'v-expansion-panel',
       class: this.classes,
       attrs: {
         'aria-expanded': String(this.isActive),

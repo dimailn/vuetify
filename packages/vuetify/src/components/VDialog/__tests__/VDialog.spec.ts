@@ -136,7 +136,7 @@ describe('VDialog.ts', () => {
       scopedSlots: {
         activator ({ on }) {
           return this.$createElement('div', {
-            staticClass: 'activator',
+            class: 'activator',
             on,
           })
         },
@@ -162,7 +162,7 @@ describe('VDialog.ts', () => {
         // eslint-disable-next-line sonarjs/no-identical-functions
         activator ({ on }) {
           return this.$createElement('div', {
-            staticClass: 'activator',
+            class: 'activator',
             on,
           })
         },
@@ -241,7 +241,7 @@ describe('VDialog.ts', () => {
         // eslint-disable-next-line sonarjs/no-identical-functions
         activator ({ on }) {
           return this.$createElement('div', {
-            staticClass: 'activator',
+            class: 'activator',
             on,
           })
         },
@@ -263,7 +263,7 @@ describe('VDialog.ts', () => {
         // eslint-disable-next-line sonarjs/no-identical-functions
         activator ({ on }) {
           return this.$createElement('div', {
-            staticClass: 'activator',
+            class: 'activator',
             on,
           })
         },
@@ -332,7 +332,7 @@ describe('VDialog.ts', () => {
         // eslint-disable-next-line sonarjs/no-identical-functions
         activator ({ on }) {
           return this.$createElement('div', {
-            staticClass: 'activator',
+            class: 'activator',
             on,
           })
         },

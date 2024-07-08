@@ -13,7 +13,7 @@ import mixins from '../../util/mixins'
 import { getSlot } from '../../util/helpers'
 
 // Types
-import { VNode } from 'vue'
+import { VNode, h } from 'vue'
 
 /* @vue/component */
 export default mixins(
@@ -39,19 +39,19 @@ export default mixins(
     classes (): object {
       return {
         'v-card': true,
-        ...Routable.options.computed.classes.call(this),
+        ...Routable.computed.classes.call(this),
         'v-card--flat': this.flat,
         'v-card--hover': this.hover,
         'v-card--link': this.isClickable,
         'v-card--loading': this.loading,
         'v-card--disabled': this.disabled,
         'v-card--raised': this.raised,
-        ...VSheet.options.computed.classes.call(this),
+        ...VSheet.computed.classes.call(this),
       }
     },
     styles (): object {
       const style: Dictionary<string> = {
-        ...VSheet.options.computed.styles.call(this),
+        ...VSheet.computed.styles.call(this),
       }
 
       if (this.img) {
@@ -64,18 +64,18 @@ export default mixins(
 
   methods: {
     genProgress () {
-      const render = Loadable.options.methods.genProgress.call(this)
+      const render = Loadable.methods.genProgress.call(this)
 
       if (!render) return null
 
       return this.$createElement('div', {
-        staticClass: 'v-card__progress',
+        class: 'v-card__progress',
         key: 'progress',
       }, [render])
     },
   },
 
-  render (h): VNode {
+  render (): VNode {
     const { tag, data } = this.generateRouteLink()
 
     data.style = this.styles

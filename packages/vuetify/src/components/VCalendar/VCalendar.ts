@@ -2,7 +2,7 @@
 // import '../../stylus/components/_calendar-daily.styl'
 
 // Types
-import { VNode, Component } from 'vue'
+import { VNode, Component, defineComponent } from 'vue'
 
 // Mixins
 import CalendarWithEvents from './mixins/calendar-with-events'
@@ -48,8 +48,9 @@ interface VCalendarRenderProps {
 }
 
 /* @vue/component */
-export default CalendarWithEvents.extend({
+export default defineComponent({
   name: 'v-calendar',
+  extends: CalendarWithEvents,
 
   props: {
     ...props.calendar,
@@ -349,7 +350,7 @@ export default CalendarWithEvents.extend({
     const { start, end, maxDays, component, weekdays, categories } = this.renderProps
 
     return h(component, {
-      staticClass: 'v-calendar',
+      class: 'v-calendar',
       class: {
         'v-calendar-events': !this.noEvents,
       },

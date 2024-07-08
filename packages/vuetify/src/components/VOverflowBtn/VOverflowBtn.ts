@@ -11,10 +11,13 @@ import VBtn from '../VBtn'
 
 // Utilities
 import { consoleWarn } from '../../util/console'
+import { defineComponent } from 'vue'
 
 /* @vue/component */
-export default VAutocomplete.extend({
+export default defineComponent({
   name: 'v-overflow-btn',
+
+  extends: VAutocomplete,
 
   props: {
     editable: Boolean,
@@ -24,7 +27,7 @@ export default VAutocomplete.extend({
   computed: {
     classes (): object {
       return {
-        ...VAutocomplete.options.computed.classes.call(this),
+        ...VAutocomplete.computed.classes.call(this),
         'v-overflow-btn': true,
         'v-overflow-btn--segmented': this.segmented,
         'v-overflow-btn--editable': this.editable,
@@ -32,7 +35,7 @@ export default VAutocomplete.extend({
     },
     isAnyValueAllowed (): boolean {
       return this.editable ||
-        VAutocomplete.options.computed.isAnyValueAllowed.call(this)
+        VAutocomplete.computed.isAnyValueAllowed.call(this)
     },
     isSingle (): true {
       return true
@@ -48,16 +51,16 @@ export default VAutocomplete.extend({
   methods: {
     genSelections () {
       return this.editable
-        ? VAutocomplete.options.methods.genSelections.call(this)
-        : VSelect.options.methods.genSelections.call(this) // Override v-autocomplete's override
+        ? VAutocomplete.methods.genSelections.call(this)
+        : VSelect.methods.genSelections.call(this) // Override v-autocomplete's override
     },
     genCommaSelection (item: any, index: number, last: boolean) {
       return this.segmented
         ? this.genSegmentedBtn(item)
-        : VSelect.options.methods.genCommaSelection.call(this, item, index, last)
+        : VSelect.methods.genCommaSelection.call(this, item, index, last)
     },
     genInput () {
-      const input = VTextField.options.methods.genInput.call(this)
+      const input = VTextField.methods.genInput.call(this)
 
       input.data = input.data || {}
       input.data.domProps!.value = this.editable ? this.internalSearch : ''
@@ -68,7 +71,7 @@ export default VAutocomplete.extend({
     genLabel () {
       if (this.editable && this.isFocused) return null
 
-      const label = VTextField.options.methods.genLabel.call(this)
+      const label = VTextField.methods.genLabel.call(this)
 
       if (!label) return label
 

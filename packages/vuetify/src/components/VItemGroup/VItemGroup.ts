@@ -14,6 +14,7 @@ import { getSlot } from '../../util/helpers'
 
 // Types
 import { VNode } from 'vue/types'
+import { defineComponent } from 'vue'
 
 export type GroupableInstance = InstanceType<typeof Groupable> & {
   id?: string
@@ -259,8 +260,9 @@ export const BaseItemGroup = mixins(
   },
 })
 
-export default BaseItemGroup.extend({
+export default defineComponent({
   name: 'v-item-group',
+  extends: BaseItemGroup,
 
   provide (): object {
     return {

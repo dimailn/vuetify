@@ -25,9 +25,7 @@ interface options extends ExtractVue<typeof baseMixins> {
   windowGroup: InstanceType<typeof VWindow>
 }
 
-export default baseMixins.extend<options>().extend(
-  /* @vue/component */
-).extend({
+export default baseMixins.extend({
   name: 'v-window-item',
 
   directives: {
@@ -79,7 +77,7 @@ export default baseMixins.extend<options>().extend(
     },
     genWindowItem () {
       return this.$createElement('div', {
-        staticClass: 'v-window-item',
+        class: 'v-window-item',
         class: this.classes,
         directives: [{
           name: 'show',

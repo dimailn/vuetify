@@ -1,4 +1,4 @@
-import Vue from 'vue'
+import {defineComponent} from 'vue'
 
 import {
   validateTimestamp,
@@ -7,7 +7,7 @@ import {
 } from '../util/timestamp'
 import { CalendarTimestamp } from 'vuetify/types'
 
-export default Vue.extend({
+export default defineComponent({
   name: 'times',
 
   props: {

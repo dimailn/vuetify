@@ -46,7 +46,7 @@ interface options extends ExtractVue<typeof baseMixins> {
   $route: Route
 }
 
-export default baseMixins.extend<options>().extend({
+export default baseMixins.extend({
   name: 'v-list-group',
 
   directives: { ripple },
@@ -130,14 +130,14 @@ export default baseMixins.extend<options>().extend({
       if (!icon && !slot) return null
 
       return this.$createElement(VListItemIcon, {
-        staticClass: 'v-list-group__header__append-icon',
+        class: 'v-list-group__header__append-icon',
       }, [
         slot || this.genIcon(icon),
       ])
     },
     genHeader (): VNode {
       return this.$createElement(VListItem, {
-        staticClass: 'v-list-group__header',
+        class: 'v-list-group__header',
         attrs: {
           'aria-expanded': String(this.isActive),
           role: 'button',
@@ -165,7 +165,7 @@ export default baseMixins.extend<options>().extend({
     genItems (): VNode[] {
       return this.showLazyContent(() => [
         this.$createElement('div', {
-          staticClass: 'v-list-group__items',
+          class: 'v-list-group__items',
           directives: [{
             name: 'show',
             value: this.isActive,
@@ -182,7 +182,7 @@ export default baseMixins.extend<options>().extend({
       if (!icon && !slot) return null
 
       return this.$createElement(VListItemIcon, {
-        staticClass: 'v-list-group__header__prepend-icon',
+        class: 'v-list-group__header__prepend-icon',
       }, [
         slot || this.genIcon(icon),
       ])
@@ -213,7 +213,7 @@ export default baseMixins.extend<options>().extend({
 
   render (h): VNode {
     return h('div', this.setTextColor(this.isActive && this.color, {
-      staticClass: 'v-list-group',
+      class: 'v-list-group',
       class: this.classes,
     }), [
       this.genHeader(),

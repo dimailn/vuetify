@@ -338,7 +338,7 @@ export default mixins(
     },
     genClockAmPm () {
       return this.$createElement('div', this.setTextColor(this.color || 'primary', {
-        staticClass: 'v-time-picker-clock__ampm',
+        class: 'v-time-picker-clock__ampm',
       }), [
         this.genPickerButton('period', 'am', this.$vuetify.lang.t('$vuetify.timePicker.am'), this.disabled || this.readonly),
         this.genPickerButton('period', 'pm', this.$vuetify.lang.t('$vuetify.timePicker.pm'), this.disabled || this.readonly),
@@ -346,7 +346,7 @@ export default mixins(
     },
     genPickerBody () {
       return this.$createElement('div', {
-        staticClass: 'v-time-picker-clock__container',
+        class: 'v-time-picker-clock__container',
         key: this.selecting,
       }, [
         !this.ampmInTitle && this.isAmPm && this.genClockAmPm(),

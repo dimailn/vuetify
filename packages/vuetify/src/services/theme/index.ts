@@ -7,7 +7,7 @@ import * as ThemeUtils from './utils'
 import { getNestedValue } from '../../util/helpers'
 
 // Types
-import Vue from 'vue'
+import {App, reactive} from 'vue'
 import { VuetifyPreset } from 'vuetify/types/services/presets'
 import {
   VuetifyParsedTheme,
@@ -101,7 +101,7 @@ export class Theme extends Service {
   // Initialize theme for SSR and SPA
   // Attach to ssrContext head or
   // apply new theme to document
-  public init (root: Vue, ssrContext?: any): void {
+  public init (root: App, ssrContext?: any): void {
     if (this.disabled) return
 
     /* istanbul ignore else */
@@ -222,7 +222,7 @@ export class Theme extends Service {
     ssrContext.head += `<style type="text/css" id="vuetify-theme-stylesheet"${nonce}>${this.generatedStyles}</style>`
   }
 
-  private initTheme (root: Vue) {
+  private initTheme (root: App) {
     // Only watch for reactivity on client side
     if (typeof document === 'undefined') return
 
@@ -235,10 +235,13 @@ export class Theme extends Service {
 
     // TODO: Update to use RFC if merged
     // https://github.com/vuejs/rfcs/blob/advanced-reactivity-api/active-rfcs/0000-advanced-reactivity-api.md
-    root.$once('hook:created', () => {
-      const obs = Vue.observable({ themes: this.themes })
-      this.unwatch = root.$watch(() => obs.themes, () => this.applyTheme(), { deep: true })
-    })
+
+    // root.$once('hook:created', () => {
+    //   const obs = reactive({ themes: this.themes })
+    //   this.unwatch = root.$watch(() => obs.themes, () => this.applyTheme(), { deep: true })
+    // })
+
+
     this.applyTheme()
   }
 

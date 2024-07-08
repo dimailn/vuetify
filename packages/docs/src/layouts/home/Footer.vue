@@ -65,9 +65,8 @@
             </i18n>
           </div>
 
-          <template v-for="(link, i) in links">
+          <template v-for="(link, i) in links" :key="i">
             <i18n
-              :key="i"
               v-bind="link"
               class="grey--text text--lighten-1"
               rel="noopener"

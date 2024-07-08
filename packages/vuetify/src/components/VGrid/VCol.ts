@@ -1,9 +1,9 @@
 import './VGrid.sass'
 
-import Vue, { VNode, PropOptions } from 'vue'
+import { defineComponent, VNode, PropOptions, getCurrentInstance } from 'vue'
 import mergeData from '../../util/mergeData'
 import { upperFirst } from '../../util/helpers'
-
+import {h} from 'vue'
 // no xs
 const breakpoints = ['sm', 'md', 'lg', 'xl']
 
@@ -66,7 +66,7 @@ function breakpointClass (type: keyof typeof propMap, prop: string, val: boolean
 
 const cache = new Map<string, any[]>()
 
-export default Vue.extend({
+export default defineComponent({
   name: 'v-col',
   functional: true,
   props: {
@@ -95,7 +95,12 @@ export default Vue.extend({
       default: 'div',
     },
   },
-  render (h, { props, data, children, parent }): VNode {
+  render (): VNode {
+    const props = this.$props
+    const data = this.$attrs
+    const children = this.$slots.default()
+    const {parent} = getCurrentInstance()
+
     // Super-fast memoization based on props, 5x faster than JSON.stringify
     let cacheKey = ''
     for (const prop in props) {

@@ -185,7 +185,7 @@ export default mixins(
       return h('li', [
         h('button',
           this.setBackgroundColor(this.navigationColor, {
-            staticClass: 'v-pagination__navigation',
+            class: 'v-pagination__navigation',
             class: {
               'v-pagination__navigation--disabled': disabled,
             },
@@ -206,7 +206,7 @@ export default mixins(
       const ariaLabel = isCurrentPage ? this.currentPageAriaLabel : this.pageAriaLabel
 
       return h('button', this.setBackgroundColor(color, {
-        staticClass: 'v-pagination__item',
+        class: 'v-pagination__item',
         class: {
           'v-pagination__item--active': i === this.value,
         },

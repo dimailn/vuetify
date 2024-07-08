@@ -15,11 +15,13 @@ import {
   MINUTES_IN_DAY,
 } from '../util/timestamp'
 import { CalendarTimestamp, CalendarFormatter, CalendarDayBodySlotScope } from 'vuetify/types'
+import { defineComponent } from 'vue'
 
 /* @vue/component */
-export default CalendarBase.extend({
+export default defineComponent({
   name: 'calendar-with-intervals',
 
+  extends: CalendarBase,
   props: props.intervals,
 
   computed: {

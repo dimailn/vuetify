@@ -3,7 +3,7 @@ import VIcon from '../../VIcon'
 import VSimpleCheckbox from '../../VCheckbox/VSimpleCheckbox'
 import ripple from '../../../directives/ripple'
 
-import Vue from 'vue'
+import {defineComponent} from 'vue'
 import { PropValidator } from 'vue/types/options'
 import mixins from '../../../util/mixins'
 import { DataOptions, DataTableHeader } from 'vuetify/types'
@@ -63,18 +63,18 @@ export default mixins<options>().extend({
         },
       }
 
-      if (this.$scopedSlots['data-table-select']) {
-        return this.$scopedSlots['data-table-select']!(data)
+      if (this.$slots['data-table-select']) {
+        return this.$slots['data-table-select']!(data)
       }
 
       return this.$createElement(VSimpleCheckbox, {
-        staticClass: 'v-data-table__checkbox',
+        class: 'v-data-table__checkbox',
         ...data,
       })
     },
     genSortIcon () {
       return this.$createElement(VIcon, {
-        staticClass: 'v-data-table-header__icon',
+        class: 'v-data-table-header__icon',
         props: {
           size: 18,
         },

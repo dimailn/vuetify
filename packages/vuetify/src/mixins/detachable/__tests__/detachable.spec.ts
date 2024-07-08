@@ -7,12 +7,12 @@ const Mock = Detachable.extend({
 
   render (h) {
     const content = h('div', {
-      staticClass: 'content',
+      class: 'content',
       ref: 'content',
     })
 
     return h('div', {
-      staticClass: 'mock',
+      class: 'mock',
     }, [this.$slots.default, content])
   },
 })
@@ -54,7 +54,7 @@ describe('detachable.ts', () => {
       },
       slots: {
         default: [{
-          render: h => h('div', { staticClass: 'foo' }),
+          render: h => h('div', { class: 'foo' }),
         }],
       },
     })

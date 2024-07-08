@@ -2,7 +2,7 @@
 import './VCalendarDaily.sass'
 
 // Types
-import { VNode } from 'vue'
+import { VNode, defineComponent } from 'vue'
 
 // Directives
 import Resize from '../../directives/resize'
@@ -18,8 +18,9 @@ import { convertToUnit, getSlot } from '../../util/helpers'
 import { CalendarTimestamp } from 'vuetify/types'
 
 /* @vue/component */
-export default CalendarWithIntervals.extend({
+export default defineComponent({
   name: 'v-calendar-daily',
+  extends: CalendarWithIntervals,
 
   directives: { Resize },
 
@@ -55,7 +56,7 @@ export default CalendarWithIntervals.extend({
     },
     genHead (): VNode {
       return this.$createElement('div', {
-        staticClass: 'v-calendar-daily__head',
+        class: 'v-calendar-daily__head',
         style: {
           marginRight: this.scrollPush + 'px',
         },
@@ -68,7 +69,7 @@ export default CalendarWithIntervals.extend({
       const width: string | undefined = convertToUnit(this.intervalWidth)
 
       return this.$createElement('div', {
-        staticClass: 'v-calendar-daily__intervals-head',
+        class: 'v-calendar-daily__intervals-head',
         style: {
           width,
         },
@@ -80,7 +81,7 @@ export default CalendarWithIntervals.extend({
     genHeadDay (day: CalendarTimestamp, index: number): VNode {
       return this.$createElement('div', {
         key: day.date,
-        staticClass: 'v-calendar-daily_head-day',
+        class: 'v-calendar-daily_head-day',
         class: this.getRelativeClasses(day),
         on: this.getDefaultMouseEventHandlers(':day', nativeEvent => {
           return { nativeEvent, ...this.getSlotScope(day) }
@@ -100,12 +101,12 @@ export default CalendarWithIntervals.extend({
       const color = day.present ? this.color : undefined
 
       return this.$createElement('div', this.setTextColor(color, {
-        staticClass: 'v-calendar-daily_head-weekday',
+        class: 'v-calendar-daily_head-weekday',
       }), this.weekdayFormatter(day, this.shortWeekdays))
     },
     genHeadDayLabel (day: CalendarTimestamp): VNode {
       return this.$createElement('div', {
-        staticClass: 'v-calendar-daily_head-day-label',
+        class: 'v-calendar-daily_head-day-label',
       }, getSlot(this, 'day-label-header', day) || [this.genHeadDayButton(day)])
     },
     genHeadDayButton (day: CalendarTimestamp): VNode {
@@ -127,7 +128,7 @@ export default CalendarWithIntervals.extend({
     },
     genBody (): VNode {
       return this.$createElement('div', {
-        staticClass: 'v-calendar-daily__body',
+        class: 'v-calendar-daily__body',
       }, [
         this.genScrollArea(),
       ])
@@ -135,7 +136,7 @@ export default CalendarWithIntervals.extend({
     genScrollArea (): VNode {
       return this.$createElement('div', {
         ref: 'scrollArea',
-        staticClass: 'v-calendar-daily__scroll-area',
+        class: 'v-calendar-daily__scroll-area',
       }, [
         this.genPane(),
       ])
@@ -143,7 +144,7 @@ export default CalendarWithIntervals.extend({
     genPane (): VNode {
       return this.$createElement('div', {
         ref: 'pane',
-        staticClass: 'v-calendar-daily__pane',
+        class: 'v-calendar-daily__pane',
         style: {
           height: convertToUnit(this.bodyHeight),
         },
@@ -153,7 +154,7 @@ export default CalendarWithIntervals.extend({
     },
     genDayContainer (): VNode {
       return this.$createElement('div', {
-        staticClass: 'v-calendar-daily__day-container',
+        class: 'v-calendar-daily__day-container',
       }, [
         this.genBodyIntervals(),
         ...this.genDays(),
@@ -165,7 +166,7 @@ export default CalendarWithIntervals.extend({
     genDay (day: CalendarTimestamp, index: number): VNode {
       return this.$createElement('div', {
         key: day.date,
-        staticClass: 'v-calendar-daily__day',
+        class: 'v-calendar-daily__day',
         class: this.getRelativeClasses(day),
         on: this.getDefaultMouseEventHandlers(':time', nativeEvent => {
           return { nativeEvent, ...this.getSlotScope(this.getTimestampAtEvent(nativeEvent, day)) }
@@ -187,7 +188,7 @@ export default CalendarWithIntervals.extend({
 
       const data = {
         key: interval.time,
-        staticClass: 'v-calendar-daily__day-interval',
+        class: 'v-calendar-daily__day-interval',
         style: {
           height,
           ...styler(interval),
@@ -202,7 +203,7 @@ export default CalendarWithIntervals.extend({
     genBodyIntervals (): VNode {
       const width: string | undefined = convertToUnit(this.intervalWidth)
       const data = {
-        staticClass: 'v-calendar-daily__intervals-body',
+        class: 'v-calendar-daily__intervals-body',
         style: {
           width,
         },
@@ -227,13 +228,13 @@ export default CalendarWithIntervals.extend({
 
       return this.$createElement('div', {
         key: interval.time,
-        staticClass: 'v-calendar-daily__interval',
+        class: 'v-calendar-daily__interval',
         style: {
           height,
         },
       }, [
         this.$createElement('div', {
-          staticClass: 'v-calendar-daily__interval-text',
+          class: 'v-calendar-daily__interval-text',
         }, label),
       ])
     },

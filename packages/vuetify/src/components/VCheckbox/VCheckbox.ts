@@ -8,10 +8,12 @@ import VInput from '../VInput'
 
 // Mixins
 import Selectable from '../../mixins/selectable'
+import { defineComponent } from 'vue'
 
 /* @vue/component */
-export default Selectable.extend({
+export default defineComponent({
   name: 'v-checkbox',
+  extends: Selectable,
 
   props: {
     indeterminate: Boolean,
@@ -38,7 +40,7 @@ export default Selectable.extend({
   computed: {
     classes (): object {
       return {
-        ...VInput.options.computed.classes.call(this),
+        ...VInput.computed.classes.call(this),
         'v-input--selection-controls': true,
         'v-input--checkbox': true,
         'v-input--indeterminate': this.inputIndeterminate,
@@ -83,7 +85,7 @@ export default Selectable.extend({
     genCheckbox () {
       const { title, ...checkboxAttrs } = this.attrs$
       return this.$createElement('div', {
-        staticClass: 'v-input--selection-controls__input',
+        class: 'v-input--selection-controls__input',
       }, [
         this.$createElement(VIcon, this.setTextColor(this.validationState, {
           props: {

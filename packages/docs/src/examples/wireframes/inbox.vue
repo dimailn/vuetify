@@ -61,10 +61,10 @@
               <v-subheader>{{ card }}</v-subheader>
 
               <v-list two-line>
-                <template v-for="n in 6">
+                <template v-for="n in 6" :key="n">
                   <v-list-item
 
-                    :key="n"
+
                   >
                     <v-list-item-avatar color="grey darken-1">
                     </v-list-item-avatar>

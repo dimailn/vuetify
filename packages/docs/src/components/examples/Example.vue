@@ -32,9 +32,8 @@
             class="pa-2"
             mandatory
           >
-            <template v-for="(section, i) in sections">
+            <template v-for="(section, i) in sections" :key="`item-${i}`">
               <v-item
-                :key="`item-${i}`"
                 :value="section"
               >
                 <template #default="{ active, toggle }">
@@ -57,9 +56,8 @@
             v-model="selected"
             class="grey lighten-5"
           >
-            <template v-for="(section, i) in sections">
+            <template v-for="(section, i) in sections" :key="`window-${i}`">
               <v-window-item
-                :key="`window-${i}`"
                 :value="section"
               >
                 <markup

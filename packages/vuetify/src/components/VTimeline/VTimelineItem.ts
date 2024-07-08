@@ -23,7 +23,7 @@ interface options extends ExtractVue<typeof baseMixins> {
   timeline: VTimelineInstance
 }
 
-export default baseMixins.extend<options>().extend({
+export default baseMixins.extend({
   name: 'v-timeline-item',
 
   inject: ['timeline'],
@@ -52,7 +52,7 @@ export default baseMixins.extend<options>().extend({
   methods: {
     genBody () {
       return this.$createElement('div', {
-        staticClass: 'v-timeline-item__body',
+        class: 'v-timeline-item__body',
       }, getSlot(this))
     },
     genIcon (): VNode | VNode[] {
@@ -68,13 +68,13 @@ export default baseMixins.extend<options>().extend({
       const data: VNodeData = this.setBackgroundColor(this.color)
 
       return this.$createElement('div', {
-        staticClass: 'v-timeline-item__inner-dot',
+        class: 'v-timeline-item__inner-dot',
         ...data,
       }, [this.hasIcon && this.genIcon()])
     },
     genDot () {
       return this.$createElement('div', {
-        staticClass: 'v-timeline-item__dot',
+        class: 'v-timeline-item__dot',
         class: {
           'v-timeline-item__dot--small': this.small,
           'v-timeline-item__dot--large': this.large,
@@ -87,12 +87,12 @@ export default baseMixins.extend<options>().extend({
       if (!this.hideDot) children.push(this.genDot())
 
       return this.$createElement('div', {
-        staticClass: 'v-timeline-item__divider',
+        class: 'v-timeline-item__divider',
       }, children)
     },
     genOpposite () {
       return this.$createElement('div', {
-        staticClass: 'v-timeline-item__opposite',
+        class: 'v-timeline-item__opposite',
       }, getSlot(this, 'opposite'))
     },
   },
@@ -106,7 +106,7 @@ export default baseMixins.extend<options>().extend({
     if (this.$slots.opposite) children.push(this.genOpposite())
 
     return h('div', {
-      staticClass: 'v-timeline-item',
+      class: 'v-timeline-item',
       class: {
         'v-timeline-item--fill-dot': this.fillDot,
         'v-timeline-item--before': this.timeline.reverse ? this.right : this.left,

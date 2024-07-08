@@ -37,7 +37,7 @@ export default mixins(
   },
 
   render (): VNode {
-    if (!this.$scopedSlots.default && this.value === undefined) {
+    if (!this.$slots.default && this.value === undefined) {
       consoleWarn('v-hover is missing a default scopedSlot or bound value', this)
 
       return null as any
@@ -46,8 +46,8 @@ export default mixins(
     let element: VNode | ScopedSlotChildren
 
     /* istanbul ignore else */
-    if (this.$scopedSlots.default) {
-      element = this.$scopedSlots.default({ hover: this.isActive })
+    if (this.$slots.default) {
+      element = this.$slots.default({ hover: this.isActive })
     }
 
     if (Array.isArray(element) && element.length === 1) {

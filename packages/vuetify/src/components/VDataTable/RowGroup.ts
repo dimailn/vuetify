@@ -1,6 +1,6 @@
-import Vue, { VNode } from 'vue'
+import { defineComponent, VNode } from 'vue'
 
-export default Vue.extend({
+export default defineComponent({
   name: 'row-group',
 
   functional: true,

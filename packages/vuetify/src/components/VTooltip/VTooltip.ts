@@ -158,7 +158,7 @@ export default mixins(Colorable, Delayable, Dependent, Menuable).extend({
       this.runDelay('close')
     },
     genActivatorListeners () {
-      const listeners = Activatable.options.methods.genActivatorListeners.call(this)
+      const listeners = Activatable.methods.genActivatorListeners.call(this)
 
       if (this.openOnFocus) {
         listeners.focus = (e: Event) => {
@@ -201,7 +201,7 @@ export default mixins(Colorable, Delayable, Dependent, Menuable).extend({
       return this.$createElement(
         'div',
         this.setBackgroundColor(this.color, {
-          staticClass: 'v-tooltip__content',
+          class: 'v-tooltip__content',
           class: {
             [this.contentClass]: true,
             menuable__content__active: this.isActive,
@@ -222,7 +222,7 @@ export default mixins(Colorable, Delayable, Dependent, Menuable).extend({
 
   render (h): VNode {
     return h(this.tag, {
-      staticClass: 'v-tooltip',
+      class: 'v-tooltip',
       class: this.classes,
     }, [
       this.showLazyContent(() => [this.genTransition()]),

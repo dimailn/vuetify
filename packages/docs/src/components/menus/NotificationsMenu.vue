@@ -89,7 +89,7 @@
 
       <template v-else>
         <v-list three-line>
-          <template v-for="(notification, i) in filtered">
+          <template v-for="(notification, i) in filtered" :key="i">
 
             <v-divider
               v-if="i !== 0"
@@ -98,7 +98,6 @@
             />
 
             <v-list-item
-              :key="i"
               :ripple="false"
             >
               <v-list-item-content>

@@ -71,7 +71,7 @@ export default mixins(Themeable).extend({
       ])
 
       return this.$createElement('div', {
-        staticClass: 'v-color-picker__color',
+        class: 'v-color-picker__color',
         on: {
           // TODO: Less hacky way of catching transparent
           click: () => this.disabled || this.$emit('update:color', fromHex(color === 'transparent' ? '#00000000' : color)),
@@ -83,7 +83,7 @@ export default mixins(Themeable).extend({
         const colors = swatch.map(this.genColor)
 
         return this.$createElement('div', {
-          staticClass: 'v-color-picker__swatch',
+          class: 'v-color-picker__swatch',
         }, colors)
       })
     },
@@ -91,7 +91,7 @@ export default mixins(Themeable).extend({
 
   render (h): VNode {
     return h('div', {
-      staticClass: 'v-color-picker__swatches',
+      class: 'v-color-picker__swatches',
       style: {
         maxWidth: convertToUnit(this.maxWidth),
         maxHeight: convertToUnit(this.maxHeight),

@@ -2,13 +2,14 @@
 import './VDivider.sass'
 
 // Types
-import { VNode } from 'vue'
+import { VNode, defineComponent } from 'vue'
 
 // Mixins
 import Themeable from '../../mixins/themeable'
 
-export default Themeable.extend({
+export default defineComponent({
   name: 'v-divider',
+  extends: Themeable,
 
   props: {
     inset: Boolean,

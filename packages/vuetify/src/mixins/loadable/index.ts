@@ -1,8 +1,8 @@
-import Vue, { VNode } from 'vue'
+import { defineComponent, VNode, App } from 'vue'
 import VProgressLinear from '../../components/VProgressLinear'
 import { getSlot } from '../../util/helpers'
 
-interface colorable extends Vue {
+interface colorable extends App {
   color?: string
 }
 
@@ -16,7 +16,7 @@ interface colorable extends Vue {
  * or designate a custom progress linear bar
  */
 /* @vue/component */
-export default Vue.extend<colorable>().extend({
+export default defineComponent({
   name: 'loadable',
 
   props: {

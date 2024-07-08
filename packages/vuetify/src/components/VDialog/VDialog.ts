@@ -95,7 +95,7 @@ export default baseMixins.extend({
     hasActivator (): boolean {
       return Boolean(
         !!this.$slots.activator ||
-        !!this.$scopedSlots.activator
+        !!this.$slots.activator
       )
     },
   },
@@ -170,7 +170,7 @@ export default baseMixins.extend({
       if (this.fullscreen) {
         document.documentElement.classList.add('overflow-y-hidden')
       } else {
-        Overlayable.options.methods.hideScroll.call(this)
+        Overlayable.methods.hideScroll.call(this)
       }
     },
     show () {
@@ -312,7 +312,7 @@ export default baseMixins.extend({
 
   render (h): VNode {
     return h('div', {
-      staticClass: 'v-dialog__container',
+      class: 'v-dialog__container',
       class: {
         'v-dialog__container--attached':
           this.attach === '' ||

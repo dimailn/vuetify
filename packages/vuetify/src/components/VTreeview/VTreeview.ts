@@ -419,7 +419,7 @@ export default mixins(
       ? this.items.filter(item => {
         return !this.isExcluded(getObjectValueByPath(item, this.itemKey))
       }).map(item => {
-        const genChild = VTreeviewNode.options.methods.genChild.bind(this)
+        const genChild = VTreeviewNode.methods.genChild.bind(this)
 
         return genChild(item, this.disabled || getObjectValueByPath(item, this.itemDisabled))
       })
@@ -427,7 +427,7 @@ export default mixins(
       : this.$slots.default! // TODO: remove type annotation with TS 3.2
 
     return h('div', {
-      staticClass: 'v-treeview',
+      class: 'v-treeview',
       class: {
         'v-treeview--hoverable': this.hoverable,
         'v-treeview--dense': this.dense,

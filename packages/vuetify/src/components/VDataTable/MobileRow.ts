@@ -1,8 +1,8 @@
-import Vue, { VNode, PropType } from 'vue'
+import { defineComponent, VNode, PropType } from 'vue'
 import { getObjectValueByPath } from '../../util/helpers'
 import { DataTableHeader } from 'vuetify/types'
 
-export default Vue.extend({
+export default defineComponent({
   name: 'row',
 
   functional: true,
@@ -46,14 +46,14 @@ export default Vue.extend({
 
       const mobileRowChildren = [
         h('div', {
-          staticClass: 'v-data-table__mobile-row__cell',
+          class: 'v-data-table__mobile-row__cell',
         }, children),
       ]
 
       if (header.value !== 'dataTableSelect' && !props.hideDefaultHeader) {
         mobileRowChildren.unshift(
           h('div', {
-            staticClass: 'v-data-table__mobile-row__header',
+            class: 'v-data-table__mobile-row__header',
           }, [header.text])
         )
       }
@@ -61,6 +61,6 @@ export default Vue.extend({
       return h('td', { class: classes }, mobileRowChildren)
     })
 
-    return h('tr', { ...data, staticClass: 'v-data-table__mobile-table-row' }, columns)
+    return h('tr', { ...data, class: 'v-data-table__mobile-table-row' }, columns)
   },
 })

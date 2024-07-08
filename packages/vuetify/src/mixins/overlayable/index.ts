@@ -11,13 +11,13 @@ import {
 } from '../../util/helpers'
 
 // Types
-import Vue from 'vue'
+import {defineComponent, App} from 'vue'
 
-interface Toggleable extends Vue {
+interface Toggleable extends App {
   isActive?: boolean
 }
 
-interface Stackable extends Vue {
+interface Stackable extends App {
   activeZIndex: number
 }
 
@@ -30,7 +30,7 @@ interface options {
 }
 
 /* @vue/component */
-export default Vue.extend<Vue & Toggleable & Stackable & options>().extend({
+export default defineComponent({
   name: 'overlayable',
 
   props: {

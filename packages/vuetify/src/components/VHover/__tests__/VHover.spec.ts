@@ -13,7 +13,7 @@ import { wait } from '../../../../test'
 
 const vm = new Vue()
 const item = props => vm.$createElement('div', {
-  staticClass: 'foobar',
+  class: 'foobar',
   class: { fizzbuzz: props.hover },
 })
 

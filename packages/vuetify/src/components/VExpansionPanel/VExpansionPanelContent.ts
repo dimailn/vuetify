@@ -25,7 +25,7 @@ interface options extends ExtractVue<typeof baseMixins> {
 }
 
 /* @vue/component */
-export default baseMixins.extend<options>().extend({
+export default baseMixins.extend({
   name: 'v-expansion-panel-content',
 
   data: () => ({
@@ -61,7 +61,7 @@ export default baseMixins.extend<options>().extend({
   render (h): VNode {
     return h(VExpandTransition, this.showLazyContent(() => [
       h('div', this.setBackgroundColor(this.color, {
-        staticClass: 'v-expansion-panel-content',
+        class: 'v-expansion-panel-content',
         directives: [{
           name: 'show',
           value: this.isActive,

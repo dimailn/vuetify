@@ -24,6 +24,7 @@ import { getSlot } from '../../util/helpers'
 import { VNode } from 'vue'
 import { PropValidator, PropType } from 'vue/types/options'
 import { RippleOptions } from '../../directives/ripple'
+import {h} from 'vue'
 
 const baseMixins = mixins(
   VSheet,
@@ -38,17 +39,12 @@ interface options extends ExtractVue<typeof baseMixins> {
   $el: HTMLElement
 }
 
-export default baseMixins.extend<options>().extend({
+export default baseMixins.extend({
   name: 'v-btn',
 
   props: {
     activeClass: {
       type: String,
-      default (): string | undefined {
-        if (!this.btnToggle) return ''
-
-        return this.btnToggle.activeClass
-      },
     } as any as PropValidator<string>,
     block: Boolean,
     depressed: Boolean,
@@ -80,7 +76,7 @@ export default baseMixins.extend<options>().extend({
     classes (): any {
       return {
         'v-btn': true,
-        ...Routable.options.computed.classes.call(this),
+        ...Routable.computed.classes.call(this),
         'v-btn--absolute': this.absolute,
         'v-btn--block': this.block,
         'v-btn--bottom': this.bottom,
@@ -110,7 +106,7 @@ export default baseMixins.extend<options>().extend({
     computedElevation (): string | number | undefined {
       if (this.disabled) return undefined
 
-      return Elevatable.options.computed.computedElevation.call(this)
+      return Elevatable.computed.computedElevation.call(this)
     },
     computedRipple (): RippleOptions | boolean {
       const defaultRipple = this.icon || this.fab ? { circle: true } : true
@@ -167,7 +163,7 @@ export default baseMixins.extend<options>().extend({
     },
     genContent (): VNode {
       return this.$createElement('span', {
-        staticClass: 'v-btn__content',
+        class: 'v-btn__content',
       }, getSlot(this))
     },
     genLoader (): VNode {
@@ -183,7 +179,7 @@ export default baseMixins.extend<options>().extend({
     },
   },
 
-  render (h): VNode {
+  render (): VNode {
     const children = [
       this.genContent(),
       this.loading && this.genLoader(),
@@ -194,13 +190,14 @@ export default baseMixins.extend<options>().extend({
       : this.setTextColor
 
     if (tag === 'button') {
-      data.attrs!.type = this.type
-      data.attrs!.disabled = this.disabled
+      data.type = this.type
+      data.disabled = this.disabled
     }
-    data.attrs!.value = ['string', 'number'].includes(typeof this.value)
+    data.value = ['string', 'number'].includes(typeof this.value)
       ? this.value
       : JSON.stringify(this.value)
 
+    console.log(data)
     return h(tag, this.disabled ? data : setColor(this.color, data), children)
   },
 })

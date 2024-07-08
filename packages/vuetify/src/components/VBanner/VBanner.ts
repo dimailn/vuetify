@@ -45,7 +45,7 @@ export default mixins(
   computed: {
     classes (): object {
       return {
-        ...VSheet.options.computed.classes.call(this),
+        ...VSheet.computed.classes.call(this),
         'v-banner--has-icon': this.hasIcon,
         'v-banner--is-mobile': this.isMobile,
         'v-banner--single-line': this.singleLine,
@@ -53,13 +53,13 @@ export default mixins(
       }
     },
     hasIcon (): boolean {
-      return Boolean(this.icon || this.$slots.icon || this.$scopedSlots.icon)
+      return Boolean(this.icon || this.$slots.icon || this.$slots.icon)
     },
     isSticky (): boolean {
       return this.sticky || this.app
     },
     styles (): object {
-      const styles: Record<string, any> = { ...VSheet.options.computed.styles.call(this) }
+      const styles: Record<string, any> = { ...VSheet.computed.styles.call(this) }
 
       if (this.isSticky) {
         const top = !this.app
@@ -100,7 +100,7 @@ export default mixins(
       }
 
       return this.$createElement(VAvatar, {
-        staticClass: 'v-banner__icon',
+        class: 'v-banner__icon',
         props: {
           color: this.color,
           size: 40,
@@ -112,7 +112,7 @@ export default mixins(
     },
     genText () {
       return this.$createElement('div', {
-        staticClass: 'v-banner__text',
+        class: 'v-banner__text',
       }, getSlot(this))
     },
     genActions () {
@@ -123,12 +123,12 @@ export default mixins(
       if (!children) return undefined
 
       return this.$createElement('div', {
-        staticClass: 'v-banner__actions',
+        class: 'v-banner__actions',
       }, children)
     },
     genContent () {
       return this.$createElement('div', {
-        staticClass: 'v-banner__content',
+        class: 'v-banner__content',
       }, [
         this.genIcon(),
         this.genText(),
@@ -136,7 +136,7 @@ export default mixins(
     },
     genWrapper () {
       return this.$createElement('div', {
-        staticClass: 'v-banner__wrapper',
+        class: 'v-banner__wrapper',
       }, [
         this.genContent(),
         this.genActions(),
@@ -146,7 +146,7 @@ export default mixins(
 
   render (h): VNode {
     const data = {
-      staticClass: 'v-banner',
+      class: 'v-banner',
       attrs: this.attrs$,
       class: this.classes,
       style: this.styles,

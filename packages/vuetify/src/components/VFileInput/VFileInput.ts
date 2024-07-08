@@ -14,9 +14,11 @@ import { PropValidator } from 'vue/types/options'
 import { deepEqual, humanReadableFileSize, wrapInArray } from '../../util/helpers'
 import { consoleError } from '../../util/console'
 import { mergeStyles } from '../../util/mergeData'
+import { defineComponent } from 'vue'
 
-export default VTextField.extend({
+export default defineComponent({
   name: 'v-file-input',
+  extends: VTextField,
 
   model: {
     prop: 'value',
@@ -78,7 +80,7 @@ export default VTextField.extend({
   computed: {
     classes (): object {
       return {
-        ...VTextField.options.computed.classes.call(this),
+        ...VTextField.computed.classes.call(this),
         'v-file-input': true,
       }
     },
@@ -181,7 +183,7 @@ export default VTextField.extend({
       }, [text]))
     },
     genControl () {
-      const render = VTextField.options.methods.genControl.call(this)
+      const render = VTextField.methods.genControl.call(this)
 
       if (this.hideInput) {
         render.data!.style = mergeStyles(
@@ -193,7 +195,7 @@ export default VTextField.extend({
       return render
     },
     genInput () {
-      const input = VTextField.options.methods.genInput.call(this)
+      const input = VTextField.methods.genInput.call(this)
 
       input.data!.attrs!.multiple = this.multiple
 
@@ -230,12 +232,12 @@ export default VTextField.extend({
     genSelections () {
       const children = []
 
-      if (this.isDirty && this.$scopedSlots.selection) {
+      if (this.isDirty && this.$slots.selection) {
         this.internalArrayValue.forEach((file: File, index: number) => {
-          if (!this.$scopedSlots.selection) return
+          if (!this.$slots.selection) return
 
           children.push(
-            this.$scopedSlots.selection({
+            this.$slots.selection({
               text: this.text[index],
               file,
               index,
@@ -247,15 +249,15 @@ export default VTextField.extend({
       }
 
       return this.$createElement('div', {
-        staticClass: 'v-file-input__text',
+        class: 'v-file-input__text',
         class: {
           'v-file-input__text--placeholder': this.placeholder && !this.isDirty,
-          'v-file-input__text--chips': this.hasChips && !this.$scopedSlots.selection,
+          'v-file-input__text--chips': this.hasChips && !this.$slots.selection,
         },
       }, children)
     },
     genTextFieldSlot () {
-      const node = VTextField.options.methods.genTextFieldSlot.call(this)
+      const node = VTextField.methods.genTextFieldSlot.call(this)
 
       node.data!.on = {
         ...(node.data!.on || {}),

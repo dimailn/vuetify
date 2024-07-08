@@ -1,4 +1,4 @@
-import Vue from 'vue'
+import {defineComponent} from 'vue'
 
 import { getZIndex } from '../../util/helpers'
 
@@ -9,7 +9,7 @@ interface options extends Vue {
 }
 
 /* @vue/component */
-export default Vue.extend<options>().extend({
+export default defineComponent({
   name: 'stackable',
 
   data () {

@@ -34,7 +34,7 @@ interface options extends ExtractVue<typeof baseMixins> {
   }
 }
 
-export default baseMixins.extend<options>().extend({
+export default baseMixins.extend({
   name: 'v-tabs',
 
   directives: {
@@ -253,7 +253,7 @@ export default baseMixins.extend<options>().extend({
       }
 
       return this.$createElement('div', {
-        staticClass: 'v-tabs-slider-wrapper',
+        class: 'v-tabs-slider-wrapper',
         style: this.sliderStyles,
       }, [slider])
     },
@@ -275,7 +275,7 @@ export default baseMixins.extend<options>().extend({
         const vnode = slot[i]
 
         if (vnode.componentOptions) {
-          switch (vnode.componentOptions.Ctor.options.name) {
+          switch (vnode.componentOptions.Ctor.name) {
             case 'v-tabs-slider': slider = vnode
               break
             case 'v-tabs-items': items = vnode
@@ -304,7 +304,7 @@ export default baseMixins.extend<options>().extend({
     const { tab, slider, items, item } = this.parseNodes()
 
     return h('div', {
-      staticClass: 'v-tabs',
+      class: 'v-tabs',
       class: this.classes,
       directives: [{
         name: 'resize',

@@ -91,7 +91,7 @@ export const VTreeviewNodeProps = {
 }
 
 /* @vue/component */
-const VTreeviewNode = baseMixins.extend<options>().extend({
+const VTreeviewNode = baseMixins.extend({
   name: 'v-treeview-node',
 
   inject: {
@@ -186,27 +186,27 @@ const VTreeviewNode = baseMixins.extend<options>().extend({
     genLabel () {
       const children = []
 
-      if (this.$scopedSlots.label) children.push(this.$scopedSlots.label(this.scopedProps))
+      if (this.$slots.label) children.push(this.$slots.label(this.scopedProps))
       else children.push(this.text)
 
       return this.$createElement('div', {
         slot: 'label',
-        staticClass: 'v-treeview-node__label',
+        class: 'v-treeview-node__label',
       }, children)
     },
     genPrependSlot () {
-      if (!this.$scopedSlots.prepend) return null
+      if (!this.$slots.prepend) return null
 
       return this.$createElement('div', {
-        staticClass: 'v-treeview-node__prepend',
-      }, this.$scopedSlots.prepend(this.scopedProps))
+        class: 'v-treeview-node__prepend',
+      }, this.$slots.prepend(this.scopedProps))
     },
     genAppendSlot () {
-      if (!this.$scopedSlots.append) return null
+      if (!this.$slots.append) return null
 
       return this.$createElement('div', {
-        staticClass: 'v-treeview-node__append',
-      }, this.$scopedSlots.append(this.scopedProps))
+        class: 'v-treeview-node__append',
+      }, this.$slots.append(this.scopedProps))
     },
     genContent () {
       const children = [
@@ -216,12 +216,12 @@ const VTreeviewNode = baseMixins.extend<options>().extend({
       ]
 
       return this.$createElement('div', {
-        staticClass: 'v-treeview-node__content',
+        class: 'v-treeview-node__content',
       }, children)
     },
     genToggle () {
       return this.$createElement(VIcon, {
-        staticClass: 'v-treeview-node__toggle',
+        class: 'v-treeview-node__toggle',
         class: {
           'v-treeview-node__toggle--open': this.isOpen,
           'v-treeview-node__toggle--loading': this.isLoading,
@@ -240,7 +240,7 @@ const VTreeviewNode = baseMixins.extend<options>().extend({
     },
     genCheckbox () {
       return this.$createElement(VIcon, {
-        staticClass: 'v-treeview-node__checkbox',
+        class: 'v-treeview-node__checkbox',
         props: {
           color: this.isSelected || this.isIndeterminate ? this.selectedColor : undefined,
           disabled: this.disabled,
@@ -267,7 +267,7 @@ const VTreeviewNode = baseMixins.extend<options>().extend({
     },
     genLevel (level: number) {
       return createRange(level).map(() => this.$createElement('div', {
-        staticClass: 'v-treeview-node__level',
+        class: 'v-treeview-node__level',
       }))
     },
     genNode () {
@@ -284,7 +284,7 @@ const VTreeviewNode = baseMixins.extend<options>().extend({
       children.unshift(...this.genLevel(this.level))
 
       return this.$createElement('div', this.setTextColor(this.isActive && this.color, {
-        staticClass: 'v-treeview-node__root',
+        class: 'v-treeview-node__root',
         class: {
           [this.activeClass]: this.isActive,
         },
@@ -330,7 +330,7 @@ const VTreeviewNode = baseMixins.extend<options>().extend({
           selectionType: this.selectionType,
           parentIsDisabled,
         },
-        scopedSlots: this.$scopedSlots,
+        scopedSlots: this.$slots,
       })
     },
     genChildrenWrapper () {
@@ -339,7 +339,7 @@ const VTreeviewNode = baseMixins.extend<options>().extend({
       const children = [this.children.map(c => this.genChild(c, this.disabled))]
 
       return this.$createElement('div', {
-        staticClass: 'v-treeview-node__children',
+        class: 'v-treeview-node__children',
       }, children)
     },
     genTransition () {
@@ -354,7 +354,7 @@ const VTreeviewNode = baseMixins.extend<options>().extend({
     else children.push(this.genChildrenWrapper())
 
     return h('div', {
-      staticClass: 'v-treeview-node',
+      class: 'v-treeview-node',
       class: {
         'v-treeview-node--leaf': !this.hasChildren,
         'v-treeview-node--click': this.openOnClick,

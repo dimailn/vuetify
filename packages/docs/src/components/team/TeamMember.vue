@@ -65,9 +65,8 @@
             &nbsp;—&nbsp;
           </div>
 
-          <template v-for="(focus, k) in member.focus">
+          <template v-for="(focus, k) in member.focus" :key="k">
             <app-md
-              :key="k"
               v-text="focus"
             />
 
@@ -95,9 +94,8 @@
             &nbsp;—&nbsp;
           </div>
 
-          <template v-for="(funding, k) in member.funding">
+          <template v-for="(funding, k) in member.funding" :key="k">
             <app-md
-              :key="k"
               v-text="funding"
             />
 
@@ -123,9 +121,8 @@
             />
 
             <template v-if="Array.isArray(member[field])">
-              <template v-for="(focus, j) in member[field]">
+              <template v-for="(focus, j) in member[field]" :key="j">
                 <app-md
-                  :key="j"
                   v-text="focus"
                 />
 

@@ -105,7 +105,7 @@ export default mixins(Elevatable, Themeable).extend({
     },
     genControls (): VNode {
       return this.$createElement('div', {
-        staticClass: 'v-color-picker__controls',
+        class: 'v-color-picker__controls',
       }, [
         !this.hideSliders && this.genPreview(),
         !this.hideInputs && this.genEdit(),
@@ -157,7 +157,7 @@ export default mixins(Elevatable, Themeable).extend({
 
   render (h): VNode {
     return h(VSheet, {
-      staticClass: 'v-color-picker',
+      class: 'v-color-picker',
       class: {
         'v-color-picker--flat': this.flat,
         ...this.themeClasses,

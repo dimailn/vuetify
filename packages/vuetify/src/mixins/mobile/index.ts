@@ -1,10 +1,10 @@
 // Types
 import { BreakpointName } from 'vuetify/types/services/breakpoint'
 import { deprecate } from '../../util/console'
-import Vue, { PropType } from 'vue'
+import { defineComponent, PropType } from 'vue'
 
 /* @vue/component */
-export default Vue.extend({
+export default defineComponent({
   name: 'mobile',
 
   props: {

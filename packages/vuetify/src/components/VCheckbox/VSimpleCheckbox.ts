@@ -2,7 +2,9 @@ import './VSimpleCheckbox.sass'
 
 import Ripple from '../../directives/ripple'
 
-import Vue, { VNode, VNodeDirective } from 'vue'
+import { VNode, VNodeDirective } from 'vue'
+import {defineComponent} from 'vue'
+
 import { VIcon } from '../VIcon'
 
 // Mixins
@@ -13,7 +15,7 @@ import Themeable from '../../mixins/themeable'
 import mergeData from '../../util/mergeData'
 import { wrapInArray } from '../../util/helpers'
 
-export default Vue.extend({
+export default defineComponent({
   name: 'v-simple-checkbox',
 
   functional: true,
@@ -23,8 +25,8 @@ export default Vue.extend({
   },
 
   props: {
-    ...Colorable.options.props,
-    ...Themeable.options.props,
+    ...Colorable.props,
+    ...Themeable.props,
     disabled: Boolean,
     ripple: {
       type: Boolean,
@@ -52,7 +54,7 @@ export default Vue.extend({
     if (props.indeterminate) icon = props.indeterminateIcon
     else if (props.value) icon = props.onIcon
 
-    children.push(h(VIcon, Colorable.options.methods.setTextColor(props.value && props.color, {
+    children.push(h(VIcon, Colorable.methods.setTextColor(props.value && props.color, {
       props: {
         disabled: props.disabled,
         dark: props.dark,
@@ -61,8 +63,8 @@ export default Vue.extend({
     }), icon))
 
     if (props.ripple && !props.disabled) {
-      const ripple = h('div', Colorable.options.methods.setTextColor(props.color, {
-        staticClass: 'v-input--selection-controls__ripple',
+      const ripple = h('div', Colorable.methods.setTextColor(props.color, {
+        class: 'v-input--selection-controls__ripple',
         directives: [{
           def: Ripple,
           name: 'ripple',
@@ -89,7 +91,7 @@ export default Vue.extend({
           },
         },
       }), [
-        h('div', { staticClass: 'v-input--selection-controls__input' }, children),
+        h('div', { class: 'v-input--selection-controls__input' }, children),
       ])
   },
 })

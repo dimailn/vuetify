@@ -8,10 +8,10 @@ import VSlider from '../VSlider/VSlider'
 import { RGBtoCSS, RGBAtoCSS } from '../../util/colorUtils'
 
 // Types
-import Vue, { VNode, VNodeData, PropType } from 'vue'
+import { defineComponent, VNode, VNodeData, PropType } from 'vue'
 import { VColorPickerColor, fromHSVA } from './util'
 
-export default Vue.extend({
+export default defineComponent({
   name: 'v-color-picker-preview',
 
   props: {
@@ -23,7 +23,7 @@ export default Vue.extend({
   methods: {
     genAlpha (): VNode {
       return this.genTrack({
-        staticClass: 'v-color-picker__alpha',
+        class: 'v-color-picker__alpha',
         props: {
           thumbColor: 'grey lighten-2',
           hideDetails: true,
@@ -44,7 +44,7 @@ export default Vue.extend({
     },
     genSliders (): VNode {
       return this.$createElement('div', {
-        staticClass: 'v-color-picker__sliders',
+        class: 'v-color-picker__sliders',
       }, [
         this.genHue(),
         !this.hideAlpha && this.genAlpha(),
@@ -52,7 +52,7 @@ export default Vue.extend({
     },
     genDot (): VNode {
       return this.$createElement('div', {
-        staticClass: 'v-color-picker__dot',
+        class: 'v-color-picker__dot',
       }, [
         this.$createElement('div', {
           style: {
@@ -63,7 +63,7 @@ export default Vue.extend({
     },
     genHue (): VNode {
       return this.genTrack({
-        staticClass: 'v-color-picker__hue',
+        class: 'v-color-picker__hue',
         props: {
           thumbColor: 'grey lighten-2',
           hideDetails: true,
@@ -91,7 +91,7 @@ export default Vue.extend({
 
   render (h): VNode {
     return h('div', {
-      staticClass: 'v-color-picker__preview',
+      class: 'v-color-picker__preview',
       class: {
         'v-color-picker__preview--hide-alpha': this.hideAlpha,
       },

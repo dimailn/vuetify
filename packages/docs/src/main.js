@@ -1,6 +1,6 @@
 // Packages
-import Vue from 'vue'
-import Vuetify from 'vuetify/lib/framework'
+import {createApp as _createApp, h} from 'vue'
+import Vuetify from 'vuetify'
 import InstantSearch from 'vue-instantsearch'
 
 // Bootstrap
@@ -20,12 +20,12 @@ import App from './App.vue'
 // Globals
 import { IS_PROD } from '@/util/globals'
 
-Vue.config.productionTip = false
+// Vue.config.productionTip = false
 
-Vue.use(InstantSearch)
-registerPlugins(Vue)
+// Vue.use(InstantSearch)
 
-Vue.config.performance = !IS_PROD
+
+// Vue.config.performance = !IS_PROD
 
 // Expose a factory function that creates a fresh set of store, router,
 // app instances on each call (which is called for each SSR request)
@@ -38,6 +38,7 @@ export async function createApp ({
   const vuetify = createVuetify(store)
   const router = createRouter(vuetify, store, i18n)
 
+
   store.state.app.version = Vuetify.version
 
   // sync the router with the vuex store.
@@ -47,13 +48,21 @@ export async function createApp ({
   // create the app instance.
   // here we inject the router, store and ssr context to all child components,
   // making them available everywhere as `this.$router` and `this.$store`.
-  const app = new Vue({
-    router,
-    store,
-    i18n,
-    vuetify,
-    render: h => h(App),
+  const app = _createApp({
+    render: () => h(App),
   })
+
+  console.log(Vuetify)
+  app.use(Vuetify)
+  app.config.globalProperties.$vuetify = vuetify.framework
+
+
+
+  app.use(store)
+  app.use(router)
+  app.use(i18n)
+
+  registerPlugins(app)
 
   // expose the app, the router and the store.
   // note we are not mounting the app here, since bootstrapping will be

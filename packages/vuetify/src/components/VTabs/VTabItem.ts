@@ -1,9 +1,12 @@
 // Extensions
+import { defineComponent } from 'vue'
 import VWindowItem from '../VWindow/VWindowItem'
 
 /* @vue/component */
-export default VWindowItem.extend({
+export default defineComponent({
   name: 'v-tab-item',
+
+  extends: VWindowItem,
 
   props: {
     id: String,
@@ -11,7 +14,7 @@ export default VWindowItem.extend({
 
   methods: {
     genWindowItem () {
-      const item = VWindowItem.options.methods.genWindowItem.call(this)
+      const item = VWindowItem.methods.genWindowItem.call(this)
 
       item.data!.domProps = item.data!.domProps || {}
       item.data!.domProps.id = this.id || this.value

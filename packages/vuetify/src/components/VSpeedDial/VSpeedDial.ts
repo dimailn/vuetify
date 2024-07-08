@@ -73,7 +73,7 @@ export default mixins(Positionable, Toggleable, Transitionable).extend({
     if (this.isActive) {
       let btnCount = 0
       children = (getSlot(this) || []).map((b, i) => {
-        if (b.tag && typeof b.componentOptions !== 'undefined' && (b.componentOptions.Ctor.options.name === 'v-btn' || b.componentOptions.Ctor.options.name === 'v-tooltip')) {
+        if (b.tag && typeof b.componentOptions !== 'undefined' && (b.componentOptions.Ctor.name === 'v-btn' || b.componentOptions.Ctor.name === 'v-tooltip')) {
           btnCount++
           return h('div', {
             style: {

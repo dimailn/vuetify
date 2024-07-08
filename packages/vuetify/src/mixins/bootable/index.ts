@@ -2,8 +2,8 @@
 import { removed } from '../../util/console'
 
 // Types
-import Vue, { VNode } from 'vue'
-interface Toggleable extends Vue {
+import  { defineComponent, VNode, App } from 'vue'
+interface Toggleable extends App {
   isActive?: boolean
 }
 
@@ -16,7 +16,7 @@ interface Toggleable extends Vue {
  * Otherwise can be set manually
  */
 /* @vue/component */
-export default Vue.extend<Vue & Toggleable>().extend({
+export default defineComponent({
   name: 'bootable',
 
   props: {

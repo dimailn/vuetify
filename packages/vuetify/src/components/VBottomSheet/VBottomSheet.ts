@@ -2,10 +2,12 @@ import './VBottomSheet.sass'
 
 // Extensions
 import VDialog from '../VDialog/VDialog'
+import { defineComponent } from 'vue'
 
 /* @vue/component */
-export default VDialog.extend({
+export default defineComponent({
   name: 'v-bottom-sheet',
+  extends: VDialog,
 
   props: {
     inset: Boolean,
@@ -19,7 +21,7 @@ export default VDialog.extend({
   computed: {
     classes (): object {
       return {
-        ...VDialog.options.computed.classes.call(this),
+        ...VDialog.computed.classes.call(this),
         'v-bottom-sheet': true,
         'v-bottom-sheet--inset': this.inset,
       }

@@ -1,7 +1,4 @@
-import Vue from 'vue'
 import Router from 'vue-router'
-
-Vue.use(Router)
 
 const component1 = {
   template: `<div class="title">Page 1</div>`,

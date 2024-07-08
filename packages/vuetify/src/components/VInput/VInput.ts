@@ -19,7 +19,7 @@ import {
 import mergeData from '../../util/mergeData'
 
 // Types
-import { VNode, VNodeData, PropType } from 'vue'
+import { VNode, VNodeData, PropType, h, getCurrentInstance } from 'vue'
 import mixins from '../../util/mixins'
 import { InputValidationRule } from 'vuetify/types'
 
@@ -34,7 +34,7 @@ interface options extends InstanceType<typeof baseMixins> {
 }
 
 /* @vue/component */
-export default baseMixins.extend<options>().extend({
+export default baseMixins.extend({
   name: 'v-input',
 
   inheritAttrs: false,
@@ -83,7 +83,9 @@ export default baseMixins.extend<options>().extend({
       }
     },
     computedId (): string {
-      return this.id || `input-${this._uid}`
+      const instance = getCurrentInstance()
+
+      return this.id || `input-${instance.uid}`
     },
     hasDetails (): boolean {
       return this.messagesToDisplay.length > 0
@@ -155,8 +157,8 @@ export default baseMixins.extend<options>().extend({
     },
     genControl () {
       return this.$createElement('div', {
-        staticClass: 'v-input__control',
-        attrs: { title: this.attrs$.title },
+        class: 'v-input__control',
+        title: this.attrs$.title,
       }, [
         this.genInputSlot(),
         this.genMessages(),
@@ -217,8 +219,10 @@ export default baseMixins.extend<options>().extend({
       }, extraData)
 
       return this.$createElement('div', {
-        staticClass: `v-input__icon`,
-        class: type ? `v-input__icon--${kebabCase(type)}` : undefined,
+        class: {
+          'v-input__icon': true,
+          [`v-input__icon--${kebabCase(type)}`]: type
+        },
       }, [
         this.$createElement(
           VIcon,
@@ -229,7 +233,7 @@ export default baseMixins.extend<options>().extend({
     },
     genInputSlot () {
       return this.$createElement('div', this.setBackgroundColor(this.backgroundColor, {
-        staticClass: 'v-input__slot',
+        class: {'v-input__slot': true},
         style: { height: convertToUnit(this.height) },
         on: {
           click: this.onClick,
@@ -324,10 +328,9 @@ export default baseMixins.extend<options>().extend({
     },
   },
 
-  render (h): VNode {
+  render (): VNode {
     return h('div', this.setTextColor(this.validationState, {
-      staticClass: 'v-input',
-      class: this.classes,
+      class: {'v-input': true, ... this.classes},
     }), this.genContent())
   },
 })

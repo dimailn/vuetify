@@ -12,11 +12,12 @@ import { convertToUnit, getSlot } from '../../util/helpers'
 import { breaking } from '../../util/console'
 
 // Types
-import { VNode, PropType } from 'vue'
+import { VNode, PropType, defineComponent } from 'vue'
 
 /* @vue/component */
-export default VSheet.extend({
+export default defineComponent({
   name: 'v-toolbar',
+  extends: VSheet,
 
   props: {
     absolute: Boolean,
@@ -69,7 +70,7 @@ export default VSheet.extend({
     },
     classes (): object {
       return {
-        ...VSheet.options.computed.classes.call(this),
+        ...VSheet.computed.classes.call(this),
         'v-toolbar': true,
         'v-toolbar--absolute': this.absolute,
         'v-toolbar--bottom': this.bottom,
@@ -122,17 +123,17 @@ export default VSheet.extend({
         src: this.src,
       }
 
-      const image = this.$scopedSlots.img
-        ? this.$scopedSlots.img({ props })
+      const image = this.$slots.img
+        ? this.$slots.img({ props })
         : this.$createElement(VImg, { props })
 
       return this.$createElement('div', {
-        staticClass: 'v-toolbar__image',
+        class: 'v-toolbar__image',
       }, [image])
     },
     genContent () {
       return this.$createElement('div', {
-        staticClass: 'v-toolbar__content',
+        class: 'v-toolbar__content',
         style: {
           height: convertToUnit(this.computedContentHeight),
         },
@@ -140,7 +141,7 @@ export default VSheet.extend({
     },
     genExtension () {
       return this.$createElement('div', {
-        staticClass: 'v-toolbar__extension',
+        class: 'v-toolbar__extension',
         style: {
           height: convertToUnit(this.extensionHeight),
         },
@@ -149,7 +150,7 @@ export default VSheet.extend({
   },
 
   render (h): VNode {
-    this.isExtended = this.extended || !!this.$scopedSlots.extension
+    this.isExtended = this.extended || !!this.$slots.extension
 
     const children = [this.genContent()]
     const data = this.setBackgroundColor(this.color, {
@@ -159,7 +160,7 @@ export default VSheet.extend({
     })
 
     if (this.isExtended) children.push(this.genExtension())
-    if (this.src || this.$scopedSlots.img) children.unshift(this.genBackground())
+    if (this.src || this.$slots.img) children.unshift(this.genBackground())
 
     return h(this.tag, data, children)
   },

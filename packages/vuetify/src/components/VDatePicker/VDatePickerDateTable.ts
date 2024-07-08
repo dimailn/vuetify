@@ -78,7 +78,7 @@ export default mixins(
     genWeekNumber (weekNumber: number) {
       return this.$createElement('td', [
         this.$createElement('small', {
-          staticClass: 'v-date-picker-table--date__week',
+          class: 'v-date-picker-table--date__week',
         }, String(weekNumber).padStart(2, '0')),
       ])
     },

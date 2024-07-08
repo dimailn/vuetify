@@ -110,7 +110,7 @@ export default mixins(
       if (src) backgroundImage.push(`url("${src}")`)
 
       const image = this.$createElement('div', {
-        staticClass: 'v-image__image',
+        class: 'v-image__image',
         class: {
           'v-image__image--preload': this.isLoading,
           'v-image__image--contain': this.contain,
@@ -241,7 +241,7 @@ export default mixins(
       poll()
     },
     genContent () {
-      const content: VNode = VResponsive.options.methods.genContent.call(this)
+      const content: VNode = VResponsive.methods.genContent.call(this)
       if (this.naturalWidth) {
         this._b(content.data!, 'div', {
           style: { width: `${this.naturalWidth}px` },
@@ -255,7 +255,7 @@ export default mixins(
       if (slot) {
         const placeholder = this.isLoading
           ? [this.$createElement('div', {
-            staticClass: 'v-image__placeholder',
+            class: 'v-image__placeholder',
           }, slot)]
           : []
 
@@ -272,10 +272,10 @@ export default mixins(
   },
 
   render (h): VNode {
-    const node = VResponsive.options.render.call(this, h)
+    const node = VResponsive.render.call(this, h)
 
     const data = mergeData(node.data!, {
-      staticClass: 'v-image',
+      class: 'v-image',
       attrs: {
         'aria-label': this.alt,
         role: this.alt ? 'img' : undefined,

@@ -27,7 +27,7 @@ interface options extends ExtractVue<typeof baseMixins> {
   expansionPanel: InstanceType<typeof VExpansionPanel>
 }
 
-export default baseMixins.extend<options>().extend({
+export default baseMixins.extend({
   name: 'v-expansion-panel-header',
 
   directives: { ripple },
@@ -85,7 +85,7 @@ export default baseMixins.extend<options>().extend({
 
       return this.$createElement(VFadeTransition, [
         this.$createElement('div', {
-          staticClass: 'v-expansion-panel-header__icon',
+          class: 'v-expansion-panel-header__icon',
           class: {
             'v-expansion-panel-header__icon--disable-rotate': this.disableIconRotate,
           },
@@ -100,7 +100,7 @@ export default baseMixins.extend<options>().extend({
 
   render (h): VNode {
     return h('button', this.setBackgroundColor(this.color, {
-      staticClass: 'v-expansion-panel-header',
+      class: 'v-expansion-panel-header',
       class: this.classes,
       attrs: {
         tabindex: this.isDisabled ? -1 : null,

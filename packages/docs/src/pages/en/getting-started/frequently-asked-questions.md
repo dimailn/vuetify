@@ -126,7 +126,7 @@ export default {
     // to override the default genContent method
     genContent() {
       return this.$createElement('div', {
-        staticClass: 'v-btn__contents'
+        class: 'v-btn__contents'
       }, [
         'Activate ',
         this.$slots.default

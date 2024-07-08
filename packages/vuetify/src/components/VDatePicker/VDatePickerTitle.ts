@@ -87,7 +87,7 @@ export default mixins(
 
   render (h): VNode {
     return h('div', {
-      staticClass: 'v-date-picker-title',
+      class: 'v-date-picker-title',
       class: {
         'v-date-picker-title--disabled': this.disabled,
       },

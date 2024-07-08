@@ -68,7 +68,7 @@ export default mixins(
   computed: {
     canScroll (): boolean {
       return (
-        Scrollable.options.computed.canScroll.call(this) &&
+        Scrollable.computed.canScroll.call(this) &&
         (
           this.hideOnScroll ||
           !this.inputValue
@@ -128,7 +128,7 @@ export default mixins(
 
   render (h): VNode {
     const data = this.setBackgroundColor(this.backgroundColor, {
-      staticClass: 'v-bottom-navigation',
+      class: 'v-bottom-navigation',
       class: this.classes,
       style: this.styles,
       props: {

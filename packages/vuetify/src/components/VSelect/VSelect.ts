@@ -60,7 +60,7 @@ interface options extends InstanceType<typeof baseMixins> {
 }
 
 /* @vue/component */
-export default baseMixins.extend<options>().extend({
+export default baseMixins.extend({
   name: 'v-select',
 
   directives: {
@@ -139,7 +139,7 @@ export default baseMixins.extend<options>().extend({
     },
     classes (): object {
       return {
-        ...VTextField.options.computed.classes.call(this),
+        ...VTextField.computed.classes.call(this),
         'v-select': true,
         'v-select--chips': this.hasChips,
         'v-select--chips--small': this.smallChips,
@@ -182,7 +182,7 @@ export default baseMixins.extend<options>().extend({
       return this.chips || this.smallChips
     },
     hasSlot (): boolean {
-      return Boolean(this.hasChips || this.$scopedSlots.selection)
+      return Boolean(this.hasChips || this.$slots.selection)
     },
     isDirty (): boolean {
       return this.selectedItems.length > 0
@@ -214,7 +214,7 @@ export default baseMixins.extend<options>().extend({
           select: this.selectItem,
         },
         scopedSlots: {
-          item: this.$scopedSlots.item,
+          item: this.$slots.item,
         },
       }
     },
@@ -292,7 +292,7 @@ export default baseMixins.extend<options>().extend({
   methods: {
     /** @public */
     blur (e?: Event) {
-      VTextField.options.methods.blur.call(this, e)
+      VTextField.methods.blur.call(this, e)
       this.isMenuActive = false
       this.isFocused = false
       this.selectedIndex = -1
@@ -369,7 +369,7 @@ export default baseMixins.extend<options>().extend({
       const isInteractive = !isDisabled && this.isInteractive
 
       return this.$createElement(VChip, {
-        staticClass: 'v-chip--select',
+        class: 'v-chip--select',
         attrs: { tabindex: -1 },
         props: {
           close: this.deletableChips && isInteractive,
@@ -398,7 +398,7 @@ export default baseMixins.extend<options>().extend({
       )
 
       return this.$createElement('div', this.setTextColor(color, {
-        staticClass: 'v-select__selection v-select__selection--comma',
+        class: 'v-select__selection v-select__selection--comma',
         class: {
           'v-select__selection--disabled': isDisabled,
         },
@@ -422,7 +422,7 @@ export default baseMixins.extend<options>().extend({
       return [
         this.genFieldset(),
         this.$createElement('div', {
-          staticClass: 'v-select__slot',
+          class: 'v-select__slot',
           directives: this.directives,
         }, [
           this.genLabel(),
@@ -442,7 +442,7 @@ export default baseMixins.extend<options>().extend({
       cb?: (e: Event) => void,
       extraData?: VNodeData
     ) {
-      const icon = VInput.options.methods.genIcon.call(this, type, cb, extraData)
+      const icon = VInput.methods.genIcon.call(this, type, cb, extraData)
 
       if (type === 'append') {
         // Don't allow the dropdown icon to be focused
@@ -458,7 +458,7 @@ export default baseMixins.extend<options>().extend({
       return icon
     },
     genInput (): VNode {
-      const input = VTextField.options.methods.genInput.call(this)
+      const input = VTextField.methods.genInput.call(this)
 
       delete input.data!.attrs!.name
 
@@ -487,7 +487,7 @@ export default baseMixins.extend<options>().extend({
       })
     },
     genInputSlot (): VNode {
-      const render = VTextField.options.methods.genInputSlot.call(this)
+      const render = VTextField.methods.genInputSlot.call(this)
 
       render.data!.attrs = {
         ...render.data!.attrs,
@@ -556,7 +556,7 @@ export default baseMixins.extend<options>().extend({
       const children = new Array(length)
 
       let genSelection
-      if (this.$scopedSlots.selection) {
+      if (this.$slots.selection) {
         genSelection = this.genSlotSelection
       } else if (this.hasChips) {
         genSelection = this.genChipSelection
@@ -573,11 +573,11 @@ export default baseMixins.extend<options>().extend({
       }
 
       return this.$createElement('div', {
-        staticClass: 'v-select__selections',
+        class: 'v-select__selections',
       }, children)
     },
     genSlotSelection (item: object, index: number): VNode[] | undefined {
-      return this.$scopedSlots.selection!({
+      return this.$slots.selection!({
         attrs: {
           class: 'v-chip--select',
         },
@@ -750,7 +750,7 @@ export default baseMixins.extend<options>().extend({
         }
       }
 
-      VTextField.options.methods.onMouseUp.call(this, e)
+      VTextField.methods.onMouseUp.call(this, e)
     },
     onScroll () {
       if (!this.isMenuActive) {

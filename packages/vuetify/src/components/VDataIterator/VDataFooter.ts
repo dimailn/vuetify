@@ -6,12 +6,12 @@ import VIcon from '../VIcon'
 import VBtn from '../VBtn'
 
 // Types
-import Vue, { VNode, VNodeChildrenArrayContents, PropType } from 'vue'
+import { defineComponent, VNode, VNodeChildrenArrayContents, PropType } from 'vue'
 import { DataPagination, DataOptions, DataItemsPerPageOption } from 'vuetify/types'
 import { PropValidator } from 'vue/types/options'
 import { getSlot } from '../../util/helpers'
 
-export default Vue.extend({
+export default defineComponent({
   name: 'v-data-footer',
 
   props: {
@@ -109,7 +109,7 @@ export default Vue.extend({
       if (!computedIPPO.find(ippo => ippo.value === value)) value = computedIPPO[0]
 
       return this.$createElement('div', {
-        staticClass: 'v-data-footer__select',
+        class: 'v-data-footer__select',
       }, [
         this.$vuetify.lang.t(this.itemsPerPageText),
         this.$createElement(VSelect, {
@@ -142,11 +142,11 @@ export default Vue.extend({
           ? itemsLength
           : this.pagination.pageStop
 
-        children = this.$scopedSlots['page-text']
-          ? [this.$scopedSlots['page-text']!({ pageStart, pageStop, itemsLength })]
+        children = this.$slots['page-text']
+          ? [this.$slots['page-text']!({ pageStart, pageStop, itemsLength })]
           : [this.$vuetify.lang.t(this.pageText, pageStart, pageStop, itemsLength)]
-      } else if (this.$scopedSlots['page-text']) {
-        children = [this.$scopedSlots['page-text']!({ pageStart, pageStop, itemsLength })]
+      } else if (this.$slots['page-text']) {
+        children = [this.$slots['page-text']!({ pageStart, pageStop, itemsLength })]
       }
 
       return this.$createElement('div', {
@@ -206,11 +206,11 @@ export default Vue.extend({
 
       return [
         this.$createElement('div', {
-          staticClass: 'v-data-footer__icons-before',
+          class: 'v-data-footer__icons-before',
         }, before),
         this.showCurrentPage && this.$createElement('span', [this.options.page.toString()]),
         this.$createElement('div', {
-          staticClass: 'v-data-footer__icons-after',
+          class: 'v-data-footer__icons-after',
         }, after),
       ]
     },
@@ -218,7 +218,7 @@ export default Vue.extend({
 
   render (): VNode {
     return this.$createElement('div', {
-      staticClass: 'v-data-footer',
+      class: 'v-data-footer',
     }, [
       getSlot(this, 'prepend'),
       this.genItemsPerPageSelect(),

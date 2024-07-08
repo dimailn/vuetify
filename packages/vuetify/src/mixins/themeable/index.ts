@@ -1,14 +1,14 @@
-import Vue from 'vue'
+import {defineComponent, App} from 'vue'
 import { PropType, RenderContext } from 'vue/types/options'
 
-interface options extends Vue {
+interface options extends App {
   theme: {
     isDark: boolean
   }
 }
 
 /* @vue/component */
-const Themeable = Vue.extend<options>().extend({
+const Themeable = defineComponent({
   name: 'themeable',
 
   provide (): object {

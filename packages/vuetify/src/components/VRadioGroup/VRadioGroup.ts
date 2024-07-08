@@ -45,7 +45,7 @@ export default baseMixins.extend({
   computed: {
     classes (): object {
       return {
-        ...VInput.options.computed.classes.call(this),
+        ...VInput.computed.classes.call(this),
         'v-input--selection-controls v-input--radio-group': true,
         'v-input--radio-group--column': this.column && !this.row,
         'v-input--radio-group--row': this.row,
@@ -56,23 +56,23 @@ export default baseMixins.extend({
   methods: {
     genDefaultSlot () {
       return this.$createElement('div', {
-        staticClass: 'v-input--radio-group__input',
+        class: 'v-input--radio-group__input',
         attrs: {
           id: this.id,
           role: 'radiogroup',
           'aria-labelledby': this.computedId,
         },
-      }, VInput.options.methods.genDefaultSlot.call(this))
+      }, VInput.methods.genDefaultSlot.call(this))
     },
     genInputSlot () {
-      const render = VInput.options.methods.genInputSlot.call(this)
+      const render = VInput.methods.genInputSlot.call(this)
 
       delete render.data!.on!.click
 
       return render
     },
     genLabel () {
-      const label = VInput.options.methods.genLabel.call(this)
+      const label = VInput.methods.genLabel.call(this)
 
       if (!label) return null
 
@@ -83,11 +83,11 @@ export default baseMixins.extend({
 
       return label
     },
-    onClick: BaseItemGroup.options.methods.onClick,
+    onClick: BaseItemGroup.methods.onClick,
   },
 
   render (h) {
-    const vnode = VInput.options.render.call(this, h)
+    const vnode = VInput.render.call(this, h)
 
     this._b(vnode.data!, 'div', this.attrs$)
 

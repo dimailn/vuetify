@@ -192,7 +192,7 @@ export default baseMixins.extend({
       return (
         !this.stateless &&
         !this.permanent &&
-        Mobile.options.computed.isMobile.call(this)
+        Mobile.computed.isMobile.call(this)
       )
     },
     reactsToClick (): boolean {
@@ -318,12 +318,12 @@ export default baseMixins.extend({
         src: this.src,
       }
 
-      const image = this.$scopedSlots.img
-        ? this.$scopedSlots.img(props)
+      const image = this.$slots.img
+        ? this.$slots.img(props)
         : this.$createElement(VImg, { props })
 
       return this.$createElement('div', {
-        staticClass: 'v-navigation-drawer__image',
+        class: 'v-navigation-drawer__image',
       }, [image])
     },
     genDirectives (): VNodeDirective[] {
@@ -384,12 +384,12 @@ export default baseMixins.extend({
     },
     genContent () {
       return this.$createElement('div', {
-        staticClass: 'v-navigation-drawer__content',
+        class: 'v-navigation-drawer__content',
       }, getSlot(this))
     },
     genBorder () {
       return this.$createElement('div', {
-        staticClass: 'v-navigation-drawer__border',
+        class: 'v-navigation-drawer__border',
       })
     },
     init () {

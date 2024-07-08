@@ -1,9 +1,9 @@
 import './VGrid.sass'
 
-import Vue, { PropOptions } from 'vue'
+import { defineComponent, PropOptions } from 'vue'
 import mergeData from '../../util/mergeData'
 import { upperFirst } from '../../util/helpers'
-
+import {h} from 'vue'
 // no xs
 const breakpoints = ['sm', 'md', 'lg', 'xl']
 
@@ -66,7 +66,7 @@ function breakpointClass (type: keyof typeof propMap, prop: string, val: string)
 
 const cache = new Map<string, any[]>()
 
-export default Vue.extend({
+export default defineComponent({
   name: 'v-row',
   functional: true,
   props: {
@@ -95,9 +95,10 @@ export default Vue.extend({
     },
     ...alignContentProps,
   },
-  render (h, { props, data, children }) {
+  render () {
     // Super-fast memoization based on props, 5x faster than JSON.stringify
     let cacheKey = ''
+    const props = this.$props
     for (const prop in props) {
       cacheKey += String((props as any)[prop])
     }
@@ -128,11 +129,11 @@ export default Vue.extend({
 
     return h(
       props.tag,
-      mergeData(data, {
-        staticClass: 'row',
+      mergeData(this.$attrs, {
+        class: 'row',
         class: classList,
       }),
-      children
+      this.$slots.default()
     )
   },
 })

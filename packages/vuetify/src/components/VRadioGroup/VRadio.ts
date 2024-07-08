@@ -36,7 +36,7 @@ interface options extends InstanceType<typeof baseMixins> {
 }
 
 /* @vue/component */
-export default baseMixins.extend<options>().extend({
+export default baseMixins.extend({
   name: 'v-radio',
 
   inheritAttrs: false,
@@ -81,7 +81,7 @@ export default baseMixins.extend<options>().extend({
     },
     computedColor (): string | undefined {
       if (this.isDisabled) return undefined
-      return Selectable.options.computed.computedColor.call(this)
+      return Selectable.computed.computedColor.call(this)
     },
     computedIcon (): string {
       return this.isActive
@@ -89,9 +89,9 @@ export default baseMixins.extend<options>().extend({
         : this.offIcon
     },
     computedId (): string {
-      return VInput.options.computed.computedId.call(this)
+      return VInput.computed.computedId.call(this)
     },
-    hasLabel: VInput.options.computed.hasLabel,
+    hasLabel: VInput.computed.hasLabel,
     hasState (): boolean {
       return (this.radioGroup || {}).hasState
     },
@@ -115,7 +115,7 @@ export default baseMixins.extend<options>().extend({
       return this.radioGroup.name || `radio-${this.radioGroup._uid}`
     },
     rippleState (): string | undefined {
-      return Selectable.options.computed.rippleState.call(this)
+      return Selectable.computed.rippleState.call(this)
     },
     validationState (): string | undefined {
       return (this.radioGroup || {}).validationState || this.computedColor
@@ -127,7 +127,7 @@ export default baseMixins.extend<options>().extend({
       // We can't actually use the mixin directly because
       // it's made for standalone components, but its
       // genInput method is exactly what we need
-      return Selectable.options.methods.genInput.call(this, 'radio', args)
+      return Selectable.methods.genInput.call(this, 'radio', args)
     },
     genLabel () {
       if (!this.hasLabel) return null
@@ -150,7 +150,7 @@ export default baseMixins.extend<options>().extend({
       const { title, ...radioAttrs } = this.attrs$
 
       return this.$createElement('div', {
-        staticClass: 'v-input--selection-controls__input',
+        class: 'v-input--selection-controls__input',
       }, [
         this.$createElement(VIcon, this.setTextColor(this.validationState, {
           props: {
@@ -183,7 +183,7 @@ export default baseMixins.extend<options>().extend({
 
   render (h): VNode {
     const data: VNodeData = {
-      staticClass: 'v-radio',
+      class: 'v-radio',
       class: this.classes,
       on: mergeListeners({
         click: this.onChange,

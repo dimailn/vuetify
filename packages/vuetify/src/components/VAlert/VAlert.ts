@@ -85,7 +85,7 @@ export default mixins(
       if (!this.border) return null
 
       let data: VNodeData = {
-        staticClass: 'v-alert__border',
+        class: 'v-alert__border',
         class: {
           [`v-alert__border--${this.border}`]: true,
         },
@@ -104,7 +104,7 @@ export default mixins(
       const color = this.iconColor
 
       return this.$createElement(VBtn, {
-        staticClass: 'v-alert__dismissible',
+        class: 'v-alert__dismissible',
         props: {
           color,
           icon: true,
@@ -126,13 +126,13 @@ export default mixins(
       if (!this.computedIcon) return null
 
       return this.$createElement(VIcon, {
-        staticClass: 'v-alert__icon',
+        class: 'v-alert__icon',
         props: { color: this.iconColor },
       }, this.computedIcon)
     },
     classes (): object {
       const classes: Record<string, boolean> = {
-        ...VSheet.options.computed.classes.call(this),
+        ...VSheet.computed.classes.call(this),
         'v-alert--border': Boolean(this.border),
         'v-alert--dense': this.dense,
         'v-alert--outlined': this.outlined,
@@ -175,7 +175,7 @@ export default mixins(
         !this.outlined
       ) return true
 
-      return Themeable.options.computed.isDark.call(this)
+      return Themeable.computed.isDark.call(this)
     },
   },
 
@@ -193,25 +193,25 @@ export default mixins(
         this.genContent(),
         this.__cachedBorder,
         getSlot(this, 'append'),
-        this.$scopedSlots.close
-          ? this.$scopedSlots.close({ toggle: this.toggle })
+        this.$slots.close
+          ? this.$slots.close({ toggle: this.toggle })
           : this.__cachedDismissible,
       ]
 
       const data: VNodeData = {
-        staticClass: 'v-alert__wrapper',
+        class: 'v-alert__wrapper',
       }
 
       return this.$createElement('div', data, children)
     },
     genContent (): VNode {
       return this.$createElement('div', {
-        staticClass: 'v-alert__content',
+        class: 'v-alert__content',
       }, getSlot(this))
     },
     genAlert (): VNode {
       let data: VNodeData = {
-        staticClass: 'v-alert',
+        class: 'v-alert',
         attrs: {
           role: 'alert',
         },

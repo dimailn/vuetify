@@ -1,4 +1,4 @@
-import Vue from 'vue'
+import {defineComponent} from 'vue'
 
 export type MouseHandler = (e: MouseEvent | TouchEvent) => any
 
@@ -19,7 +19,7 @@ export type MouseEventsMap = {
   [event: string]: MouseHandler | MouseHandler[]
 }
 
-export default Vue.extend({
+export default defineComponent({
   name: 'mouse',
 
   methods: {

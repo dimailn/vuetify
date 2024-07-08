@@ -14,16 +14,16 @@ import mergeData from '../../util/mergeData'
 import rebuildSlots from '../../util/rebuildFunctionalSlots'
 
 // Types
-import Vue from 'vue'
+import {defineComponent} from 'vue'
 
 /* @vue/component */
-export default Vue.extend({
+export default defineComponent({
   name: 'v-data-table-header',
 
   functional: true,
 
   props: {
-    ...header.options.props,
+    ...header.props,
     mobile: Boolean,
   },
 

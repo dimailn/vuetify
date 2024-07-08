@@ -11,11 +11,13 @@ import Colorable from '../../mixins/colorable'
 import { convertToUnit, getSlot } from '../../util/helpers'
 
 // Types
-import { VNode, VNodeChildren } from 'vue'
+import { VNode, VNodeChildren, defineComponent } from 'vue'
 
 /* @vue/component */
-export default Colorable.extend({
+export default defineComponent({
   name: 'v-progress-circular',
+
+  extends: Colorable,
 
   directives: { intersect },
 
@@ -135,7 +137,7 @@ export default Colorable.extend({
     },
     genInfo (): VNode {
       return this.$createElement('div', {
-        staticClass: 'v-progress-circular__info',
+        class: 'v-progress-circular__info',
       }, getSlot(this))
     },
     onObserve (entries: IntersectionObserverEntry[], observer: IntersectionObserver, isIntersecting: boolean) {
@@ -145,7 +147,7 @@ export default Colorable.extend({
 
   render (h): VNode {
     return h('div', this.setTextColor(this.color, {
-      staticClass: 'v-progress-circular',
+      class: 'v-progress-circular',
       attrs: {
         role: 'progressbar',
         'aria-valuemin': 0,

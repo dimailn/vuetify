@@ -19,8 +19,8 @@ createApp({
     // async components are resolved.
     router.beforeResolve((to, from, next) => {
       let diffed = false
-      const matched = router.getMatchedComponents(to)
-      const prevMatched = router.getMatchedComponents(from)
+      const matched = to.matched
+      const prevMatched = from.matched
       const activated = matched.filter((c, i) => {
         return diffed || (diffed = (prevMatched[i] !== c))
       })
@@ -29,7 +29,7 @@ createApp({
 
       Promise.all(
         activated.map(c => {
-          const asyncData = c._Ctor[0].options.asyncData
+          const asyncData =  c.components.default.asyncData;
           return asyncData
             ? asyncData({
               store,
@@ -42,9 +42,9 @@ createApp({
 
     // wait until router has resolved all async before hooks
     // and async components...
-    router.onReady(() => {
+    router.isReady().then(() => {
       // actually mount to DOM
-      app.$mount('#app')
+      app.mount('#app')
     })
   },
 })

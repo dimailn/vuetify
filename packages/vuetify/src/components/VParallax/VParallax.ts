@@ -19,7 +19,7 @@ interface options extends InstanceType<typeof baseMixins> {
 }
 
 /* @vue/component */
-export default baseMixins.extend<options>().extend({
+export default baseMixins.extend({
   name: 'v-parallax',
 
   props: {
@@ -78,7 +78,7 @@ export default baseMixins.extend<options>().extend({
 
   render (h): VNode {
     const imgData: VNodeData = {
-      staticClass: 'v-parallax__image',
+      class: 'v-parallax__image',
       style: this.styles,
       attrs: {
         src: this.src,
@@ -89,17 +89,17 @@ export default baseMixins.extend<options>().extend({
     }
 
     const container = h('div', {
-      staticClass: 'v-parallax__image-container',
+      class: 'v-parallax__image-container',
     }, [
       h('img', imgData),
     ])
 
     const content = h('div', {
-      staticClass: 'v-parallax__content',
+      class: 'v-parallax__content',
     }, getSlot(this))
 
     return h('div', {
-      staticClass: 'v-parallax',
+      class: 'v-parallax',
       style: {
         height: `${this.height}px`,
       },

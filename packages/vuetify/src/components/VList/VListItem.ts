@@ -38,7 +38,7 @@ interface options extends ExtractVue<typeof baseMixins> {
 }
 
 /* @vue/component */
-export default baseMixins.extend<options>().extend({
+export default baseMixins.extend({
   name: 'v-list-item',
 
   directives: {
@@ -94,7 +94,7 @@ export default baseMixins.extend<options>().extend({
     classes (): object {
       return {
         'v-list-item': true,
-        ...Routable.options.computed.classes.call(this),
+        ...Routable.computed.classes.call(this),
         'v-list-item--dense': this.dense,
         'v-list-item--disabled': this.disabled,
         'v-list-item--link': this.isClickable && !this.inactive,
@@ -106,7 +106,7 @@ export default baseMixins.extend<options>().extend({
     },
     isClickable (): boolean {
       return Boolean(
-        Routable.options.computed.isClickable.call(this) ||
+        Routable.computed.isClickable.call(this) ||
         this.listItemGroup
       )
     },

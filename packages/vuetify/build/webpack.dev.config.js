@@ -2,8 +2,9 @@ const path = require('path')
 const merge = require('webpack-merge')
 const HappyPack = require('happypack')
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin')
-const VueLoaderPlugin = require('vue-loader/lib/plugin')
-const { VuetifyProgressiveModule } = require('vuetify-loader')
+const {VueLoaderPlugin} = require('vue-loader')
+// const { VuetifyProgressiveModule } = require('vuetify-loader')
+// const { VuetifyProgressiveModule } = require('webpack-plugin-vuetify')
 const { config: baseWebpackConfig, happyThreadPool } = require('./webpack.base.config')
 
 // Helpers
@@ -21,7 +22,7 @@ module.exports = merge(baseWebpackConfig, {
   resolve: {
     alias: {
       vuetify: resolve('../src'),
-      vue$: 'vue/dist/vue.esm.js',
+      vue$:  'vue/dist/vue.runtime.esm-browser.js',
     },
   },
   module: {
@@ -31,7 +32,7 @@ module.exports = merge(baseWebpackConfig, {
         loader: 'vue-loader',
         options: {
           compilerOptions: {
-            modules: [VuetifyProgressiveModule],
+            // modules: [VuetifyProgressiveModule],
           },
         },
       },

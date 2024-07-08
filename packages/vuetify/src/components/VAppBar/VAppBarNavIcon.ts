@@ -3,10 +3,10 @@ import VIcon from '../VIcon'
 import VBtn from '../VBtn/VBtn'
 
 // Types
-import Vue from 'vue'
+import {defineComponent} from 'vue'
 
 /* @vue/component */
-export default Vue.extend({
+export default defineComponent({
   name: 'v-app-bar-nav-icon',
 
   functional: true,
