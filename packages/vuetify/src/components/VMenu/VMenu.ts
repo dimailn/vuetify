@@ -1,3 +1,4 @@
+import {h} from 'vue'
 // Styles
 import './VMenu.sass'
 
@@ -495,7 +496,7 @@ export default baseMixins.extend({
     },
   },
 
-  render (h): VNode {
+  render (): VNode {
     const data = {
       class: 'v-menu',
       class: {

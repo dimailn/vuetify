@@ -1,3 +1,4 @@
+import {h} from 'vue'
 // Styles
 import './VColorPickerEdit.sass'
 
@@ -177,7 +178,7 @@ export default defineComponent({
     },
   },
 
-  render (h): VNode {
+  render (): VNode {
     return h('div', {
       class: 'v-color-picker__edit',
     }, [

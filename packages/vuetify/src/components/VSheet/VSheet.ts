@@ -1,3 +1,4 @@
+import {h} from 'vue'
 // Styles
 import './VSheet.sass'
 
@@ -52,7 +53,7 @@ export default defineComponent({
     },
   },
 
-  render (h): VNode {
+  render (): VNode {
     const data = {
       class: this.classes,
       style: this.styles,

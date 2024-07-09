@@ -1,3 +1,4 @@
+import {h} from 'vue'
 // Components
 import {
   VTabTransition,
@@ -138,7 +139,7 @@ export default baseMixins.extend({
     },
   },
 
-  render (h): VNode {
+  render (): VNode {
     const contentData = {
       class: 'v-stepper__content',
     } as VNodeData

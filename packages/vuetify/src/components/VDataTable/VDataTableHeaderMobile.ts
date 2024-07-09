@@ -1,3 +1,4 @@
+import {h} from 'vue'
 import { VNode, VNodeChildrenArrayContents } from 'vue'
 import mixins from '../../util/mixins'
 import VSelect from '../VSelect/VSelect'
@@ -63,7 +64,7 @@ export default mixins(header).extend({
     },
   },
 
-  render (h): VNode {
+  render (): VNode {
     const children: VNodeChildrenArrayContents = []
 
     const header = this.headers.find(h => h.value === 'data-table-select')

@@ -1,3 +1,4 @@
+import {h} from 'vue'
 // Styles
 import './VTabs.sass'
 
@@ -300,7 +301,7 @@ export default baseMixins.extend({
     },
   },
 
-  render (h): VNode {
+  render (): VNode {
     const { tab, slider, items, item } = this.parseNodes()
 
     return h('div', {

@@ -1,3 +1,4 @@
+import {h} from 'vue'
 // Types
 import mixins, { ExtractVue } from '../../util/mixins'
 import { VNode, VNodeData } from 'vue'
@@ -97,7 +98,7 @@ export default baseMixins.extend({
     },
   },
 
-  render (h): VNode {
+  render (): VNode {
     const children = [
       this.genBody(),
       this.genDivider(),

@@ -1,3 +1,4 @@
+import {h} from 'vue'
 // Styles
 import './VBreadcrumbs.sass'
 
@@ -67,7 +68,7 @@ export default mixins(
     },
   },
 
-  render (h): VNode {
+  render (): VNode {
     const children = getSlot(this) || this.genItems()
 
     return h('ul', {

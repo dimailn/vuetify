@@ -1,3 +1,4 @@
+import {h} from 'vue'
 // Styles
 import './VSnackbar.sass'
 
@@ -203,7 +204,7 @@ export default mixins(
     },
   },
 
-  render (h): VNode {
+  render (): VNode {
     return h('div', {
       class: 'v-snack',
       class: this.classes,

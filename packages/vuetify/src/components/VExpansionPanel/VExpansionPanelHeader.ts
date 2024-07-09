@@ -1,3 +1,4 @@
+import {h} from 'vue'
 // Components
 import { VFadeTransition } from '../transitions'
 import VExpansionPanel from './VExpansionPanel'
@@ -98,7 +99,7 @@ export default baseMixins.extend({
     },
   },
 
-  render (h): VNode {
+  render (): VNode {
     return h('button', this.setBackgroundColor(this.color, {
       class: 'v-expansion-panel-header',
       class: this.classes,

@@ -1,3 +1,4 @@
+import {h} from 'vue'
 // Styles
 import './VColorPicker.sass'
 
@@ -155,7 +156,7 @@ export default mixins(Elevatable, Themeable).extend({
     },
   },
 
-  render (h): VNode {
+  render (): VNode {
     return h(VSheet, {
       class: 'v-color-picker',
       class: {

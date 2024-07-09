@@ -1,3 +1,4 @@
+import {h} from 'vue'
 // Styles
 import './VListItem.sass'
 
@@ -158,7 +159,7 @@ export default baseMixins.extend({
     },
   },
 
-  render (h): VNode {
+  render (): VNode {
     let { tag, data } = this.generateRouteLink()
 
     data.attrs = {

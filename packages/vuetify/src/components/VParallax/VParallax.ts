@@ -1,3 +1,4 @@
+import {h} from 'vue'
 // Style
 import './VParallax.sass'
 
@@ -76,7 +77,7 @@ export default baseMixins.extend({
     },
   },
 
-  render (h): VNode {
+  render (): VNode {
     const imgData: VNodeData = {
       class: 'v-parallax__image',
       style: this.styles,

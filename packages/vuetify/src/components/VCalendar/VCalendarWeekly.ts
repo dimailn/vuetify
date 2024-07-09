@@ -1,3 +1,4 @@
+import {h} from 'vue'
 // Styles
 import './VCalendarWeekly.sass'
 
@@ -214,7 +215,7 @@ export default defineComponent({
     },
   },
 
-  render (h): VNode {
+  render (): VNode {
     return h('div', {
       staticClass: this.staticClass,
       class: this.classes,

@@ -1,3 +1,4 @@
+import {h} from 'vue'
 // Styles
 // import '../../stylus/components/_calendar-daily.styl'
 
@@ -346,7 +347,7 @@ export default defineComponent({
     },
   },
 
-  render (h): VNode {
+  render (): VNode {
     const { start, end, maxDays, component, weekdays, categories } = this.renderProps
 
     return h(component, {

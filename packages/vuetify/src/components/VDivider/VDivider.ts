@@ -1,3 +1,4 @@
+import {h} from 'vue'
 // Styles
 import './VDivider.sass'
 
@@ -16,7 +17,7 @@ export default defineComponent({
     vertical: Boolean,
   },
 
-  render (h): VNode {
+  render (): VNode {
     // WAI-ARIA attributes
     let orientation
     if (!this.$attrs.role || this.$attrs.role === 'separator') {

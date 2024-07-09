@@ -1,3 +1,4 @@
+import {h} from 'vue'
 // Mixins
 import Colorable from '../../mixins/colorable'
 
@@ -413,7 +414,7 @@ export default mixins<options &
     },
   },
 
-  render (h): VNode {
+  render (): VNode {
     if (this.totalValues < 2) return undefined as never
 
     return this.type === 'trend' ? this.genTrend() : this.genBars()

@@ -1,3 +1,4 @@
+import {h} from 'vue'
 import './VPicker.sass'
 import '../VCard/VCard.sass'
 
@@ -83,7 +84,7 @@ export default mixins(
     },
   },
 
-  render (h): VNode {
+  render (): VNode {
     return h('div', {
       class: 'v-picker v-card',
       class: {

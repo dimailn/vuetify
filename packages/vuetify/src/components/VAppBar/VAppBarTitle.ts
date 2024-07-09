@@ -1,3 +1,4 @@
+import {h} from 'vue'
 // Mixins
 import { inject } from '../../mixins/registrable'
 
@@ -60,7 +61,7 @@ export default {
     },
   },
 
-  render (h): VNode {
+  render (): VNode {
     return h('div', {
       class: 'v-toolbar__title v-app-bar-title',
     }, [

@@ -1,3 +1,4 @@
+import {h} from 'vue'
 // Components
 import VIcon from '../VIcon'
 
@@ -143,7 +144,7 @@ export default baseMixins.extend({
     },
   },
 
-  render (h): VNode {
+  render (): VNode {
     return h('div', {
       attrs: {
         tabindex: this.editable ? 0 : -1,

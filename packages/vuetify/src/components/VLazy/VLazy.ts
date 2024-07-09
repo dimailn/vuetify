@@ -1,3 +1,4 @@
+import {h} from 'vue'
 // Mixins
 import Measurable from '../../mixins/measurable'
 import Toggleable from '../../mixins/toggleable'
@@ -71,7 +72,7 @@ export default mixins(
     },
   },
 
-  render (h): VNode {
+  render (): VNode {
     return h(this.tag, {
       class: 'v-lazy',
       attrs: this.$attrs,

@@ -1,3 +1,4 @@
+import {h} from 'vue'
 // Styles
 import './VEditDialog.sass'
 
@@ -100,7 +101,7 @@ export default mixins(Returnable, Themeable).extend({
     },
   },
 
-  render (h): VNode {
+  render (): VNode {
     return h(VMenu, {
       class: 'v-small-dialog',
       class: this.themeClasses,

@@ -1,3 +1,4 @@
+import {h} from 'vue'
 // Styles
 import './VRadio.sass'
 
@@ -181,7 +182,7 @@ export default baseMixins.extend({
     onKeydown: () => {}, // Override default with noop
   },
 
-  render (h): VNode {
+  render (): VNode {
     const data: VNodeData = {
       class: 'v-radio',
       class: this.classes,

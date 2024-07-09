@@ -1,3 +1,4 @@
+import {h} from 'vue'
 // Styles
 import './VCalendarDaily.sass'
 
@@ -240,7 +241,7 @@ export default defineComponent({
     },
   },
 
-  render (h): VNode {
+  render (): VNode {
     return h('div', {
       class: this.classes,
       on: {

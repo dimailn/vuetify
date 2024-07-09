@@ -1,3 +1,4 @@
+import {h} from 'vue'
 // Styles
 import './VList.sass'
 import VListGroup from './VListGroup'
@@ -87,7 +88,7 @@ export default defineComponent({
     },
   },
 
-  render (h): VNode {
+  render (): VNode {
     const data = {
       class: 'v-list',
       class: this.classes,

@@ -1,3 +1,4 @@
+import {h} from 'vue'
 // Styles
 import './VSlideGroup.sass'
 
@@ -516,7 +517,7 @@ export const BaseSlideGroup = mixins<options &
     },
   },
 
-  render (h): VNode {
+  render (): VNode {
     return h('div', this.genData(), [
       this.genPrev(),
       this.genWrapper(),

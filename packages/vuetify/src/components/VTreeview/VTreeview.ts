@@ -1,3 +1,4 @@
+import {h} from 'vue'
 // Styles
 import './VTreeview.sass'
 
@@ -414,7 +415,7 @@ export default mixins(
     },
   },
 
-  render (h): VNode {
+  render (): VNode {
     const children: VNodeChildrenArrayContents = this.items.length
       ? this.items.filter(item => {
         return !this.isExcluded(getObjectValueByPath(item, this.itemKey))

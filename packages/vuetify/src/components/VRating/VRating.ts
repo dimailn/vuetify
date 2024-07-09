@@ -1,3 +1,4 @@
+import {h} from 'vue'
 // Styles
 import './VRating.sass'
 
@@ -233,7 +234,7 @@ export default mixins(
     },
   },
 
-  render (h): VNode {
+  render (): VNode {
     const children = createRange(Number(this.length)).map(i => this.genItem(i))
 
     return h('div', {

@@ -1,3 +1,4 @@
+import {h} from 'vue'
 // Styles
 import './VAlert.sass'
 
@@ -237,7 +238,7 @@ export default mixins(
     },
   },
 
-  render (h): VNode {
+  render (): VNode {
     const render = this.genAlert()
 
     if (!this.transition) return render

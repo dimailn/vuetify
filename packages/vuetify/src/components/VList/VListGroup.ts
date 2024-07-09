@@ -1,3 +1,4 @@
+import {h} from 'vue'
 // Styles
 import './VListGroup.sass'
 
@@ -211,7 +212,7 @@ export default baseMixins.extend({
     },
   },
 
-  render (h): VNode {
+  render (): VNode {
     return h('div', this.setTextColor(this.isActive && this.color, {
       class: 'v-list-group',
       class: this.classes,

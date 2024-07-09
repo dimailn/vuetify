@@ -1,3 +1,4 @@
+import {h} from 'vue'
 // Components
 import VInput from '../VInput/VInput'
 
@@ -130,7 +131,7 @@ export default mixins(
     },
   },
 
-  render (h): VNode {
+  render (): VNode {
     return h('form', {
       class: 'v-form',
       attrs: {

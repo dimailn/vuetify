@@ -1,3 +1,4 @@
+import {h} from 'vue'
 import './VProgressLinear.sass'
 
 // Components
@@ -226,7 +227,7 @@ export default baseMixins.extend({
     },
   },
 
-  render (h): VNode {
+  render (): VNode {
     const data = {
       class: 'v-progress-linear',
       attrs: {

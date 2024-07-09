@@ -1,3 +1,4 @@
+import {h} from 'vue'
 // Components
 import { VExpandTransition } from '../transitions'
 import { VIcon } from '../VIcon'
@@ -347,7 +348,7 @@ const VTreeviewNode = baseMixins.extend({
     },
   },
 
-  render (h): VNode {
+  render (): VNode {
     const children: VNodeChildren = [this.genNode()]
 
     if (this.transition) children.push(this.genTransition())

@@ -1,3 +1,4 @@
+import {h} from 'vue'
 import './VPagination.sass'
 
 import VIcon from '../VIcon'
@@ -239,7 +240,7 @@ export default mixins(
     },
   },
 
-  render (h): VNode {
+  render (): VNode {
     const children = [
       this.genIcon(h,
         this.$vuetify.rtl ? this.nextIcon : this.prevIcon,

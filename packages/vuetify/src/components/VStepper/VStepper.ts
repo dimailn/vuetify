@@ -1,3 +1,4 @@
+import {h} from 'vue'
 // Styles
 import './VStepper.sass'
 
@@ -131,7 +132,7 @@ export default baseMixins.extend({
     },
   },
 
-  render (h): VNode {
+  render (): VNode {
     return h(this.tag, {
       class: 'v-stepper',
       class: this.classes,

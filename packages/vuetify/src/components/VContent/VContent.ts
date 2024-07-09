@@ -1,3 +1,4 @@
+import {h} from 'vue'
 // Types
 import { VNode, defineComponent } from 'vue'
 
@@ -15,7 +16,7 @@ export default defineComponent({
     deprecate('v-content', 'v-main', this)
   },
 
-  render (h): VNode {
+  render (): VNode {
     // Add the legacy class names
     const node = VMain.render.call(this, h)
 

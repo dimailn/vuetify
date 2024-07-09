@@ -1,3 +1,4 @@
+import {h} from 'vue'
 // Styles
 import './VToolbar.sass'
 
@@ -149,7 +150,7 @@ export default defineComponent({
     },
   },
 
-  render (h): VNode {
+  render (): VNode {
     this.isExtended = this.extended || !!this.$slots.extension
 
     const children = [this.genContent()]

@@ -1,3 +1,4 @@
+import {h} from 'vue'
 import './VTimePickerTitle.sass'
 
 // Mixins
@@ -69,7 +70,7 @@ export default mixins(
     },
   },
 
-  render (h): VNode {
+  render (): VNode {
     const children = [this.genTime()]
 
     this.ampm && children.push(this.genAmPm())

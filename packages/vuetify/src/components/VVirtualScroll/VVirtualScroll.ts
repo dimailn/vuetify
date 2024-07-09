@@ -1,3 +1,4 @@
+import {h} from 'vue'
 // Styles
 import './VVirtualScroll.sass'
 
@@ -102,7 +103,7 @@ export default defineComponent({
     },
   },
 
-  render (h): VNode {
+  render (): VNode {
     const content = h('div', {
       class: 'v-virtual-scroll__container',
       style: {

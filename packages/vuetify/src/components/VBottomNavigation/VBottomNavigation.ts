@@ -1,3 +1,4 @@
+import {h} from 'vue'
 // Styles
 import './VBottomNavigation.sass'
 
@@ -126,7 +127,7 @@ export default mixins(
     },
   },
 
-  render (h): VNode {
+  render (): VNode {
     const data = this.setBackgroundColor(this.backgroundColor, {
       class: 'v-bottom-navigation',
       class: this.classes,

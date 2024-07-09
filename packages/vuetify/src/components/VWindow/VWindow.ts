@@ -1,3 +1,4 @@
+import {h} from 'vue'
 // Styles
 import './VWindow.sass'
 
@@ -254,7 +255,7 @@ export default defineComponent({
     },
   },
 
-  render (h): VNode {
+  render (): VNode {
     const data = {
       class: 'v-window',
       class: this.classes,

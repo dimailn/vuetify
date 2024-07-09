@@ -1,3 +1,4 @@
+import {h} from 'vue'
 // Components
 import VExpansionPanels from './VExpansionPanels'
 import VExpansionPanelHeader from './VExpansionPanelHeader'
@@ -80,7 +81,7 @@ export default mixins(
     },
   },
 
-  render (h): VNode {
+  render (): VNode {
     return h('div', {
       class: 'v-expansion-panel',
       class: this.classes,

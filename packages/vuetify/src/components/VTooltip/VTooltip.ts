@@ -1,3 +1,4 @@
+import {h} from 'vue'
 import './VTooltip.sass'
 
 // Mixins
@@ -220,7 +221,7 @@ export default mixins(Colorable, Delayable, Dependent, Menuable).extend({
     },
   },
 
-  render (h): VNode {
+  render (): VNode {
     return h(this.tag, {
       class: 'v-tooltip',
       class: this.classes,

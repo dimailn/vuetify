@@ -1,3 +1,4 @@
+import {h} from 'vue'
 import './VDatePickerTitle.sass'
 
 // Components
@@ -85,7 +86,7 @@ export default mixins(
     },
   },
 
-  render (h): VNode {
+  render (): VNode {
     return h('div', {
       class: 'v-date-picker-title',
       class: {

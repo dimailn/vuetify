@@ -1,3 +1,4 @@
+import {h} from 'vue'
 // Styles
 import './VTimeline.sass'
 
@@ -36,7 +37,7 @@ export default mixins(
     },
   },
 
-  render (h): VNode {
+  render (): VNode {
     return h('div', {
       class: 'v-timeline',
       class: this.classes,

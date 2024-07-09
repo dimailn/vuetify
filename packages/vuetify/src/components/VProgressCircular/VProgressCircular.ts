@@ -1,3 +1,4 @@
+import {h} from 'vue'
 // Styles
 import './VProgressCircular.sass'
 
@@ -145,7 +146,7 @@ export default defineComponent({
     },
   },
 
-  render (h): VNode {
+  render (): VNode {
     return h('div', this.setTextColor(this.color, {
       class: 'v-progress-circular',
       attrs: {

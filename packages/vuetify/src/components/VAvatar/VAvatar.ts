@@ -1,3 +1,4 @@
+import {h} from 'vue'
 import './VAvatar.sass'
 
 // Mixins
@@ -47,7 +48,7 @@ export default mixins(
     },
   },
 
-  render (h): VNode {
+  render (): VNode {
     const data = {
       class: 'v-avatar',
       class: this.classes,

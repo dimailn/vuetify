@@ -1,3 +1,4 @@
+import {h} from 'vue'
 import './VVirtualTable.sass'
 
 // Components
@@ -150,7 +151,7 @@ export default baseMixins.extend({
     },
   },
 
-  render (h): VNode {
+  render (): VNode {
     return h('div', {
       class: 'v-data-table v-virtual-table',
       class: this.classes,

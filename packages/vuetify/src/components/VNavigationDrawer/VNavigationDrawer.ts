@@ -1,3 +1,4 @@
+import {h} from 'vue'
 // Styles
 import './VNavigationDrawer.sass'
 
@@ -448,7 +449,7 @@ export default baseMixins.extend({
     },
   },
 
-  render (h): VNode {
+  render (): VNode {
     const children = [
       this.genPrepend(),
       this.genContent(),

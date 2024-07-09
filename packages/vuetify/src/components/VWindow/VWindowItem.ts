@@ -1,3 +1,4 @@
+import {h} from 'vue'
 // Components
 import VWindow from './VWindow'
 
@@ -135,7 +136,7 @@ export default baseMixins.extend({
     },
   },
 
-  render (h): VNode {
+  render (): VNode {
     return h('transition', {
       props: {
         name: this.computedTransition,

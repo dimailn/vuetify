@@ -1,3 +1,4 @@
+import {h} from 'vue'
 // Styles
 import './VChip.sass'
 
@@ -176,7 +177,7 @@ export default mixins(
     },
   },
 
-  render (h): VNode {
+  render (): VNode {
     const children = [this.genContent()]
     let { tag, data } = this.generateRouteLink()
 

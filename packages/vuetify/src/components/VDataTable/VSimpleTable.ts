@@ -1,3 +1,4 @@
+import {h} from 'vue'
 import './VSimpleTable.sass'
 
 import { convertToUnit, getSlot } from '../../util/helpers'
@@ -40,7 +41,7 @@ export default mixins(Themeable).extend({
     },
   },
 
-  render (h): VNode {
+  render (): VNode {
     return h('div', {
       class: 'v-data-table',
       class: this.classes,

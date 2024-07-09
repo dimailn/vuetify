@@ -1,3 +1,4 @@
+import {h} from 'vue'
 // Styles
 import './VColorPickerCanvas.sass'
 
@@ -146,7 +147,7 @@ export default defineComponent({
     },
   },
 
-  render (h): VNode {
+  render (): VNode {
     return h('div', {
       class: 'v-color-picker__canvas',
       style: {

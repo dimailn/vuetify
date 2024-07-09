@@ -1,3 +1,4 @@
+import {h} from 'vue'
 import Routable from '../../mixins/routable'
 
 import mixins from '../../util/mixins'
@@ -30,7 +31,7 @@ export default mixins(Routable).extend({
     },
   },
 
-  render (h): VNode {
+  render (): VNode {
     const { tag, data } = this.generateRouteLink()
 
     return h('li', [

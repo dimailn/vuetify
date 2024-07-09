@@ -1,3 +1,4 @@
+import {h} from 'vue'
 // Styles
 import './VBadge.sass'
 
@@ -174,7 +175,7 @@ export default mixins(
     },
   },
 
-  render (h): VNode {
+  render (): VNode {
     const badge = [this.genBadgeWrapper()]
     const children = [getSlot(this)]
     const {

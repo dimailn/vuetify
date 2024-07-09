@@ -1,3 +1,4 @@
+import {h} from 'vue'
 import './VTimePickerClock.sass'
 
 // Mixins
@@ -246,7 +247,7 @@ export default mixins<options &
     },
   },
 
-  render (h): VNode {
+  render (): VNode {
     const data: VNodeData = {
       class: 'v-time-picker-clock',
       class: {

@@ -1,3 +1,4 @@
+import {h} from 'vue'
 // Styles
 import './VSubheader.sass'
 
@@ -19,7 +20,7 @@ export default mixins(
     inset: Boolean,
   },
 
-  render (h): VNode {
+  render (): VNode {
     return h('div', {
       class: 'v-subheader',
       class: {

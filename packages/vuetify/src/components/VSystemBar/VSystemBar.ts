@@ -1,3 +1,4 @@
+import {h} from 'vue'
 // Styles
 import './VSystemBar.sass'
 
@@ -62,7 +63,7 @@ export default mixins(
     },
   },
 
-  render (h): VNode {
+  render (): VNode {
     const data = {
       class: 'v-system-bar',
       class: this.classes,

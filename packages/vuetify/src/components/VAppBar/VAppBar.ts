@@ -1,3 +1,4 @@
+import {h} from 'vue'
 // Styles
 import './VAppBar.sass'
 
@@ -266,7 +267,7 @@ export default baseMixins.extend({
     },
   },
 
-  render (h): VNode {
+  render (): VNode {
     const render = VToolbar.render.call(this, h)
 
     render.data = render.data || {}

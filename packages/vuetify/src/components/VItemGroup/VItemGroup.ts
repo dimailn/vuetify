@@ -1,3 +1,4 @@
+import {h} from 'vue'
 // Styles
 import './VItemGroup.sass'
 
@@ -255,7 +256,7 @@ export const BaseItemGroup = mixins(
     },
   },
 
-  render (h): VNode {
+  render (): VNode {
     return h(this.tag, this.genData(), getSlot(this))
   },
 })

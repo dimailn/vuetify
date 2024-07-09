@@ -1,3 +1,4 @@
+import {h} from 'vue'
 // Components
 import VAvatar from '../VAvatar'
 
@@ -27,7 +28,7 @@ export default defineComponent({
     },
   },
 
-  render (h): VNode {
+  render (): VNode {
     const render = VAvatar.render.call(this, h)
 
     render.data = render.data || {}

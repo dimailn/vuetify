@@ -1,3 +1,4 @@
+import {h} from 'vue'
 // Styles
 import '../VTextField/VTextField.sass'
 import './VOtpInput.sass'
@@ -295,7 +296,7 @@ export default baseMixins.extend({
       }
     },
   },
-  render (h): VNode {
+  render (): VNode {
     return h('div', {
       class: 'v-otp-input',
       class: this.themeClasses,

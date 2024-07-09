@@ -1,3 +1,4 @@
+import {h} from 'vue'
 // Styles
 import './VImg.sass'
 
@@ -271,7 +272,7 @@ export default mixins(
     },
   },
 
-  render (h): VNode {
+  render (): VNode {
     const node = VResponsive.render.call(this, h)
 
     const data = mergeData(node.data!, {

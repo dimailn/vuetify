@@ -1,3 +1,4 @@
+import {h} from 'vue'
 // Styles
 import './VSkeletonLoader.sass'
 
@@ -197,7 +198,7 @@ export default mixins(
     },
   },
 
-  render (h): VNode {
+  render (): VNode {
     return h('div', {
       class: 'v-skeleton-loader',
       attrs: this.attrs,

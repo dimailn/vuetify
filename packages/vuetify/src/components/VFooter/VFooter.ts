@@ -1,3 +1,4 @@
+import {h} from 'vue'
 // Styles
 import './VFooter.sass'
 
@@ -103,7 +104,7 @@ export default mixins(
     },
   },
 
-  render (h): VNode {
+  render (): VNode {
     const data = this.setBackgroundColor(this.color, {
       class: 'v-footer',
       class: this.classes,

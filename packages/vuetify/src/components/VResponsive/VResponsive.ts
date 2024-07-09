@@ -1,3 +1,4 @@
+import {h} from 'vue'
 import './VResponsive.sass'
 
 // Mixins
@@ -47,7 +48,7 @@ export default mixins(Measurable).extend({
     },
   },
 
-  render (h): VNode {
+  render (): VNode {
     return h('div', {
       class: 'v-responsive',
       style: this.measurableStyles,

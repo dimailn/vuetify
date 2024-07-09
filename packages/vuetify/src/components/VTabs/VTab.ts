@@ -1,3 +1,4 @@
+import {h} from 'vue'
 // Mixins
 import { factory as GroupableFactory } from '../../mixins/groupable'
 import Routable from '../../mixins/routable'
@@ -109,7 +110,7 @@ export default baseMixins.extend({
     },
   },
 
-  render (h): VNode {
+  render (): VNode {
     const { tag, data } = this.generateRouteLink()
 
     data.attrs = {

@@ -1,3 +1,4 @@
+import {h} from 'vue'
 // Components
 import VExpansionPanel from './VExpansionPanel'
 import { VExpandTransition } from '../transitions'
@@ -58,7 +59,7 @@ export default baseMixins.extend({
     this.expansionPanel.unregisterContent()
   },
 
-  render (h): VNode {
+  render (): VNode {
     return h(VExpandTransition, this.showLazyContent(() => [
       h('div', this.setBackgroundColor(this.color, {
         class: 'v-expansion-panel-content',

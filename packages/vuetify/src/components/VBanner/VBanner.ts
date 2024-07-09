@@ -1,3 +1,4 @@
+import {h} from 'vue'
 // Styles
 import './VBanner.sass'
 
@@ -144,7 +145,7 @@ export default mixins(
     },
   },
 
-  render (h): VNode {
+  render (): VNode {
     const data = {
       class: 'v-banner',
       attrs: this.attrs$,

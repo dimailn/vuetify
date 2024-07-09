@@ -1,3 +1,4 @@
+import {h} from 'vue'
 // Styles
 import './VSpeedDial.sass'
 
@@ -52,7 +53,7 @@ export default mixins(Positionable, Toggleable, Transitionable).extend({
     },
   },
 
-  render (h): VNode {
+  render (): VNode {
     let children: VNode[] = []
     const data: VNodeData = {
       class: this.classes,

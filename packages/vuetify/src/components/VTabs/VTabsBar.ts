@@ -1,3 +1,4 @@
+import {h} from 'vue'
 // Extensions
 import { BaseSlideGroup } from '../VSlideGroup/VSlideGroup'
 
@@ -89,7 +90,7 @@ export default mixins(
     },
   },
 
-  render (h): VNode {
+  render (): VNode {
     const render = BaseSlideGroup.render.call(this, h)
 
     render.data!.attrs = {

@@ -1,3 +1,4 @@
+import {h} from 'vue'
 // Styles
 import './VCarousel.sass'
 
@@ -194,7 +195,7 @@ export default defineComponent({
     },
   },
 
-  render (h): VNode {
+  render (): VNode {
     const render = VWindow.render.call(this, h)
 
     render.data!.style = `height: ${convertToUnit(this.height)};`

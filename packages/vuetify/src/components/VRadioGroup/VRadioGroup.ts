@@ -9,6 +9,7 @@ import { BaseItemGroup } from '../VItemGroup/VItemGroup'
 // Types
 import mixins from '../../util/mixins'
 import { PropType } from 'vue'
+import {h} from 'vue'
 
 const baseMixins = mixins(
   BaseItemGroup,
@@ -86,7 +87,7 @@ export default baseMixins.extend({
     onClick: BaseItemGroup.methods.onClick,
   },
 
-  render (h) {
+  render () {
     const vnode = VInput.render.call(this, h)
 
     this._b(vnode.data!, 'div', this.attrs$)

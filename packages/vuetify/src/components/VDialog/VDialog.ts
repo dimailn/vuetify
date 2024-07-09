@@ -1,3 +1,4 @@
+import {h} from 'vue'
 // Styles
 import './VDialog.sass'
 
@@ -310,7 +311,7 @@ export default baseMixins.extend({
     },
   },
 
-  render (h): VNode {
+  render (): VNode {
     return h('div', {
       class: 'v-dialog__container',
       class: {

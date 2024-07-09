@@ -1,3 +1,4 @@
+import {h} from 'vue'
 // Styles
 import './VColorPickerPreview.sass'
 
@@ -89,7 +90,7 @@ export default defineComponent({
     },
   },
 
-  render (h): VNode {
+  render (): VNode {
     return h('div', {
       class: 'v-color-picker__preview',
       class: {

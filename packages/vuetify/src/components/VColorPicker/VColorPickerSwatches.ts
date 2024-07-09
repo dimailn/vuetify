@@ -1,3 +1,4 @@
+import {h} from 'vue'
 // Styles
 import './VColorPickerSwatches.sass'
 
@@ -89,7 +90,7 @@ export default mixins(Themeable).extend({
     },
   },
 
-  render (h): VNode {
+  render (): VNode {
     return h('div', {
       class: 'v-color-picker__swatches',
       style: {
