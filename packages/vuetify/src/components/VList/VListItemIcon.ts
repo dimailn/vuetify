@@ -1,5 +1,5 @@
 // Types
-import { defineComponent, VNode } from 'vue'
+import { defineComponent, VNode, h } from 'vue'
 
 /* @vue/component */
 export default defineComponent({
@@ -7,9 +7,11 @@ export default defineComponent({
 
   functional: true,
 
-  render (h, { data, children }): VNode {
+  render (): VNode {
+    const data = this.$attrs
+
     data.staticClass = (`v-list-item__icon ${data.staticClass || ''}`).trim()
 
-    return h('div', data, children)
+    return h('div', data, this.$slots.default())
   },
 })

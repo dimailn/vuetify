@@ -1,4 +1,4 @@
-import { defineComponent, VNode } from 'vue'
+import { defineComponent, VNode, h } from 'vue'
 
 export default defineComponent({
   name: 'row-group',
@@ -21,8 +21,10 @@ export default defineComponent({
     },
   },
 
-  render (h, { slots, props }): VNode {
-    const computedSlots = slots()
+  render (): VNode {
+    const props = this.$props
+
+    const computedSlots = this.$slots
     const children = []
 
     if (computedSlots['column.header']) {

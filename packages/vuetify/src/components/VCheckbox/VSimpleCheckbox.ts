@@ -2,7 +2,7 @@ import './VSimpleCheckbox.sass'
 
 import Ripple from '../../directives/ripple'
 
-import { VNode, VNodeDirective } from 'vue'
+import { VNode, VNodeDirective, h } from 'vue'
 import {defineComponent} from 'vue'
 
 import { VIcon } from '../VIcon'
@@ -48,7 +48,10 @@ export default defineComponent({
     },
   },
 
-  render (h, { props, data, listeners }): VNode {
+  render (): VNode {
+    const props = this.$props
+    const data = this.$attrs
+
     const children = []
     let icon = props.offIcon
     if (props.indeterminate) icon = props.indeterminateIcon

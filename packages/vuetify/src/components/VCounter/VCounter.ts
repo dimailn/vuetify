@@ -5,7 +5,7 @@ import './VCounter.sass'
 import Themeable, { functionalThemeClasses } from '../../mixins/themeable'
 
 // Types
-import { VNode } from 'vue'
+import { VNode, h } from 'vue'
 import mixins from '../../util/mixins'
 
 /* @vue/component */
@@ -22,18 +22,18 @@ export default mixins(Themeable).extend({
     max: [Number, String],
   },
 
-  render (h, ctx): VNode {
-    const { props } = ctx
+  render (): VNode {
+    const props  = this.$props
     const max = parseInt(props.max, 10)
     const value = parseInt(props.value, 10)
     const content = max ? `${value} / ${max}` : String(props.value)
     const isGreater = max && (value > max)
 
     return h('div', {
-      class: 'v-counter',
       class: {
+        'v-counter': true,
         'error--text': isGreater,
-        ...functionalThemeClasses(ctx),
+        ...functionalThemeClasses(this),
       },
     }, content)
   },

@@ -1,5 +1,5 @@
 // Types
-import { defineComponent, VNode, PropType } from 'vue'
+import { defineComponent, VNode, PropType, h } from 'vue'
 import { DataTableHeader } from 'vuetify/types'
 
 // Utils
@@ -22,8 +22,11 @@ export default defineComponent({
     rtl: Boolean,
   },
 
-  render (h, { props, slots, data }): VNode {
-    const computedSlots = slots()
+  render (): VNode {
+    const props = this.$props
+    const data = this.$attrs
+
+    const computedSlots = this.$slots
 
     const columns = props.headers.map((header: DataTableHeader) => {
       const children = []

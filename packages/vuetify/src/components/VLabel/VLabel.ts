@@ -6,7 +6,7 @@ import Colorable from '../../mixins/colorable'
 import Themeable, { functionalThemeClasses } from '../../mixins/themeable'
 
 // Types
-import { VNode } from 'vue'
+import { VNode, h } from 'vue'
 import mixins from '../../util/mixins'
 
 // Helpers
@@ -39,20 +39,21 @@ export default mixins(Themeable).extend({
     value: Boolean,
   },
 
-  render (h, ctx): VNode {
-    const { children, listeners, props, data } = ctx
+  render (): VNode {
+    const data = this.$attrs
+    const props = this.$props
+
     const newData = mergeData({
-      class: 'v-label',
       class: {
+        'v-label': true,
         'v-label--active': props.value,
         'v-label--is-disabled': props.disabled,
-        ...functionalThemeClasses(ctx),
+        ...functionalThemeClasses(this),
       },
       attrs: {
         for: props.for,
         'aria-hidden': !props.for,
       },
-      on: listeners,
       style: {
         left: convertToUnit(props.left),
         right: convertToUnit(props.right),
@@ -61,6 +62,6 @@ export default mixins(Themeable).extend({
       ref: 'label',
     }, data)
 
-    return h('label', Colorable.methods.setTextColor(props.focused && props.color, newData), children)
+    return h('label', Colorable.methods.setTextColor(props.focused && props.color, newData), this.$slots.default())
   },
 })

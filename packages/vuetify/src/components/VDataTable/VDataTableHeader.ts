@@ -14,7 +14,7 @@ import mergeData from '../../util/mergeData'
 import rebuildSlots from '../../util/rebuildFunctionalSlots'
 
 // Types
-import {defineComponent} from 'vue'
+import {defineComponent, h} from 'vue'
 
 /* @vue/component */
 export default defineComponent({
@@ -27,9 +27,12 @@ export default defineComponent({
     mobile: Boolean,
   },
 
-  render (h, { props, data, slots }) {
+  render () {
+    const props = this.$props
+    let data = this.$attrs
+
     dedupeModelListeners(data)
-    const children = rebuildSlots(slots(), h)
+    const children = rebuildSlots(this.$slots, h)
 
     data = mergeData(data, { props })
 

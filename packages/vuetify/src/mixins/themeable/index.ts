@@ -101,11 +101,7 @@ const Themeable = defineComponent({
 
 export default Themeable
 
-export function functionalThemeClasses (context: RenderContext): object {
-  const vm = {
-    ...context.props,
-    ...context.injections,
-  }
-  const isDark = Themeable.options.computed.isDark.call(vm)
-  return Themeable.options.computed.themeClasses.call({ isDark })
+export function functionalThemeClasses (vm: any): object {
+  const isDark = Themeable.computed.isDark.call(vm)
+  return Themeable.computed.themeClasses.call({ isDark })
 }

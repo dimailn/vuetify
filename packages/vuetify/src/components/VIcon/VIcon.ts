@@ -10,7 +10,7 @@ import Themeable from '../../mixins/themeable'
 import { convertToUnit, keys, remapInternalIcon } from '../../util/helpers'
 
 // Types
-import { defineComponent, CreateElement, VNode, VNodeChildren, VNodeData } from 'vue'
+import { defineComponent, CreateElement, VNode, VNodeChildren, VNodeData, h } from 'vue'
 import mixins from '../../util/mixins'
 import { VuetifyIcon, VuetifyIconComponent } from 'vuetify/types/services/icons'
 
@@ -67,7 +67,7 @@ const VIcon = mixins(
   methods: {
     getIcon (): VuetifyIcon {
       let iconName = ''
-      if (this.$slots.default) iconName = this.$slots.default[0].text!.trim()
+      if (this.$slots.default) iconName = this.$slots.default()[0].children!.trim()
 
       return remapInternalIcon(this, iconName)
     },
@@ -124,7 +124,7 @@ const VIcon = mixins(
       data.class = { ...data.class, ...this.themeClasses }
       this.setTextColor(this.color, data)
     },
-    renderFontIcon (icon: string, h: CreateElement): VNode {
+    renderFontIcon (icon: string): VNode {
       const newChildren: VNodeChildren = []
       const data = this.getDefaultData()
 
@@ -152,7 +152,7 @@ const VIcon = mixins(
 
       return h(this.hasClickListener ? 'button' : this.tag, data, newChildren)
     },
-    renderSvgIcon (icon: string, h: CreateElement): VNode {
+    renderSvgIcon (icon: string): VNode {
       const svgData: VNodeData = {
         class: 'v-icon__svg',
         attrs: {
@@ -183,8 +183,7 @@ const VIcon = mixins(
       ])
     },
     renderSvgIconComponent (
-      icon: VuetifyIconComponent,
-      h: CreateElement
+      icon: VuetifyIconComponent
     ): VNode {
       const data: VNodeData = {
         class: {
@@ -213,17 +212,17 @@ const VIcon = mixins(
     },
   },
 
-  render (h: CreateElement): VNode {
+  render (): VNode {
     const icon = this.getIcon()
 
     if (typeof icon === 'string') {
       if (isSvgPath(icon)) {
-        return this.renderSvgIcon(icon, h)
+        return this.renderSvgIcon(icon)
       }
-      return this.renderFontIcon(icon, h)
+      return this.renderFontIcon(icon)
     }
 
-    return this.renderSvgIconComponent(icon, h)
+    return this.renderSvgIconComponent(icon)
   },
 })
 
@@ -234,7 +233,9 @@ export default defineComponent({
 
   functional: true,
 
-  render (h, { data, children }): VNode {
+  render (): VNode {
+    const data = this.$attrs
+
     let iconName = ''
 
     // Support usage of v-text and v-html
@@ -249,6 +250,6 @@ export default defineComponent({
       delete data.domProps.innerHTML
     }
 
-    return h(VIcon, data, iconName ? [iconName] : children)
+    return h(VIcon, data, iconName ? [iconName] : this.$slots.default())
   },
 })
