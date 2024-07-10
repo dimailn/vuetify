@@ -61,7 +61,7 @@ export default function mergeData (): VNodeData {
           }
           break
         // Space delimited string concatenation strategy
-        case 'staticClass':
+        case 'class':
           if (!arguments[i][prop]) {
             break
           }

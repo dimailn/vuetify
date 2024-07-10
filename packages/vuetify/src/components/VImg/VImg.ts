@@ -275,7 +275,7 @@ export default mixins(
   render (): VNode {
     const node = VResponsive.render.call(this, h)
 
-    const data = mergeData(node.data!, {
+    const data = mergeData(node.ctx.attrs!, {
       class: 'v-image',
       attrs: {
         'aria-label': this.alt,

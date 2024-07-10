@@ -43,11 +43,6 @@ export default mixins(
     },
     activeClass: {
       type: String,
-      default (): string | undefined {
-        if (!this.chipGroup) return ''
-
-        return this.chipGroup.activeClass
-      },
     } as any as PropValidator<string>,
     close: Boolean,
     closeIcon: {
@@ -82,6 +77,13 @@ export default mixins(
   }),
 
   computed: {
+    $activeClass() {
+      if(this.activeClass)
+        return this.activeClass
+      if (!this.chipGroup) return ''
+
+      return this.chipGroup.activeClass
+    },
     classes (): object {
       return {
         'v-chip': true,

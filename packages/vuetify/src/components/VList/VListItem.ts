@@ -65,12 +65,7 @@ export default baseMixins.extend({
 
   props: {
     activeClass: {
-      type: String,
-      default (): string | undefined {
-        if (!this.listItemGroup) return ''
-
-        return this.listItemGroup.activeClass
-      },
+      type: String
     } as any as PropValidator<string>,
     dense: Boolean,
     inactive: Boolean,
@@ -92,6 +87,12 @@ export default baseMixins.extend({
   }),
 
   computed: {
+    $activeClass() {
+      if(this.activeClass) return this.activeClass
+      if (!this.listItemGroup) return ''
+
+      return this.listItemGroup.activeClass
+    },
     classes (): object {
       return {
         'v-list-item': true,

@@ -26,11 +26,6 @@ export function factory<T extends string, C extends VueConstructor | null = null
     props: {
       activeClass: {
         type: String,
-        default (): string | undefined {
-          if (!this[namespace]) return undefined
-
-          return this[namespace].activeClass
-        },
       } as any as PropValidator<string>,
       disabled: Boolean,
     },
@@ -42,11 +37,18 @@ export function factory<T extends string, C extends VueConstructor | null = null
     },
 
     computed: {
+      $activeClass() {
+        if(this.activeClass) return this.activeClass
+
+        if (!this[namespace]) return undefined
+
+        return this[namespace].activeClass
+      },
       groupClasses (): object {
-        if (!this.activeClass) return {}
+        if (!this.$activeClass) return {}
 
         return {
-          [this.activeClass]: this.isActive,
+          [this.$activeClass]: this.isActive,
         }
       },
     },

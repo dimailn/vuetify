@@ -91,7 +91,7 @@ export default mixins(
 
   methods: {
     genLabel () {
-      const label = VInput.options.methods.genLabel.call(this)
+      const label = VInput.methods.genLabel.call(this)
 
       if (!label) return label
 

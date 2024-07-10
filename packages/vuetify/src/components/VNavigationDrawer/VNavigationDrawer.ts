@@ -58,7 +58,7 @@ export default baseMixins.extend({
 
   provide (): object {
     return {
-      isInNav: this.tag === 'nav',
+      isInNav: this.$tag === 'nav',
     }
   },
 
@@ -71,9 +71,6 @@ export default baseMixins.extend({
     floating: Boolean,
     height: {
       type: [Number, String],
-      default (): string {
-        return this.app ? '100vh' : '100%'
-      },
     },
     miniVariant: Boolean,
     miniVariantWidth: {
@@ -88,10 +85,7 @@ export default baseMixins.extend({
     },
     stateless: Boolean,
     tag: {
-      type: String,
-      default (): string {
-        return this.app ? 'nav' : 'aside'
-      },
+      type: String
     },
     temporary: Boolean,
     touchless: Boolean,
@@ -112,6 +106,12 @@ export default baseMixins.extend({
   }),
 
   computed: {
+    $tag() {
+      return this.tag || this.app ? 'nav' : 'aside'
+    },
+    $height() {
+      this.height || this.app ? '100vh' : '100%'
+    },
     /**
      * Used for setting an app value from a dynamic
      * property. Called from applicationable.js
@@ -232,7 +232,7 @@ export default baseMixins.extend({
     styles (): object {
       const translate = this.isBottom ? 'translateY' : 'translateX'
       return {
-        height: convertToUnit(this.height),
+        height: convertToUnit(this.$height),
         top: !this.isBottom ? convertToUnit(this.computedTop) : 'auto',
         maxHeight: this.computedMaxHeight != null
           ? `calc(100% - ${convertToUnit(this.computedMaxHeight)})`
@@ -459,7 +459,7 @@ export default baseMixins.extend({
 
     if (this.src || getSlot(this, 'img')) children.unshift(this.genBackground())
 
-    return h(this.tag, this.setBackgroundColor(this.color, {
+    return h(this.$tag, this.setBackgroundColor(this.color, {
       class: this.classes,
       style: this.styles,
       directives: this.genDirectives(),

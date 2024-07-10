@@ -297,7 +297,7 @@ export default baseMixins.extend({
     },
     deactivate () {},
     genActivatorListeners () {
-      const listeners = Activatable.options.methods.genActivatorListeners.call(this)
+      const listeners = Activatable.methods.genActivatorListeners.call(this)
 
       const onClick = listeners.click
 

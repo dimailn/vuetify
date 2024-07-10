@@ -250,6 +250,6 @@ export default defineComponent({
       delete data.domProps.innerHTML
     }
 
-    return h(VIcon, data, iconName ? [iconName] : this.$slots.default())
+    return h(VIcon, data, iconName ? [iconName] : this.$slots.default?.())
   },
 })

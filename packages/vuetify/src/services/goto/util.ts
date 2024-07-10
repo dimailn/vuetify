@@ -7,7 +7,6 @@ export function getOffset (target: any): number {
   }
 
   let el = $(target)
-  console.log(el, target)
 
   if (!el) {
     throw typeof target === 'string'
