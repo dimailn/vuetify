@@ -62,7 +62,7 @@ export default mixins(
     watchInput (input: any): Watchers {
       const watcher = (input: any): (() => void) => {
         return input.$watch('hasError', (val: boolean) => {
-          this.$set(this.errorBag, input._uid, val)
+          this.errorBag[input._uid] = val
         }, { immediate: true })
       }
 

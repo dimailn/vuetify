@@ -13,7 +13,7 @@ function makeWatcher (property: string): ThisType<Vue> & ((val: any, oldVal: any
       }
     }
     for (const attr in val) {
-      this.$set(this.$data[property], attr, val[attr])
+      this.$data[property][attr] = val[attr]
     }
   }
 }

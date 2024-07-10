@@ -55,6 +55,7 @@ export async function createApp ({
   console.log(Vuetify)
   app.use(Vuetify)
   app.config.globalProperties.$vuetify = vuetify.framework
+  app.config.globalProperties.$createElement = h
 
 
 

@@ -127,10 +127,10 @@ export default defineComponent({
       } else {
         tag = (this.href && 'a') || this.tag || 'div'
 
-        if (tag === 'a' && this.href) data.attrs!.href = this.href
+        if (tag === 'a' && this.href) data.href = this.href
       }
 
-      if (this.target) data.attrs!.target = this.target
+      if (this.target) data.target = this.target
 
       return { tag, data }
     },

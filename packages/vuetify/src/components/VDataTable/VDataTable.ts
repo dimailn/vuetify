@@ -369,7 +369,7 @@ export default mixins(
     },
     genGroupedRows (groupedItems: ItemGroup<any>[], props: DataScopeProps) {
       return groupedItems.map(group => {
-        if (!this.openCache.hasOwnProperty(group.name)) this.$set(this.openCache, group.name, true)
+        if (!this.openCache.hasOwnProperty(group.name)) this.openCache[group.name] = true
 
         if (this.$slots.group) {
           return this.$slots.group({
@@ -389,7 +389,7 @@ export default mixins(
       const children: VNodeChildren = [
         this.$createElement('template', { slot: 'row.content' }, this.genRows(items, props)),
       ]
-      const toggleFn = () => this.$set(this.openCache, group, !this.openCache[group])
+      const toggleFn = () => this.openCache[group] = !this.openCache[group]
       const removeFn = () => props.updateOptions({ groupBy: [], groupDesc: [] })
 
       if (this.$slots['group.header']) {

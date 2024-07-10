@@ -1,4 +1,4 @@
-import {defineComponent} from 'vue'
+import {defineComponent, h} from 'vue'
 import { VNode, VNodeDirective } from 'vue/types'
 import { VuetifyIcon } from 'vuetify/types/services/icons'
 import { DataTableCompareFunction, SelectItemKey, ItemGroup } from 'vuetify/types'
@@ -20,10 +20,12 @@ export function createSimpleFunctional (
       },
     },
 
-    render (h, { data, props, children }): VNode {
-      data.staticClass = (`${c} ${data.staticClass || ''}`).trim()
+    render (): VNode {
+      const data = this.$attrs
 
-      return h(props.tag, data, children)
+      data.class = (`${c} ${data.class || ''}`).trim()
+
+      return h(this.tag, data, this.$slots.default?.())
     },
   })
 }
