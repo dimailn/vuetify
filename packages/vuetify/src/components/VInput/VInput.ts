@@ -285,7 +285,7 @@ export default baseMixins.extend({
       const ref = `${type}-${location}`
 
       return this.$createElement('div', {
-        staticClass: `v-input__${ref}`,
+        class: `v-input__${ref}`,
         ref,
       }, slot)
     },

@@ -102,7 +102,7 @@ export default baseMixins.extend({
     },
     __cachedDeterminate (): VNode {
       return this.$createElement('div', this.setBackgroundColor(this.color, {
-        staticClass: `v-progress-linear__determinate`,
+        class: `v-progress-linear__determinate`,
         style: {
           width: convertToUnit(this.normalizedValue, '%'),
         },

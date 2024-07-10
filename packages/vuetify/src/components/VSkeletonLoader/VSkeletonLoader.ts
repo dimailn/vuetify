@@ -110,7 +110,7 @@ export default mixins(
   methods: {
     genBone (text: string, children: VNode[]) {
       return this.$createElement('div', {
-        staticClass: `v-skeleton-loader__${text} v-skeleton-loader__bone`,
+        class: `v-skeleton-loader__${text} v-skeleton-loader__bone`,
       }, children)
     },
     genBones (bone: string): VNode[] {

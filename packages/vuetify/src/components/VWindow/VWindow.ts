@@ -169,7 +169,7 @@ export default defineComponent({
       ])]
 
       return this.$createElement('div', {
-        staticClass: `v-window__${direction}`,
+        class: `v-window__${direction}`,
       }, children)
     },
     genControlIcons () {

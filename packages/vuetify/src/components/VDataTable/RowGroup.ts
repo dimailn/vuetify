@@ -27,7 +27,7 @@ export default defineComponent({
 
     if (computedSlots['column.header']) {
       children.push(h('tr', {
-        staticClass: props.headerClass,
+        class: props.headerClass,
       }, computedSlots['column.header']))
     } else if (computedSlots['row.header']) {
       children.push(...computedSlots['row.header'])
@@ -37,7 +37,7 @@ export default defineComponent({
 
     if (computedSlots['column.summary']) {
       children.push(h('tr', {
-        staticClass: props.summaryClass,
+        class: props.summaryClass,
       }, computedSlots['column.summary']))
     } else if (computedSlots['row.summary']) {
       children.push(...computedSlots['row.summary'])

@@ -130,7 +130,7 @@ export default defineComponent({
       if (this.$vuetify.rtl) sections.reverse()
 
       children.push(...sections.map(section => this.$createElement('div', this.setBackgroundColor(section.color, {
-        staticClass: section.class,
+        class: section.class,
         style: this.getTrackStyle(...section.styles),
       }))))
 

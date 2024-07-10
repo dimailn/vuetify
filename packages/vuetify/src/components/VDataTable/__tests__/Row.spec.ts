@@ -125,8 +125,8 @@ describe('Table Row', () => {
         },
       },
       scopedSlots: {
-        'column.petrol': props => vm.$createElement('p', { staticClass: `test ${props.header.value}` }, [props.value]),
-        'column.diesel': props => vm.$createElement('p', { staticClass: `test ${props.header.value}` }, [props.value]),
+        'column.petrol': props => vm.$createElement('p', { class: `test ${props.header.value}` }, [props.value]),
+        'column.diesel': props => vm.$createElement('p', { class: `test ${props.header.value}` }, [props.value]),
       },
     })
 

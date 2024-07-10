@@ -217,7 +217,7 @@ export default defineComponent({
 
   render (): VNode {
     return h('div', {
-      staticClass: this.staticClass,
+      class: this.staticClass,
       class: this.classes,
       on: {
         dragstart: (e: MouseEvent) => {

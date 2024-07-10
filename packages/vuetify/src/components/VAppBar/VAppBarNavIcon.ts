@@ -13,7 +13,7 @@ export default defineComponent({
 
   render (h, { slots, listeners, props, data }) {
     const d = Object.assign(data, {
-      staticClass: (`v-app-bar__nav-icon ${data.staticClass || ''}`).trim(),
+      class: (`v-app-bar__nav-icon ${data.staticClass || ''}`).trim(),
       props: {
         ...props,
         icon: true,

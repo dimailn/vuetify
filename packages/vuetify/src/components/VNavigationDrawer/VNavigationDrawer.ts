@@ -377,7 +377,7 @@ export default baseMixins.extend({
       if (!slot) return slot
 
       return this.$createElement('div', {
-        staticClass: `v-navigation-drawer__${name}`,
+        class: `v-navigation-drawer__${name}`,
       }, slot)
     },
     genPrepend () {
