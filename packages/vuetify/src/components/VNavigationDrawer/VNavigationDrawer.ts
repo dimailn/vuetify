@@ -110,7 +110,7 @@ export default baseMixins.extend({
       return this.tag || this.app ? 'nav' : 'aside'
     },
     $height() {
-      this.height || this.app ? '100vh' : '100%'
+      return this.height || (this.app ? '100vh' : '100%')
     },
     /**
      * Used for setting an app value from a dynamic

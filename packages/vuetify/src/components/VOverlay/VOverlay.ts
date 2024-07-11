@@ -48,11 +48,13 @@ export default mixins(
   computed: {
     __scrim (): VNode {
       const data = this.setBackgroundColor(this.color, {
-        class: 'v-overlay__scrim',
+        class: {'v-overlay__scrim': true},
         style: {
           opacity: this.computedOpacity,
         },
       })
+
+      console.log(data)
 
       return h('div', data)
     },
