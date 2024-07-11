@@ -85,8 +85,8 @@
 
     created () {
       // Add snackbar property to application service
-      this.$set(this.$vuetify.application, 'snackbar', 0)
-      this.$set(this.$vuetify.application.application, 'snackbar', {})
+      this.$vuetify.application['snackbar'] = 0
+      this.$vuetify.application.application['snackbar'] = {}
     },
 
     methods: {

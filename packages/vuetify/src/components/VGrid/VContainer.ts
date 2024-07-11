@@ -56,10 +56,9 @@ export default defineComponent({
     return h(
       this.tag,
       mergeData(this.$attrs, {
-        class: 'container',
         class: Array<any>({
           'container--fluid': this.fluid,
-        }).concat(classes || []),
+        }).concat(classes || []).concat('container'),
       }),
       this.$slots.default()
     )

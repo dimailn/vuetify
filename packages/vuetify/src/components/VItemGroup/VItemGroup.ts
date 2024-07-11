@@ -131,6 +131,7 @@ export const BaseItemGroup = mixins(
     register (item: GroupableInstance) {
       const index = this.items.push(item) - 1
 
+      // TODO!!!
       item.$on('change', () => this.onClick(item))
 
       // If no value provided and mandatory,

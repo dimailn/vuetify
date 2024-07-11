@@ -1,4 +1,6 @@
 <script>
+  import {h} from 'vue'
+
   // Utilities
   const md = require('markdown-it')({
     html: true,
@@ -18,24 +20,27 @@
       },
     },
 
-    render (h, { children: nodes = [], data, props, slots }) {
-      const children = []
-      const node = nodes[0] || {}
+    render () {
+      const data = this.$attrs
+      const props = this.$props
 
-      if (node.children) {
+      console.log(this.$slots.default)
+
+      const children = this.$slots.default?.()
+      const node = this.$.vnode || {}
+
+      /*if (node.children) {
         children.push(...node.children)
       } else if (nodes.length > 1) {
         children.push(nodes)
       } else {
-        const text = node.text || data.domProps.textContent || ''
+        */
 
-        data.domProps = {
-          ...data.domProps,
-          innerHTML: md.render(text, {}),
-        }
-      }
+        const text = node.text || this.$.vnode.el?.textContent || ''
+        data.innerHTML = md.render(text, {})
+      //}
 
-      data.staticClass = `v-markdown ${data.staticClass || ''}`.trim()
+      data.class = `v-markdown ${data.staticClass || ''}`.trim()
 
       return h(props.tag, data, children)
     },

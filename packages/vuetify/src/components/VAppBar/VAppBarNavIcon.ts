@@ -16,7 +16,7 @@ export default defineComponent({
     const props = this.$props
 
     const d = Object.assign(data, {
-      class: (`v-app-bar__nav-icon ${data.staticClass || ''}`).trim(),
+      class: (`v-app-bar__nav-icon ${data.class || ''}`).trim(),
       props: {
         ...props,
         icon: true,

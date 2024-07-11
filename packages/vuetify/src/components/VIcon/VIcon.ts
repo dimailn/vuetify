@@ -240,7 +240,7 @@ export default defineComponent({
 
     // Support usage of v-text and v-html
     if (data.domProps) {
-      iconName = data.domProps.textContent ||
+      iconName = this.$.vnode.el?.textContent  ||
         data.domProps.innerHTML ||
         iconName
 

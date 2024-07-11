@@ -93,7 +93,7 @@ export default baseMixins.extend({
       type: [Number, String],
       default: 256,
     },
-    value: null as unknown as PropType<any>,
+    modelValue: null as unknown as PropType<any>,
   },
 
   data: () => ({
@@ -246,7 +246,7 @@ export default baseMixins.extend({
   watch: {
     $route: 'onRouteChange',
     isActive (val) {
-      this.$emit('input', val)
+      this.$emit('input:modelValue', val)
     },
     /**
      * When mobile changes, adjust the active state
@@ -273,7 +273,7 @@ export default baseMixins.extend({
       if (val) this.genOverlay()
       else this.removeOverlay()
     },
-    value (val) {
+    modelValue (val) {
       if (this.permanent) return
 
       if (val == null) {
@@ -397,9 +397,9 @@ export default baseMixins.extend({
       if (this.permanent) {
         this.isActive = true
       } else if (this.stateless ||
-        this.value != null
+        this.modelValue != null
       ) {
-        this.isActive = this.value
+        this.isActive = this.modelValue
       } else if (!this.temporary) {
         this.isActive = !this.isMobile
       }

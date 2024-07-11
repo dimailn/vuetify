@@ -1,4 +1,4 @@
-import {h} from 'vue'
+import {h, Transition, withDirectives, mergeProps} from 'vue'
 // Styles
 import './VImg.sass'
 
@@ -20,6 +20,7 @@ import mixins from '../../util/mixins'
 import mergeData from '../../util/mergeData'
 import { consoleWarn } from '../../util/console'
 import { getSlot } from '../../util/helpers'
+import Intersect from '../../directives/intersect'
 
 // not intended for public use, this is passed in by vuetify-loader
 export interface srcObject {
@@ -111,11 +112,11 @@ export default mixins(
       if (src) backgroundImage.push(`url("${src}")`)
 
       const image = this.$createElement('div', {
-        class: 'v-image__image',
         class: {
           'v-image__image--preload': this.isLoading,
           'v-image__image--contain': this.contain,
           'v-image__image--cover': !this.contain,
+          'v-image__image': true
         },
         style: {
           backgroundImage: backgroundImage.join(', '),
@@ -127,11 +128,9 @@ export default mixins(
       /* istanbul ignore if */
       if (!this.transition) return image
 
-      return this.$createElement('transition', {
-        attrs: {
-          name: this.transition,
-          mode: 'in-out',
-        },
+      return this.$createElement(Transition, {
+        name: this.transition,
+        mode: 'in-out',
       }, [image])
     },
   },
@@ -242,11 +241,12 @@ export default mixins(
       poll()
     },
     genContent () {
-      const content: VNode = VResponsive.methods.genContent.call(this)
+      let content: VNode = VResponsive.methods.genContent.call(this)
+
       if (this.naturalWidth) {
-        this._b(content.data!, 'div', {
+        content = h(content.type, mergeProps(content.data!, {
           style: { width: `${this.naturalWidth}px` },
-        })
+        }), content.children)
       }
 
       return content
@@ -262,39 +262,27 @@ export default mixins(
 
         if (!this.transition) return placeholder[0]
 
-        return this.$createElement('transition', {
-          props: {
-            appear: true,
-            name: this.transition,
-          },
+        return this.$createElement(Transition, {
+          appear: true,
+          name: this.transition,
         }, placeholder)
       }
     },
   },
 
   render (): VNode {
-    const node = VResponsive.render.call(this, h)
+    let node = VResponsive.render.call(this, h)
 
-    const data = mergeData(node.ctx.attrs!, {
-      class: 'v-image',
-      attrs: {
-        'aria-label': this.alt,
-        role: this.alt ? 'img' : undefined,
-      },
-      class: this.themeClasses,
-      // Only load intersect directive if it
-      // will work in the current browser.
-      directives: hasIntersect
-        ? [{
-          name: 'intersect',
-          modifiers: { once: true },
-          value: {
-            handler: this.init,
-            options: this.options,
-          },
-        }]
-        : undefined,
+    const data = mergeData(node.props, {
+      'aria-label': this.alt,
+      role: this.alt ? 'img' : undefined,
+      class:  {
+        ...this.themeClasses,
+        'v-image': true
+      }
     })
+
+    console.log(node, data)
 
     node.children = [
       this.__cachedSizer,
@@ -303,6 +291,23 @@ export default mixins(
       this.genContent(),
     ] as VNode[]
 
-    return h(node.tag, data, node.children)
+    node = h(node.type, data, node.children)
+
+    return withDirectives(node, hasIntersect
+      ? [
+        [
+          Intersect,
+          {
+            handler: this.init,
+            options: this.options,
+          },
+          '',
+          {
+            once: true
+          }
+        ]
+      ]
+
+      : [])
   },
 })

@@ -377,6 +377,8 @@ export function searchItems<T extends any = any> (items: T[], search: string): T
  *  - 'v-slot' for unbound v-slot (`#default`) - only if the third param is true, otherwise counts as scoped
  */
 export function getSlotType<T extends boolean = false> (vm: Vue, name: string, split?: T): (T extends true ? 'v-slot' : never) | 'normal' | 'scoped' | void {
+  return 'scoped'
+
   if (vm.$slots.hasOwnProperty(name) && vm.$slots.hasOwnProperty(name) && (vm.$slots[name] as any).name) {
     return split ? 'v-slot' as any : 'scoped'
   }

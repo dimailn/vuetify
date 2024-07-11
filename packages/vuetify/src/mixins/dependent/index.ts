@@ -20,6 +20,8 @@ function searchChildren (children: Vue[]): DependentInstance[] {
   const results = []
   for (let index = 0; index < children.length; index++) {
     const child = children[index] as DependentInstance
+    console.log(child)
+
     if (child.isActive && child.isDependent) {
       results.push(child)
     } else {
@@ -55,7 +57,7 @@ export default mixins<Vue & options>().extend({
 
   methods: {
     getOpenDependents (): any[] {
-      if (this.closeDependents) return searchChildren(this.$children)
+      if (this.closeDependents) return searchChildren(this.$slots.default())
 
       return []
     },

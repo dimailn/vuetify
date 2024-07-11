@@ -47,14 +47,14 @@ export default {
     const wrapper = h('div', { class: 'v-application--wrap' }, getSlot(this))
 
     return h('div', {
-      class: 'v-application',
       class: {
+        'v-application': true,
         'v-application--is-rtl': this.$vuetify.rtl,
         'v-application--is-ltr': !this.$vuetify.rtl,
         ...this.themeClasses,
       },
-      attrs: { 'data-app': true },
-      domProps: { id: this.id },
+      'data-app': true,
+      id: this.id,
     }, [wrapper])
   },
 }

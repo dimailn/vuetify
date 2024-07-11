@@ -126,10 +126,13 @@
           vue = {},
         } = md
 
-        vue.component.name = this.page
+        console.log(md, this.page, vue)
+
+        // vue.component.name = this.page
+
         this.frontmatter = attributes
         this.toc = toc
-        this.component = vue.component
+        // this.component = vue.component
       },
     },
   }

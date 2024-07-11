@@ -72,5 +72,13 @@ export function install (Vue: ReturnType<typeof createApp>, args: VuetifyUseOpti
         this.$vuetify.breakpoint.update()
       }
     },
+    methods: {
+      $on() {
+        console.warn("$on is not available")
+      },
+      $off() {
+        console.warn('$off is not available')
+      }
+    }
   })
 }

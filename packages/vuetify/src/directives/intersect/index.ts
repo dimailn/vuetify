@@ -66,8 +66,8 @@ function unbind (el: HTMLElement, binding: ObserveVNodeDirective, vnode: VNode) 
 }
 
 export const Intersect = {
-  inserted,
-  unbind,
+  mounted: inserted,
+  unmounted: unbind,
 }
 
 export default Intersect

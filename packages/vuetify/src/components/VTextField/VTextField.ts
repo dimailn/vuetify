@@ -274,7 +274,7 @@ export default baseMixins.extend({
       const slot = []
 
       if (this.$slots['prepend-inner']) {
-        slot.push(this.$slots['prepend-inner'] as VNode[])
+        slot.push(this.$slots['prepend-inner']() as VNode[])
       } else if (this.prependInnerIcon) {
         slot.push(this.genIcon('prependInner'))
       }
@@ -513,7 +513,7 @@ export default baseMixins.extend({
     setPrependWidth () {
       if (!this.outlined || !this.$refs['prepend-inner']) return
 
-      this.prependWidth = this.$refs['prepend-inner'].offsetWidth
+      this.prependWidth = this.$refs['prepend-inner']().offsetWidth
     },
     tryAutofocus () {
       if (

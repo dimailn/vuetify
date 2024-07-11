@@ -130,8 +130,7 @@ export default defineComponent({
     return h(
       props.tag,
       mergeData(this.$attrs, {
-        class: 'row',
-        class: classList,
+        class: classList.concat('row'),
       }),
       this.$slots.default()
     )

@@ -1,4 +1,4 @@
-import {h} from 'vue'
+import {h, mergeProps} from 'vue'
 import './VResponsive.sass'
 
 // Mixins
@@ -42,18 +42,17 @@ export default mixins(Measurable).extend({
   methods: {
     genContent (): VNode {
       return this.$createElement('div', {
-        class: 'v-responsive__content',
-        class: this.contentClass,
+        class: `v-responsive__content ${this.contentClass}`,
       }, getSlot(this))
     },
   },
 
   render (): VNode {
-    return h('div', {
+    return h('div', mergeProps({
       class: 'v-responsive',
       style: this.measurableStyles,
-      on: this.$listeners,
-    }, [
+    }, this.$attrs)
+    , [
       this.__cachedSizer,
       this.genContent(),
     ])

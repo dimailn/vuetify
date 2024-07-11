@@ -197,7 +197,6 @@ export default baseMixins.extend({
       ? this.value
       : JSON.stringify(this.value)
 
-    console.log(data)
     return h(tag, this.disabled ? data : setColor(this.color, data), children)
   },
 })
