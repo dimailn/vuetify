@@ -90,14 +90,11 @@ export default defineComponent({
 
   render (): VNode {
     const data = {
-      class: 'v-list',
-      class: this.classes,
+      class: [this.classes, 'v-list'],
       style: this.styles,
-      attrs: {
-        role: this.isInNav || this.isInMenu ? undefined : 'list',
-        ...this.attrs$,
-      },
-      on: this.listeners$,
+      role: this.isInNav || this.isInMenu ? undefined : 'list',
+      ...this.attrs$,
+      ...this.listeners$,
     }
 
     return h(this.tag, this.setBackgroundColor(this.color, data), getSlot(this))

@@ -21,7 +21,7 @@ export function createSimpleFunctional (
     },
 
     render (): VNode {
-      const data = this.$attrs
+      const data = { ...this.$attrs }
 
       data.class = (`${c} ${data.class || ''}`).trim()
 

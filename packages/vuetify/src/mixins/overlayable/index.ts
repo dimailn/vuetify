@@ -11,7 +11,7 @@ import {
 } from '../../util/helpers'
 
 // Types
-import {defineComponent, App} from 'vue'
+import {defineComponent, App, createApp} from 'vue'
 
 interface Toggleable extends App {
   isActive?: boolean
@@ -61,24 +61,30 @@ export default defineComponent({
 
   methods: {
     createOverlay () {
-      const overlay = new VOverlay({
-        propsData: {
-          absolute: this.absolute,
-          value: false,
-          color: this.overlayColor,
-          opacity: this.overlayOpacity,
-        },
-      })
+      // Create a container element
+      const container = document.createElement('div');
 
-      overlay.$mount()
+      // Create the overlay app
+      const overlayApp = createApp(VOverlay, {
+        absolute: this.absolute,
+        modelValue: false, // Use `modelValue` for v-model in Vue 3
+        color: this.overlayColor,
+        opacity: this.overlayOpacity,
+      });
 
+      // Mount the app to the container
+      const overlayInstance = overlayApp.mount(container);
+
+      // Determine the parent element
       const parent = this.absolute
         ? this.$el.parentNode
-        : document.querySelector('[data-app]')
+        : document.querySelector('[data-app]');
 
-      parent && parent.insertBefore(overlay.$el, parent.firstChild)
+      if (parent) {
+        parent.insertBefore(container, parent.firstChild);
+      }
 
-      this.overlay = overlay
+      this.overlay = overlayInstance;
     },
     genOverlay () {
       this.hideScroll()

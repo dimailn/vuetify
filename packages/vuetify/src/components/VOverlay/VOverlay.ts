@@ -54,7 +54,7 @@ export default mixins(
         },
       })
 
-      return this.$createElement('div', data)
+      return h('div', data)
     },
     classes (): object {
       return {
@@ -75,7 +75,7 @@ export default mixins(
 
   methods: {
     genContent () {
-      return this.$createElement('div', {
+      return h('div', {
         class: 'v-overlay__content',
       }, getSlot(this))
     },
@@ -87,9 +87,8 @@ export default mixins(
     if (this.isActive) children.push(this.genContent())
 
     return h('div', {
-      class: 'v-overlay',
       on: this.$listeners,
-      class: this.classes,
+      class: ['v-overlay', this.classes],
       style: this.styles,
     }, children)
   },

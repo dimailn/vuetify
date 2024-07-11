@@ -89,21 +89,20 @@ const VIcon = mixins(
     // Component data for both font icon and SVG wrapper span
     getDefaultData (): VNodeData {
       return {
-        class: 'v-icon notranslate',
         class: {
           'v-icon--disabled': this.disabled,
           'v-icon--left': this.left,
           'v-icon--link': this.hasClickListener,
           'v-icon--right': this.right,
           'v-icon--dense': this.dense,
+          'v-icon': true,
+          'notranslate': true
         },
-        attrs: {
-          'aria-hidden': !this.hasClickListener,
-          disabled: this.hasClickListener && this.disabled,
-          type: this.hasClickListener ? 'button' : undefined,
-          ...this.attrs$,
-        },
-        on: this.listeners$,
+        'aria-hidden': !this.hasClickListener,
+        disabled: this.hasClickListener && this.disabled,
+        type: this.hasClickListener ? 'button' : undefined,
+        ...this.attrs$,
+        ...this.listeners$,
       }
     },
     getSvgWrapperData () {
@@ -234,7 +233,7 @@ export default defineComponent({
   functional: true,
 
   render (): VNode {
-    const data = this.$attrs
+    const data = { ...this.$attrs }
 
     let iconName = ''
 

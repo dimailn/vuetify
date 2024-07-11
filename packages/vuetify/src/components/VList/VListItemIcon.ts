@@ -8,9 +8,9 @@ export default defineComponent({
   functional: true,
 
   render (): VNode {
-    const data = this.$attrs
+    const data = { ...this.$attrs }
 
-    data.staticClass = (`v-list-item__icon ${data.staticClass || ''}`).trim()
+    data.class = (`v-list-item__icon ${data.class || ''}`).trim()
 
     return h('div', data, this.$slots.default())
   },

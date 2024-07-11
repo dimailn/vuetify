@@ -63,7 +63,7 @@ export default defineComponent({
     return h(
       this.tag,
       this.setBackgroundColor(this.color, data),
-      this.$slots.default
+      this.$slots.default()
     )
   },
 })
