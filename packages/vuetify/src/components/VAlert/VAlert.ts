@@ -20,7 +20,7 @@ import { breaking } from '../../util/console'
 import { getSlot } from '../../util/helpers'
 
 // Types
-import { VNodeData } from 'vue'
+import { VNodeData, Transition } from 'vue'
 import { VNode } from 'vue/types'
 
 /* @vue/component */
@@ -243,12 +243,10 @@ export default mixins(
 
     if (!this.transition) return render
 
-    return h('transition', {
-      props: {
-        name: this.transition,
-        origin: this.origin,
-        mode: this.mode,
-      },
+    return h(Transition, {
+      name: this.transition,
+      origin: this.origin,
+      mode: this.mode
     }, [render])
   },
 })

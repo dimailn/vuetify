@@ -19,6 +19,7 @@ import { throttle } from '../../../util/helpers'
 import {
   PropType,
   VNodeChildren,
+  Transition
 } from 'vue'
 import { PropValidator } from 'vue/types/options'
 import {
@@ -213,8 +214,8 @@ export default mixins(
       this.$emit('update:table-date', calculateTableDate(value))
     },
     genTable (staticClass: string, children: VNodeChildren, calculateTableDate: CalculateTableDateFunction) {
-      const transition = this.$createElement('transition', {
-        props: { name: this.computedTransition },
+      const transition = this.$createElement(Transition, {
+        name: this.computedTransition,
       }, [this.$createElement('table', { key: this.tableDate }, children)])
 
       const touchDirective = {

@@ -1,4 +1,4 @@
-import {h} from 'vue'
+import {Transition, h} from 'vue'
 // Styles
 import './VBadge.sass'
 
@@ -148,12 +148,10 @@ export default mixins(
 
       if (!this.transition) return badge
 
-      return this.$createElement('transition', {
-        props: {
-          name: this.transition,
-          origin: this.origin,
-          mode: this.mode,
-        },
+      return this.$createElement(Transition, {
+        name: this.transition,
+        origin: this.origin,
+        mode: this.mode,
       }, [badge])
     },
     genBadgeContent () {

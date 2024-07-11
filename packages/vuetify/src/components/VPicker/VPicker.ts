@@ -1,4 +1,4 @@
-import {h} from 'vue'
+import {h, Transition} from 'vue'
 import './VPicker.sass'
 import '../VCard/VCard.sass'
 
@@ -54,10 +54,8 @@ export default mixins(
       }), getSlot(this, 'title'))
     },
     genBodyTransition () {
-      return this.$createElement('transition', {
-        props: {
-          name: this.transition,
-        },
+      return this.$createElement(Transition, {
+        name: this.transition,
       }, getSlot(this))
     },
     genBody () {

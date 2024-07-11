@@ -1,4 +1,4 @@
-import {h} from 'vue'
+import {Transition, h} from 'vue'
 // Styles
 import './VSnackbar.sass'
 
@@ -181,8 +181,8 @@ export default mixins(
       ])
     },
     genTransition () {
-      return this.$createElement('transition', {
-        props: { name: this.transition },
+      return this.$createElement(Transition, {
+        name: this.transition,
       }, [this.genWrapper()])
     },
     setTimeout () {

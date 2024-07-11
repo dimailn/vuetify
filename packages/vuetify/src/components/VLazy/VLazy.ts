@@ -1,4 +1,4 @@
-import {h} from 'vue'
+import {Transition, h} from 'vue'
 // Mixins
 import Measurable from '../../mixins/measurable'
 import Toggleable from '../../mixins/toggleable'
@@ -56,8 +56,8 @@ export default mixins(
       const children = this.isActive && getSlot(this)
 
       return this.transition
-        ? this.$createElement('transition', {
-          props: { name: this.transition },
+        ? this.$createElement(Transition, {
+          name: this.transition,
         }, children)
         : children
     },

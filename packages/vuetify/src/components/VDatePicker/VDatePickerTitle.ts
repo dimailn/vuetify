@@ -1,4 +1,4 @@
-import {h} from 'vue'
+import {h, Transition} from 'vue'
 import './VDatePickerTitle.sass'
 
 // Components
@@ -70,10 +70,8 @@ export default mixins(
       ], false, 'v-date-picker-title__year')
     },
     genTitleText (): VNode {
-      return this.$createElement('transition', {
-        props: {
-          name: this.computedTransition,
-        },
+      return this.$createElement(Transition, {
+        name: this.computedTransition,
       }, [
         this.$createElement('div', {
           domProps: { innerHTML: this.date || '&nbsp;' },

@@ -1,4 +1,4 @@
-import {h} from 'vue'
+import {h, Transition} from 'vue'
 // Styles
 import './VMenu.sass'
 
@@ -315,10 +315,8 @@ export default baseMixins.extend({
 
       if (!this.transition) return content
 
-      return this.$createElement('transition', {
-        props: {
-          name: this.transition,
-        },
+      return this.$createElement(Transition, {
+        name: this.transition
       }, [content])
     },
     genDirectives (): VNodeDirective[] {

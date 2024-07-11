@@ -1,4 +1,4 @@
-import {h} from 'vue'
+import {Transition, h} from 'vue'
 // Styles
 import './VDialog.sass'
 
@@ -268,12 +268,10 @@ export default baseMixins.extend({
 
       if (!this.transition) return content
 
-      return this.$createElement('transition', {
-        props: {
-          name: this.transition,
-          origin: this.origin,
-          appear: true,
-        },
+      return this.$createElement(Transition, {
+        name: this.transition,
+        origin: this.origin,
+        appear: true
       }, [content])
     },
     genInnerContent () {

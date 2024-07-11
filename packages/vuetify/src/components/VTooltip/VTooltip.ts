@@ -1,4 +1,4 @@
-import {h} from 'vue'
+import {h, Transition} from 'vue'
 import './VTooltip.sass'
 
 // Mixins
@@ -192,10 +192,8 @@ export default mixins(Colorable, Delayable, Dependent, Menuable).extend({
 
       if (!this.computedTransition) return content
 
-      return this.$createElement('transition', {
-        props: {
-          name: this.computedTransition,
-        },
+      return this.$createElement(Transition, {
+        name: this.computedTransition,
       }, [content])
     },
     genContent () {

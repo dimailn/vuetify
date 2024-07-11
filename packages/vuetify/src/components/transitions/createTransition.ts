@@ -1,4 +1,4 @@
-import { FunctionalComponentOptions, VNode, VNodeData } from 'vue'
+import { FunctionalComponentOptions, VNode, VNodeData, Transition, TransitionGroup } from 'vue'
 import mergeData from '../../util/mergeData'
 import {h} from 'vue'
 
@@ -44,22 +44,19 @@ export function createSimpleTransition (
     },
 
     render (): VNode {
-      const tag = `transition${this.$props.group ? '-group' : ''}`
+      const tag = this.$props.group ? TransitionGroup : Transition
+
       const data: VNodeData = {
-        props: {
-          name,
-          mode: this.$props.mode,
-        },
-        on: {
-          beforeEnter: (el: HTMLElement) => {
-            el.style.transformOrigin = this.$props.origin
-            el.style.webkitTransformOrigin = this.$props.origin
-          },
-        },
+        name,
+        mode: this.$props.mode,
+        onBeforeEnter: (el: HTMLElement) => {
+          el.style.transformOrigin = this.$props.origin
+          el.style.webkitTransformOrigin = this.$props.origin
+        }
       }
 
       if (this.$props.leaveAbsolute) {
-        data.on!.leave = mergeTransitions(data.on!.leave, (el: HTMLElement) => {
+        data.onLeave = mergeTransitions(data.onLeave, (el: HTMLElement) => {
           const { offsetTop, offsetLeft, offsetWidth, offsetHeight } = el
           el._transitionInitialStyles = {
             position: el.style.position,
@@ -74,7 +71,7 @@ export function createSimpleTransition (
           el.style.width = offsetWidth + 'px'
           el.style.height = offsetHeight + 'px'
         })
-        data.on!.afterLeave = mergeTransitions(data.on!.afterLeave, (el?: HTMLElement) => {
+        data.onAfterLeave = mergeTransitions(data.onAfterLeave, (el?: HTMLElement) => {
           if (el && el._transitionInitialStyles) {
             const { position, top, left, width, height } = el._transitionInitialStyles
             delete el._transitionInitialStyles
@@ -87,7 +84,7 @@ export function createSimpleTransition (
         })
       }
       if (this.$props.hideOnLeave) {
-        data.on!.leave = mergeTransitions(data.on!.leave, (el: HTMLElement) => {
+        data.onLeave = mergeTransitions(data.onLeave, (el: HTMLElement) => {
           el.style.setProperty('display', 'none', 'important')
         })
       }
@@ -116,10 +113,10 @@ export function createJavascriptTransition (
 
     render (): VNode {
       return h(
-        'transition',
+        Transition,
         mergeData(this.$attrs, {
-          props: { name },
-          on: functions,
+          name,
+          functions,
         }),
         this.$slots.default()
       )

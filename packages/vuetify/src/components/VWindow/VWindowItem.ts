@@ -14,7 +14,7 @@ import { convertToUnit, getSlot } from '../../util/helpers'
 import mixins, { ExtractVue } from '../../util/mixins'
 
 // Types
-import { VNode } from 'vue'
+import { VNode, Transition } from 'vue'
 
 const baseMixins = mixins(
   Bootable,
@@ -137,24 +137,20 @@ export default baseMixins.extend({
   },
 
   render (): VNode {
-    return h('transition', {
-      props: {
-        name: this.computedTransition,
-      },
-      on: {
-        // Handlers for enter windows.
-        beforeEnter: this.onBeforeTransition,
-        afterEnter: this.onAfterTransition,
-        enterCancelled: this.onTransitionCancelled,
+    return h(Transition, {
+      name: this.computedTransition,
+      // Handlers for enter windows.
+      onBeforeEnter: this.onBeforeTransition,
+      onAfterEnter: this.onAfterTransition,
+      onEnterCancelled: this.onTransitionCancelled,
 
-        // Handlers for leave windows.
-        beforeLeave: this.onBeforeTransition,
-        afterLeave: this.onAfterTransition,
-        leaveCancelled: this.onTransitionCancelled,
+      // Handlers for leave windows.
+      onBeforeLeave: this.onBeforeTransition,
+      onAfterLeave: this.onAfterTransition,
+      onLeaveCancelled: this.onTransitionCancelled,
 
-        // Enter handler for height transition.
-        enter: this.onEnter,
-      },
+      // Enter handler for height transition.
+      onEnter: this.onEnter,
     }, this.showLazyContent(() => [this.genWindowItem()]))
   },
 })

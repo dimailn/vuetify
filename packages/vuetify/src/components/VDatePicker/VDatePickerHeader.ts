@@ -15,7 +15,7 @@ import mixins from '../../util/mixins'
 import { getSlot } from '../../util/helpers'
 
 // Types
-import { VNode, PropType } from 'vue'
+import { VNode, PropType, Transition } from 'vue'
 import { DatePickerFormatter } from 'vuetify/types'
 
 export default mixins(
@@ -120,10 +120,8 @@ export default mixins(
         },
       }, getSlot(this) || [this.formatter(String(this.value))])])
 
-      const transition = this.$createElement('transition', {
-        props: {
-          name: (this.isReversing === !this.$vuetify.rtl) ? 'tab-reverse-transition' : 'tab-transition',
-        },
+      const transition = this.$createElement(Transition, {
+        name: (this.isReversing === !this.$vuetify.rtl) ? 'tab-reverse-transition' : 'tab-transition',
       }, [header])
 
       return this.$createElement('div', {

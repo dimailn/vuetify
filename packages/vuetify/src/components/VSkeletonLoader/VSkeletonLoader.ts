@@ -1,4 +1,4 @@
-import {h} from 'vue'
+import {Transition, h} from 'vue'
 // Styles
 import './VSkeletonLoader.sass'
 
@@ -155,18 +155,14 @@ export default mixins(
       if (!this.transition) return children
 
       /* istanbul ignore next */
-      return this.$createElement('transition', {
-        props: {
-          name: this.transition,
-        },
+      return this.$createElement(Transition, {
+        name: this.transition,
         // Only show transition when
         // content has been loaded
-        on: {
-          afterEnter: this.resetStyles,
-          beforeEnter: this.onBeforeEnter,
-          beforeLeave: this.onBeforeLeave,
-          leaveCancelled: this.resetStyles,
-        },
+        onAfterEnter: this.resetStyles,
+        onBeforeEnter: this.onBeforeEnter,
+        onBeforeLeave: this.onBeforeLeave,
+        onLeaveCancelled: this.resetStyles
       }, children)
     },
     mapBones (bones: string) {
