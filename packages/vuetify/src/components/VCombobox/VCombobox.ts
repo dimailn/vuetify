@@ -75,8 +75,8 @@ export default defineComponent({
     genInput () {
       const input = VAutocomplete.methods.genInput.call(this)
 
-      delete input.data!.attrs!.name
-      input.data!.on!.paste = this.onPaste
+      delete input.props.name
+      input.props.onPaste = this.onPaste
 
       return input
     },

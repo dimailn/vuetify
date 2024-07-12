@@ -446,12 +446,11 @@ export default baseMixins.extend({
 
       if (type === 'append') {
         // Don't allow the dropdown icon to be focused
-        icon.children![0].data = mergeData(icon.children![0].data!, {
-          attrs: {
-            tabindex: icon.children![0].componentOptions!.listeners && '-1',
-            'aria-hidden': 'true',
-            'aria-label': undefined,
-          },
+        const hasListeners = Object.keys(icon.children![0].props).some(key => key.startsWith('on'))
+        icon.children![0].data = mergeData(icon.children![0].props!, {
+          tabindex: hasListeners && '-1',
+          'aria-hidden': 'true',
+          'aria-label': undefined
         })
       }
 
@@ -489,8 +488,8 @@ export default baseMixins.extend({
     genInputSlot (): VNode {
       const render = VTextField.methods.genInputSlot.call(this)
 
-      render.data!.attrs = {
-        ...render.data!.attrs,
+      render.props = {
+        ...render.props,
         role: 'button',
         'aria-haspopup': 'listbox',
         'aria-expanded': String(this.isMenuActive),

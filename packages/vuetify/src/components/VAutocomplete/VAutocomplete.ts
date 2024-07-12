@@ -313,12 +313,10 @@ export default defineComponent({
     genInput () {
       const input = VTextField.methods.genInput.call(this)
 
-      input.data = mergeData(input.data!, {
-        attrs: {
-          'aria-activedescendant': getObjectValueByPath(this.$refs.menu, 'activeTile.id'),
-          autocomplete: getObjectValueByPath(input.data!, 'attrs.autocomplete', 'off'),
-        },
-        domProps: { value: this.internalSearch },
+      input.data = mergeData(input.props!, {
+        'aria-activedescendant': getObjectValueByPath(this.$refs.menu, 'activeTile.id'),
+        autocomplete: getObjectValueByPath(input.data!, 'attrs.autocomplete', 'off'),
+        value: this.internalSearch,
       })
 
       return input
@@ -326,7 +324,7 @@ export default defineComponent({
     genInputSlot () {
       const slot = VSelect.methods.genInputSlot.call(this)
 
-      slot.data!.attrs!.role = 'combobox'
+      slot.props.role = 'combobox'
 
       return slot
     },
