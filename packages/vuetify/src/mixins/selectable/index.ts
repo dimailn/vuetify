@@ -104,24 +104,20 @@ export default mixins(
     },
     genInput (type: string, attrs: object) {
       return this.$createElement('input', {
-        attrs: Object.assign({
+        ...Object.assign({
           'aria-checked': this.isActive.toString(),
           disabled: this.isDisabled,
           id: this.computedId,
           role: type,
           type,
         }, attrs),
-        domProps: {
-          value: this.value,
-          checked: this.isActive,
-        },
-        on: {
-          blur: this.onBlur,
-          change: this.onChange,
-          focus: this.onFocus,
-          keydown: this.onKeydown,
-          click: prevent,
-        },
+        value: this.value,
+        checked: this.isActive,
+        onBlur: this.onBlur,
+        onChange: this.onChange,
+        onFocus: this.onFocus,
+        onKeydown: this.onKeydown,
+        onClick: prevent,
         ref: 'input',
       })
     },

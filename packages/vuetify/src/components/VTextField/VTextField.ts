@@ -25,6 +25,7 @@ import { breaking, consoleWarn } from '../../util/console'
 // Types
 import mixins from '../../util/mixins'
 import { VNode, PropType } from 'vue/types'
+import { withDirectives } from 'vue'
 
 const baseMixins = mixins(
   VInput,
@@ -392,7 +393,7 @@ export default baseMixins.extend({
       delete listeners.change // Change should not be bound externally
       const { title, ...inputAttrs } = this.attrs$
 
-      return this.$createElement('input', {
+      const node = this.$createElement('input', {
         style: {},
         value: (this.type === 'number' && Object.is(this.lazyValue, -0)) ? '-0' : this.lazyValue,
         ...inputAttrs,
@@ -407,13 +408,17 @@ export default baseMixins.extend({
         onFocus: this.onFocus,
         onKeydown: this.onKeyDown,
         ...listeners,
-        ref: 'input',
-        directives: [{
-          name: 'resize',
-          modifiers: { quiet: true },
-          value: this.onResize,
-        }],
+        ref: 'input'
       })
+
+      return withDirectives(node, [
+        [
+          resize,
+          this.onResize,
+          '',
+          { quiet: true }
+        ]
+      ])
     },
     genMessages () {
       if (!this.showDetails) return null

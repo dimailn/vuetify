@@ -73,11 +73,20 @@ export function install (Vue: ReturnType<typeof createApp>, args: VuetifyUseOpti
       }
     },
     methods: {
-      $on() {
-        console.warn("$on is not available")
+      $emitLegacy(eventName, args) {
+        if(!this.eventsLegacy || !this.eventsLegacy[eventName]) return
+
+        this.eventsLegacy[eventName].forEach(listener => listener(args))
       },
-      $off() {
-        console.warn('$off is not available')
+      $on(eventName, listener) {
+        this.eventsLegacy ||= {}
+        this.eventsLegacy[eventName] ||= []
+        this.eventsLegacy[eventName].push(listener)
+        // console.warn("$on is not available")
+      },
+      $off(eventName, listener) {
+        this.eventsLegacy[eventName] = this.eventsLegacy[eventName].filter(_listener => _listener !== listener)
+        // console.warn('$off is not available')
       }
     }
   })

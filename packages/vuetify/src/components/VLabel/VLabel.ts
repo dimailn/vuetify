@@ -50,10 +50,8 @@ export default mixins(Themeable).extend({
         'v-label--is-disabled': props.disabled,
         ...functionalThemeClasses(this),
       },
-      attrs: {
-        for: props.for,
-        'aria-hidden': !props.for,
-      },
+      for: props.for,
+      'aria-hidden': !props.for,
       style: {
         left: convertToUnit(props.left),
         right: convertToUnit(props.right),

@@ -2,7 +2,7 @@
 import ripple from '../../directives/ripple'
 
 // Types
-import Vue, { VNode, VNodeData, VNodeDirective, defineComponent } from 'vue'
+import Vue, { VNode, VNodeData, VNodeDirective, defineComponent, withDirectives } from 'vue'
 
 export default defineComponent({
   name: 'rippleable',
@@ -20,15 +20,19 @@ export default defineComponent({
     genRipple (data: VNodeData = {}): VNode | null {
       if (!this.ripple) return null
 
-      data.staticClass = 'v-input--selection-controls__ripple'
+      data.class = 'v-input--selection-controls__ripple'
 
-      data.directives = data.directives || []
-      data.directives.push({
-        name: 'ripple',
-        value: { center: true },
-      } as VNodeDirective)
+      const node = this.$createElement('div', data)
 
-      return this.$createElement('div', data)
+      return withDirectives(node, [
+        ...(data.directives || []),
+        [
+          ripple,
+          { center: true },
+          '',
+          {}
+        ]
+      ])
     },
   },
 })

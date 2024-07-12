@@ -46,7 +46,6 @@ export default class Vuetify {
     this.use(services.Lang)
     this.use(services.Theme)
 
-    console.log('constructor')
   }
 
   // Called on the new vuetify instance
@@ -57,8 +56,6 @@ export default class Vuetify {
       const service = this.framework[property]
 
       service.framework = this.framework
-
-      console.log('init', property)
 
       service.init(root, ssrContext)
     })

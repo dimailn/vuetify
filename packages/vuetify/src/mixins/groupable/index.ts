@@ -71,6 +71,7 @@ export function factory<T extends string, C extends VueConstructor | null = null
           return
         }
         this.$emit('change')
+        this.$emitLegacy('change')
       },
     },
   }

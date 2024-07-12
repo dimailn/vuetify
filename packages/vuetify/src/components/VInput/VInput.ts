@@ -235,11 +235,9 @@ export default baseMixins.extend({
       return this.$createElement('div', this.setBackgroundColor(this.backgroundColor, {
         class: {'v-input__slot': true},
         style: { height: convertToUnit(this.height) },
-        on: {
-          click: this.onClick,
-          mousedown: this.onMouseDown,
-          mouseup: this.onMouseUp,
-        },
+        onClick: this.onClick,
+        onMousedown: this.onMouseDown,
+        onMouseup: this.onMouseUp,
         ref: 'input-slot',
       }), [this.genDefaultSlot()])
     },

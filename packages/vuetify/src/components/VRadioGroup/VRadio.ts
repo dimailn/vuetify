@@ -113,7 +113,7 @@ export default baseMixins.extend({
         return this.name
       }
 
-      return this.radioGroup.name || `radio-${this.radioGroup._uid}`
+      return this.radioGroup.name || `radio-${this.radioGroup.$.uid}`
     },
     rippleState (): string | undefined {
       return Selectable.computed.rippleState.call(this)
@@ -134,17 +134,11 @@ export default baseMixins.extend({
       if (!this.hasLabel) return null
 
       return this.$createElement(VLabel, {
-        on: {
-          // Label shouldn't cause the input to focus
-          click: prevent,
-        },
-        attrs: {
-          for: this.computedId,
-        },
-        props: {
-          color: this.validationState,
-          focused: this.hasState,
-        },
+        // Label shouldn't cause the input to focus
+        onClick: prevent,
+        for: this.computedId,
+        color: this.validationState,
+        focused: this.hasState,
       }, getSlot(this, 'label') || this.label)
     },
     genRadio () {
@@ -154,9 +148,7 @@ export default baseMixins.extend({
         class: 'v-input--selection-controls__input',
       }, [
         this.$createElement(VIcon, this.setTextColor(this.validationState, {
-          props: {
-            dense: this.radioGroup && this.radioGroup.dense,
-          },
+          dense: this.radioGroup && this.radioGroup.dense,
         }), this.computedIcon),
         this.genInput({
           name: this.computedName,
@@ -184,12 +176,11 @@ export default baseMixins.extend({
 
   render (): VNode {
     const data: VNodeData = {
-      class: 'v-radio',
-      class: this.classes,
-      on: mergeListeners({
-        click: this.onChange,
+      class: ['v-radio', this.classes],
+      ...mergeListeners({
+        onClick: this.onChange,
       }, this.listeners$),
-      attrs: { title: this.attrs$.title },
+      title: this.attrs$.title
     }
 
     return h('div', data, [

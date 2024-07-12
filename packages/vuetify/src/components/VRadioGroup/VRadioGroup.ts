@@ -58,17 +58,15 @@ export default baseMixins.extend({
     genDefaultSlot () {
       return this.$createElement('div', {
         class: 'v-input--radio-group__input',
-        attrs: {
-          id: this.id,
-          role: 'radiogroup',
-          'aria-labelledby': this.computedId,
-        },
+        id: this.id,
+        role: 'radiogroup',
+        'aria-labelledby': this.computedId,
       }, VInput.methods.genDefaultSlot.call(this))
     },
     genInputSlot () {
       const render = VInput.methods.genInputSlot.call(this)
 
-      delete render.data!.on!.click
+      delete render.props!.onClick
 
       return render
     },
@@ -88,9 +86,12 @@ export default baseMixins.extend({
   },
 
   render () {
-    const vnode = VInput.render.call(this, h)
+    const vnode = VInput.render.call(this)
 
-    this._b(vnode.data!, 'div', this.attrs$)
+    vnode.props = {
+      ...vnode.props,
+      ...this.attrs$
+    }
 
     return vnode
   },
