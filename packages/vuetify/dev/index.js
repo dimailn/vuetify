@@ -8,7 +8,7 @@ import Vuetify from 'vuetify'
 
 const app = createApp({
   data: () => ({ isLoaded: document.readyState === 'complete' }),
-  // vuetify,
+  vuetify,
   router,
   render () {
     return this.isLoaded ? h(App) : undefined

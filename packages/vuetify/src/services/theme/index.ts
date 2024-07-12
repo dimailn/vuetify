@@ -64,6 +64,7 @@ export class Theme extends Service {
   // When setting css, check for element and apply new values
   /* eslint-disable-next-line accessor-pairs */
   set css (val: string) {
+    console.log('set css')
     if (this.vueMeta) {
       if (this.isVueMeta23) {
         this.applyVueMeta23()
@@ -104,6 +105,7 @@ export class Theme extends Service {
   public init (root: App, ssrContext?: any): void {
     if (this.disabled) return
 
+    console.log('init')
     /* istanbul ignore else */
     if ((root as any).$meta) {
       this.initVueMeta(root)
@@ -116,6 +118,7 @@ export class Theme extends Service {
 
   // Allows for you to set target theme
   public setTheme (theme: 'light' | 'dark', value: object) {
+    console.log('setTheme')
     this.themes[theme] = Object.assign(this.themes[theme], value)
     this.applyTheme()
   }
@@ -129,6 +132,7 @@ export class Theme extends Service {
 
   // Check for existence of style element
   private checkOrCreateStyleElement (): boolean {
+    console.log("FDDFDF")
     this.styleEl = document.getElementById('vuetify-theme-stylesheet') as HTMLStyleElement
 
     /* istanbul ignore next */
@@ -170,6 +174,7 @@ export class Theme extends Service {
   }
 
   private initVueMeta (root: any) {
+    console.log('init vue meta')
     this.vueMeta = root.$meta()
     if (this.isVueMeta23) {
       // vue-meta needs to apply after mounted()

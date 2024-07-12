@@ -282,8 +282,6 @@ export default mixins(
       }
     })
 
-    console.log(node, data)
-
     node.children = [
       this.__cachedSizer,
       this.__cachedImage,

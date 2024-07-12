@@ -77,7 +77,7 @@ export const ClickOutside = {
   // sure that the root element is
   // available, iOS does not support
   // clicks on body
-  inserted (el: HTMLElement, binding: ClickOutsideDirective, vnode: VNode) {
+  mounted (el: HTMLElement, binding: ClickOutsideDirective, vnode: VNode) {
     const onClick = (e: Event) => directive(e as PointerEvent, el, binding)
     const onMousedown = (e: Event) => {
       el._clickOutside!.lastMousedownWasOutside = checkEvent(e as PointerEvent, el, binding)
@@ -94,25 +94,25 @@ export const ClickOutside = {
       }
     }
 
-    el._clickOutside[vnode.context!._uid] = {
+    el._clickOutside[vnode.ctx.uid] = {
       onClick,
       onMousedown,
     }
   },
 
-  unbind (el: HTMLElement, binding: ClickOutsideDirective, vnode: VNode) {
+  unmounted (el: HTMLElement, binding: ClickOutsideDirective, vnode: VNode) {
     if (!el._clickOutside) return
 
     handleShadow(el, (app: HTMLElement) => {
-      if (!app || !el._clickOutside?.[vnode.context!._uid]) return
+      if (!app || !el._clickOutside?.[vnode.ctx.uid]) return
 
-      const { onClick, onMousedown } = el._clickOutside[vnode.context!._uid]!
+      const { onClick, onMousedown } = el._clickOutside[vnode.ctx.uid]!
 
       app.removeEventListener('click', onClick, true)
       app.removeEventListener('mousedown', onMousedown, true)
     })
 
-    delete el._clickOutside[vnode.context!._uid]
+    delete el._clickOutside[vnode.ctx.uid]
   },
 }
 

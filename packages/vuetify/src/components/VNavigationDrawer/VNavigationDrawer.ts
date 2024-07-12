@@ -1,4 +1,4 @@
-import {h} from 'vue'
+import {h, withDirectives} from 'vue'
 // Styles
 import './VNavigationDrawer.sass'
 
@@ -246,7 +246,7 @@ export default baseMixins.extend({
   watch: {
     $route: 'onRouteChange',
     isActive (val) {
-      this.$emit('input:modelValue', val)
+      this.$emit('update:modelValue', val)
     },
     /**
      * When mobile changes, adjust the active state
@@ -328,24 +328,28 @@ export default baseMixins.extend({
       }, [image])
     },
     genDirectives (): VNodeDirective[] {
-      const directives = [{
-        name: 'click-outside',
-        value: {
+      const directives = [[
+        ClickOutside,
+        {
           handler: () => { this.isActive = false },
           closeConditional: this.closeConditional,
           include: this.getOpenDependentElements,
         },
-      }]
+        '',
+        {}
+      ]]
 
       if (!this.touchless && !this.stateless) {
-        directives.push({
-          name: 'touch',
-          value: {
+        directives.push([
+          Touch,
+          {
             parent: true,
             left: this.swipeLeft,
             right: this.swipeRight,
           },
-        } as any)
+          '',
+          {}
+        ] as any)
       }
 
       return directives
@@ -459,11 +463,12 @@ export default baseMixins.extend({
 
     if (this.src || getSlot(this, 'img')) children.unshift(this.genBackground())
 
-    return h(this.$tag, this.setBackgroundColor(this.color, {
+    const node = h(this.$tag, this.setBackgroundColor(this.color, {
       class: this.classes,
       style: this.styles,
-      directives: this.genDirectives(),
-      on: this.genListeners(),
+      ...this.genListeners(),
     }), children)
+
+    return withDirectives(node, this.genDirectives())
   },
 })

@@ -11,7 +11,7 @@ import {
 } from '../../util/helpers'
 
 // Types
-import {defineComponent, App, createApp} from 'vue'
+import {defineComponent, App, createApp, h} from 'vue'
 
 interface Toggleable extends App {
   isActive?: boolean
@@ -64,13 +64,31 @@ export default defineComponent({
       // Create a container element
       const container = document.createElement('div');
 
-      // Create the overlay app
-      const overlayApp = createApp(VOverlay, {
+      const props = {
         absolute: this.absolute,
-        modelValue: false, // Use `modelValue` for v-model in Vue 3
         color: this.overlayColor,
-        opacity: this.overlayOpacity,
-      });
+        opacity: this.overlayOpacity
+      }
+      const wrapper = {
+        data() {
+          return { value: false }
+        },
+        render() {
+          return h(VOverlay, {
+            value: this.value,
+            ...props
+          })
+        }
+      }
+      // // Create the overlay app
+      // const overlayApp = createApp(VOverlay, {
+      //   absolute: this.absolute,
+      //   value: false,
+      //   color: this.overlayColor,
+      //   opacity: this.overlayOpacity,
+      // });
+
+      const overlayApp = createApp(wrapper)
 
       // Mount the app to the container
       const overlayInstance = overlayApp.mount(container);
@@ -85,6 +103,7 @@ export default defineComponent({
       }
 
       this.overlay = overlayInstance;
+      this.overlayApp = overlayApp
     },
     genOverlay () {
       this.hideScroll()
@@ -120,8 +139,11 @@ export default defineComponent({
           ) return
 
           this.overlay.$el.parentNode.removeChild(this.overlay.$el)
-          this.overlay.$destroy()
+          this.overlayApp.unmount()
+          this.overlayApp = null
           this.overlay = null
+          console.log('destroyed')
+
         })
 
         // Cancel animation frame in case

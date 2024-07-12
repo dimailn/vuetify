@@ -54,8 +54,6 @@ export default mixins(
         },
       })
 
-      console.log(data)
-
       return h('div', data)
     },
     classes (): object {
@@ -80,7 +78,7 @@ export default mixins(
       return h('div', {
         class: 'v-overlay__content',
       }, getSlot(this))
-    },
+    }
   },
 
   render (): VNode {

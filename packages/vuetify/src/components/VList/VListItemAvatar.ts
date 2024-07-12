@@ -24,16 +24,12 @@ export default defineComponent({
         'v-list-item__avatar--horizontal': this.horizontal,
         ...VAvatar.computed.classes.call(this),
         'v-avatar--tile': this.tile || this.horizontal,
+        'v-list-item__avatar': true
       }
     },
   },
 
   render (): VNode {
-    const render = VAvatar.render.call(this, h)
-
-    render.data = render.data || {}
-    render.data.staticClass += ' v-list-item__avatar'
-
-    return render
+    return VAvatar.render.call(this)
   },
 })

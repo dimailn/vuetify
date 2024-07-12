@@ -170,11 +170,9 @@ export default baseMixins.extend({
       return this.$createElement('span', {
         class: 'v-btn__loader',
       }, getSlot(this, 'loader') || [this.$createElement(VProgressCircular, {
-        props: {
-          indeterminate: true,
-          size: 23,
-          width: 2,
-        },
+        indeterminate: true,
+        size: 23,
+        width: 2
       })])
     },
   },

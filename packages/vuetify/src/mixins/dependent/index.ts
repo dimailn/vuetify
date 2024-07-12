@@ -17,15 +17,16 @@ interface DependentInstance extends Vue {
 }
 
 function searchChildren (children: Vue[]): DependentInstance[] {
+
+
   const results = []
   for (let index = 0; index < children.length; index++) {
     const child = children[index] as DependentInstance
-    console.log(child)
 
     if (child.isActive && child.isDependent) {
       results.push(child)
     } else {
-      results.push(...searchChildren(child.$children))
+      results.push(...searchChildren(child.children?.default?.() || []))
     }
   }
 
