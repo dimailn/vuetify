@@ -96,7 +96,7 @@ export default defineComponent({
           value: this.computedRipple,
         }],
         ...this.$listeners,
-        ...('click' in this ? { click: (this as any).click } : undefined), // #14447
+        ...('click' in this ? { onClick: (this as any).click } : undefined), // #14447
         ref: 'link'
       }
 

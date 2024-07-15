@@ -1,4 +1,4 @@
-import {h, Transition} from 'vue'
+import {h, Transition, vShow, withDirectives} from 'vue'
 // Styles
 import './VMenu.sass'
 
@@ -320,58 +320,52 @@ export default baseMixins.extend({
       }, [content])
     },
     genDirectives (): VNodeDirective[] {
-      const directives: VNodeDirective[] = [{
-        name: 'show',
-        value: this.isContentActive,
-      }]
+      const directives = [[
+        vShow,
+        this.isContentActive
+      ]]
 
       // Do not add click outside for hover menu
       if (!this.openOnHover && this.closeOnClick) {
-        directives.push({
-          name: 'click-outside',
-          value: {
+        directives.push([
+          ClickOutside,
+          {
             handler: () => { this.isActive = false },
             closeConditional: this.closeConditional,
             include: () => [this.$el, ...this.getOpenDependentElements()],
           },
-        })
+        ])
       }
 
       return directives
     },
     genContent (): VNode {
       const options = {
-        attrs: {
-          ...this.getScopeIdAttrs(),
-          ...this.contentProps,
-          role: 'role' in this.$attrs ? this.$attrs.role : 'menu',
-        },
-        class: 'v-menu__content',
-        class: {
+        ...this.getScopeIdAttrs(),
+        ...this.contentProps,
+        role: 'role' in this.$attrs ? this.$attrs.role : 'menu',
+        class: ['v-menu__content', {
           ...this.rootThemeClasses,
           ...this.roundedClasses,
           'v-menu__content--auto': this.auto,
           'v-menu__content--fixed': this.activatorFixed,
           menuable__content__active: this.isActive,
           [this.contentClass.trim()]: true,
-        },
+        }],
         style: this.styles,
-        directives: this.genDirectives(),
         ref: 'content',
-        on: {
-          click: (e: Event) => {
-            const target = e.target as HTMLElement
+        onClick: (e: Event) => {
+          const target = e.target as HTMLElement
 
-            if (target.getAttribute('disabled')) return
-            if (this.closeOnContentClick) this.isActive = false
-          },
-          keydown: this.onKeyDown,
+          if (target.getAttribute('disabled')) return
+          if (this.closeOnContentClick) this.isActive = false
         },
+        onKeydown: this.onKeyDown,
       } as VNodeData
 
-      if (this.$listeners.scroll) {
+      if (this.onScroll) {
         options.on = options.on || {}
-        options.on.scroll = this.$listeners.scroll
+        options.on.scroll = this.onScroll
       }
 
       if (!this.disabled && this.openOnHover) {
@@ -384,7 +378,9 @@ export default baseMixins.extend({
         options.on.mouseleave = this.mouseLeaveHandler
       }
 
-      return this.$createElement('div', options, this.getContentSlot())
+      const directives = this.genDirectives()
+
+      return withDirectives(this.$createElement('div', options, this.getContentSlot()), directives)
     },
     getTiles () {
       if (!this.$refs.content) return
@@ -496,13 +492,12 @@ export default baseMixins.extend({
 
   render (): VNode {
     const data = {
-      class: 'v-menu',
-      class: {
+      class: ['v-menu', {
         'v-menu--attached':
           this.attach === '' ||
           this.attach === true ||
           this.attach === 'attach',
-      },
+      }],
       directives: [{
         arg: '500',
         name: 'resize',
@@ -510,15 +505,15 @@ export default baseMixins.extend({
       }],
     }
 
+    // console.log('vmenurender', this, this.activator, this.getActivator())
+
     return h('div', data, [
       !this.activator && this.genActivator(),
       this.showLazyContent(() => [
         this.$createElement(VThemeProvider, {
-          props: {
-            root: true,
-            light: this.light,
-            dark: this.dark,
-          },
+          root: true,
+          light: this.light,
+          dark: this.dark,
         }, [this.genTransition()]),
       ]),
     ])

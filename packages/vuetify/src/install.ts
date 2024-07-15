@@ -76,6 +76,7 @@ export function install (Vue: ReturnType<typeof createApp>, args: VuetifyUseOpti
       $emitLegacy(eventName, args) {
         if(!this.eventsLegacy || !this.eventsLegacy[eventName]) return
 
+
         this.eventsLegacy[eventName].forEach(listener => listener(args))
       },
       $on(eventName, listener) {

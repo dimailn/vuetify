@@ -73,14 +73,14 @@ export default mixins<options &
         const activator = Array.isArray(this.activatorNode) ? this.activatorNode : [this.activatorNode]
 
         activator.forEach(node => {
-          if (!node.elm) return
+          if (!node.el) return
           if (!this.$el.parentNode) return
 
           const target = this.$el === this.$el.parentNode.firstChild
             ? this.$el
             : this.$el.nextSibling
 
-          this.$el.parentNode.insertBefore(node.elm, target)
+          this.$el.parentNode.insertBefore(node.el, target)
         })
       }
     })

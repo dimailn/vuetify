@@ -194,28 +194,19 @@ export default baseMixins.extend({
       } : {}
 
       return {
-        attrs: {
-          ...attrs,
-          id: this.computedOwns,
-        },
-        props: {
-          action: this.multiple,
-          color: this.itemColor,
-          dense: this.dense,
-          hideSelected: this.hideSelected,
-          items: this.virtualizedItems,
-          itemDisabled: this.itemDisabled,
-          itemText: this.itemText,
-          itemValue: this.itemValue,
-          noDataText: this.$vuetify.lang.t(this.noDataText),
-          selectedItems: this.selectedItems,
-        },
-        on: {
-          select: this.selectItem,
-        },
-        scopedSlots: {
-          item: this.$slots.item,
-        },
+        ...attrs,
+        id: this.computedOwns,
+        action: this.multiple,
+        color: this.itemColor,
+        dense: this.dense,
+        hideSelected: this.hideSelected,
+        items: this.virtualizedItems,
+        itemDisabled: this.itemDisabled,
+        itemText: this.itemText,
+        itemValue: this.itemValue,
+        noDataText: this.$vuetify.lang.t(this.noDataText),
+        selectedItems: this.selectedItems,
+        onSelect: this.selectItem,
       }
     },
     staticList (): VNode {
@@ -223,7 +214,9 @@ export default baseMixins.extend({
         consoleError('assert: staticList should not be called if slots are used')
       }
 
-      return this.$createElement(VSelectList, this.listData)
+      return this.$createElement(VSelectList, this.listData,  {
+        item: this.$slots.item,
+      })
     },
     virtualizedItems (): object[] {
       return (this.$_menuProps as any).auto
@@ -517,7 +510,7 @@ export default baseMixins.extend({
       // as a referenced object
       return this.$createElement(VSelectList, {
         ...this.listData,
-      }, slots)
+      }, {...slots,item: this.$slots.item})
     },
     genMenu (): VNode {
       const props = this.$_menuProps as any

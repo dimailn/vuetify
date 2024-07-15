@@ -23,7 +23,7 @@ export default {
     /* istanbul ignore next */
     return (
       this.$slots.default! &&
-      this.$slots.default!.find(node => !node.isComment && node.text !== ' ')!
+      this.$slots.default!().find(node => !node.isComment && node.text !== ' ')!
     )
   },
 }

@@ -83,8 +83,11 @@ export default baseMixins.extend({
     },
     genActivator () {
       const node = getSlot(this, 'activator', Object.assign(this.getValueProxy(), {
-        on: this.genActivatorListeners(),
-        attrs: this.genActivatorAttributes(),
+        attrs: {
+          ...this.genActivatorListeners(),
+          ...this.genActivatorAttributes(),
+        }
+
       })) || []
 
       this.activatorNode = node
@@ -104,16 +107,16 @@ export default baseMixins.extend({
       const listeners: Listeners = {}
 
       if (this.openOnHover) {
-        listeners.mouseenter = (e: MouseEvent) => {
+        listeners.onMouseenter = (e: MouseEvent) => {
           this.getActivator(e)
           this.runDelay('open')
         }
-        listeners.mouseleave = (e: MouseEvent) => {
+        listeners.onMouseleave = (e: MouseEvent) => {
           this.getActivator(e)
           this.runDelay('close')
         }
       } else if (this.openOnClick) {
-        listeners.click = (e: MouseEvent) => {
+        listeners.onClick = (e: MouseEvent) => {
           const activator = this.getActivator(e)
           if (activator) activator.focus()
 
@@ -124,7 +127,7 @@ export default baseMixins.extend({
       }
 
       if (this.openOnFocus) {
-        listeners.focus = (e: FocusEvent) => {
+        listeners.onFocus = (e: FocusEvent) => {
           this.getActivator(e)
 
           e.stopPropagation()
@@ -155,10 +158,11 @@ export default baseMixins.extend({
           activator = this.activator
         }
       } else if (this.activatorNode.length === 1 || (this.activatorNode.length && !e)) {
+
         // Use the contents of the activator slot
         // There's either only one element in it or we
         // don't have a click event to use as a last resort
-        const vm = this.activatorNode[0].componentInstance
+        const vm = this.activatorNode[0].component.ctx
         if (
           vm &&
           vm.$options.mixins && //                         Activatable is indirectly used via Menuable
@@ -167,7 +171,7 @@ export default baseMixins.extend({
           // Activator is actually another activatible component, use its activator (#8846)
           activator = (vm as any).getActivator()
         } else {
-          activator = this.activatorNode[0].elm as HTMLElement
+          activator = this.activatorNode[0].el as HTMLElement
         }
       } else if (e) {
         // Activated by a click or focus event

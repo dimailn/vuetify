@@ -299,10 +299,10 @@ export default baseMixins.extend({
     genActivatorListeners () {
       const listeners = Activatable.methods.genActivatorListeners.call(this)
 
-      const onClick = listeners.click
+      const onClick = listeners.onClick
 
       if (onClick) {
-        listeners.click = (e: MouseEvent & KeyboardEvent & FocusEvent) => {
+        listeners.onClick = (e: MouseEvent & KeyboardEvent & FocusEvent) => {
           if (this.openOnClick) {
             onClick && onClick(e)
           }

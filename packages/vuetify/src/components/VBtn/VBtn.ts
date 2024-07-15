@@ -41,7 +41,7 @@ interface options extends ExtractVue<typeof baseMixins> {
 
 export default baseMixins.extend({
   name: 'v-btn',
-
+  inheritAttrs: false,
   props: {
     activeClass: {
       type: String,
@@ -158,6 +158,8 @@ export default baseMixins.extend({
       // TODO: Remove this in v3
       !this.retainFocusOnClick && !this.fab && e.detail && this.$el.blur()
       this.$emit('click', e)
+      this.$emitLegacy('click', e)
+
 
       this.btnToggle && this.toggle()
     },
