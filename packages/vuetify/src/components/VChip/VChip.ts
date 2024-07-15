@@ -1,4 +1,4 @@
-import {h} from 'vue'
+import {h, vShow, withDirectives} from 'vue'
 // Styles
 import './VChip.sass'
 
@@ -181,21 +181,26 @@ export default mixins(
 
   render (): VNode {
     const children = [this.genContent()]
-    let { tag, data } = this.generateRouteLink()
+    let { tag, data, directives } = this.generateRouteLink()
 
     data.attrs = {
       ...data.attrs,
       draggable: this.draggable ? 'true' : undefined,
       tabindex: this.chipGroup && !this.disabled ? 0 : data.attrs!.tabindex,
     }
-    data.directives!.push({
-      name: 'show',
-      value: this.active,
-    })
+
+    directives!.push([
+      vShow,
+      this.active,
+    ])
+
     data = this.setBackgroundColor(this.color, data)
 
     const color = this.textColor || (this.outlined && this.color)
 
-    return h(tag, this.setTextColor(color, data), children)
+    return withDirectives(
+      h(tag, this.setTextColor(color, data), children),
+      directives
+    )
   },
 })

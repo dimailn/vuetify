@@ -21,7 +21,7 @@ import { breaking } from '../../util/console'
 import { getSlot } from '../../util/helpers'
 
 // Types
-import { VNode } from 'vue'
+import { VNode, withDirectives } from 'vue'
 import { PropValidator, PropType } from 'vue/types/options'
 import { RippleOptions } from '../../directives/ripple'
 import {h} from 'vue'
@@ -184,7 +184,7 @@ export default baseMixins.extend({
       this.genContent(),
       this.loading && this.genLoader(),
     ]
-    const { tag, data } = this.generateRouteLink()
+    const { tag, data, directives } = this.generateRouteLink()
     const setColor = this.hasBg
       ? this.setBackgroundColor
       : this.setTextColor
@@ -197,6 +197,9 @@ export default baseMixins.extend({
       ? this.value
       : JSON.stringify(this.value)
 
-    return h(tag, this.disabled ? data : setColor(this.color, data), children)
+    return withDirectives(
+      h(tag, this.disabled ? data : setColor(this.color, data), children),
+      directives
+    )
   },
 })

@@ -13,7 +13,7 @@ import mixins from '../../util/mixins'
 import { getSlot } from '../../util/helpers'
 
 // Types
-import { VNode, h } from 'vue'
+import { VNode, h, withDirectives } from 'vue'
 
 /* @vue/component */
 export default mixins(
@@ -76,7 +76,7 @@ export default mixins(
   },
 
   render (): VNode {
-    const { tag, data } = this.generateRouteLink()
+    const { tag, data, directives } = this.generateRouteLink()
 
     data.style = this.styles
 
@@ -85,9 +85,9 @@ export default mixins(
       data.attrs.tabindex = 0
     }
 
-    return h(tag, this.setBackgroundColor(this.color, data), [
+    return withDirectives(h(tag, this.setBackgroundColor(this.color, data), [
       this.genProgress(),
       getSlot(this),
-    ])
+    ]), directives)
   },
 })

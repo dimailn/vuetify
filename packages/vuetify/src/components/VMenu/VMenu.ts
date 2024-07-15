@@ -497,17 +497,18 @@ export default baseMixins.extend({
           this.attach === '' ||
           this.attach === true ||
           this.attach === 'attach',
-      }],
-      directives: [{
-        arg: '500',
-        name: 'resize',
-        value: this.onResize,
-      }],
+      }]
     }
+
+    const directives = [[
+      Resize,
+      this.onResize,
+      '500'
+    ]]
 
     // console.log('vmenurender', this, this.activator, this.getActivator())
 
-    return h('div', data, [
+    return withDirectives(h('div', data, [
       !this.activator && this.genActivator(),
       this.showLazyContent(() => [
         this.$createElement(VThemeProvider, {
@@ -516,6 +517,6 @@ export default baseMixins.extend({
           dark: this.dark,
         }, [this.genTransition()]),
       ]),
-    ])
+    ]), directives)
   },
 })

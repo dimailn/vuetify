@@ -1,4 +1,4 @@
-import {h} from 'vue'
+import {h, withDirectives} from 'vue'
 import Routable from '../../mixins/routable'
 
 import mixins from '../../util/mixins'
@@ -32,9 +32,9 @@ export default mixins(Routable).extend({
   },
 
   render (): VNode {
-    const { tag, data } = this.generateRouteLink()
+    const { tag, data, directives } = this.generateRouteLink()
 
-    return h('li', [
+    return withDirectives(h('li', [
       h(tag, {
         ...data,
         attrs: {
@@ -42,6 +42,6 @@ export default mixins(Routable).extend({
           'aria-current': this.isActive && this.isLink ? 'page' : undefined,
         },
       }, getSlot(this)),
-    ])
+    ]), directives)
   },
 })

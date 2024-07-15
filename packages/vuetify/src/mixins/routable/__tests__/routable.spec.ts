@@ -1,7 +1,7 @@
 import Routable from '../'
 import { createLocalVue, mount, Wrapper } from '@vue/test-utils'
 import Router from 'vue-router'
-import Vue, { VNode } from 'vue'
+import Vue, { VNode, withDirectives } from 'vue'
 
 describe('routable.ts', () => {
   let mountFunction: (options?: object) => Wrapper<Vue>
@@ -25,7 +25,7 @@ describe('routable.ts', () => {
           },
         },
         render (h): VNode {
-          const { tag, data } = this.generateRouteLink()
+          const { tag, data, directives } = this.generateRouteLink()
 
           data.attrs = {
             ...data.attrs,
@@ -34,7 +34,10 @@ describe('routable.ts', () => {
             ...data.on,
           }
 
-          return h(tag, data, this.$slots.default)
+          return withDirectives(
+            h(tag, data, this.$slots.default),
+            directives
+          )
         },
       }, {
         localVue,

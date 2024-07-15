@@ -1,4 +1,4 @@
-import {h} from 'vue'
+import {h, withDirectives} from 'vue'
 // Mixins
 import { factory as GroupableFactory } from '../../mixins/groupable'
 import Routable from '../../mixins/routable'
@@ -111,23 +111,23 @@ export default baseMixins.extend({
   },
 
   render (): VNode {
-    const { tag, data } = this.generateRouteLink()
+    const { tag, data, directives } = this.generateRouteLink()
 
     data.attrs = {
       ...data.attrs,
       'aria-selected': String(this.isActive),
       role: 'tab',
       tabindex: this.disabled ? -1 : 0,
-    }
-    data.on = {
-      ...data.on,
-      keydown: (e: KeyboardEvent) => {
+      onKeydown: (e: KeyboardEvent) => {
         if (e.keyCode === keyCodes.enter) this.click(e)
 
         this.$emit('keydown', e)
       },
     }
 
-    return h(tag, data, getSlot(this))
+    return withDirectives(
+      h(tag, data, getSlot(this)),
+      directives
+    )
   },
 })

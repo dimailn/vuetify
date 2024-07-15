@@ -1,4 +1,4 @@
-import {h} from 'vue'
+import {h, withDirectives} from 'vue'
 // Styles
 import './VListItem.sass'
 
@@ -161,7 +161,7 @@ export default baseMixins.extend({
   },
 
   render (): VNode {
-    let { tag, data } = this.generateRouteLink()
+    let { tag, data, directives } = this.generateRouteLink()
 
     data.attrs = {
       ...data.attrs,
@@ -190,6 +190,9 @@ export default baseMixins.extend({
       toggle: this.toggle,
     })
 
-    return h(tag, this.isActive ? this.setTextColor(this.color, data) : data, children)
+    return withDirectives(
+      h(tag, this.isActive ? this.setTextColor(this.color, data) : data, children),
+      directives
+    )
   },
 })

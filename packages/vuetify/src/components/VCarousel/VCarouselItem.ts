@@ -8,6 +8,7 @@ import { VImg } from '../VImg'
 import mixins, { ExtractVue } from '../../util/mixins'
 import { getSlot } from '../../util/helpers'
 import Routable from '../../mixins/routable'
+import { vShow, withDirectives } from 'vue'
 
 // Types
 const baseMixins = mixins(
@@ -59,15 +60,18 @@ export default baseMixins.extend({
       ]
     },
     genWindowItem () {
-      const { tag, data } = this.generateRouteLink()
+      const { tag, data, directives } = this.generateRouteLink()
 
       data.staticClass = 'v-window-item'
-      data.directives!.push({
-        name: 'show',
-        value: this.isActive,
-      })
+      data.directives!.push([
+        vShow,
+        this.isActive,
+      ])
 
-      return this.$createElement(tag, data, this.genDefaultSlot())
+      return withDirectives(
+        this.$createElement(tag, data, this.genDefaultSlot()),
+        directives
+      )
     },
   },
 })

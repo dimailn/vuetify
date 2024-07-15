@@ -86,15 +86,15 @@ export default defineComponent({
       let exact = this.exact
       let tag
 
+      const directives = [[
+        Ripple,
+        this.computedRipple,
+      ]]
+
       const data: VNodeData = {
         tabindex: 'tabindex' in this.$attrs ? this.$attrs.tabindex : undefined,
         class: this.classes,
         style: this.styles,
-        props: {},
-        directives: [{
-          name: 'ripple',
-          value: this.computedRipple,
-        }],
         ...this.$listeners,
         ...('click' in this ? { onClick: (this as any).click } : undefined), // #14447
         ref: 'link'
@@ -117,7 +117,7 @@ export default defineComponent({
         }
 
         tag = this.nuxt ? 'nuxt-link' : 'router-link'
-        Object.assign(data.props, {
+        Object.assign(data, {
           to: this.to,
           exact,
           exactPath: this.exactPath,
@@ -134,7 +134,7 @@ export default defineComponent({
 
       if (this.target) data.target = this.target
 
-      return { tag, data }
+      return { tag, data, directives }
     },
     onRouteChange () {
       if (!this.to || !this.$refs.link || !this.$route) return
