@@ -183,10 +183,10 @@ export default mixins(
     const children = [this.genContent()]
     let { tag, data, directives } = this.generateRouteLink()
 
-    data.attrs = {
-      ...data.attrs,
+    data = {
+      ...data,
       draggable: this.draggable ? 'true' : undefined,
-      tabindex: this.chipGroup && !this.disabled ? 0 : data.attrs!.tabindex,
+      tabindex: this.chipGroup && !this.disabled ? 0 : data.tabindex,
     }
 
     directives!.push([

@@ -11,11 +11,9 @@ export default mixins(header).extend({
   methods: {
     genGroupByToggle (header: DataTableHeader) {
       return this.$createElement('span', {
-        on: {
-          click: (e: MouseEvent) => {
-            e.stopPropagation()
-            this.$emit('group', header.value)
-          },
+        onClick: (e: MouseEvent) => {
+          e.stopPropagation()
+          this.$emit('group', header.value)
         },
       }, ['group'])
     },
@@ -50,11 +48,9 @@ export default mixins(header).extend({
     },
     genHeader (header: DataTableHeader) {
       const data: Required<Pick<VNodeData, 'attrs' | 'on' | 'class' | 'style'>> = {
-        attrs: {
-          role: 'columnheader',
-          scope: 'col',
-          'aria-label': header.text || '',
-        },
+        role: 'columnheader',
+        scope: 'col',
+        'aria-label': header.text || '',
         style: {
           width: convertToUnit(header.width),
           minWidth: convertToUnit(header.width),
@@ -64,7 +60,6 @@ export default mixins(header).extend({
           ...wrapInArray(header.class),
           header.divider && 'v-data-table__divider',
         ],
-        on: {},
       }
       const children = []
 
@@ -79,7 +74,7 @@ export default mixins(header).extend({
       )
 
       if (!this.disableSort && (header.sortable || !header.hasOwnProperty('sortable'))) {
-        data.on.click = () => this.$emit('sort', header.value)
+        data.onClick = () => this.$emit('sort', header.value)
 
         const sortIndex = this.options.sortBy.findIndex(k => k === header.value)
         const beingSorted = sortIndex >= 0
@@ -89,8 +84,8 @@ export default mixins(header).extend({
 
         const { ariaLabel, ariaSort } = this.getAria(beingSorted, isDesc)
 
-        data.attrs['aria-label'] += `${header.text ? ': ' : ''}${ariaLabel}`
-        data.attrs['aria-sort'] = ariaSort
+        data['aria-label'] += `${header.text ? ': ' : ''}${ariaLabel}`
+        data['aria-sort'] = ariaSort
 
         if (beingSorted) {
           data.class.push('active')

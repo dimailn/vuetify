@@ -141,6 +141,13 @@ const VIcon = mixins(
         if (isFontAwesome5(iconType)) iconType = ''
       }
 
+      if(typeof data.class === 'string') {
+        data.class = data.class.split(' ').reduce((classes, className) => {
+          classes[className] = true
+          return classes
+        }, {})
+      }
+
       data.class[iconType] = true
       data.class[icon] = !isMaterialIcon
 

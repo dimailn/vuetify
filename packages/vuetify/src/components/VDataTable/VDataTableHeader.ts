@@ -34,7 +34,7 @@ export default defineComponent({
     dedupeModelListeners(data)
     const children = rebuildSlots(this.$slots, h)
 
-    data = mergeData(data, { props })
+    data = mergeData(data, props)
 
     if (props.mobile) {
       return h(VDataTableHeaderMobile, data, children)

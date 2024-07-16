@@ -452,19 +452,17 @@ export default baseMixins.extend({
     genInput (): VNode {
       const input = VTextField.methods.genInput.call(this)
 
-      delete input.data!.attrs!.name
+      delete input.props.name
 
-      input.data = mergeData(input.data!, {
-        domProps: { value: null },
-        attrs: {
-          readonly: true,
-          type: 'text',
-          'aria-readonly': String(this.isReadonly),
-          'aria-activedescendant': getObjectValueByPath(this.$refs.menu, 'activeTile.id'),
-          autocomplete: getObjectValueByPath(input.data!, 'attrs.autocomplete', 'off'),
-          placeholder: (!this.isDirty && (this.persistentPlaceholder || this.isFocused || !this.hasLabel)) ? this.placeholder : undefined,
-        },
-        on: { keypress: this.onKeyPress },
+      input.props = mergeData(input.props, {
+        value: null,
+        readonly: true,
+        type: 'text',
+        'aria-readonly': String(this.isReadonly),
+        'aria-activedescendant': getObjectValueByPath(this.$refs.menu, 'activeTile.id'),
+        autocomplete: getObjectValueByPath(input.data!, 'attrs.autocomplete', 'off'),
+        placeholder: (!this.isDirty && (this.persistentPlaceholder || this.isFocused || !this.hasLabel)) ? this.placeholder : undefined,
+        onKeypress: this.onKeyPress,
       })
 
       return input

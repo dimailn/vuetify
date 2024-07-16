@@ -75,9 +75,7 @@ export default mixins<options>().extend({
     genSortIcon () {
       return this.$createElement(VIcon, {
         class: 'v-data-table-header__icon',
-        props: {
-          size: 18,
-        },
+        size: 18,
       }, [this.sortIcon])
     },
   },

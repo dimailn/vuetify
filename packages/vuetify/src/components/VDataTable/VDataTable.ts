@@ -313,24 +313,21 @@ export default mixins(
     },
     genHeaders (props: DataScopeProps) {
       const data = {
-        props: {
-          ...this.sanitizedHeaderProps,
-          headers: this.computedHeaders,
-          options: props.options,
-          mobile: this.isMobile,
-          showGroupBy: this.showGroupBy,
-          checkboxColor: this.checkboxColor,
-          someItems: this.someItems,
-          everyItem: this.everyItem,
-          singleSelect: this.singleSelect,
-          disableSort: this.disableSort,
-        },
-        on: {
-          sort: props.sort,
-          group: props.group,
-          'toggle-select-all': this.toggleSelectAll,
-        },
+        ...this.sanitizedHeaderProps,
+        headers: this.computedHeaders,
+        options: props.options,
+        mobile: this.isMobile,
+        showGroupBy: this.showGroupBy,
+        checkboxColor: this.checkboxColor,
+        someItems: this.someItems,
+        everyItem: this.everyItem,
+        singleSelect: this.singleSelect,
+        disableSort: this.disableSort,
+        onSort: props.sort,
+        onGroup: props.group,
+        'onToggle-select-all': this.toggleSelectAll
       }
+
 
       // TODO: rename to 'head'? (thead, tbody, tfoot)
       const children: VNodeChildrenArrayContents = [getSlot(this, 'header', {
@@ -342,8 +339,8 @@ export default mixins(
         const scopedSlots = getPrefixedScopedSlots('header.', this.$slots)
         children.push(this.$createElement(VDataTableHeader, {
           ...data,
-          scopedSlots,
-        }))
+
+        }, scopedSlots))
       }
 
       if (this.loading) children.push(this.genLoading())
@@ -556,16 +553,13 @@ export default mixins(
           getPropertyFromItem(item, this.itemClass)
         ),
         style: mergeStyles({}, getPropertyFromItem(item, this.itemStyle)),
-        props: {
-          headers: this.computedHeaders,
-          hideDefaultHeader: this.hideDefaultHeader,
-          index,
-          item,
-          rtl: this.$vuetify.rtl,
-        },
-        scopedSlots,
+        headers: this.computedHeaders,
+        hideDefaultHeader: this.hideDefaultHeader,
+        index,
+        item,
+        rtl: this.$vuetify.rtl,
         on: data.on,
-      })
+      }, scopedSlots)
     },
     genBody (props: DataScopeProps): VNode | string | VNodeChildren {
       const data = {
@@ -593,15 +587,11 @@ export default mixins(
     },
     genFooters (props: DataScopeProps) {
       const data = {
-        props: {
-          options: props.options,
-          pagination: props.pagination,
-          itemsPerPageText: '$vuetify.dataTable.itemsPerPageText',
-          ...this.sanitizedFooterProps,
-        },
-        on: {
-          'update:options': (value: any) => props.updateOptions(value),
-        },
+        options: props.options,
+        pagination: props.pagination,
+        itemsPerPageText: '$vuetify.dataTable.itemsPerPageText',
+        ...this.sanitizedFooterProps,
+        'onUpdate:options': (value: any) => props.updateOptions(value),
         widths: this.widths,
         headers: this.computedHeaders,
       }
@@ -670,12 +660,10 @@ export default mixins(
 
   render (): VNode {
     return this.$createElement(VData, {
-      props: {
-        ...this.$props,
-        customFilter: this.customFilterWithColumns,
-        customSort: this.customSortWithHeaders,
-        itemsPerPage: this.computedItemsPerPage,
-      },
+      ...this.$props,
+      customFilter: this.customFilterWithColumns,
+      customSort: this.customSortWithHeaders,
+      itemsPerPage: this.computedItemsPerPage,
       on: {
         'update:options': (v: DataOptions, old: DataOptions) => {
           this.internalGroupBy = v.groupBy || []
@@ -694,9 +682,6 @@ export default mixins(
         },
         'page-count': (v: number) => this.$emit('page-count', v),
       },
-      scopedSlots: {
-        default: this.genDefaultScopedSlot,
-      },
-    })
+    }, this.genDefaultScopedSlot)
   },
 })

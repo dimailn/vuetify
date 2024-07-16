@@ -43,8 +43,7 @@ export default mixins(Themeable).extend({
 
   render (): VNode {
     return h('div', {
-      class: 'v-data-table',
-      class: this.classes,
+      class: ['v-data-table', this.classes],
     }, [
       getSlot(this, 'top'),
       this.genWrapper(),

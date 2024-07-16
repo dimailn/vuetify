@@ -26,15 +26,12 @@ export default defineComponent({
     const props = this.$props
     const data = this.$attrs
 
-    const computedSlots = this.$slots
-
     const columns = props.headers.map((header: DataTableHeader) => {
       const children = []
       const value = getObjectValueByPath(props.item, header.value)
 
       const slotName = header.value
-      const scopedSlot = data.scopedSlots && data.scopedSlots.hasOwnProperty(slotName) && data.scopedSlots[slotName]
-      const regularSlot = computedSlots.hasOwnProperty(slotName) && computedSlots[slotName]
+      const scopedSlot = this.$slots.hasOwnProperty(slotName) && this.$slots[slotName]
 
       if (scopedSlot) {
         children.push(...wrapInArray(scopedSlot({
@@ -44,9 +41,8 @@ export default defineComponent({
           index: props.index,
           value,
         })))
-      } else if (regularSlot) {
-        children.push(...wrapInArray(regularSlot))
-      } else {
+      }
+      else {
         children.push(value == null ? value : String(value))
       }
 

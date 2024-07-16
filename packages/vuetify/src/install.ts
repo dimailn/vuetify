@@ -89,6 +89,16 @@ export function install (Vue: ReturnType<typeof createApp>, args: VuetifyUseOpti
         this.eventsLegacy[eventName] = this.eventsLegacy[eventName].filter(_listener => _listener !== listener)
         // console.warn('$off is not available')
       }
+    },
+    computed: {
+      $listeners() {
+        const names = Object.keys(this.$attrs).filter(name => name.startsWith('on'))
+
+        return names.reduce((listeners, name) => {
+          listeners[name] = this.$attrs[name]
+          return listeners
+        }, {})
+      }
     }
   })
 }
