@@ -19,7 +19,8 @@ import { throttle } from '../../../util/helpers'
 import {
   PropType,
   VNodeChildren,
-  Transition
+  Transition,
+  withDirectives
 } from 'vue'
 import { PropValidator } from 'vue/types/options'
 import {
@@ -120,7 +121,7 @@ export default mixins(
       if (this.disabled) return undefined
 
       return mergeListeners({
-        click: () => {
+        onClick: () => {
           if (isAllowed && !this.readonly) this.$emit('input', value)
         },
       }, createItemTypeNativeListeners(this, `:${mouseEventType}`, value))
@@ -139,22 +140,17 @@ export default mixins(
       }
 
       return this.$createElement('button', setColor(color, {
-        class: 'v-btn',
-        class: this.genButtonClasses(
+        class: ['v-btn', this.genButtonClasses(
           isAllowed && !isOtherMonth,
           isFloating,
           isSelected,
           isCurrent,
           isFirst,
           isLast,
-        ),
-        attrs: {
-          type: 'button',
-        },
-        domProps: {
-          disabled: this.disabled || !isAllowed || isOtherMonth,
-        },
-        on: this.genButtonEvents(value, isAllowed, mouseEventType),
+        )],
+        type: 'button',
+        disabled: this.disabled || !isAllowed || isOtherMonth,
+        ...this.genButtonEvents(value, isAllowed, mouseEventType),
       }), [
         this.$createElement('div', {
           class: 'v-btn__content',
@@ -218,30 +214,29 @@ export default mixins(
         name: this.computedTransition,
       }, [this.$createElement('table', { key: this.tableDate }, children)])
 
-      const touchDirective = {
-        name: 'touch',
-        value: {
+      const touchDirective = [
+        Touch,
+        {
           left: (e: TouchWrapper) => (e.offsetX < -15) &&
             (this.isValidScroll(1, calculateTableDate) && this.touch(1, calculateTableDate)),
           right: (e: TouchWrapper) => (e.offsetX > 15) &&
             (this.isValidScroll(-1, calculateTableDate) && this.touch(-1, calculateTableDate)),
-        },
-      }
+        }
+      ]
 
-      return this.$createElement('div', {
-        staticClass,
+      return withDirectives(this.$createElement('div', {
         class: {
+          [staticClass]: true,
           'v-date-picker-table--disabled': this.disabled,
           ...this.themeClasses,
         },
-        on: (!this.disabled && this.scrollable) ? {
-          wheel: (e: WheelEvent) => {
+        ...((!this.disabled && this.scrollable) ? {
+          onWheel: (e: WheelEvent) => {
             e.preventDefault()
             if (this.isValidScroll(e.deltaY, calculateTableDate)) { this.wheelThrottle(e, calculateTableDate) }
           },
-        } : undefined,
-        directives: [touchDirective],
-      }, [transition])
+        } : {}),
+      }, [transition]), [touchDirective])
     },
     isSelected (value: string): boolean {
       if (Array.isArray(this.value)) {

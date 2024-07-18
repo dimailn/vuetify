@@ -44,8 +44,6 @@ export default mixins<options &
     ClickOutside,
   },
 
-  mixins: [Loadable],
-
   props: {
     disabled: Boolean,
     inverseLabel: Boolean,
@@ -86,7 +84,7 @@ export default mixins<options &
     },
     trackColor: String,
     trackFillColor: String,
-    value: [Number, String],
+    modelValue: [Number, String],
     vertical: Boolean,
   },
 
@@ -125,7 +123,7 @@ export default mixins<options &
 
         this.lazyValue = value
 
-        this.$emit('input', value)
+        this.$emit('update:modelValue', value)
       },
     },
     trackTransition (): string {
@@ -211,13 +209,13 @@ export default mixins<options &
   watch: {
     min (val) {
       const parsed = parseFloat(val)
-      parsed > this.internalValue && this.$emit('input', parsed)
+      parsed > this.internalValue && this.$emit('update:modelValue', parsed)
     },
     max (val) {
       const parsed = parseFloat(val)
-      parsed < this.internalValue && this.$emit('input', parsed)
+      parsed < this.internalValue && this.$emit('update:modelValue', parsed)
     },
-    value: {
+    modelValue: {
       handler (v: number) {
         this.internalValue = v
       },
@@ -259,11 +257,9 @@ export default mixins<options &
           name: 'click-outside',
           value: this.onBlur,
         }],
-        on: {
-          click: this.onSliderClick,
-          mousedown: this.onSliderMouseDown,
-          touchstart: this.onSliderMouseDown,
-        },
+        onClick: this.onSliderClick,
+        onMousedown: this.onSliderMouseDown,
+        onTouchstart: this.onSliderMouseDown,
       }, this.genChildren())
     },
     genChildren (): VNodeChildrenArrayContents {
@@ -283,14 +279,12 @@ export default mixins<options &
     },
     genInput (): VNode {
       return this.$createElement('input', {
-        attrs: {
-          value: this.internalValue,
-          id: this.computedId,
-          disabled: true,
-          readonly: true,
-          tabindex: -1,
-          ...this.$attrs,
-        },
+        value: this.internalValue,
+        id: this.computedId,
+        disabled: true,
+        readonly: true,
+        tabindex: -1,
+        ...this.$attrs,
         // on: this.genListeners(), // TODO: do we need to attach the listeners to input?
       })
     },
@@ -335,10 +329,9 @@ export default mixins<options &
 
         return this.$createElement('span', {
           key: index,
-          class: 'v-slider__tick',
-          class: {
+          class: ['v-slider__tick', {
             'v-slider__tick--filled': filled,
-          },
+          }],
           style: {
             width: `${tickSize}px`,
             height: `${tickSize}px`,
@@ -349,10 +342,9 @@ export default mixins<options &
       })
 
       return this.$createElement('div', {
-        class: 'v-slider__ticks-container',
-        class: {
+        class: ['v-slider__ticks-container', {
           'v-slider__ticks-container--always-show': this.ticks === 'always' || this.tickLabels.length > 0,
-        },
+        }],
       }, ticks)
     },
     genThumbContainer (
@@ -372,28 +364,23 @@ export default mixins<options &
       return this.$createElement('div', this.setTextColor(this.computedThumbColor, {
         ref,
         key: ref,
-        class: 'v-slider__thumb-container',
-        class: {
+        class: ['v-slider__thumb-container', {
           'v-slider__thumb-container--active': isActive,
           'v-slider__thumb-container--focused': isFocused,
           'v-slider__thumb-container--show-label': this.showThumbLabel,
-        },
+        }],
         style: this.getThumbContainerStyles(valueWidth),
-        attrs: {
-          role: 'slider',
-          tabindex: this.isDisabled ? -1 : this.$attrs.tabindex ? this.$attrs.tabindex : 0,
-          'aria-label': this.$attrs['aria-label'] || this.label,
-          'aria-valuemin': this.min,
-          'aria-valuemax': this.max,
-          'aria-valuenow': this.internalValue,
-          'aria-readonly': String(this.isReadonly),
-          'aria-orientation': this.vertical ? 'vertical' : 'horizontal',
-        },
-        on: {
-          focus: onFocus,
-          blur: onBlur,
-          keydown: this.onKeyDown,
-        },
+        role: 'slider',
+        tabindex: this.isDisabled ? -1 : this.$attrs.tabindex ? this.$attrs.tabindex : 0,
+        'aria-label': this.$attrs['aria-label'] || this.label,
+        'aria-valuemin': this.min,
+        'aria-valuemax': this.max,
+        'aria-valuenow': this.internalValue,
+        'aria-readonly': String(this.isReadonly),
+        'aria-orientation': this.vertical ? 'vertical' : 'horizontal',
+        onFocus: onFocus,
+        onBlur: onBlur,
+        onKeydown: this.onKeyDown,
       }), children)
     },
     genThumbLabelContent (value: number | string): ScopedSlotChildren {
@@ -409,7 +396,7 @@ export default mixins<options &
         : `translateY(-20%) translateY(-12px) translateX(-50%) rotate(45deg)`
 
       return this.$createElement(VScaleTransition, {
-        props: { origin: 'bottom center' },
+        origin: 'bottom center',
       }, [
         this.$createElement('div', {
           class: 'v-slider__thumb-label-container',
@@ -487,7 +474,7 @@ export default mixins<options &
       this.$emit('mouseup', e)
       this.$emit('end', this.internalValue)
       if (!deepEqual(this.oldValue, this.internalValue)) {
-        this.$emit('change', this.internalValue)
+        this.$emit('update:modelValue', this.internalValue)
         this.noClick = true
       }
 
@@ -511,7 +498,7 @@ export default mixins<options &
       ) return
 
       this.internalValue = value
-      this.$emit('change', value)
+      this.$emit('update:modelValue', value)
     },
     onSliderClick (e: MouseEvent) {
       if (this.noClick) {
@@ -522,7 +509,7 @@ export default mixins<options &
       thumb.focus()
 
       this.onMouseMove(e)
-      this.$emit('change', this.internalValue)
+      this.$emit('update:modelValue', this.internalValue)
     },
     onBlur (e: Event) {
       this.isFocused = false

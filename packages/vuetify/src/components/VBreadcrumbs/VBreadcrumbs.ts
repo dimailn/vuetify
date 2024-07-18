@@ -59,7 +59,7 @@ export default mixins(
         keys.push(item.text)
 
         if (hasSlot) items.push(this.$slots.item!({ item }))
-        else items.push(this.$createElement(VBreadcrumbsItem, { key: keys.join('.'), props: item }, [item.text]))
+        else items.push(this.$createElement(VBreadcrumbsItem, { key: keys.join('.'), ...item }, [item.text]))
 
         if (i < this.items.length - 1) items.push(this.genDivider())
       }
@@ -72,8 +72,7 @@ export default mixins(
     const children = getSlot(this) || this.genItems()
 
     return h('ul', {
-      class: 'v-breadcrumbs',
-      class: this.classes,
+      class: ['v-breadcrumbs', this.classes],
     }, children)
   },
 })

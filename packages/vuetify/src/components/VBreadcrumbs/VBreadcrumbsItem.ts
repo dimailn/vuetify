@@ -37,10 +37,7 @@ export default mixins(Routable).extend({
     return withDirectives(h('li', [
       h(tag, {
         ...data,
-        attrs: {
-          ...data.attrs,
-          'aria-current': this.isActive && this.isLink ? 'page' : undefined,
-        },
+        'aria-current': this.isActive && this.isLink ? 'page' : undefined,
       }, getSlot(this)),
     ]), directives)
   },

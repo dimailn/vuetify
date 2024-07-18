@@ -48,22 +48,18 @@ export default baseMixins.extend({
       return [
         this.$createElement(VImg, {
           class: 'v-carousel__item',
-          props: {
-            ...this.$attrs,
-            height: this.windowGroup.internalHeight,
-          },
-          on: this.$listeners,
-          scopedSlots: {
-            placeholder: this.$slots.placeholder,
-          },
-        }, getSlot(this)),
+          ...this.$attrs,
+          height: this.windowGroup.internalHeight,
+          ...this.$listeners,
+        }, { default: getSlot(this), placeholder: this.$slots.placeholder }),
       ]
     },
     genWindowItem () {
       const { tag, data, directives } = this.generateRouteLink()
 
-      data.staticClass = 'v-window-item'
-      data.directives!.push([
+      data.class['v-window-item'] = true
+
+      directives!.push([
         vShow,
         this.isActive,
       ])

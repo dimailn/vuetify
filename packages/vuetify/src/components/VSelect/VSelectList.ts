@@ -75,12 +75,8 @@ export default mixins(Colorable, Themeable).extend({
     },
     staticNoDataTile (): VNode {
       const tile = {
-        attrs: {
-          role: undefined,
-        },
-        on: {
-          mousedown: (e: Event) => e.preventDefault(), // Prevent onBlur from being called
-        },
+        role: undefined,
+        onMousedown: (e: Event) => e.preventDefault(), // Prevent onBlur from being called
       }
 
       return this.$createElement(VListItem, tile, [
@@ -93,14 +89,10 @@ export default mixins(Colorable, Themeable).extend({
     genAction (item: object, inputValue: any): VNode {
       return this.$createElement(VListItemAction, [
         this.$createElement(VSimpleCheckbox, {
-          props: {
-            color: this.color,
-            value: inputValue,
-            ripple: false,
-          },
-          on: {
-            input: () => this.$emit('select', item),
-          },
+          color: this.color,
+          value: inputValue,
+          ripple: false,
+          onInput: () => this.$emit('select', item)
         }),
       ])
     },
@@ -152,26 +144,20 @@ export default mixins(Colorable, Themeable).extend({
       }
 
       const tile = {
-        attrs: {
-          // Default behavior in list does not
-          // contain aria-selected by default
-          'aria-selected': String(value),
-          id: `list-item-${this._uid}-${index}`,
-          role: 'option',
+        // Default behavior in list does not
+        // contain aria-selected by default
+        'aria-selected': String(value),
+        id: `list-item-${this._uid}-${index}`,
+        role: 'option',
+        onMousedown: (e: Event) => {
+          // Prevent onBlur from being called
+          e.preventDefault()
         },
-        on: {
-          mousedown: (e: Event) => {
-            // Prevent onBlur from being called
-            e.preventDefault()
-          },
-          click: () => disabled || this.$emit('select', item),
-        },
-        props: {
-          activeClass: this.tileActiveClass,
-          disabled,
-          ripple: true,
-          inputValue: value,
-        },
+        onClick: () => disabled || this.$emit('select', item),
+        activeClass: this.tileActiveClass,
+        disabled,
+        ripple: true,
+        inputValue: value,
       }
 
       if (!this.$slots.item) {

@@ -172,22 +172,20 @@ export default defineComponent({
       if (!this.isDirty) return []
 
       return this.text.map((text, index) => this.$createElement(VChip, {
-        props: { small: this.smallChips },
-        on: {
-          'click:close': () => {
-            const internalValue = this.internalValue
-            internalValue.splice(index, 1)
-            this.internalValue = internalValue // Trigger the watcher
-          },
-        },
+        small: this.smallChips,
+        'onClick:close': () => {
+          const internalValue = this.internalValue
+          internalValue.splice(index, 1)
+          this.internalValue = internalValue // Trigger the watcher
+        }
       }, [text]))
     },
     genControl () {
       const render = VTextField.methods.genControl.call(this)
 
       if (this.hideInput) {
-        render.data!.style = mergeStyles(
-          render.data!.style,
+        render.style = mergeStyles(
+          render.style,
           { display: 'none' }
         )
       }
@@ -197,19 +195,19 @@ export default defineComponent({
     genInput () {
       const input = VTextField.methods.genInput.call(this)
 
-      input.data!.attrs!.multiple = this.multiple
+      input.multiple = this.multiple
 
       // We should not be setting value
       // programmatically on the input
       // when it is using type="file"
-      delete input.data!.domProps!.value
+      delete input.value
 
       // This solves an issue in Safari where
       // nothing happens when adding a file
       // due to the input event not firing
       // https://github.com/vuetifyjs/vuetify/issues/7941
-      delete input.data!.on!.input
-      input.data!.on!.change = this.onInput
+      delete input.onInput
+      input.onChange = this.onInput
 
       return [this.genSelections(), input]
     },
@@ -249,24 +247,20 @@ export default defineComponent({
       }
 
       return this.$createElement('div', {
-        class: 'v-file-input__text',
-        class: {
+        class: ['v-file-input__text', {
           'v-file-input__text--placeholder': this.placeholder && !this.isDirty,
           'v-file-input__text--chips': this.hasChips && !this.$slots.selection,
-        },
+        }]
       }, children)
     },
     genTextFieldSlot () {
       const node = VTextField.methods.genTextFieldSlot.call(this)
 
-      node.data!.on = {
-        ...(node.data!.on || {}),
-        click: (e: MouseEvent) => {
-          // Clicking the label already delegates to input element, so we shouldn't click it twice
-          if (e.target && (e.target as HTMLElement).nodeName === 'LABEL') return
+      node.onClick = (e: MouseEvent) => {
+        // Clicking the label already delegates to input element, so we shouldn't click it twice
+        if (e.target && (e.target as HTMLElement).nodeName === 'LABEL') return
 
-          this.$refs.input.click()
-        },
+        this.$refs.input.click()
       }
 
       return node

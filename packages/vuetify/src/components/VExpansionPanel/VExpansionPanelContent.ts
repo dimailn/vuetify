@@ -1,4 +1,4 @@
-import {h} from 'vue'
+import {h, vShow, withDirectives} from 'vue'
 // Components
 import VExpansionPanel from './VExpansionPanel'
 import { VExpandTransition } from '../transitions'
@@ -61,14 +61,15 @@ export default baseMixins.extend({
 
   render (): VNode {
     return h(VExpandTransition, this.showLazyContent(() => [
-      h('div', this.setBackgroundColor(this.color, {
-        class: 'v-expansion-panel-content',
-        directives: [{
-          name: 'show',
-          value: this.isActive,
-        }],
+      withDirectives(h('div', this.setBackgroundColor(this.color, {
+        class: 'v-expansion-panel-content'
       }), [
         h('div', { class: 'v-expansion-panel-content__wrap' }, getSlot(this, 'default', { open: this.isActive })),
+      ]), [
+        [
+          vShow,
+          this.isActive
+        ]
       ]),
     ]))
   },

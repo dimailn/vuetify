@@ -127,7 +127,7 @@ export default mixins(
       default: 'date',
       validator: (type: any) => ['date', 'month'].includes(type), // TODO: year
     } as PropValidator<DatePickerType>,
-    value: [Array, String] as PropType<DatePickerValue>,
+    modelValue: [Array, String] as PropType<DatePickerValue>,
     weekdayFormat: Function as PropType<DatePickerFormatter | undefined>,
     // Function formatting the year in table header and pickup title
     yearFormat: Function as PropType<DatePickerFormatter | undefined>,
@@ -149,7 +149,7 @@ export default mixins(
           return this.pickerDate
         }
 
-        const multipleValue = wrapInArray(this.value)
+        const multipleValue = wrapInArray(this.modelValue)
         const date = multipleValue[multipleValue.length - 1] ||
           (typeof this.showCurrent === 'string' ? this.showCurrent : `${now.getFullYear()}-${now.getMonth() + 1}`)
         return sanitizeDateString(date as string, this.type === 'date' ? 'month' : 'year')
@@ -159,21 +159,21 @@ export default mixins(
 
   computed: {
     multipleValue (): string[] {
-      return wrapInArray(this.value)
+      return wrapInArray(this.modelValue)
     },
     isMultiple (): boolean {
       return this.multiple || this.range
     },
     lastValue (): string | null {
-      return this.isMultiple ? this.multipleValue[this.multipleValue.length - 1] : (this.value as string | null)
+      return this.isMultiple ? this.multipleValue[this.multipleValue.length - 1] : (this.modelValue as string | null)
     },
     selectedMonths (): string | string[] | undefined {
-      if (!this.value || this.type === 'month') {
-        return this.value
+      if (!this.modelValue || this.type === 'month') {
+        return this.modelValue
       } else if (this.isMultiple) {
         return this.multipleValue.map(val => val.substr(0, 7))
       } else {
-        return (this.value as string).substr(0, 7)
+        return (this.modelValue as string).substr(0, 7)
       }
     },
     current (): string | null {
@@ -277,7 +277,7 @@ export default mixins(
       this.setInputDate()
 
       if (
-        (!this.isMultiple && this.value && !this.pickerDate) ||
+        (!this.isMultiple && this.modelValue && !this.pickerDate) ||
         (this.isMultiple && this.multipleValue.length && (!oldValue || !oldValue.length) && !this.pickerDate)
       ) {
         this.tableDate = sanitizeDateString(this.inputDate, this.type === 'month' ? 'year' : 'month')
@@ -286,7 +286,7 @@ export default mixins(
     type (type: DatePickerType) {
       this.internalActivePicker = type.toUpperCase()
 
-      if (this.value && this.value.length) {
+      if (this.modelValue && this.modelValue.length) {
         const output = this.multipleValue
           .map((val: string) => sanitizeDateString(val, type))
           .filter(this.isDateAllowed)
@@ -329,8 +329,8 @@ export default mixins(
       this.multiple || this.$emit('change', newInput)
     },
     checkMultipleProp () {
-      if (this.value == null) return
-      const valueType = this.value.constructor.name
+      if (this.modelValue == null) return
+      const valueType = this.modelValue.constructor.name
       const expected = this.isMultiple ? 'Array' : 'String'
       if (valueType !== expected) {
         consoleWarn(`Value must be ${this.isMultiple ? 'an' : 'a'} ${expected}, got ${valueType}`, this)
@@ -382,15 +382,13 @@ export default mixins(
     },
     genPickerTitle (): VNode {
       return this.$createElement(VDatePickerTitle, {
-        props: {
-          date: this.value ? (this.formatters.titleDate as (value: any) => string)(this.isMultiple ? this.multipleValue : this.value) : '',
-          disabled: this.disabled,
-          readonly: this.readonly,
-          selectingYear: this.internalActivePicker === 'YEAR',
-          year: this.formatters.year(this.multipleValue.length ? `${this.inputYear}` : this.tableDate),
-          yearIcon: this.yearIcon,
-          value: this.multipleValue[0],
-        },
+        date: this.modelValue ? (this.formatters.titleDate as (value: any) => string)(this.isMultiple ? this.multipleValue : this.modelValue) : '',
+        disabled: this.disabled,
+        readonly: this.readonly,
+        selectingYear: this.internalActivePicker === 'YEAR',
+        year: this.formatters.year(this.multipleValue.length ? `${this.inputYear}` : this.tableDate),
+        yearIcon: this.yearIcon,
+        value: this.multipleValue[0],
         slot: 'title',
         on: {
           'update:selecting-year': (value: boolean) => this.internalActivePicker = value ? 'YEAR' : this.type.toUpperCase(),
@@ -399,101 +397,87 @@ export default mixins(
     },
     genTableHeader (): VNode {
       return this.$createElement(VDatePickerHeader, {
-        props: {
-          nextIcon: this.nextIcon,
-          color: this.color,
-          dark: this.dark,
-          disabled: this.disabled,
-          format: this.headerDateFormat,
-          light: this.light,
-          locale: this.locale,
-          min: this.internalActivePicker === 'DATE' ? this.minMonth : this.minYear,
-          max: this.internalActivePicker === 'DATE' ? this.maxMonth : this.maxYear,
-          nextAriaLabel: this.internalActivePicker === 'DATE' ? this.nextMonthAriaLabel : this.nextYearAriaLabel,
-          prevAriaLabel: this.internalActivePicker === 'DATE' ? this.prevMonthAriaLabel : this.prevYearAriaLabel,
-          prevIcon: this.prevIcon,
-          readonly: this.readonly,
-          value: this.internalActivePicker === 'DATE' ? `${pad(this.tableYear, 4)}-${pad(this.tableMonth + 1)}` : `${pad(this.tableYear, 4)}`,
-        },
-        on: {
-          toggle: () => this.internalActivePicker = (this.internalActivePicker === 'DATE' ? 'MONTH' : 'YEAR'),
-          input: (value: string) => this.tableDate = value,
-        },
+        nextIcon: this.nextIcon,
+        color: this.color,
+        dark: this.dark,
+        disabled: this.disabled,
+        format: this.headerDateFormat,
+        light: this.light,
+        locale: this.locale,
+        min: this.internalActivePicker === 'DATE' ? this.minMonth : this.minYear,
+        max: this.internalActivePicker === 'DATE' ? this.maxMonth : this.maxYear,
+        nextAriaLabel: this.internalActivePicker === 'DATE' ? this.nextMonthAriaLabel : this.nextYearAriaLabel,
+        prevAriaLabel: this.internalActivePicker === 'DATE' ? this.prevMonthAriaLabel : this.prevYearAriaLabel,
+        prevIcon: this.prevIcon,
+        readonly: this.readonly,
+        value: this.internalActivePicker === 'DATE' ? `${pad(this.tableYear, 4)}-${pad(this.tableMonth + 1)}` : `${pad(this.tableYear, 4)}`,
+        onToggle: () => this.internalActivePicker = (this.internalActivePicker === 'DATE' ? 'MONTH' : 'YEAR'),
+        onInput: (value: string) => this.tableDate = value,
       })
     },
     genDateTable (): VNode {
       return this.$createElement(VDatePickerDateTable, {
-        props: {
-          allowedDates: this.allowedDates,
-          color: this.color,
-          current: this.current,
-          dark: this.dark,
-          disabled: this.disabled,
-          events: this.events,
-          eventColor: this.eventColor,
-          firstDayOfWeek: this.firstDayOfWeek,
-          format: this.dayFormat,
-          light: this.light,
-          locale: this.locale,
-          localeFirstDayOfYear: this.localeFirstDayOfYear,
-          min: this.min,
-          max: this.max,
-          range: this.range,
-          readonly: this.readonly,
-          scrollable: this.scrollable,
-          showAdjacentMonths: this.showAdjacentMonths,
-          showWeek: this.showWeek,
-          tableDate: `${pad(this.tableYear, 4)}-${pad(this.tableMonth + 1)}`,
-          value: this.value,
-          weekdayFormat: this.weekdayFormat,
-        },
+        allowedDates: this.allowedDates,
+        color: this.color,
+        current: this.current,
+        dark: this.dark,
+        disabled: this.disabled,
+        events: this.events,
+        eventColor: this.eventColor,
+        firstDayOfWeek: this.firstDayOfWeek,
+        format: this.dayFormat,
+        light: this.light,
+        locale: this.locale,
+        localeFirstDayOfYear: this.localeFirstDayOfYear,
+        min: this.min,
+        max: this.max,
+        range: this.range,
+        readonly: this.readonly,
+        scrollable: this.scrollable,
+        showAdjacentMonths: this.showAdjacentMonths,
+        showWeek: this.showWeek,
+        tableDate: `${pad(this.tableYear, 4)}-${pad(this.tableMonth + 1)}`,
+        value: this.modelValue,
+        weekdayFormat: this.weekdayFormat,
         ref: 'table',
-        on: {
-          input: this.dateClick,
-          'update:table-date': (value: string) => this.tableDate = value,
-          ...createItemTypeListeners(this, ':date'),
-        },
+        onInput: this.dateClick,
+        'onUpdate:table-date': (value: string) => this.tableDate = value,
+        ...createItemTypeListeners(this, ':date')
       })
     },
     genMonthTable (): VNode {
       return this.$createElement(VDatePickerMonthTable, {
-        props: {
-          allowedDates: this.type === 'month' ? this.allowedDates : null,
-          color: this.color,
-          current: this.current ? sanitizeDateString(this.current, 'month') : null,
-          dark: this.dark,
-          disabled: this.disabled,
-          events: this.type === 'month' ? this.events : null,
-          eventColor: this.type === 'month' ? this.eventColor : null,
-          format: this.monthFormat,
-          light: this.light,
-          locale: this.locale,
-          min: this.minMonth,
-          max: this.maxMonth,
-          range: this.range,
-          readonly: this.readonly && this.type === 'month',
-          scrollable: this.scrollable,
-          value: this.selectedMonths,
-          tableDate: `${pad(this.tableYear, 4)}`,
-        },
+        allowedDates: this.type === 'month' ? this.allowedDates : null,
+        color: this.color,
+        current: this.current ? sanitizeDateString(this.current, 'month') : null,
+        dark: this.dark,
+        disabled: this.disabled,
+        events: this.type === 'month' ? this.events : null,
+        eventColor: this.type === 'month' ? this.eventColor : null,
+        format: this.monthFormat,
+        light: this.light,
+        locale: this.locale,
+        min: this.minMonth,
+        max: this.maxMonth,
+        range: this.range,
+        readonly: this.readonly && this.type === 'month',
+        scrollable: this.scrollable,
+        value: this.selectedMonths,
+        tableDate: `${pad(this.tableYear, 4)}`,
         ref: 'table',
-        on: {
-          input: this.monthClick,
-          'update:table-date': (value: string) => this.tableDate = value,
-          ...createItemTypeListeners(this, ':month'),
-        },
+        onInput: this.monthClick,
+        'onUpdate:table-date': (value: string) => this.tableDate = value,
+        ...createItemTypeListeners(this, ':month')
       })
     },
     genYears (): VNode {
       return this.$createElement(VDatePickerYears, {
-        props: {
-          color: this.color,
-          format: this.yearFormat,
-          locale: this.locale,
-          min: this.minYear,
-          max: this.maxYear,
-          value: this.tableYear,
-        },
+        color: this.color,
+        format: this.yearFormat,
+        locale: this.locale,
+        min: this.minYear,
+        max: this.maxYear,
+        value: this.tableYear,
         on: {
           input: this.yearClick,
           ...createItemTypeListeners(this, ':year'),

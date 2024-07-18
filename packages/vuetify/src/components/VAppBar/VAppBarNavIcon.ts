@@ -13,14 +13,10 @@ export default defineComponent({
 
   render () {
     const data = this.$attrs
-    const props = this.$props
 
-    const d = Object.assign(data, {
+    const d = Object.assign({}, data, {
       class: (`v-app-bar__nav-icon ${data.class || ''}`).trim(),
-      props: {
-        ...props,
-        icon: true,
-      }
+      icon: true,
     })
 
     const defaultSlot = this.$slots.default?.()

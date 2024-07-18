@@ -1,4 +1,4 @@
-import {Transition, h} from 'vue'
+import {Transition, h, vShow, withDirectives} from 'vue'
 // Styles
 import './VDialog.sass'
 
@@ -243,20 +243,16 @@ export default baseMixins.extend({
     genContent () {
       return this.showLazyContent(() => [
         this.$createElement(VThemeProvider, {
-          props: {
-            root: true,
-            light: this.light,
-            dark: this.dark,
-          },
+          root: true,
+          light: this.light,
+          dark: this.dark
         }, [
           this.$createElement('div', {
             class: this.contentClasses,
-            attrs: {
-              role: 'dialog',
-              'aria-modal': this.hideOverlay ? undefined : 'true',
-              ...this.getScopeIdAttrs(),
-            },
-            on: { keydown: this.onKeydown },
+            role: 'dialog',
+            'aria-modal': this.hideOverlay ? undefined : 'true',
+            ...this.getScopeIdAttrs(),
+            onKeydown: this.onKeydown,
             style: { zIndex: this.activeZIndex },
             ref: 'content',
           }, [this.genTransition()]),
@@ -275,23 +271,24 @@ export default baseMixins.extend({
       }, [content])
     },
     genInnerContent () {
+      const directives = [
+        [
+          ClickOutside,
+          {
+            handler: this.onClickOutside,
+            closeConditional: this.closeConditional,
+            include: this.getOpenDependentElements,
+          }
+        ],
+        [
+          vShow,
+          this.isActive
+        ]
+      ]
       const data: VNodeData = {
         class: this.classes,
-        attrs: {
-          tabindex: this.isActive ? 0 : undefined,
-        },
+        tabindex: this.isActive ? 0 : undefined,
         ref: 'dialog',
-        directives: [
-          {
-            name: 'click-outside',
-            value: {
-              handler: this.onClickOutside,
-              closeConditional: this.closeConditional,
-              include: this.getOpenDependentElements,
-            },
-          },
-          { name: 'show', value: this.isActive },
-        ],
         style: {
           transformOrigin: this.origin,
         },
@@ -305,19 +302,21 @@ export default baseMixins.extend({
         }
       }
 
-      return this.$createElement('div', data, this.getContentSlot())
+      return withDirectives(
+        this.$createElement('div', data, this.getContentSlot()),
+        directives
+      )
     },
   },
 
   render (): VNode {
     return h('div', {
-      class: 'v-dialog__container',
-      class: {
+      class: ['v-dialog__container', {
         'v-dialog__container--attached':
           this.attach === '' ||
           this.attach === true ||
           this.attach === 'attach',
-      },
+      }]
     }, [
       this.genActivator(),
       this.genContent(),

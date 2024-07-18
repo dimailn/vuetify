@@ -111,10 +111,10 @@ export default baseMixins.extend({
   },
 
   render (): VNode {
-    const { tag, data, directives } = this.generateRouteLink()
+    let { tag, data, directives } = this.generateRouteLink()
 
-    data.attrs = {
-      ...data.attrs,
+    data = {
+      ...data
       'aria-selected': String(this.isActive),
       role: 'tab',
       tabindex: this.disabled ? -1 : 0,
@@ -122,7 +122,7 @@ export default baseMixins.extend({
         if (e.keyCode === keyCodes.enter) this.click(e)
 
         this.$emit('keydown', e)
-      },
+      }
     }
 
     return withDirectives(

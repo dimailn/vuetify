@@ -93,7 +93,7 @@ export default defineComponent({
       class: [this.classes, 'v-list'],
       style: this.styles,
       role: this.isInNav || this.isInMenu ? undefined : 'list',
-      ...this.attrs$,
+      // ...this.attrs$,
       ...this.listeners$,
     }
 

@@ -46,8 +46,8 @@ export default mixins(Themeable).extend({
     const newData = mergeData({
       class: {
         'v-label': true,
-        'v-label--active': props.value,
-        'v-label--is-disabled': props.disabled,
+        'v-label--active': this.value,
+        'v-label--is-disabled': this.disabled,
         ...functionalThemeClasses(this),
       },
       for: props.for,

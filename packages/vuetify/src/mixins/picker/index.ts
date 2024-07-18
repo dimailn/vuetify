@@ -47,31 +47,29 @@ export default mixins(
       }) : getSlot(this)
     },
     genPicker (staticClass: string) {
-      const children: VNode[] = []
+      const children = {}
 
       if (!this.noTitle) {
         const title = this.genPickerTitle()
-        title && children.push(title)
+        title && (children.title = title)
       }
 
       const body = this.genPickerBody()
-      body && children.push(body)
+      body && (children.default = body)
 
-      children.push(this.$createElement('template', { slot: 'actions' }, [this.genPickerActionsSlot()]))
+      children.actions = (this.$createElement('template', {}, [this.genPickerActionsSlot()]))
 
       return this.$createElement(VPicker, {
-        staticClass,
-        props: {
-          color: this.headerColor || this.color,
-          dark: this.dark,
-          elevation: this.elevation,
-          flat: this.flat,
-          fullWidth: this.fullWidth,
-          landscape: this.landscape,
-          light: this.light,
-          width: this.width,
-          noTitle: this.noTitle,
-        },
+        class: staticClass,
+        color: this.headerColor || this.color,
+        dark: this.dark,
+        elevation: this.elevation,
+        flat: this.flat,
+        fullWidth: this.fullWidth,
+        landscape: this.landscape,
+        light: this.light,
+        width: this.width,
+        noTitle: this.noTitle
       }, children)
     },
   },

@@ -70,7 +70,7 @@ export default baseMixins.extend({
 
   watch: {
     isFocused: 'updateValue',
-    value (val) {
+    modelValue (val) {
       this.lazyValue = val
       this.otp = val?.split('') || []
     },
@@ -98,11 +98,9 @@ export default baseMixins.extend({
       return this.$createElement('div', this.setBackgroundColor(this.backgroundColor, {
         class: 'v-input__slot',
         style: { height: convertToUnit(this.height) },
-        on: {
-          click: () => this.onClick(otpIdx),
-          mousedown: (e: Event) => this.onMouseDown(e, otpIdx),
-          mouseup: (e: Event) => this.onMouseUp(e, otpIdx),
-        },
+        onClick: () => this.onClick(otpIdx),
+        onMousedown: (e: Event) => this.onMouseDown(e, otpIdx),
+        onMouseup: (e: Event) => this.onMouseUp(e, otpIdx),
       }), [this.genDefaultSlot(otpIdx)])
     },
     genControl (otpIdx: number) {
@@ -121,8 +119,7 @@ export default baseMixins.extend({
     genContent () {
       return Array.from({ length: +this.length }, (_, i) => {
         return this.$createElement('div', this.setTextColor(this.validationState, {
-          class: 'v-input',
-          class: this.classes,
+          class: ['v-input', this.classes]
         }), [this.genControl(i)])
       })
     },
@@ -150,25 +147,21 @@ export default baseMixins.extend({
 
       return this.$createElement('input', {
         style: {},
-        domProps: {
-          value: this.otp[otpIdx],
-          min: this.type === 'number' ? 0 : null,
-        },
-        attrs: {
-          ...this.attrs$,
-          autocomplete: 'one-time-code',
-          disabled: this.isDisabled,
-          readonly: this.isReadonly,
-          type: this.type,
-          id: `${this.computedId}--${otpIdx}`,
-          class: `otp-field-box--${otpIdx}`,
-        },
-        on: Object.assign(listeners, {
-          blur: this.onBlur,
-          input: (e: Event) => this.onInput(e, otpIdx),
-          focus: (e: Event) => this.onFocus(e, otpIdx),
-          keydown: this.onKeyDown,
-          keyup: (e: KeyboardEvent) => this.onKeyUp(e, otpIdx),
+        value: this.otp[otpIdx],
+        min: this.type === 'number' ? 0 : null,
+        ...this.attrs$,
+        autocomplete: 'one-time-code',
+        disabled: this.isDisabled,
+        readonly: this.isReadonly,
+        type: this.type,
+        id: `${this.computedId}--${otpIdx}`,
+        class: `otp-field-box--${otpIdx}`,
+        ...Object.assign(listeners, {
+          onBlur: this.onBlur,
+          onInput: (e: Event) => this.onInput(e, otpIdx),
+          onFocus: (e: Event) => this.onFocus(e, otpIdx),
+          onKeydown: this.onKeyDown,
+          onKeyup: (e: KeyboardEvent) => this.onKeyUp(e, otpIdx),
         }),
         ref: 'input',
         refInFor: true,
@@ -298,8 +291,7 @@ export default baseMixins.extend({
   },
   render (): VNode {
     return h('div', {
-      class: 'v-otp-input',
-      class: this.themeClasses,
+      class: ['v-otp-input', this.themeClasses],
     }, this.genContent())
   },
 })

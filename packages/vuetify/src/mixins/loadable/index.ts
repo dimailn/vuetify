@@ -35,14 +35,12 @@ export default defineComponent({
       if (this.loading === false) return null
 
       return getSlot(this, 'progress') || this.$createElement(VProgressLinear, {
-        props: {
-          absolute: true,
-          color: (this.loading === true || this.loading === '')
-            ? (this.color || 'primary')
-            : this.loading,
-          height: this.loaderHeight,
-          indeterminate: true,
-        },
+        absolute: true,
+        color: (this.loading === true || this.loading === '')
+          ? (this.color || 'primary')
+          : this.loading,
+        height: this.loaderHeight,
+        indeterminate: true,
       })
     },
   },

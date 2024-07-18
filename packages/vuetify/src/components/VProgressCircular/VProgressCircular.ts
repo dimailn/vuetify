@@ -1,9 +1,9 @@
-import {h} from 'vue'
+import {h, withDirectives} from 'vue'
 // Styles
 import './VProgressCircular.sass'
 
 // Directives
-import intersect from '../../directives/intersect'
+import intersect, { Intersect } from '../../directives/intersect'
 
 // Mixins
 import Colorable from '../../mixins/colorable'
@@ -111,15 +111,13 @@ export default defineComponent({
     genCircle (name: string, offset: string | number): VNode {
       return this.$createElement('circle', {
         class: `v-progress-circular__${name}`,
-        attrs: {
-          fill: 'transparent',
-          cx: 2 * this.viewBoxSize,
-          cy: 2 * this.viewBoxSize,
-          r: this.radius,
-          'stroke-width': this.strokeWidth,
-          'stroke-dasharray': this.strokeDashArray,
-          'stroke-dashoffset': offset,
-        },
+        fill: 'transparent',
+        cx: 2 * this.viewBoxSize,
+        cy: 2 * this.viewBoxSize,
+        r: this.radius,
+        'stroke-width': this.strokeWidth,
+        'stroke-dasharray': this.strokeDashArray,
+        'stroke-dashoffset': offset,
       })
     },
     genSvg (): VNode {
@@ -130,10 +128,8 @@ export default defineComponent({
 
       return this.$createElement('svg', {
         style: this.svgStyles,
-        attrs: {
-          xmlns: 'http://www.w3.org/2000/svg',
-          viewBox: `${this.viewBoxSize} ${this.viewBoxSize} ${2 * this.viewBoxSize} ${2 * this.viewBoxSize}`,
-        },
+        xmlns: 'http://www.w3.org/2000/svg',
+        viewBox: `${this.viewBoxSize} ${this.viewBoxSize} ${2 * this.viewBoxSize} ${2 * this.viewBoxSize}`,
       }, children)
     },
     genInfo (): VNode {
@@ -147,24 +143,22 @@ export default defineComponent({
   },
 
   render (): VNode {
-    return h('div', this.setTextColor(this.color, {
-      class: 'v-progress-circular',
-      attrs: {
-        role: 'progressbar',
-        'aria-valuemin': 0,
-        'aria-valuemax': 100,
-        'aria-valuenow': this.indeterminate ? undefined : this.normalizedValue,
-      },
-      class: this.classes,
-      directives: [{
-        name: 'intersect',
-        value: this.onObserve,
-      }],
+    return withDirectives(h('div', this.setTextColor(this.color, {
+      class: ['v-progress-circular', this.classes],
+      role: 'progressbar',
+      'aria-valuemin': 0,
+      'aria-valuemax': 100,
+      'aria-valuenow': this.indeterminate ? undefined : this.normalizedValue,
       style: this.styles,
-      on: this.$listeners,
+      ...this.$listeners,
     }), [
       this.genSvg(),
       this.genInfo(),
+    ]), [
+      [
+        Intersect,
+        this.onObserve
+      ]
     ])
   },
 })

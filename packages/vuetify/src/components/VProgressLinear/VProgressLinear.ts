@@ -1,4 +1,4 @@
-import {h} from 'vue'
+import {h, withDirectives} from 'vue'
 import './VProgressLinear.sass'
 
 // Components
@@ -8,7 +8,7 @@ import {
 } from '../transitions'
 
 // Directives
-import intersect from '../../directives/intersect'
+import intersect, { Intersect } from '../../directives/intersect'
 
 // Mixins
 import Colorable from '../../mixins/colorable'
@@ -110,10 +110,11 @@ export default baseMixins.extend({
     },
     __cachedIndeterminate (): VNode {
       return this.$createElement('div', {
-        class: 'v-progress-linear__indeterminate',
-        class: {
-          'v-progress-linear__indeterminate--active': this.active,
-        },
+        class: ['v-progress-linear__indeterminate',
+          {
+            'v-progress-linear__indeterminate--active': this.active,
+          }
+        ]
       }, [
         this.genProgressBar('long'),
         this.genProgressBar('short'),
@@ -197,17 +198,18 @@ export default baseMixins.extend({
       const listeners = this.$listeners
 
       if (this.reactive) {
-        listeners.click = this.onClick
+        listeners.onClick = this.onClick
       }
 
       return listeners
     },
     genProgressBar (name: 'long' | 'short') {
       return this.$createElement('div', this.setBackgroundColor(this.color, {
-        class: 'v-progress-linear__indeterminate',
-        class: {
-          [name]: true,
-        },
+        class: ['v-progress-linear__indeterminate',
+          {
+            [name]: true,
+          }
+        ]
       }))
     },
     onClick (e: MouseEvent) {
@@ -229,32 +231,32 @@ export default baseMixins.extend({
 
   render (): VNode {
     const data = {
-      class: 'v-progress-linear',
+      class: ['v-progress-linear', this.classes],
       attrs: {
         role: 'progressbar',
         'aria-valuemin': 0,
         'aria-valuemax': this.normalizedBuffer,
         'aria-valuenow': this.indeterminate ? undefined : this.normalizedValue,
       },
-      class: this.classes,
-      directives: [{
-        name: 'intersect',
-        value: this.onObserve,
-      }],
       style: {
         bottom: this.bottom ? 0 : undefined,
         height: this.active ? convertToUnit(this.height) : 0,
         top: this.top ? 0 : undefined,
       },
-      on: this.genListeners(),
+      ...this.genListeners(),
     }
 
-    return h('div', data, [
+    return withDirectives(h('div', data, [
       this.__cachedStream,
       this.__cachedBackground,
       this.__cachedBuffer,
       this.__cachedBar,
       this.genContent(),
+    ]), [
+      [
+        Intersect,
+        this.onObserve
+      ]
     ])
   },
 })

@@ -24,8 +24,11 @@ export default defineComponent({
 
       const node = this.$createElement('div', data)
 
+      const directives = data.directives || []
+      delete data.directives
+
       return withDirectives(node, [
-        ...(data.directives || []),
+        ...(directives),
         [
           ripple,
           { center: true },

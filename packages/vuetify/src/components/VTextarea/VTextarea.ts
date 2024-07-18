@@ -93,8 +93,8 @@ export default baseMixins.extend({
       const input = VTextField.methods.genInput.call(this)
 
       input.tag = 'textarea'
-      delete input.data!.attrs!.type
-      input.data!.attrs!.rows = this.rows
+      delete input.props.type
+      input.rows = this.rows
 
       return input
     },

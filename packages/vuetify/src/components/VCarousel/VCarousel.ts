@@ -143,18 +143,14 @@ export default defineComponent({
       for (let i = 0; i < length; i++) {
         const child = this.$createElement(VBtn, {
           class: 'v-carousel__controls__item',
-          attrs: {
-            'aria-label': this.$vuetify.lang.t('$vuetify.carousel.ariaLabel.delimiter', i + 1, length),
-          },
-          props: {
-            icon: true,
-            small: true,
-            value: this.getValue(this.items[i], i),
-          },
+          'aria-label': this.$vuetify.lang.t('$vuetify.carousel.ariaLabel.delimiter', i + 1, length),
+          icon: true,
+          small: true,
+          value: this.getValue(this.items[i], i),
           key: i,
         }, [
           this.$createElement(VIcon, {
-            props: { size: 18 },
+            size: 18
           }, this.delimiterIcon),
         ])
 
@@ -162,24 +158,18 @@ export default defineComponent({
       }
 
       return this.$createElement(ButtonGroup, {
-        props: {
-          value: this.internalValue,
-          mandatory: this.mandatory,
-        },
-        on: {
-          change: (val: unknown) => {
-            this.internalValue = val
-          },
-        },
+        value: this.internalValue,
+        mandatory: this.mandatory,
+        onChange: (val: unknown) => {
+          this.internalValue = val
+        }
       }, children)
     },
     genProgress () {
       return this.$createElement(VProgressLinear, {
         class: 'v-carousel__progress',
-        props: {
-          color: this.progressColor,
-          value: (this.internalIndex + 1) / this.items.length * 100,
-        },
+        color: this.progressColor,
+        value: (this.internalIndex + 1) / this.items.length * 100,
       })
     },
     restartTimeout () {
@@ -198,7 +188,7 @@ export default defineComponent({
   render (): VNode {
     const render = VWindow.render.call(this, h)
 
-    render.data!.style = `height: ${convertToUnit(this.height)};`
+    render.style = `height: ${convertToUnit(this.height)};`
 
     /* istanbul ignore else */
     if (!this.hideDelimiters) {

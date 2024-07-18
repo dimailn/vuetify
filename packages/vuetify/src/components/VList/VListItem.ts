@@ -145,7 +145,7 @@ export default baseMixins.extend({
         attrs['aria-selected'] = String(this.isActive)
       } else if (this.isInMenu) {
         attrs.role = this.isClickable ? 'menuitem' : undefined
-        attrs.id = attrs.id || `list-item-${this._uid}`
+        attrs.id = attrs.id || `list-item-${this.$.uid}`
       } else if (this.isInList) {
         attrs.role = 'listitem'
       }
@@ -163,13 +163,13 @@ export default baseMixins.extend({
   render (): VNode {
     let { tag, data, directives } = this.generateRouteLink()
 
-    data.attrs = {
-      ...data.attrs,
+    data = {
+      ...data,
       ...this.genAttrs(),
     }
-    data[this.to ? 'nativeOn' : 'on'] = {
-      ...data[this.to ? 'nativeOn' : 'on'],
-      keydown: (e: KeyboardEvent) => {
+    data = {
+      ...data,
+      onKeydown: (e: KeyboardEvent) => {
         if (!this.disabled) {
           /* istanbul ignore else */
           if (e.keyCode === keyCodes.enter) this.click(e)
@@ -180,10 +180,10 @@ export default baseMixins.extend({
     }
 
     if (this.inactive) tag = 'div'
-    if (this.inactive && this.to) {
-      data.on = data.nativeOn
-      delete data.nativeOn
-    }
+    // if (this.inactive && this.to) {
+    //   data.on = data.nativeOn
+    //   delete data.nativeOn
+    // }
 
     const children = getSlot(this, 'default', {
       active: this.isActive,

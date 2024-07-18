@@ -58,7 +58,12 @@ export default mixins<Vue & options>().extend({
 
   methods: {
     getOpenDependents (): any[] {
-      if (this.closeDependents) return searchChildren(this.$slots.default())
+      const node = this.$slots.default?.()
+
+      if(!node) return []
+
+      if (this.closeDependents) return searchChildren(node)
+
 
       return []
     },

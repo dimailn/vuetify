@@ -81,19 +81,15 @@ export default mixins(
         (change > 0 && this.max && this.calculateChange(change) > this.max)
 
       return this.$createElement(VBtn, {
-        attrs: { 'aria-label': ariaLabel },
-        props: {
-          dark: this.dark,
-          disabled,
-          icon: true,
-          light: this.light,
-        },
-        on: {
-          click: (e: Event) => {
-            e.stopPropagation()
-            this.$emit('input', this.calculateChange(change))
-          },
-        },
+        'aria-label': ariaLabel,
+        dark: this.dark,
+        disabled,
+        icon: true,
+        light: this.light,
+        onClick: (e: Event) => {
+          e.stopPropagation()
+          this.$emit('input', this.calculateChange(change))
+        }
       }, [
         this.$createElement(VIcon, ((change < 0) === !this.$vuetify.rtl) ? this.prevIcon : this.nextIcon),
       ])
@@ -112,12 +108,8 @@ export default mixins(
       const header = this.$createElement('div', this.setTextColor(color, {
         key: String(this.value),
       }), [this.$createElement('button', {
-        attrs: {
-          type: 'button',
-        },
-        on: {
-          click: () => this.$emit('toggle'),
-        },
+        type: 'button',
+        onClick: () => this.$emit('toggle'),
       }, getSlot(this) || [this.formatter(String(this.value))])])
 
       const transition = this.$createElement(Transition, {
@@ -125,21 +117,19 @@ export default mixins(
       }, [header])
 
       return this.$createElement('div', {
-        class: 'v-date-picker-header__value',
-        class: {
+        class: ['v-date-picker-header__value', {
           'v-date-picker-header__value--disabled': this.disabled,
-        },
+        }]
       }, [transition])
     },
   },
 
   render (): VNode {
     return this.$createElement('div', {
-      class: 'v-date-picker-header',
-      class: {
+      class: ['v-date-picker-header', {
         'v-date-picker-header--disabled': this.disabled,
         ...this.themeClasses,
-      },
+      }]
     }, [
       this.genBtn(-1),
       this.genHeader(),

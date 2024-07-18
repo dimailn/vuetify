@@ -76,7 +76,7 @@ export default defineComponent({
       const input = VAutocomplete.methods.genInput.call(this)
 
       delete input.props.name
-      input.props.onPaste = this.onPaste
+      input.onPaste = this.onPaste
 
       return input
     },
@@ -85,13 +85,10 @@ export default defineComponent({
 
       // Allow user to update an existing value
       if (this.multiple) {
-        chip.componentOptions!.listeners! = {
-          ...chip.componentOptions!.listeners!,
-          dblclick: () => {
-            this.editingIndex = index
-            this.internalSearch = this.getText(item)
-            this.selectedIndex = -1
-          },
+        chip.props.onDblclick = () => {
+          this.editingIndex = index
+          this.internalSearch = this.getText(item)
+          this.selectedIndex = -1
         }
       }
 

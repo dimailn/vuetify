@@ -1,4 +1,4 @@
-import {h} from 'vue'
+import {h, withDirectives} from 'vue'
 // Styles
 import './VRating.sass'
 
@@ -11,6 +11,7 @@ import Delayable from '../../mixins/delayable'
 import Sizeable from '../../mixins/sizeable'
 import Rippleable from '../../mixins/rippleable'
 import Themeable from '../../mixins/themeable'
+import Ripple from '../../directives/ripple'
 
 // Utilities
 import { createRange } from '../../util/helpers'
@@ -91,10 +92,12 @@ export default mixins(
     directives (): VNodeDirective[] {
       if (this.readonly || !this.ripple) return []
 
-      return [{
-        name: 'ripple',
-        value: { circle: true },
-      } as VNodeDirective]
+      return [
+        [
+          Ripple,
+          { circle: true }
+        ]
+      ]
     },
     iconProps (): object {
       const {
@@ -106,7 +109,7 @@ export default mixins(
         size,
         xLarge,
         xSmall,
-      } = this.$props
+      } = this
 
       return {
         dark,
@@ -150,7 +153,7 @@ export default mixins(
       const props: ItemSlotProps = {
         index: i,
         value: this.internalValue,
-        click: this.createClickFn(i),
+        onClick: this.createClickFn(i),
         isFilled: Math.floor(this.internalValue) > i,
         isHovered: Math.floor(this.hoverIndex) > i,
       }
@@ -211,26 +214,23 @@ export default mixins(
       if (this.$slots.item) return this.$slots.item(props)
 
       const listeners: Record<string, Function> = {
-        click: props.click,
+        onClick: props.onClick,
       }
 
       if (this.hover) {
-        listeners.mouseenter = (e: MouseEvent) => this.onMouseEnter(e, i)
-        listeners.mouseleave = this.onMouseLeave
+        listeners.onMouseenter = (e: MouseEvent) => this.onMouseEnter(e, i)
+        listeners.onMouseleave = this.onMouseLeave
 
         if (this.halfIncrements) {
-          listeners.mousemove = (e: MouseEvent) => this.onMouseEnter(e, i)
+          listeners.onMousemove = (e: MouseEvent) => this.onMouseEnter(e, i)
         }
       }
 
-      return this.$createElement(VIcon, this.setTextColor(this.getColor(props), {
-        attrs: {
-          'aria-label': this.$vuetify.lang.t(this.iconLabel, i + 1, Number(this.length)),
-        },
-        directives: this.directives,
-        props: this.iconProps,
-        on: listeners,
-      }), [this.getIconName(props)])
+      return withDirectives(this.$createElement(VIcon, this.setTextColor(this.getColor(props), {
+        'aria-label': this.$vuetify.lang.t(this.iconLabel, i + 1, Number(this.length)),
+        ...this.iconProps,
+        ...listeners,
+      }), [this.getIconName(props)]), this.directives)
     },
   },
 
@@ -238,11 +238,12 @@ export default mixins(
     const children = createRange(Number(this.length)).map(i => this.genItem(i))
 
     return h('div', {
-      class: 'v-rating',
-      class: {
-        'v-rating--readonly': this.readonly,
-        'v-rating--dense': this.dense,
-      },
+      class: ['v-rating',
+        {
+          'v-rating--readonly': this.readonly,
+          'v-rating--dense': this.dense,
+        }
+      ]
     }, children)
   },
 })

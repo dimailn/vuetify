@@ -1,4 +1,4 @@
-import {h} from 'vue'
+import {h, vShow, withDirectives} from 'vue'
 // Components
 import { VFadeTransition } from '../transitions'
 import VExpansionPanel from './VExpansionPanel'
@@ -9,7 +9,7 @@ import Colorable from '../../mixins/colorable'
 import { inject as RegistrableInject } from '../../mixins/registrable'
 
 // Directives
-import ripple from '../../directives/ripple'
+import ripple, { Ripple } from '../../directives/ripple'
 
 // Utilities
 import { getSlot } from '../../util/helpers'
@@ -79,48 +79,47 @@ export default baseMixins.extend({
   methods: {
     onClick (e: MouseEvent) {
       this.$emit('click', e)
+      this.$emitLegacy('click', e)
     },
     genIcon () {
       const icon = getSlot(this, 'actions', { open: this.isActive }) ||
         [this.$createElement(VIcon, this.expandIcon)]
 
       return this.$createElement(VFadeTransition, [
-        this.$createElement('div', {
-          class: 'v-expansion-panel-header__icon',
-          class: {
+        withDirectives(this.$createElement('div', {
+          class: ['v-expansion-panel-header__icon', {
             'v-expansion-panel-header__icon--disable-rotate': this.disableIconRotate,
-          },
-          directives: [{
-            name: 'show',
-            value: !this.isDisabled,
-          }],
-        }, icon),
+          }]
+        }, icon), [
+          [
+            vShow,
+            !this.isDisabled
+          ]
+        ]),
       ])
     },
   },
 
   render (): VNode {
-    return h('button', this.setBackgroundColor(this.color, {
-      class: 'v-expansion-panel-header',
-      class: this.classes,
-      attrs: {
-        tabindex: this.isDisabled ? -1 : null,
-        type: 'button',
-        'aria-expanded': this.isActive,
-      },
-      directives: [{
-        name: 'ripple',
-        value: this.ripple,
-      }],
-      on: {
-        ...this.$listeners,
-        click: this.onClick,
-        mousedown: () => (this.hasMousedown = true),
-        mouseup: () => (this.hasMousedown = false),
-      },
+    const directives = [
+      [
+        Ripple,
+        this.ripple
+      ]
+    ]
+
+    return withDirectives(h('button', this.setBackgroundColor(this.color, {
+      class: ['v-expansion-panel-header', this.classes],
+      tabindex: this.isDisabled ? -1 : null,
+      type: 'button',
+      'aria-expanded': this.isActive,
+      ...this.$listeners,
+      onClick: this.onClick,
+      onMousedown: () => (this.hasMousedown = true),
+      onMouseup: () => (this.hasMousedown = false)
     }), [
       getSlot(this, 'default', { open: this.isActive }, true),
       this.hideActions || this.genIcon(),
-    ])
+    ]), directives)
   },
 })

@@ -134,8 +134,7 @@ export default baseMixins.extend({
 
   render (): VNode {
     return h(this.tag, {
-      class: 'v-stepper',
-      class: this.classes,
+      class: ['v-stepper', this.classes],
       style: this.styles,
     }, getSlot(this))
   },

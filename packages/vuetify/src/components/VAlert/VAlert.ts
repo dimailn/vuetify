@@ -1,4 +1,4 @@
-import {h} from 'vue'
+import {h, vShow, withDirectives} from 'vue'
 // Styles
 import './VAlert.sass'
 
@@ -86,10 +86,9 @@ export default mixins(
       if (!this.border) return null
 
       let data: VNodeData = {
-        class: 'v-alert__border',
-        class: {
+        class: ['v-alert__border', {
           [`v-alert__border--${this.border}`]: true,
-        },
+        }]
       }
 
       if (this.coloredBorder) {
@@ -106,20 +105,14 @@ export default mixins(
 
       return this.$createElement(VBtn, {
         class: 'v-alert__dismissible',
-        props: {
-          color,
-          icon: true,
-          small: true,
-        },
-        attrs: {
-          'aria-label': this.$vuetify.lang.t(this.closeLabel),
-        },
-        on: {
-          click: () => (this.isActive = false),
-        },
+        color,
+        icon: true,
+        small: true,
+        'aria-label': this.$vuetify.lang.t(this.closeLabel),
+        onClick: () => (this.isActive = false),
       }, [
         this.$createElement(VIcon, {
-          props: { color },
+          color,
         }, this.closeIcon),
       ])
     },
@@ -128,7 +121,7 @@ export default mixins(
 
       return this.$createElement(VIcon, {
         class: 'v-alert__icon',
-        props: { color: this.iconColor },
+        color: this.iconColor,
       }, this.computedIcon)
     },
     classes (): object {
@@ -212,25 +205,25 @@ export default mixins(
     },
     genAlert (): VNode {
       let data: VNodeData = {
-        class: 'v-alert',
-        attrs: {
-          role: 'alert',
-        },
-        on: this.listeners$,
-        class: this.classes,
-        style: this.styles,
-        directives: [{
-          name: 'show',
-          value: this.isActive,
-        }],
+        class: ['v-alert', this.classes],
+        role: 'alert',
+        ...this.listeners$,
+        style: this.styles
       }
+
+      const directives = [
+        [
+          vShow,
+          this.isActive
+        ]
+      ]
 
       if (!this.coloredBorder) {
         const setColor = this.hasText ? this.setTextColor : this.setBackgroundColor
         data = setColor(this.computedColor, data)
       }
 
-      return this.$createElement('div', data, [this.genWrapper()])
+      return withDirectives(this.$createElement('div', data, [this.genWrapper()]), directives)
     },
     /** @public */
     toggle () {

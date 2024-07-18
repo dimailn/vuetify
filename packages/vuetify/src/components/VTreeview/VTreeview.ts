@@ -313,6 +313,7 @@ export default mixins(
     },
     register (node: VTreeviewNodeInstance) {
       const key = getObjectValueByPath(node.item, this.itemKey)
+
       this.nodes[key].vnode = node
 
       this.updateVnodeState(key)
@@ -428,12 +429,11 @@ export default mixins(
       : this.$slots.default! // TODO: remove type annotation with TS 3.2
 
     return h('div', {
-      class: 'v-treeview',
-      class: {
+      class: ['v-treeview', {
         'v-treeview--hoverable': this.hoverable,
         'v-treeview--dense': this.dense,
         ...this.themeClasses,
-      },
+      }],
     }, children)
   },
 })

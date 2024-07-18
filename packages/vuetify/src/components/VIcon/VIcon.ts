@@ -59,7 +59,7 @@ const VIcon = mixins(
     },
     hasClickListener (): boolean {
       return Boolean(
-        this.listeners$.click || this.listeners$['!click']
+        this.listeners$.onClick
       )
     },
   },
@@ -88,7 +88,7 @@ const VIcon = mixins(
     },
     // Component data for both font icon and SVG wrapper span
     getDefaultData (): VNodeData {
-      return {
+      const data = {
         class: {
           'v-icon--disabled': this.disabled,
           'v-icon--left': this.left,
@@ -99,11 +99,15 @@ const VIcon = mixins(
           'notranslate': true
         },
         'aria-hidden': !this.hasClickListener,
-        disabled: this.hasClickListener && this.disabled,
         type: this.hasClickListener ? 'button' : undefined,
-        ...this.attrs$,
+        // ...this.attrs$,
         ...this.listeners$,
       }
+
+      if(this.hasClickListener && this.disabled) {
+        data.disabled = true
+      }
+      return data
     },
     getSvgWrapperData () {
       const fontSize = this.getSize()
@@ -239,23 +243,25 @@ export default defineComponent({
 
   functional: true,
 
+  mounted() {
+    this.$el.innerHTML = ''
+  },
+
   render (): VNode {
     const data = { ...this.$attrs }
 
     let iconName = ''
 
     // Support usage of v-text and v-html
-    if (data.domProps) {
-      iconName = this.$.vnode.el?.textContent  ||
-        data.domProps.innerHTML ||
+    // if (data.domProps) {
+    if(this.$.vnode.props?.textContent) {
+      iconName = this.$.vnode.props.textContent  ||
+      this.$.vnode.props.innerHTML ||
         iconName
-
-      // Remove nodes so it doesn't
-      // overwrite our changes
-      delete data.domProps.textContent
-      delete data.domProps.innerHTML
     }
 
-    return h(VIcon, data, iconName ? [iconName] : this.$slots.default?.())
+    const children = this.$slots.default?.()
+    // console.log(children && children[0]?.children)
+    return h(VIcon, data, iconName ? [iconName] : children && children[0]?.children)
   },
 })

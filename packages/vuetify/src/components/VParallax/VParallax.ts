@@ -81,11 +81,9 @@ export default baseMixins.extend({
     const imgData: VNodeData = {
       class: 'v-parallax__image',
       style: this.styles,
-      attrs: {
-        src: this.src,
-        srcset: this.srcset,
-        alt: this.alt,
-      },
+      src: this.src,
+      srcset: this.srcset,
+      alt: this.alt,
       ref: 'img',
     }
 
@@ -104,7 +102,7 @@ export default baseMixins.extend({
       style: {
         height: `${this.height}px`,
       },
-      on: this.$listeners,
+      ...this.$listeners,
     }, [container, content])
   },
 })

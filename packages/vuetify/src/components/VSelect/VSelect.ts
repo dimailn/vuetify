@@ -26,7 +26,7 @@ import { consoleError } from '../../util/console'
 
 // Types
 import mixins from '../../util/mixins'
-import { VNode, VNodeDirective, PropType, VNodeData } from 'vue'
+import { VNode, VNodeDirective, PropType, VNodeData, withDirectives } from 'vue'
 import { PropValidator } from 'vue/types/options'
 import { SelectItemKey } from 'vuetify/types'
 
@@ -122,8 +122,8 @@ export default baseMixins.extend({
       // As long as a value is defined, show it
       // Otherwise, check if multiple
       // to determine which default to provide
-      lazyValue: this.value !== undefined
-        ? this.value
+      lazyValue: this.modelValue !== undefined
+        ? this.modelValue
         : this.multiple ? [] : undefined,
       selectedIndex: -1,
       selectedItems: [] as any[],
@@ -166,14 +166,16 @@ export default baseMixins.extend({
       return value.length
     },
     directives (): VNodeDirective[] | undefined {
-      return this.isFocused ? [{
-        name: 'click-outside',
-        value: {
-          handler: this.blur,
-          closeConditional: this.closeConditional,
-          include: () => this.getOpenDependentElements(),
-        },
-      }] : undefined
+      return [
+        [
+          ClickOutside,
+          {
+            handler: () => this.isFocused && this.blur(),
+            closeConditional: this.closeConditional,
+            include: () => this.getOpenDependentElements(),
+          }
+        ]
+      ]
     },
     dynamicHeight () {
       return 'auto'
@@ -285,6 +287,8 @@ export default baseMixins.extend({
   methods: {
     /** @public */
     blur (e?: Event) {
+      console.log("BLUUUUR")
+
       VTextField.methods.blur.call(this, e)
       this.isMenuActive = false
       this.isFocused = false
@@ -363,23 +367,19 @@ export default baseMixins.extend({
 
       return this.$createElement(VChip, {
         class: 'v-chip--select',
-        attrs: { tabindex: -1 },
-        props: {
-          close: this.deletableChips && isInteractive,
-          disabled: isDisabled,
-          inputValue: index === this.selectedIndex,
-          small: this.smallChips,
-        },
-        on: {
-          click: (e: MouseEvent) => {
-            if (!isInteractive) return
+        tabindex: -1,
+        close: this.deletableChips && isInteractive,
+        disabled: isDisabled,
+        inputValue: index === this.selectedIndex,
+        small: this.smallChips,
+        onClick: (e: MouseEvent) => {
+          if (!isInteractive) return
 
-            e.stopPropagation()
+          e.stopPropagation()
 
-            this.selectedIndex = index
-          },
-          'click:close': () => this.onChipInput(item),
+          this.selectedIndex = index
         },
+        'onClick:close': () => this.onChipInput(item),
         key: JSON.stringify(this.getValue(item)),
       }, this.getText(item))
     },
@@ -391,10 +391,9 @@ export default baseMixins.extend({
       )
 
       return this.$createElement('div', this.setTextColor(color, {
-        class: 'v-select__selection v-select__selection--comma',
-        class: {
+        class: ['v-select__selection v-select__selection--comma', {
           'v-select__selection--disabled': isDisabled,
-        },
+        }],
         key: JSON.stringify(this.getValue(item)),
       }), `${this.getText(item)}${last ? '' : ', '}`)
     },
@@ -414,9 +413,8 @@ export default baseMixins.extend({
 
       return [
         this.genFieldset(),
-        this.$createElement('div', {
-          class: 'v-select__slot',
-          directives: this.directives,
+        withDirectives(this.$createElement('div', {
+          class: 'v-select__slot'
         }, [
           this.genLabel(),
           this.prefix ? this.genAffix('prefix') : null,
@@ -425,7 +423,7 @@ export default baseMixins.extend({
           this.genClearIcon(),
           this.genIconSlot(),
           this.genHiddenInput(),
-        ]),
+        ]), this.directives),
         this.genMenu(),
         this.genProgress(),
       ]
@@ -469,11 +467,9 @@ export default baseMixins.extend({
     },
     genHiddenInput (): VNode {
       return this.$createElement('input', {
-        domProps: { value: this.lazyValue },
-        attrs: {
-          type: 'hidden',
-          name: this.attrs$.name,
-        },
+        value: this.lazyValue,
+        type: 'hidden',
+        name: this.attrs$.name
       })
     },
     genInputSlot (): VNode {
@@ -529,20 +525,19 @@ export default baseMixins.extend({
       }
 
       return this.$createElement(VMenu, {
-        attrs: { role: undefined },
-        props,
-        on: {
-          input: (val: boolean) => {
-            this.isMenuActive = val
-            this.isFocused = val
-          },
-          scroll: this.onScroll,
+        role: undefined,
+        ...props,
+        onInput: (val: boolean) => {
+          this.isMenuActive = val
+          this.isFocused = val
         },
+        onScroll: this.onScroll,
         ref: 'menu',
       }, [this.genList()])
     },
     genSelections (): VNode {
       let length = this.selectedItems.length
+
       const children = new Array(length)
 
       let genSelection
@@ -568,9 +563,7 @@ export default baseMixins.extend({
     },
     genSlotSelection (item: object, index: number): VNode[] | undefined {
       return this.$slots.selection!({
-        attrs: {
-          class: 'v-chip--select',
-        },
+        class: 'v-chip--select',
         parent: this,
         item,
         index,
@@ -881,7 +874,7 @@ export default baseMixins.extend({
     setValue (value: any) {
       if (!this.valueComparator(value, this.internalValue)) {
         this.internalValue = value
-        this.$emit('change', value)
+        this.$emit('update:modelValue', value)
       }
     },
     isAppendInner (target: any) {

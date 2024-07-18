@@ -1,4 +1,4 @@
-import {h} from 'vue'
+import {h, withDirectives} from 'vue'
 // Styles
 import './VWindow.sass'
 
@@ -52,7 +52,7 @@ export default defineComponent({
     showArrowsOnHover: Boolean,
     touch: Object as PropType<TouchHandlers>,
     touchless: Boolean,
-    value: {
+    modelValue: {
       required: false,
     },
     vertical: Boolean,
@@ -145,26 +145,23 @@ export default defineComponent({
       icon: string,
       click: () => void
     ) {
-      const on = {
-        click: (e: Event) => {
+
+      const attrs = {
+        'aria-label': this.$vuetify.lang.t(`$vuetify.carousel.${direction}`),
+        onClick: (e: Event) => {
           e.stopPropagation()
           this.changedByDelimiters = true
           click()
-        },
-      }
-      const attrs = {
-        'aria-label': this.$vuetify.lang.t(`$vuetify.carousel.${direction}`),
+        }
       }
       const children = this.$slots[direction]?.({
-        on,
         attrs,
       }) ?? [this.$createElement(VBtn, {
-        props: { icon: true },
-        attrs,
-        on,
+        icon: true,
+        ...attrs,
       }, [
         this.$createElement(VIcon, {
-          props: { large: true },
+          large: true,
         }, icon),
       ])]
 
@@ -256,10 +253,10 @@ export default defineComponent({
   },
 
   render (): VNode {
+    const directives = []
+
     const data = {
-      class: 'v-window',
-      class: this.classes,
-      directives: [] as VNodeDirective[],
+      class: ['v-window', this.classes]
     }
 
     if (!this.touchless) {
@@ -278,12 +275,12 @@ export default defineComponent({
         },
       }
 
-      data.directives.push({
-        name: 'touch',
-        value,
-      })
+      directives.push([
+        Touch,
+        value
+      ])
     }
 
-    return h('div', data, [this.genContainer()])
+    return withDirectives(h('div', data, [this.genContainer()]), directives)
   },
 })

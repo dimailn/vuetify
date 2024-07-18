@@ -15,7 +15,7 @@ export default defineComponent({
 
   computed: {
     classes (): object {
-      return BaseItemGroup.classes.call(this)
+      return BaseItemGroup.computed.classes.call(this)
     },
   },
 

@@ -1,4 +1,4 @@
-import {h} from 'vue'
+import {h, withDirectives} from 'vue'
 // Styles
 import './VSlideGroup.sass'
 
@@ -287,13 +287,10 @@ export const BaseSlideGroup = mixins<options &
         : getSlot(this, 'next') || this.__cachedNext
 
       return this.$createElement('div', {
-        class: 'v-slide-group__next',
-        class: {
+        class: ['v-slide-group__next', {
           'v-slide-group__next--disabled': !this.hasNext,
-        },
-        on: {
-          click: () => this.onAffixClick('next'),
-        },
+        }],
+        onClick: () => this.onAffixClick('next'),
         key: 'next',
       }, [slot])
     },
@@ -301,9 +298,7 @@ export const BaseSlideGroup = mixins<options &
       return this.$createElement('div', {
         class: 'v-slide-group__content',
         ref: 'content',
-        on: {
-          focusin: this.onFocusin,
-        },
+        onFocusin: this.onFocusin,
       }, getSlot(this))
     },
     genData (): object {
@@ -333,9 +328,7 @@ export const BaseSlideGroup = mixins<options &
       ) return null
 
       return this.$createElement(VIcon, {
-        props: {
-          disabled: !hasAffix,
-        },
+        disabled: !hasAffix,
       }, (this as any)[`${icon}Icon`])
     },
     // Always generate prev for scrollable hint
@@ -345,13 +338,10 @@ export const BaseSlideGroup = mixins<options &
         : getSlot(this, 'prev') || this.__cachedPrev
 
       return this.$createElement('div', {
-        class: 'v-slide-group__prev',
-        class: {
+        class: ['v-slide-group__prev', {
           'v-slide-group__prev--disabled': !this.hasPrev,
-        },
-        on: {
-          click: () => this.onAffixClick('prev'),
-        },
+        }],
+        onClick: () => this.onAffixClick('prev'),
         key: 'prev',
       }, [slot])
     },
@@ -359,21 +349,21 @@ export const BaseSlideGroup = mixins<options &
       return this.$createElement(VFadeTransition, [this.genIcon(location)])
     },
     genWrapper (): VNode {
-      return this.$createElement('div', {
+      return withDirectives(this.$createElement('div', {
         class: 'v-slide-group__wrapper',
-        directives: [{
-          name: 'touch',
-          value: {
+        ref: 'wrapper',
+        onScroll: this.onScroll,
+      }, [this.genContent()]), [
+        [
+          Touch,
+          {
             start: (e: TouchEvent) => this.overflowCheck(e, this.onTouchStart),
             move: (e: TouchEvent) => this.overflowCheck(e, this.onTouchMove),
             end: (e: TouchEvent) => this.overflowCheck(e, this.onTouchEnd),
-          },
-        }],
-        ref: 'wrapper',
-        on: {
-          scroll: this.onScroll,
-        },
-      }, [this.genContent()])
+          }
+        ]
+
+      ])
     },
     calculateNewOffset (direction: 'prev' | 'next', widths: Widths, rtl: boolean, currentScrollOffset: number) {
       const sign = rtl ? -1 : 1

@@ -77,17 +77,17 @@ export default mixins(
       this.isReadonly || this.isDisabled || this.toggle()
     },
     toggle () {
-      this.$nextTick(() => this.$emit('change'))
+      this.$nextTick(() => {
+        this.$emit('change')
+        this.$emitLegacy('change')
+      })
     },
   },
 
   render (): VNode {
     return h('div', {
-      class: 'v-expansion-panel',
-      class: this.classes,
-      attrs: {
-        'aria-expanded': String(this.isActive),
-      },
+      class: ['v-expansion-panel', this.classes],
+      'aria-expanded': String(this.isActive),
     }, getSlot(this))
   },
 })

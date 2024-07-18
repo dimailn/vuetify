@@ -54,7 +54,7 @@ export default baseMixins.extend({
       default: () => [],
     } as PropValidator<InputMessage | null>,
     validateOnBlur: Boolean,
-    value: { required: false },
+    modelValue: { required: false },
   },
 
   data () {

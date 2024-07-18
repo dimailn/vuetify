@@ -93,9 +93,7 @@ export default mixins(
   render (): VNode {
     const render = BaseSlideGroup.render.call(this, h)
 
-    render.data!.attrs = {
-      role: 'tablist',
-    }
+    render.role = 'tablist'
 
     return render
   },

@@ -21,18 +21,17 @@ export default mixins(
       staticClass = ''
     ) {
       const active = (this as any)[prop] === value
-      const click = (event: Event) => {
+      const onClick = (event: Event) => {
         event.stopPropagation()
         this.$emit(`update:${kebabCase(prop)}`, value)
       }
 
       return this.$createElement('div', {
-        class: `v-picker__title__btn ${staticClass}`.trim(),
-        class: {
+        class: [`v-picker__title__btn ${staticClass}`.trim(), {
           'v-picker__title__btn--active': active,
           'v-picker__title__btn--readonly': readonly,
-        },
-        on: (active || readonly) ? undefined : { click },
+        }],
+        ...((active || readonly) ? {} : { onClick }),
       }, Array.isArray(content) ? content : [content])
     },
   },

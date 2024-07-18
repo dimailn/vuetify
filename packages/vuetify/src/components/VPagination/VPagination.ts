@@ -1,4 +1,4 @@
-import {h} from 'vue'
+import {h, withDirectives} from 'vue'
 import './VPagination.sass'
 
 import VIcon from '../VIcon'
@@ -46,7 +46,7 @@ export default mixins(
       default: '$prev',
     },
     totalVisible: [Number, String],
-    value: {
+    modelValue: {
       type: Number,
       default: 0,
     },
@@ -80,6 +80,9 @@ export default mixins(
   },
 
   computed: {
+    value() {
+      return this.modelValue
+    },
     classes (): object {
       return {
         'v-pagination': true,
@@ -163,12 +166,12 @@ export default mixins(
     },
     next (e: Event) {
       e.preventDefault()
-      this.$emit('input', this.value + 1)
+      this.$emit('update:modelValue', this.value + 1)
       this.$emit('next')
     },
     previous (e: Event) {
       e.preventDefault()
-      this.$emit('input', this.value - 1)
+      this.$emit('update:modelValue', this.value - 1)
       this.$emit('previous')
     },
     range (from: number, to: number) {
@@ -186,18 +189,15 @@ export default mixins(
       return h('li', [
         h('button',
           this.setBackgroundColor(this.navigationColor, {
-            class: 'v-pagination__navigation',
-            class: {
+            class: ['v-pagination__navigation', {
               'v-pagination__navigation--disabled': disabled,
-            },
-            attrs: {
-              disabled,
-              type: 'button',
-              'aria-label': label,
-            },
-            on: disabled ? {} : { click: fn },
+            }],
+            disabled,
+            type: 'button',
+            'aria-label': label,
+            ...(disabled ? {} : { onClick: fn }),
           }),
-          [h(VIcon, { props: { color: this.navigationTextColor } }, [icon])]
+          [h(VIcon, { color: this.navigationTextColor }, [icon])]
         ),
       ])
     },
@@ -207,18 +207,13 @@ export default mixins(
       const ariaLabel = isCurrentPage ? this.currentPageAriaLabel : this.pageAriaLabel
 
       return h('button', this.setBackgroundColor(color, {
-        class: 'v-pagination__item',
-        class: {
+        class: ['v-pagination__item', {
           'v-pagination__item--active': i === this.value,
-        },
-        attrs: {
-          type: 'button',
-          'aria-current': isCurrentPage,
-          'aria-label': this.$vuetify.lang.t(ariaLabel, i),
-        },
-        on: {
-          click: () => this.$emit('input', i),
-        },
+        }],
+        type: 'button',
+        'aria-current': isCurrentPage,
+        'aria-label': this.$vuetify.lang.t(ariaLabel, i),
+        onClick: () => this.$emit('update:modelValue', i),
       }), [i.toString()])
     },
     genItems (h: CreateElement): VNode[] {
@@ -229,14 +224,16 @@ export default mixins(
       })
     },
     genList (h: CreateElement, children: VNodeChildrenArrayContents): VNode {
-      return h('ul', {
-        directives: [{
-          modifiers: { quiet: true },
-          name: 'resize',
-          value: this.onResize,
-        }],
-        class: this.classes,
-      }, children)
+      return withDirectives(h('ul', {
+        class: this.classes
+      }, children), [
+        [
+          Resize,
+          this.onResize,
+          '',
+          { quiet: true }
+        ]
+      ])
     },
   },
 
@@ -256,10 +253,8 @@ export default mixins(
     ]
 
     return h('nav', {
-      attrs: {
-        role: 'navigation',
-        'aria-label': this.$vuetify.lang.t(this.wrapperAriaLabel),
-      },
+      role: 'navigation',
+      'aria-label': this.$vuetify.lang.t(this.wrapperAriaLabel),
     }, [this.genList(h, children)])
   },
 })

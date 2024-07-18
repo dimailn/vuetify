@@ -222,21 +222,18 @@ const VTreeviewNode = baseMixins.extend({
     },
     genToggle () {
       return this.$createElement(VIcon, {
-        class: 'v-treeview-node__toggle',
-        class: {
+        class: ['v-treeview-node__toggle', {
           'v-treeview-node__toggle--open': this.isOpen,
           'v-treeview-node__toggle--loading': this.isLoading,
-        },
+        }],
         slot: 'prepend',
-        on: {
-          click: (e: MouseEvent) => {
-            e.stopPropagation()
+        onClick: (e: MouseEvent) => {
+          e.stopPropagation()
 
-            if (this.isLoading) return
+          if (this.isLoading) return
 
-            this.checkChildren().then(() => this.open())
-          },
-        },
+          this.checkChildren().then(() => this.open())
+        }
       }, [this.isLoading ? this.loadingIcon : this.expandIcon])
     },
     genCheckbox () {
@@ -285,54 +282,48 @@ const VTreeviewNode = baseMixins.extend({
       children.unshift(...this.genLevel(this.level))
 
       return this.$createElement('div', this.setTextColor(this.isActive && this.color, {
-        class: 'v-treeview-node__root',
-        class: {
+        class: ['v-treeview-node__root', {
           [this.activeClass]: this.isActive,
-        },
-        on: {
-          click: () => {
-            if (this.openOnClick && this.hasChildren) {
-              this.checkChildren().then(this.open)
-            } else if (this.activatable && !this.disabled) {
-              this.isActive = !this.isActive
-              this.treeview.updateActive(this.key, this.isActive)
-              this.treeview.emitActive()
-            }
-          },
-        },
+        }],
+        onClick: () => {
+          if (this.openOnClick && this.hasChildren) {
+            this.checkChildren().then(this.open)
+          } else if (this.activatable && !this.disabled) {
+            this.isActive = !this.isActive
+            this.treeview.updateActive(this.key, this.isActive)
+            this.treeview.emitActive()
+          }
+        }
       }), children)
     },
     genChild (item: any, parentIsDisabled: boolean) {
       return this.$createElement(VTreeviewNode, {
         key: getObjectValueByPath(item, this.itemKey),
-        props: {
-          activatable: this.activatable,
-          activeClass: this.activeClass,
-          item,
-          selectable: this.selectable,
-          selectedColor: this.selectedColor,
-          color: this.color,
-          disablePerNode: this.disablePerNode,
-          expandIcon: this.expandIcon,
-          indeterminateIcon: this.indeterminateIcon,
-          offIcon: this.offIcon,
-          onIcon: this.onIcon,
-          loadingIcon: this.loadingIcon,
-          itemKey: this.itemKey,
-          itemText: this.itemText,
-          itemDisabled: this.itemDisabled,
-          itemChildren: this.itemChildren,
-          loadChildren: this.loadChildren,
-          transition: this.transition,
-          openOnClick: this.openOnClick,
-          rounded: this.rounded,
-          shaped: this.shaped,
-          level: this.level + 1,
-          selectionType: this.selectionType,
-          parentIsDisabled,
-        },
-        scopedSlots: this.$slots,
-      })
+        activatable: this.activatable,
+        activeClass: this.activeClass,
+        item,
+        selectable: this.selectable,
+        selectedColor: this.selectedColor,
+        color: this.color,
+        disablePerNode: this.disablePerNode,
+        expandIcon: this.expandIcon,
+        indeterminateIcon: this.indeterminateIcon,
+        offIcon: this.offIcon,
+        onIcon: this.onIcon,
+        loadingIcon: this.loadingIcon,
+        itemKey: this.itemKey,
+        itemText: this.itemText,
+        itemDisabled: this.itemDisabled,
+        itemChildren: this.itemChildren,
+        loadChildren: this.loadChildren,
+        transition: this.transition,
+        openOnClick: this.openOnClick,
+        rounded: this.rounded,
+        shaped: this.shaped,
+        level: this.level + 1,
+        selectionType: this.selectionType,
+        parentIsDisabled,
+      }, this.$slots)
     },
     genChildrenWrapper () {
       if (!this.isOpen || !this.children) return null
@@ -355,18 +346,15 @@ const VTreeviewNode = baseMixins.extend({
     else children.push(this.genChildrenWrapper())
 
     return h('div', {
-      class: 'v-treeview-node',
-      class: {
+      class: ['v-treeview-node', {
         'v-treeview-node--leaf': !this.hasChildren,
         'v-treeview-node--click': this.openOnClick,
         'v-treeview-node--disabled': this.disabled,
         'v-treeview-node--rounded': this.rounded,
         'v-treeview-node--shaped': this.shaped,
         'v-treeview-node--selected': this.isSelected,
-      },
-      attrs: {
-        'aria-expanded': String(this.isOpen),
-      },
+      }],
+      'aria-expanded': String(this.isOpen),
     }, children)
   },
 })

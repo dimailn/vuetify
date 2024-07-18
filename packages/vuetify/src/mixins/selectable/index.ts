@@ -27,7 +27,7 @@ export default mixins(
 
   props: {
     id: String,
-    inputValue: null as any,
+    value: null as any,
     falseValue: null as any,
     trueValue: null as any,
     multiple: {
@@ -39,8 +39,8 @@ export default mixins(
 
   data () {
     return {
-      hasColor: this.inputValue,
-      lazyValue: this.inputValue,
+      hasColor: this.modelValue,
+      lazyValue: this.modelValue,
     }
   },
 
@@ -83,7 +83,7 @@ export default mixins(
   },
 
   watch: {
-    inputValue (val) {
+    modelValue (val) {
       this.lazyValue = val
       this.hasColor = val
     },
@@ -95,10 +95,8 @@ export default mixins(
 
       if (!label) return label
 
-      label!.data!.on = {
-        // Label shouldn't cause the input to focus
-        click: prevent,
-      }
+      // Label shouldn't cause the input to focus
+      label!.onClick = prevent
 
       return label
     },
@@ -118,7 +116,7 @@ export default mixins(
         onFocus: this.onFocus,
         onKeydown: this.onKeydown,
         onClick: prevent,
-        ref: 'input',
+        ref: 'input'
       })
     },
     onClick (e: Event) {

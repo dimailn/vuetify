@@ -88,11 +88,9 @@ export default defineComponent({
         class: 'v-input--selection-controls__input',
       }, [
         this.$createElement(VIcon, this.setTextColor(this.validationState, {
-          props: {
-            dense: this.dense,
-            dark: this.dark,
-            light: this.light,
-          },
+          dense: this.dense,
+          dark: this.dark,
+          light: this.light
         }), this.computedIcon),
         this.genInput('checkbox', {
           ...checkboxAttrs,

@@ -11,6 +11,7 @@ import VIcon from '../VIcon'
 import Themeable from '../../mixins/themeable'
 import Colorable from '../../mixins/colorable'
 import { getSlot } from '../../util/helpers'
+import mergeData from '../../util/mergeData'
 
 const baseMixins = mixins(
   Colorable,
@@ -58,28 +59,24 @@ export default baseMixins.extend({
     },
     genIcon (): VNode | VNode[] {
       return getSlot(this, 'icon') || this.$createElement(VIcon, {
-        props: {
-          color: this.iconColor,
-          dark: !this.theme.isDark,
-          small: this.small,
-        },
+        color: this.iconColor,
+        dark: !this.theme.isDark,
+        small: this.small
       }, this.icon)
     },
     genInnerDot () {
       const data: VNodeData = this.setBackgroundColor(this.color)
 
-      return this.$createElement('div', {
+      return this.$createElement('div', mergeData({
         class: 'v-timeline-item__inner-dot',
-        ...data,
-      }, [this.hasIcon && this.genIcon()])
+      }, data), [this.hasIcon && this.genIcon()])
     },
     genDot () {
       return this.$createElement('div', {
-        class: 'v-timeline-item__dot',
-        class: {
+        class: ['v-timeline-item__dot', {
           'v-timeline-item__dot--small': this.small,
           'v-timeline-item__dot--large': this.large,
-        },
+        }],
       }, [this.genInnerDot()])
     },
     genDivider () {
@@ -107,13 +104,12 @@ export default baseMixins.extend({
     if (this.$slots.opposite) children.push(this.genOpposite())
 
     return h('div', {
-      class: 'v-timeline-item',
-      class: {
+      class: ['v-timeline-item', {
         'v-timeline-item--fill-dot': this.fillDot,
         'v-timeline-item--before': this.timeline.reverse ? this.right : this.left,
         'v-timeline-item--after': this.timeline.reverse ? this.left : this.right,
         ...this.themeClasses,
-      },
+      }],
     }, children)
   },
 })

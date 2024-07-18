@@ -55,12 +55,12 @@ export default baseMixins.extend({
     loading: Boolean,
     persistentHint: Boolean,
     prependIcon: String,
-    value: null as any as PropType<any>,
+    modelValue: null as any as PropType<any>,
   },
 
   data () {
     return {
-      lazyValue: this.value,
+      lazyValue: this.modelValue,
       hasMouseDown: false,
     }
   },
@@ -144,7 +144,7 @@ export default baseMixins.extend({
   beforeCreate () {
     // v-radio-group needs to emit a different event
     // https://github.com/vuetifyjs/vuetify/issues/4752
-    this.$_modelEvent = (this.$options.model && this.$options.model.event) || 'input'
+    this.$_modelEvent = /*(this.$options.model && this.$options.model.event) ||*/ 'update:modelValue'
   },
 
   methods: {
@@ -245,33 +245,24 @@ export default baseMixins.extend({
       if (!this.hasLabel) return null
 
       return this.$createElement(VLabel, {
-        props: {
-          color: this.validationState,
-          dark: this.dark,
-          disabled: this.isDisabled,
-          focused: this.hasState,
-          for: this.computedId,
-          light: this.light,
-        },
+        color: this.validationState,
+        dark: this.dark,
+        disabled: this.isDisabled,
+        focused: this.hasState,
+        for: this.computedId,
+        light: this.light,
       }, getSlot(this, 'label') || this.label)
     },
     genMessages () {
       if (!this.showDetails) return null
 
       return this.$createElement(VMessages, {
-        props: {
-          color: this.hasHint ? '' : this.validationState,
-          dark: this.dark,
-          light: this.light,
-          value: this.messagesToDisplay,
-        },
-        attrs: {
-          role: this.hasMessages ? 'alert' : null,
-        },
-        scopedSlots: {
-          default: props => getSlot(this, 'message', props),
-        },
-      })
+        color: this.hasHint ? '' : this.validationState,
+        dark: this.dark,
+        light: this.light,
+        value: this.messagesToDisplay,
+        role: this.hasMessages ? 'alert' : null,
+      }, {default: getSlot(this, 'message') })
     },
     genSlot (
       type: string,

@@ -58,11 +58,9 @@ export default defineComponent({
     else if (props.value) icon = props.onIcon
 
     children.push(h(VIcon, Colorable.methods.setTextColor(props.value && props.color, {
-      props: {
-        disabled: props.disabled,
-        dark: props.dark,
-        light: props.light,
-      },
+      disabled: props.disabled,
+      dark: props.dark,
+      light: props.light
     }), icon))
 
     if (props.ripple && !props.disabled) {
@@ -84,14 +82,12 @@ export default defineComponent({
           'v-simple-checkbox': true,
           'v-simple-checkbox--disabled': props.disabled,
         },
-        on: {
-          click: (e: MouseEvent) => {
-            e.stopPropagation()
+        onClick: (e: MouseEvent) => {
+          e.stopPropagation()
 
-            if (data.on && data.on.input && !props.disabled) {
-              wrapInArray(data.on.input).forEach(f => f(!props.value))
-            }
-          },
+          if (data.on && data.on.input && !props.disabled) {
+            data.onInput && data.onInput(!props.value)
+          }
         },
       }), [
         h('div', { class: 'v-input--selection-controls__input' }, children),

@@ -1,4 +1,4 @@
-import {h} from 'vue'
+import {h, withDirectives} from 'vue'
 // Styles
 import './VListGroup.sass'
 
@@ -16,7 +16,7 @@ import Toggleable from '../../mixins/toggleable'
 import { inject as RegistrableInject } from '../../mixins/registrable'
 
 // Directives
-import ripple from '../../directives/ripple'
+import ripple, { Ripple } from '../../directives/ripple'
 
 // Transitions
 import { VExpandTransition } from '../transitions'
@@ -137,30 +137,23 @@ export default baseMixins.extend({
       ])
     },
     genHeader (): VNode {
-      return this.$createElement(VListItem, {
-        class: 'v-list-group__header',
-        attrs: {
-          'aria-expanded': String(this.isActive),
-          role: 'button',
-        },
+      return withDirectives(this.$createElement(VListItem, {
+        'aria-expanded': String(this.isActive),
+        role: 'button',
         class: {
+          'v-list-group__header': true,
           [this.activeClass]: this.isActive,
         },
-        props: {
-          inputValue: this.isActive,
-        },
-        directives: [{
-          name: 'ripple',
-          value: this.ripple,
-        }],
-        on: {
-          ...this.listeners$,
-          click: this.click,
-        },
+        inputValue: this.isActive,
+        ...this.listeners$,
+        onClick: this.click
       }, [
         this.genPrependIcon(),
         getSlot(this, 'activator'),
         this.genAppendIcon(),
+      ]),
+      [
+        [Ripple, this.ripple]
       ])
     },
     genItems (): VNode[] {

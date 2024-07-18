@@ -148,7 +148,7 @@ export default baseMixins.extend({
       },
       set (val: any) {
         this.lazyValue = val
-        this.$emit('input', this.lazyValue)
+        this.$emit('update:modelValue', this.lazyValue)
       },
     },
     isDirty (): boolean {
@@ -332,7 +332,7 @@ export default baseMixins.extend({
         value: this.computedCounterValue,
       }
 
-      return this.$slots.counter?.({ props }) ?? this.$createElement(VCounter, { props })
+      return this.$slots.counter?.({ props }) ?? this.$createElement(VCounter, props)
     },
     genControl () {
       return VInput.methods.genControl.call(this)
@@ -359,18 +359,16 @@ export default baseMixins.extend({
       if (!this.showLabel) return null
 
       const data = {
-        props: {
-          absolute: true,
-          color: this.validationState,
-          dark: this.dark,
-          disabled: this.isDisabled,
-          focused: !this.isSingle && (this.isFocused || !!this.validationState),
-          for: this.computedId,
-          left: this.labelPosition.left,
-          light: this.light,
-          right: this.labelPosition.right,
-          value: this.labelValue,
-        },
+        absolute: true,
+        color: this.validationState,
+        dark: this.dark,
+        disabled: this.isDisabled,
+        focused: !this.isSingle && (this.isFocused || !!this.validationState),
+        for: this.computedId,
+        left: this.labelPosition.left,
+        light: this.light,
+        right: this.labelPosition.right,
+        value: this.labelValue
       }
 
       return this.$createElement(VLabel, data, getSlot(this, 'label') || this.label)
@@ -484,7 +482,7 @@ export default baseMixins.extend({
         this.lazyValue !== this.initialValue
       ) {
         this.initialValue = this.lazyValue
-        this.$emit('change', this.initialValue)
+        this.$emit('update:modelValue', this.initialValue)
       }
 
       this.$emit('keydown', e)
@@ -540,7 +538,7 @@ export default baseMixins.extend({
       if (val) {
         this.initialValue = this.lazyValue
       } else if (this.initialValue !== this.lazyValue) {
-        this.$emit('change', this.lazyValue)
+        this.$emit('update:modelValue', this.lazyValue)
       }
     },
     onResize () {

@@ -1,4 +1,4 @@
-import {h} from 'vue'
+import {h, withDirectives} from 'vue'
 // Styles
 import './VTabs.sass'
 
@@ -195,23 +195,19 @@ export default baseMixins.extend({
         style: {
           height: convertToUnit(this.height),
         },
-        props: {
-          activeClass: this.activeClass,
-          centerActive: this.centerActive,
-          dark: this.dark,
-          light: this.light,
-          mandatory: !this.optional,
-          mobileBreakpoint: this.mobileBreakpoint,
-          nextIcon: this.nextIcon,
-          prevIcon: this.prevIcon,
-          showArrows: this.showArrows,
-          value: this.internalValue,
-        },
-        on: {
-          'call:slider': this.callSlider,
-          change: (val: any) => {
-            this.internalValue = val
-          },
+        activeClass: this.activeClass,
+        centerActive: this.centerActive,
+        dark: this.dark,
+        light: this.light,
+        mandatory: !this.optional,
+        mobileBreakpoint: this.mobileBreakpoint,
+        nextIcon: this.nextIcon,
+        prevIcon: this.prevIcon,
+        showArrows: this.showArrows,
+        value: this.internalValue,
+        'onCall:slider': this.callSlider,
+        onChange: (val: any) => {
+          this.internalValue = val
         },
         ref: 'items',
       }
@@ -234,14 +230,10 @@ export default baseMixins.extend({
       if (!item.length) return null
 
       return this.$createElement(VTabsItems, {
-        props: {
-          value: this.internalValue,
-        },
-        on: {
-          change: (val: any) => {
-            this.internalValue = val
-          },
-        },
+        value: this.internalValue,
+        onChange: (val: any) => {
+          this.internalValue = val
+        }
       }, item)
     },
     genSlider (slider: VNode | null) {
@@ -304,17 +296,18 @@ export default baseMixins.extend({
   render (): VNode {
     const { tab, slider, items, item } = this.parseNodes()
 
-    return h('div', {
-      class: 'v-tabs',
-      class: this.classes,
-      directives: [{
-        name: 'resize',
-        modifiers: { quiet: true },
-        value: this.onResize,
-      }],
+    return withDirectives(h('div', {
+      class: ['v-tabs', this.classes]
     }, [
       this.genBar(tab, slider),
       this.genItems(items, item),
+    ]), [
+      [
+        Resize,
+        this.onResize,
+        '',
+        { quiet: true }
+      ]
     ])
   },
 })

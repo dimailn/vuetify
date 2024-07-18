@@ -54,8 +54,7 @@ export default mixins(
         'aria-busy': !this.boilerplate ? true : undefined,
         'aria-live': !this.boilerplate ? 'polite' : undefined,
         'aria-label': !this.boilerplate ? this.$vuetify.lang.t(this.loadingText) : undefined,
-        role: !this.boilerplate ? 'alert' : undefined,
-        ...this.$attrs,
+        role: !this.boilerplate ? 'alert' : undefined
       }
     },
     classes (): object {
@@ -196,10 +195,9 @@ export default mixins(
 
   render (): VNode {
     return h('div', {
-      class: 'v-skeleton-loader',
-      attrs: this.attrs,
-      on: this.$listeners,
-      class: this.classes,
+      class: ['v-skeleton-loader', this.classes],
+      ...this.attrs,
+      ...this.$listeners,
       style: this.isLoading ? this.measurableStyles : undefined,
     }, [this.genSkeleton()])
   },

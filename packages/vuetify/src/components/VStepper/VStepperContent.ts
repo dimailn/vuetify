@@ -1,4 +1,4 @@
-import {h} from 'vue'
+import {h, vShow, withDirectives} from 'vue'
 // Components
 import {
   VTabTransition,
@@ -157,10 +157,17 @@ export default baseMixins.extend({
     }
 
     const wrapper = h('div', wrapperData, getSlot(this))
-    const content = h('div', contentData, [wrapper])
+    const content = withDirectives(
+      h('div', contentData, [wrapper]), this.isVertical ? [] :
+      [
+        [
+          vShow,
+          this.isActive
+        ]
+      ])
 
     return h(this.computedTransition, {
-      on: this.$listeners,
+      ...this.$listeners,
     }, [content])
   },
 })

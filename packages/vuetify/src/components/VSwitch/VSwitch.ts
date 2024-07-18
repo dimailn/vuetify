@@ -18,6 +18,7 @@ import { getSlot, keyCodes } from '../../util/helpers'
 
 // Types
 import { defineComponent, VNode, VNodeData } from 'vue'
+import mergeData from '../../util/mergeData'
 
 /* @vue/component */
 export default defineComponent({
@@ -89,22 +90,23 @@ export default defineComponent({
           ...switchAttrs,
         }),
         this.genRipple(this.setTextColor(this.validationState, {
-          directives: [{
-            name: 'touch',
-            value: {
+          directives: [[
+            Touch,
+            {
               left: this.onSwipeLeft,
               right: this.onSwipeRight,
             },
-          }],
+          ]],
         })),
-        this.$createElement('div', {
-          class: 'v-input--switch__track',
-          ...this.switchData,
-        }),
-        this.$createElement('div', {
-          class: 'v-input--switch__thumb',
-          ...this.switchData,
-        }, [this.genProgress()]),
+
+        this.$createElement('div', mergeData({
+          class: 'v-input--switch__track' },
+          this.switchData,
+        )),
+        this.$createElement('div', mergeData({
+          class: 'v-input--switch__thumb'},
+          this.switchData,
+        ), [this.genProgress()]),
       ])
     },
     genProgress (): VNode {
