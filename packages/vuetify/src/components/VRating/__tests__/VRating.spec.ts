@@ -1,78 +1,82 @@
 // Libraries
-import Vue from 'vue'
+import {h} from 'vue'
 
 // Components
 import VRating from '../VRating'
 
 // Utilities
 import {
-  mount,
-  Wrapper,
-  MountOptions,
+  mount
 } from '@vue/test-utils'
-import { ExtractVue } from '../../../util/mixins'
+import { mergeDeep } from '../../../util/helpers'
 
-Vue.prototype.$vuetify = {
+
+const $vuetify = {
   rtl: false,
-  icons: {},
+  icons: {
+    values: {
+    //   ratingEmpty: "mdi-star-outline",
+    //   ratingFull: 'mdi-star'
+    }
+  },
   lang: {
     t: str => str,
   },
 }
 
 describe('VRating.ts', () => {
-  type Instance = ExtractVue<typeof VRating>
-  let mountFunction: (options?: object) => Wrapper<Instance>
+  // type Instance = ExtractVue<typeof VRating>
+  let mountFunction//: (options?: object) => Wrapper<Instance>
 
   beforeEach(() => {
     mountFunction = (options: MountOptions<Instance>) => {
-      return mount(VRating, {
+      return mount(VRating, mergeDeep({
         // https://github.com/vuejs/vue-test-utils/issues/1130
-        sync: false,
-        mocks: {
-          $vuetify: {
-            rtl: false,
-            lang: {
-              t: str => str,
-            },
-          },
+        global: {
+          config: {
+            globalProperties: {
+              $vuetify,
+              $createElement: h
+            }
+          }
         },
-        ...options,
-      })
+      }, options))
     }
   })
 
-  it('should not register directives if readonly or !ripple', () => {
+  it('should not register directives if readonly or !ripple', async () => {
     const wrapper = mountFunction({
-      propsData: {
+      props: {
         readonly: true,
       },
     })
 
-    expect(wrapper.vm.directives).toHaveLength(0)
+    expect(wrapper.vm.directives[0][1].isDirActive).toBe(false)
 
     wrapper.setProps({ readonly: false })
 
-    expect(wrapper.vm.directives).toHaveLength(1)
+    await wrapper.vm.$nextTick()
+
+    expect(wrapper.vm.directives[0][1].isDirActive).toBe(true)
 
     wrapper.setProps({ ripple: false })
 
-    expect(wrapper.vm.directives).toHaveLength(0)
+    await wrapper.vm.$nextTick()
+
+    expect(wrapper.vm.directives[0][1].isDirActive).toBe(false)
   })
 
   it('should respond to internal and prop value changes', async () => {
     const wrapper = mountFunction()
 
-    const input = jest.fn()
-    wrapper.vm.$on('input', input)
     expect(wrapper.vm.internalValue).toBe(0)
 
-    wrapper.setProps({ value: 1 })
+    wrapper.setProps({ modelValue: 1 })
     await wrapper.vm.$nextTick()
 
     expect(wrapper.vm.internalValue).toBe(1)
 
-    expect(input).not.toHaveBeenCalled()
+    expect(wrapper.emitted()).not.toHaveProperty('update:modelValue')
 
     const icon = wrapper.findAll('.v-icon').at(1)
 
@@ -80,17 +84,16 @@ describe('VRating.ts', () => {
 
     await wrapper.vm.$nextTick()
 
-    expect(input).toHaveBeenCalledWith(2)
+    expect(wrapper.emitted()).toHaveProperty('update:modelValue')
+    expect(wrapper.emitted()['update:modelValue'][0][0]).toBe(2)
   })
 
   it('should not null the rating if clicked on the current value unless clearable', async () => {
     const wrapper = mountFunction()
 
-    const input = jest.fn()
-    wrapper.vm.$on('input', input)
     expect(wrapper.vm.internalValue).toBe(0)
 
-    wrapper.setProps({ value: 1, clearable: false })
+    wrapper.setProps({ modelValue: 1, clearable: false })
     await wrapper.vm.$nextTick()
 
     expect(wrapper.vm.internalValue).toBe(1)
@@ -105,6 +108,8 @@ describe('VRating.ts', () => {
 
     wrapper.setProps({ clearable: true })
 
+    await wrapper.vm.$nextTick()
+
     icon.trigger('click')
 
     await wrapper.vm.$nextTick()
@@ -114,13 +119,10 @@ describe('VRating.ts', () => {
 
   it('should not react to events when readonly', async () => {
     const wrapper = mountFunction({
-      propsData: {
+      props: {
         readonly: true,
       },
     })
-
-    const input = jest.fn()
-    wrapper.vm.$on('input', input)
 
     const icon = wrapper.find('.v-icon')
 
@@ -128,22 +130,25 @@ describe('VRating.ts', () => {
 
     await wrapper.vm.$nextTick()
 
-    expect(input).not.toHaveBeenCalled()
+    expect(wrapper.emitted()).not.toHaveProperty('update:modelValue')
 
     wrapper.setProps({ readonly: false })
+
+    await wrapper.vm.$nextTick()
 
     icon.trigger('click')
 
     await wrapper.vm.$nextTick()
 
-    expect(input).toHaveBeenCalledWith(1)
+    expect(wrapper.emitted()).toHaveProperty('update:modelValue')
+    expect(wrapper.emitted()['update:modelValue'][0][0]).toBe(1)
   })
 
   it('should change hover index on mouse action', async () => {
     jest.useFakeTimers()
 
     const wrapper = mountFunction({
-      propsData: {
+      props: {
         hover: true,
       },
     })
@@ -167,13 +172,15 @@ describe('VRating.ts', () => {
     expect(wrapper.vm.hoverIndex).toBe(4)
   })
 
-  it('should check for half event', () => {
+  it('should check for half event', async () => {
     const wrapper = mountFunction()
 
     const event = new MouseEvent('hover')
     expect(wrapper.vm.genHoverIndex(event, 1)).toBe(2)
 
     wrapper.setProps({ halfIncrements: true })
+
+    await wrapper.vm.$nextTick()
 
     expect(wrapper.vm.genHoverIndex({
       pageX: 0,
@@ -190,23 +197,26 @@ describe('VRating.ts', () => {
     }, 1)).toBe(2)
   })
 
-  it('should check for half event in rtl', () => {
+  it('should check for half event in rtl', async () => {
     const wrapper = mountFunction({
-      propsData: { halfIncrements: true },
-      mocks: {
-        $vuetify: {
-          rtl: true,
-          lang: {
-            t: str => str,
-          },
-        },
-      },
+      props: { halfIncrements: true },
+      global: {
+        config: {
+          globalProperties: {
+            $vuetify: {
+              rtl: true,
+            }
+          }
+        }
+      }
     })
 
     const event = new MouseEvent('hover')
     expect(wrapper.vm.genHoverIndex(event, 1)).toBe(1.5)
 
     wrapper.setProps({ halfIncrements: true })
+
+    await wrapper.vm.$nextTick()
 
     expect(wrapper.vm.genHoverIndex({
       pageX: 0,
@@ -224,16 +234,11 @@ describe('VRating.ts', () => {
   })
 
   it('should render a scoped slot', () => {
-    const vm = new Vue()
-    const itemSlot = () => [vm.$createElement('span', 'foobar')]
+    const itemSlot = () => [h('span', 'foobar')]
 
-    const component = Vue.component('test', {
-      render: h => h(VRating, {
-        scopedSlots: {
-          item: itemSlot,
-        },
-      }),
-    })
+    const component = {
+      render: () => h(VRating, {}, {item: itemSlot})
+    }
 
     const wrapper = mount(component, {
       // https://github.com/vuejs/vue-test-utils/issues/1130
@@ -244,14 +249,15 @@ describe('VRating.ts', () => {
   })
 
   it('should bind mousemove listener', () => {
-    const onMouseEnter = jest.fn()
     const wrapper = mountFunction({
-      propsData: {
+      props: {
         halfIncrements: true,
         hover: true,
-      },
-      methods: { onMouseEnter },
+      }
     })
+    const onMouseEnter = jest.fn()
+
+    wrapper.vm.onMouseEnter = onMouseEnter
 
     const icon = wrapper.find('.v-icon')
 

@@ -160,7 +160,7 @@ const VIcon = mixins(
 
       this.applyColors(data)
 
-      return h(this.hasClickListener ? 'button' : this.tag, data, newChildren)
+      return h(this.hasClickListener ? 'button' : this.tag, data, {default: () => newChildren})
     },
     renderSvgIcon (icon: string): VNode {
       const svgData: VNodeData = {
@@ -216,9 +216,9 @@ const VIcon = mixins(
       data.props = icon.props
       data.nativeOn = data.on
 
-      return h(this.hasClickListener ? 'button' : 'span', this.getSvgWrapperData(), [
+      return h(this.hasClickListener ? 'button' : 'span', this.getSvgWrapperData(), {default: () =>[
         h(component, data),
-      ])
+      ]})
     },
   },
 
@@ -250,18 +250,24 @@ export default defineComponent({
   render (): VNode {
     const data = { ...this.$attrs }
 
-    let iconName = ''
 
-    // Support usage of v-text and v-html
-    // if (data.domProps) {
-    if(this.$.vnode.props?.textContent) {
-      iconName = this.$.vnode.props.textContent  ||
-      this.$.vnode.props.innerHTML ||
-        iconName
-    }
-
-    const children = this.$slots.default?.()
     // console.log(children && children[0]?.children)
-    return h(VIcon, data, iconName ? [iconName] : children && children[0]?.children)
-  },
+    return h(VIcon, data, {
+      default: () => {
+        let iconName = ''
+
+        // Support usage of v-text and v-html
+        // if (data.domProps) {
+        if(this.$.vnode.props?.textContent) {
+          iconName = this.$.vnode.props.textContent  ||
+          this.$.vnode.props.innerHTML ||
+            iconName
+        }
+
+        const children = this.$slots.default?.()
+
+        return iconName ? [iconName] : children && children[0]?.children
+      }
+    })
+  }
 })

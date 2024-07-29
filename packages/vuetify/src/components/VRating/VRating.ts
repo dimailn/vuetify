@@ -71,7 +71,7 @@ export default mixins(
     },
     readonly: Boolean,
     size: [Number, String],
-    value: {
+    modelValue: {
       type: Number,
       default: 0,
     },
@@ -81,21 +81,21 @@ export default mixins(
     },
   },
 
+  emits: ['update:modelValue'],
+
   data () {
     return {
       hoverIndex: -1,
-      internalValue: this.value,
+      internalValue: this.modelValue,
     }
   },
 
   computed: {
     directives (): VNodeDirective[] {
-      if (this.readonly || !this.ripple) return []
-
       return [
         [
           Ripple,
-          { circle: true }
+          { circle: true, isDirActive: !this.readonly && this.ripple }
         ]
       ]
     },
@@ -129,9 +129,9 @@ export default mixins(
 
   watch: {
     internalValue (val) {
-      val !== this.value && this.$emit('input', val)
+      val !== this.modelValue && this.$emit('update:modelValue', val)
     },
-    value (val) {
+    modelValue (val) {
       this.internalValue = val
     },
   },
@@ -230,12 +230,12 @@ export default mixins(
         'aria-label': this.$vuetify.lang.t(this.iconLabel, i + 1, Number(this.length)),
         ...this.iconProps,
         ...listeners,
-      }), [this.getIconName(props)]), this.directives)
+      }), {default: () => [this.getIconName(props)]}), this.directives)
     },
   },
 
   render (): VNode {
-    const children = createRange(Number(this.length)).map(i => this.genItem(i))
+    // const children = createRange(Number(this.length)).map(i => this.genItem(i))
 
     return h('div', {
       class: ['v-rating',
@@ -244,6 +244,6 @@ export default mixins(
           'v-rating--dense': this.dense,
         }
       ]
-    }, children)
+    }, {default: () => createRange(Number(this.length)).map(i => this.genItem(i)) })
   },
 })

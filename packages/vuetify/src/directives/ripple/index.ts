@@ -4,7 +4,7 @@ import './VRipple.sass'
 // Utilities
 import { consoleWarn } from '../../util/console'
 import { keyCodes } from '../../util/helpers'
-
+import makeDirectiveActivatable from '../../util/make-directive-activatable'
 // Types
 import { VNode, VNodeDirective } from 'vue'
 
@@ -319,7 +319,7 @@ function directive (el: HTMLElement, binding: VNodeDirective, node: VNode) {
   }
 }
 
-function unbind (el: HTMLElement) {
+function unbind (el: HTMLElement, binding) {
   delete el._ripple
   removeListeners(el)
 }
@@ -334,9 +334,12 @@ function update (el: HTMLElement, binding: VNodeDirective) {
 }
 
 export const Ripple = {
-  bind: directive,
-  unbind,
-  update,
+  mounted: directive,
+  unmounted: unbind,
+  updated: update,
 }
 
-export default Ripple
+
+
+
+export default makeDirectiveActivatable(Ripple)
