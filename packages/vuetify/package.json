@@ -104,6 +104,7 @@
     "webpack-dev-server": "^3.7.2"
   },
   "dependencies": {
+    "core-js": "^3.37.1",
     "vue": "^3.4.21"
   },
   "peerDependencies": {

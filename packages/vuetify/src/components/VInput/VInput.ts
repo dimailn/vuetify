@@ -83,9 +83,7 @@ export default baseMixins.extend({
       }
     },
     computedId (): string {
-      const instance = getCurrentInstance()
-
-      return this.id || `input-${instance.uid}`
+      return this.id || `input-${this.$.uid}`
     },
     hasDetails (): boolean {
       return this.messagesToDisplay.length > 0
@@ -272,6 +270,8 @@ export default baseMixins.extend({
       if (!slot.length) return null
 
       const ref = `${type}-${location}`
+
+      slot = slot.map(child => child instanceof Function ? child() : child)
 
       return this.$createElement('div', {
         class: `v-input__${ref}`,

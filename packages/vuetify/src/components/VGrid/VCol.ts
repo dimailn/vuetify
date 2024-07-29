@@ -99,7 +99,7 @@ export default defineComponent({
     const props = this.$props
     const data = this.$attrs
     const children = this.$slots.default()
-    const {parent} = getCurrentInstance()
+    // const {parent} = getCurrentInstance()
 
     // Super-fast memoization based on props, 5x faster than JSON.stringify
     let cacheKey = ''

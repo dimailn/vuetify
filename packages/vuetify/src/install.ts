@@ -3,8 +3,8 @@ import { VuetifyUseOptions } from 'vuetify/types'
 import { consoleError } from './util/console'
 
 export function install (Vue: ReturnType<typeof createApp>, args: VuetifyUseOptions = {}) {
-  if ((install as any).installed) return
-  (install as any).installed = true
+  // if ((install as any).installed) return
+  // (install as any).installed = true
 
 //   if (OurVue !== Vue) {
 //     consoleError(`Multiple instances of Vue detected

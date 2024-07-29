@@ -14,6 +14,6 @@ Vuetify.install = (Vue, args) => {
   })
 }
 
-if (typeof window !== 'undefined' && window.Vue) {
-  window.Vue.use(Vuetify)
-}
+// if (typeof window !== 'undefined' && window.Vue) {
+//   window.Vue.use(Vuetify)
+// }
