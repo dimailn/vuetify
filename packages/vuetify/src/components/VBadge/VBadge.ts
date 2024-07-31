@@ -131,13 +131,11 @@ export default mixins(
       const data = this.setBackgroundColor(this.color, {
         class: 'v-badge__badge',
         style: this.styles,
-        attrs: {
-          'aria-atomic': this.$attrs['aria-atomic'] || 'true',
-          'aria-label': label,
-          'aria-live': this.$attrs['aria-live'] || 'polite',
-          title: this.$attrs.title,
-          role: this.$attrs.role || 'status',
-        },
+        'aria-atomic': this.$attrs['aria-atomic'] || 'true',
+        'aria-label': label,
+        'aria-live': this.$attrs['aria-live'] || 'polite',
+        title: this.$attrs.title,
+        role: this.$attrs.role || 'status',
         directives: [{
           name: 'show',
           value: this.isActive,
@@ -189,9 +187,8 @@ export default mixins(
     else children.push(badge)
 
     return h('span', {
-      class: 'v-badge',
-      attrs,
-      class: this.classes,
+      class: ['v-badge' this.classes],
+      ...attrs
     }, children)
   },
 })

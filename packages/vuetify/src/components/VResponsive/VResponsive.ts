@@ -42,7 +42,7 @@ export default mixins(Measurable).extend({
   methods: {
     genContent (): VNode {
       return this.$createElement('div', {
-        class: `v-responsive__content ${this.contentClass}`,
+        class: ['v-responsive__content', this.contentClass],
       }, getSlot(this))
     },
   },

@@ -241,7 +241,7 @@ export default baseMixins.extend({
 
       if (!slider) {
         slider = this.$createElement(VTabsSlider, {
-          props: { color: this.sliderColor },
+          color: this.sliderColor
         })
       }
 

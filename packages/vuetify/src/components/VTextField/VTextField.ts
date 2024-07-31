@@ -350,9 +350,7 @@ export default baseMixins.extend({
       if (!this.outlined) return null
 
       return this.$createElement('fieldset', {
-        attrs: {
-          'aria-hidden': true,
-        },
+        'aria-hidden': true
       }, [this.genLegend()])
     },
     genLabel () {
@@ -376,7 +374,7 @@ export default baseMixins.extend({
     genLegend () {
       const width = !this.singleLine && (this.labelValue || this.isDirty) ? this.labelWidth : 0
       const span = this.$createElement('span', {
-        domProps: { innerHTML: '&#8203;' },
+        innerHTML: '&#8203;',
         class: 'notranslate',
       })
 

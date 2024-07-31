@@ -31,12 +31,12 @@ export default defineComponent({
     const props = this.$props
     let data = this.$attrs
 
-    dedupeModelListeners(data)
+    // dedupeModelListeners(data)
     const children = rebuildSlots(this.$slots, h)
 
     data = mergeData(data, props)
 
-    if (props.mobile) {
+    if (this.mobile) {
       return h(VDataTableHeaderMobile, data, children)
     } else {
       return h(VDataTableHeaderDesktop, data, children)
