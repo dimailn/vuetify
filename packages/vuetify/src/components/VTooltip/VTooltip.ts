@@ -220,8 +220,7 @@ export default mixins(Colorable, Delayable, Dependent, Menuable).extend({
 
   render (): VNode {
     return h(this.tag, {
-      class: 'v-tooltip',
-      class: this.classes,
+      class: ['v-tooltip', this.classes],
     }, [
       this.showLazyContent(() => [this.genTransition()]),
       this.genActivator(),

@@ -206,7 +206,7 @@ export default baseMixins.extend({
         showArrows: this.showArrows,
         value: this.internalValue,
         'onCall:slider': this.callSlider,
-        onChange: (val: any) => {
+        'onUpdate:modelValue': (val: any) => {
           this.internalValue = val
         },
         ref: 'items',
@@ -229,9 +229,10 @@ export default baseMixins.extend({
       // render nothing
       if (!item.length) return null
 
-      return this.$createElement(VTabsItems, {
-        value: this.internalValue,
-        onChange: (val: any) => {
+      return h(VTabsItems, {
+        modelValue: this.internalValue,
+        'onUpdate:modelValue': (val: any) => {
+          console.log(val)
           this.internalValue = val
         }
       }, item)
@@ -267,8 +268,8 @@ export default baseMixins.extend({
       for (let i = 0; i < length; i++) {
         const vnode = slot[i]
 
-        if (vnode.componentOptions) {
-          switch (vnode.componentOptions.Ctor.name) {
+        if (vnode.type) {
+          switch (vnode.type.name) {
             case 'v-tabs-slider': slider = vnode
               break
             case 'v-tabs-items': items = vnode

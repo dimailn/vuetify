@@ -1,4 +1,4 @@
-import { defineComponent, VNode, App } from 'vue'
+import { defineComponent, VNode, App, h } from 'vue'
 import VProgressLinear from '../../components/VProgressLinear'
 import { getSlot } from '../../util/helpers'
 

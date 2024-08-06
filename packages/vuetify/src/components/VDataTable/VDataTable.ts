@@ -519,30 +519,23 @@ export default mixins(
           isMobile: this.isMobile,
         }) : () => h(VSimpleCheckbox, {
           class: 'v-data-table__checkbox',
-          props: {
-            value: data.isSelected,
-            disabled: !this.isSelectable(item),
-            color: this.checkboxColor ?? '',
-          },
-          on: {
-            input: (val: boolean) => data.select(val),
-          },
+          value: data.isSelected,
+          disabled: !this.isSelectable(item),
+          color: this.checkboxColor ?? '',
+          onInput: (val: boolean) => data.select(val),
         })
       }
 
       if (this.showExpand) {
         const slot = scopedSlots['data-table-expand']
         scopedSlots['data-table-expand'] = slot ? () => slot(data) : () => h(VIcon, {
-          class: 'v-data-table__expand-icon',
-          class: {
+          class: ['v-data-table__expand-icon', {
             'v-data-table__expand-icon--active': data.isExpanded,
-          },
-          on: {
-            click: (e: MouseEvent) => {
-              e.stopPropagation()
-              data.expand(!data.isExpanded)
-            },
-          },
+          }],
+          onClick: (e: MouseEvent) => {
+            e.stopPropagation()
+            data.expand(!data.isExpanded)
+          }
         }, [this.expandIcon])
       }
 
@@ -635,7 +628,7 @@ export default mixins(
       // }
 
       return h(VSimpleTable, {
-        props: simpleProps,
+        ...simpleProps,
         class: {
           'v-data-table--mobile': this.isMobile,
           'v-data-table--selectable': this.showSelect,
@@ -664,24 +657,22 @@ export default mixins(
       customFilter: this.customFilterWithColumns,
       customSort: this.customSortWithHeaders,
       itemsPerPage: this.computedItemsPerPage,
-      on: {
-        'update:options': (v: DataOptions, old: DataOptions) => {
-          this.internalGroupBy = v.groupBy || []
-          !deepEqual(v, old) && this.$emit('update:options', v)
-        },
-        'update:page': (v: number) => this.$emit('update:page', v),
-        'update:items-per-page': (v: number) => this.$emit('update:items-per-page', v),
-        'update:sort-by': (v: string | string[]) => this.$emit('update:sort-by', v),
-        'update:sort-desc': (v: boolean | boolean[]) => this.$emit('update:sort-desc', v),
-        'update:group-by': (v: string | string[]) => this.$emit('update:group-by', v),
-        'update:group-desc': (v: boolean | boolean[]) => this.$emit('update:group-desc', v),
-        pagination: (v: DataPagination, old: DataPagination) => !deepEqual(v, old) && this.$emit('pagination', v),
-        'current-items': (v: any[]) => {
-          this.internalCurrentItems = v
-          this.$emit('current-items', v)
-        },
-        'page-count': (v: number) => this.$emit('page-count', v),
+      'onUpdate:options': (v: DataOptions, old: DataOptions) => {
+        this.internalGroupBy = v.groupBy || []
+        !deepEqual(v, old) && this.$emit('update:options', v)
       },
+      'onUpdate:page': (v: number) => this.$emit('update:page', v),
+      'onUpdate:items-per-page': (v: number) => this.$emit('update:items-per-page', v),
+      'onUpdate:sort-by': (v: string | string[]) => this.$emit('update:sort-by', v),
+      'onUpdate:sort-desc': (v: boolean | boolean[]) => this.$emit('update:sort-desc', v),
+      'onUpdate:group-by': (v: string | string[]) => this.$emit('update:group-by', v),
+      'onUpdate:group-desc': (v: boolean | boolean[]) => this.$emit('update:group-desc', v),
+      onPagination: (v: DataPagination, old: DataPagination) => !deepEqual(v, old) && this.$emit('pagination', v),
+      'onCurrent-items': (v: any[]) => {
+        this.internalCurrentItems = v
+        this.$emit('current-items', v)
+      },
+      'onPage-count': (v: number) => this.$emit('page-count', v),
     }, this.genDefaultScopedSlot)
   },
 })

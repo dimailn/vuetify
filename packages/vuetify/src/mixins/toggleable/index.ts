@@ -6,9 +6,6 @@ export function factory<T extends string = 'value'> (prop?: T, event?: string): 
 export function factory (prop = 'value', event = 'input') {
   return defineComponent({
     name: 'toggleable',
-
-    model: { prop, event },
-
     props: {
       [prop]: { required: false },
     },

@@ -126,8 +126,6 @@ export default defineComponent({
     genContainer (): VNode {
       const children = [this.genDefaultSlot()]
 
-      console.log(children)
-
       if (this.showArrows) {
         children.push(this.genControlIcons())
       }

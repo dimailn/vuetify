@@ -7,8 +7,8 @@ export type Proxyable<T extends string = 'value'> = VueConstructor<App & {
 
 export function factory<T extends string = 'value'> (prop?: T, event?: string): Proxyable<T>
 export function factory (
-  prop = 'value',
-  event = 'change'
+  prop = 'modelValue',
+  event = 'update:modelValue'
 ) {
   return defineComponent({
     name: 'proxyable',

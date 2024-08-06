@@ -106,6 +106,7 @@ export default baseMixins.extend({
       // VItemGroup treats a change event as a click
       if (!this.isActive || (!this.tabsBar.mandatory && !this.to)) {
         this.$emit('change')
+        this.$emitLegacy('change')
       }
     },
   },

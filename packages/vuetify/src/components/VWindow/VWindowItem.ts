@@ -1,4 +1,4 @@
-import {h} from 'vue'
+import {h, vShow, withDirectives} from 'vue'
 // Components
 import VWindow from './VWindow'
 
@@ -77,15 +77,15 @@ export default baseMixins.extend({
       return getSlot(this)
     },
     genWindowItem () {
-      return this.$createElement('div', {
-        class: 'v-window-item',
-        class: this.classes,
-        directives: [{
-          name: 'show',
-          value: this.isActive,
-        }],
-        on: this.$listeners,
-      }, this.genDefaultSlot())
+      return withDirectives(h('div', {
+        class: ['v-window-item', this.classes],
+        ...this.$listeners,
+      }, this.genDefaultSlot()), [
+        [
+          vShow,
+          this.isActive
+        ]
+      ])
     },
     onAfterTransition () {
       if (!this.inTransition) {

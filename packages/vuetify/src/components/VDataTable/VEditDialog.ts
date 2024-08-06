@@ -85,41 +85,34 @@ export default mixins(Returnable, Themeable).extend({
       ])
     },
     genContent (): VNode {
-      return this.$createElement('div', {
+      return h('div', {
         class: 'v-small-dialog__content',
-        on: {
-          keydown: (e: KeyboardEvent) => {
-            e.keyCode === keyCodes.esc && this.cancel()
-            if (e.keyCode === keyCodes.enter) {
-              this.save(this.returnValue)
-              this.$emit('save')
-            }
-          },
+        onKeydown: (e: KeyboardEvent) => {
+          e.keyCode === keyCodes.esc && this.cancel()
+          if (e.keyCode === keyCodes.enter) {
+            this.save(this.returnValue)
+            this.$emit('save')
+          }
         },
-        ref: 'content',
+        ref: 'content'
       }, getSlot(this, 'input'))
     },
   },
 
   render (): VNode {
     return h(VMenu, {
-      class: 'v-small-dialog',
-      class: this.themeClasses,
-      props: {
-        contentClass: 'v-small-dialog__menu-content',
-        transition: this.transition,
-        origin: 'top right',
-        right: true,
-        value: this.isActive,
-        closeOnClick: !this.persistent,
-        closeOnContentClick: false,
-        eager: this.eager,
-        light: this.light,
-        dark: this.dark,
-      },
-      on: {
-        input: (val: boolean) => (this.isActive = val),
-      },
+      class: ['v-small-dialog', this.themeClasses],
+      contentClass: 'v-small-dialog__menu-content',
+      transition: this.transition,
+      origin: 'top right',
+      right: true,
+      value: this.isActive,
+      closeOnClick: !this.persistent,
+      closeOnContentClick: false,
+      eager: this.eager,
+      light: this.light,
+      dark: this.dark,
+      onInput: (val: boolean) => (this.isActive = val),
       scopedSlots: {
         activator: ({ on }) => {
           return h('div', {

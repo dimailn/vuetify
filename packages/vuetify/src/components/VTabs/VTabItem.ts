@@ -16,8 +16,7 @@ export default defineComponent({
     genWindowItem () {
       const item = VWindowItem.methods.genWindowItem.call(this)
 
-      item.data!.domProps = item.data!.domProps || {}
-      item.data!.domProps.id = this.id || this.value
+      item.id = this.id || this.value
 
       return item
     },

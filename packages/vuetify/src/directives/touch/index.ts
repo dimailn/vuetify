@@ -1,6 +1,7 @@
 import { VNodeDirective, VNode } from 'vue/types/vnode'
 import { keys } from '../../util/helpers'
 import { TouchHandlers, TouchValue, TouchWrapper } from 'vuetify/types'
+import makeDirectiveActivatable from '../../util/make-directive-activatable'
 
 export interface TouchStoredHandlers {
   touchstart: (e: TouchEvent) => void
@@ -94,7 +95,7 @@ function inserted (el: HTMLElement, binding: TouchVNodeDirective, vnode: VNode) 
 
   const handlers = createHandlers(binding.value!)
   target._touchHandlers = Object(target._touchHandlers)
-  target._touchHandlers![vnode.context!._uid] = handlers
+  target._touchHandlers![vnode.ctx.uid] = handlers
 
   keys(handlers).forEach(eventName => {
     target.addEventListener(eventName, handlers[eventName] as EventListener, options)
@@ -105,16 +106,18 @@ function unbind (el: HTMLElement, binding: TouchVNodeDirective, vnode: VNode) {
   const target = binding.value!.parent ? el.parentElement : el
   if (!target || !target._touchHandlers) return
 
-  const handlers = target._touchHandlers[vnode.context!._uid]
+  const handlers = target._touchHandlers[vnode.ctx.uid]
   keys(handlers).forEach(eventName => {
     target.removeEventListener(eventName, handlers[eventName])
   })
-  delete target._touchHandlers[vnode.context!._uid]
+  delete target._touchHandlers[vnode.ctx.uid]
 }
 
 export const Touch = {
-  inserted,
-  unbind,
+  mounted: inserted,
+  unmounted: unbind,
 }
 
-export default Touch
+
+
+export default makeDirectiveActivatable(Touch)

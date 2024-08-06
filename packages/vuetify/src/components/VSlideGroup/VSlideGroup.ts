@@ -303,11 +303,7 @@ export const BaseSlideGroup = mixins<options &
     },
     genData (): object {
       return {
-        class: this.classes,
-        directives: [{
-          name: 'resize',
-          value: this.onResize,
-        }],
+        class: this.classes
       }
     },
     genIcon (location: 'prev' | 'next'): VNode | null {
@@ -508,10 +504,15 @@ export const BaseSlideGroup = mixins<options &
   },
 
   render (): VNode {
-    return h('div', this.genData(), [
+    return withDirectives(h('div', this.genData(), [
       this.genPrev(),
       this.genWrapper(),
       this.genNext(),
+    ]), [
+      [
+        Resize,
+        this.onResize
+      ]
     ])
   },
 })

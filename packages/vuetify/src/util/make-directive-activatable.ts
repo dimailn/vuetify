@@ -45,9 +45,11 @@ export default (directive) => {
     updated(...args)
   }
 
-  return {
-    mounted: wrappedMounted,
-    unmounted: wrappedUnmounted,
-    updated: wrappedUpdated
-  }
+  return Object.fromEntries(
+    Object.entries({
+      mounted: wrappedMounted,
+      unmounted: wrappedUnmounted,
+      updated: wrappedUpdated
+    }).filter(([name, fn]) => directive[name])
+  )
 }

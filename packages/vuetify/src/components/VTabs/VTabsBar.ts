@@ -60,7 +60,7 @@ export default mixins(
     genContent () {
       const render = BaseSlideGroup.methods.genContent.call(this)
 
-      render.class += ' v-tabs-bar__content'
+      render.props.class += ' v-tabs-bar__content'
 
       return render
     },

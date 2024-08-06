@@ -376,6 +376,6 @@ export default defineComponent({
   },
 
   render (): VNode {
-    return this.$slots.default && this.$slots.default(this.scopedProps) as any
+    return this.$slots.default && this.$slots.default(this.scopedProps)[0] as any
   },
 })

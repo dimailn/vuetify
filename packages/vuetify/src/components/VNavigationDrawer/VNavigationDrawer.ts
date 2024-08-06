@@ -328,37 +328,33 @@ export default baseMixins.extend({
       }, [image])
     },
     genDirectives (): VNodeDirective[] {
-      const directives = [[
-        ClickOutside,
-        {
-          handler: () => { this.isActive = false },
-          closeConditional: this.closeConditional,
-          include: this.getOpenDependentElements,
-        },
-        '',
-        {}
-      ]]
-
-      if (!this.touchless && !this.stateless) {
-        directives.push([
+      const directives = [
+        [
+          ClickOutside,
+          {
+            handler: () => { this.isActive = false },
+            closeConditional: this.closeConditional,
+            include: this.getOpenDependentElements,
+          }
+        ],
+        [
           Touch,
           {
             parent: true,
             left: this.swipeLeft,
             right: this.swipeRight,
+            isDirActive: !this.touchless && !this.stateless
           },
-          '',
-          {}
-        ] as any)
-      }
+        ]
+      ]
 
       return directives
     },
     genListeners () {
       const on: Record<string, (e: Event) => void> = {
-        mouseenter: () => (this.isMouseover = true),
-        mouseleave: () => (this.isMouseover = false),
-        transitionend: (e: Event) => {
+        onMouseenter: () => (this.isMouseover = true),
+        onMouseleave: () => (this.isMouseover = false),
+        onTransitionend: (e: Event) => {
           if (e.target !== e.currentTarget) return
           this.$emit('transitionend', e)
 
@@ -370,7 +366,7 @@ export default baseMixins.extend({
       }
 
       if (this.miniVariant) {
-        on.click = () => this.$emit('update:mini-variant', false)
+        on.onClick = () => this.$emit('update:mini-variant', false)
       }
 
       return on

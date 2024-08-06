@@ -67,8 +67,12 @@ const VIcon = mixins(
   methods: {
     getIcon (): VuetifyIcon {
       let iconName = ''
-      if (this.$slots.default) iconName = this.$slots.default()[0].children!.trim()
+      if (this.$slots.default) {
+        const children = this.$slots.default()[0].children
+        if(typeof children === 'string')
+          iconName = this.$slots.default()[0].children!.trim()
 
+      }
       return remapInternalIcon(this, iconName)
     },
     getSize (): string | undefined {
