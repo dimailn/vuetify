@@ -184,10 +184,12 @@ export default baseMixins.extend({
       this.genContent(),
       this.loading && this.genLoader(),
     ]
-    const { tag, data, directives } = this.generateRouteLink()
+    const { tag, data: linkData, directives } = this.generateRouteLink()
     const setColor = this.hasBg
       ? this.setBackgroundColor
       : this.setTextColor
+
+    let data = {}
 
     if (tag === 'button') {
       data.type = this.type
@@ -196,6 +198,11 @@ export default baseMixins.extend({
     data.value = ['string', 'number'].includes(typeof this.value)
       ? this.value
       : JSON.stringify(this.value)
+
+    data = {
+      ...data,
+      ...linkData
+    }
 
     return withDirectives(
       h(tag, this.disabled ? data : setColor(this.color, data), children),

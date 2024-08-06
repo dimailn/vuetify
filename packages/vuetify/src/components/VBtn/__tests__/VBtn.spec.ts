@@ -14,10 +14,7 @@ import {
   Wrapper,
 } from '@vue/test-utils'
 // import { compileToFunctions } from 'vue-template-compiler'
-import { compile } from '@vue/compiler-dom'
 
-
-console.log(compile('<span>loader</span>'))
 describe('VBtn.ts', () => { // eslint-disable-line max-statements
   let mountFunction: (options?: object) => Wrapper<Vue>
   let router: Router
@@ -41,43 +38,43 @@ describe('VBtn.ts', () => { // eslint-disable-line max-statements
     expect(mountFunction().html()).toMatchSnapshot()
   })
 
-  // it('should render component with color prop and match snapshot', () => {
-  //   expect(mountFunction({
-  //     propsData: {
-  //       color: 'green darken-1',
-  //     },
-  //   }).html()).toMatchSnapshot()
+  it('should render component with color prop and match snapshot', () => {
+    expect(mountFunction({
+      props: {
+        color: 'green darken-1',
+      },
+    }).html()).toMatchSnapshot()
 
-  //   expect(mountFunction({
-  //     propsData: {
-  //       color: 'green darken-1',
-  //       text: true,
-  //     },
-  //   }).html()).toMatchSnapshot()
-  // })
+    expect(mountFunction({
+      props: {
+        color: 'green darken-1',
+        text: true,
+      },
+    }).html()).toMatchSnapshot()
+  })
 
-  // it('should render component with loader slot and match snapshot', () => {
-  //   const wrapper = mountFunction({
-  //     propsData: {
-  //       loading: true,
-  //     },
-  //     slots: {
-  //       loader: [compileToFunctions('<span>loader</span>')],
-  //     },
-  //   })
+  it('should render component with loader slot and match snapshot', () => {
+    const wrapper = mountFunction({
+      props: {
+        loading: true
+      },
+      slots: {
+      loader: [{template: '<span>loader</span>' }],
+      },
+    })
 
-  //   expect(wrapper.html()).toMatchSnapshot()
-  // })
+    expect(wrapper.html()).toMatchSnapshot()
+  })
 
-  // it('should render component with loader and match snapshot', () => {
-  //   const wrapper = mount(VBtn, {
-  //     propsData: {
-  //       loading: true,
-  //     },
-  //   })
+  it('should render component with loader and match snapshot', () => {
+    const wrapper = mount(VBtn, {
+      props: {
+        loading: true,
+      },
+    })
 
-  //   expect(wrapper.html()).toMatchSnapshot()
-  // })
+    expect(wrapper.html()).toMatchSnapshot()
+  })
 
   // it('should render tile button and match snapshot', () => {
   //   const wrapper = mount(VBtn, {
