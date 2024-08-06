@@ -129,12 +129,12 @@ export default defineComponent({
 
       if (this.$vuetify.rtl) sections.reverse()
 
-      children.push(...sections.map(section => this.$createElement('div', this.setBackgroundColor(section.color, {
+      children.push(...sections.map(section => h('div', this.setBackgroundColor(section.color, {
         class: section.class,
         style: this.getTrackStyle(...section.styles),
       }))))
 
-      return this.$createElement('div', {
+      return h('div', {
         class: 'v-slider__track-container',
         ref: 'track',
       }, children)

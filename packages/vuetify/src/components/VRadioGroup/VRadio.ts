@@ -133,7 +133,7 @@ export default baseMixins.extend({
     genLabel () {
       if (!this.hasLabel) return null
 
-      return this.$createElement(VLabel, {
+      return h(VLabel, {
         // Label shouldn't cause the input to focus
         onClick: prevent,
         for: this.computedId,
@@ -144,10 +144,10 @@ export default baseMixins.extend({
     genRadio () {
       const { title, ...radioAttrs } = this.attrs$
 
-      return this.$createElement('div', {
+      return h('div', {
         class: 'v-input--selection-controls__input',
       }, [
-        this.$createElement(VIcon, this.setTextColor(this.validationState, {
+        h(VIcon, this.setTextColor(this.validationState, {
           dense: this.radioGroup && this.radioGroup.dense,
         }), this.computedIcon),
         this.genInput({

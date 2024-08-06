@@ -34,19 +34,19 @@ export default mixins(
         const tds = cols.map((_, col) => {
           const month = row * cols.length + col
           const date = `${this.displayedYear}-${pad(month + 1)}`
-          return this.$createElement('td', {
+          return h('td', {
             key: month,
           }, [
             this.genButton(date, false, 'month', this.formatter),
           ])
         })
 
-        children.push(this.$createElement('tr', {
+        children.push(h('tr', {
           key: row,
         }, tds))
       }
 
-      return this.$createElement('tbody', children)
+      return h('tbody', children)
     },
   },
 

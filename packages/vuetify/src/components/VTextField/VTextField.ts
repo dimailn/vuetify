@@ -25,7 +25,7 @@ import { breaking, consoleWarn } from '../../util/console'
 // Types
 import mixins from '../../util/mixins'
 import { VNode, PropType } from 'vue/types'
-import { withDirectives } from 'vue'
+import { withDirectives, h } from 'vue'
 
 const baseMixins = mixins(
   VInput,
@@ -312,7 +312,7 @@ export default baseMixins.extend({
       // We add an empty div because other controls depend on a ref to append inner
       if (!this.isDirty) {
         return this.genSlot('append', 'inner', [
-          this.$createElement('div'),
+          h('div'),
         ])
       }
 
@@ -332,7 +332,7 @@ export default baseMixins.extend({
         value: this.computedCounterValue,
       }
 
-      return this.$slots.counter?.({ props }) ?? this.$createElement(VCounter, props)
+      return this.$slots.counter?.({ props }) ?? h(VCounter, props)
     },
     genControl () {
       return VInput.methods.genControl.call(this)
@@ -349,7 +349,7 @@ export default baseMixins.extend({
     genFieldset () {
       if (!this.outlined) return null
 
-      return this.$createElement('fieldset', {
+      return h('fieldset', {
         'aria-hidden': true
       }, [this.genLegend()])
     },
@@ -369,16 +369,16 @@ export default baseMixins.extend({
         value: this.labelValue
       }
 
-      return this.$createElement(VLabel, data, getSlot(this, 'label') || this.label)
+      return h(VLabel, data, getSlot(this, 'label') || this.label)
     },
     genLegend () {
       const width = !this.singleLine && (this.labelValue || this.isDirty) ? this.labelWidth : 0
-      const span = this.$createElement('span', {
+      const span = h('span', {
         innerHTML: '&#8203;',
         class: 'notranslate',
       })
 
-      return this.$createElement('legend', {
+      return h('legend', {
         style: {
           width: !this.isSingle ? convertToUnit(width) : undefined,
         },
@@ -389,7 +389,7 @@ export default baseMixins.extend({
       delete listeners.change // Change should not be bound externally
       const { title, ...inputAttrs } = this.attrs$
 
-      const node = this.$createElement('input', {
+      const node = h('input', {
         style: {},
         value: (this.type === 'number' && Object.is(this.lazyValue, -0)) ? '-0' : this.lazyValue,
         ...inputAttrs,
@@ -422,7 +422,7 @@ export default baseMixins.extend({
       const messagesNode = VInput.methods.genMessages.call(this)
       const counterNode = this.genCounter()
 
-      return this.$createElement('div', {
+      return h('div', {
         class: 'v-text-field__details',
       }, [
         messagesNode,
@@ -430,7 +430,7 @@ export default baseMixins.extend({
       ])
     },
     genTextFieldSlot () {
-      return this.$createElement('div', {
+      return h('div', {
         class: 'v-text-field__slot',
       }, [
         this.genLabel(),
@@ -440,7 +440,7 @@ export default baseMixins.extend({
       ])
     },
     genAffix (type: 'prefix' | 'suffix') {
-      return this.$createElement('div', {
+      return h('div', {
         class: `v-text-field__${type}`,
         ref: type,
       }, this[type])

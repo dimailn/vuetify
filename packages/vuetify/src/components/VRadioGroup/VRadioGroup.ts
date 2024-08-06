@@ -56,7 +56,7 @@ export default baseMixins.extend({
 
   methods: {
     genDefaultSlot () {
-      return this.$createElement('div', {
+      return h('div', {
         class: 'v-input--radio-group__input',
         id: this.id,
         role: 'radiogroup',

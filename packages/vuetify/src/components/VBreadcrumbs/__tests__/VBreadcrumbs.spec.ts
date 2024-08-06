@@ -68,7 +68,7 @@ describe('VBreadcrumbs.ts', () => {
       },
       scopedSlots: {
         item (props) {
-          return this.$createElement(VBreadcrumbsItem, {
+          return h(VBreadcrumbsItem, {
             key: props.item.text,
           }, props.item.text.toUpperCase())
         },

@@ -68,7 +68,7 @@ describe('VMessages.ts', () => {
       propsData: { value: ['Foo'] },
       scopedSlots: {
         default (props) {
-          return this.$createElement('div', props.message)
+          return h('div', props.message)
         },
       },
     })

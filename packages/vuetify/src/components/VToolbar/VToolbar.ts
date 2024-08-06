@@ -126,14 +126,14 @@ export default defineComponent({
 
       const image = this.$slots.img
         ? this.$slots.img({ props })
-        : this.$createElement(VImg, { props })
+        : h(VImg, { props })
 
-      return this.$createElement('div', {
+      return h('div', {
         class: 'v-toolbar__image',
       }, [image])
     },
     genContent () {
-      return this.$createElement('div', {
+      return h('div', {
         class: 'v-toolbar__content',
         style: {
           height: convertToUnit(this.computedContentHeight),
@@ -141,7 +141,7 @@ export default defineComponent({
       }, getSlot(this))
     },
     genExtension () {
-      return this.$createElement('div', {
+      return h('div', {
         class: 'v-toolbar__extension',
         style: {
           height: convertToUnit(this.extensionHeight),

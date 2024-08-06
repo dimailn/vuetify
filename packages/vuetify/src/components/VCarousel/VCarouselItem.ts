@@ -8,7 +8,7 @@ import { VImg } from '../VImg'
 import mixins, { ExtractVue } from '../../util/mixins'
 import { getSlot } from '../../util/helpers'
 import Routable from '../../mixins/routable'
-import { vShow, withDirectives } from 'vue'
+import { vShow, withDirectives, h } from 'vue'
 
 // Types
 const baseMixins = mixins(
@@ -46,7 +46,7 @@ export default baseMixins.extend({
   methods: {
     genDefaultSlot () {
       return [
-        this.$createElement(VImg, {
+        h(VImg, {
           class: 'v-carousel__item',
           ...this.$attrs,
           height: this.windowGroup.internalHeight,
@@ -65,7 +65,7 @@ export default baseMixins.extend({
       ])
 
       return withDirectives(
-        this.$createElement(tag, data, this.genDefaultSlot()),
+        h(tag, data, this.genDefaultSlot()),
         directives
       )
     },

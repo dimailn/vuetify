@@ -255,12 +255,12 @@ describe('VSlideGroup.ts', () => {
       },
       scopedSlots: {
         prev () {
-          return this.$createElement('div', {
+          return h('div', {
             class: 'fizz',
           }, 'foo')
         },
         next () {
-          return this.$createElement('div', {
+          return h('div', {
             class: 'fizz',
           }, 'bar')
         },

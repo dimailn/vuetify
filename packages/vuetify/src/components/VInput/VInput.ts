@@ -154,7 +154,7 @@ export default baseMixins.extend({
       ]
     },
     genControl () {
-      return this.$createElement('div', {
+      return h('div', {
         class: 'v-input__control',
         title: this.attrs$.title,
       }, [
@@ -216,13 +216,13 @@ export default baseMixins.extend({
           },
       }, extraData)
 
-      return this.$createElement('div', {
+      return h('div', {
         class: {
           'v-input__icon': true,
           [`v-input__icon--${kebabCase(type)}`]: type
         },
       }, [
-        this.$createElement(
+        h(
           VIcon,
           data,
           icon
@@ -230,7 +230,7 @@ export default baseMixins.extend({
       ])
     },
     genInputSlot () {
-      return this.$createElement('div', this.setBackgroundColor(this.backgroundColor, {
+      return h('div', this.setBackgroundColor(this.backgroundColor, {
         class: {'v-input__slot': true},
         style: { height: convertToUnit(this.height) },
         onClick: this.onClick,
@@ -242,7 +242,7 @@ export default baseMixins.extend({
     genLabel () {
       if (!this.hasLabel) return null
 
-      return this.$createElement(VLabel, {
+      return h(VLabel, {
         color: this.validationState,
         dark: this.dark,
         disabled: this.isDisabled,
@@ -254,7 +254,7 @@ export default baseMixins.extend({
     genMessages () {
       if (!this.showDetails) return null
 
-      return this.$createElement(VMessages, {
+      return h(VMessages, {
         color: this.hasHint ? '' : this.validationState,
         dark: this.dark,
         light: this.light,
@@ -273,7 +273,7 @@ export default baseMixins.extend({
 
       slot = slot.map(child => child instanceof Function ? child() : child)
 
-      return this.$createElement('div', {
+      return h('div', {
         class: `v-input__${ref}`,
         ref,
       }, slot)

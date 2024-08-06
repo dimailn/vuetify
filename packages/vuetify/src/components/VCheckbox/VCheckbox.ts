@@ -8,7 +8,7 @@ import VInput from '../VInput'
 
 // Mixins
 import Selectable from '../../mixins/selectable'
-import { defineComponent } from 'vue'
+import { defineComponent, h } from 'vue'
 
 /* @vue/component */
 export default defineComponent({
@@ -84,10 +84,10 @@ export default defineComponent({
   methods: {
     genCheckbox () {
       const { title, ...checkboxAttrs } = this.attrs$
-      return this.$createElement('div', {
+      return h('div', {
         class: 'v-input--selection-controls__input',
       }, [
-        this.$createElement(VIcon, this.setTextColor(this.validationState, {
+        h(VIcon, this.setTextColor(this.validationState, {
           dense: this.dense,
           dark: this.dark,
           light: this.light

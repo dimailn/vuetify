@@ -62,7 +62,7 @@ describe('VDataIterator.ts', () => {
       },
       scopedSlots: {
         item (props) {
-          return this.$createElement('div', [props.item])
+          return h('div', [props.item])
         },
       },
     })
@@ -114,7 +114,7 @@ describe('VDataIterator.ts', () => {
       },
       scopedSlots: {
         item (props) {
-          return this.$createElement('div', {
+          return h('div', {
             attrs: {
               id: props.item.text,
             },
@@ -149,7 +149,7 @@ describe('VDataIterator.ts', () => {
       },
       scopedSlots: {
         item (props) {
-          return this.$createElement('div', {
+          return h('div', {
             attrs: {
               id: props.item.text,
             },
@@ -187,7 +187,7 @@ describe('VDataIterator.ts', () => {
       },
       scopedSlots: {
         header (props) {
-          return this.$createElement('div', {
+          return h('div', {
             attrs: {
               id: 'header',
             },

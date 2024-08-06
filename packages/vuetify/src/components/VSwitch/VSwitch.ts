@@ -17,7 +17,7 @@ import VProgressCircular from '../VProgressCircular/VProgressCircular'
 import { getSlot, keyCodes } from '../../util/helpers'
 
 // Types
-import { defineComponent, VNode, VNodeData } from 'vue'
+import { defineComponent, VNode, VNodeData, h } from 'vue'
 import mergeData from '../../util/mergeData'
 
 /* @vue/component */
@@ -82,7 +82,7 @@ export default defineComponent({
     genSwitch (): VNode {
       const { title, ...switchAttrs } = this.attrs$
 
-      return this.$createElement('div', {
+      return h('div', {
         class: 'v-input--selection-controls__input',
       }, [
         this.genInput('checkbox', {
@@ -99,21 +99,21 @@ export default defineComponent({
           ]],
         })),
 
-        this.$createElement('div', mergeData({
+        h('div', mergeData({
           class: 'v-input--switch__track' },
           this.switchData,
         )),
-        this.$createElement('div', mergeData({
+        h('div', mergeData({
           class: 'v-input--switch__thumb'},
           this.switchData,
         ), [this.genProgress()]),
       ])
     },
     genProgress (): VNode {
-      return this.$createElement(VFabTransition, {}, [
+      return h(VFabTransition, {}, [
         this.loading === false
           ? null
-          : getSlot(this, 'progress') || this.$createElement(VProgressCircular, {
+          : getSlot(this, 'progress') || h(VProgressCircular, {
             props: {
               color: (this.loading === true || this.loading === '')
                 ? (this.color || 'primary')

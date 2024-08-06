@@ -26,7 +26,7 @@ import { consoleError } from '../../util/console'
 
 // Types
 import mixins from '../../util/mixins'
-import { VNode, VNodeDirective, PropType, VNodeData, withDirectives } from 'vue'
+import { VNode, VNodeDirective, PropType, VNodeData, withDirectives, h } from 'vue'
 import { PropValidator } from 'vue/types/options'
 import { SelectItemKey } from 'vuetify/types'
 
@@ -216,7 +216,7 @@ export default baseMixins.extend({
         consoleError('assert: staticList should not be called if slots are used')
       }
 
-      return this.$createElement(VSelectList, this.listData,  {
+      return h(VSelectList, this.listData,  {
         item: this.$slots.item,
       })
     },
@@ -365,7 +365,7 @@ export default baseMixins.extend({
       )
       const isInteractive = !isDisabled && this.isInteractive
 
-      return this.$createElement(VChip, {
+      return h(VChip, {
         class: 'v-chip--select',
         tabindex: -1,
         close: this.deletableChips && isInteractive,
@@ -390,7 +390,7 @@ export default baseMixins.extend({
         this.getDisabled(item)
       )
 
-      return this.$createElement('div', this.setTextColor(color, {
+      return h('div', this.setTextColor(color, {
         class: ['v-select__selection v-select__selection--comma', {
           'v-select__selection--disabled': isDisabled,
         }],
@@ -413,7 +413,7 @@ export default baseMixins.extend({
 
       return [
         this.genFieldset(),
-        withDirectives(this.$createElement('div', {
+        withDirectives(h('div', {
           class: 'v-select__slot'
         }, [
           this.genLabel(),
@@ -466,7 +466,7 @@ export default baseMixins.extend({
       return input
     },
     genHiddenInput (): VNode {
-      return this.$createElement('input', {
+      return h('input', {
         value: this.lazyValue,
         type: 'hidden',
         name: this.attrs$.name
@@ -496,13 +496,13 @@ export default baseMixins.extend({
     genListWithSlot (): VNode {
       const slots = ['prepend-item', 'no-data', 'append-item']
         .filter(slotName => this.$slots[slotName])
-        .map(slotName => this.$createElement('template', {
+        .map(slotName => h('template', {
           slot: slotName,
         }, this.$slots[slotName]))
       // Requires destructuring due to Vue
       // modifying the `on` property when passed
       // as a referenced object
-      return this.$createElement(VSelectList, {
+      return h(VSelectList, {
         ...this.listData,
       }, {...slots,item: this.$slots.item})
     },
@@ -524,7 +524,7 @@ export default baseMixins.extend({
         props.attach = this.attach
       }
 
-      return this.$createElement(VMenu, {
+      return h(VMenu, {
         role: undefined,
         ...props,
         onInput: (val: boolean) => {
@@ -557,7 +557,7 @@ export default baseMixins.extend({
         )
       }
 
-      return this.$createElement('div', {
+      return h('div', {
         class: 'v-select__selections',
       }, children)
     },

@@ -128,7 +128,7 @@ export default defineComponent({
       return VWindow.methods.genControlIcons.call(this)
     },
     genDelimiters (): VNode {
-      return this.$createElement('div', {
+      return h('div', {
         class: 'v-carousel__controls',
         style: {
           left: this.verticalDelimiters === 'left' && this.isVertical ? 0 : 'auto',
@@ -141,7 +141,7 @@ export default defineComponent({
       const children = []
 
       for (let i = 0; i < length; i++) {
-        const child = this.$createElement(VBtn, {
+        const child = h(VBtn, {
           class: 'v-carousel__controls__item',
           'aria-label': this.$vuetify.lang.t('$vuetify.carousel.ariaLabel.delimiter', i + 1, length),
           icon: true,
@@ -149,7 +149,7 @@ export default defineComponent({
           value: this.getValue(this.items[i], i),
           key: i,
         }, [
-          this.$createElement(VIcon, {
+          h(VIcon, {
             size: 18
           }, this.delimiterIcon),
         ])
@@ -157,7 +157,7 @@ export default defineComponent({
         children.push(child)
       }
 
-      return this.$createElement(ButtonGroup, {
+      return h(ButtonGroup, {
         value: this.internalValue,
         mandatory: this.mandatory,
         onChange: (val: unknown) => {
@@ -166,7 +166,7 @@ export default defineComponent({
       }, children)
     },
     genProgress () {
-      return this.$createElement(VProgressLinear, {
+      return h(VProgressLinear, {
         class: 'v-carousel__progress',
         color: this.progressColor,
         value: (this.internalIndex + 1) / this.items.length * 100,

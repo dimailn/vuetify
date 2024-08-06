@@ -226,7 +226,7 @@ export default mixins(
         }
       }
 
-      return withDirectives(this.$createElement(VIcon, this.setTextColor(this.getColor(props), {
+      return withDirectives(h(VIcon, this.setTextColor(this.getColor(props), {
         'aria-label': this.$vuetify.lang.t(this.iconLabel, i + 1, Number(this.length)),
         ...this.iconProps,
         ...listeners,

@@ -108,7 +108,7 @@ export default mixins(
 
   methods: {
     genBone (text: string, children: VNode[]) {
-      return this.$createElement('div', {
+      return h('div', {
         class: `v-skeleton-loader__${text} v-skeleton-loader__bone`,
       }, children)
     },
@@ -154,7 +154,7 @@ export default mixins(
       if (!this.transition) return children
 
       /* istanbul ignore next */
-      return this.$createElement(Transition, {
+      return h(Transition, {
         name: this.transition,
         // Only show transition when
         // content has been loaded

@@ -15,7 +15,7 @@ import mixins from '../../util/mixins'
 import { getSlot } from '../../util/helpers'
 
 // Types
-import { VNode, PropType, Transition } from 'vue'
+import { VNode, PropType, Transition, h } from 'vue'
 import { DatePickerFormatter } from 'vuetify/types'
 
 export default mixins(
@@ -80,7 +80,7 @@ export default mixins(
         (change < 0 && this.min && this.calculateChange(change) < this.min) ||
         (change > 0 && this.max && this.calculateChange(change) > this.max)
 
-      return this.$createElement(VBtn, {
+      return h(VBtn, {
         'aria-label': ariaLabel,
         dark: this.dark,
         disabled,
@@ -91,7 +91,7 @@ export default mixins(
           this.$emit('input', this.calculateChange(change))
         }
       }, [
-        this.$createElement(VIcon, ((change < 0) === !this.$vuetify.rtl) ? this.prevIcon : this.nextIcon),
+        h(VIcon, ((change < 0) === !this.$vuetify.rtl) ? this.prevIcon : this.nextIcon),
       ])
     },
     calculateChange (sign: number) {
@@ -105,18 +105,18 @@ export default mixins(
     },
     genHeader () {
       const color = !this.disabled && (this.color || 'accent')
-      const header = this.$createElement('div', this.setTextColor(color, {
+      const header = h('div', this.setTextColor(color, {
         key: String(this.value),
-      }), [this.$createElement('button', {
+      }), [h('button', {
         type: 'button',
         onClick: () => this.$emit('toggle'),
       }, getSlot(this) || [this.formatter(String(this.value))])])
 
-      const transition = this.$createElement(Transition, {
+      const transition = h(Transition, {
         name: (this.isReversing === !this.$vuetify.rtl) ? 'tab-reverse-transition' : 'tab-transition',
       }, [header])
 
-      return this.$createElement('div', {
+      return h('div', {
         class: ['v-date-picker-header__value', {
           'v-date-picker-header__value--disabled': this.disabled,
         }]
@@ -125,7 +125,7 @@ export default mixins(
   },
 
   render (): VNode {
-    return this.$createElement('div', {
+    return h('div', {
       class: ['v-date-picker-header', {
         'v-date-picker-header--disabled': this.disabled,
         ...this.themeClasses,

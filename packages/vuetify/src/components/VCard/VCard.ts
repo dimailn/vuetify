@@ -68,7 +68,7 @@ export default mixins(
 
       if (!render) return null
 
-      return this.$createElement('div', {
+      return h('div', {
         class: 'v-card__progress',
         key: 'progress',
       }, [render])

@@ -34,7 +34,7 @@ export default defineComponent({
     genProgress (): VNode | VNode[] | null {
       if (this.loading === false) return null
 
-      return getSlot(this, 'progress') || this.$createElement(VProgressLinear, {
+      return getSlot(this, 'progress') || h(VProgressLinear, {
         absolute: true,
         color: (this.loading === true || this.loading === '')
           ? (this.color || 'primary')

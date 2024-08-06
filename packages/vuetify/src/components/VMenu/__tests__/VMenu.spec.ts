@@ -174,11 +174,11 @@ describe('VMenu.ts', () => {
       propsData: { eager: true },
       scopedSlots: {
         default () {
-          return this.$createElement('div', [
-            this.$createElement(VListItem, { props: { link: true } }),
-            this.$createElement(VListItem, { props: { link: true } }),
-            this.$createElement(VListItem),
-            this.$createElement(VListItem, { props: { link: true } }),
+          return h('div', [
+            h(VListItem, { props: { link: true } }),
+            h(VListItem, { props: { link: true } }),
+            h(VListItem),
+            h(VListItem, { props: { link: true } }),
           ])
         },
       },
@@ -230,11 +230,11 @@ describe('VMenu.ts', () => {
       propsData: { eager: true },
       scopedSlots: {
         default () {
-          return this.$createElement('div', [
-            this.$createElement(VListItem, { props: { link: true } }),
-            this.$createElement(VListItem, { props: { link: true } }),
-            this.$createElement(VListItem, { props: { link: true } }),
-            this.$createElement(VListItem, { props: { link: true } }),
+          return h('div', [
+            h(VListItem, { props: { link: true } }),
+            h(VListItem, { props: { link: true } }),
+            h(VListItem, { props: { link: true } }),
+            h(VListItem, { props: { link: true } }),
           ])
         },
       },
@@ -265,9 +265,9 @@ describe('VMenu.ts', () => {
       propsData: { eager: true },
       scopedSlots: {
         default () {
-          return this.$createElement('div', [
-            this.$createElement(VListItem, { props: { link: true } }),
-            this.$createElement(VListItem, { props: { link: true } }),
+          return h('div', [
+            h(VListItem, { props: { link: true } }),
+            h(VListItem, { props: { link: true } }),
           ])
         },
       },
@@ -296,11 +296,11 @@ describe('VMenu.ts', () => {
       propsData: { eager: true },
       scopedSlots: {
         default () {
-          return this.$createElement('div', [
-            this.$createElement(VListItem),
-            this.$createElement(VListItem, { props: { link: true } }),
-            this.$createElement(VListItem, { props: { link: true } }),
-            this.$createElement(VListItem, { props: { link: true } }),
+          return h('div', [
+            h(VListItem),
+            h(VListItem, { props: { link: true } }),
+            h(VListItem, { props: { link: true } }),
+            h(VListItem, { props: { link: true } }),
           ])
         },
       },
@@ -372,8 +372,8 @@ describe('VMenu.ts', () => {
       },
       scopedSlots: {
         default () {
-          return this.$createElement('div', [
-            this.$createElement(VListItem, { props: { link: true } }),
+          return h('div', [
+            h(VListItem, { props: { link: true } }),
           ])
         },
       },

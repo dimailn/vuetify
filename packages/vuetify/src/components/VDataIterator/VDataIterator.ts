@@ -252,7 +252,7 @@ export default mixins(
       }
     },
     genEmptyWrapper (content: VNodeChildren) {
-      return this.$createElement('div', content)
+      return h('div', content)
     },
     genEmpty (originalItemsLength: number, filteredItemsLength: number) {
       if (originalItemsLength === 0 && this.loading) {
@@ -308,7 +308,7 @@ export default mixins(
 
       const scopedSlots = getPrefixedScopedSlots('footer.', this.$slots)
 
-      return this.$createElement(VDataFooter, {
+      return h(VDataFooter, {
         scopedSlots,
         ...data,
       })
@@ -321,7 +321,7 @@ export default mixins(
         toggleSelectAll: this.toggleSelectAll,
       }
 
-      return this.$createElement('div', {
+      return h('div', {
         class: 'v-data-iterator',
       }, [
         getSlot(this, 'header', outerProps, true),
@@ -333,7 +333,7 @@ export default mixins(
   },
 
   render (): VNode {
-    return this.$createElement(VData, {
+    return h(VData, {
       props: this.$props,
       on: {
         'update:options': (v: any, old: any) => !deepEqual(v, old) && this.$emit('update:options', v),

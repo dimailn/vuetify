@@ -6,7 +6,7 @@ import mixins from '../../util/mixins'
 import { kebabCase } from '../../util/helpers'
 
 // Types
-import { VNodeChildren } from 'vue'
+import { VNodeChildren, h } from 'vue'
 
 /* @vue/component */
 export default mixins(
@@ -26,7 +26,7 @@ export default mixins(
         this.$emit(`update:${kebabCase(prop)}`, value)
       }
 
-      return this.$createElement('div', {
+      return h('div', {
         class: [`v-picker__title__btn ${staticClass}`.trim(), {
           'v-picker__title__btn--active': active,
           'v-picker__title__btn--readonly': readonly,

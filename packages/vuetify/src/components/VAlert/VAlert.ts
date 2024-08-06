@@ -96,14 +96,14 @@ export default mixins(
         data.class['v-alert__border--has-color'] = true
       }
 
-      return this.$createElement('div', data)
+      return h('div', data)
     },
     __cachedDismissible (): VNode | null {
       if (!this.dismissible) return null
 
       const color = this.iconColor
 
-      return this.$createElement(VBtn, {
+      return h(VBtn, {
         class: 'v-alert__dismissible',
         color,
         icon: true,
@@ -111,7 +111,7 @@ export default mixins(
         'aria-label': this.$vuetify.lang.t(this.closeLabel),
         onClick: () => (this.isActive = false),
       }, [
-        this.$createElement(VIcon, {
+        h(VIcon, {
           color,
         }, this.closeIcon),
       ])
@@ -119,7 +119,7 @@ export default mixins(
     __cachedIcon (): VNode | null {
       if (!this.computedIcon) return null
 
-      return this.$createElement(VIcon, {
+      return h(VIcon, {
         class: 'v-alert__icon',
         color: this.iconColor,
       }, this.computedIcon)
@@ -196,10 +196,10 @@ export default mixins(
         class: 'v-alert__wrapper',
       }
 
-      return this.$createElement('div', data, children)
+      return h('div', data, children)
     },
     genContent (): VNode {
-      return this.$createElement('div', {
+      return h('div', {
         class: 'v-alert__content',
       }, getSlot(this))
     },
@@ -223,7 +223,7 @@ export default mixins(
         data = setColor(this.computedColor, data)
       }
 
-      return withDirectives(this.$createElement('div', data, [this.genWrapper()]), directives)
+      return withDirectives(h('div', data, [this.genWrapper()]), directives)
     },
     /** @public */
     toggle () {

@@ -75,7 +75,7 @@ export default mixins<options &
       const active = parseInt(this.value, 10) === year
       const color = active && (this.color || 'primary')
 
-      return this.$createElement('li', this.setTextColor(color, {
+      return h('li', this.setTextColor(color, {
         key: year,
         class: { active },
         on: mergeListeners({
@@ -99,7 +99,7 @@ export default mixins<options &
   },
 
   render (): VNode {
-    return this.$createElement('ul', {
+    return h('ul', {
       class: 'v-date-picker-years',
       ref: 'years',
     }, this.genYearItems())

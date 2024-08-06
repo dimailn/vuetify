@@ -1,5 +1,5 @@
 // Helpers
-import { VNode, VNodeData } from 'vue'
+import { VNode, VNodeData, h } from 'vue'
 import mixins from '../../util/mixins'
 import header from './mixins/header'
 import { wrapInArray, convertToUnit } from '../../util/helpers'
@@ -10,7 +10,7 @@ export default mixins(header).extend({
 
   methods: {
     genGroupByToggle (header: DataTableHeader) {
-      return this.$createElement('span', {
+      return h('span', {
         onClick: (e: MouseEvent) => {
           e.stopPropagation()
           this.$emit('group', header.value)
@@ -64,13 +64,13 @@ export default mixins(header).extend({
       const children = []
 
       if (header.value === 'data-table-select' && !this.singleSelect) {
-        return this.$createElement('th', data, [this.genSelectAll()])
+        return h('th', data, [this.genSelectAll()])
       }
 
       children.push(
         this.$slots.hasOwnProperty(header.value)
           ? this.$slots[header.value]!({ header })
-          : this.$createElement('span', [header.text])
+          : h('span', [header.text])
       )
 
       if (!this.disableSort && (header.sortable || !header.hasOwnProperty('sortable'))) {
@@ -96,21 +96,21 @@ export default mixins(header).extend({
         else children.push(this.genSortIcon())
 
         if (this.options.multiSort && beingSorted) {
-          children.push(this.$createElement('span', { class: 'v-data-table-header__sort-badge' }, [String(sortIndex + 1)]))
+          children.push(h('span', { class: 'v-data-table-header__sort-badge' }, [String(sortIndex + 1)]))
         }
       }
 
       if (this.showGroupBy && header.groupable !== false) children.push(this.genGroupByToggle(header))
 
-      return this.$createElement('th', data, children)
+      return h('th', data, children)
     },
   },
 
   render (): VNode {
-    return this.$createElement('thead', {
+    return h('thead', {
       class: 'v-data-table-header',
     }, [
-      this.$createElement('tr', this.headers.map(header => this.genHeader(header))),
+      h('tr', this.headers.map(header => this.genHeader(header))),
     ])
   },
 })

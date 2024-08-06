@@ -82,7 +82,7 @@ export default defineComponent({
 
       const top = convertToUnit(index * this.__itemHeight)
 
-      return this.$createElement('div', {
+      return h('div', {
         class: 'v-virtual-scroll__item',
         style: { top },
         key: index,

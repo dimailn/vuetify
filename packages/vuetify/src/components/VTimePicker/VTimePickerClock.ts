@@ -131,7 +131,7 @@ export default mixins<options &
 
       for (let value = this.min; value <= this.max; value = value + this.step) {
         const color = value === this.value && (this.color || 'accent')
-        children.push(this.$createElement('span', this.setBackgroundColor(color, {
+        children.push(h('span', this.setBackgroundColor(color, {
           class: 'v-time-picker-clock__item',
           class: {
             'v-time-picker-clock__item--active': value === this.displayedValue,
@@ -148,7 +148,7 @@ export default mixins<options &
       const scale = `scaleY(${this.handScale(this.displayedValue)})`
       const angle = this.rotate + this.degreesPerUnit * (this.displayedValue - this.min)
       const color = (this.value != null) && (this.color || 'accent')
-      return this.$createElement('div', this.setBackgroundColor(color, {
+      return h('div', this.setBackgroundColor(color, {
         class: 'v-time-picker-clock__hand',
         class: {
           'v-time-picker-clock__hand--inner': this.isInner(this.value),

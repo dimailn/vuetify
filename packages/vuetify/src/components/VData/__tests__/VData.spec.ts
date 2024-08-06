@@ -27,7 +27,7 @@ describe('VData.ts', () => {
       },
       scopedSlots: {
         default (data) {
-          return this.$createElement('div', data.items.map(item => this.$createElement('div', [item.text])))
+          return h('div', data.items.map(item => h('div', [item.text])))
         },
       },
     })
@@ -380,8 +380,8 @@ describe('VData.ts', () => {
       },
       scopedSlots: {
         default (props) {
-          const items = props.items.map(item => this.$createElement('div', [item.text]))
-          return this.$createElement('div', {
+          const items = props.items.map(item => h('div', [item.text]))
+          return h('div', {
             attrs: {
               id: 'wrapper',
             },
@@ -420,8 +420,8 @@ describe('VData.ts', () => {
       },
       scopedSlots: {
         default (props) {
-          const items = props.items.map(item => this.$createElement('div', [`${item.group}-${item.text}`]))
-          return this.$createElement('div', {
+          const items = props.items.map(item => h('div', [`${item.group}-${item.text}`]))
+          return h('div', {
             attrs: {
               id: 'wrapper',
             },
@@ -460,14 +460,14 @@ describe('VData.ts', () => {
             ? props.groupedItems.map(group => group.name)
             : props.items.map(item => item.text)
 
-          return this.$createElement('div', {
+          return h('div', {
             attrs: {
               id: 'wrapper',
             },
             on: {
               click: () => props.group('group'),
             },
-          }, items.map(item => this.$createElement('div', [item])))
+          }, items.map(item => h('div', [item])))
         },
       },
     })
@@ -540,14 +540,14 @@ describe('VData.ts', () => {
       },
       scopedSlots: {
         default (props) {
-          return this.$createElement('div', {
+          return h('div', {
             attrs: {
               id: 'wrapper',
             },
             on: {
               click: () => props.group('group'),
             },
-          }, props.groupedItems.map(group => this.$createElement('div', [group.name])))
+          }, props.groupedItems.map(group => h('div', [group.name])))
         },
       },
     })

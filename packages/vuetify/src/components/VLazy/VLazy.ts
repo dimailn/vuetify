@@ -56,7 +56,7 @@ export default mixins(
       const children = this.isActive && getSlot(this)
 
       return this.transition
-        ? this.$createElement(Transition, {
+        ? h(Transition, {
           name: this.transition,
         }, children)
         : children

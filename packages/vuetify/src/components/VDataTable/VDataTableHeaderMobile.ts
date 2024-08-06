@@ -24,7 +24,7 @@ export default mixins(header).extend({
       const beingSorted = sortIndex >= 0
       const isDesc = this.options.sortDesc[sortIndex]
 
-      children.push(this.$createElement('div', {
+      children.push(h('div', {
         class: 'v-chip__close',
         class: {
           sortable: true,
@@ -34,7 +34,7 @@ export default mixins(header).extend({
         },
       }, [this.genSortIcon()]))
 
-      return this.$createElement(VChip, {
+      return h(VChip, {
         class: 'sortable',
         on: {
           click: (e: MouseEvent) => {
@@ -45,7 +45,7 @@ export default mixins(header).extend({
       }, children)
     },
     genSortSelect (items: any[]) {
-      return this.$createElement(VSelect, {
+      return h(VSelect, {
         props: {
           label: this.$vuetify.lang.t(this.sortByText),
           items,
@@ -69,7 +69,7 @@ export default mixins(header).extend({
 
     const header = this.headers.find(h => h.value === 'data-table-select')
     if (header && !this.singleSelect) {
-      children.push(this.$createElement('div', {
+      children.push(h('div', {
         class: [
           'v-data-table-header-mobile__select',
           ...wrapInArray(header.class),

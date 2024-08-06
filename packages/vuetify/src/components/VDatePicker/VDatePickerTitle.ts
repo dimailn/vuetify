@@ -57,7 +57,7 @@ export default mixins(
 
   methods: {
     genYearIcon (): VNode {
-      return this.$createElement(VIcon, {
+      return h(VIcon, {
         dark: true,
       }, this.yearIcon)
     },
@@ -68,10 +68,10 @@ export default mixins(
       ], false, 'v-date-picker-title__year')
     },
     genTitleText (): VNode {
-      return this.$createElement(Transition, {
+      return h(Transition, {
         name: this.computedTransition,
       }, [
-        this.$createElement('div', {
+        h('div', {
           innerHTML: this.date || '&nbsp;',
           key: this.value
         }),

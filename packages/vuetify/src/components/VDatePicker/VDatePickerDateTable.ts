@@ -8,7 +8,7 @@ import { createRange } from '../../util/helpers'
 import mixins from '../../util/mixins'
 
 // Types
-import { VNode, VNodeChildren, PropType } from 'vue'
+import { VNode, VNodeChildren, PropType, h } from 'vue'
 import { DatePickerFormatter } from 'vuetify/types'
 
 export default mixins(
@@ -52,12 +52,12 @@ export default mixins(
       return monthChange(this.tableDate, Math.sign(delta || 1))
     },
     genTHead () {
-      const days = this.weekDays.map(day => this.$createElement('th', day))
+      const days = this.weekDays.map(day => h('th', day))
       if (this.showWeek) {
-        days.unshift(this.$createElement('th'))
+        days.unshift(h('th'))
       }
 
-      return this.$createElement('thead', this.genTR(days))
+      return h('thead', this.genTR(days))
     },
     // Returns number of the days from the firstDayOfWeek to the first day of the current month
     weekDaysBeforeFirstDayOfTheMonth () {
@@ -76,8 +76,8 @@ export default mixins(
       )
     },
     genWeekNumber (weekNumber: number) {
-      return this.$createElement('td', [
-        this.$createElement('small', {
+      return h('td', [
+        h('small', {
           class: 'v-date-picker-table--date__week',
         }, String(weekNumber).padStart(2, '0')),
       ])
@@ -101,7 +101,7 @@ export default mixins(
       while (day--) {
         const date = `${prevMonthYear}-${pad(prevMonth + 1)}-${pad(firstDayFromPreviousMonth - day)}`
 
-        rows.push(this.$createElement('td', this.showAdjacentMonths ? [
+        rows.push(h('td', this.showAdjacentMonths ? [
           this.genButton(date, true, 'date', this.formatter, true),
         ] : []))
       }
@@ -109,7 +109,7 @@ export default mixins(
       for (day = 1; day <= daysInMonth; day++) {
         const date = `${this.displayedYear}-${pad(this.displayedMonth + 1)}-${pad(day)}`
 
-        rows.push(this.$createElement('td', [
+        rows.push(h('td', [
           this.genButton(date, true, 'date', this.formatter),
         ]))
 
@@ -129,7 +129,7 @@ export default mixins(
       while (rows.length < cellsInRow) {
         const date = `${nextMonthYear}-${pad(nextMonth + 1)}-${pad(nextMonthDay++)}`
 
-        rows.push(this.$createElement('td', this.showAdjacentMonths ? [
+        rows.push(h('td', this.showAdjacentMonths ? [
           this.genButton(date, true, 'date', this.formatter, true),
         ] : []))
       }
@@ -138,10 +138,10 @@ export default mixins(
         children.push(this.genTR(rows))
       }
 
-      return this.$createElement('tbody', children)
+      return h('tbody', children)
     },
     genTR (children: VNodeChildren) {
-      return [this.$createElement('tr', children)]
+      return [h('tr', children)]
     },
   },
 

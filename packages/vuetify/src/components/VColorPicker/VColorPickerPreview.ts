@@ -44,7 +44,7 @@ export default defineComponent({
       })
     },
     genSliders (): VNode {
-      return this.$createElement('div', {
+      return h('div', {
         class: 'v-color-picker__sliders',
       }, [
         this.genHue(),
@@ -52,10 +52,10 @@ export default defineComponent({
       ])
     },
     genDot (): VNode {
-      return this.$createElement('div', {
+      return h('div', {
         class: 'v-color-picker__dot',
       }, [
-        this.$createElement('div', {
+        h('div', {
           style: {
             background: RGBAtoCSS(this.color.rgba),
           },
@@ -79,7 +79,7 @@ export default defineComponent({
       })
     },
     genTrack (options: VNodeData): VNode {
-      return this.$createElement(VSlider, {
+      return h(VSlider, {
         class: 'v-color-picker__track',
         ...options,
         props: {

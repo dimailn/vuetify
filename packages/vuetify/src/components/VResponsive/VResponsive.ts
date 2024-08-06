@@ -32,7 +32,7 @@ export default mixins(Measurable).extend({
     __cachedSizer (): VNode | [] {
       if (!this.aspectStyle) return []
 
-      return this.$createElement('div', {
+      return h('div', {
         style: this.aspectStyle,
         class: 'v-responsive__sizer',
       })
@@ -41,7 +41,7 @@ export default mixins(Measurable).extend({
 
   methods: {
     genContent (): VNode {
-      return this.$createElement('div', {
+      return h('div', {
         class: ['v-responsive__content', this.contentClass],
       }, getSlot(this))
     },

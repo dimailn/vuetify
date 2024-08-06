@@ -44,21 +44,21 @@ export default mixins(
       const displayedMinute = this.minute == null ? '--' : pad(this.minute)
       const titleContent = [
         this.genPickerButton('selecting', SelectingTimes.Hour, displayedHour, this.disabled),
-        this.$createElement('span', ':'),
+        h('span', ':'),
         this.genPickerButton('selecting', SelectingTimes.Minute, displayedMinute, this.disabled),
       ]
 
       if (this.useSeconds) {
         const displayedSecond = this.second == null ? '--' : pad(this.second)
-        titleContent.push(this.$createElement('span', ':'))
+        titleContent.push(h('span', ':'))
         titleContent.push(this.genPickerButton('selecting', SelectingTimes.Second, displayedSecond, this.disabled))
       }
-      return this.$createElement('div', {
+      return h('div', {
         class: 'v-time-picker-title__time',
       }, titleContent)
     },
     genAmPm () {
-      return this.$createElement('div', {
+      return h('div', {
         class: 'v-time-picker-title__ampm',
         class: {
           'v-time-picker-title__ampm--readonly': this.ampmReadonly,

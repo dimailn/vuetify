@@ -114,10 +114,10 @@ export default baseMixins.extend({
         this.oldChunk = this.chunkIndex
       }
 
-      return this.$createElement('tbody', [
-        this.$createElement('tr', { style: this.createStyleHeight(this.offsetTop) }),
+      return h('tbody', [
+        h('tr', { style: this.createStyleHeight(this.offsetTop) }),
         this.cachedItems,
-        this.$createElement('tr', { style: this.createStyleHeight(this.offsetBottom) }),
+        h('tr', { style: this.createStyleHeight(this.offsetBottom) }),
       ])
     },
     genItems () {
@@ -128,11 +128,11 @@ export default baseMixins.extend({
       this.scrollTop = target.scrollTop
     },
     genTable () {
-      return this.$createElement('div', {
+      return h('div', {
         ref: 'table',
         class: 'v-virtual-table__table',
       }, [
-        this.$createElement('table', [
+        h('table', [
           this.$slots['body.before'],
           this.genBody(),
           this.$slots['body.after'],
@@ -140,7 +140,7 @@ export default baseMixins.extend({
       ])
     },
     genWrapper () {
-      return this.$createElement('div', {
+      return h('div', {
         class: 'v-virtual-table__wrapper',
         style: {
           height: convertToUnit(this.height),

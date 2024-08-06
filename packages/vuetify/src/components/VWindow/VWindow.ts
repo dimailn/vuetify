@@ -126,15 +126,16 @@ export default defineComponent({
     genContainer (): VNode {
       const children = [this.genDefaultSlot()]
 
+      console.log(children)
+
       if (this.showArrows) {
         children.push(this.genControlIcons())
       }
 
-      return this.$createElement('div', {
-        class: 'v-window__container',
-        class: {
+      return h('div', {
+        class: ['v-window__container', {
           'v-window__container--is-active': this.isActive,
-        },
+        }],
         style: {
           height: this.internalHeight || this.transitionHeight,
         },
@@ -156,16 +157,16 @@ export default defineComponent({
       }
       const children = this.$slots[direction]?.({
         attrs,
-      }) ?? [this.$createElement(VBtn, {
+      }) ?? [h(VBtn, {
         icon: true,
         ...attrs,
       }, [
-        this.$createElement(VIcon, {
+        h(VIcon, {
           large: true,
         }, icon),
       ])]
 
-      return this.$createElement('div', {
+      return h('div', {
         class: `v-window__${direction}`,
       }, children)
     },

@@ -22,7 +22,7 @@ import { getPropertyFromItem } from '../../util/helpers'
 
 // Types
 import mixins from '../../util/mixins'
-import { VNode, PropType, VNodeChildren } from 'vue'
+import { VNode, PropType, VNodeChildren, h } from 'vue'
 import { PropValidator } from 'vue/types/options'
 import { SelectItemKey } from 'vuetify/types'
 
@@ -79,7 +79,7 @@ export default mixins(Colorable, Themeable).extend({
         onMousedown: (e: Event) => e.preventDefault(), // Prevent onBlur from being called
       }
 
-      return this.$createElement(VListItem, tile, [
+      return h(VListItem, tile, [
         this.genTileContent(this.noDataText),
       ])
     },
@@ -87,8 +87,8 @@ export default mixins(Colorable, Themeable).extend({
 
   methods: {
     genAction (item: object, inputValue: any): VNode {
-      return this.$createElement(VListItemAction, [
-        this.$createElement(VSimpleCheckbox, {
+      return h(VListItemAction, [
+        h(VSimpleCheckbox, {
           color: this.color,
           value: inputValue,
           ripple: false,
@@ -97,7 +97,7 @@ export default mixins(Colorable, Themeable).extend({
       ])
     },
     genDivider (props: { [key: string]: any }) {
-      return this.$createElement(VDivider, { props })
+      return h(VDivider, { props })
     },
     genFilteredText (text: string) {
       text = text || ''
@@ -109,10 +109,10 @@ export default mixins(Colorable, Themeable).extend({
       return [start, this.genHighlight(middle), end]
     },
     genHeader (props: { [key: string]: any }): VNode {
-      return this.$createElement(VSubheader, { props }, props.header)
+      return h(VSubheader, { props }, props.header)
     },
     genHighlight (text: string) {
-      return this.$createElement('span', { class: 'v-list-item__mask' }, text)
+      return h('span', { class: 'v-list-item__mask' }, text)
     },
     getMaskedCharacters (text: string): {
       start: string
@@ -161,7 +161,7 @@ export default mixins(Colorable, Themeable).extend({
       }
 
       if (!this.$slots.item) {
-        return this.$createElement(VListItem, tile, [
+        return h(VListItem, tile, [
           this.action && !this.hideSelected && this.items.length > 0
             ? this.genAction(item, value)
             : null,
@@ -181,12 +181,12 @@ export default mixins(Colorable, Themeable).extend({
       })
 
       return this.needsTile(scopedSlot)
-        ? this.$createElement(VListItem, tile, scopedSlot)
+        ? h(VListItem, tile, scopedSlot)
         : scopedSlot
     },
     genTileContent (item: any, index = 0): VNode {
-      return this.$createElement(VListItemContent, [
-        this.$createElement(VListItemTitle, [
+      return h(VListItemContent, [
+        h(VListItemTitle, [
           this.genFilteredText(this.getText(item)),
         ]),
       ])
@@ -232,7 +232,7 @@ export default mixins(Colorable, Themeable).extend({
 
     this.$slots['append-item'] && children.push(this.$slots['append-item'])
 
-    return this.$createElement(VList, {
+    return h(VList, {
       class: 'v-select-list',
       class: this.themeClasses,
       attrs: {

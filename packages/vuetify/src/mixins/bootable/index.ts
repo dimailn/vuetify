@@ -1,5 +1,6 @@
 // Utilities
 import { removed } from '../../util/console'
+import {h} from 'vue'
 
 // Types
 import  { defineComponent, VNode, App } from 'vue'
@@ -48,7 +49,7 @@ export default defineComponent({
 
   methods: {
     showLazyContent (content?: () => VNode[]): VNode[] {
-      return (this.hasContent && content) ? content() : [this.$createElement()]
+      return (this.hasContent && content) ? content() : [h()]
     },
   },
 })

@@ -90,7 +90,7 @@ export default defineComponent({
              dayIdentifier > getDayIdentifier(this.parsedEnd)
     },
     genHead (): VNode {
-      return this.$createElement('div', {
+      return h('div', {
         class: 'v-calendar-weekly__head',
         attrs: {
           role: 'row',
@@ -101,7 +101,7 @@ export default defineComponent({
       const header = this.todayWeek.map(this.genHeadDay)
 
       if (this.showWeek) {
-        header.unshift(this.$createElement('div', {
+        header.unshift(h('div', {
           class: 'v-calendar-weekly__head-weeknumber',
         }))
       }
@@ -112,7 +112,7 @@ export default defineComponent({
       const outside = this.isOutside(this.days[index])
       const color = day.present ? this.color : undefined
 
-      return this.$createElement('div', this.setTextColor(color, {
+      return h('div', this.setTextColor(color, {
         key: day.date,
         class: 'v-calendar-weekly__head-weekday',
         class: this.getRelativeClasses(day, outside),
@@ -139,7 +139,7 @@ export default defineComponent({
         weekNodes.unshift(this.genWeekNumber(weekNumber))
       }
 
-      return this.$createElement('div', {
+      return h('div', {
         key: week[0].date,
         class: 'v-calendar-weekly__week',
         attrs: {
@@ -157,16 +157,16 @@ export default defineComponent({
       )
     },
     genWeekNumber (weekNumber: number) {
-      return this.$createElement('div', {
+      return h('div', {
         class: 'v-calendar-weekly__weeknumber',
       }, [
-        this.$createElement('small', String(weekNumber)),
+        h('small', String(weekNumber)),
       ])
     },
     genDay (day: CalendarTimestamp, index: number, week: CalendarTimestamp[]): VNode {
       const outside = this.isOutside(day)
 
-      return this.$createElement('div', {
+      return h('div', {
         key: day.date,
         class: 'v-calendar-weekly__day',
         class: this.getRelativeClasses(day, outside),
@@ -182,7 +182,7 @@ export default defineComponent({
       ])
     },
     genDayLabel (day: CalendarTimestamp): VNode {
-      return this.$createElement('div', {
+      return h('div', {
         class: 'v-calendar-weekly__day-label',
       }, getSlot(this, 'day-label', day) || [this.genDayLabelButton(day)])
     },
@@ -190,7 +190,7 @@ export default defineComponent({
       const color = day.present ? this.color : 'transparent'
       const hasMonth = day.day === 1 && this.showMonthOnFirst
 
-      return this.$createElement(VBtn, {
+      return h(VBtn, {
         props: {
           color,
           fab: true,
@@ -209,7 +209,7 @@ export default defineComponent({
     genDayMonth (day: CalendarTimestamp): VNode | string {
       const color = day.present ? this.color : undefined
 
-      return this.$createElement('div', this.setTextColor(color, {
+      return h('div', this.setTextColor(color, {
         class: 'v-calendar-weekly__day-month',
       }), getSlot(this, 'day-month', day) || this.monthFormatter(day, this.shortMonths))
     },

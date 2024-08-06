@@ -321,9 +321,9 @@ export default baseMixins.extend({
 
       const image = this.$slots.img
         ? this.$slots.img(props)
-        : this.$createElement(VImg, { props })
+        : h(VImg, { props })
 
-      return this.$createElement('div', {
+      return h('div', {
         class: 'v-navigation-drawer__image',
       }, [image])
     },
@@ -380,7 +380,7 @@ export default baseMixins.extend({
 
       if (!slot) return slot
 
-      return this.$createElement('div', {
+      return h('div', {
         class: `v-navigation-drawer__${name}`,
       }, slot)
     },
@@ -388,12 +388,12 @@ export default baseMixins.extend({
       return this.genPosition('prepend')
     },
     genContent () {
-      return this.$createElement('div', {
+      return h('div', {
         class: 'v-navigation-drawer__content',
       }, getSlot(this))
     },
     genBorder () {
-      return this.$createElement('div', {
+      return h('div', {
         class: 'v-navigation-drawer__border',
       })
     },

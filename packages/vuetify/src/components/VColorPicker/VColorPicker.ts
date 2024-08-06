@@ -91,7 +91,7 @@ export default mixins(Elevatable, Themeable).extend({
       }
     },
     genCanvas (): VNode {
-      return this.$createElement(VColorPickerCanvas, {
+      return h(VColorPickerCanvas, {
         props: {
           color: this.internalValue,
           disabled: this.disabled,
@@ -105,7 +105,7 @@ export default mixins(Elevatable, Themeable).extend({
       })
     },
     genControls (): VNode {
-      return this.$createElement('div', {
+      return h('div', {
         class: 'v-color-picker__controls',
       }, [
         !this.hideSliders && this.genPreview(),
@@ -113,7 +113,7 @@ export default mixins(Elevatable, Themeable).extend({
       ])
     },
     genEdit (): VNode {
-      return this.$createElement(VColorPickerEdit, {
+      return h(VColorPickerEdit, {
         props: {
           color: this.internalValue,
           disabled: this.disabled,
@@ -128,7 +128,7 @@ export default mixins(Elevatable, Themeable).extend({
       })
     },
     genPreview (): VNode {
-      return this.$createElement(VColorPickerPreview, {
+      return h(VColorPickerPreview, {
         props: {
           color: this.internalValue,
           disabled: this.disabled,
@@ -140,7 +140,7 @@ export default mixins(Elevatable, Themeable).extend({
       })
     },
     genSwatches (): VNode {
-      return this.$createElement(VColorPickerSwatches, {
+      return h(VColorPickerSwatches, {
         props: {
           dark: this.dark,
           light: this.light,

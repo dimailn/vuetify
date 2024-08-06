@@ -315,7 +315,7 @@ export default baseMixins.extend({
 
       if (!this.transition) return content
 
-      return this.$createElement(Transition, {
+      return h(Transition, {
         name: this.transition
       }, [content])
     },
@@ -380,7 +380,7 @@ export default baseMixins.extend({
 
       const directives = this.genDirectives()
 
-      return withDirectives(this.$createElement('div', options, this.getContentSlot()), directives)
+      return withDirectives(h('div', options, this.getContentSlot()), directives)
     },
     getTiles () {
       if (!this.$refs.content) return
@@ -511,7 +511,7 @@ export default baseMixins.extend({
     return withDirectives(h('div', data, [
       !this.activator && this.genActivator(),
       this.showLazyContent(() => [
-        this.$createElement(VThemeProvider, {
+        h(VThemeProvider, {
           root: true,
           light: this.light,
           dark: this.dark,

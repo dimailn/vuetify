@@ -192,20 +192,19 @@ export default mixins(Colorable, Delayable, Dependent, Menuable).extend({
 
       if (!this.computedTransition) return content
 
-      return this.$createElement(Transition, {
+      return h(Transition, {
         name: this.computedTransition,
       }, [content])
     },
     genContent () {
-      return this.$createElement(
+      return h(
         'div',
         this.setBackgroundColor(this.color, {
-          class: 'v-tooltip__content',
-          class: {
+          class: ['v-tooltip__content', {
             [this.contentClass]: true,
             menuable__content__active: this.isActive,
             'v-tooltip__content--fixed': this.activatorFixed,
-          },
+          }],
           style: this.styles,
           attrs: this.getScopeIdAttrs(),
           directives: [{

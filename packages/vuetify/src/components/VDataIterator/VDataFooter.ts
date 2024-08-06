@@ -6,7 +6,7 @@ import VIcon from '../VIcon'
 import VBtn from '../VBtn'
 
 // Types
-import { defineComponent, VNode, VNodeChildrenArrayContents, PropType } from 'vue'
+import { defineComponent, VNode, VNodeChildrenArrayContents, PropType, h } from 'vue'
 import { DataPagination, DataOptions, DataItemsPerPageOption } from 'vuetify/types'
 import { PropValidator } from 'vue/types/options'
 import { getSlot } from '../../util/helpers'
@@ -108,11 +108,11 @@ export default defineComponent({
 
       if (!computedIPPO.find(ippo => ippo.value === value)) value = computedIPPO[0]
 
-      return this.$createElement('div', {
+      return h('div', {
         class: 'v-data-footer__select',
       }, [
         this.$vuetify.lang.t(this.itemsPerPageText),
-        this.$createElement(VSelect, {
+        h(VSelect, {
           attrs: {
             'aria-label': this.$vuetify.lang.t(this.itemsPerPageText),
           },
@@ -149,12 +149,12 @@ export default defineComponent({
         children = [this.$slots['page-text']!({ pageStart, pageStop, itemsLength })]
       }
 
-      return this.$createElement('div', {
+      return h('div', {
         class: 'v-data-footer__pagination',
       }, children)
     },
     genIcon (click: Function, disabled: boolean, label: string, icon: string): VNode {
-      return this.$createElement(VBtn, {
+      return h(VBtn, {
         props: {
           disabled: disabled || this.disablePagination,
           icon: true,
@@ -168,7 +168,7 @@ export default defineComponent({
         attrs: {
           'aria-label': label, // TODO: Localization
         },
-      }, [this.$createElement(VIcon, icon)])
+      }, [h(VIcon, icon)])
     },
     genIcons () {
       const before: VNodeChildrenArrayContents = []
@@ -205,11 +205,11 @@ export default defineComponent({
       }
 
       return [
-        this.$createElement('div', {
+        h('div', {
           class: 'v-data-footer__icons-before',
         }, before),
-        this.showCurrentPage && this.$createElement('span', [this.options.page.toString()]),
-        this.$createElement('div', {
+        this.showCurrentPage && h('span', [this.options.page.toString()]),
+        h('div', {
           class: 'v-data-footer__icons-after',
         }, after),
       ]
@@ -217,7 +217,7 @@ export default defineComponent({
   },
 
   render (): VNode {
-    return this.$createElement('div', {
+    return h('div', {
       class: 'v-data-footer',
     }, [
       getSlot(this, 'prepend'),

@@ -120,7 +120,7 @@ export default defineComponent({
       window.removeEventListener('mouseup', this.handleMouseUp)
     },
     genCanvas (): VNode {
-      return this.$createElement('canvas', {
+      return h('canvas', {
         ref: 'canvas',
         attrs: {
           width: this.width,
@@ -133,7 +133,7 @@ export default defineComponent({
       const x = convertToUnit(this.dot.x - radius)
       const y = convertToUnit(this.dot.y - radius)
 
-      return this.$createElement('div', {
+      return h('div', {
         class: 'v-color-picker__canvas-dot',
         class: {
           'v-color-picker__canvas-dot--disabled': this.disabled,

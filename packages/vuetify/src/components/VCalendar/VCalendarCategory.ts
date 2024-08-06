@@ -45,7 +45,7 @@ export default defineComponent({
         return this.genDayHeaderCategory(day, this.getCategoryScope(scope, category))
       })
 
-      return [this.$createElement('div', data, children)]
+      return [h('div', data, children)]
     },
     getCategoryScope (scope: any, category: CalendarCategory) {
       const cat = typeof category === 'object' && category &&
@@ -57,7 +57,7 @@ export default defineComponent({
     },
     genDayHeaderCategory (day: CalendarTimestamp, scope: any): VNode {
       const headerTitle = typeof scope.category === 'object' ? scope.category.categoryName : scope.category
-      return this.$createElement('div', {
+      return h('div', {
         class: 'v-calendar-category__column-header',
         on: this.getDefaultMouseEventHandlers(':day-category', e => {
           return this.getCategoryScope(this.getSlotScope(day), scope.category)
@@ -68,7 +68,7 @@ export default defineComponent({
       ])
     },
     genDayHeaderCategoryTitle (categoryName: string | null) {
-      return this.$createElement('div', {
+      return h('div', {
         class: 'v-calendar-category__category',
       }, categoryName === null ? this.categoryForInvalid : categoryName)
     },
@@ -83,7 +83,7 @@ export default defineComponent({
     },
     genDay (day: CalendarTimestamp, index: number, categoryIndex: number): VNode {
       const category = this.parsedCategories[categoryIndex]
-      return this.$createElement('div', {
+      return h('div', {
         key: day.date + '-' + categoryIndex,
         class: 'v-calendar-daily__day',
         class: this.getRelativeClasses(day),
@@ -115,7 +115,7 @@ export default defineComponent({
         this.getCategoryScope(this.getSlotScope(interval), category)
       )
 
-      return this.$createElement('div', data, children)
+      return h('div', data, children)
     },
     genDayBody (day: CalendarTimestamp, category: CalendarCategory): VNode[] {
       const data = {
@@ -124,7 +124,7 @@ export default defineComponent({
 
       const children = [this.genDayBodyCategory(day, category)]
 
-      return [this.$createElement('div', data, children)]
+      return [h('div', data, children)]
     },
     genDayBodyCategory (day: CalendarTimestamp, category: CalendarCategory): VNode {
       const data = {
@@ -136,7 +136,7 @@ export default defineComponent({
 
       const children = getSlot(this, 'day-body', () => this.getCategoryScope(this.getSlotScope(day), category))
 
-      return this.$createElement('div', data, children)
+      return h('div', data, children)
     },
   },
 })

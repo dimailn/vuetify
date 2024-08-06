@@ -273,7 +273,7 @@ export default mixins<options &
 
       const len = Math.max(gradient.length - 1, 1)
       const stops = gradient.reverse().map((color, index) =>
-        this.$createElement('stop', {
+        h('stop', {
           attrs: {
             offset: index / len,
             'stop-color': color || 'currentColor',
@@ -281,8 +281,8 @@ export default mixins<options &
         })
       )
 
-      return this.$createElement('defs', [
-        this.$createElement('linearGradient', {
+      return h('defs', [
+        h('linearGradient', {
           attrs: {
             id: this._uid,
             gradientUnits: 'userSpaceOnUse',
@@ -295,7 +295,7 @@ export default mixins<options &
       ])
     },
     genG (children: VNode[]) {
-      return this.$createElement('g', {
+      return h('g', {
         style: {
           fontSize: '8',
           textAnchor: 'middle',
@@ -307,7 +307,7 @@ export default mixins<options &
     genPath () {
       const points = genPoints(this.normalizedValues, this.boundary)
 
-      return this.$createElement('path', {
+      return h('path', {
         attrs: {
           d: genPath(points, this._radius, this.fill, this.parsedHeight),
           fill: this.fill ? `url(#${this._uid})` : 'none',
@@ -318,7 +318,7 @@ export default mixins<options &
     },
     genLabels (offsetX: number) {
       const children = this.parsedLabels.map((item, i) => (
-        this.$createElement('text', {
+        h('text', {
           attrs: {
             x: item.x + offsetX + this._lineWidth / 2,
             y: this.textY + (this.parsedLabelSize * 0.75),
@@ -340,7 +340,7 @@ export default mixins<options &
       const bars = genBars(this.normalizedValues, this.boundary)
       const offsetX = (Math.abs(bars[0].x - bars[1].x) - this._lineWidth) / 2
 
-      return this.$createElement('svg', {
+      return h('svg', {
         attrs: {
           display: 'block',
           viewBox: `0 0 ${this.totalWidth} ${this.totalHeight}`,
@@ -349,13 +349,13 @@ export default mixins<options &
         this.genGradient(),
         this.genClipPath(bars, offsetX, this._lineWidth, 'sparkline-bar-' + this._uid),
         this.hasLabels ? this.genLabels(offsetX) : undefined as never,
-        this.$createElement('g', {
+        h('g', {
           attrs: {
             'clip-path': `url(#sparkline-bar-${this._uid}-clip)`,
             fill: `url(#${this._uid})`,
           },
         }, [
-          this.$createElement('rect', {
+          h('rect', {
             attrs: {
               x: 0,
               y: 0,
@@ -371,12 +371,12 @@ export default mixins<options &
         ? this.smooth
         : this.smooth ? 2 : 0
 
-      return this.$createElement('clipPath', {
+      return h('clipPath', {
         attrs: {
           id: `${id}-clip`,
         },
       }, bars.map(item => {
-        return this.$createElement('rect', {
+        return h('rect', {
           attrs: {
             x: item.x + offsetX,
             y: item.y,
@@ -386,7 +386,7 @@ export default mixins<options &
             ry: rounding,
           },
         }, [
-          this.autoDraw ? this.$createElement('animate', {
+          this.autoDraw ? h('animate', {
             attrs: {
               attributeName: 'height',
               from: 0,
@@ -399,7 +399,7 @@ export default mixins<options &
       }))
     },
     genTrend () {
-      return this.$createElement('svg', this.setTextColor(this.color, {
+      return h('svg', this.setTextColor(this.color, {
         attrs: {
           ...this.$attrs,
           display: 'block',

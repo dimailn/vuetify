@@ -20,7 +20,8 @@ import {
   PropType,
   VNodeChildren,
   Transition,
-  withDirectives
+  withDirectives,
+  h
 } from 'vue'
 import { PropValidator } from 'vue/types/options'
 import {
@@ -139,7 +140,7 @@ export default mixins(
         isLast = value === this.value[this.value.length - 1]
       }
 
-      return this.$createElement('button', setColor(color, {
+      return h('button', setColor(color, {
         class: ['v-btn', this.genButtonClasses(
           isAllowed && !isOtherMonth,
           isFloating,
@@ -152,7 +153,7 @@ export default mixins(
         disabled: this.disabled || !isAllowed || isOtherMonth,
         ...this.genButtonEvents(value, isAllowed, mouseEventType),
       }), [
-        this.$createElement('div', {
+        h('div', {
           class: 'v-btn__content',
         }, [formatter(value)]),
         this.genEvents(value),
@@ -192,9 +193,9 @@ export default mixins(
     genEvents (date: string) {
       const eventColors = this.getEventColors(date)
 
-      return eventColors.length ? this.$createElement('div', {
+      return eventColors.length ? h('div', {
         class: 'v-date-picker-table__events',
-      }, eventColors.map(color => this.$createElement('div', this.setBackgroundColor(color)))) : null
+      }, eventColors.map(color => h('div', this.setBackgroundColor(color)))) : null
     },
     isValidScroll (value: number, calculateTableDate: CalculateTableDateFunction) {
       const tableDate = calculateTableDate(value)
@@ -210,9 +211,9 @@ export default mixins(
       this.$emit('update:table-date', calculateTableDate(value))
     },
     genTable (staticClass: string, children: VNodeChildren, calculateTableDate: CalculateTableDateFunction) {
-      const transition = this.$createElement(Transition, {
+      const transition = h(Transition, {
         name: this.computedTransition,
-      }, [this.$createElement('table', { key: this.tableDate }, children)])
+      }, [h('table', { key: this.tableDate }, children)])
 
       const touchDirective = [
         Touch,
@@ -224,7 +225,7 @@ export default mixins(
         }
       ]
 
-      return withDirectives(this.$createElement('div', {
+      return withDirectives(h('div', {
         class: {
           [staticClass]: true,
           'v-date-picker-table--disabled': this.disabled,

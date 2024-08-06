@@ -102,17 +102,17 @@ export default baseMixins.extend({
       }
     },
     genIcon (icon: string) {
-      return this.$createElement(VIcon, icon)
+      return h(VIcon, icon)
     },
     genLabel () {
-      return this.$createElement('div', {
+      return h('div', {
         class: 'v-stepper__label',
       }, getSlot(this))
     },
     genStep () {
       const color = (!this.hasError && (this.complete || this.isActive)) ? this.color : false
 
-      return this.$createElement('span', this.setBackgroundColor(color, {
+      return h('span', this.setBackgroundColor(color, {
         class: 'v-stepper__step__step',
       }), this.genStepContent())
     },

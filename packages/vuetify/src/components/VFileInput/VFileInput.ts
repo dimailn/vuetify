@@ -14,7 +14,7 @@ import { PropValidator } from 'vue/types/options'
 import { deepEqual, humanReadableFileSize, wrapInArray } from '../../util/helpers'
 import { consoleError } from '../../util/console'
 import { mergeStyles } from '../../util/mergeData'
-import { defineComponent } from 'vue'
+import { defineComponent, h } from 'vue'
 
 export default defineComponent({
   name: 'v-file-input',
@@ -171,7 +171,7 @@ export default defineComponent({
     genChips () {
       if (!this.isDirty) return []
 
-      return this.text.map((text, index) => this.$createElement(VChip, {
+      return this.text.map((text, index) => h(VChip, {
         small: this.smallChips,
         'onClick:close': () => {
           const internalValue = this.internalValue
@@ -246,7 +246,7 @@ export default defineComponent({
         children.push(this.hasChips && this.isDirty ? this.genChips() : this.genSelectionText())
       }
 
-      return this.$createElement('div', {
+      return h('div', {
         class: ['v-file-input__text', {
           'v-file-input__text--placeholder': this.placeholder && !this.isDirty,
           'v-file-input__text--chips': this.hasChips && !this.$slots.selection,

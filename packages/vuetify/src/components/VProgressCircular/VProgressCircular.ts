@@ -109,7 +109,7 @@ export default defineComponent({
 
   methods: {
     genCircle (name: string, offset: string | number): VNode {
-      return this.$createElement('circle', {
+      return h('circle', {
         class: `v-progress-circular__${name}`,
         fill: 'transparent',
         cx: 2 * this.viewBoxSize,
@@ -126,14 +126,14 @@ export default defineComponent({
         this.genCircle('overlay', this.strokeDashOffset),
       ] as VNodeChildren
 
-      return this.$createElement('svg', {
+      return h('svg', {
         style: this.svgStyles,
         xmlns: 'http://www.w3.org/2000/svg',
         viewBox: `${this.viewBoxSize} ${this.viewBoxSize} ${2 * this.viewBoxSize} ${2 * this.viewBoxSize}`,
       }, children)
     },
     genInfo (): VNode {
-      return this.$createElement('div', {
+      return h('div', {
         class: 'v-progress-circular__info',
       }, getSlot(this))
     },

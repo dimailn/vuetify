@@ -190,7 +190,7 @@ const VTreeviewNode = baseMixins.extend({
       if (this.$slots.label) children.push(this.$slots.label(this.scopedProps))
       else children.push(this.text)
 
-      return this.$createElement('div', {
+      return h('div', {
         slot: 'label',
         class: 'v-treeview-node__label',
       }, children)
@@ -198,14 +198,14 @@ const VTreeviewNode = baseMixins.extend({
     genPrependSlot () {
       if (!this.$slots.prepend) return null
 
-      return this.$createElement('div', {
+      return h('div', {
         class: 'v-treeview-node__prepend',
       }, this.$slots.prepend(this.scopedProps))
     },
     genAppendSlot () {
       if (!this.$slots.append) return null
 
-      return this.$createElement('div', {
+      return h('div', {
         class: 'v-treeview-node__append',
       }, this.$slots.append(this.scopedProps))
     },
@@ -216,12 +216,12 @@ const VTreeviewNode = baseMixins.extend({
         this.genAppendSlot(),
       ]
 
-      return this.$createElement('div', {
+      return h('div', {
         class: 'v-treeview-node__content',
       }, children)
     },
     genToggle () {
-      return this.$createElement(VIcon, {
+      return h(VIcon, {
         class: ['v-treeview-node__toggle', {
           'v-treeview-node__toggle--open': this.isOpen,
           'v-treeview-node__toggle--loading': this.isLoading,
@@ -237,7 +237,7 @@ const VTreeviewNode = baseMixins.extend({
       }, [this.isLoading ? this.loadingIcon : this.expandIcon])
     },
     genCheckbox () {
-      return this.$createElement(VIcon, {
+      return h(VIcon, {
         class: 'v-treeview-node__checkbox',
         props: {
           color: this.isSelected || this.isIndeterminate ? this.selectedColor : undefined,
@@ -264,7 +264,7 @@ const VTreeviewNode = baseMixins.extend({
       }, [this.computedIcon])
     },
     genLevel (level: number) {
-      return createRange(level).map(() => this.$createElement('div', {
+      return createRange(level).map(() => h('div', {
         class: 'v-treeview-node__level',
       }))
     },
@@ -281,7 +281,7 @@ const VTreeviewNode = baseMixins.extend({
 
       children.unshift(...this.genLevel(this.level))
 
-      return this.$createElement('div', this.setTextColor(this.isActive && this.color, {
+      return h('div', this.setTextColor(this.isActive && this.color, {
         class: ['v-treeview-node__root', {
           [this.activeClass]: this.isActive,
         }],
@@ -297,7 +297,7 @@ const VTreeviewNode = baseMixins.extend({
       }), children)
     },
     genChild (item: any, parentIsDisabled: boolean) {
-      return this.$createElement(VTreeviewNode, {
+      return h(VTreeviewNode, {
         key: getObjectValueByPath(item, this.itemKey),
         activatable: this.activatable,
         activeClass: this.activeClass,
@@ -330,12 +330,12 @@ const VTreeviewNode = baseMixins.extend({
 
       const children = [this.children.map(c => this.genChild(c, this.disabled))]
 
-      return this.$createElement('div', {
+      return h('div', {
         class: 'v-treeview-node__children',
       }, children)
     },
     genTransition () {
-      return this.$createElement(VExpandTransition, [this.genChildrenWrapper()])
+      return h(VExpandTransition, [this.genChildrenWrapper()])
     },
   },
 

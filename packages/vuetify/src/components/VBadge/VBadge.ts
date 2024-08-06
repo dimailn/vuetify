@@ -142,11 +142,11 @@ export default mixins(
         }],
       })
 
-      const badge = this.$createElement('span', data, [this.genBadgeContent()])
+      const badge = h('span', data, [this.genBadgeContent()])
 
       if (!this.transition) return badge
 
-      return this.$createElement(Transition, {
+      return h(Transition, {
         name: this.transition,
         origin: this.origin,
         mode: this.mode,
@@ -160,12 +160,12 @@ export default mixins(
 
       if (slot) return slot
       if (this.content) return String(this.content)
-      if (this.icon) return this.$createElement(VIcon, this.icon)
+      if (this.icon) return h(VIcon, this.icon)
 
       return undefined
     },
     genBadgeWrapper () {
-      return this.$createElement('span', {
+      return h('span', {
         class: 'v-badge__wrapper',
       }, [this.genBadge()])
     },

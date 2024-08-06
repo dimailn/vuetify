@@ -136,7 +136,7 @@ export default mixins(
 
   methods: {
     genActions () {
-      return this.$createElement('div', {
+      return h('div', {
         class: 'v-snack__action ',
       }, [
         getSlot(this, 'action', {
@@ -145,7 +145,7 @@ export default mixins(
       ])
     },
     genContent () {
-      return this.$createElement('div', {
+      return h('div', {
         class: 'v-snack__content',
         class: {
           [this.contentClass]: true,
@@ -175,13 +175,13 @@ export default mixins(
         },
       })
 
-      return this.$createElement('div', data, [
+      return h('div', data, [
         this.genContent(),
         this.genActions(),
       ])
     },
     genTransition () {
-      return this.$createElement(Transition, {
+      return h(Transition, {
         name: this.transition,
       }, [this.genWrapper()])
     },

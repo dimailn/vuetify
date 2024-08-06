@@ -122,7 +122,7 @@ export default baseMixins.extend({
       this.$nextTick(() => (this.isActive = !this.isActive))
     },
     genIcon (icon: string | false): VNode {
-      return this.$createElement(VIcon, icon)
+      return h(VIcon, icon)
     },
     genAppendIcon (): VNode | null {
       const icon = !this.subGroup ? this.appendIcon : false
@@ -130,14 +130,14 @@ export default baseMixins.extend({
 
       if (!icon && !slot) return null
 
-      return this.$createElement(VListItemIcon, {
+      return h(VListItemIcon, {
         class: 'v-list-group__header__append-icon',
       }, [
         slot || this.genIcon(icon),
       ])
     },
     genHeader (): VNode {
-      return withDirectives(this.$createElement(VListItem, {
+      return withDirectives(h(VListItem, {
         'aria-expanded': String(this.isActive),
         role: 'button',
         class: {
@@ -158,7 +158,7 @@ export default baseMixins.extend({
     },
     genItems (): VNode[] {
       return this.showLazyContent(() => [
-        this.$createElement('div', {
+        h('div', {
           class: 'v-list-group__items',
           directives: [{
             name: 'show',
@@ -175,7 +175,7 @@ export default baseMixins.extend({
 
       if (!icon && !slot) return null
 
-      return this.$createElement(VListItemIcon, {
+      return h(VListItemIcon, {
         class: 'v-list-group__header__prepend-icon',
       }, [
         slot || this.genIcon(icon),

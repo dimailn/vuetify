@@ -56,7 +56,7 @@ export default defineComponent({
       return area && pane ? (area.offsetWidth - pane.offsetWidth) : 0
     },
     genHead (): VNode {
-      return this.$createElement('div', {
+      return h('div', {
         class: 'v-calendar-daily__head',
         style: {
           marginRight: this.scrollPush + 'px',
@@ -69,7 +69,7 @@ export default defineComponent({
     genHeadIntervals (): VNode {
       const width: string | undefined = convertToUnit(this.intervalWidth)
 
-      return this.$createElement('div', {
+      return h('div', {
         class: 'v-calendar-daily__intervals-head',
         style: {
           width,
@@ -80,7 +80,7 @@ export default defineComponent({
       return this.days.map(this.genHeadDay)
     },
     genHeadDay (day: CalendarTimestamp, index: number): VNode {
-      return this.$createElement('div', {
+      return h('div', {
         key: day.date,
         class: 'v-calendar-daily_head-day',
         class: this.getRelativeClasses(day),
@@ -101,19 +101,19 @@ export default defineComponent({
     genHeadWeekday (day: CalendarTimestamp): VNode {
       const color = day.present ? this.color : undefined
 
-      return this.$createElement('div', this.setTextColor(color, {
+      return h('div', this.setTextColor(color, {
         class: 'v-calendar-daily_head-weekday',
       }), this.weekdayFormatter(day, this.shortWeekdays))
     },
     genHeadDayLabel (day: CalendarTimestamp): VNode {
-      return this.$createElement('div', {
+      return h('div', {
         class: 'v-calendar-daily_head-day-label',
       }, getSlot(this, 'day-label-header', day) || [this.genHeadDayButton(day)])
     },
     genHeadDayButton (day: CalendarTimestamp): VNode {
       const color = day.present ? this.color : 'transparent'
 
-      return this.$createElement(VBtn, {
+      return h(VBtn, {
         props: {
           color,
           fab: true,
@@ -128,14 +128,14 @@ export default defineComponent({
       }, this.dayFormatter(day, false))
     },
     genBody (): VNode {
-      return this.$createElement('div', {
+      return h('div', {
         class: 'v-calendar-daily__body',
       }, [
         this.genScrollArea(),
       ])
     },
     genScrollArea (): VNode {
-      return this.$createElement('div', {
+      return h('div', {
         ref: 'scrollArea',
         class: 'v-calendar-daily__scroll-area',
       }, [
@@ -143,7 +143,7 @@ export default defineComponent({
       ])
     },
     genPane (): VNode {
-      return this.$createElement('div', {
+      return h('div', {
         ref: 'pane',
         class: 'v-calendar-daily__pane',
         style: {
@@ -154,7 +154,7 @@ export default defineComponent({
       ])
     },
     genDayContainer (): VNode {
-      return this.$createElement('div', {
+      return h('div', {
         class: 'v-calendar-daily__day-container',
       }, [
         this.genBodyIntervals(),
@@ -165,7 +165,7 @@ export default defineComponent({
       return this.days.map(this.genDay)
     },
     genDay (day: CalendarTimestamp, index: number): VNode {
-      return this.$createElement('div', {
+      return h('div', {
         key: day.date,
         class: 'v-calendar-daily__day',
         class: this.getRelativeClasses(day),
@@ -199,7 +199,7 @@ export default defineComponent({
 
       const children = getSlot(this, 'interval', () => this.getSlotScope(interval))
 
-      return this.$createElement('div', data, children)
+      return h('div', data, children)
     },
     genBodyIntervals (): VNode {
       const width: string | undefined = convertToUnit(this.intervalWidth)
@@ -213,7 +213,7 @@ export default defineComponent({
         }),
       }
 
-      return this.$createElement('div', data, this.genIntervalLabels())
+      return h('div', data, this.genIntervalLabels())
     },
     genIntervalLabels (): VNode[] | null {
       if (!this.intervals.length) return null
@@ -227,14 +227,14 @@ export default defineComponent({
       const show = shower(interval)
       const label = show ? this.intervalFormatter(interval, short) : undefined
 
-      return this.$createElement('div', {
+      return h('div', {
         key: interval.time,
         class: 'v-calendar-daily__interval',
         style: {
           height,
         },
       }, [
-        this.$createElement('div', {
+        h('div', {
           class: 'v-calendar-daily__interval-text',
         }, label),
       ])

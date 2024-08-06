@@ -138,17 +138,17 @@ export default mixins(
 
       if (this.isActive) {
         children.push(
-          this.$createElement(VIcon, {
+          h(VIcon, {
             class: 'v-chip__filter',
             props: { left: true },
           }, this.filterIcon)
         )
       }
 
-      return this.$createElement(VExpandXTransition, children)
+      return h(VExpandXTransition, children)
     },
     genClose (): VNode {
-      return this.$createElement(VIcon, {
+      return h(VIcon, {
         class: 'v-chip__close',
         props: {
           right: true,
@@ -169,7 +169,7 @@ export default mixins(
       }, this.closeIcon)
     },
     genContent (): VNode {
-      return this.$createElement('span', {
+      return h('span', {
         class: 'v-chip__content',
       }, [
         this.filter && this.genFilter(),

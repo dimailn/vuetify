@@ -304,25 +304,25 @@ export default defineComponent({
         if (event.start.hasTime) {
           if (timedEvent) {
             const time = timeSummary()
-            const delimiter = singline ? ', ' : this.$createElement('br')
+            const delimiter = singline ? ', ' : h('br')
 
-            return this.$createElement('span', { class: 'v-event-summary' }, [
-              this.$createElement('strong', [name]),
+            return h('span', { class: 'v-event-summary' }, [
+              h('strong', [name]),
               delimiter,
               time,
             ])
           } else {
             const time = formatTime(event.start, true)
 
-            return this.$createElement('span', { class: 'v-event-summary' }, [
-              this.$createElement('strong', [time]),
+            return h('span', { class: 'v-event-summary' }, [
+              h('strong', [time]),
               ' ',
               name,
             ])
           }
         }
 
-        return this.$createElement('span', { class: 'v-event-summary' }, [name])
+        return h('span', { class: 'v-event-summary' }, [name])
       }
 
       const scope = {
@@ -336,7 +336,7 @@ export default defineComponent({
         eventSummary,
       }
 
-      return this.$createElement('div',
+      return h('div',
         this.setTextColor(text,
           this.setBackgroundColor(background, {
             on: this.getDefaultMouseEventHandlers(':event', nativeEvent => ({ ...scope, nativeEvent })),
@@ -352,14 +352,14 @@ export default defineComponent({
       )
     },
     genName (eventSummary: () => string | VNode): VNode {
-      return this.$createElement('div', {
+      return h('div', {
         class: 'pl-1',
       }, [eventSummary()])
     },
     genPlaceholder (day: CalendarTimestamp): VNode {
       const height = this.eventHeight + this.eventMarginBottom
 
-      return this.$createElement('div', {
+      return h('div', {
         style: {
           height: `${height}px`,
         },
@@ -374,7 +374,7 @@ export default defineComponent({
       const eventHeight = this.eventHeight
       const eventMarginBottom = this.eventMarginBottom
 
-      return this.$createElement('div', {
+      return h('div', {
         class: 'v-event-more pl-1',
         class: {
           'v-outside': day.outside,
@@ -511,7 +511,7 @@ export default defineComponent({
         'day-body': (day: CalendarDayBodySlotScope) => {
           const events = getSlotChildren(day, this.getEventsForDayTimed, this.genTimedEvent, true)
           let children: VNode[] = [
-            this.$createElement('div', {
+            h('div', {
               class: 'v-event-timed-container',
             }, events),
           ]

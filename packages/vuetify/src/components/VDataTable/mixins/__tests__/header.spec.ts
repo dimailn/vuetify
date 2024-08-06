@@ -71,7 +71,7 @@ describe('VDataTable/header.ts', () => {
       },
       scopedSlots: {
         'data-table-select' (props) {
-          return this.$createElement('div', {
+          return h('div', {
             on: props.on,
             class: 'test',
           }, [JSON.stringify(props)])

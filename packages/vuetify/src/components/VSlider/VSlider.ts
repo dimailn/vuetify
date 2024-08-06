@@ -16,7 +16,7 @@ import { addOnceEventListener, deepEqual, keyCodes, createRange, convertToUnit, 
 import { consoleWarn } from '../../util/console'
 
 // Types
-import Vue, { VNode, VNodeChildrenArrayContents, PropType } from 'vue'
+import Vue, { VNode, VNodeChildrenArrayContents, PropType, h } from 'vue'
 import { ScopedSlotChildren } from 'vue/types/vnode'
 import { PropValidator } from 'vue/types/options'
 
@@ -242,7 +242,7 @@ export default mixins<options &
       return children
     },
     genSlider (): VNode {
-      return this.$createElement('div', {
+      return h('div', {
         class: {
           'v-slider': true,
           'v-slider--horizontal': !this.vertical,
@@ -278,7 +278,7 @@ export default mixins<options &
       ]
     },
     genInput (): VNode {
-      return this.$createElement('input', {
+      return h('input', {
         value: this.internalValue,
         id: this.computedId,
         disabled: true,
@@ -290,17 +290,17 @@ export default mixins<options &
     },
     genTrackContainer (): VNode {
       const children = [
-        this.$createElement('div', this.setBackgroundColor(this.computedTrackColor, {
+        h('div', this.setBackgroundColor(this.computedTrackColor, {
           class: 'v-slider__track-background',
           style: this.trackStyles,
         })),
-        this.$createElement('div', this.setBackgroundColor(this.computedTrackFillColor, {
+        h('div', this.setBackgroundColor(this.computedTrackFillColor, {
           class: 'v-slider__track-fill',
           style: this.trackFillStyles,
         })),
       ]
 
-      return this.$createElement('div', {
+      return h('div', {
         class: 'v-slider__track-container',
         ref: 'track',
       }, children)
@@ -319,7 +319,7 @@ export default mixins<options &
         const children = []
 
         if (this.tickLabels[index]) {
-          children.push(this.$createElement('div', {
+          children.push(h('div', {
             class: 'v-slider__tick-label',
           }, this.tickLabels[index]))
         }
@@ -327,7 +327,7 @@ export default mixins<options &
         const width = index * (100 / this.numTicks)
         const filled = this.$vuetify.rtl ? (100 - this.inputWidth) < width : width < this.inputWidth
 
-        return this.$createElement('span', {
+        return h('span', {
           key: index,
           class: ['v-slider__tick', {
             'v-slider__tick--filled': filled,
@@ -341,7 +341,7 @@ export default mixins<options &
         }, children)
       })
 
-      return this.$createElement('div', {
+      return h('div', {
         class: ['v-slider__ticks-container', {
           'v-slider__ticks-container--always-show': this.ticks === 'always' || this.tickLabels.length > 0,
         }],
@@ -361,7 +361,7 @@ export default mixins<options &
       const thumbLabelContent = this.genThumbLabelContent(value)
       this.showThumbLabel && children.push(this.genThumbLabel(thumbLabelContent))
 
-      return this.$createElement('div', this.setTextColor(this.computedThumbColor, {
+      return h('div', this.setTextColor(this.computedThumbColor, {
         ref,
         key: ref,
         class: ['v-slider__thumb-container', {
@@ -386,7 +386,7 @@ export default mixins<options &
     genThumbLabelContent (value: number | string): ScopedSlotChildren {
       return this.$slots['thumb-label']
         ? this.$slots['thumb-label']!({ value })
-        : [this.$createElement('span', [String(value)])]
+        : [h('span', [String(value)])]
     },
     genThumbLabel (content: ScopedSlotChildren): VNode {
       const size = convertToUnit(this.thumbSize)
@@ -395,29 +395,29 @@ export default mixins<options &
         ? `translateY(20%) translateY(${(Number(this.thumbSize) / 3) - 1}px) translateX(55%) rotate(135deg)`
         : `translateY(-20%) translateY(-12px) translateX(-50%) rotate(45deg)`
 
-      return this.$createElement(VScaleTransition, {
+      return h(VScaleTransition, {
         origin: 'bottom center',
       }, [
-        this.$createElement('div', {
+        h('div', {
           class: 'v-slider__thumb-label-container',
           directives: [{
             name: 'show',
             value: this.isFocused || this.isActive || this.thumbLabel === 'always',
           }],
         }, [
-          this.$createElement('div', this.setBackgroundColor(this.computedThumbColor, {
+          h('div', this.setBackgroundColor(this.computedThumbColor, {
             class: 'v-slider__thumb-label',
             style: {
               height: size,
               width: size,
               transform,
             },
-          }), [this.$createElement('div', content)]),
+          }), [h('div', content)]),
         ]),
       ])
     },
     genThumb (): VNode {
-      return this.$createElement('div', this.setBackgroundColor(this.computedThumbColor, {
+      return h('div', this.setBackgroundColor(this.computedThumbColor, {
         class: 'v-slider__thumb',
       }))
     },

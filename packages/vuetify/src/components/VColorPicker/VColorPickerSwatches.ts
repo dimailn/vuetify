@@ -57,12 +57,12 @@ export default mixins(Themeable).extend({
 
   methods: {
     genColor (color: string) {
-      const content = this.$createElement('div', {
+      const content = h('div', {
         style: {
           background: color,
         },
       }, [
-        deepEqual(this.color, parseColor(color, null)) && this.$createElement(VIcon, {
+        deepEqual(this.color, parseColor(color, null)) && h(VIcon, {
           props: {
             small: true,
             dark: contrastRatio(this.color.rgba, white) > 2 && this.color.alpha > 0.5,
@@ -71,7 +71,7 @@ export default mixins(Themeable).extend({
         }, '$success'),
       ])
 
-      return this.$createElement('div', {
+      return h('div', {
         class: 'v-color-picker__color',
         on: {
           // TODO: Less hacky way of catching transparent
@@ -83,7 +83,7 @@ export default mixins(Themeable).extend({
       return this.swatches.map(swatch => {
         const colors = swatch.map(this.genColor)
 
-        return this.$createElement('div', {
+        return h('div', {
           class: 'v-color-picker__swatch',
         }, colors)
       })
@@ -98,7 +98,7 @@ export default mixins(Themeable).extend({
         maxHeight: convertToUnit(this.maxHeight),
       },
     }, [
-      this.$createElement('div', this.genSwatches()),
+      h('div', this.genSwatches()),
     ])
   },
 })

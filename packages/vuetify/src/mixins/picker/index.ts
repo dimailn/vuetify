@@ -11,7 +11,7 @@ import mixins from '../../util/mixins'
 import { getSlot } from '../../util/helpers'
 
 // Types
-import { VNode } from 'vue'
+import { VNode, h } from 'vue'
 
 export default mixins(
   Colorable,
@@ -57,9 +57,9 @@ export default mixins(
       const body = this.genPickerBody()
       body && (children.default = body)
 
-      children.actions = (this.$createElement('template', {}, [this.genPickerActionsSlot()]))
+      children.actions = (h('template', {}, [this.genPickerActionsSlot()]))
 
-      return this.$createElement(VPicker, {
+      return h(VPicker, {
         class: staticClass,
         color: this.headerColor || this.color,
         dark: this.dark,

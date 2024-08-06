@@ -64,7 +64,7 @@ export default mixins(Returnable, Themeable).extend({
       input && input.focus()
     },
     genButton (fn: Function, text: VNodeChildren): VNode {
-      return this.$createElement(VBtn, {
+      return h(VBtn, {
         props: {
           text: true,
           color: 'primary',
@@ -74,7 +74,7 @@ export default mixins(Returnable, Themeable).extend({
       }, text)
     },
     genActions (): VNode {
-      return this.$createElement('div', {
+      return h('div', {
         class: 'v-small-dialog__actions',
       }, [
         this.genButton(this.cancel, this.cancelText),

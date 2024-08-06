@@ -7,6 +7,7 @@ import Comparable from '../comparable'
 
 // Utilities
 import mixins from '../../util/mixins'
+import {h} from 'vue'
 
 export function prevent (e: Event) {
   e.preventDefault()
@@ -101,7 +102,7 @@ export default mixins(
       return label
     },
     genInput (type: string, attrs: object) {
-      return this.$createElement('input', {
+      return h('input', {
         ...Object.assign({
           'aria-checked': this.isActive.toString(),
           disabled: this.isDisabled,

@@ -90,7 +90,7 @@ export default mixins(
       let content
 
       if (this.icon) {
-        content = this.$createElement(VIcon, {
+        content = h(VIcon, {
           props: {
             color: this.iconColor,
             size: 28,
@@ -100,7 +100,7 @@ export default mixins(
         content = getSlot(this, 'icon')
       }
 
-      return this.$createElement(VAvatar, {
+      return h(VAvatar, {
         class: 'v-banner__icon',
         props: {
           color: this.color,
@@ -112,7 +112,7 @@ export default mixins(
       }, [content])
     },
     genText () {
-      return this.$createElement('div', {
+      return h('div', {
         class: 'v-banner__text',
       }, getSlot(this))
     },
@@ -123,12 +123,12 @@ export default mixins(
 
       if (!children) return undefined
 
-      return this.$createElement('div', {
+      return h('div', {
         class: 'v-banner__actions',
       }, children)
     },
     genContent () {
-      return this.$createElement('div', {
+      return h('div', {
         class: 'v-banner__content',
       }, [
         this.genIcon(),
@@ -136,7 +136,7 @@ export default mixins(
       ])
     },
     genWrapper () {
-      return this.$createElement('div', {
+      return h('div', {
         class: 'v-banner__wrapper',
       }, [
         this.genContent(),

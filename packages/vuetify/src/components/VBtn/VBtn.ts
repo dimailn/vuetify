@@ -164,14 +164,14 @@ export default baseMixins.extend({
       this.btnToggle && this.toggle()
     },
     genContent (): VNode {
-      return this.$createElement('span', {
+      return h('span', {
         class: 'v-btn__content',
       }, getSlot(this))
     },
     genLoader (): VNode {
-      return this.$createElement('span', {
+      return h('span', {
         class: 'v-btn__loader',
-      }, getSlot(this, 'loader') || [this.$createElement(VProgressCircular, {
+      }, getSlot(this, 'loader') || [h(VProgressCircular, {
         indeterminate: true,
         size: 23,
         width: 2

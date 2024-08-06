@@ -83,25 +83,25 @@ export default baseMixins.extend({
 
   computed: {
     __cachedBackground (): VNode {
-      return this.$createElement('div', this.setBackgroundColor(this.backgroundColor || this.color, {
+      return h('div', this.setBackgroundColor(this.backgroundColor || this.color, {
         class: 'v-progress-linear__background',
         style: this.backgroundStyle,
       }))
     },
     __cachedBar (): VNode {
-      return this.$createElement(this.computedTransition, [this.__cachedBarType])
+      return h(this.computedTransition, [this.__cachedBarType])
     },
     __cachedBarType (): VNode {
       return this.indeterminate ? this.__cachedIndeterminate : this.__cachedDeterminate
     },
     __cachedBuffer (): VNode {
-      return this.$createElement('div', {
+      return h('div', {
         class: 'v-progress-linear__buffer',
         style: this.styles,
       })
     },
     __cachedDeterminate (): VNode {
-      return this.$createElement('div', this.setBackgroundColor(this.color, {
+      return h('div', this.setBackgroundColor(this.color, {
         class: `v-progress-linear__determinate`,
         style: {
           width: convertToUnit(this.normalizedValue, '%'),
@@ -109,7 +109,7 @@ export default baseMixins.extend({
       }))
     },
     __cachedIndeterminate (): VNode {
-      return this.$createElement('div', {
+      return h('div', {
         class: ['v-progress-linear__indeterminate',
           {
             'v-progress-linear__indeterminate--active': this.active,
@@ -123,7 +123,7 @@ export default baseMixins.extend({
     __cachedStream (): VNode | null {
       if (!this.stream) return null
 
-      return this.$createElement('div', this.setTextColor(this.color, {
+      return h('div', this.setTextColor(this.color, {
         class: 'v-progress-linear__stream',
         style: {
           width: convertToUnit(100 - this.normalizedBuffer, '%'),
@@ -190,7 +190,7 @@ export default baseMixins.extend({
 
       if (!slot) return null
 
-      return this.$createElement('div', {
+      return h('div', {
         class: 'v-progress-linear__content',
       }, slot)
     },
@@ -204,7 +204,7 @@ export default baseMixins.extend({
       return listeners
     },
     genProgressBar (name: 'long' | 'short') {
-      return this.$createElement('div', this.setBackgroundColor(this.color, {
+      return h('div', this.setBackgroundColor(this.color, {
         class: ['v-progress-linear__indeterminate',
           {
             [name]: true,

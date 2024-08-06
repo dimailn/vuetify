@@ -135,7 +135,7 @@ describe('VDialog.ts', () => {
     const wrapper = mountFunction({
       scopedSlots: {
         activator ({ on }) {
-          return this.$createElement('div', {
+          return h('div', {
             class: 'activator',
             on,
           })
@@ -161,7 +161,7 @@ describe('VDialog.ts', () => {
       scopedSlots: {
         // eslint-disable-next-line sonarjs/no-identical-functions
         activator ({ on }) {
-          return this.$createElement('div', {
+          return h('div', {
             class: 'activator',
             on,
           })
@@ -240,7 +240,7 @@ describe('VDialog.ts', () => {
       scopedSlots: {
         // eslint-disable-next-line sonarjs/no-identical-functions
         activator ({ on }) {
-          return this.$createElement('div', {
+          return h('div', {
             class: 'activator',
             on,
           })
@@ -262,7 +262,7 @@ describe('VDialog.ts', () => {
       scopedSlots: {
         // eslint-disable-next-line sonarjs/no-identical-functions
         activator ({ on }) {
-          return this.$createElement('div', {
+          return h('div', {
             class: 'activator',
             on,
           })
@@ -331,7 +331,7 @@ describe('VDialog.ts', () => {
       scopedSlots: {
         // eslint-disable-next-line sonarjs/no-identical-functions
         activator ({ on }) {
-          return this.$createElement('div', {
+          return h('div', {
             class: 'activator',
             on,
           })

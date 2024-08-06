@@ -286,7 +286,7 @@ export const BaseSlideGroup = mixins<options &
         ? this.$slots.next({})
         : getSlot(this, 'next') || this.__cachedNext
 
-      return this.$createElement('div', {
+      return h('div', {
         class: ['v-slide-group__next', {
           'v-slide-group__next--disabled': !this.hasNext,
         }],
@@ -295,7 +295,7 @@ export const BaseSlideGroup = mixins<options &
       }, [slot])
     },
     genContent (): VNode {
-      return this.$createElement('div', {
+      return h('div', {
         class: 'v-slide-group__content',
         ref: 'content',
         onFocusin: this.onFocusin,
@@ -327,7 +327,7 @@ export const BaseSlideGroup = mixins<options &
         !hasAffix
       ) return null
 
-      return this.$createElement(VIcon, {
+      return h(VIcon, {
         disabled: !hasAffix,
       }, (this as any)[`${icon}Icon`])
     },
@@ -337,7 +337,7 @@ export const BaseSlideGroup = mixins<options &
         ? this.$slots.prev({})
         : getSlot(this, 'prev') || this.__cachedPrev
 
-      return this.$createElement('div', {
+      return h('div', {
         class: ['v-slide-group__prev', {
           'v-slide-group__prev--disabled': !this.hasPrev,
         }],
@@ -346,10 +346,10 @@ export const BaseSlideGroup = mixins<options &
       }, [slot])
     },
     genTransition (location: 'prev' | 'next') {
-      return this.$createElement(VFadeTransition, [this.genIcon(location)])
+      return h(VFadeTransition, [this.genIcon(location)])
     },
     genWrapper (): VNode {
-      return withDirectives(this.$createElement('div', {
+      return withDirectives(h('div', {
         class: 'v-slide-group__wrapper',
         ref: 'wrapper',
         onScroll: this.onScroll,

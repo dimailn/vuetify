@@ -2,7 +2,7 @@
 import ripple from '../../directives/ripple'
 
 // Types
-import Vue, { VNode, VNodeData, VNodeDirective, defineComponent, withDirectives } from 'vue'
+import Vue, { VNode, VNodeData, VNodeDirective, defineComponent, withDirectives, h } from 'vue'
 
 export default defineComponent({
   name: 'rippleable',
@@ -22,7 +22,7 @@ export default defineComponent({
 
       data.class = 'v-input--selection-controls__ripple'
 
-      const node = this.$createElement('div', data)
+      const node = h('div', data)
 
       const directives = data.directives || []
       delete data.directives

@@ -26,14 +26,14 @@ export default mixins(Colorable, Themeable).extend({
 
   methods: {
     genChildren () {
-      return this.$createElement(TransitionGroup, {
+      return h(TransitionGroup, {
         class: 'v-messages__wrapper',
         name: 'message-transition',
         tag: 'div',
       }, this.value.map(this.genMessage))
     },
     genMessage (message: string, key: number) {
-      return this.$createElement('div', {
+      return h('div', {
         class: 'v-messages__message',
         key,
       }, getSlot(this, 'default', { message, key }) || [message])

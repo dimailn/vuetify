@@ -170,7 +170,7 @@ describe('VBanner.ts', () => {
       },
       scopedSlots: {
         actions (props) {
-          return this.$createElement('div', {
+          return h('div', {
             on: {
               click: props.dismiss,
             },

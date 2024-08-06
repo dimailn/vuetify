@@ -301,7 +301,7 @@ export default mixins(
       return ((first || 0) + value) % range.length + range[0]
     },
     genClock () {
-      return this.$createElement(VTimePickerClock, {
+      return h(VTimePickerClock, {
         props: {
           allowedValues:
             this.selecting === SelectingTimes.Hour
@@ -337,7 +337,7 @@ export default mixins(
       })
     },
     genClockAmPm () {
-      return this.$createElement('div', this.setTextColor(this.color || 'primary', {
+      return h('div', this.setTextColor(this.color || 'primary', {
         class: 'v-time-picker-clock__ampm',
       }), [
         this.genPickerButton('period', 'am', this.$vuetify.lang.t('$vuetify.timePicker.am'), this.disabled || this.readonly),
@@ -345,7 +345,7 @@ export default mixins(
       ])
     },
     genPickerBody () {
-      return this.$createElement('div', {
+      return h('div', {
         class: 'v-time-picker-clock__container',
         key: this.selecting,
       }, [
@@ -354,7 +354,7 @@ export default mixins(
       ])
     },
     genPickerTitle () {
-      return this.$createElement(VTimePickerTitle, {
+      return h(VTimePickerTitle, {
         props: {
           ampm: this.isAmPm,
           ampmReadonly: this.isAmPm && !this.ampmInTitle,

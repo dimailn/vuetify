@@ -37,7 +37,7 @@ describe('VVirtualTable.ts', () => {
       },
       scopedSlots: {
         items (props) {
-          return this.$createElement('div', props.items.map(i => this.$createElement('div', [i])))
+          return h('div', props.items.map(i => h('div', [i])))
         },
       },
     })

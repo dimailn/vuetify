@@ -101,10 +101,10 @@ export default defineComponent({
       this.$emit('update:mode', newMode)
     },
     genInput (target: string, attrs: any, value: any, on: any): VNode {
-      return this.$createElement('div', {
+      return h('div', {
         class: 'v-color-picker__input',
       }, [
-        this.$createElement('input', {
+        h('input', {
           key: target,
           attrs,
           domProps: {
@@ -112,7 +112,7 @@ export default defineComponent({
           },
           on,
         }),
-        this.$createElement('span', target.toUpperCase()),
+        h('span', target.toUpperCase()),
       ])
     },
     genInputs (): VNode[] | VNode {
@@ -163,7 +163,7 @@ export default defineComponent({
       }
     },
     genSwitch (): VNode {
-      return this.$createElement(VBtn, {
+      return h(VBtn, {
         props: {
           small: true,
           icon: true,
@@ -173,7 +173,7 @@ export default defineComponent({
           click: this.changeMode,
         },
       }, [
-        this.$createElement(VIcon, '$unfold'),
+        h(VIcon, '$unfold'),
       ])
     },
   },

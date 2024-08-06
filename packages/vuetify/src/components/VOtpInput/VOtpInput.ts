@@ -95,7 +95,7 @@ export default baseMixins.extend({
       this.onFocus(e, otpIdx || 0)
     },
     genInputSlot (otpIdx: number) {
-      return this.$createElement('div', this.setBackgroundColor(this.backgroundColor, {
+      return h('div', this.setBackgroundColor(this.backgroundColor, {
         class: 'v-input__slot',
         style: { height: convertToUnit(this.height) },
         onClick: () => this.onClick(otpIdx),
@@ -104,7 +104,7 @@ export default baseMixins.extend({
       }), [this.genDefaultSlot(otpIdx)])
     },
     genControl (otpIdx: number) {
-      return this.$createElement('div', {
+      return h('div', {
         class: 'v-input__control',
       }, [
         this.genInputSlot(otpIdx),
@@ -118,24 +118,24 @@ export default baseMixins.extend({
     },
     genContent () {
       return Array.from({ length: +this.length }, (_, i) => {
-        return this.$createElement('div', this.setTextColor(this.validationState, {
+        return h('div', this.setTextColor(this.validationState, {
           class: ['v-input', this.classes]
         }), [this.genControl(i)])
       })
     },
     genFieldset () {
-      return this.$createElement('fieldset', {
+      return h('fieldset', {
         attrs: {
           'aria-hidden': true,
         },
       }, [this.genLegend()])
     },
     genLegend () {
-      const span = this.$createElement('span', {
+      const span = h('span', {
         domProps: { innerHTML: '&#8203;' },
       })
 
-      return this.$createElement('legend', {
+      return h('legend', {
         style: {
           width: '0px',
         },
@@ -145,7 +145,7 @@ export default baseMixins.extend({
       const listeners = Object.assign({}, this.listeners$)
       delete listeners.change // Change should not be bound externally
 
-      return this.$createElement('input', {
+      return h('input', {
         style: {},
         value: this.otp[otpIdx],
         min: this.type === 'number' ? 0 : null,
@@ -168,7 +168,7 @@ export default baseMixins.extend({
       })
     },
     genTextFieldSlot (otpIdx: number): VNode {
-      return this.$createElement('div', {
+      return h('div', {
         class: 'v-text-field__slot',
       }, [
         this.genInput(otpIdx),

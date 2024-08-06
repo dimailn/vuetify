@@ -20,7 +20,7 @@ describe('VVirtualScroll.ts', () => {
         ...options,
         scopedSlots: {
           default ({ item }) {
-            return this.$createElement('div', { class: 'item' }, item)
+            return h('div', { class: 'item' }, item)
           },
         },
       })

@@ -242,12 +242,12 @@ export default baseMixins.extend({
     },
     genContent () {
       return this.showLazyContent(() => [
-        this.$createElement(VThemeProvider, {
+        h(VThemeProvider, {
           root: true,
           light: this.light,
           dark: this.dark
         }, [
-          this.$createElement('div', {
+          h('div', {
             class: this.contentClasses,
             role: 'dialog',
             'aria-modal': this.hideOverlay ? undefined : 'true',
@@ -264,7 +264,7 @@ export default baseMixins.extend({
 
       if (!this.transition) return content
 
-      return this.$createElement(Transition, {
+      return h(Transition, {
         name: this.transition,
         origin: this.origin,
         appear: true
@@ -303,7 +303,7 @@ export default baseMixins.extend({
       }
 
       return withDirectives(
-        this.$createElement('div', data, this.getContentSlot()),
+        h('div', data, this.getContentSlot()),
         directives
       )
     },

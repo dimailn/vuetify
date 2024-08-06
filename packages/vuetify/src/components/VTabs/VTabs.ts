@@ -215,7 +215,7 @@ export default baseMixins.extend({
       this.setTextColor(this.computedColor, data)
       this.setBackgroundColor(this.backgroundColor, data)
 
-      return this.$createElement(VTabsBar, data, [
+      return h(VTabsBar, data, [
         this.genSlider(slider),
         items,
       ])
@@ -240,12 +240,12 @@ export default baseMixins.extend({
       if (this.hideSlider) return null
 
       if (!slider) {
-        slider = this.$createElement(VTabsSlider, {
+        slider = h(VTabsSlider, {
           color: this.sliderColor
         })
       }
 
-      return this.$createElement('div', {
+      return h('div', {
         class: 'v-tabs-slider-wrapper',
         style: this.sliderStyles,
       }, [slider])

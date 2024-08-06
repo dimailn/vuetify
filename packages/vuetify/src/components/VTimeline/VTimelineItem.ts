@@ -53,12 +53,12 @@ export default baseMixins.extend({
 
   methods: {
     genBody () {
-      return this.$createElement('div', {
+      return h('div', {
         class: 'v-timeline-item__body',
       }, getSlot(this))
     },
     genIcon (): VNode | VNode[] {
-      return getSlot(this, 'icon') || this.$createElement(VIcon, {
+      return getSlot(this, 'icon') || h(VIcon, {
         color: this.iconColor,
         dark: !this.theme.isDark,
         small: this.small
@@ -67,12 +67,12 @@ export default baseMixins.extend({
     genInnerDot () {
       const data: VNodeData = this.setBackgroundColor(this.color)
 
-      return this.$createElement('div', mergeData({
+      return h('div', mergeData({
         class: 'v-timeline-item__inner-dot',
       }, data), [this.hasIcon && this.genIcon()])
     },
     genDot () {
-      return this.$createElement('div', {
+      return h('div', {
         class: ['v-timeline-item__dot', {
           'v-timeline-item__dot--small': this.small,
           'v-timeline-item__dot--large': this.large,
@@ -84,12 +84,12 @@ export default baseMixins.extend({
 
       if (!this.hideDot) children.push(this.genDot())
 
-      return this.$createElement('div', {
+      return h('div', {
         class: 'v-timeline-item__divider',
       }, children)
     },
     genOpposite () {
-      return this.$createElement('div', {
+      return h('div', {
         class: 'v-timeline-item__opposite',
       }, getSlot(this, 'opposite'))
     },

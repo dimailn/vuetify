@@ -91,7 +91,7 @@ export default defineComponent({
         return null
       }
 
-      return this.$createElement(VBtn, {
+      return h(VBtn, {
         props: { text: true },
         on: {
           click (e: Event) {

@@ -27,7 +27,7 @@ import {
   PropType,
   PropValidator,
 } from 'vue/types/options'
-import { VNode } from 'vue'
+import { VNode, h } from 'vue'
 import {
   DatePickerFormatter,
   DatePickerMultipleFormatter,
@@ -381,7 +381,7 @@ export default mixins(
       this.emitInput(this.inputDate)
     },
     genPickerTitle (): VNode {
-      return this.$createElement(VDatePickerTitle, {
+      return h(VDatePickerTitle, {
         date: this.modelValue ? (this.formatters.titleDate as (value: any) => string)(this.isMultiple ? this.multipleValue : this.modelValue) : '',
         disabled: this.disabled,
         readonly: this.readonly,
@@ -396,7 +396,7 @@ export default mixins(
       })
     },
     genTableHeader (): VNode {
-      return this.$createElement(VDatePickerHeader, {
+      return h(VDatePickerHeader, {
         nextIcon: this.nextIcon,
         color: this.color,
         dark: this.dark,
@@ -416,7 +416,7 @@ export default mixins(
       })
     },
     genDateTable (): VNode {
-      return this.$createElement(VDatePickerDateTable, {
+      return h(VDatePickerDateTable, {
         allowedDates: this.allowedDates,
         color: this.color,
         current: this.current,
@@ -446,7 +446,7 @@ export default mixins(
       })
     },
     genMonthTable (): VNode {
-      return this.$createElement(VDatePickerMonthTable, {
+      return h(VDatePickerMonthTable, {
         allowedDates: this.type === 'month' ? this.allowedDates : null,
         color: this.color,
         current: this.current ? sanitizeDateString(this.current, 'month') : null,
@@ -471,7 +471,7 @@ export default mixins(
       })
     },
     genYears (): VNode {
-      return this.$createElement(VDatePickerYears, {
+      return h(VDatePickerYears, {
         color: this.color,
         format: this.yearFormat,
         locale: this.locale,
@@ -492,7 +492,7 @@ export default mixins(
         this.internalActivePicker === 'DATE' ? this.genDateTable() : this.genMonthTable(),
       ]
 
-      return this.$createElement('div', {
+      return h('div', {
         key: this.internalActivePicker,
       }, children)
     },

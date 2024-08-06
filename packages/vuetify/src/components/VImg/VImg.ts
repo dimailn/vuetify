@@ -111,7 +111,7 @@ export default mixins(
       if (this.gradient) backgroundImage.push(`linear-gradient(${this.gradient})`)
       if (src) backgroundImage.push(`url("${src}")`)
 
-      const image = this.$createElement('div', {
+      const image = h('div', {
         class: {
           'v-image__image--preload': this.isLoading,
           'v-image__image--contain': this.contain,
@@ -128,7 +128,7 @@ export default mixins(
       /* istanbul ignore if */
       if (!this.transition) return image
 
-      return this.$createElement(Transition, {
+      return h(Transition, {
         name: this.transition,
         mode: 'in-out',
       }, [image])
@@ -255,14 +255,14 @@ export default mixins(
       const slot = getSlot(this, 'placeholder')
       if (slot) {
         const placeholder = this.isLoading
-          ? [this.$createElement('div', {
+          ? [h('div', {
             class: 'v-image__placeholder',
           }, slot)]
           : []
 
         if (!this.transition) return placeholder[0]
 
-        return this.$createElement(Transition, {
+        return h(Transition, {
           appear: true,
           name: this.transition,
         }, placeholder)

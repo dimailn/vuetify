@@ -171,7 +171,7 @@ describe('VDataTable.ts', () => {
       },
       scopedSlots: {
         body (props) {
-          return this.$createElement('div', [props.items.length])
+          return h('div', [props.items.length])
         },
       },
     })
@@ -188,7 +188,7 @@ describe('VDataTable.ts', () => {
       },
       scopedSlots: {
         foot (props) {
-          return this.$createElement('tfoot', [props.items.length])
+          return h('tfoot', [props.items.length])
         },
       },
     })
@@ -422,7 +422,7 @@ describe('VDataTable.ts', () => {
       },
       scopedSlots: {
         'footer.prepend' () {
-          return this.$createElement('div', ['footer.prepend slot content'])
+          return h('div', ['footer.prepend slot content'])
         },
       },
     })
@@ -438,7 +438,7 @@ describe('VDataTable.ts', () => {
       },
       scopedSlots: {
         'footer.page-text' ({ pageStart, pageStop }) {
-          return this.$createElement('div', [`foo ${pageStart} bar ${pageStop}`])
+          return h('div', [`foo ${pageStart} bar ${pageStop}`])
         },
       },
     })
@@ -770,7 +770,7 @@ describe('VDataTable.ts', () => {
       },
       scopedSlots: {
         item () {
-          return this.$createElement('div', ['scoped'])
+          return h('div', ['scoped'])
         },
       },
     })
