@@ -30,19 +30,16 @@ export default defineComponent({
       const value = getObjectValueByPath(props.item, header.value)
 
       const slotName = header.value
-      const scopedSlot = data.scopedSlots && data.scopedSlots.hasOwnProperty(slotName) && data.scopedSlots[slotName]
       const regularSlot = computedSlots.hasOwnProperty(slotName) && computedSlots[slotName]
 
-      if (scopedSlot) {
-        children.push(scopedSlot({
+      if (regularSlot) {
+        children.push(regularSlot({
           item: props.item,
           isMobile: true,
           header,
           index: props.index,
           value,
         }))
-      } else if (regularSlot) {
-        children.push(regularSlot)
       } else {
         children.push(value == null ? value : String(value))
       }

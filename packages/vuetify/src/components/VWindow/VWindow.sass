@@ -73,35 +73,35 @@
     &-leave-active
       transition: $window-transition
 
-    &-leave,
+    &-leave-from,
     &-leave-to
       position: absolute !important
       top: 0
       width: 100%
 
   &-x-transition
-    &-enter
+    &-enter-from
       transform: translateX(100%)
 
     &-leave-to
       transform: translateX(-100%)
 
   &-x-reverse-transition
-    &-enter
+    &-enter-from
       transform: translateX(-100%)
 
     &-leave-to
       transform: translateX(100%)
 
   &-y-transition
-    &-enter
+    &-enter-from
       transform: translateY(100%)
 
     &-leave-to
       transform: translateY(-100%)
 
   &-y-reverse-transition
-    &-enter
+    &-enter-from
       transform: translateY(-100%)
 
     &-leave-to
