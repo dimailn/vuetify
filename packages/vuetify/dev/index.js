@@ -17,8 +17,6 @@ const app = createApp({
 
 app.use(Vuetify)
 
-app.config.globalProperties.$vuetify = vuetify.framework
-
 const vm = app.mount('#app')
 
 

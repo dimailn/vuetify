@@ -19,9 +19,9 @@ export default defineComponent({
 
   computed: {
     $mobileBreakpoint() {
-      return this.mobileBreakpoint || this.$vuetify
+      return this.mobileBreakpoint || (this.$vuetify
       ? this.$vuetify.breakpoint.mobileBreakpoint
-      : undefined
+      : undefined)
     },
     isMobile (): boolean {
       const {

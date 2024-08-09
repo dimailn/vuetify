@@ -48,11 +48,8 @@ export function install (Vue: ReturnType<typeof createApp>, args: VuetifyUseOpti
 
       if (options.vuetify) {
         options.vuetify.init(this, this.$ssrContext)
-        // this.$vuetify = reactive(options.vuetify.framework)
-      } else {
-        // this.$vuetify = (options.parent && options.parent.$vuetify) || this
+        Vue.config.globalProperties.$vuetify = reactive(options.vuetify.framework)
       }
-
     },
     beforeMount () {
       // @ts-ignore
