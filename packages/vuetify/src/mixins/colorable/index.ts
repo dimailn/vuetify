@@ -69,10 +69,13 @@ export default defineComponent({
         return data
       }
       if (typeof data.class === 'string') {
+        data.class = {
+          [data.class]: true
+        }
         // istanbul ignore next
-        consoleError('class must be an object', this)
+        // consoleError('class must be an object', this)
         // istanbul ignore next
-        return data
+        // return data
       }
 
       if (data.class instanceof Array) {

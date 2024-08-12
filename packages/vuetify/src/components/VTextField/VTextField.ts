@@ -514,7 +514,7 @@ export default baseMixins.extend({
     setPrependWidth () {
       if (!this.outlined || !this.$refs['prepend-inner']) return
 
-      this.prependWidth = this.$refs['prepend-inner']().offsetWidth
+      this.prependWidth = this.$refs['prepend-inner'].offsetWidth
     },
     tryAutofocus () {
       if (
