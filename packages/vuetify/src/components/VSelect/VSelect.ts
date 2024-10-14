@@ -21,7 +21,7 @@ import ClickOutside from '../../directives/click-outside'
 
 // Utilities
 import mergeData from '../../util/mergeData'
-import { getPropertyFromItem, getObjectValueByPath, keyCodes } from '../../util/helpers'
+import { getPropertyFromItem, getObjectValueByPath, keyCodes, normalizeAttrs } from '../../util/helpers'
 import { consoleError } from '../../util/console'
 
 // Types
@@ -152,7 +152,7 @@ export default baseMixins.extend({
       return this.allItems
     },
     computedOwns (): string {
-      return `list-${this._uid}`
+      return `list-${this.$.uid}`
     },
     computedCounterValue (): number {
       const value = this.multiple
@@ -463,6 +463,10 @@ export default baseMixins.extend({
         onKeypress: this.onKeyPress,
       })
 
+      input.props = normalizeAttrs(input.props)
+
+      // console.log(input)
+
       return input
     },
     genHiddenInput (): VNode {
@@ -476,11 +480,11 @@ export default baseMixins.extend({
       const render = VTextField.methods.genInputSlot.call(this)
 
       render.props = {
-        ...render.props,
         role: 'button',
         'aria-haspopup': 'listbox',
         'aria-expanded': String(this.isMenuActive),
         'aria-owns': this.computedOwns,
+        ...render.props
       }
 
       return render
@@ -502,6 +506,7 @@ export default baseMixins.extend({
       // Requires destructuring due to Vue
       // modifying the `on` property when passed
       // as a referenced object
+
       return h(VSelectList, {
         ...this.listData,
       }, {...slots,item: this.$slots.item})

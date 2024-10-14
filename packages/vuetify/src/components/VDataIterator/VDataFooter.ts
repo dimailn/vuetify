@@ -9,7 +9,7 @@ import VBtn from '../VBtn'
 import { defineComponent, VNode, VNodeChildrenArrayContents, PropType, h } from 'vue'
 import { DataPagination, DataOptions, DataItemsPerPageOption } from 'vuetify/types'
 import { PropValidator } from 'vue/types/options'
-import { getSlot } from '../../util/helpers'
+import { getSlot, normalizeAttrs } from '../../util/helpers'
 
 export default defineComponent({
   name: 'v-data-footer',
@@ -112,22 +112,16 @@ export default defineComponent({
         class: 'v-data-footer__select',
       }, [
         this.$vuetify.lang.t(this.itemsPerPageText),
-        h(VSelect, {
-          attrs: {
-            'aria-label': this.$vuetify.lang.t(this.itemsPerPageText),
-          },
-          props: {
-            disabled: this.disableItemsPerPage,
-            items: computedIPPO,
-            value,
-            hideDetails: true,
-            auto: true,
-            minWidth: '75px',
-          },
-          on: {
-            input: this.onChangeItemsPerPage,
-          },
-        }),
+        h(VSelect, normalizeAttrs({
+          'aria-label': this.$vuetify.lang.t(this.itemsPerPageText),
+          disabled: this.disableItemsPerPage,
+          items: computedIPPO,
+          modelValue: value,
+          hideDetails: true,
+          auto: true,
+          minWidth: '75px',
+          onInput: this.onChangeItemsPerPage,
+        })),
       ])
     },
     genPaginationInfo () {
@@ -155,19 +149,13 @@ export default defineComponent({
     },
     genIcon (click: Function, disabled: boolean, label: string, icon: string): VNode {
       return h(VBtn, {
-        props: {
-          disabled: disabled || this.disablePagination,
-          icon: true,
-          text: true,
-          // dark: this.dark, // TODO: add mixin
-          // light: this.light // TODO: add mixin
-        },
-        on: {
-          click,
-        },
-        attrs: {
-          'aria-label': label, // TODO: Localization
-        },
+        disabled: disabled || this.disablePagination,
+        icon: true,
+        text: true,
+        // dark: this.dark, // TODO: add mixin
+        // light: this.light // TODO: add mixin
+        onClick: click,
+        'aria-label': label, // TODO: Localization
       }, [h(VIcon, icon)])
     },
     genIcons () {

@@ -201,7 +201,8 @@ export default baseMixins.extend({
 
     data = {
       ...data,
-      ...linkData
+      ...linkData,
+      ...this.$attrs
     }
 
     return withDirectives(

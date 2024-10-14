@@ -272,17 +272,13 @@ export default mixins(
 
       return {
         ...data,
-        attrs: {
-          class: {
-            'v-data-table__selected': data.isSelected,
-          },
+        class: {
+          'v-data-table__selected': data.isSelected,
         },
-        on: {
-          ...this.getDefaultMouseEventHandlers(':row', () => data, true),
-          // TODO: the first argument should be the event, and the second argument should be data,
-          // but this is a breaking change so it's for v3
-          click: (event: MouseEvent) => this.$emit('click:row', item, data, event),
-        },
+        ...this.getDefaultMouseEventHandlers(':row', () => data, true),
+        // TODO: the first argument should be the event, and the second argument should be data,
+        // but this is a breaking change so it's for v3
+        onClick: (event: MouseEvent) => this.$emit('click:row', item, data, event)
       }
     },
     genCaption (props: DataScopeProps) {
@@ -585,19 +581,20 @@ export default mixins(
         itemsPerPageText: '$vuetify.dataTable.itemsPerPageText',
         ...this.sanitizedFooterProps,
         'onUpdate:options': (value: any) => props.updateOptions(value),
-        widths: this.widths,
-        headers: this.computedHeaders,
       }
 
       const children: VNodeChildren = [
-        getSlot(this, 'footer', data, true),
+        getSlot(this, 'footer', {
+          ...data,
+          widths: this.widths,
+          headers: this.computedHeaders
+        }, true),
       ]
 
       if (!this.hideDefaultFooter) {
         children.push(h(VDataFooter, {
-          ...data,
-          scopedSlots: getPrefixedScopedSlots('footer.', this.$slots),
-        }))
+          ...data
+        }, getPrefixedScopedSlots('footer.', this.$slots)))
       }
 
       return children
@@ -633,22 +630,21 @@ export default mixins(
           'v-data-table--mobile': this.isMobile,
           'v-data-table--selectable': this.showSelect,
         },
-      }, [
-        this.proxySlot('top', getSlot(this, 'top', {
+      }, {
+        default: () => [
+          this.genCaption(props),
+          this.genColgroup(props),
+          this.genHeaders(props),
+          this.genBody(props),
+          this.genFoot(props),
+        ],
+        top: getSlot(this, 'top', {
           ...props,
           isMobile: this.isMobile,
-        }, true)),
-        this.genCaption(props),
-        this.genColgroup(props),
-        this.genHeaders(props),
-        this.genBody(props),
-        this.genFoot(props),
-        this.proxySlot('bottom', this.genFooters(props)),
-      ])
-    },
-    proxySlot (slot: string, content: VNodeChildren) {
-      return h('template', { slot }, content)
-    },
+        }, true),
+        bottom: this.genFooters(props)
+      })
+    }
   },
 
   render (): VNode {

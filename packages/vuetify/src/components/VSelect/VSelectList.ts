@@ -233,18 +233,13 @@ export default mixins(Colorable, Themeable).extend({
     this.$slots['append-item'] && children.push(this.$slots['append-item'])
 
     return h(VList, {
-      class: 'v-select-list',
-      class: this.themeClasses,
-      attrs: {
-        role: 'listbox',
-        tabindex: -1,
+      class: ['v-select-list', this.themeClasses],
+      role: 'listbox',
+      tabindex: -1,
+      onMousedown: (e: Event) => {
+        e.preventDefault()
       },
-      on: {
-        mousedown: (e: Event) => {
-          e.preventDefault()
-        },
-      },
-      props: { dense: this.dense },
+      dense: this.dense,
     }, children)
   },
 })

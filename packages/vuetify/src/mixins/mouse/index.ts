@@ -19,12 +19,18 @@ export type MouseEventsMap = {
   [event: string]: MouseHandler | MouseHandler[]
 }
 
+function mapEventName(str) {
+  let newStr = "on" + str;
+  return newStr.charAt(0).toUpperCase() + newStr.slice(1);
+}
+
 export default defineComponent({
   name: 'mouse',
 
   methods: {
     getDefaultMouseEventHandlers (suffix: string, getData: MouseHandler, eventFirst = false): MouseEventsMap {
-      const listeners = Object.keys(this.$listeners)
+      console.log(this.$attrs)
+      const listeners = Object.keys(this.$attrs)
         .filter(key => key.endsWith(suffix))
         .reduce((acc, key) => {
           acc[key] = { event: key.slice(0, -suffix.length) }
@@ -42,7 +48,7 @@ export default defineComponent({
       for (const event in events) {
         const eventOptions = events[event]
 
-        if (!this.$listeners[event]) continue
+        if (!this.$attrs[mapEventName(event)]) continue
 
         // TODO somehow pull in modifiers
 

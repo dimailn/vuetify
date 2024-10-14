@@ -13,6 +13,7 @@ import { convertToUnit, keys, remapInternalIcon } from '../../util/helpers'
 import { defineComponent, CreateElement, VNode, VNodeChildren, VNodeData, h } from 'vue'
 import mixins from '../../util/mixins'
 import { VuetifyIcon, VuetifyIconComponent } from 'vuetify/types/services/icons'
+import { normalizeAttrs } from '../../util/helpers'
 
 enum SIZE_MAP {
   xSmall = '12px',
@@ -30,6 +31,7 @@ function isFontAwesome5 (iconType: string): boolean {
 function isSvgPath (icon: string): boolean {
   return (/^[mzlhvcsqta]\s*[-+.0-9][^mlhvzcsqta]+/i.test(icon) && /[\dz]$/i.test(icon) && icon.length > 4)
 }
+
 
 const VIcon = mixins(
   BindsAttrs,
@@ -133,7 +135,7 @@ const VIcon = mixins(
     },
     renderFontIcon (icon: string): VNode {
       const newChildren: VNodeChildren = []
-      const data = this.getDefaultData()
+      let data = this.getDefaultData()
 
       let iconType = 'material-icons'
       // Material Icon delimiter is _
@@ -164,7 +166,7 @@ const VIcon = mixins(
 
       this.applyColors(data)
 
-      return h(this.hasClickListener ? 'button' : this.tag, data, {default: () => newChildren})
+      return h(this.hasClickListener ? 'button' : this.tag, normalizeAttrs(data), {default: () => newChildren})
     },
     renderSvgIcon (icon: string): VNode {
       const svgData: VNodeData = {

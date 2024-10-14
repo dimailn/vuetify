@@ -189,18 +189,16 @@ export default baseMixins.extend({
         : undefined
 
       const data = mergeData({
-        attrs: {
-          'aria-label': label,
-          color: this.validationState,
-          dark: this.dark,
-          disabled: this.isDisabled,
-          light: this.light,
-          tabindex: type === 'clear' ? -1 : undefined,
-        },
-        on: !hasListener
-          ? undefined
+        'aria-label': label,
+        color: this.validationState,
+        dark: this.dark,
+        disabled: this.isDisabled,
+        light: this.light,
+        tabindex: type === 'clear' ? -1 : undefined,
+        ...(!hasListener
+          ? {}
           : {
-            click: (e: Event) => {
+            onClick: (e: Event) => {
               e.preventDefault()
               e.stopPropagation()
 
@@ -209,11 +207,11 @@ export default baseMixins.extend({
             },
             // Container has g event that will
             // trigger menu open if enclosed
-            mouseup: (e: Event) => {
+            onMouseup: (e: Event) => {
               e.preventDefault()
               e.stopPropagation()
             },
-          },
+          }),
       }, extraData)
 
       return h('div', {
