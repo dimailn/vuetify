@@ -58,8 +58,6 @@ export default baseMixins.extend({
     ripple,
   },
 
-  inheritAttrs: false,
-
   props: {
     appendOuterIcon: String,
     autofocus: Boolean,

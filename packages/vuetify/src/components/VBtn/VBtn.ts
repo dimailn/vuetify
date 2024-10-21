@@ -41,7 +41,6 @@ interface options extends ExtractVue<typeof baseMixins> {
 
 export default baseMixins.extend({
   name: 'v-btn',
-  inheritAttrs: false,
   props: {
     activeClass: {
       type: String,
@@ -201,8 +200,7 @@ export default baseMixins.extend({
 
     data = {
       ...data,
-      ...linkData,
-      ...this.$attrs
+      ...linkData
     }
 
     return withDirectives(

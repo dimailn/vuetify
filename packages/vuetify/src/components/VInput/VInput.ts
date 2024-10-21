@@ -317,7 +317,7 @@ export default baseMixins.extend({
 
   render (): VNode {
     return h('div', this.setTextColor(this.validationState, {
-      class: {'v-input': true, ... this.classes},
+      class: {'v-input': true, ...this.classes},
     }), this.genContent())
   },
 })

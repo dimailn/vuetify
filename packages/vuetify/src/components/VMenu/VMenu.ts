@@ -43,11 +43,6 @@ const baseMixins = mixins(
 export default baseMixins.extend({
   name: 'v-menu',
 
-  directives: {
-    ClickOutside,
-    Resize,
-  },
-
   provide (): object {
     return {
       isInMenu: true,
@@ -364,18 +359,15 @@ export default baseMixins.extend({
       } as VNodeData
 
       if (this.onScroll) {
-        options.on = options.on || {}
-        options.on.scroll = this.onScroll
+        options.onScroll = this.onScroll
       }
 
       if (!this.disabled && this.openOnHover) {
-        options.on = options.on || {}
-        options.on.mouseenter = this.mouseEnterHandler
+        options.onMouseenter = this.mouseEnterHandler
       }
 
       if (this.openOnHover) {
-        options.on = options.on || {}
-        options.on.mouseleave = this.mouseLeaveHandler
+        options.onMouseleave = this.mouseLeaveHandler
       }
 
       const directives = this.genDirectives()

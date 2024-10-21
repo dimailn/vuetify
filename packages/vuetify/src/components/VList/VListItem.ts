@@ -14,6 +14,7 @@ import Ripple from '../../directives/ripple'
 
 // Utilities
 import { getSlot, keyCodes } from './../../util/helpers'
+import mergeData from './../../util/mergeData'
 import { ExtractVue } from './../../util/mixins'
 import { removed } from '../../util/console'
 
@@ -163,10 +164,11 @@ export default baseMixins.extend({
   render (): VNode {
     let { tag, data, directives } = this.generateRouteLink()
 
-    data = {
-      ...data,
-      ...this.genAttrs(),
-    }
+    data = mergeData(
+      data,
+      this.genAttrs()
+    )
+
     data = {
       ...data,
       onKeydown: (e: KeyboardEvent) => {

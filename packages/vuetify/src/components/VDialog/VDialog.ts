@@ -40,8 +40,6 @@ const baseMixins = mixins(
 export default baseMixins.extend({
   name: 'v-dialog',
 
-  directives: { ClickOutside },
-
   props: {
     dark: Boolean,
     disabled: Boolean,

@@ -1,4 +1,4 @@
-import { VNodeData, PropType, defineComponent } from 'vue'
+import { VNodeData, PropType, defineComponent, resolveComponent } from 'vue'
 
 // Directives
 import Ripple, { RippleOptions } from '../../directives/ripple'
@@ -116,7 +116,7 @@ export default defineComponent({
           exactActiveClass = `${exactActiveClass} ${this.proxyClass}`.trim()
         }
 
-        tag = this.nuxt ? 'nuxt-link' : 'router-link'
+        tag = resolveComponent(this.nuxt ? 'nuxt-link' : 'router-link')
         Object.assign(data, {
           to: this.to,
           exact,

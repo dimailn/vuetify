@@ -134,13 +134,9 @@ export default mixins(
   render (): VNode {
     return h('form', {
       class: 'v-form',
-      attrs: {
-        novalidate: true,
-        ...this.attrs$,
-      },
-      on: {
-        submit: (e: Event) => this.$emit('submit', e),
-      },
+      novalidate: true,
+      ...this.attrs$,
+      onSubmit: (e: Event) => this.$emit('submit', e),
     }, getSlot(this))
   },
 })
