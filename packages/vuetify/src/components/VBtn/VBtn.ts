@@ -19,6 +19,7 @@ import Sizeable from '../../mixins/sizeable'
 import mixins, { ExtractVue } from '../../util/mixins'
 import { breaking } from '../../util/console'
 import { getSlot } from '../../util/helpers'
+import mergeData from '../../util/mergeData'
 
 // Types
 import { VNode, withDirectives } from 'vue'
@@ -41,6 +42,7 @@ interface options extends ExtractVue<typeof baseMixins> {
 
 export default baseMixins.extend({
   name: 'v-btn',
+  inheritAttrs: false,
   props: {
     activeClass: {
       type: String,
@@ -202,6 +204,8 @@ export default baseMixins.extend({
       ...data,
       ...linkData
     }
+
+    data = mergeData(data, { class: this.$attrs.class })
 
     return withDirectives(
       h(tag, this.disabled ? data : setColor(this.color, data), children),
