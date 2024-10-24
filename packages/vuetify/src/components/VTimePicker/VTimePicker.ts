@@ -302,37 +302,33 @@ export default mixins(
     },
     genClock () {
       return h(VTimePickerClock, {
-        props: {
-          allowedValues:
-            this.selecting === SelectingTimes.Hour
-              ? this.isAllowedHourCb
-              : (this.selecting === SelectingTimes.Minute
-                ? this.isAllowedMinuteCb
-                : this.isAllowedSecondCb),
-          color: this.color,
-          dark: this.dark,
-          disabled: this.disabled,
-          double: this.selecting === SelectingTimes.Hour && !this.isAmPm,
-          format: this.selecting === SelectingTimes.Hour
-            ? (this.isAmPm ? this.convert24to12 : (val: number) => val)
-            : (val: number) => pad(val, 2),
-          light: this.light,
-          max: this.selecting === SelectingTimes.Hour ? (this.isAmPm && this.period === 'am' ? 11 : 23) : 59,
-          min: this.selecting === SelectingTimes.Hour && this.isAmPm && this.period === 'pm' ? 12 : 0,
-          readonly: this.readonly,
-          scrollable: this.scrollable,
-          size: Number(this.width) - ((!this.fullWidth && this.landscape) ? 80 : 20),
-          step: this.selecting === SelectingTimes.Hour ? 1 : 5,
-          value: this.selecting === SelectingTimes.Hour
-            ? this.inputHour
+        allowedValues:
+          this.selecting === SelectingTimes.Hour
+            ? this.isAllowedHourCb
             : (this.selecting === SelectingTimes.Minute
-              ? this.inputMinute
-              : this.inputSecond),
-        },
-        on: {
-          input: this.onInput,
-          change: this.onChange,
-        },
+              ? this.isAllowedMinuteCb
+              : this.isAllowedSecondCb),
+        color: this.color,
+        dark: this.dark,
+        disabled: this.disabled,
+        double: this.selecting === SelectingTimes.Hour && !this.isAmPm,
+        format: this.selecting === SelectingTimes.Hour
+          ? (this.isAmPm ? this.convert24to12 : (val: number) => val)
+          : (val: number) => pad(val, 2),
+        light: this.light,
+        max: this.selecting === SelectingTimes.Hour ? (this.isAmPm && this.period === 'am' ? 11 : 23) : 59,
+        min: this.selecting === SelectingTimes.Hour && this.isAmPm && this.period === 'pm' ? 12 : 0,
+        readonly: this.readonly,
+        scrollable: this.scrollable,
+        size: Number(this.width) - ((!this.fullWidth && this.landscape) ? 80 : 20),
+        step: this.selecting === SelectingTimes.Hour ? 1 : 5,
+        value: this.selecting === SelectingTimes.Hour
+          ? this.inputHour
+          : (this.selecting === SelectingTimes.Minute
+            ? this.inputMinute
+            : this.inputSecond),
+        onInput: this.onInput,
+        onChange: this.onChange,
         ref: 'clock',
       })
     },

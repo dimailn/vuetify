@@ -140,7 +140,7 @@ export default mixins(
         children.push(
           h(VIcon, {
             class: 'v-chip__filter',
-            props: { left: true },
+            left: true,
           }, this.filterIcon)
         )
       }
@@ -150,22 +150,16 @@ export default mixins(
     genClose (): VNode {
       return h(VIcon, {
         class: 'v-chip__close',
-        props: {
-          right: true,
-          size: 18,
-        },
-        attrs: {
-          'aria-label': this.$vuetify.lang.t(this.closeLabel),
-        },
-        on: {
-          click: (e: Event) => {
-            e.stopPropagation()
-            e.preventDefault()
+        right: true,
+        size: 18,
+        'aria-label': this.$vuetify.lang.t(this.closeLabel),
+        onClick: (e: Event) => {
+          e.stopPropagation()
+          e.preventDefault()
 
-            this.$emit('click:close')
-            this.$emit('update:active', false)
-          },
-        },
+          this.$emit('click:close')
+          this.$emit('update:active', false)
+        }
       }, this.closeIcon)
     },
     genContent (): VNode {

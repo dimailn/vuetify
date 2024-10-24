@@ -114,12 +114,10 @@ export default defineComponent({
       const color = day.present ? this.color : 'transparent'
 
       return h(VBtn, {
-        props: {
-          color,
-          fab: true,
-          depressed: true,
-        },
-        on: this.getMouseEventHandlers({
+        color,
+        fab: true,
+        depressed: true,
+        ...this.getMouseEventHandlers({
           'click:date': { event: 'click', stop: true },
           'contextmenu:date': { event: 'contextmenu', stop: true, prevent: true, result: false },
         }, nativeEvent => {

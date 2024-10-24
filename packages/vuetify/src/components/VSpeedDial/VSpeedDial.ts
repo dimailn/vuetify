@@ -1,4 +1,4 @@
-import {h} from 'vue'
+import {TransitionGroup, h} from 'vue'
 // Styles
 import './VSpeedDial.sass'
 
@@ -89,14 +89,12 @@ export default mixins(Positionable, Toggleable, Transitionable).extend({
       })
     }
 
-    const list = h('transition-group', {
+    const list = h(TransitionGroup, {
       class: 'v-speed-dial__list',
-      props: {
-        name: this.transition,
-        mode: this.mode,
-        origin: this.origin,
-        tag: 'div',
-      },
+      name: this.transition,
+      mode: this.mode,
+      origin: this.origin,
+      tag: 'div',
     }, children)
 
     return h('div', data, [getSlot(this, 'activator'), list])

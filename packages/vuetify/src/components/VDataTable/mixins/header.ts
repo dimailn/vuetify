@@ -53,14 +53,10 @@ export default mixins<options>().extend({
   methods: {
     genSelectAll () {
       const data = {
-        props: {
-          value: this.everyItem,
-          indeterminate: !this.everyItem && this.someItems,
-          color: this.checkboxColor ?? '',
-        },
-        on: {
-          input: (v: boolean) => this.$emit('toggle-select-all', v),
-        },
+        value: this.everyItem,
+        indeterminate: !this.everyItem && this.someItems,
+        color: this.checkboxColor ?? ''
+        onInput: (v: boolean) => this.$emit('toggle-select-all', v),
       }
 
       if (this.$slots['data-table-select']) {

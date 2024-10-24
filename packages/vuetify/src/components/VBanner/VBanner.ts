@@ -91,10 +91,8 @@ export default mixins(
 
       if (this.icon) {
         content = h(VIcon, {
-          props: {
-            color: this.iconColor,
-            size: 28,
-          },
+          color: this.iconColor,
+          size: 28
         }, [this.icon])
       } else {
         content = getSlot(this, 'icon')
@@ -102,13 +100,9 @@ export default mixins(
 
       return h(VAvatar, {
         class: 'v-banner__icon',
-        props: {
-          color: this.color,
-          size: 40,
-        },
-        on: {
-          click: this.iconClick,
-        },
+        color: this.color,
+        size: 40,
+        onClick: this.iconClick,
       }, [content])
     },
     genText () {

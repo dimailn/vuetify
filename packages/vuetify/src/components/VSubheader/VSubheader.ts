@@ -22,13 +22,12 @@ export default mixins(
 
   render (): VNode {
     return h('div', {
-      class: 'v-subheader',
-      class: {
+      class: ['v-subheader', {
         'v-subheader--inset': this.inset,
         ...this.themeClasses,
-      },
-      attrs: this.$attrs,
-      on: this.$listeners,
+      }],
+      ...this.$attrs,
+      ...this.$listeners
     }, getSlot(this))
   },
 })

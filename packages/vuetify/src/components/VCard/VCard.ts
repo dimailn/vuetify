@@ -81,8 +81,7 @@ export default mixins(
     data.style = this.styles
 
     if (this.isClickable) {
-      data.attrs = data.attrs || {}
-      data.attrs.tabindex = 0
+      data.tabindex = 0
     }
 
     return withDirectives(h(tag, this.setBackgroundColor(this.color, data), [

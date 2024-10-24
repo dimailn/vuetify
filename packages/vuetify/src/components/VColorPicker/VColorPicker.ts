@@ -92,16 +92,12 @@ export default mixins(Elevatable, Themeable).extend({
     },
     genCanvas (): VNode {
       return h(VColorPickerCanvas, {
-        props: {
-          color: this.internalValue,
-          disabled: this.disabled,
-          dotSize: this.dotSize,
-          width: this.width,
-          height: this.canvasHeight,
-        },
-        on: {
-          'update:color': this.updateColor,
-        },
+        color: this.internalValue,
+        disabled: this.disabled,
+        dotSize: this.dotSize,
+        width: this.width,
+        height: this.canvasHeight,
+        'onUpdate:color': this.updateColor
       })
     },
     genControls (): VNode {
@@ -114,17 +110,13 @@ export default mixins(Elevatable, Themeable).extend({
     },
     genEdit (): VNode {
       return h(VColorPickerEdit, {
-        props: {
-          color: this.internalValue,
-          disabled: this.disabled,
-          hideAlpha: this.hideAlpha,
-          hideModeSwitch: this.hideModeSwitch,
-          mode: this.mode,
-        },
-        on: {
-          'update:color': this.updateColor,
-          'update:mode': (v: Mode) => this.$emit('update:mode', v),
-        },
+        color: this.internalValue,
+        disabled: this.disabled,
+        hideAlpha: this.hideAlpha,
+        hideModeSwitch: this.hideModeSwitch,
+        mode: this.mode,
+        'onUpdate:color': this.updateColor,
+        'onUpdate:mode': (v: Mode) => this.$emit('update:mode', v),
       })
     },
     genPreview (): VNode {

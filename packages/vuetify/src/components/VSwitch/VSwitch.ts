@@ -114,14 +114,12 @@ export default defineComponent({
         this.loading === false
           ? null
           : getSlot(this, 'progress') || h(VProgressCircular, {
-            props: {
-              color: (this.loading === true || this.loading === '')
-                ? (this.color || 'primary')
-                : this.loading,
-              size: 16,
-              width: 2,
-              indeterminate: true,
-            },
+            color: (this.loading === true || this.loading === '')
+              ? (this.color || 'primary')
+              : this.loading,
+            size: 16,
+            width: 2,
+            indeterminate: true,
           }),
       ])
     },

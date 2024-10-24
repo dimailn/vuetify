@@ -106,11 +106,9 @@ export default defineComponent({
       }, [
         h('input', {
           key: target,
-          attrs,
-          domProps: {
-            value,
-          },
-          on,
+          ...attrs,
+          value,
+          ...on,
         }),
         h('span', target.toUpperCase()),
       ])
@@ -164,14 +162,10 @@ export default defineComponent({
     },
     genSwitch (): VNode {
       return h(VBtn, {
-        props: {
-          small: true,
-          icon: true,
-          disabled: this.disabled,
-        },
-        on: {
-          click: this.changeMode,
-        },
+        small: true,
+        icon: true,
+        disabled: this.disabled,
+        onClick: this.changeMode,
       }, [
         h(VIcon, '$unfold'),
       ])

@@ -129,19 +129,16 @@ export default mixins(
 
   render (): VNode {
     const data = this.setBackgroundColor(this.backgroundColor, {
-      class: 'v-bottom-navigation',
-      class: this.classes,
+      class: ['v-bottom-navigation', this.classes],
       style: this.styles,
-      props: {
-        activeClass: this.activeClass,
-        mandatory: Boolean(
-          this.mandatory ||
-          this.value !== undefined
-        ),
-        tag: this.tag,
-        value: this.internalValue,
-      },
-      on: { change: this.updateValue },
+      activeClass: this.activeClass,
+      mandatory: Boolean(
+        this.mandatory ||
+        this.value !== undefined
+      ),
+      tag: this.tag,
+      value: this.internalValue,
+      onChange: this.updateValue
     })
 
     if (this.canScroll) {

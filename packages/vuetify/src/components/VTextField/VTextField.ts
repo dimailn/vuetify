@@ -387,8 +387,6 @@ export default baseMixins.extend({
       delete listeners.change // Change should not be bound externally
       const { title, ...inputAttrs } = this.attrs$
 
-      console.log(inputAttrs)
-
       const node = h('input', {
         style: {},
         value: (this.type === 'number' && Object.is(this.lazyValue, -0)) ? '-0' : this.lazyValue,

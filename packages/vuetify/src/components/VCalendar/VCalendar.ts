@@ -351,37 +351,29 @@ export default defineComponent({
     const { start, end, maxDays, component, weekdays, categories } = this.renderProps
 
     return h(component, {
-      class: 'v-calendar',
-      class: {
+      class: ['v-calendar', {
         'v-calendar-events': !this.noEvents,
-      },
-      props: {
-        ...this.$props,
-        start: start.date,
-        end: end.date,
-        maxDays,
-        weekdays,
-        categories,
-      },
-      attrs: {
-        role: 'grid',
-      },
+      }],
+      ...this.$props,
+      start: start.date,
+      end: end.date,
+      maxDays,
+      weekdays,
+      categories,
+      role: 'grid',
       directives: [{
         modifiers: { quiet: true },
         name: 'resize',
         value: this.updateEventVisibility,
       }],
-      on: {
-        ...this.$listeners,
-
-        'click:date': (day: CalendarTimestamp, e?: MouseEvent) => {
-          if (this.$listeners.input) {
-            this.$emit('input', day.date)
-          }
-          if (this.$listeners['click:date']) {
-            this.$emit('click:date', day, e)
-          }
-        },
+      ...this.$listeners,
+      'onClick:date': (day: CalendarTimestamp, e?: MouseEvent) => {
+        if (this.$listeners.input) {
+          this.$emit('input', day.date)
+        }
+        if (this.$listeners['click:date']) {
+          this.$emit('click:date', day, e)
+        }
       },
       scopedSlots: this.getScopedSlots(),
     })

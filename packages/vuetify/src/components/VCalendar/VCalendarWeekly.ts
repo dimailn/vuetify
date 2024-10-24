@@ -191,13 +191,11 @@ export default defineComponent({
       const hasMonth = day.day === 1 && this.showMonthOnFirst
 
       return h(VBtn, {
-        props: {
-          color,
-          fab: true,
-          depressed: true,
-          small: true,
-        },
-        on: this.getMouseEventHandlers({
+        color,
+        fab: true,
+        depressed: true,
+        small: true,
+        ...this.getMouseEventHandlers({
           'click:date': { event: 'click', stop: true },
           'contextmenu:date': { event: 'contextmenu', stop: true, prevent: true, result: false },
         }, nativeEvent => ({ nativeEvent, ...day })),

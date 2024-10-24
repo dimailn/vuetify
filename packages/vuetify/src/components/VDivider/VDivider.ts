@@ -30,12 +30,10 @@ export default defineComponent({
         'v-divider--vertical': this.vertical,
         ...this.themeClasses,
       },
-      attrs: {
-        role: 'separator',
-        'aria-orientation': orientation,
-        ...this.$attrs,
-      },
-      on: this.$listeners,
+      role: 'separator',
+      'aria-orientation': orientation,
+      ...this.$attrs,
+      ...this.$listeners
     })
   },
 })

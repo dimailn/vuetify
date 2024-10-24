@@ -63,11 +63,9 @@ export default mixins(Themeable).extend({
         },
       }, [
         deepEqual(this.color, parseColor(color, null)) && h(VIcon, {
-          props: {
-            small: true,
-            dark: contrastRatio(this.color.rgba, white) > 2 && this.color.alpha > 0.5,
-            light: contrastRatio(this.color.rgba, black) > 2 && this.color.alpha > 0.5,
-          },
+          small: true,
+          dark: contrastRatio(this.color.rgba, white) > 2 && this.color.alpha > 0.5,
+          light: contrastRatio(this.color.rgba, black) > 2 && this.color.alpha > 0.5
         }, '$success'),
       ])
 

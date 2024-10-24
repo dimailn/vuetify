@@ -401,13 +401,9 @@ export default mixins(
       } else {
         const toggle = h(VBtn, {
           class: 'ma-0',
-          props: {
-            icon: true,
-            small: true,
-          },
-          on: {
-            click: toggleFn,
-          },
+          icon: true,
+          small: true,
+          onClick: toggleFn
         }, [h(VIcon, [isOpen ? '$minus' : '$plus'])])
 
         const remove = h(VBtn, {

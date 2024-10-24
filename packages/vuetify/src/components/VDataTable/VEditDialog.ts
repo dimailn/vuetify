@@ -65,12 +65,10 @@ export default mixins(Returnable, Themeable).extend({
     },
     genButton (fn: Function, text: VNodeChildren): VNode {
       return h(VBtn, {
-        props: {
-          text: true,
-          color: 'primary',
-          light: true,
-        },
-        on: { click: fn },
+        text: true,
+        color: 'primary',
+        light: true,
+        onClick: fn,
       }, text)
     },
     genActions (): VNode {

@@ -296,14 +296,10 @@ export default mixins(
       if (this.hideDefaultFooter) return null
 
       const data = {
-        props: {
-          ...this.sanitizedFooterProps,
-          options: props.options,
-          pagination: props.pagination,
-        },
-        on: {
-          'update:options': (value: any) => props.updateOptions(value),
-        },
+        ...this.sanitizedFooterProps,
+        options: props.options,
+        pagination: props.pagination,
+        'onUpdate:options': (value: any) => props.updateOptions(value)
       }
 
       const scopedSlots = getPrefixedScopedSlots('footer.', this.$slots)

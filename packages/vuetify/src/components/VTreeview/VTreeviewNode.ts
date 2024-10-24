@@ -239,27 +239,23 @@ const VTreeviewNode = baseMixins.extend({
     genCheckbox () {
       return h(VIcon, {
         class: 'v-treeview-node__checkbox',
-        props: {
-          color: this.isSelected || this.isIndeterminate ? this.selectedColor : undefined,
-          disabled: this.disabled,
-        },
-        on: {
-          click: (e: MouseEvent) => {
-            e.stopPropagation()
+        color: this.isSelected || this.isIndeterminate ? this.selectedColor : undefined,
+        disabled: this.disabled,
+        onClick: (e: MouseEvent) => {
+          e.stopPropagation()
 
-            if (this.isLoading) return
+          if (this.isLoading) return
 
-            this.checkChildren().then(() => {
-              // We nextTick here so that items watch in VTreeview has a chance to run first
-              this.$nextTick(() => {
-                this.isSelected = !this.isSelected
-                this.isIndeterminate = false
+          this.checkChildren().then(() => {
+            // We nextTick here so that items watch in VTreeview has a chance to run first
+            this.$nextTick(() => {
+              this.isSelected = !this.isSelected
+              this.isIndeterminate = false
 
-                this.treeview.updateSelected(this.key, this.isSelected)
-                this.treeview.emitSelected()
-              })
+              this.treeview.updateSelected(this.key, this.isSelected)
+              this.treeview.emitSelected()
             })
-          },
+          })
         },
       }, [this.computedIcon])
     },
