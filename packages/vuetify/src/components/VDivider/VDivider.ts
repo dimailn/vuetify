@@ -7,6 +7,8 @@ import { VNode, defineComponent } from 'vue'
 
 // Mixins
 import Themeable from '../../mixins/themeable'
+import mergeData from '../../util/mergeData'
+
 
 export default defineComponent({
   name: 'v-divider',
@@ -23,7 +25,7 @@ export default defineComponent({
     if (!this.$attrs.role || this.$attrs.role === 'separator') {
       orientation = this.vertical ? 'vertical' : 'horizontal'
     }
-    return h('hr', {
+    return h('hr', mergeData({
       class: {
         'v-divider': true,
         'v-divider--inset': this.inset,
@@ -32,8 +34,7 @@ export default defineComponent({
       },
       role: 'separator',
       'aria-orientation': orientation,
-      ...this.$attrs,
       ...this.$listeners
-    })
+    }, this.$attrs))
   },
 })
