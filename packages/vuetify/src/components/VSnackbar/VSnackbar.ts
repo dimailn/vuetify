@@ -1,4 +1,4 @@
-import {Transition, h} from 'vue'
+import {Transition, h, vShow, withDirectives} from 'vue'
 // Styles
 import './VSnackbar.sass'
 
@@ -146,14 +146,11 @@ export default mixins(
     },
     genContent () {
       return h('div', {
-        class: 'v-snack__content',
-        class: {
+        class: ['v-snack__content', {
           [this.contentClass]: true,
-        },
-        attrs: {
-          role: 'status',
-          'aria-live': 'polite',
-        },
+        }],
+        role: 'status',
+        'aria-live': 'polite'
       }, [getSlot(this)])
     },
     genWrapper () {
@@ -162,23 +159,23 @@ export default mixins(
         : this.setTextColor
 
       const data = setColor(this.color, {
-        class: 'v-snack__wrapper',
-        class: VSheet.computed.classes.call(this),
+        class: ['v-snack__wrapper', VSheet.computed.classes.call(this)],
         style: VSheet.computed.styles.call(this),
-        directives: [{
-          name: 'show',
-          value: this.isActive,
-        }],
-        on: {
-          pointerenter: () => window.clearTimeout(this.activeTimeout),
-          pointerleave: this.setTimeout,
-        },
+        onPointerenter: () => window.clearTimeout(this.activeTimeout),
+        onPointerleave: this.setTimeout
       })
 
-      return h('div', data, [
+      const directives = [
+        [
+          vShow,
+          this.isActive
+        ]
+      ]
+
+      return withDirectives(h('div', data, [
         this.genContent(),
         this.genActions(),
-      ])
+      ]), directives)
     },
     genTransition () {
       return h(Transition, {
@@ -206,8 +203,7 @@ export default mixins(
 
   render (): VNode {
     return h('div', {
-      class: 'v-snack',
-      class: this.classes,
+      class: ['v-snack', this.classes],
       style: this.styles,
     }, [
       this.transition !== false
