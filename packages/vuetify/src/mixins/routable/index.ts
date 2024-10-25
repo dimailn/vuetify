@@ -34,6 +34,7 @@ export default defineComponent({
     },
     tag: String,
     target: String,
+    notALink: Boolean
   },
 
   data: () => ({
@@ -58,6 +59,8 @@ export default defineComponent({
       return this.ripple ?? (!this.disabled && this.isClickable)
     },
     isClickable (): boolean {
+      if(this.notALink) return false
+
       if (this.disabled) return false
 
       return Boolean(
