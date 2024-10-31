@@ -34,11 +34,6 @@
   "jsdelivr": "dist/vuetify.js",
   "unpkg": "dist/vuetify.js",
   "types": "types/index.d.ts",
-  "sideEffects": [
-    "*.sass",
-    "*.scss",
-    "*.css"
-  ],
   "files": [
     "src/",
     "dist/",
