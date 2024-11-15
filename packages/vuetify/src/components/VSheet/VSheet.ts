@@ -57,7 +57,7 @@ export default defineComponent({
     const data = {
       class: this.classes,
       style: this.styles,
-      on: this.listeners$,
+      ...this.listeners$,
     }
 
     return h(

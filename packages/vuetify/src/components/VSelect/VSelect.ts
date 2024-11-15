@@ -241,7 +241,7 @@ export default baseMixins.extend({
       return {
         ...defaultMenuProps,
         eager: this.eager,
-        value: this.menuCanShow && this.isMenuActive,
+        modelValue: this.menuCanShow && this.isMenuActive,
         nudgeBottom: normalisedProps.offsetY ? 1 : 0, // convert to int
         ...normalisedProps,
       }
@@ -287,8 +287,6 @@ export default baseMixins.extend({
   methods: {
     /** @public */
     blur (e?: Event) {
-      console.log("BLUUUUR")
-
       VTextField.methods.blur.call(this, e)
       this.isMenuActive = false
       this.isFocused = false
@@ -464,8 +462,6 @@ export default baseMixins.extend({
       })
 
       input.props = normalizeAttrs(input.props)
-
-      // console.log(input)
 
       return input
     },

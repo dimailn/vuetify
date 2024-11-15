@@ -29,7 +29,6 @@ export default defineComponent({
 
   methods: {
     getDefaultMouseEventHandlers (suffix: string, getData: MouseHandler, eventFirst = false): MouseEventsMap {
-      console.log(this.$attrs)
       const listeners = Object.keys(this.$attrs)
         .filter(key => key.endsWith(suffix))
         .reduce((acc, key) => {
