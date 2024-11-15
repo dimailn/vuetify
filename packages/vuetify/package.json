@@ -1,7 +1,7 @@
 {
   "name": "@dimailn/vuetify",
   "description": "Vue Material Component Framework",
-  "version": "2.7.2-alpha0",
+  "version": "2.7.2-alpha1",
   "author": {
     "name": "John Leider",
     "email": "john@vuetifyjs.com"
