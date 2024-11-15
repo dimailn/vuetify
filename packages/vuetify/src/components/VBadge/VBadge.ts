@@ -11,7 +11,7 @@ import Themeable from '../../mixins/themeable'
 import Toggleable from '../../mixins/toggleable'
 import Transitionable from '../../mixins/transitionable'
 import { factory as PositionableFactory } from '../../mixins/positionable'
-
+import mergeData from '../../util/mergeData'
 // Utilities
 import mixins from '../../util/mixins'
 import {
@@ -186,9 +186,9 @@ export default mixins(
     if (this.inline && this.left) children.unshift(badge)
     else children.push(badge)
 
-    return h('span', {
-      class: ['v-badge' this.classes],
-      ...attrs
-    }, children)
+    return h('span', mergeData({
+      class: ['v-badge', this.classes]
+    }, attrs)
+    , children)
   },
 })
