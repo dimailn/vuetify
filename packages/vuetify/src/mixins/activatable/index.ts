@@ -66,6 +66,12 @@ export default baseMixins.extend({
     this.removeActivatorEvents()
   },
 
+  computed: {
+    isActivatable() {
+      return true
+    }
+  },
+
   methods: {
     addActivatorEvents () {
       if (
@@ -87,7 +93,6 @@ export default baseMixins.extend({
           ...this.genActivatorListeners(),
           ...this.genActivatorAttributes(),
         }
-
       })) || []
 
       this.activatorNode = node
@@ -165,8 +170,7 @@ export default baseMixins.extend({
         const vm = this.activatorNode[0].component.ctx
         if (
           vm &&
-          vm.$options.mixins && //                         Activatable is indirectly used via Menuable
-          vm.$options.mixins.some((m: any) => m.options && ['activatable', 'menuable'].includes(m.options.name))
+          (vm.isActivatable !== undefined || vm.isMenuable !== undefined)
         ) {
           // Activator is actually another activatible component, use its activator (#8846)
           activator = (vm as any).getActivator()
@@ -216,6 +220,6 @@ export default baseMixins.extend({
       this.activatorElement = null
       this.getActivator()
       this.addActivatorEvents()
-    },
+    }
   },
 })

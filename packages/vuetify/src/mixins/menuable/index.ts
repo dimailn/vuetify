@@ -133,6 +133,9 @@ export default baseMixins.extend({
   }),
 
   computed: {
+    isMenuable() {
+      return true
+    },
     computedLeft () {
       const a = this.dimensions.activator
       const c = this.dimensions.content

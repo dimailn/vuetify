@@ -451,7 +451,6 @@ export default baseMixins.extend({
       delete input.props.name
 
       input.props = mergeData(input.props, {
-        value: null,
         readonly: true,
         type: 'text',
         'aria-readonly': String(this.isReadonly),
@@ -461,6 +460,7 @@ export default baseMixins.extend({
         onKeypress: this.onKeyPress,
       })
 
+      input.props = { ...input.props, value: null }
       input.props = normalizeAttrs(input.props)
 
       return input
