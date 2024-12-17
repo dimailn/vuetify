@@ -1,3 +1,8 @@
+import VDataTableHeaderDesktop from './VDataTable/VDataTableHeaderDesktop'
+import VDataTableHeaderMobile from './VDataTable/VDataTableHeaderMobile'
+import VDataTableHeader from './VDataTable/VDataTableHeader'
+
+
 export * from './VApp'
 export * from './VAppBar'
 export * from './VAlert'
@@ -79,3 +84,8 @@ export * from './VTreeview'
 export * from './VVirtualScroll'
 export * from './VWindow'
 export * from './transitions'
+export {
+    VDataTableHeader,
+    VDataTableHeaderMobile,
+    VDataTableHeaderDesktop
+}
