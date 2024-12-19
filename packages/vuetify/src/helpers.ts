@@ -5,14 +5,16 @@ import mergeData from './util/mergeData'
 import { keyCodes } from './util/helpers'
 import { getSlot } from './util/helpers'
 import { getPropertyFromItem } from './util/helpers'
+import { createSimpleTransition } from './components/transitions/createTransition'
 
 export {
-    wrapInArray,
-    convertToUnit,
-    dedupeModelListeners,
-    rebuildSlots,
-    mergeData,
-    keyCodes,
-    getSlot,
-    getPropertyFromItem
+  wrapInArray,
+  convertToUnit,
+  dedupeModelListeners,
+  rebuildSlots,
+  mergeData,
+  keyCodes,
+  getSlot,
+  getPropertyFromItem,
+  createSimpleTransition,
 }
