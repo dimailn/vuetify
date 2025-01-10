@@ -116,7 +116,7 @@ export function createJavascriptTransition (
         Transition,
         mergeData(this.$attrs, {
           name,
-          functions,
+          ...functions,
         }),
         this.$slots.default()
       )

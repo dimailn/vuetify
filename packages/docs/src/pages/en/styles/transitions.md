@@ -123,10 +123,10 @@ The **createSimpleTransition** function accepts 1 argument, name. This will be t
   &-leave-active
     position: absolute
 
-  &-enter-active, &-leave, &-leave-to
+  &-enter-active, &-leave-from, &-leave-to
     transition: $primary-transition
 
-  &-enter, &-leave-to
+  &-enter-from, &-leave-to
     opacity: 0
 ```
 

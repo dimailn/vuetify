@@ -15,7 +15,7 @@ export default function (expandedParentClass = '', x = false) {
   const offsetProperty = `offset${upperFirst(sizeProperty)}` as 'offsetHeight' | 'offsetWidth'
 
   return {
-    beforeEnter (el: HTMLExpandElement) {
+    onBeforeEnter (el: HTMLExpandElement) {
       el._parent = el.parentNode as (Node & ParentNode & HTMLElement) | null
       el._initialStyle = {
         transition: el.style.transition,
@@ -24,7 +24,7 @@ export default function (expandedParentClass = '', x = false) {
       }
     },
 
-    enter (el: HTMLExpandElement) {
+    onEnter (el: HTMLExpandElement) {
       const initialStyle = el._initialStyle!
 
       el.style.setProperty('transition', 'none', 'important')
@@ -47,10 +47,10 @@ export default function (expandedParentClass = '', x = false) {
       })
     },
 
-    afterEnter: resetStyles,
-    enterCancelled: resetStyles,
+    onAfterEnter: resetStyles,
+    onEnterCancelled: resetStyles,
 
-    leave (el: HTMLExpandElement) {
+    onLeave (el: HTMLExpandElement) {
       el._initialStyle = {
         transition: '',
         overflow: el.style.overflow,
@@ -64,8 +64,8 @@ export default function (expandedParentClass = '', x = false) {
       requestAnimationFrame(() => (el.style[sizeProperty] = '0'))
     },
 
-    afterLeave,
-    leaveCancelled: afterLeave,
+    onAfterLeave: afterLeave,
+    onLeaveCancelled: afterLeave,
   }
 
   function afterLeave (el: HTMLExpandElement) {
