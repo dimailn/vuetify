@@ -12,8 +12,8 @@ import { PropType } from 'vue'
 import {h} from 'vue'
 
 const baseMixins = mixins(
+  VInput,
   BaseItemGroup,
-  VInput
 )
 
 /* @vue/component */
@@ -40,7 +40,7 @@ export default baseMixins.extend({
     // If no value set on VRadio
     // will match valueComparator
     // force default to null
-    value: null as unknown as PropType<any>,
+    modelValue: null as unknown as PropType<any>,
   },
 
   computed: {

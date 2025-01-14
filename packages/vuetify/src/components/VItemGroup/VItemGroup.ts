@@ -52,8 +52,8 @@ export const BaseItemGroup = mixins(
       // As long as a value is defined, show it
       // Otherwise, check if multiple
       // to determine which default to provide
-      internalLazyValue: this.value !== undefined
-        ? this.value
+      internalLazyValue: this.modelValue !== undefined
+        ? this.modelValue
         : this.multiple ? [] : undefined,
       items: [] as GroupableInstance[],
     }
@@ -102,7 +102,7 @@ export const BaseItemGroup = mixins(
 
   watch: {
     internalValue: 'updateItemsState',
-    items: 'updateItemsState',
+    items: 'updateItemsState'
   },
 
   created () {

@@ -13,11 +13,6 @@ export function factory (
   return defineComponent({
     name: 'proxyable',
 
-    model: {
-      prop,
-      event,
-    },
-
     props: {
       [prop]: {
         required: false,
