@@ -55,8 +55,8 @@ export default mixins<options>().extend({
       const data = {
         value: this.everyItem,
         indeterminate: !this.everyItem && this.someItems,
-        color: this.checkboxColor ?? ''
-        onInput: (v: boolean) => this.$emit('toggle-select-all', v),
+        color: this.checkboxColor ?? '',
+        onInput: (v: boolean) => this.$emit('toggle-select-all', v)
       }
 
       if (this.$slots['data-table-select']) {

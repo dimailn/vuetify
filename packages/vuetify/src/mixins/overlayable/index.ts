@@ -142,8 +142,6 @@ export default defineComponent({
           this.overlayApp.unmount()
           this.overlayApp = null
           this.overlay = null
-          console.log('destroyed')
-
         })
 
         // Cancel animation frame in case

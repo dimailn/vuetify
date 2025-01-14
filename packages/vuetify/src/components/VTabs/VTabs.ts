@@ -232,7 +232,6 @@ export default baseMixins.extend({
       return h(VTabsItems, {
         modelValue: this.internalValue,
         'onUpdate:modelValue': (val: any) => {
-          console.log(val)
           this.internalValue = val
         }
       }, item)

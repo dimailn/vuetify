@@ -88,7 +88,6 @@ export function createSimpleTransition (
           el.style.setProperty('display', 'none', 'important')
         })
       }
-
       return h(tag, mergeData(this.$attrs, data), this.$slots.default())
     },
   }

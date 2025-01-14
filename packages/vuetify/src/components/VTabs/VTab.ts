@@ -115,7 +115,7 @@ export default baseMixins.extend({
     let { tag, data, directives } = this.generateRouteLink()
 
     data = {
-      ...data
+      ...data,
       'aria-selected': String(this.isActive),
       role: 'tab',
       tabindex: this.disabled ? -1 : 0,
