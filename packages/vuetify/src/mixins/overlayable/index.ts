@@ -75,7 +75,7 @@ export default defineComponent({
         },
         render() {
           return h(VOverlay, {
-            value: this.value,
+            modelValue: this.value,
             ...props
           })
         }
