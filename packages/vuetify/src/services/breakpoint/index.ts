@@ -1,3 +1,6 @@
+import { reactive } from 'vue'
+
+
 // Extensions
 import { Service } from '../service'
 
@@ -72,6 +75,8 @@ export class Breakpoint extends Service implements IBreakpoint {
     this.mobileBreakpoint = mobileBreakpoint
     this.scrollBarWidth = scrollBarWidth
     this.thresholds = thresholds
+
+    return reactive(this)
   }
 
   public init () {
