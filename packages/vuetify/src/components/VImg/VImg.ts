@@ -244,7 +244,7 @@ export default mixins(
       let content: VNode = VResponsive.methods.genContent.call(this)
 
       if (this.naturalWidth) {
-        content = h(content.type, mergeProps(content.data!, {
+        content = h(content.type, mergeProps(content.props, {
           style: { width: `${this.naturalWidth}px` },
         }), content.children)
       }
