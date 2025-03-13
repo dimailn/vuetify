@@ -203,7 +203,15 @@ export default defineComponent({
         this.$emit('update:options', options)
       },
       deep: true,
-      immediate: true,
+      /*
+        In Vue 3 this watcher fires even before created hook and
+        if mounting fails and the consumer code relies on update:options event to fetch data
+        it causes infinite loop because each data update triggers an attempt to render a table,
+        but because mounting constantly fails(for example, due to error in slot) it never happens.
+        Previously, in Vue 2 slot errors didn't cause mounting failure, we had partially rendered component.
+        This immediate prop is compensated by firing event in mounted hook.
+      */
+      // immediate: true,
     },
     page (page: number) {
       this.updateOptions({ page })
@@ -377,5 +385,8 @@ export default defineComponent({
 
   render (): VNode {
     return this.$slots.default && this.$slots.default(this.scopedProps)[0] as any
+  },
+  mounted() {
+    this.$emit('update:options', this.internalOptions)
   },
 })
