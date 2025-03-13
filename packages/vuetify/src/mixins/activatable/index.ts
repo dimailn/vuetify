@@ -167,7 +167,7 @@ export default baseMixins.extend({
         // Use the contents of the activator slot
         // There's either only one element in it or we
         // don't have a click event to use as a last resort
-        const vm = this.activatorNode[0].component.ctx
+        const vm = this.activatorNode[0].component?.ctx
         if (
           vm &&
           (vm.isActivatable !== undefined || vm.isMenuable !== undefined)
