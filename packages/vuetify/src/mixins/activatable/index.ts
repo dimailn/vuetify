@@ -88,14 +88,18 @@ export default baseMixins.extend({
       }
     },
     genActivator () {
-      const node = getSlot(this, 'activator', Object.assign(this.getValueProxy(), {
+      let node = getSlot(this, 'activator', Object.assign(this.getValueProxy(), {
         attrs: {
           ...this.genActivatorListeners(),
           ...this.genActivatorAttributes(),
         }
       })) || []
 
-      this.activatorNode = node
+      node = Array.isArray(node) ? node : [node]
+
+      this.activatorNode = node.flatMap(node => {
+        return node.type === Symbol.for('v-fgt') ? node.children : node
+      })
 
       return node
     },
