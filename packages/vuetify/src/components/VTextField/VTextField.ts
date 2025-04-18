@@ -205,7 +205,7 @@ export default baseMixins.extend({
       this.$nextTick(this.setPrefixWidth)
     },
     isFocused: 'updateValue',
-    value (val) {
+    modelValue (val) {
       this.lazyValue = val
     },
   },

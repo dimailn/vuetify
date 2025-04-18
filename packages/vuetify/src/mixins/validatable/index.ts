@@ -214,7 +214,7 @@ export default baseMixins.extend({
         this.$emit('update:error', val)
       }
     },
-    value (val) {
+    modelValue (val) {
       this.lazyValue = val
     },
   },

@@ -134,7 +134,7 @@ export default baseMixins.extend({
   },
 
   watch: {
-    value (val) {
+    modelValue (val) {
       this.lazyValue = val
     },
   },
