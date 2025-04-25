@@ -72,7 +72,7 @@ export default baseMixins.extend({
     this.expansionPanel.registerHeader(this)
   },
 
-  beforeDestroy () {
+  beforeUnmount () {
     this.expansionPanel.unregisterHeader()
   },
 

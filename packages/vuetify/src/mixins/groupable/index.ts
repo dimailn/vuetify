@@ -57,7 +57,7 @@ export function factory<T extends string, C extends VueConstructor | null = null
       this[namespace] && (this[namespace] as any).register(this)
     },
 
-    beforeDestroy () {
+    beforeUnmount () {
       this[namespace] && (this[namespace] as any).unregister(this)
     },
 

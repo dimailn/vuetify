@@ -99,7 +99,7 @@ export default baseMixins.extend({
     this.stepper && this.stepper.register(this)
   },
 
-  beforeDestroy () {
+  beforeUnmount () {
     this.$refs.wrapper.removeEventListener(
       'transitionend',
       this.onTransition,

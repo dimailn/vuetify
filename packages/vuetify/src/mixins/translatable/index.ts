@@ -23,7 +23,7 @@ export default defineComponent({
     },
   },
 
-  beforeDestroy () {
+  beforeUnmount () {
     window.removeEventListener('scroll', this.translate, false)
     window.removeEventListener('resize', this.translate, false)
   },

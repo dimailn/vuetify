@@ -199,7 +199,7 @@ export default baseMixins.extend({
     }
   },
 
-  beforeDestroy () {
+  beforeUnmount () {
     if (this.hasWindow) {
       window.removeEventListener('resize', this.updateDimensions, false)
     }

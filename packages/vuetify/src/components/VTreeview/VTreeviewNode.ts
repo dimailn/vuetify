@@ -161,7 +161,7 @@ const VTreeviewNode = baseMixins.extend({
     this.treeview.register(this)
   },
 
-  beforeDestroy () {
+  beforeUnmount () {
     this.treeview.unregister(this)
   },
 

@@ -108,7 +108,7 @@ export default baseMixins.extend({
     }
   },
 
-  beforeDestroy () {
+  beforeUnmount () {
     this.list && this.list.unregister(this)
   },
 

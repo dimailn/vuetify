@@ -137,7 +137,7 @@ export default baseMixins.extend({
     })
   },
 
-  beforeDestroy () {
+  beforeUnmount () {
     if (typeof window !== 'undefined') this.unbind()
   },
 

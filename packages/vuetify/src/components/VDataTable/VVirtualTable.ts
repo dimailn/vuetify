@@ -98,7 +98,7 @@ export default baseMixins.extend({
     this.$refs.table.addEventListener('scroll', this.scrollDebounce, { passive: true })
   },
 
-  beforeDestroy () {
+  beforeUnmount () {
     this.$refs.table.removeEventListener('scroll', this.scrollDebounce)
   },
 

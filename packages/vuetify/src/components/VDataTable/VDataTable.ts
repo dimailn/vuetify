@@ -241,7 +241,7 @@ export default mixins(
     }
   },
 
-  beforeDestroy () {
+  beforeUnmount () {
     if (this.calculateWidths) {
       window.removeEventListener('resize', this.calcWidths)
     }

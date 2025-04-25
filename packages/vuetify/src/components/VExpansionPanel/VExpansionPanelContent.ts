@@ -55,7 +55,7 @@ export default baseMixins.extend({
     this.expansionPanel.registerContent(this)
   },
 
-  beforeDestroy () {
+  beforeUnmount () {
     this.expansionPanel.unregisterContent()
   },
 

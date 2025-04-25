@@ -62,7 +62,7 @@ export default baseMixins.extend({
     this.addActivatorEvents()
   },
 
-  beforeDestroy () {
+  beforeUnmount () {
     this.removeActivatorEvents()
   },
 
