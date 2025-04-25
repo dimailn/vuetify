@@ -51,7 +51,7 @@ export default function applicationable (value: TargetProp, events: string[] = [
       this.removeApplication()
     },
 
-    destroyed () {
+    unmounted () {
       this.removeApplication()
     },
 

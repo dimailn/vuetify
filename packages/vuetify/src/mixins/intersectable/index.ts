@@ -23,7 +23,7 @@ export default function intersectable (options: { onVisible: string[] }) {
       }, vnode)
     },
 
-    destroyed () {
+    unmounted () {
       const {vnode} = getCurrentInstance()
 
       Intersect.unbind(this.$el as HTMLElement, {

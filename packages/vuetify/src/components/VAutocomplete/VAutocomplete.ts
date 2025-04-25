@@ -204,7 +204,7 @@ export default defineComponent({
     this.setSearch()
   },
 
-  destroyed () {
+  unmounted () {
     document.removeEventListener('copy', this.onCopy)
   },
 
