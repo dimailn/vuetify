@@ -94,7 +94,7 @@ export default mixins<options &
     this.isActive = false
   },
 
-  beforeDestroy () {
+  beforeUnmount () {
     if (
       this.$refs.content &&
       this.$refs.content.parentNode

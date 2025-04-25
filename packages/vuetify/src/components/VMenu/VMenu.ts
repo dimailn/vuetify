@@ -282,6 +282,7 @@ export default baseMixins.extend({
       return this.isActive &&
         !this._isDestroyed &&
         this.closeOnClick &&
+        this.$refs.content &&
         !this.$refs.content.contains(target)
     },
     genActivatorAttributes () {
