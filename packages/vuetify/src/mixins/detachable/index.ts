@@ -27,9 +27,9 @@ function validateAttachTarget (val: any) {
 
 function removeActivator (activator: VNode[]) {
   activator.forEach(node => {
-    node.elm &&
-    node.elm.parentNode &&
-    node.elm.parentNode.removeChild(node.elm)
+    node.el &&
+    node.el.parentNode &&
+    node.el.parentNode.removeChild(node.el)
   })
 }
 
@@ -103,7 +103,7 @@ export default mixins<options &
     }
   },
 
-  destroyed () {
+  unmounted () {
     if (this.activatorNode) {
       const activator = Array.isArray(this.activatorNode) ? this.activatorNode : [this.activatorNode]
       if (this.$el.isConnected) {
