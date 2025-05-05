@@ -26,7 +26,7 @@ export default function intersectable (options: { onVisible: string[] }) {
     unmounted () {
       const {vnode} = getCurrentInstance()
 
-      Intersect.unbind(this.$el as HTMLElement, {
+      Intersect.unmounted(this.$el as HTMLElement, {
         name: 'intersect',
         value: this.onObserve,
       }, vnode)
