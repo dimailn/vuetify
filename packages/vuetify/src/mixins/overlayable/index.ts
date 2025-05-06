@@ -71,11 +71,12 @@ export default defineComponent({
       }
       const wrapper = {
         data() {
-          return { value: false }
+          return { value: false, zIndex: undefined }
         },
         render() {
           return h(VOverlay, {
             modelValue: this.value,
+            zIndex: this.zIndex,
             ...props
           })
         }
