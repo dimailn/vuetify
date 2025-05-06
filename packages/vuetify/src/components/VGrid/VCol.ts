@@ -68,7 +68,7 @@ const cache = new Map<string, any[]>()
 
 export default defineComponent({
   name: 'v-col',
-  functional: true,
+  inheritAttrs: false,
   props: {
     cols: {
       type: [Boolean, String, Number],
@@ -134,6 +134,6 @@ export default defineComponent({
       cache.set(cacheKey, classList)
     }
 
-    return h(props.tag, mergeData(data, { class: classList }), children)
+    return h(props.tag, mergeData({ class: classList }, data), children)
   },
 })
