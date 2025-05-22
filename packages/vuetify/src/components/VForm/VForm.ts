@@ -127,7 +127,7 @@ export default mixins(
 
       this.watchers = this.watchers.filter(i => i._uid !== found._uid)
       this.inputs = this.inputs.filter(i => i._uid !== found._uid)
-      this.$delete(this.errorBag, found._uid)
+      delete this.errorBag[found._uid]
     },
   },
 

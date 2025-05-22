@@ -9,7 +9,7 @@ function makeWatcher (property: string): ThisType<Vue> & ((val: any, oldVal: any
   return function (this: Vue, val, oldVal) {
     for (const attr in oldVal) {
       if (!Object.prototype.hasOwnProperty.call(val, attr)) {
-        this.$delete(this.$data[property], attr)
+        delete this.$data[property][attr]
       }
     }
     for (const attr in val) {
