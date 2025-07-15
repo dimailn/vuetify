@@ -90,6 +90,8 @@ export default mixins(
   watch: {
     modelValue: {
       handler (value: any[]) {
+        if(!value) return
+
         this.selection = value.reduce((selection, item) => {
           selection[getObjectValueByPath(item, this.itemKey)] = item
           return selection
