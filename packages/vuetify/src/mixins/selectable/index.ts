@@ -21,11 +21,6 @@ export default mixins(
 ).extend({
   name: 'selectable',
 
-  model: {
-    prop: 'inputValue',
-    event: 'change',
-  },
-
   props: {
     id: String,
     value: null as any,

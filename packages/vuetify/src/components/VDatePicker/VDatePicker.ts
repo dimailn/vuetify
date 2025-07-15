@@ -290,7 +290,7 @@ export default mixins(
         const output = this.multipleValue
           .map((val: string) => sanitizeDateString(val, type))
           .filter(this.isDateAllowed)
-        this.$emit('input', this.isMultiple ? output : output[0])
+        this.$emit('update:modelValue', this.isMultiple ? output : output[0])
       }
     },
   },
@@ -308,10 +308,10 @@ export default mixins(
     emitInput (newInput: string) {
       if (this.range) {
         if (this.multipleValue.length !== 1) {
-          this.$emit('input', [newInput])
+          this.$emit('update:modelValue', [newInput])
         } else {
           const output = [this.multipleValue[0], newInput]
-          this.$emit('input', output)
+          this.$emit('update:modelValue', output)
           this.$emit('change', output)
         }
         return
@@ -325,7 +325,7 @@ export default mixins(
         )
         : newInput
 
-      this.$emit('input', output)
+      this.$emit('update:modelValue', output)
       this.multiple || this.$emit('change', newInput)
     },
     checkMultipleProp () {
@@ -348,7 +348,7 @@ export default mixins(
       }
       this.internalActivePicker = 'MONTH'
       if (this.reactive && !this.readonly && !this.isMultiple && this.isDateAllowed(this.inputDate)) {
-        this.$emit('input', this.inputDate)
+        this.$emit('update:modelValue', this.inputDate)
       }
     },
     monthClick (value: string) {
@@ -365,7 +365,7 @@ export default mixins(
         this.tableDate = value
         this.internalActivePicker = 'DATE'
         if (this.reactive && !this.readonly && !this.isMultiple && this.isDateAllowed(this.inputDate)) {
-          this.$emit('input', this.inputDate)
+          this.$emit('update:modelValue', this.inputDate)
         }
       } else {
         this.emitInput(this.inputDate)

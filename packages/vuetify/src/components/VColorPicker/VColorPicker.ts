@@ -50,7 +50,7 @@ export default mixins(Elevatable, Themeable).extend({
       type: [Number, String],
       default: 150,
     },
-    value: {
+    modelValue: {
       type: [Object, String],
     },
     width: {
@@ -65,9 +65,9 @@ export default mixins(Elevatable, Themeable).extend({
 
   computed: {
     hideAlpha (): boolean {
-      if (!this.value) return false
+      if (!this.modelValue) return false
 
-      return !hasAlpha(this.value)
+      return !hasAlpha(this.modelValue)
     },
   },
 
@@ -83,10 +83,10 @@ export default mixins(Elevatable, Themeable).extend({
   methods: {
     updateColor (color: VColorPickerColor) {
       this.internalValue = color
-      const value = extractColor(this.internalValue, this.value)
+      const value = extractColor(this.internalValue, this.modelValue)
 
-      if (!deepEqual(value, this.value)) {
-        this.$emit('input', value)
+      if (!deepEqual(value, this.modelValue)) {
+        this.$emit('update:modelValue', value)
         this.$emit('update:color', this.internalValue)
       }
     },

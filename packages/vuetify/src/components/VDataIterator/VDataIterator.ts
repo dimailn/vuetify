@@ -88,7 +88,7 @@ export default mixins(
   },
 
   watch: {
-    value: {
+    modelValue: {
       handler (value: any[]) {
         this.selection = value.reduce((selection, item) => {
           selection[getObjectValueByPath(item, this.itemKey)] = item
@@ -100,7 +100,7 @@ export default mixins(
     selection (value: Record<string, boolean>, old: Record<string, boolean>) {
       if (deepEqual(Object.keys(value), Object.keys(old))) return
 
-      this.$emit('input', Object.values(value))
+      this.$emit('update:modelValue', Object.values(value))
     },
     expanded: {
       handler (value: any[]) {
