@@ -494,15 +494,16 @@ export default baseMixins.extend({
       }
     },
     genListWithSlot (): VNode {
-      const slots = ['prepend-item', 'no-data', 'append-item']
+      const slots = Object.fromEntries(['prepend-item', 'no-data', 'append-item']
         .filter(slotName => this.$slots[slotName])
-        .map(slotName => h('template', {
-          slot: slotName,
-        }, this.$slots[slotName]))
+        .map(slotName => [
+          slotName,
+          this.$slots[slotName]
+          ]
+        ))
       // Requires destructuring due to Vue
       // modifying the `on` property when passed
       // as a referenced object
-
       return h(VSelectList, {
         ...this.listData,
       }, {...slots,item: this.$slots.item})

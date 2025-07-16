@@ -226,11 +226,11 @@ export default mixins(Colorable, Themeable).extend({
       else children.push(this.genTile({ item, index }))
     }
 
-    children.length || children.push(this.$slots['no-data'] || this.staticNoDataTile)
+    children.length || children.push(this.$slots['no-data']?.() || this.staticNoDataTile)
 
-    this.$slots['prepend-item'] && children.unshift(this.$slots['prepend-item'])
+    this.$slots['prepend-item'] && children.unshift(this.$slots['prepend-item']())
 
-    this.$slots['append-item'] && children.push(this.$slots['append-item'])
+    this.$slots['append-item'] && children.push(this.$slots['append-item']())
 
     return h(VList, {
       class: ['v-select-list', this.themeClasses],
