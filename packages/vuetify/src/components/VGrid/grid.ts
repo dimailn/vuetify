@@ -52,5 +52,5 @@ export default function VGrid (name: string) {
 
       return h(props.tag, data, children)
     },
-  });
+  })
 }

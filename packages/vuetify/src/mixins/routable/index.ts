@@ -1,4 +1,4 @@
-import { VNodeData, PropType, defineComponent, resolveComponent, nextTick } from 'vue';
+import { VNodeData, PropType, defineComponent, resolveComponent, nextTick } from 'vue'
 
 // Directives
 import Ripple, { RippleOptions } from '../../directives/ripple'

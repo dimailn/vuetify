@@ -1,13 +1,14 @@
-import {defineComponent} from 'vue'
+import { defineComponent } from 'vue'
 
 /* @vue/component */
 export default defineComponent({
-  emits: ['update:return-value'],
   name: 'returnable',
 
   props: {
     returnValue: null as any,
   },
+
+  emits: ['update:return-value'],
 
   data: () => ({
     isActive: false,

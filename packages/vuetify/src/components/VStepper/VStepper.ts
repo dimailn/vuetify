@@ -1,4 +1,4 @@
-import { h, nextTick } from 'vue';
+import { h, nextTick } from 'vue'
 // Styles
 import './VStepper.sass'
 

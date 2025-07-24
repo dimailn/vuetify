@@ -17,7 +17,6 @@ import { mergeStyles } from '../../util/mergeData'
 import { defineComponent, h } from 'vue'
 
 export default defineComponent({
-  emits: ['change', 'keydown'],
   name: 'v-file-input',
   extends: VTextField,
 
@@ -77,6 +76,8 @@ export default defineComponent({
       },
     } as PropValidator<File | File[]>,
   },
+
+  emits: ['change', 'keydown'],
 
   computed: {
     classes (): object {

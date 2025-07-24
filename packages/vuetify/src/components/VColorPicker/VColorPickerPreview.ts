@@ -1,4 +1,4 @@
-import {h} from 'vue'
+import { h } from 'vue'
 // Styles
 import './VColorPickerPreview.sass'
 
@@ -13,7 +13,6 @@ import { defineComponent, VNode, VNodeData, PropType } from 'vue'
 import { VColorPickerColor, fromHSVA } from './util'
 
 export default defineComponent({
-  emits: ['update:color'],
   name: 'v-color-picker-preview',
 
   props: {
@@ -21,6 +20,8 @@ export default defineComponent({
     disabled: Boolean,
     hideAlpha: Boolean,
   },
+
+  emits: ['update:color'],
 
   methods: {
     genAlpha (): VNode {
@@ -35,29 +36,38 @@ export default defineComponent({
         style: {
           backgroundImage: this.disabled
             ? undefined
-            : `linear-gradient(to ${this.$vuetify.rtl ? 'left' : 'right'}, transparent, ${RGBtoCSS(this.color.rgba)})`,
+            : `linear-gradient(to ${
+                this.$vuetify.rtl ? 'left' : 'right'
+              }, transparent, ${RGBtoCSS(this.color.rgba)})`,
         },
-        onInput: (val: number) => this.color.alpha !== val && this.$emit('update:color', fromHSVA({ ...this.color.hsva, a: val })),
+        onInput: (val: number) =>
+          this.color.alpha !== val &&
+          this.$emit('update:color', fromHSVA({ ...this.color.hsva, a: val })),
       })
     },
     genSliders (): VNode {
-      return h('div', {
-        class: 'v-color-picker__sliders',
-      }, [
-        this.genHue(),
-        !this.hideAlpha && this.genAlpha(),
-      ])
+      return h(
+        'div',
+        {
+          class: 'v-color-picker__sliders',
+        },
+        [this.genHue(), !this.hideAlpha && this.genAlpha()]
+      )
     },
     genDot (): VNode {
-      return h('div', {
-        class: 'v-color-picker__dot',
-      }, [
-        h('div', {
-          style: {
-            background: RGBAtoCSS(this.color.rgba),
-          },
-        }),
-      ])
+      return h(
+        'div',
+        {
+          class: 'v-color-picker__dot',
+        },
+        [
+          h('div', {
+            style: {
+              background: RGBAtoCSS(this.color.rgba),
+            },
+          }),
+        ]
+      )
     },
     genHue (): VNode {
       return this.genTrack({
@@ -68,7 +78,9 @@ export default defineComponent({
         step: 0,
         min: 0,
         max: 360,
-        onInput: (val: number) => this.color.hue !== val && this.$emit('update:color', fromHSVA({ ...this.color.hsva, h: val })),
+        onInput: (val: number) =>
+          this.color.hue !== val &&
+          this.$emit('update:color', fromHSVA({ ...this.color.hsva, h: val })),
       })
     },
     genTrack (options: VNodeData): VNode {
@@ -76,19 +88,23 @@ export default defineComponent({
         class: 'v-color-picker__track',
         ...options,
         disabled: this.disabled,
-        ...options.props
+        ...options.props,
       })
     },
   },
 
   render (): VNode {
-    return h('div', {
-      class: ['v-color-picker__preview', {
-        'v-color-picker__preview--hide-alpha': this.hideAlpha,
-      }],
-    }, [
-      this.genDot(),
-      this.genSliders(),
-    ])
+    return h(
+      'div',
+      {
+        class: [
+          'v-color-picker__preview',
+          {
+            'v-color-picker__preview--hide-alpha': this.hideAlpha,
+          },
+        ],
+      },
+      [this.genDot(), this.genSliders()]
+    )
   },
 })

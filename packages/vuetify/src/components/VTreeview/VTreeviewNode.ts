@@ -1,4 +1,4 @@
-import { h, nextTick } from 'vue';
+import { h, nextTick } from 'vue'
 // Components
 import { VExpandTransition } from '../transitions'
 import { VIcon } from '../VIcon'
@@ -233,7 +233,7 @@ const VTreeviewNode = baseMixins.extend({
           if (this.isLoading) return
 
           this.checkChildren().then(() => this.open())
-        }
+        },
       }, [this.isLoading ? this.loadingIcon : this.expandIcon])
     },
     genCheckbox () {
@@ -257,7 +257,7 @@ const VTreeviewNode = baseMixins.extend({
             })
           })
         },
-      }, [this.computedIcon]);
+      }, [this.computedIcon])
     },
     genLevel (level: number) {
       return createRange(level).map(() => h('div', {
@@ -289,7 +289,7 @@ const VTreeviewNode = baseMixins.extend({
             this.treeview.updateActive(this.key, this.isActive)
             this.treeview.emitActive()
           }
-        }
+        },
       }), children)
     },
     genChild (item: any, parentIsDisabled: boolean) {

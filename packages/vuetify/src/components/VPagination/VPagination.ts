@@ -1,4 +1,4 @@
-import { h, withDirectives, nextTick } from 'vue';
+import { h, withDirectives, nextTick } from 'vue'
 import './VPagination.sass'
 
 import VIcon from '../VIcon'
@@ -80,7 +80,7 @@ export default mixins(
   },
 
   computed: {
-    value() {
+    value () {
       return this.modelValue
     },
     classes (): object {
@@ -225,14 +225,14 @@ export default mixins(
     },
     genList (h: CreateElement, children: VNodeChildrenArrayContents): VNode {
       return withDirectives(h('ul', {
-        class: this.classes
+        class: this.classes,
       }, children), [
         [
           Resize,
           this.onResize,
           '',
-          { quiet: true }
-        ]
+          { quiet: true },
+        ],
       ])
     },
   },

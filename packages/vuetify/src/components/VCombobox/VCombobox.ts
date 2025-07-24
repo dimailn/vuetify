@@ -10,24 +10,25 @@ import { keyCodes } from '../../util/helpers'
 
 // Types
 import { PropValidator } from 'vue/types/options'
-import { defineComponent, nextTick } from 'vue';
+import { defineComponent, nextTick } from 'vue'
 
 /* @vue/component */
 export default defineComponent({
-  emits: ['paste'],
   name: 'v-combobox',
   extends: VAutocomplete,
 
   props: {
     delimiters: {
       type: Array,
-      default: () => ([]),
+      default: () => [],
     } as PropValidator<string[]>,
     returnObject: {
       type: Boolean,
       default: true,
     },
   },
+
+  emits: ['paste'],
 
   data: () => ({
     editingIndex: -1,
@@ -48,8 +49,9 @@ export default defineComponent({
     menuCanShow (): boolean {
       if (!this.isFocused) return false
 
-      return this.hasDisplayedItems ||
-        (!!this.$slots['no-data'] && !this.hideNoData)
+      return (
+        this.hasDisplayedItems || (!!this.$slots['no-data'] && !this.hideNoData)
+      )
     },
     searchIsDirty (): boolean {
       return this.internalSearch != null
@@ -58,11 +60,7 @@ export default defineComponent({
 
   methods: {
     onInternalSearchChanged (val: any) {
-      if (
-        val &&
-        this.multiple &&
-        this.delimiters.length
-      ) {
+      if (val && this.multiple && this.delimiters.length) {
         const delimiter = this.delimiters.find(d => val.endsWith(d))
         if (delimiter != null) {
           this.internalSearch = val.slice(0, val.length - delimiter.length)
@@ -111,16 +109,14 @@ export default defineComponent({
     onKeyDown (e: KeyboardEvent) {
       const keyCode = e.keyCode
 
-      if (
-        e.ctrlKey ||
-        ![keyCodes.home, keyCodes.end].includes(keyCode)
-      ) {
+      if (e.ctrlKey || ![keyCodes.home, keyCodes.end].includes(keyCode)) {
         VSelect.methods.onKeyDown.call(this, e)
       }
 
       // If user is at selection index of 0
       // create a new tag
-      if (this.multiple &&
+      if (
+        this.multiple &&
         keyCode === keyCodes.left &&
         this.$refs.input.selectionStart === 0
       ) {
@@ -139,10 +135,7 @@ export default defineComponent({
       // When adding tags, if searching and
       // there is not a filtered options,
       // add the value to the tags list
-      if (this.multiple &&
-        this.internalSearch &&
-        this.getMenuIndex() === -1
-      ) {
+      if (this.multiple && this.internalSearch && this.getMenuIndex() === -1) {
         e.preventDefault()
         e.stopPropagation()
 
@@ -163,35 +156,42 @@ export default defineComponent({
         if (
           this.internalSearch &&
           this.multiple &&
-          this.getText(item).toLocaleLowerCase().includes(this.internalSearch.toLocaleLowerCase())
+          this.getText(item)
+            .toLocaleLowerCase()
+            .includes(this.internalSearch.toLocaleLowerCase())
         ) {
           this.internalSearch = null
         }
       }
     },
     setSelectedItems () {
-      if (this.internalValue == null ||
-        this.internalValue === ''
-      ) {
+      if (this.internalValue == null || this.internalValue === '') {
         this.selectedItems = []
       } else {
-        this.selectedItems = this.multiple ? this.internalValue : [this.internalValue]
+        this.selectedItems = this.multiple
+          ? this.internalValue
+          : [this.internalValue]
       }
     },
     setValue (value?: any) {
-      VSelect.methods.setValue.call(this, value === undefined ? this.internalSearch : value)
+      VSelect.methods.setValue.call(
+        this,
+        value === undefined ? this.internalSearch : value
+      )
     },
     updateEditing () {
       const value = this.internalValue.slice()
-      const index = this.selectedItems.findIndex(item =>
-        this.getText(item) === this.internalSearch)
+      const index = this.selectedItems.findIndex(
+        item => this.getText(item) === this.internalSearch
+      )
 
       // If user enters a duplicate text on chip edit,
       // don't add it, move it to the end of the list
       if (index > -1) {
-        const item = typeof value[index] === 'object'
-          ? Object.assign({}, value[index])
-          : value[index]
+        const item =
+          typeof value[index] === 'object'
+            ? Object.assign({}, value[index])
+            : value[index]
 
         value.splice(index, 1)
         value.push(item)
@@ -209,7 +209,7 @@ export default defineComponent({
 
       // The internal search is not matching
       // the internal value, update the input
-      if (this.internalSearch !== this.getText(this.internalValue)) this.setValue()
+      if (this.internalSearch !== this.getText(this.internalValue)) { this.setValue() }
 
       // Reset search if using slot to avoid a double input
       const isUsingSlot = Boolean(this.$slots.selection) || this.hasChips
@@ -225,21 +225,22 @@ export default defineComponent({
       // and no menu item is selected
       // or if the search is empty
       // do nothing
-      if ((menuIndex < 0 && !this.searchIsDirty) ||
-          !this.internalSearch) return
+      if ((menuIndex < 0 && !this.searchIsDirty) || !this.internalSearch) { return }
 
       if (this.editingIndex > -1) {
         return this.updateEditing()
       }
 
-      const index = this.selectedItems.findIndex(item =>
-        this.internalSearch === this.getText(item))
+      const index = this.selectedItems.findIndex(
+        item => this.internalSearch === this.getText(item)
+      )
 
       // If the duplicate item is an object,
       // copy it, so that it can be added again later
-      const itemToSelect = index > -1 && typeof this.selectedItems[index] === 'object'
-        ? Object.assign({}, this.selectedItems[index])
-        : this.internalSearch
+      const itemToSelect =
+        index > -1 && typeof this.selectedItems[index] === 'object'
+          ? Object.assign({}, this.selectedItems[index])
+          : this.internalSearch
 
       // If it already exists, do nothing
       // this might need to change to bring
@@ -264,8 +265,13 @@ export default defineComponent({
       this.$emit('paste', event)
       if (!this.multiple || this.searchIsDirty) return
 
-      const pastedItemText = event.clipboardData?.getData('text/vnd.vuetify.autocomplete.item+plain')
-      if (pastedItemText && this.findExistingIndex(pastedItemText as any) === -1) {
+      const pastedItemText = event.clipboardData?.getData(
+        'text/vnd.vuetify.autocomplete.item+plain'
+      )
+      if (
+        pastedItemText &&
+        this.findExistingIndex(pastedItemText as any) === -1
+      ) {
         event.preventDefault()
         VSelect.methods.selectItem.call(this, pastedItemText as any)
       }

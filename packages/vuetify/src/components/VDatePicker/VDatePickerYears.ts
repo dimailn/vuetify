@@ -81,7 +81,7 @@ export default mixins<options &
         on: mergeListeners({
           click: () => this.$emit('update:modelValue', year),
         }, createItemTypeNativeListeners(this, ':year', year)),
-      }), formatted);
+      }), formatted)
     },
 
     genYearItems (): VNode[] {

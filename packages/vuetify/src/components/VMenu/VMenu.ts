@@ -1,4 +1,4 @@
-import { h, Transition, vShow, withDirectives, nextTick } from 'vue';
+import { h, Transition, vShow, withDirectives, nextTick } from 'vue'
 // Styles
 import './VMenu.sass'
 

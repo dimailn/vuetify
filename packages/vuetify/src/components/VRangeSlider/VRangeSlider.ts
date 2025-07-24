@@ -18,7 +18,6 @@ import { defineComponent } from 'vue'
 
 /* @vue/component */
 export default defineComponent({
-  emits: ['update:modelValue', 'focus', 'blur', 'start', 'change'],
   name: 'v-range-slider',
   extends: VSlider,
 
@@ -28,6 +27,8 @@ export default defineComponent({
       default: () => ([0, 0]),
     } as unknown as PropValidator<[number, number]>,
   },
+
+  emits: ['update:modelValue', 'focus', 'blur', 'start', 'change'],
 
   data () {
     return {

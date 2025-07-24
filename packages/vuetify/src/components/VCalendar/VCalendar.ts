@@ -1,4 +1,4 @@
-import {h} from 'vue'
+import { h } from 'vue'
 // Styles
 // import '../../stylus/components/_calendar-daily.styl'
 
@@ -50,7 +50,6 @@ interface VCalendarRenderProps {
 
 /* @vue/component */
 export default defineComponent({
-  emits: ['change', 'update:modelValue', 'moved', 'click:date'],
   name: 'v-calendar',
   extends: CalendarWithEvents,
 
@@ -60,6 +59,7 @@ export default defineComponent({
     ...props.intervals,
     ...props.category,
   },
+  emits: ['change', 'update:modelValue', 'moved', 'click:date'],
 
   data: () => ({
     lastStart: null as CalendarTimestamp | null,
@@ -377,6 +377,6 @@ export default defineComponent({
         }
       },
       scopedSlots: this.getScopedSlots(),
-    });
+    })
   },
 })

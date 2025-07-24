@@ -1,4 +1,4 @@
-import { h, nextTick } from 'vue';
+import { h, nextTick } from 'vue'
 // Styles
 import '../VTextField/VTextField.sass'
 import './VOtpInput.sass'

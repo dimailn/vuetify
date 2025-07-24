@@ -5,7 +5,7 @@ import { Scroll } from '../../directives'
 import { consoleWarn } from '../../util/console'
 
 // Types
-import { defineComponent, nextTick } from 'vue';
+import { defineComponent, nextTick } from 'vue'
 
 /**
  * Scrollable

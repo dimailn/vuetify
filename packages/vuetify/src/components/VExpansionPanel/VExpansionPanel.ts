@@ -1,4 +1,4 @@
-import { h, nextTick } from 'vue';
+import { h, nextTick } from 'vue'
 // Components
 import VExpansionPanels from './VExpansionPanels'
 import VExpansionPanelHeader from './VExpansionPanelHeader'

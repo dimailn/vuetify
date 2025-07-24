@@ -1,4 +1,4 @@
-import { h, vShow, withDirectives, nextTick } from 'vue';
+import { h, vShow, withDirectives, nextTick } from 'vue'
 // Components
 import VExpansionPanel from './VExpansionPanel'
 import { VExpandTransition } from '../transitions'

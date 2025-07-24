@@ -1,4 +1,4 @@
-import {defineComponent, h} from 'vue'
+import { defineComponent, h } from 'vue'
 import { VNode, VNodeDirective } from 'vue/types'
 import { VuetifyIcon } from 'vuetify/types/services/icons'
 import { DataTableCompareFunction, SelectItemKey, ItemGroup } from 'vuetify/types'
@@ -25,7 +25,7 @@ export function createSimpleFunctional (
 
       return h(this.tag, data, this.$slots.default?.())
     },
-  });
+  })
 }
 
 export type BindingConfig = Pick<VNodeDirective, 'arg' | 'modifiers' | 'value'>
@@ -524,7 +524,7 @@ export function normalizeAttrs (attrs) {
 
   const obj = {}
 
-  for(let i = 0; i < keys.length; i++) {
+  for (let i = 0; i < keys.length; i++) {
     obj[keys[i]] = attrs[keys[i]]
   }
 

@@ -1,4 +1,4 @@
-import { nextTick } from 'vue';
+import { nextTick } from 'vue'
 // Styles
 import './VChipGroup.sass'
 

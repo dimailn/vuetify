@@ -92,7 +92,7 @@ export default mixins(
         }
       }, [
         h(VIcon, ((change < 0) === !this.$vuetify.rtl) ? this.prevIcon : this.nextIcon),
-      ]);
+      ])
     },
     calculateChange (sign: number) {
       const [year, month] = String(this.value).split('-').map(Number)

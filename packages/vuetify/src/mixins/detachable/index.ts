@@ -7,7 +7,7 @@ import mixins, { ExtractVue } from '../../util/mixins'
 import { consoleWarn } from '../../util/console'
 
 // Types
-import { PropOptions, nextTick } from 'vue';
+import { PropOptions, nextTick } from 'vue'
 import { VNode } from 'vue/types'
 
 interface options {

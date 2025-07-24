@@ -1,4 +1,4 @@
-import {h} from 'vue'
+import { h } from 'vue'
 // Styles
 import './VColorPickerEdit.sass'
 
@@ -45,7 +45,6 @@ export const modes = {
 } as { [key: string]: Mode }
 
 export default defineComponent({
-  emits: ['update:mode', 'update:color'],
   name: 'v-color-picker-edit',
 
   props: {
@@ -59,6 +58,8 @@ export default defineComponent({
       validator: (v: string) => Object.keys(modes).includes(v),
     },
   },
+
+  emits: ['update:mode', 'update:color'],
 
   data () {
     return {
@@ -102,22 +103,27 @@ export default defineComponent({
       this.$emit('update:mode', newMode)
     },
     genInput (target: string, attrs: any, value: any, on: any): VNode {
-      return h('div', {
-        class: 'v-color-picker__input',
-      }, [
-        h('input', {
-          key: target,
-          ...attrs,
-          value,
-          ...on,
-        }),
-        h('span', target.toUpperCase()),
-      ])
+      return h(
+        'div',
+        {
+          class: 'v-color-picker__input',
+        },
+        [
+          h('input', {
+            key: target,
+            ...attrs,
+            value,
+            ...on,
+          }),
+          h('span', target.toUpperCase()),
+        ]
+      )
     },
     genInputs (): VNode[] | VNode {
       if (this.internalMode === 'hexa') {
         const hex = this.color.hexa
-        const value = this.hideAlpha && hex.endsWith('FF') ? hex.substr(0, 7) : hex
+        const value =
+          this.hideAlpha && hex.endsWith('FF') ? hex.substr(0, 7) : hex
         return this.genInput(
           'hex',
           {
@@ -128,21 +134,29 @@ export default defineComponent({
           {
             change: (e: Event) => {
               const el = e.target as HTMLInputElement
-              this.$emit('update:color', this.currentMode.from(parseHex(el.value)))
+              this.$emit(
+                'update:color',
+                this.currentMode.from(parseHex(el.value))
+              )
             },
           }
         )
       } else {
-        const inputs = this.hideAlpha ? this.currentMode.inputs!.slice(0, -1) : this.currentMode.inputs!
+        const inputs = this.hideAlpha
+          ? this.currentMode.inputs!.slice(0, -1)
+          : this.currentMode.inputs!
         return inputs.map(([target, max, type]) => {
-          const value = this.color[this.internalMode as keyof VColorPickerColor] as any
+          const value = this.color[
+            this.internalMode as keyof VColorPickerColor
+          ] as any
           return this.genInput(
             target,
             {
               type: 'number',
               min: 0,
               max,
-              step: type === 'float' ? '0.01' : type === 'int' ? '1' : undefined,
+              step:
+                type === 'float' ? '0.01' : type === 'int' ? '1' : undefined,
               disabled: this.disabled,
             },
             this.getValue(value[target], type),
@@ -151,10 +165,13 @@ export default defineComponent({
                 const el = e.target as HTMLInputElement
                 const newVal = this.parseValue(el.value || '0', type)
 
-                this.$emit('update:color', this.currentMode.from(
-                  Object.assign({}, value, { [target]: newVal }),
-                  this.color.alpha
-                ))
+                this.$emit(
+                  'update:color',
+                  this.currentMode.from(
+                    Object.assign({}, value, { [target]: newVal }),
+                    this.color.alpha
+                  )
+                )
               },
             }
           )
@@ -162,23 +179,26 @@ export default defineComponent({
       }
     },
     genSwitch (): VNode {
-      return h(VBtn, {
-        small: true,
-        icon: true,
-        disabled: this.disabled,
-        onClick: this.changeMode,
-      }, [
-        h(VIcon, '$unfold'),
-      ])
+      return h(
+        VBtn,
+        {
+          small: true,
+          icon: true,
+          disabled: this.disabled,
+          onClick: this.changeMode,
+        },
+        [h(VIcon, '$unfold')]
+      )
     },
   },
 
   render (): VNode {
-    return h('div', {
-      class: 'v-color-picker__edit',
-    }, [
-      this.genInputs(),
-      !this.hideModeSwitch && this.genSwitch(),
-    ])
+    return h(
+      'div',
+      {
+        class: 'v-color-picker__edit',
+      },
+      [this.genInputs(), !this.hideModeSwitch && this.genSwitch()]
+    )
   },
 })

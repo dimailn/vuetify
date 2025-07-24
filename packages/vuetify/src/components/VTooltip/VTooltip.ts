@@ -1,4 +1,4 @@
-import { h, Transition, nextTick } from 'vue';
+import { h, Transition, nextTick } from 'vue'
 import './VTooltip.sass'
 
 // Mixins

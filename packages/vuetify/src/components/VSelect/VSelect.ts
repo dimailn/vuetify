@@ -26,7 +26,7 @@ import { consoleError } from '../../util/console'
 
 // Types
 import mixins from '../../util/mixins'
-import { VNode, VNodeDirective, PropType, VNodeData, withDirectives, h, nextTick } from 'vue';
+import { VNode, VNodeDirective, PropType, VNodeData, withDirectives, h, nextTick } from 'vue'
 import { PropValidator } from 'vue/types/options'
 import { SelectItemKey } from 'vuetify/types'
 
@@ -173,8 +173,8 @@ export default baseMixins.extend({
             handler: () => this.isFocused && this.blur(),
             closeConditional: this.closeConditional,
             include: () => this.getOpenDependentElements(),
-          }
-        ]
+          },
+        ],
       ]
     },
     dynamicHeight () {
@@ -216,7 +216,7 @@ export default baseMixins.extend({
         consoleError('assert: staticList should not be called if slots are used')
       }
 
-      return h(VSelectList, this.listData,  {
+      return h(VSelectList, this.listData, {
         item: this.$slots.item,
       })
     },
@@ -412,7 +412,7 @@ export default baseMixins.extend({
       return [
         this.genFieldset(),
         withDirectives(h('div', {
-          class: 'v-select__slot'
+          class: 'v-select__slot',
         }, [
           this.genLabel(),
           this.prefix ? this.genAffix('prefix') : null,
@@ -439,7 +439,7 @@ export default baseMixins.extend({
         icon.children![0].data = mergeData(icon.children![0].props!, {
           tabindex: hasListeners && '-1',
           'aria-hidden': 'true',
-          'aria-label': undefined
+          'aria-label': undefined,
         })
       }
 
@@ -469,7 +469,7 @@ export default baseMixins.extend({
       return h('input', {
         value: this.lazyValue,
         type: 'hidden',
-        name: this.attrs$.name
+        name: this.attrs$.name,
       })
     },
     genInputSlot (): VNode {
@@ -480,7 +480,7 @@ export default baseMixins.extend({
         'aria-haspopup': 'listbox',
         'aria-expanded': String(this.isMenuActive),
         'aria-owns': this.computedOwns,
-        ...render.props
+        ...render.props,
       }
 
       return render
@@ -498,15 +498,15 @@ export default baseMixins.extend({
         .filter(slotName => this.$slots[slotName])
         .map(slotName => [
           slotName,
-          this.$slots[slotName]
-          ]
+          this.$slots[slotName],
+        ]
         ))
       // Requires destructuring due to Vue
       // modifying the `on` property when passed
       // as a referenced object
       return h(VSelectList, {
         ...this.listData,
-      }, {...slots,item: this.$slots.item})
+      }, { ...slots, item: this.$slots.item })
     },
     genMenu (): VNode {
       const props = this.$_menuProps as any

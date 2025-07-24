@@ -1,4 +1,4 @@
-import { h, withDirectives, nextTick } from 'vue';
+import { h, withDirectives, nextTick } from 'vue'
 // Styles
 import './VTabs.sass'
 

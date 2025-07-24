@@ -8,7 +8,7 @@ import VTextField from '../VTextField/VTextField'
 import mixins from '../../util/mixins'
 
 // Types
-import Vue, { nextTick } from 'vue';
+import Vue, { nextTick } from 'vue'
 
 interface options extends Vue {
   $refs: {

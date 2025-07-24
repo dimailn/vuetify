@@ -15,21 +15,6 @@ import {
 import { PropValidator } from 'vue/types/options'
 
 export default defineComponent({
-  emits: [
-    'update:options',
-    'update:page',
-    'update:items-per-page',
-    'update:sort-by',
-    'update:sort-desc',
-    'update:group-by',
-    'update:group-desc',
-    'update:multi-sort',
-    'update:must-sort',
-    'page-count',
-    'current-items',
-    'pagination',
-  ],
-
   name: 'v-data',
   inheritAttrs: false,
 
@@ -92,6 +77,21 @@ export default defineComponent({
     },
   },
 
+  emits: [
+    'update:options',
+    'update:page',
+    'update:items-per-page',
+    'update:sort-by',
+    'update:sort-desc',
+    'update:group-by',
+    'update:group-desc',
+    'update:multi-sort',
+    'update:must-sort',
+    'page-count',
+    'current-items',
+    'pagination',
+  ],
+
   data () {
     let internalOptions: DataOptions = {
       page: this.page,
@@ -127,7 +127,9 @@ export default defineComponent({
 
   computed: {
     itemsLength (): number {
-      return this.serverItemsLength >= 0 ? this.serverItemsLength : this.filteredItems.length
+      return this.serverItemsLength >= 0
+        ? this.serverItemsLength
+        : this.filteredItems.length
     },
     pageCount (): number {
       return this.internalOptions.itemsPerPage <= 0
@@ -135,15 +137,20 @@ export default defineComponent({
         : Math.ceil(this.itemsLength / this.internalOptions.itemsPerPage)
     },
     pageStart (): number {
-      if (this.internalOptions.itemsPerPage === -1 || !this.items.length) return 0
+      if (this.internalOptions.itemsPerPage === -1 || !this.items.length) { return 0 }
 
-      return (this.internalOptions.page - 1) * this.internalOptions.itemsPerPage
+      return (
+        (this.internalOptions.page - 1) * this.internalOptions.itemsPerPage
+      )
     },
     pageStop (): number {
       if (this.internalOptions.itemsPerPage === -1) return this.itemsLength
       if (!this.items.length) return 0
 
-      return Math.min(this.itemsLength, this.internalOptions.page * this.internalOptions.itemsPerPage)
+      return Math.min(
+        this.itemsLength,
+        this.internalOptions.page * this.internalOptions.itemsPerPage
+      )
     },
     isGrouped (): boolean {
       return !!this.internalOptions.groupBy.length
@@ -170,7 +177,10 @@ export default defineComponent({
     computedItems (): any[] {
       let items = this.filteredItems.slice()
 
-      if ((!this.disableSort || this.internalOptions.groupBy.length) && this.serverItemsLength <= 0) {
+      if (
+        (!this.disableSort || this.internalOptions.groupBy.length) &&
+        this.serverItemsLength <= 0
+      ) {
         items = this.sortItems(items)
       }
 
@@ -243,25 +253,41 @@ export default defineComponent({
       this.updateOptions({ sortBy: wrapInArray(sortBy) })
     },
     'internalOptions.sortBy' (sortBy: string[], old: string[]) {
-      !deepEqual(sortBy, old) && this.$emit('update:sort-by', Array.isArray(this.sortBy) ? sortBy : sortBy[0])
+      !deepEqual(sortBy, old) &&
+        this.$emit(
+          'update:sort-by',
+          Array.isArray(this.sortBy) ? sortBy : sortBy[0]
+        )
     },
     sortDesc (sortDesc: boolean | boolean[]) {
       this.updateOptions({ sortDesc: wrapInArray(sortDesc) })
     },
     'internalOptions.sortDesc' (sortDesc: boolean[], old: boolean[]) {
-      !deepEqual(sortDesc, old) && this.$emit('update:sort-desc', Array.isArray(this.sortDesc) ? sortDesc : sortDesc[0])
+      !deepEqual(sortDesc, old) &&
+        this.$emit(
+          'update:sort-desc',
+          Array.isArray(this.sortDesc) ? sortDesc : sortDesc[0]
+        )
     },
     groupBy (groupBy: string | string[]) {
       this.updateOptions({ groupBy: wrapInArray(groupBy) })
     },
     'internalOptions.groupBy' (groupBy: string[], old: string[]) {
-      !deepEqual(groupBy, old) && this.$emit('update:group-by', Array.isArray(this.groupBy) ? groupBy : groupBy[0])
+      !deepEqual(groupBy, old) &&
+        this.$emit(
+          'update:group-by',
+          Array.isArray(this.groupBy) ? groupBy : groupBy[0]
+        )
     },
     groupDesc (groupDesc: boolean | boolean[]) {
       this.updateOptions({ groupDesc: wrapInArray(groupDesc) })
     },
     'internalOptions.groupDesc' (groupDesc: boolean[], old: boolean[]) {
-      !deepEqual(groupDesc, old) && this.$emit('update:group-desc', Array.isArray(this.groupDesc) ? groupDesc : groupDesc[0])
+      !deepEqual(groupDesc, old) &&
+        this.$emit(
+          'update:group-desc',
+          Array.isArray(this.groupDesc) ? groupDesc : groupDesc[0]
+        )
     },
     multiSort (multiSort: boolean) {
       this.updateOptions({ multiSort })
@@ -298,8 +324,19 @@ export default defineComponent({
     },
   },
 
+  mounted () {
+    this.$emit('update:options', this.internalOptions)
+  },
+
   methods: {
-    toggle (key: string, oldBy: string[], oldDesc: boolean[], page: number, mustSort: boolean, multiSort: boolean) {
+    toggle (
+      key: string,
+      oldBy: string[],
+      oldDesc: boolean[],
+      page: number,
+      mustSort: boolean,
+      multiSort: boolean
+    ) {
       let by = oldBy.slice()
       let desc = oldDesc.slice()
       const byIndex = by.findIndex((k: string) => k === key)
@@ -364,9 +401,16 @@ export default defineComponent({
       this.internalOptions = {
         ...this.internalOptions,
         ...options,
-        page: this.serverItemsLength < 0
-          ? Math.max(1, Math.min(options.page || this.internalOptions.page, this.pageCount))
-          : options.page || this.internalOptions.page,
+        page:
+          this.serverItemsLength < 0
+            ? Math.max(
+              1,
+              Math.min(
+                options.page || this.internalOptions.page,
+                this.pageCount
+              )
+            )
+            : options.page || this.internalOptions.page,
       }
     },
     sortItems (items: any[]): any[] {
@@ -386,13 +430,21 @@ export default defineComponent({
       return this.customSort(items, sortBy, sortDesc, this.locale)
     },
     groupItems (items: any[]): ItemGroup<any>[] {
-      return this.customGroup(items, this.internalOptions.groupBy, this.internalOptions.groupDesc)
+      return this.customGroup(
+        items,
+        this.internalOptions.groupBy,
+        this.internalOptions.groupDesc
+      )
     },
     paginateItems (items: any[]): any[] {
       // Make sure we don't try to display non-existant page if items suddenly change
       // TODO: Could possibly move this to pageStart/pageStop?
       if (this.serverItemsLength === -1 && items.length <= this.pageStart) {
-        this.internalOptions.page = Math.max(1, Math.ceil(items.length / this.internalOptions.itemsPerPage)) || 1 // Prevent NaN
+        this.internalOptions.page =
+          Math.max(
+            1,
+            Math.ceil(items.length / this.internalOptions.itemsPerPage)
+          ) || 1 // Prevent NaN
       }
 
       return items.slice(this.pageStart, this.pageStop)
@@ -400,10 +452,8 @@ export default defineComponent({
   },
 
   render (): VNode {
-    return this.$slots.default && this.$slots.default(this.scopedProps)[0] as any
-  },
-
-  mounted() {
-    this.$emit('update:options', this.internalOptions)
+    return (
+      this.$slots.default && (this.$slots.default(this.scopedProps)[0] as any)
+    )
   },
 })

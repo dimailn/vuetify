@@ -14,7 +14,7 @@ import {
 } from '../../util/helpers'
 
 // Types
-import { PropType, VNode, defineComponent, nextTick } from 'vue';
+import { PropType, VNode, defineComponent, nextTick } from 'vue'
 import { PropValidator } from 'vue/types/options'
 
 const defaultMenuProps = {
@@ -26,7 +26,6 @@ const defaultMenuProps = {
 
 /* @vue/component */
 export default defineComponent({
-  emits: ['update:search-input', 'update:list-index'],
   name: 'v-autocomplete',
   extends: VSelect,
 
@@ -38,9 +37,14 @@ export default defineComponent({
     filter: {
       type: Function,
       default: (item: any, queryText: string, itemText: string) => {
-        return itemText.toLocaleLowerCase().indexOf(queryText.toLocaleLowerCase()) > -1
+        return (
+          itemText.toLocaleLowerCase().indexOf(queryText.toLocaleLowerCase()) >
+          -1
+        )
       },
-    } as PropValidator<(item: any, queryText: string, itemText: string) => boolean>,
+    } as PropValidator<
+      (item: any, queryText: string, itemText: string) => boolean
+    >,
     hideNoData: Boolean,
     menuProps: {
       type: VSelect.props.menuProps.type,
@@ -51,6 +55,8 @@ export default defineComponent({
       type: String as PropType<string | null>,
     },
   },
+
+  emits: ['update:search-input', 'update:list-index'],
 
   data () {
     return {
@@ -83,7 +89,7 @@ export default defineComponent({
       return String(this.getText(this.selectedItem)).length
     },
     filteredItems (): object[] {
-      if (!this.isSearching || this.noFilter || this.internalSearch == null) return this.allItems
+      if (!this.isSearching || this.noFilter || this.internalSearch == null) { return this.allItems }
 
       return this.allItems.filter(item => {
         const value = getPropertyFromItem(item, this.itemText)
@@ -96,7 +102,8 @@ export default defineComponent({
       get (): string | null {
         return this.lazySearch
       },
-      set (val: any) { // TODO: this should be `string | null` but it breaks lots of other types
+      set (val: any) {
+        // TODO: this should be `string | null` but it breaks lots of other types
         // emit update event only when the new
         // search value is different from previous
         if (this.lazySearch !== val) {
@@ -113,11 +120,9 @@ export default defineComponent({
     },
     isSearching (): boolean {
       return (
-        this.multiple &&
-        this.searchIsDirty
-      ) || (
-        this.searchIsDirty &&
-        this.internalSearch !== this.getText(this.selectedItem)
+        (this.multiple && this.searchIsDirty) ||
+        (this.searchIsDirty &&
+          this.internalSearch !== this.getText(this.selectedItem))
       )
     },
     menuCanShow (): boolean {
@@ -127,21 +132,24 @@ export default defineComponent({
     },
     $_menuProps (): object {
       const props = VSelect.computed.$_menuProps.call(this);
-      (props as any).contentClass = `v-autocomplete__content ${(props as any).contentClass || ''}`.trim()
+      (props as any).contentClass = `v-autocomplete__content ${(props as any)
+        .contentClass || ''}`.trim()
       return {
         ...defaultMenuProps,
         ...props,
       }
     },
     searchIsDirty (): boolean {
-      return this.internalSearch != null &&
-        this.internalSearch !== ''
+      return this.internalSearch != null && this.internalSearch !== ''
     },
     selectedItem (): any {
       if (this.multiple) return null
 
       return this.selectedItems.find(i => {
-        return this.valueComparator(this.getValue(i), this.getValue(this.internalValue))
+        return this.valueComparator(
+          this.getValue(i),
+          this.getValue(this.internalValue)
+        )
       })
     },
     listData () {
@@ -150,11 +158,8 @@ export default defineComponent({
       data.props = {
         ...data.props,
         items: this.virtualizedItems,
-        noFilter: (
-          this.noFilter ||
-          !this.isSearching ||
-          !this.filteredItems.length
-        ),
+        noFilter:
+          this.noFilter || !this.isSearching || !this.filteredItems.length,
         searchInput: this.internalSearch,
       }
 
@@ -195,7 +200,7 @@ export default defineComponent({
         this.isFocused &&
         !this.isMenuActive &&
         val.length
-      ) this.activateMenu()
+      ) { this.activateMenu() }
     },
     searchInput (val: string) {
       this.lazySearch = val
@@ -230,11 +235,7 @@ export default defineComponent({
       }
 
       nextTick(() => {
-        if (
-          !this.internalSearch ||
-          (val.length !== 1 &&
-            !this.autoSelectFirst)
-        ) return
+        if (!this.internalSearch || (val.length !== 1 && !this.autoSelectFirst)) { return }
 
         this.$refs.menu.getTiles()
 
@@ -249,7 +250,9 @@ export default defineComponent({
     },
     updateMenuDimensions () {
       // Type from menuable is not making it through
-      this.isMenuActive && this.$refs.menu && this.$refs.menu.updateDimensions()
+      this.isMenuActive &&
+        this.$refs.menu &&
+        this.$refs.menu.updateDimensions()
     },
     changeSelectedIndex (keyCode: number) {
       // Do not allow changing of selectedIndex
@@ -268,7 +271,10 @@ export default defineComponent({
         } else {
           this.selectedIndex++
         }
-      } else if (keyCode === keyCodes.backspace || keyCode === keyCodes.delete) {
+      } else if (
+        keyCode === keyCodes.backspace ||
+        keyCode === keyCodes.delete
+      ) {
         this.deleteCurrentItem()
       }
     },
@@ -277,28 +283,20 @@ export default defineComponent({
       const curItem = this.selectedItems[curIndex]
 
       // Do nothing if input or item is disabled
-      if (
-        !this.isInteractive ||
-        this.getDisabled(curItem)
-      ) return
+      if (!this.isInteractive || this.getDisabled(curItem)) return
 
       const lastIndex = this.selectedItems.length - 1
 
       // Select the last item if
       // there is no selection
-      if (
-        this.selectedIndex === -1 &&
-        lastIndex !== 0
-      ) {
+      if (this.selectedIndex === -1 && lastIndex !== 0) {
         this.selectedIndex = lastIndex
 
         return
       }
 
       const length = this.selectedItems.length
-      const nextIndex = curIndex !== length - 1
-        ? curIndex
-        : curIndex - 1
+      const nextIndex = curIndex !== length - 1 ? curIndex : curIndex - 1
       const nextItem = this.selectedItems[nextIndex]
 
       if (!nextItem) {
@@ -318,8 +316,15 @@ export default defineComponent({
       const input = VTextField.methods.genInput.call(this)
 
       input.data = mergeData(input.props!, {
-        'aria-activedescendant': getObjectValueByPath(this.$refs.menu, 'activeTile.id'),
-        autocomplete: getObjectValueByPath(input.data!, 'attrs.autocomplete', 'off'),
+        'aria-activedescendant': getObjectValueByPath(
+          this.$refs.menu,
+          'activeTile.id'
+        ),
+        autocomplete: getObjectValueByPath(
+          input.data!,
+          'attrs.autocomplete',
+          'off'
+        ),
         value: this.internalSearch,
       })
 
@@ -340,17 +345,12 @@ export default defineComponent({
     onClick (e: MouseEvent) {
       if (!this.isInteractive) return
 
-      this.selectedIndex > -1
-        ? (this.selectedIndex = -1)
-        : this.onFocus()
+      this.selectedIndex > -1 ? (this.selectedIndex = -1) : this.onFocus()
 
       if (!this.isAppendInner(e.target)) this.activateMenu()
     },
     onInput (e: Event) {
-      if (
-        this.selectedIndex > -1 ||
-        !e.target
-      ) return
+      if (this.selectedIndex > -1 || !e.target) return
 
       const target = e.target as HTMLInputElement
       const value = target.value
@@ -366,10 +366,7 @@ export default defineComponent({
     onKeyDown (e: KeyboardEvent) {
       const keyCode = e.keyCode
 
-      if (
-        e.ctrlKey ||
-        ![keyCodes.home, keyCodes.end].includes(keyCode)
-      ) {
+      if (e.ctrlKey || ![keyCodes.home, keyCodes.end].includes(keyCode)) {
         VSelect.methods.onKeyDown.call(this, e)
       }
 
@@ -379,7 +376,9 @@ export default defineComponent({
       // proper location
       this.changeSelectedIndex(keyCode)
     },
-    onSpaceDown (e: KeyboardEvent) { /* noop */ },
+    onSpaceDown (e: KeyboardEvent) {
+      /* noop */
+    },
     onTabDown (e: KeyboardEvent) {
       VSelect.methods.onTabDown.call(this, e)
       this.updateSelf()
@@ -408,26 +407,16 @@ export default defineComponent({
       // Wait for nextTick so selectedItem
       // has had time to update
       nextTick(() => {
-        if (
-          !this.multiple ||
-          !this.internalSearch ||
-          !this.isMenuActive
-        ) {
-          this.internalSearch = (
-            !this.selectedItems.length ||
-            this.multiple ||
-            this.hasSlot
-          )
-            ? null
-            : this.getText(this.selectedItem)
+        if (!this.multiple || !this.internalSearch || !this.isMenuActive) {
+          this.internalSearch =
+            !this.selectedItems.length || this.multiple || this.hasSlot
+              ? null
+              : this.getText(this.selectedItem)
         }
       })
     },
     updateSelf () {
-      if (
-        !this.searchIsDirty &&
-        !this.internalValue
-      ) return
+      if (!this.searchIsDirty && !this.internalValue) return
 
       if (
         !this.multiple &&
@@ -448,7 +437,10 @@ export default defineComponent({
       const currentItem = this.selectedItems[this.selectedIndex]
       const currentItemText = this.getText(currentItem)
       event.clipboardData?.setData('text/plain', currentItemText)
-      event.clipboardData?.setData('text/vnd.vuetify.autocomplete.item+plain', currentItemText)
+      event.clipboardData?.setData(
+        'text/vnd.vuetify.autocomplete.item+plain',
+        currentItemText
+      )
       event.preventDefault()
     },
   },

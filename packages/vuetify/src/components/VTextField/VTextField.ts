@@ -25,7 +25,7 @@ import { breaking, consoleWarn } from '../../util/console'
 // Types
 import mixins from '../../util/mixins'
 import { VNode, PropType } from 'vue/types'
-import { withDirectives, h, nextTick } from 'vue';
+import { withDirectives, h, nextTick } from 'vue'
 
 const baseMixins = mixins(
   VInput,

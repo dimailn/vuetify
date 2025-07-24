@@ -1,4 +1,4 @@
-import { h, vShow, withDirectives, nextTick } from 'vue';
+import { h, vShow, withDirectives, nextTick } from 'vue'
 // Components
 import VWindow from './VWindow'
 
@@ -83,8 +83,8 @@ export default baseMixins.extend({
       }, this.genDefaultSlot()), [
         [
           vShow,
-          this.isActive
-        ]
+          this.isActive,
+        ],
       ])
     },
     onAfterTransition () {

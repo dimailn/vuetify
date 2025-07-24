@@ -8,11 +8,10 @@ import VInput from '../VInput'
 
 // Mixins
 import Selectable from '../../mixins/selectable'
-import { defineComponent, h, nextTick } from 'vue';
+import { defineComponent, h, nextTick } from 'vue'
 
 /* @vue/component */
 export default defineComponent({
-  emits: ['update:indeterminate'],
   name: 'v-checkbox',
   extends: Selectable,
 
@@ -31,6 +30,7 @@ export default defineComponent({
       default: '$checkboxOn',
     },
   },
+  emits: ['update:indeterminate'],
 
   data () {
     return {
@@ -91,7 +91,7 @@ export default defineComponent({
         h(VIcon, this.setTextColor(this.validationState, {
           dense: this.dense,
           dark: this.dark,
-          light: this.light
+          light: this.light,
         }), this.computedIcon),
         this.genInput('checkbox', {
           ...checkboxAttrs,

@@ -7,7 +7,7 @@ import * as ThemeUtils from './utils'
 import { getNestedValue } from '../../util/helpers'
 
 // Types
-import { App, reactive, nextTick } from 'vue';
+import { App, reactive, nextTick } from 'vue'
 import { VuetifyPreset } from 'vuetify/types/services/presets'
 import {
   VuetifyParsedTheme,
@@ -242,7 +242,6 @@ export class Theme extends Service {
     //   const obs = reactive({ themes: this.themes })
     //   this.unwatch = root.$watch(() => obs.themes, () => this.applyTheme(), { deep: true })
     // })
-
 
     this.applyTheme()
   }

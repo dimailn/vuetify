@@ -1,4 +1,4 @@
-import { h, nextTick } from 'vue';
+import { h, nextTick } from 'vue'
 // Mixins
 import Colorable from '../../mixins/colorable'
 

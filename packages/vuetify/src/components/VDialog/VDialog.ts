@@ -1,4 +1,4 @@
-import { Transition, h, vShow, withDirectives, nextTick } from 'vue';
+import { Transition, h, vShow, withDirectives, nextTick } from 'vue'
 // Styles
 import './VDialog.sass'
 

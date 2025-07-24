@@ -1,4 +1,4 @@
-import {h} from 'vue'
+import { h } from 'vue'
 // Styles
 import './VColorPickerCanvas.sass'
 
@@ -10,7 +10,6 @@ import { fromHSVA, VColorPickerColor, fromRGBA } from './util'
 import { defineComponent, VNode, PropType } from 'vue'
 
 export default defineComponent({
-  emits: ['update:color'],
   name: 'v-color-picker-canvas',
 
   props: {
@@ -32,6 +31,7 @@ export default defineComponent({
       default: 300,
     },
   },
+  emits: ['update:color'],
 
   data () {
     return {
@@ -45,7 +45,7 @@ export default defineComponent({
   },
 
   computed: {
-    dot (): { x: number, y: number} {
+    dot (): { x: number, y: number } {
       if (!this.color) return { x: 0, y: 0 }
 
       return {
@@ -67,12 +67,15 @@ export default defineComponent({
     emitColor (x: number, y: number) {
       const { left, top, width, height } = this.boundingRect
 
-      this.$emit('update:color', fromHSVA({
-        h: this.color.hue,
-        s: clamp(x - left, 0, width) / width,
-        v: 1 - clamp(y - top, 0, height) / height,
-        a: this.color.alpha,
-      }))
+      this.$emit(
+        'update:color',
+        fromHSVA({
+          h: this.color.hue,
+          s: clamp(x - left, 0, width) / width,
+          v: 1 - clamp(y - top, 0, height) / height,
+          a: this.color.alpha,
+        })
+      )
     },
     updateCanvas () {
       if (!this.color) return
@@ -82,9 +85,17 @@ export default defineComponent({
 
       if (!ctx) return
 
-      const saturationGradient = ctx.createLinearGradient(0, 0, canvas.width, 0)
+      const saturationGradient = ctx.createLinearGradient(
+        0,
+        0,
+        canvas.width,
+        0
+      )
       saturationGradient.addColorStop(0, 'hsla(0, 0%, 100%, 1)') // white
-      saturationGradient.addColorStop(1, `hsla(${this.color.hue}, 100%, 50%, 1)`)
+      saturationGradient.addColorStop(
+        1,
+        `hsla(${this.color.hue}, 100%, 50%, 1)`
+      )
       ctx.fillStyle = saturationGradient
       ctx.fillRect(0, 0, canvas.width, canvas.height)
 
@@ -149,19 +160,20 @@ export default defineComponent({
   },
 
   render (): VNode {
-    return h('div', {
-      class: 'v-color-picker__canvas',
-      style: {
-        width: convertToUnit(this.width),
-        height: convertToUnit(this.height),
+    return h(
+      'div',
+      {
+        class: 'v-color-picker__canvas',
+        style: {
+          width: convertToUnit(this.width),
+          height: convertToUnit(this.height),
+        },
+        on: {
+          click: this.handleClick,
+          mousedown: this.handleMouseDown,
+        },
       },
-      on: {
-        click: this.handleClick,
-        mousedown: this.handleMouseDown,
-      },
-    }, [
-      this.genCanvas(),
-      this.genDot(),
-    ])
+      [this.genCanvas(), this.genDot()]
+    )
   },
 })
