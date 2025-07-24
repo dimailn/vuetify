@@ -18,11 +18,12 @@ import { defineComponent } from 'vue'
 
 /* @vue/component */
 export default defineComponent({
+  emits: ['update:modelValue', 'focus', 'blur', 'start', 'change'],
   name: 'v-range-slider',
   extends: VSlider,
 
   props: {
-    value: {
+    modelValue: {
       type: Array,
       default: () => ([0, 0]),
     } as unknown as PropValidator<[number, number]>,
@@ -31,8 +32,8 @@ export default defineComponent({
   data () {
     return {
       activeThumb: null as null | number,
-      lazyValue: this.value,
-    }
+      lazyValue: this.modelValue,
+    };
   },
 
   computed: {
@@ -63,7 +64,7 @@ export default defineComponent({
         }
 
         this.lazyValue = value
-        if (!deepEqual(value, this.value)) this.$emit('input', value)
+        if (!deepEqual(value, this.modelValue)) this.$emit('update:modelValue', value)
 
         this.validate()
       },

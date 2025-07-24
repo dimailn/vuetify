@@ -244,10 +244,7 @@ const VIcon = mixins(
 
 export default defineComponent({
   name: 'v-icon',
-
   $_wrapperFor: VIcon,
-
-  functional: true,
 
   mounted() {
     this.$el.innerHTML = ''
@@ -275,5 +272,5 @@ export default defineComponent({
         return iconName ? [iconName] : children && children[0]?.children
       }
     })
-  }
+  },
 })

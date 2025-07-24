@@ -45,6 +45,7 @@ export const modes = {
 } as { [key: string]: Mode }
 
 export default defineComponent({
+  emits: ['update:mode', 'update:color'],
   name: 'v-color-picker-edit',
 
   props: {

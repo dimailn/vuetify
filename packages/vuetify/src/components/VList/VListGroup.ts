@@ -1,4 +1,4 @@
-import {h, withDirectives} from 'vue'
+import { h, withDirectives, nextTick } from 'vue';
 // Styles
 import './VListGroup.sass'
 
@@ -119,7 +119,7 @@ export default baseMixins.extend({
       this.isBooted = true
 
       this.$emit('click', e)
-      this.$nextTick(() => (this.isActive = !this.isActive))
+      nextTick(() => (this.isActive = !this.isActive))
     },
     genIcon (icon: string | false): VNode {
       return h(VIcon, icon)
@@ -198,7 +198,7 @@ export default baseMixins.extend({
       const isActive = this._uid === uid
 
       if (isActive) this.isBooted = true
-      this.$nextTick(() => (this.isActive = isActive))
+      nextTick(() => (this.isActive = isActive))
     },
     matchRoute (to: string) {
       return to.match(this.group) !== null

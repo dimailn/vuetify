@@ -1,4 +1,4 @@
-import {h} from 'vue'
+import { h, nextTick } from 'vue';
 // Components
 import { VExpandTransition } from '../transitions'
 import { VIcon } from '../VIcon'
@@ -248,7 +248,7 @@ const VTreeviewNode = baseMixins.extend({
 
           this.checkChildren().then(() => {
             // We nextTick here so that items watch in VTreeview has a chance to run first
-            this.$nextTick(() => {
+            nextTick(() => {
               this.isSelected = !this.isSelected
               this.isIndeterminate = false
 
@@ -257,7 +257,7 @@ const VTreeviewNode = baseMixins.extend({
             })
           })
         },
-      }, [this.computedIcon])
+      }, [this.computedIcon]);
     },
     genLevel (level: number) {
       return createRange(level).map(() => h('div', {

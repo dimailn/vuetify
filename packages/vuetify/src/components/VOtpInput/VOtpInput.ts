@@ -1,4 +1,4 @@
-import {h} from 'vue'
+import { h, nextTick } from 'vue';
 // Styles
 import '../VTextField/VTextField.sass'
 import './VOtpInput.sass'
@@ -176,7 +176,7 @@ export default baseMixins.extend({
     },
     onBlur (e?: Event) {
       this.isFocused = false
-      e && this.$nextTick(() => this.$emit('blur', e))
+      e && nextTick(() => this.$emit('blur', e))
     },
     onClick (otpIdx: number) {
       if (this.isFocused || this.isDisabled || !this.$refs.input[otpIdx]) return

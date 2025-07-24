@@ -17,6 +17,7 @@ import { mergeStyles } from '../../util/mergeData'
 import { defineComponent, h } from 'vue'
 
 export default defineComponent({
+  emits: ['change', 'keydown'],
   name: 'v-file-input',
   extends: VTextField,
 
@@ -69,7 +70,7 @@ export default defineComponent({
       type: String,
       default: 'file',
     },
-    value: {
+    modelValue: {
       default: undefined,
       validator: val => {
         return wrapInArray(val).every(v => v != null && typeof v === 'object')
@@ -150,7 +151,7 @@ export default defineComponent({
       },
       immediate: true,
     },
-    value (v) {
+    modelValue (v) {
       const value = this.multiple ? v : v ? [v] : []
       if (!deepEqual(value, this.$refs.input.files)) {
         // When the input value is changed programatically, clear the
@@ -266,7 +267,7 @@ export default defineComponent({
       return node
     },
     onInput (e: Event) {
-      const files = [...(e.target as HTMLInputElement).files || []]
+      const files = [...((e.target as HTMLInputElement).files || [])]
 
       this.internalValue = this.multiple ? files : files[0]
 

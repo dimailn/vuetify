@@ -10,7 +10,7 @@ import { defineComponent, h } from 'vue'
 export default defineComponent({
   name: 'v-container',
   extends: Grid('container'),
-  functional: true,
+
   props: {
     id: String,
     tag: {
@@ -22,6 +22,7 @@ export default defineComponent({
       default: false,
     },
   },
+
   render () {
     let classes
     // const { attrs } = data

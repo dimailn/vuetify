@@ -88,11 +88,11 @@ export default mixins(
         light: this.light,
         onClick: (e: Event) => {
           e.stopPropagation()
-          this.$emit('input', this.calculateChange(change))
+          this.$emit('update:modelValue', this.calculateChange(change))
         }
       }, [
         h(VIcon, ((change < 0) === !this.$vuetify.rtl) ? this.prevIcon : this.nextIcon),
-      ])
+      ]);
     },
     calculateChange (sign: number) {
       const [year, month] = String(this.value).split('-').map(Number)

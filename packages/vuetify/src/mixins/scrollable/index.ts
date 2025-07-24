@@ -5,7 +5,7 @@ import { Scroll } from '../../directives'
 import { consoleWarn } from '../../util/console'
 
 // Types
-import {defineComponent} from 'vue'
+import { defineComponent, nextTick } from 'vue';
 
 /**
  * Scrollable
@@ -87,7 +87,7 @@ export default defineComponent({
       this.isScrollingUp = this.currentScroll < this.previousScroll
       this.currentThreshold = Math.abs(this.currentScroll - this.computedScrollThreshold)
 
-      this.$nextTick(() => {
+      nextTick(() => {
         if (
           Math.abs(this.currentScroll - this.savedScroll) >
           this.computedScrollThreshold

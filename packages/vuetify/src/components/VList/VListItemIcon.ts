@@ -5,8 +5,6 @@ import { defineComponent, VNode, h } from 'vue'
 export default defineComponent({
   name: 'v-list-item-icon',
 
-  functional: true,
-
   render (): VNode {
     const data = { ...this.$attrs }
 

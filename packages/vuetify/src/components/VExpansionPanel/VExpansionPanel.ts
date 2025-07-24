@@ -1,4 +1,4 @@
-import {h} from 'vue'
+import { h, nextTick } from 'vue';
 // Components
 import VExpansionPanels from './VExpansionPanels'
 import VExpansionPanelHeader from './VExpansionPanelHeader'
@@ -77,7 +77,7 @@ export default mixins(
       this.isReadonly || this.isDisabled || this.toggle()
     },
     toggle () {
-      this.$nextTick(() => {
+      nextTick(() => {
         this.$emit('change')
         this.$emitLegacy('change')
       })

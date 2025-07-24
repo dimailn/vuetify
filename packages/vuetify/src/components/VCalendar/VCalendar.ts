@@ -50,6 +50,7 @@ interface VCalendarRenderProps {
 
 /* @vue/component */
 export default defineComponent({
+  emits: ['change', 'update:modelValue', 'moved', 'click:date'],
   name: 'v-calendar',
   extends: CalendarWithEvents,
 
@@ -236,11 +237,11 @@ export default defineComponent({
       updateRelative(moved, this.times.now)
 
       if (this.value instanceof Date) {
-        this.$emit('input', timestampToDate(moved))
+        this.$emit('update:modelValue', timestampToDate(moved))
       } else if (typeof this.value === 'number') {
-        this.$emit('input', timestampToDate(moved).getTime())
+        this.$emit('update:modelValue', timestampToDate(moved).getTime())
       } else {
-        this.$emit('input', moved.date)
+        this.$emit('update:modelValue', moved.date)
       }
 
       this.$emit('moved', moved)
@@ -369,13 +370,13 @@ export default defineComponent({
       ...this.$listeners,
       'onClick:date': (day: CalendarTimestamp, e?: MouseEvent) => {
         if (this.$listeners.input) {
-          this.$emit('input', day.date)
+          this.$emit('update:modelValue', day.date)
         }
         if (this.$listeners['click:date']) {
           this.$emit('click:date', day, e)
         }
       },
       scopedSlots: this.getScopedSlots(),
-    })
+    });
   },
 })

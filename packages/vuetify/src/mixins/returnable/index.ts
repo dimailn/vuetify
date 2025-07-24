@@ -2,6 +2,7 @@ import {defineComponent} from 'vue'
 
 /* @vue/component */
 export default defineComponent({
+  emits: ['update:return-value'],
   name: 'returnable',
 
   props: {

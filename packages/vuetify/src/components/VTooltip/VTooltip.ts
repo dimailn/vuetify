@@ -1,4 +1,4 @@
-import {h, Transition} from 'vue'
+import { h, Transition, nextTick } from 'vue';
 import './VTooltip.sass'
 
 // Mixins
@@ -136,7 +136,7 @@ export default mixins(Colorable, Delayable, Dependent, Menuable).extend({
   },
 
   beforeMount () {
-    this.$nextTick(() => {
+    nextTick(() => {
       this.value && this.callActivate()
     })
   },

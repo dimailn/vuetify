@@ -1,4 +1,4 @@
-import {h, withDirectives} from 'vue'
+import { h, withDirectives, nextTick } from 'vue';
 import './VPagination.sass'
 
 import VIcon from '../VIcon'
@@ -153,7 +153,7 @@ export default mixins(
       this.selected = null
 
       this.onResize()
-      this.$nextTick(this.onResize)
+      nextTick(this.onResize)
       // TODO: Change this (f75dee3a, cbdf7caa)
       setTimeout(() => (this.selected = this.value), 100)
     },

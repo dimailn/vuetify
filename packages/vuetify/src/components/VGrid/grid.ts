@@ -6,8 +6,6 @@ export default function VGrid (name: string) {
   return defineComponent({
     name: `v-${name}`,
 
-    functional: true,
-
     props: {
       id: String,
       tag: {
@@ -54,5 +52,5 @@ export default function VGrid (name: string) {
 
       return h(props.tag, data, children)
     },
-  })
+  });
 }

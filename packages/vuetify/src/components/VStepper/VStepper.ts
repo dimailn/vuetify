@@ -1,4 +1,4 @@
-import {h} from 'vue'
+import { h, nextTick } from 'vue';
 // Styles
 import './VStepper.sass'
 
@@ -120,7 +120,7 @@ export default baseMixins.extend({
       }
     },
     stepClick (step: string | number) {
-      this.$nextTick(() => (this.internalValue = step))
+      nextTick(() => (this.internalValue = step))
     },
     updateView () {
       for (let index = this.steps.length; --index >= 0;) {

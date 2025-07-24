@@ -1,3 +1,4 @@
+import { nextTick } from 'vue';
 // Styles
 import './VChipGroup.sass'
 
@@ -41,7 +42,7 @@ export default mixins(
     column (val) {
       if (val) this.scrollOffset = 0
 
-      this.$nextTick(this.onResize)
+      nextTick(this.onResize)
     },
   },
 

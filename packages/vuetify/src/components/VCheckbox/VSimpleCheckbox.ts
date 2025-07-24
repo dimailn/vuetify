@@ -18,8 +18,6 @@ import { wrapInArray } from '../../util/helpers'
 export default defineComponent({
   name: 'v-simple-checkbox',
 
-  functional: true,
-
   directives: {
     Ripple,
   },
@@ -32,7 +30,7 @@ export default defineComponent({
       type: Boolean,
       default: true,
     },
-    value: Boolean,
+    modelValue: Boolean,
     indeterminate: Boolean,
     indeterminateIcon: {
       type: String,

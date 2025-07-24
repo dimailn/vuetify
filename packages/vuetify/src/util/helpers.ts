@@ -11,8 +11,6 @@ export function createSimpleFunctional (
   return defineComponent({
     name: name || c.replace(/__/g, '-'),
 
-    functional: true,
-
     props: {
       tag: {
         type: String,
@@ -27,7 +25,7 @@ export function createSimpleFunctional (
 
       return h(this.tag, data, this.$slots.default?.())
     },
-  })
+  });
 }
 
 export type BindingConfig = Pick<VNodeDirective, 'arg' | 'modifiers' | 'value'>
@@ -66,7 +64,7 @@ try {
     window.addEventListener('testListener', testListenerOpts, testListenerOpts)
     window.removeEventListener('testListener', testListenerOpts, testListenerOpts)
   }
-} catch (e) { console.warn(e) } /* eslint-disable-line no-console */
+} catch (e) { console.warn(e) }/* eslint-disable-line no-console */
 export { passiveSupported }
 
 export function addPassiveEventListener (

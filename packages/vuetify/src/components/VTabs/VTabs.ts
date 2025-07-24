@@ -1,4 +1,4 @@
-import {h, withDirectives} from 'vue'
+import { h, withDirectives, nextTick } from 'vue';
 // Styles
 import './VTabs.sass'
 
@@ -152,7 +152,7 @@ export default baseMixins.extend({
       })
     }
 
-    this.$nextTick(() => {
+    nextTick(() => {
       window.setTimeout(this.callSlider, 30)
     })
   },
@@ -168,7 +168,7 @@ export default baseMixins.extend({
         return false
       }
 
-      this.$nextTick(() => {
+      nextTick(() => {
         // Give screen time to paint
         const activeTab = this.$refs.items.selectedItems[0]
         /* istanbul ignore if */

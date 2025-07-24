@@ -12,6 +12,7 @@ import { PropValidator } from 'vue/types/options'
 import { getSlot, normalizeAttrs } from '../../util/helpers'
 
 export default defineComponent({
+  emits: ['update:options'],
   name: 'v-data-footer',
 
   props: {

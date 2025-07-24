@@ -1,4 +1,4 @@
-import {h, vShow, withDirectives} from 'vue'
+import { h, vShow, withDirectives, nextTick } from 'vue';
 // Components
 import VWindow from './VWindow'
 
@@ -124,7 +124,7 @@ export default baseMixins.extend({
         return
       }
 
-      this.$nextTick(() => {
+      nextTick(() => {
         // Do not set height if no transition or cancelled.
         if (!this.computedTransition || !this.inTransition) {
           return

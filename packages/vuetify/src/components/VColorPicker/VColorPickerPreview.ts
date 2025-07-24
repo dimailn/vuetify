@@ -13,6 +13,7 @@ import { defineComponent, VNode, VNodeData, PropType } from 'vue'
 import { VColorPickerColor, fromHSVA } from './util'
 
 export default defineComponent({
+  emits: ['update:color'],
   name: 'v-color-picker-preview',
 
   props: {

@@ -7,7 +7,7 @@ import * as ThemeUtils from './utils'
 import { getNestedValue } from '../../util/helpers'
 
 // Types
-import {App, reactive} from 'vue'
+import { App, reactive, nextTick } from 'vue';
 import { VuetifyPreset } from 'vuetify/types/services/presets'
 import {
   VuetifyParsedTheme,
@@ -175,7 +175,7 @@ export class Theme extends Service {
     this.vueMeta = root.$meta()
     if (this.isVueMeta23) {
       // vue-meta needs to apply after mounted()
-      root.$nextTick(() => {
+      nextTick(() => {
         this.applyVueMeta23()
       })
       return

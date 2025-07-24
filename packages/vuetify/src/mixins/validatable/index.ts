@@ -1,3 +1,4 @@
+import { nextTick } from 'vue';
 // Mixins
 import Colorable from '../colorable'
 import Themeable from '../themeable'
@@ -127,7 +128,7 @@ export default baseMixins.extend({
       set (val: any) {
         this.lazyValue = val
 
-        this.$emit('input', val)
+        this.$emit('update:modelValue', val)
       },
     },
     isDisabled (): boolean {
@@ -188,7 +189,7 @@ export default baseMixins.extend({
       // If it's the first time we're setting input,
       // mark it with hasInput
       this.hasInput = true
-      this.validateOnBlur || this.$nextTick(this.validate)
+      this.validateOnBlur || nextTick(this.validate)
     },
     isFocused (val) {
       // Should not check validation
@@ -198,7 +199,7 @@ export default baseMixins.extend({
         !this.isDisabled
       ) {
         this.hasFocused = true
-        this.validateOnBlur && this.$nextTick(this.validate)
+        this.validateOnBlur && nextTick(this.validate)
       }
     },
     isResetting () {

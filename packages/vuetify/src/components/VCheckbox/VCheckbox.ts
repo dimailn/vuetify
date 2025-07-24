@@ -8,10 +8,11 @@ import VInput from '../VInput'
 
 // Mixins
 import Selectable from '../../mixins/selectable'
-import { defineComponent, h } from 'vue'
+import { defineComponent, h, nextTick } from 'vue';
 
 /* @vue/component */
 export default defineComponent({
+  emits: ['update:indeterminate'],
   name: 'v-checkbox',
   extends: Selectable,
 
@@ -70,7 +71,7 @@ export default defineComponent({
   watch: {
     indeterminate (val) {
       // https://github.com/vuetifyjs/vuetify/issues/8270
-      this.$nextTick(() => (this.inputIndeterminate = val))
+      nextTick(() => (this.inputIndeterminate = val))
     },
     inputIndeterminate (val) {
       this.$emit('update:indeterminate', val)

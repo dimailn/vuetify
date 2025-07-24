@@ -232,7 +232,7 @@ export default mixins<options &
     update (value: number) {
       if (this.inputValue !== value) {
         this.inputValue = value
-        this.$emit('input', value)
+        this.$emit('update:modelValue', value)
       }
     },
     euclidean (p0: Point, p1: Point) {

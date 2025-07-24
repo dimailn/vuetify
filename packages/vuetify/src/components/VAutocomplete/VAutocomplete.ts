@@ -14,7 +14,7 @@ import {
 } from '../../util/helpers'
 
 // Types
-import { PropType, VNode, defineComponent } from 'vue'
+import { PropType, VNode, defineComponent, nextTick } from 'vue';
 import { PropValidator } from 'vue/types/options'
 
 const defaultMenuProps = {
@@ -26,6 +26,7 @@ const defaultMenuProps = {
 
 /* @vue/component */
 export default defineComponent({
+  emits: ['update:search-input', 'update:list-index'],
   name: 'v-autocomplete',
   extends: VSelect,
 
@@ -162,7 +163,10 @@ export default defineComponent({
   },
 
   watch: {
-    filteredItems: 'onFilteredItemsChanged',
+    filteredItems: {
+      deep: true,
+      handler: 'onFilteredItemsChanged',
+    },
     internalValue: 'setSearch',
     isFocused (val) {
       if (val) {
@@ -225,7 +229,7 @@ export default defineComponent({
         this.$emit('update:list-index', this.$refs.menu.listIndex)
       }
 
-      this.$nextTick(() => {
+      nextTick(() => {
         if (
           !this.internalSearch ||
           (val.length !== 1 &&
@@ -403,7 +407,7 @@ export default defineComponent({
     setSearch () {
       // Wait for nextTick so selectedItem
       // has had time to update
-      this.$nextTick(() => {
+      nextTick(() => {
         if (
           !this.multiple ||
           !this.internalSearch ||

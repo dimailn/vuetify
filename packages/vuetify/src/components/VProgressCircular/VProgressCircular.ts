@@ -37,7 +37,7 @@ export default defineComponent({
       type: [Number, String],
       default: 4,
     },
-    value: {
+    modelValue: {
       type: [Number, String],
       default: 0,
     },
@@ -66,15 +66,15 @@ export default defineComponent({
     },
 
     normalizedValue (): number {
-      if (this.value < 0) {
+      if (this.modelValue < 0) {
         return 0
       }
 
-      if (this.value > 100) {
+      if (this.modelValue > 100) {
         return 100
       }
 
-      return parseFloat(this.value)
+      return parseFloat(this.modelValue);
     },
 
     strokeDashArray (): number {

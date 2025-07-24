@@ -1,4 +1,4 @@
-import {h} from 'vue'
+import { h, nextTick } from 'vue';
 // Mixins
 import Colorable from '../../mixins/colorable'
 
@@ -231,7 +231,7 @@ export default mixins<options &
     value: {
       immediate: true,
       handler () {
-        this.$nextTick(() => {
+        nextTick(() => {
           if (
             !this.autoDraw ||
             this.type === 'bar' ||

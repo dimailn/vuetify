@@ -199,7 +199,7 @@ export default mixins(
     },
     emitValue () {
       const value = this.genValue()
-      if (value !== null) this.$emit('input', value)
+      if (value !== null) this.$emit('update:modelValue', value)
     },
     emitPicker (value: SelectingTimes) {
       let activePicker = 'HOUR'

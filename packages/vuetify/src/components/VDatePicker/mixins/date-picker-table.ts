@@ -123,9 +123,9 @@ export default mixins(
 
       return mergeListeners({
         onClick: () => {
-          if (isAllowed && !this.readonly) this.$emit('input', value)
+          if (isAllowed && !this.readonly) this.$emit('update:modelValue', value)
         },
-      }, createItemTypeNativeListeners(this, `:${mouseEventType}`, value))
+      }, createItemTypeNativeListeners(this, `:${mouseEventType}`, value));
     },
     genButton (value: string, isFloating: boolean, mouseEventType: string, formatter: DatePickerFormatter, isOtherMonth = false) {
       const isAllowed = isDateAllowed(value, this.min, this.max, this.allowedDates)

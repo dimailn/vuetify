@@ -16,7 +16,7 @@ import { VNode, ScopedSlotChildren } from 'vue/types/vnode'
 export const BaseItem = defineComponent({
   props: {
     activeClass: String,
-    value: {
+    modelValue: {
       required: false,
     },
     disabled: Boolean,

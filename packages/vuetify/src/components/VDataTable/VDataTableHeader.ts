@@ -20,8 +20,6 @@ import {defineComponent, h} from 'vue'
 export default defineComponent({
   name: 'v-data-table-header',
 
-  functional: true,
-
   props: {
     ...header.props,
     mobile: Boolean,

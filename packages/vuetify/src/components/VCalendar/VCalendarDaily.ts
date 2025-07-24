@@ -1,4 +1,4 @@
-import {h} from 'vue'
+import { h, nextTick } from 'vue';
 // Styles
 import './VCalendarDaily.sass'
 
@@ -44,7 +44,7 @@ export default defineComponent({
 
   methods: {
     init () {
-      this.$nextTick(this.onResize)
+      nextTick(this.onResize)
     },
     onResize () {
       this.scrollPush = this.getScrollPush()

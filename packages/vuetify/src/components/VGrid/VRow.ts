@@ -68,7 +68,7 @@ const cache = new Map<string, any[]>()
 
 export default defineComponent({
   name: 'v-row',
-  functional: true,
+
   props: {
     tag: {
       type: String,
@@ -95,6 +95,7 @@ export default defineComponent({
     },
     ...alignContentProps,
   },
+
   render () {
     // Super-fast memoization based on props, 5x faster than JSON.stringify
     let cacheKey = ''

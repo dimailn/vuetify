@@ -15,8 +15,22 @@ import {
 import { PropValidator } from 'vue/types/options'
 
 export default defineComponent({
-  name: 'v-data',
+  emits: [
+    'update:options',
+    'update:page',
+    'update:items-per-page',
+    'update:sort-by',
+    'update:sort-desc',
+    'update:group-by',
+    'update:group-desc',
+    'update:multi-sort',
+    'update:must-sort',
+    'page-count',
+    'current-items',
+    'pagination',
+  ],
 
+  name: 'v-data',
   inheritAttrs: false,
 
   props: {
@@ -271,7 +285,9 @@ export default defineComponent({
       handler (computedItems: any[]) {
         this.$emit('current-items', computedItems)
       },
+
       immediate: true,
+      deep: true,
     },
     pagination: {
       handler (pagination: DataPagination, old: DataPagination) {
@@ -386,6 +402,7 @@ export default defineComponent({
   render (): VNode {
     return this.$slots.default && this.$slots.default(this.scopedProps)[0] as any
   },
+
   mounted() {
     this.$emit('update:options', this.internalOptions)
   },

@@ -1,4 +1,4 @@
-import {h} from 'vue'
+import { h, nextTick } from 'vue';
 // Styles
 import './VItemGroup.sass'
 
@@ -181,7 +181,7 @@ export const BaseItemGroup = mixins(
     },
     // https://github.com/vuetifyjs/vuetify/issues/5352
     updateItemsState () {
-      this.$nextTick(() => {
+      nextTick(() => {
         if (this.mandatory &&
           !this.selectedItems.length
         ) {

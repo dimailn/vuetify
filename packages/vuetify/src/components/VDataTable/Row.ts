@@ -13,8 +13,6 @@ function needsTd (slot: VNode[] | undefined) {
 export default defineComponent({
   name: 'row',
 
-  functional: true,
-
   props: {
     headers: Array as PropType<DataTableHeader[]>,
     index: Number,

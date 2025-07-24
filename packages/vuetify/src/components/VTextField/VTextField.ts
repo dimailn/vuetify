@@ -25,7 +25,7 @@ import { breaking, consoleWarn } from '../../util/console'
 // Types
 import mixins from '../../util/mixins'
 import { VNode, PropType } from 'vue/types'
-import { withDirectives, h } from 'vue'
+import { withDirectives, h, nextTick } from 'vue';
 
 const baseMixins = mixins(
   VInput,
@@ -199,10 +199,10 @@ export default baseMixins.extend({
     // labelValue: 'setLabelWidth', // moved to mounted, see #11533
     outlined: 'setLabelWidth',
     label () {
-      this.$nextTick(this.setLabelWidth)
+      nextTick(this.setLabelWidth)
     },
     prefix () {
-      this.$nextTick(this.setPrefixWidth)
+      nextTick(this.setPrefixWidth)
     },
     isFocused: 'updateValue',
     modelValue (val) {
@@ -256,7 +256,7 @@ export default baseMixins.extend({
     },
     clearableCallback () {
       this.$refs.input && this.$refs.input.focus()
-      this.$nextTick(() => this.internalValue = null)
+      nextTick(() => this.internalValue = null)
     },
     genAppendSlot () {
       const slot = []
@@ -445,7 +445,7 @@ export default baseMixins.extend({
     },
     onBlur (e?: Event) {
       this.isFocused = false
-      e && this.$nextTick(() => this.$emit('blur', e))
+      e && nextTick(() => this.$emit('blur', e))
     },
     onClick () {
       if (this.isFocused || this.isDisabled || !this.$refs.input) return

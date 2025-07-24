@@ -51,7 +51,7 @@ export default mixins(
       handler (val) {
         const errors = Object.values(val).includes(true)
 
-        this.$emit('input', !errors)
+        this.$emit('update:modelValue', !errors)
       },
       deep: true,
       immediate: true,

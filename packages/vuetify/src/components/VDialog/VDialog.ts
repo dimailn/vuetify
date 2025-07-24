@@ -1,4 +1,4 @@
-import {Transition, h, vShow, withDirectives} from 'vue'
+import { Transition, h, vShow, withDirectives, nextTick } from 'vue';
 // Styles
 import './VDialog.sass'
 
@@ -131,7 +131,7 @@ export default baseMixins.extend({
   },
 
   beforeMount () {
-    this.$nextTick(() => {
+    nextTick(() => {
       this.isBooted = this.isActive
       this.isActive && this.show()
     })
@@ -146,7 +146,7 @@ export default baseMixins.extend({
       this.animate = false
       // Needed for when clicking very fast
       // outside of the dialog
-      this.$nextTick(() => {
+      nextTick(() => {
         this.animate = true
         window.clearTimeout(this.animateTimeout)
         this.animateTimeout = window.setTimeout(() => (this.animate = false), 150)
@@ -175,8 +175,8 @@ export default baseMixins.extend({
     show () {
       !this.fullscreen && !this.hideOverlay && this.genOverlay()
       // Double nextTick to wait for lazy content to be generated
-      this.$nextTick(() => {
-        this.$nextTick(() => {
+      nextTick(() => {
+        nextTick(() => {
           if (!this.$refs.dialog?.contains(document.activeElement)) {
             this.previousActiveElement = document.activeElement as HTMLElement
             this.$refs.dialog?.focus()
@@ -205,7 +205,7 @@ export default baseMixins.extend({
         if (!this.persistent) {
           this.isActive = false
           const activator = this.getActivator()
-          this.$nextTick(() => activator && (activator as HTMLElement).focus())
+          nextTick(() => activator && (activator as HTMLElement).focus())
         } else if (!this.noClickAnimation) {
           this.animateClick()
         }

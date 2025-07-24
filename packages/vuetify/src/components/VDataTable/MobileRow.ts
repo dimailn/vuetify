@@ -5,8 +5,6 @@ import { DataTableHeader } from 'vuetify/types'
 export default defineComponent({
   name: 'row',
 
-  functional: true,
-
   props: {
     headers: Array as PropType<DataTableHeader[]>,
     hideDefaultHeader: Boolean,

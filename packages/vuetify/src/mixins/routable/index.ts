@@ -1,4 +1,4 @@
-import { VNodeData, PropType, defineComponent, resolveComponent } from 'vue'
+import { VNodeData, PropType, defineComponent, resolveComponent, nextTick } from 'vue';
 
 // Directives
 import Ripple, { RippleOptions } from '../../directives/ripple'
@@ -146,7 +146,7 @@ export default defineComponent({
 
       const path = '_vnode.data.class.' + (this.exact ? exactActiveClass : activeClass)
 
-      this.$nextTick(() => {
+      nextTick(() => {
         /* istanbul ignore else */
         if (!getObjectValueByPath(this.$refs.link, path) === this.isActive) {
           this.toggle()

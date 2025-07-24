@@ -3,10 +3,8 @@ import { defineComponent, VNode, h } from 'vue'
 export default defineComponent({
   name: 'row-group',
 
-  functional: true,
-
   props: {
-    value: {
+    modelValue: {
       type: Boolean,
       default: true,
     },

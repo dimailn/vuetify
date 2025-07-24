@@ -7,7 +7,7 @@ import mixins, { ExtractVue } from '../../util/mixins'
 import { consoleWarn } from '../../util/console'
 
 // Types
-import { PropOptions } from 'vue'
+import { PropOptions, nextTick } from 'vue';
 import { VNode } from 'vue/types'
 
 interface options {
@@ -63,12 +63,12 @@ export default mixins<options &
       this.initDetach()
     },
     hasContent () {
-      this.$nextTick(this.initDetach)
+      nextTick(this.initDetach)
     },
   },
 
   beforeMount () {
-    this.$nextTick(() => {
+    nextTick(() => {
       if (this.activatorNode) {
         const activator = Array.isArray(this.activatorNode) ? this.activatorNode : [this.activatorNode]
 

@@ -10,6 +10,7 @@ import { fromHSVA, VColorPickerColor, fromRGBA } from './util'
 import { defineComponent, VNode, PropType } from 'vue'
 
 export default defineComponent({
+  emits: ['update:color'],
   name: 'v-color-picker-canvas',
 
   props: {

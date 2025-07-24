@@ -15,8 +15,8 @@ import { defineComponent } from 'vue'
 
 /* @vue/component */
 export default defineComponent({
+  emits: ['change'],
   name: 'v-overflow-btn',
-
   extends: VAutocomplete,
 
   props: {

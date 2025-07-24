@@ -1,4 +1,4 @@
-import {h, Transition, vShow, withDirectives} from 'vue'
+import { h, Transition, vShow, withDirectives, nextTick } from 'vue';
 // Styles
 import './VMenu.sass'
 
@@ -453,7 +453,7 @@ export default baseMixins.extend({
         // Wait for dependent elements to close first
         setTimeout(() => { this.isActive = false })
         const activator = this.getActivator()
-        this.$nextTick(() => activator && activator.focus())
+        nextTick(() => activator && activator.focus())
       } else if (
         !this.isActive &&
         [keyCodes.up, keyCodes.down].includes(e.keyCode)
@@ -462,7 +462,7 @@ export default baseMixins.extend({
       }
 
       // Allow for isActive watcher to generate tile list
-      this.$nextTick(() => this.changeListIndex(e))
+      nextTick(() => this.changeListIndex(e))
     },
     onResize () {
       if (!this.isActive) return

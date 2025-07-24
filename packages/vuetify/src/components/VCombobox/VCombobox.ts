@@ -10,12 +10,12 @@ import { keyCodes } from '../../util/helpers'
 
 // Types
 import { PropValidator } from 'vue/types/options'
-import { defineComponent } from 'vue'
+import { defineComponent, nextTick } from 'vue';
 
 /* @vue/component */
 export default defineComponent({
+  emits: ['paste'],
   name: 'v-combobox',
-
   extends: VAutocomplete,
 
   props: {
@@ -106,7 +106,7 @@ export default defineComponent({
       // If has menu index, let v-select-list handle
       if (this.getMenuIndex() > -1) return
 
-      this.$nextTick(this.updateSelf)
+      nextTick(this.updateSelf)
     },
     onKeyDown (e: KeyboardEvent) {
       const keyCode = e.keyCode

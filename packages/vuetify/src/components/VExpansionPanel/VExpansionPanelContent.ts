@@ -1,4 +1,4 @@
-import {h, vShow, withDirectives} from 'vue'
+import { h, vShow, withDirectives, nextTick } from 'vue';
 // Components
 import VExpansionPanel from './VExpansionPanel'
 import { VExpandTransition } from '../transitions'
@@ -46,7 +46,7 @@ export default baseMixins.extend({
         if (val) this.isBooted = true
 
         if (oldVal == null) this.isActive = val
-        else this.$nextTick(() => this.isActive = val)
+        else nextTick(() => this.isActive = val)
       },
     },
   },

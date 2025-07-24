@@ -9,8 +9,6 @@ import {defineComponent, h} from 'vue'
 export default defineComponent({
   name: 'v-app-bar-nav-icon',
 
-  functional: true,
-
   render () {
     const data = this.$attrs
 

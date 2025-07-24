@@ -8,7 +8,7 @@ import VTextField from '../VTextField/VTextField'
 import mixins from '../../util/mixins'
 
 // Types
-import Vue from 'vue'
+import Vue, { nextTick } from 'vue';
 
 interface options extends Vue {
   $refs: {
@@ -57,17 +57,17 @@ export default baseMixins.extend({
 
   watch: {
     autoGrow (val: boolean) {
-      this.$nextTick(() => {
+      nextTick(() => {
         val
           ? this.calculateInputHeight()
           : this.$refs.input?.style.removeProperty('height')
       })
     },
     lazyValue () {
-      this.autoGrow && this.$nextTick(this.calculateInputHeight)
+      this.autoGrow && nextTick(this.calculateInputHeight)
     },
     rowHeight () {
-      this.autoGrow && this.$nextTick(this.calculateInputHeight)
+      this.autoGrow && nextTick(this.calculateInputHeight)
     },
   },
 

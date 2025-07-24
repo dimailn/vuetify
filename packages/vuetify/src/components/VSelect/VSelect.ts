@@ -26,7 +26,7 @@ import { consoleError } from '../../util/console'
 
 // Types
 import mixins from '../../util/mixins'
-import { VNode, VNodeDirective, PropType, VNodeData, withDirectives, h } from 'vue'
+import { VNode, VNodeDirective, PropType, VNodeData, withDirectives, h, nextTick } from 'vue';
 import { PropValidator } from 'vue/types/options'
 import { SelectItemKey } from 'vuetify/types'
 
@@ -254,12 +254,12 @@ export default baseMixins.extend({
       this.setSelectedItems()
 
       if (this.multiple) {
-        this.$nextTick(() => {
+        nextTick(() => {
           this.$refs.menu?.updateDimensions()
         })
       }
       if (this.hideSelected) {
-        this.$nextTick(() => {
+        nextTick(() => {
           this.onScroll()
         })
       }
@@ -274,7 +274,7 @@ export default baseMixins.extend({
           // Breaks vue-test-utils if
           // this isn't calculated
           // on the next tick
-          this.$nextTick(() => {
+          nextTick(() => {
             this.cachedItems = this.filterDuplicates(this.cachedItems.concat(val))
           })
         }
@@ -305,7 +305,7 @@ export default baseMixins.extend({
     clearableCallback () {
       this.setValue(this.multiple ? [] : null)
       this.setMenuIndex(-1)
-      this.$nextTick(() => this.$refs.input && this.$refs.input.focus())
+      nextTick(() => this.$refs.input && this.$refs.input.focus())
 
       if (this.openOnClear) this.isMenuActive = true
     },
@@ -651,7 +651,7 @@ export default baseMixins.extend({
       if (index !== -1) {
         this.lastItem = Math.max(this.lastItem, index + 5)
         this.setValue(this.returnObject ? item : this.getValue(item))
-        this.$nextTick(() => this.$refs.menu.getTiles())
+        nextTick(() => this.$refs.menu.getTiles())
         setTimeout(() => this.setMenuIndex(index))
       }
     },
@@ -668,7 +668,7 @@ export default baseMixins.extend({
       // If menu is active, allow default
       // listIndex change from menu
       if (this.isMenuActive && [keyCodes.up, keyCodes.down, keyCodes.home, keyCodes.end, keyCodes.enter].includes(keyCode)) {
-        this.$nextTick(() => {
+        nextTick(() => {
           menu.changeListIndex(e)
           this.$emit('update:list-index', menu.listIndex)
         })
@@ -731,7 +731,7 @@ export default baseMixins.extend({
         // and the target is itself
         // or inside, toggle menu
         if (this.isAppendInner(e.target)) {
-          this.$nextTick(() => (this.isMenuActive = !this.isMenuActive))
+          nextTick(() => (this.isMenuActive = !this.isMenuActive))
         }
       }
 
@@ -845,7 +845,7 @@ export default baseMixins.extend({
         } else {
           const index = this.computedItems.indexOf(item)
           if (~index) {
-            this.$nextTick(() => this.$refs.menu.getTiles())
+            nextTick(() => this.$refs.menu.getTiles())
             setTimeout(() => this.setMenuIndex(index))
           }
         }
