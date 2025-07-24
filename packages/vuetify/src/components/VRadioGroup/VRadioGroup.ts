@@ -8,7 +8,7 @@ import { BaseItemGroup } from '../VItemGroup/VItemGroup'
 
 // Types
 import mixins from '../../util/mixins'
-import { PropType } from 'vue'
+import { PropType, mergeProps } from "vue";
 import {h} from 'vue'
 
 const baseMixins = mixins(
@@ -47,7 +47,8 @@ export default baseMixins.extend({
     classes (): object {
       return {
         ...VInput.computed.classes.call(this),
-        'v-input--selection-controls v-input--radio-group': true,
+        'v-input--selection-controls': true,
+        'v-input--radio-group': true,
         'v-input--radio-group--column': this.column && !this.row,
         'v-input--radio-group--row': this.row,
       }
@@ -88,10 +89,7 @@ export default baseMixins.extend({
   render () {
     const vnode = VInput.render.call(this)
 
-    vnode.props = {
-      ...vnode.props,
-      ...this.attrs$
-    }
+    vnode.props = mergeProps(vnode.props, this.attrs$)
 
     return vnode
   },
