@@ -316,9 +316,12 @@ export default defineComponent({
       const ariaActiveDescendant = getObjectValueByPath(this.$refs.menu, 'activeTile.id')
       const autocomplete = getObjectValueByPath(input.props, 'autocomplete', 'off')
 
-      input.props = mergeProps(input.props, {
+      // в оригинале class не пробрасывался в инпут
+      input.props = mergeProps({
+        ...input.props,
+        class: undefined
+      }, {
         'aria-activedescendant': ariaActiveDescendant,
-        class: undefined,
         autocomplete,
         value: this.internalSearch,
       })
