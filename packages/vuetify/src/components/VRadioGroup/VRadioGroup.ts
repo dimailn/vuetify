@@ -6,10 +6,12 @@ import './VRadioGroup.sass'
 import VInput from '../VInput'
 import { BaseItemGroup } from '../VItemGroup/VItemGroup'
 
-// Types
+// Utilities
+import { mergeProps, h } from 'vue'
 import mixins from '../../util/mixins'
-import { PropType } from 'vue'
-import {h} from 'vue'
+
+// Types
+import type { PropType } from 'vue'
 
 const baseMixins = mixins(
   VInput,
@@ -88,10 +90,7 @@ export default baseMixins.extend({
   render () {
     const vnode = VInput.render.call(this)
 
-    vnode.props = {
-      ...vnode.props,
-      ...this.attrs$
-    }
+    vnode.props = mergeProps(vnode.props, this.attrs$);
 
     return vnode
   },
