@@ -1,19 +1,36 @@
-import { VNodeDirective } from 'vue/types/vnode'
-import { VNode } from 'vue'
+import { DirectiveBinding, ObjectDirective, VNode } from 'vue'
 
-interface ResizeVNodeDirective extends VNodeDirective {
+interface ResizeDirectiveBinding extends DirectiveBinding {
   value?: () => void
   options?: boolean | AddEventListenerOptions
 }
 
-function inserted (el: HTMLElement, binding: ResizeVNodeDirective, vnode: VNode) {
+// Расширяем HTMLElement для хранения данных о resize listeners
+declare global {
+  interface HTMLElement {
+    _onResize?: Record<
+      number,
+      {
+        callback: () => void
+        options: boolean | AddEventListenerOptions
+      }
+    >
+  }
+}
+
+function mounted (
+  el: HTMLElement,
+  binding: ResizeDirectiveBinding,
+  vnode: VNode
+) {
   const callback = binding.value!
   const options = binding.options || { passive: true }
 
   window.addEventListener('resize', callback, options)
 
   el._onResize = Object(el._onResize)
-  el._onResize![vnode.context!._uid] = {
+  // В Vue 3 используем vnode.ctx.uid для получения уникального идентификатора компонента
+  el._onResize![vnode.ctx!.uid] = {
     callback,
     options,
   }
@@ -23,19 +40,23 @@ function inserted (el: HTMLElement, binding: ResizeVNodeDirective, vnode: VNode)
   }
 }
 
-function unbind (el: HTMLElement, binding: ResizeVNodeDirective, vnode: VNode) {
-  if (!el._onResize?.[vnode.context!._uid]) return
+function unmounted (
+  el: HTMLElement,
+  binding: ResizeDirectiveBinding,
+  vnode: VNode
+) {
+  if (!el._onResize?.[vnode.ctx!.uid]) return
 
-  const { callback, options } = el._onResize[vnode.context!._uid]!
+  const { callback, options } = el._onResize[vnode.ctx!.uid]!
 
   window.removeEventListener('resize', callback, options)
 
-  delete el._onResize[vnode.context!._uid]
+  delete el._onResize[vnode.ctx!.uid]
 }
 
-export const Resize = {
-  inserted,
-  unbind,
+export const Resize: ObjectDirective = {
+  mounted,
+  unmounted,
 }
 
 export default Resize

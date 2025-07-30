@@ -1,21 +1,32 @@
-import { VNodeDirective } from 'vue/types/vnode'
-import { DirectiveOptions, VNode } from 'vue'
+import { DirectiveBinding, VNode, ObjectDirective } from 'vue'
 
-interface ScrollVNodeDirective extends Omit<VNodeDirective, 'modifiers'> {
-  value: EventListener | {
-    handler: EventListener
-    options?: boolean | AddEventListenerOptions
-  } | EventListenerObject & { options?: boolean | AddEventListenerOptions }
+interface ScrollDirectiveBinding extends Omit<DirectiveBinding, 'modifiers'> {
+  value:
+    | EventListener
+    | {
+        handler: EventListener
+        options?: boolean | AddEventListenerOptions
+      }
+    | (EventListenerObject & { options?: boolean | AddEventListenerOptions })
   modifiers?: {
     self?: boolean
   }
 }
 
-function inserted (el: HTMLElement, binding: ScrollVNodeDirective, vnode: VNode) {
+function mounted (
+  el: HTMLElement,
+  binding: ScrollDirectiveBinding,
+  vnode: VNode
+) {
   const { self = false } = binding.modifiers || {}
   const value = binding.value
-  const options = (typeof value === 'object' && value.options) || { passive: true }
-  const handler = typeof value === 'function' || 'handleEvent' in value ? value : value.handler
+  const options = (typeof value === 'object' && value.options) || {
+    passive: true,
+  }
+  const handler =
+    typeof value === 'function' || 'handleEvent' in value
+      ? value
+      : value.handler
 
   const target = self
     ? el
@@ -28,7 +39,8 @@ function inserted (el: HTMLElement, binding: ScrollVNodeDirective, vnode: VNode)
   target.addEventListener('scroll', handler, options)
 
   el._onScroll = Object(el._onScroll)
-  el._onScroll![vnode.context!._uid] = {
+  // В Vue 3 используем vnode.ctx.uid вместо vnode.context._uid
+  el._onScroll![vnode.ctx!.uid] = {
     handler,
     options,
     // Don't reference self
@@ -36,18 +48,22 @@ function inserted (el: HTMLElement, binding: ScrollVNodeDirective, vnode: VNode)
   }
 }
 
-function unbind (el: HTMLElement, binding: ScrollVNodeDirective, vnode: VNode) {
-  if (!el._onScroll?.[vnode.context!._uid]) return
+function unmounted (
+  el: HTMLElement,
+  binding: ScrollDirectiveBinding,
+  vnode: VNode
+) {
+  if (!el._onScroll?.[vnode.ctx!.uid]) return
 
-  const { handler, options, target = el } = el._onScroll[vnode.context!._uid]!
+  const { handler, options, target = el } = el._onScroll[vnode.ctx!.uid]!
 
   target.removeEventListener('scroll', handler, options)
-  delete el._onScroll[vnode.context!._uid]
+  delete el._onScroll[vnode.ctx!.uid]
 }
 
-export const Scroll = {
-  inserted,
-  unbind,
-} as DirectiveOptions
+export const Scroll: ObjectDirective = {
+  mounted,
+  unmounted,
+}
 
 export default Scroll
