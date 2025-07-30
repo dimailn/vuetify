@@ -1,11 +1,10 @@
 import { DirectiveBinding, ObjectDirective, VNode } from 'vue'
 
 interface ResizeDirectiveBinding extends DirectiveBinding {
-  value?: () => void
+  value: () => void
   options?: boolean | AddEventListenerOptions
 }
 
-// Расширяем HTMLElement для хранения данных о resize listeners
 declare global {
   interface HTMLElement {
     _onResize?: Record<
@@ -23,13 +22,12 @@ function mounted (
   binding: ResizeDirectiveBinding,
   vnode: VNode
 ) {
-  const callback = binding.value!
+  const callback = binding.value
   const options = binding.options || { passive: true }
 
   window.addEventListener('resize', callback, options)
 
   el._onResize = Object(el._onResize)
-  // В Vue 3 используем vnode.ctx.uid для получения уникального идентификатора компонента
   el._onResize![vnode.ctx!.uid] = {
     callback,
     options,
