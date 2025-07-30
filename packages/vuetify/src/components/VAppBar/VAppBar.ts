@@ -1,4 +1,3 @@
-import {h} from 'vue'
 // Styles
 import './VAppBar.sass'
 
@@ -16,10 +15,11 @@ import Toggleable from '../../mixins/toggleable'
 
 // Utilities
 import { convertToUnit } from '../../util/helpers'
+import { h, mergeProps, withDirectives } from "vue"
 import mixins from '../../util/mixins'
 
 // Types
-import { VNode } from 'vue'
+import type { VNode } from 'vue'
 
 const baseMixins = mixins(
   VToolbar,
@@ -239,8 +239,8 @@ export default baseMixins.extend({
     genBackground () {
       const render = VToolbar.methods.genBackground.call(this)
 
-      render.data = this._b(render.data || {}, render.tag!, {
-        style: { opacity: this.computedOpacity },
+      render.props = mergeProps(render.props || {}, {
+        style: { opacity: this.computedOpacity }
       })
 
       return render
@@ -270,15 +270,10 @@ export default baseMixins.extend({
   render (): VNode {
     const render = VToolbar.render.call(this, h)
 
-    render.data = render.data || {}
-
     if (this.canScroll) {
-      render.data.directives = render.data.directives || []
-      render.data.directives.push({
-        arg: this.scrollTarget,
-        name: 'scroll',
-        value: this.onScroll,
-      })
+      return withDirectives(render, [
+        [Scroll, this.onScroll, this.scrollTarget]
+      ])
     }
 
     return render
