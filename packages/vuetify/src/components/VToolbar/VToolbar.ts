@@ -1,4 +1,4 @@
-import {h} from 'vue'
+import { h, mergeProps } from 'vue'
 // Styles
 import './VToolbar.sass'
 
@@ -157,11 +157,11 @@ export default defineComponent({
     const data = this.setBackgroundColor(this.color, {
       class: this.classes,
       style: this.styles
-    });
+    })
 
     if (this.isExtended) children.push(this.genExtension())
     if (this.src || this.$slots.img) children.unshift(this.genBackground())
 
-    return h(this.tag, { ...data, ...this.$attrs }, children);
+    return h(this.tag, mergeProps(this.$attrs, data), children);
   },
 })
