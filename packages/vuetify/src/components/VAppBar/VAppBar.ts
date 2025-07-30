@@ -15,7 +15,7 @@ import Toggleable from '../../mixins/toggleable'
 
 // Utilities
 import { convertToUnit } from '../../util/helpers'
-import { h, mergeProps, withDirectives } from "vue"
+import { mergeProps, withDirectives } from 'vue'
 import mixins from '../../util/mixins'
 
 // Types
@@ -268,13 +268,16 @@ export default baseMixins.extend({
   },
 
   render (): VNode {
-    const render = VToolbar.render.call(this, h)
+    const render = VToolbar.render.call(this)
 
     if (this.canScroll) {
+      render.key = 'v-app-bar-scroll'
       return withDirectives(render, [
-        [Scroll, this.onScroll, this.scrollTarget]
+        [Scroll, this.onScroll, this.scrollTarget],
       ])
     }
+
+    render.key = 'v-app-bar-no-scroll'
 
     return render
   },

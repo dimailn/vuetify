@@ -1,4 +1,4 @@
-import { h, mergeProps } from 'vue'
+import { h } from 'vue'
 // Styles
 import './VToolbar.sass'
 
@@ -162,6 +162,6 @@ export default defineComponent({
     if (this.isExtended) children.push(this.genExtension())
     if (this.src || this.$slots.img) children.unshift(this.genBackground())
 
-    return h(this.tag, mergeProps(this.$attrs, data), children);
-  },
+    return h(this.tag, {...this.attrs$, ...data}, children)
+  }
 })
