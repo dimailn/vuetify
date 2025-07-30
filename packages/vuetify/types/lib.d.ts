@@ -3,12 +3,11 @@ declare module 'vuetify/lib' {
   import { Colors } from 'vuetify/lib/util/colors'
 
   export default class Vuetify {
-    static install(app: App): void;
+    static install(app: App): void
   }
 
-  const colors: Colors
+  export const colors: Colors;
 
-  export { colors }
   export * from 'vuetify/lib/components'
   export * from 'vuetify/lib/directives'
 }
