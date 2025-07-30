@@ -6,7 +6,7 @@ import VSelect, { defaultMenuProps as VSelectMenuProps } from '../VSelect/VSelec
 import VTextField from '../VTextField/VTextField'
 
 // Utilities
-import mergeData from '../../util/mergeData'
+import { defineComponent, mergeProps } from 'vue'
 import {
   getObjectValueByPath,
   getPropertyFromItem,
@@ -14,7 +14,7 @@ import {
 } from '../../util/helpers'
 
 // Types
-import { PropType, VNode, defineComponent } from 'vue'
+import { PropType, VNode } from 'vue'
 import { PropValidator } from 'vue/types/options'
 
 const defaultMenuProps = {
@@ -313,9 +313,16 @@ export default defineComponent({
     genInput () {
       const input = VTextField.methods.genInput.call(this)
 
-      input.data = mergeData(input.props!, {
-        'aria-activedescendant': getObjectValueByPath(this.$refs.menu, 'activeTile.id'),
-        autocomplete: getObjectValueByPath(input.data!, 'attrs.autocomplete', 'off'),
+      const ariaActiveDescendant = getObjectValueByPath(this.$refs.menu, 'activeTile.id')
+      const autocomplete = getObjectValueByPath(input.props, 'autocomplete', 'off')
+
+      // в оригинале class не пробрасывался в инпут
+      input.props = mergeProps({
+        ...input.props,
+        class: undefined
+      }, {
+        'aria-activedescendant': ariaActiveDescendant,
+        autocomplete,
         value: this.internalSearch,
       })
 
