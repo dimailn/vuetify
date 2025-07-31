@@ -1,4 +1,4 @@
-import { VNodeDirective, VNode } from 'vue/types/vnode'
+import { DirectiveBinding, VNode, ObjectDirective } from 'vue'
 import { keys } from '../../util/helpers'
 import { TouchHandlers, TouchValue, TouchWrapper } from 'vuetify/types'
 import makeDirectiveActivatable from '../../util/make-directive-activatable'
@@ -9,10 +9,6 @@ export interface TouchStoredHandlers {
   touchmove: (e: TouchEvent) => void
 }
 
-interface TouchVNodeDirective extends VNodeDirective {
-  value?: TouchValue
-}
-
 const handleGesture = (wrapper: TouchWrapper) => {
   const { touchstartX, touchendX, touchstartY, touchendY } = wrapper
   const dirRatio = 0.5
@@ -21,13 +17,19 @@ const handleGesture = (wrapper: TouchWrapper) => {
   wrapper.offsetY = touchendY - touchstartY
 
   if (Math.abs(wrapper.offsetY) < dirRatio * Math.abs(wrapper.offsetX)) {
-    wrapper.left && (touchendX < touchstartX - minDistance) && wrapper.left(wrapper)
-    wrapper.right && (touchendX > touchstartX + minDistance) && wrapper.right(wrapper)
+    wrapper.left &&
+      touchendX < touchstartX - minDistance &&
+      wrapper.left(wrapper)
+    wrapper.right &&
+      touchendX > touchstartX + minDistance &&
+      wrapper.right(wrapper)
   }
 
   if (Math.abs(wrapper.offsetX) < dirRatio * Math.abs(wrapper.offsetY)) {
-    wrapper.up && (touchendY < touchstartY - minDistance) && wrapper.up(wrapper)
-    wrapper.down && (touchendY > touchstartY + minDistance) && wrapper.down(wrapper)
+    wrapper.up && touchendY < touchstartY - minDistance && wrapper.up(wrapper)
+    wrapper.down &&
+      touchendY > touchstartY + minDistance &&
+      wrapper.down(wrapper)
   }
 }
 
@@ -36,8 +38,7 @@ function touchstart (event: TouchEvent, wrapper: TouchWrapper) {
   wrapper.touchstartX = touch.clientX
   wrapper.touchstartY = touch.clientY
 
-  wrapper.start &&
-    wrapper.start(Object.assign(event, wrapper))
+  wrapper.start && wrapper.start(Object.assign(event, wrapper))
 }
 
 function touchend (event: TouchEvent, wrapper: TouchWrapper) {
@@ -45,8 +46,7 @@ function touchend (event: TouchEvent, wrapper: TouchWrapper) {
   wrapper.touchendX = touch.clientX
   wrapper.touchendY = touch.clientY
 
-  wrapper.end &&
-    wrapper.end(Object.assign(event, wrapper))
+  wrapper.end && wrapper.end(Object.assign(event, wrapper))
 
   handleGesture(wrapper)
 }
@@ -85,39 +85,49 @@ function createHandlers (value: TouchHandlers): TouchStoredHandlers {
   }
 }
 
-function inserted (el: HTMLElement, binding: TouchVNodeDirective, vnode: VNode) {
-  const value = binding.value!
+function mounted (
+  el: HTMLElement,
+  binding: DirectiveBinding<TouchValue>,
+  vnode: VNode
+) {
+  const value = binding.value
   const target = value.parent ? el.parentElement : el
   const options = value.options || { passive: true }
 
   // Needed to pass unit tests
   if (!target) return
 
-  const handlers = createHandlers(binding.value!)
+  const handlers = createHandlers(binding.value)
   target._touchHandlers = Object(target._touchHandlers)
-  target._touchHandlers![vnode.ctx.uid] = handlers
+  target._touchHandlers![vnode.ctx!.uid] = handlers
 
   keys(handlers).forEach(eventName => {
-    target.addEventListener(eventName, handlers[eventName] as EventListener, options)
+    target.addEventListener(
+      eventName,
+      handlers[eventName] as EventListener,
+      options
+    )
   })
 }
 
-function unbind (el: HTMLElement, binding: TouchVNodeDirective, vnode: VNode) {
-  const target = binding.value!.parent ? el.parentElement : el
+function unmounted (
+  el: HTMLElement,
+  binding: DirectiveBinding<TouchValue>,
+  vnode: VNode
+) {
+  const target = binding.value.parent ? el.parentElement : el
   if (!target || !target._touchHandlers) return
 
-  const handlers = target._touchHandlers[vnode.ctx.uid]
+  const handlers = target._touchHandlers[vnode.ctx!.uid]
   keys(handlers).forEach(eventName => {
     target.removeEventListener(eventName, handlers[eventName])
   })
-  delete target._touchHandlers[vnode.ctx.uid]
+  delete target._touchHandlers[vnode.ctx!.uid]
 }
 
-export const Touch = {
-  mounted: inserted,
-  unmounted: unbind,
+export const Touch: ObjectDirective<HTMLElement, TouchValue> = {
+  mounted,
+  unmounted,
 }
-
-
 
 export default makeDirectiveActivatable(Touch)

@@ -60,7 +60,7 @@ export default defineComponent({
           'container--fluid': this.fluid,
         }).concat(classes || []).concat('container'),
       }),
-      this.$slots.default()
+      this.$slots.default?.()
     )
   },
 })

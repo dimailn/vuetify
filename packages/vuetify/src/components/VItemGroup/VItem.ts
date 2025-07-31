@@ -7,10 +7,9 @@ import { factory as GroupableFactory } from '../../mixins/groupable'
 // Utilities
 import mixins from '../../util/mixins'
 import { consoleWarn } from '../../util/console'
+import { defineComponent, mergeProps } from "vue"
 
-// Types
-import {defineComponent} from 'vue'
-import { VNode, ScopedSlotChildren } from 'vue/types/vnode'
+import type { VNode } from 'vue'
 
 /* @vue/component */
 export const BaseItem = defineComponent({
@@ -32,42 +31,45 @@ export const BaseItem = defineComponent({
     },
   },
 
-  render (): VNode {
+  render (): VNode | null {
     if (!this.$slots.default) {
       consoleWarn('v-item is missing a default scopedSlot', this)
-
-      return null as any
+      return null
     }
 
-    let element: VNode | ScopedSlotChildren
+    const slotContent = this.$slots.default({
+      active: this.isActive,
+      toggle: this.toggle,
+    })
 
-    /* istanbul ignore else */
-    if (this.$slots.default) {
-      element = this.$slots.default({
-        active: this.isActive,
-        toggle: this.toggle,
-      })
+    if (!slotContent || slotContent.length === 0) {
+      consoleWarn('v-item slot returned empty content', this)
+      return null
     }
 
-    if (Array.isArray(element) && element.length === 1) {
-      element = element[0]
+    let element = slotContent[0]
+
+    if (!element) {
+      consoleWarn('v-item should contain at least one element', this)
+      return null
     }
 
-    if (!element || Array.isArray(element) || !element.tag) {
-      consoleWarn('v-item should only contain a single element', this)
-
-      return element as any
+    if (!element.type) {
+      consoleWarn('v-item should only contain valid VNode elements', this)
+      return element
     }
 
-    element.data = this._b(element.data || {}, element.tag!, {
+    element.props = mergeProps(element.props || {}, {
       class: {
         [this.activeClass]: this.isActive,
-        'v-item--disabled': this.disabled,
-      },
+        "v-item--disabled": this.disabled
+      }
     })
 
     if (this.disabled) {
-      element.data.attrs = { ...element.data.attrs, tabindex: -1 }
+      element.props = mergeProps(element.props || {}, {
+        tabindex: -1
+      })
     }
 
     return element

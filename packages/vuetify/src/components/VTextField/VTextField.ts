@@ -355,6 +355,7 @@ export default baseMixins.extend({
       if (!this.showLabel) return null
 
       const data = {
+        ref: "label",
         absolute: true,
         color: this.validationState,
         dark: this.dark,
@@ -500,8 +501,8 @@ export default baseMixins.extend({
     setLabelWidth () {
       if (!this.outlined) return
 
-      this.labelWidth = this.$refs.label
-        ? Math.min(this.$refs.label.scrollWidth * 0.75 + 6, (this.$el as HTMLElement).offsetWidth - 24)
+      this.labelWidth = this.$refs?.label?.$el
+        ? Math.min(this.$refs?.label?.$el.scrollWidth * 0.75 + 6, (this.$el as HTMLElement).offsetWidth - 24)
         : 0
     },
     setPrefixWidth () {
