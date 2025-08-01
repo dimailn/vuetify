@@ -11,8 +11,6 @@ import { h } from 'vue'
 
 export function prevent (e: Event) {
   e.preventDefault()
-  // всплытие провоцирует двойной onChange
-  e.stopPropagation()
 }
 
 /* @vue/component */
@@ -118,7 +116,7 @@ export default mixins(
       })
     },
     onClick (e: Event) {
-      this.onChange()
+      if (e.target?.id === this.computedId) this.onChange()
       this.$emit('click', e)
     },
     onChange () {
