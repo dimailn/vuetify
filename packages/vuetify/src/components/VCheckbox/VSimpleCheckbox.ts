@@ -45,7 +45,7 @@ export default defineComponent({
     },
   },
 
-  emits: ['update:modelValue'],
+  emits: ['input', 'update:modelValue'],
 
   methods: {
     getIcon (): string {
@@ -96,10 +96,8 @@ export default defineComponent({
       const newValue = !this.modelValue
       const attrs = this.$attrs
 
-      if (attrs.onInput && typeof attrs.onInput === 'function') {
-        attrs.onInput(newValue)
-      }
 
+      this.$emit("input", newValue);
       this.$emit('update:modelValue', newValue)
     },
 
