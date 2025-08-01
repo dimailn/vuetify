@@ -100,10 +100,6 @@ export default defineComponent({
         attrs.onInput(newValue)
       }
 
-      if (attrs['onUpdate:modelValue'] && typeof attrs['onUpdate:modelValue'] === 'function') {
-        attrs['onUpdate:modelValue'](newValue)
-      }
-
       this.$emit('update:modelValue', newValue)
     },
 
