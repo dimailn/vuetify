@@ -11,6 +11,7 @@ import { h } from 'vue'
 
 export function prevent (e: Event) {
   e.preventDefault()
+  // всплытие провоцирует двойной onChange
   e.stopPropagation()
 }
 
