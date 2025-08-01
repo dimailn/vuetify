@@ -96,7 +96,6 @@ export default defineComponent({
       const newValue = !this.modelValue
       const attrs = this.$attrs
 
-      // Вызываем обработчики событий если они есть
       if (attrs.onInput && typeof attrs.onInput === 'function') {
         attrs.onInput(newValue)
       }
