@@ -7,10 +7,12 @@ import Comparable from '../comparable'
 
 // Utilities
 import mixins from '../../util/mixins'
-import {h} from 'vue'
+import { h } from 'vue'
 
 export function prevent (e: Event) {
   e.preventDefault()
+  // всплытие провоцирует двойной onChange
+  e.stopPropagation()
 }
 
 /* @vue/component */

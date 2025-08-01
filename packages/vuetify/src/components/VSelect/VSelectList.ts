@@ -90,7 +90,7 @@ export default mixins(Colorable, Themeable).extend({
       return h(VListItemAction, [
         h(VSimpleCheckbox, {
           color: this.color,
-          value: inputValue,
+          modelValue: inputValue,
           ripple: false,
           onInput: () => this.$emit('select', item)
         }),

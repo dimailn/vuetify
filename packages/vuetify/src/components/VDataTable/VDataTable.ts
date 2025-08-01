@@ -511,7 +511,7 @@ export default mixins(
           isMobile: this.isMobile,
         }) : () => h(VSimpleCheckbox, {
           class: 'v-data-table__checkbox',
-          value: data.isSelected,
+          modelValue: data.isSelected,
           disabled: !this.isSelectable(item),
           color: this.checkboxColor ?? '',
           onInput: (val: boolean) => data.select(val),

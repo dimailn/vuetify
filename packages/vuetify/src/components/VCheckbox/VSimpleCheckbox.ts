@@ -2,8 +2,7 @@ import './VSimpleCheckbox.sass'
 
 import Ripple from '../../directives/ripple'
 
-import { VNode, VNodeDirective, h } from 'vue'
-import {defineComponent} from 'vue'
+import { VNode, h, defineComponent, withDirectives } from 'vue'
 
 import { VIcon } from '../VIcon'
 
@@ -18,8 +17,6 @@ import { wrapInArray } from '../../util/helpers'
 export default defineComponent({
   name: 'v-simple-checkbox',
 
-  functional: true,
-
   directives: {
     Ripple,
   },
@@ -32,7 +29,7 @@ export default defineComponent({
       type: Boolean,
       default: true,
     },
-    value: Boolean,
+    modelValue: Boolean,
     indeterminate: Boolean,
     indeterminateIcon: {
       type: String,
@@ -48,49 +45,94 @@ export default defineComponent({
     },
   },
 
+  emits: ['input', 'update:modelValue'],
+
+  methods: {
+    getIcon (): string {
+      const { indeterminate, modelValue, indeterminateIcon, onIcon, offIcon } = this.$props
+
+      if (indeterminate) return indeterminateIcon
+      if (modelValue) return onIcon
+      return offIcon
+    },
+
+    createIcon (): VNode {
+      const { modelValue, disabled, dark, light, color } = this.$props
+
+      return h(
+        VIcon,
+        Colorable.methods.setTextColor(modelValue && color, {
+          disabled,
+          dark,
+          light,
+        }),
+        () => this.getIcon()
+      )
+    },
+
+    createRipple (): VNode | null {
+      const { ripple, disabled, color } = this.$props
+
+      if (!ripple || disabled) return null
+
+      return withDirectives(
+        h(
+          'div',
+          Colorable.methods.setTextColor(color, {
+            class: 'v-input--selection-controls__ripple',
+          })
+        ),
+        [
+          [Ripple, { center: true }],
+        ]
+      )
+    },
+
+    handleClick (e: MouseEvent): void {
+      e.stopPropagation()
+
+      if (this.$props.disabled) return
+
+      const newValue = !this.modelValue
+      const attrs = this.$attrs
+
+
+      this.$emit("input", newValue);
+      this.$emit('update:modelValue', newValue)
+    },
+
+    createChildren (): VNode[] {
+      const children = [this.createIcon()]
+
+      const ripple = this.createRipple()
+      if (ripple) {
+        children.push(ripple)
+      }
+
+      return children
+    },
+  },
+
   render (): VNode {
-    const props = this.$props
+    const { disabled } = this.$props
     const data = this.$attrs
 
-    const children = []
-    let icon = props.offIcon
-    if (props.indeterminate) icon = props.indeterminateIcon
-    else if (props.value) icon = props.onIcon
-
-    children.push(h(VIcon, Colorable.methods.setTextColor(props.value && props.color, {
-      disabled: props.disabled,
-      dark: props.dark,
-      light: props.light
-    }), icon))
-
-    if (props.ripple && !props.disabled) {
-      const ripple = h('div', Colorable.methods.setTextColor(props.color, {
-        class: 'v-input--selection-controls__ripple',
-        directives: [{
-          def: Ripple,
-          name: 'ripple',
-          value: { center: true },
-        }] as VNodeDirective[],
-      }))
-
-      children.push(ripple)
-    }
-
-    return h('div',
+    return h(
+      'div',
       mergeData(data, {
         class: {
           'v-simple-checkbox': true,
-          'v-simple-checkbox--disabled': props.disabled,
+          'v-simple-checkbox--disabled': disabled,
         },
-        onClick: (e: MouseEvent) => {
-          e.stopPropagation()
-
-          if (data.on && data.on.input && !props.disabled) {
-            data.onInput && data.onInput(!props.value)
-          }
-        },
-      }), [
-        h('div', { class: 'v-input--selection-controls__input' }, children),
-      ])
+        onClick: this.handleClick,
+      }),
+      [
+        h(
+          'div',
+          { class: 'v-input--selection-controls__input' },
+          this.createChildren()
+        )
+      ]
+    )
   },
 })

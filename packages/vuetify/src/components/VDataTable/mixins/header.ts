@@ -3,18 +3,18 @@ import VIcon from '../../VIcon'
 import VSimpleCheckbox from '../../VCheckbox/VSimpleCheckbox'
 import ripple from '../../../directives/ripple'
 
-import {defineComponent, h} from 'vue'
+import { defineComponent, h } from 'vue'
 import { PropValidator } from 'vue/types/options'
 import mixins from '../../../util/mixins'
 import { DataOptions, DataTableHeader } from 'vuetify/types'
 
 type VDataTableInstance = InstanceType<typeof VDataTable>
 
-interface options extends Vue {
+interface HeaderOptions {
   dataTable: VDataTableInstance
 }
 
-export default mixins<options>().extend({
+export default mixins<HeaderOptions>().extend({
   // https://github.com/vuejs/vue/issues/6872
   directives: {
     ripple,
@@ -53,7 +53,7 @@ export default mixins<options>().extend({
   methods: {
     genSelectAll () {
       const data = {
-        value: this.everyItem,
+        modelValue: this.everyItem,
         indeterminate: !this.everyItem && this.someItems,
         color: this.checkboxColor ?? '',
         onInput: (v: boolean) => this.$emit('toggle-select-all', v)

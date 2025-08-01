@@ -110,7 +110,7 @@ export default mixins(header).extend({
     return h('thead', {
       class: 'v-data-table-header',
     }, [
-      h('tr', this.headers.map(header => this.genHeader(header))),
+      h('tr', this.headers?.map(header => this.genHeader(header)) || []),
     ])
   },
 })
