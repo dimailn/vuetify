@@ -11,8 +11,6 @@ import { h } from 'vue'
 
 export function prevent (e: Event) {
   e.preventDefault()
-  // всплытие провоцирует двойной onChange
-  e.stopPropagation()
 }
 
 /* @vue/component */
@@ -118,7 +116,14 @@ export default mixins(
       })
     },
     onClick (e: Event) {
-      this.onChange()
+      // тут задваиваются клики
+      const target = e.target as HTMLElement
+      const isCurrentClick = target.id === this.computedId
+      const isRippleClick = target.classList.contains('v-input--selection-controls__ripple')
+
+      if (isCurrentClick || isRippleClick || !this.computedId) {
+        this.onChange();
+      }
       this.$emit('click', e)
     },
     onChange () {
