@@ -20,8 +20,6 @@ import {defineComponent, h} from 'vue'
 export default defineComponent({
   name: 'v-data-table-header',
 
-  functional: true,
-
   props: {
     ...header.props,
     mobile: Boolean,
@@ -29,12 +27,15 @@ export default defineComponent({
 
   render () {
     const props = this.$props
-    let data = this.$attrs
+    let data = {
+      ...this.$attrs,
+      ...props,
+    }
 
     // dedupeModelListeners(data)
     const children = rebuildSlots(this.$slots, h)
 
-    if (this.mobile) {
+    if (props.mobile) {
       return h(VDataTableHeaderMobile, data, children)
     } else {
       return h(VDataTableHeaderDesktop, data, children)

@@ -7,10 +7,11 @@ import Comparable from '../comparable'
 
 // Utilities
 import mixins from '../../util/mixins'
-import {h} from 'vue'
+import { h } from 'vue'
 
 export function prevent (e: Event) {
   e.preventDefault()
+  e.stopPropagation()
 }
 
 /* @vue/component */
