@@ -116,11 +116,12 @@ export default mixins(
       })
     },
     onClick (e: Event) {
+      // тут задваиваются клики
       const target = e.target as HTMLElement
-      const isInputClick = target.tagName === 'INPUT' || target.id === this.computedId
+      const isCurrentClick = target.id === this.computedId
       const isRippleClick = target.classList.contains('v-input--selection-controls__ripple')
 
-      if (isInputClick || isRippleClick || !this.computedId) {
+      if (isCurrentClick || isRippleClick || !this.computedId) {
         this.onChange();
       }
       this.$emit('click', e)
