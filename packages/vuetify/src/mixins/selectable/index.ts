@@ -92,7 +92,7 @@ export default mixins(
       if (!label) return label
 
       // Label shouldn't cause the input to focus
-      label!.onClick = prevent
+      label!.onClick = this.onClick
 
       return label
     },
@@ -116,14 +116,8 @@ export default mixins(
       })
     },
     onClick (e: Event) {
-      // тут задваиваются клики
-      const target = e.target as HTMLElement
-      const isCurrentClick = target.id === this.computedId
-      const isRippleClick = target.classList.contains('v-input--selection-controls__ripple')
-
-      if (isCurrentClick || isRippleClick || !this.computedId) {
-        this.onChange();
-      }
+      e.preventDefault()
+      this.onChange()
       this.$emit('click', e)
     },
     onChange () {
