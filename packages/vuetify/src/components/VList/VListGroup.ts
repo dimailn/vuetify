@@ -1,4 +1,4 @@
-import {h, withDirectives} from 'vue'
+import {h, withDirectives, vShow} from 'vue'
 // Styles
 import './VListGroup.sass'
 
@@ -102,7 +102,7 @@ export default baseMixins.extend({
 
     if (this.group &&
       this.$route &&
-      this.value == null
+      this.modelValue == null
     ) {
       this.isActive = this.matchRoute(this.$route.path)
     }
@@ -157,14 +157,15 @@ export default baseMixins.extend({
       ])
     },
     genItems (): VNode[] {
+      const directives = [[
+        vShow,
+        this.isActive
+      ]]
+
       return this.showLazyContent(() => [
-        h('div', {
+        withDirectives(h('div', {
           class: 'v-list-group__items',
-          directives: [{
-            name: 'show',
-            value: this.isActive,
-          }],
-        }, getSlot(this)),
+        }, getSlot(this)), directives)
       ])
     },
     genPrependIcon (): VNode | null {
@@ -207,8 +208,7 @@ export default baseMixins.extend({
 
   render (): VNode {
     return h('div', this.setTextColor(this.isActive && this.color, {
-      class: 'v-list-group',
-      class: this.classes,
+      class: ['v-list-group', this.classes]
     }), [
       this.genHeader(),
       h(VExpandTransition, this.genItems()),

@@ -25,6 +25,8 @@ export default function (expandedParentClass = '', x = false) {
     },
 
     onEnter (el: HTMLExpandElement) {
+      if(el.style.display === 'none') return
+
       const initialStyle = el._initialStyle!
 
       el.style.setProperty('transition', 'none', 'important')
