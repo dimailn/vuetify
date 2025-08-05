@@ -284,7 +284,7 @@ export default mixins<options &
       return h('defs', [
         h('linearGradient', {
           attrs: {
-            id: this._uid,
+            id: this.$.uid,
             gradientUnits: 'userSpaceOnUse',
             x1: gradientDirection === 'left' ? '100%' : '0',
             y1: gradientDirection === 'top' ? '100%' : '0',
@@ -310,8 +310,8 @@ export default mixins<options &
       return h('path', {
         attrs: {
           d: genPath(points, this._radius, this.fill, this.parsedHeight),
-          fill: this.fill ? `url(#${this._uid})` : 'none',
-          stroke: this.fill ? 'none' : `url(#${this._uid})`,
+          fill: this.fill ? `url(#${this.$.uid})` : 'none',
+          stroke: this.fill ? 'none' : `url(#${this.$.uid})`,
         },
         ref: 'path',
       })
@@ -347,12 +347,12 @@ export default mixins<options &
         },
       }, [
         this.genGradient(),
-        this.genClipPath(bars, offsetX, this._lineWidth, 'sparkline-bar-' + this._uid),
+        this.genClipPath(bars, offsetX, this._lineWidth, 'sparkline-bar-' + this.$.uid),
         this.hasLabels ? this.genLabels(offsetX) : undefined as never,
         h('g', {
           attrs: {
-            'clip-path': `url(#sparkline-bar-${this._uid}-clip)`,
-            fill: `url(#${this._uid})`,
+            'clip-path': `url(#sparkline-bar-${this.$.uid}-clip)`,
+            fill: `url(#${this.$.uid})`,
           },
         }, [
           h('rect', {

@@ -91,7 +91,7 @@ export default baseMixins.extend({
     isActive (val: boolean) {
       /* istanbul ignore else */
       if (!this.subGroup && val) {
-        this.list && this.list.listClick(this._uid)
+        this.list && this.list.listClick(this.$.uid)
       }
     },
     $route: 'onRouteChange',
@@ -189,13 +189,13 @@ export default baseMixins.extend({
 
       /* istanbul ignore else */
       if (isActive && this.isActive !== isActive) {
-        this.list && this.list.listClick(this._uid)
+        this.list && this.list.listClick(this.$.uid)
       }
 
       this.isActive = isActive
     },
     toggle (uid: number) {
-      const isActive = this._uid === uid
+      const isActive = this.$.uid === uid
 
       if (isActive) this.isBooted = true
       this.$nextTick(() => (this.isActive = isActive))

@@ -75,7 +75,7 @@ export default defineComponent({
       this.groups.push(content)
     },
     unregister (content: VListGroupInstance) {
-      const index = this.groups.findIndex(g => g._uid === content._uid)
+      const index = this.groups.findIndex(g => g.$.uid === content.$.uid)
 
       if (index > -1) this.groups.splice(index, 1)
     },

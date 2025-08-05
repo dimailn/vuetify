@@ -147,7 +147,7 @@ export default mixins(Colorable, Themeable).extend({
         // Default behavior in list does not
         // contain aria-selected by default
         'aria-selected': String(value),
-        id: `list-item-${this._uid}-${index}`,
+        id: `list-item-${this.$.uid}-${index}`,
         role: 'option',
         onMousedown: (e: Event) => {
           // Prevent onBlur from being called

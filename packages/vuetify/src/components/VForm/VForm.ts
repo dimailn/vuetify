@@ -62,12 +62,12 @@ export default mixins(
     watchInput (input: any): Watchers {
       const watcher = (input: any): (() => void) => {
         return input.$watch('hasError', (val: boolean) => {
-          this.errorBag[input._uid] = val
+          this.errorBag[input.$.uid] = val
         }, { immediate: true })
       }
 
       const watchers: Watchers = {
-        _uid: input._uid,
+        _uid: input.$.uid,
         valid: () => {},
         shouldValidate: () => {},
       }
@@ -78,7 +78,7 @@ export default mixins(
           if (!val) return
 
           // Only watch if we're not already doing it
-          if (this.errorBag.hasOwnProperty(input._uid)) return
+          if (this.errorBag.hasOwnProperty(input.$.uid)) return
 
           watchers.valid = watcher(input)
         })
@@ -115,19 +115,19 @@ export default mixins(
       this.watchers.push(this.watchInput(input))
     },
     unregister (input: VInputInstance) {
-      const found = this.inputs.find(i => i._uid === input._uid)
+      const found = this.inputs.find(i => i.$.uid === input.$.uid)
 
       if (!found) return
 
-      const unwatch = this.watchers.find(i => i._uid === found._uid)
+      const unwatch = this.watchers.find(i => i.$.uid === found.$.uid)
       if (unwatch) {
         unwatch.valid()
         unwatch.shouldValidate()
       }
 
-      this.watchers = this.watchers.filter(i => i._uid !== found._uid)
-      this.inputs = this.inputs.filter(i => i._uid !== found._uid)
-      delete this.errorBag[found._uid]
+      this.watchers = this.watchers.filter(i => i.$.uid !== found.$.uid)
+      this.inputs = this.inputs.filter(i => i.$.uid !== found.$.uid)
+      delete this.errorBag[found.$.uid]
     },
   },
 
