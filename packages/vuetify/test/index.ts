@@ -1,12 +1,12 @@
-import Vue, { ComponentOptions } from 'vue'
-import { Wrapper } from '@vue/test-utils'
+import { ComponentPublicInstance, ComponentOptions } from 'vue'
+import { VueWrapper } from '@vue/test-utils'
 import toHaveBeenWarnedInit from './util/to-have-been-warned'
 
 // Vue.prototype.$vuetify = {
 //   icons: {},
 // }
 
-export function functionalContext (context: ComponentOptions<Vue> = {}, children = []) {
+export function functionalContext (context: ComponentOptions<ComponentPublicInstance> = {}, children = []) {
   if (!Array.isArray(children)) children = [children]
   return {
     context: {
@@ -18,7 +18,7 @@ export function functionalContext (context: ComponentOptions<Vue> = {}, children
   }
 }
 
-export function touch (element: Wrapper<any>) {
+export function touch (element: VueWrapper<any>) {
   const createTrigger = (eventName: string) => (clientX: number, clientY: number) => {
     const touches = [{ clientX, clientY }]
     const event = new Event(eventName)
@@ -61,9 +61,9 @@ export const scrollWindow = (y: number) => {
 
 // Add a global mockup for IntersectionObserver
 (global as any).IntersectionObserver = class IntersectionObserver {
-  callback: (entries: any, observer: any) => {}
+  callback: (entries: any, observer: any) => void
 
-  constructor (callback, options) {
+  constructor (callback: (entries: any, observer: any) => void, options?: any) {
     this.callback = callback
   }
 
@@ -73,7 +73,7 @@ export const scrollWindow = (y: number) => {
   }
 
   unobserve () {
-    this.callback = undefined
+    this.callback = () => {}
     return null
   }
 }

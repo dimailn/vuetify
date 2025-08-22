@@ -1,6 +1,7 @@
 import { createApp, reactive } from 'vue'
 import { VuetifyUseOptions } from 'vuetify/types'
 import { consoleError } from './util/console'
+import { legacyEventsMixin } from './util/legacyEventsMixin'
 
 export function install (Vue: ReturnType<typeof createApp>, args: VuetifyUseOptions = {}) {
   // if ((install as any).installed) return
@@ -69,24 +70,7 @@ export function install (Vue: ReturnType<typeof createApp>, args: VuetifyUseOpti
         this.$vuetify.breakpoint.update()
       }
     },
-    methods: {
-      $emitLegacy(eventName, args) {
-        if(!this.eventsLegacy || !this.eventsLegacy[eventName]) return
-
-
-        this.eventsLegacy[eventName].forEach(listener => listener(args))
-      },
-      $on(eventName, listener) {
-        this.eventsLegacy ||= {}
-        this.eventsLegacy[eventName] ||= []
-        this.eventsLegacy[eventName].push(listener)
-        // console.warn("$on is not available")
-      },
-      $off(eventName, listener) {
-        this.eventsLegacy[eventName] = this.eventsLegacy[eventName].filter(_listener => _listener !== listener)
-        // console.warn('$off is not available')
-      }
-    },
+    ...legacyEventsMixin,
     computed: {
       $listeners() {
         const names = Object.keys(this.$attrs).filter(name => name.startsWith('on'))

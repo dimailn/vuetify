@@ -6,5 +6,8 @@ module.exports = {
   displayName: 'Vuetify',
   setupFiles: [
     'jest-canvas-mock'
+  ],
+  setupFilesAfterEnv: [
+    '<rootDir>/test/setupTests.ts'
   ]
 }
