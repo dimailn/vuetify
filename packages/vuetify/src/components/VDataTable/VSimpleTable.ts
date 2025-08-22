@@ -30,7 +30,8 @@ export default mixins(Themeable).extend({
 
   methods: {
     genWrapper () {
-      return this.$slots.wrapper || h('div', {
+      const wrapperSlot = getSlot(this, 'wrapper')
+      return wrapperSlot || h('div', {
         class: 'v-data-table__wrapper',
         style: {
           height: convertToUnit(this.height),
