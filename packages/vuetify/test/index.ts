@@ -6,7 +6,22 @@ import toHaveBeenWarnedInit from './util/to-have-been-warned'
 
 // Configure global mixins for all tests
 // This provides $on, $off, and $emitLegacy methods to all components in tests
-config.global.mixins = [legacyEventsMixin]
+// Also provides $listeners for Vue 3 compatibility
+config.global.mixins = [
+  legacyEventsMixin,
+  {
+    computed: {
+      $listeners() {
+        const names = Object.keys(this.$attrs).filter(name => name.startsWith('on'))
+
+        return names.reduce((listeners, name) => {
+          listeners[name] = this.$attrs[name]
+          return listeners
+        }, {})
+      }
+    }
+  }
+]
 
 // Initialize custom Jest matchers globally
 // This provides toHaveBeenWarned and toHaveBeenTipped matchers for all tests
