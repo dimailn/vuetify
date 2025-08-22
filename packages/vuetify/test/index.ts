@@ -1,6 +1,19 @@
 import { ComponentPublicInstance, ComponentOptions } from 'vue'
 import { VueWrapper } from '@vue/test-utils'
+import { config } from '@vue/test-utils'
+import { legacyEventsMixin } from '../src/util/legacyEventsMixin'
 import toHaveBeenWarnedInit from './util/to-have-been-warned'
+
+// Configure global mixins for all tests
+// This provides $on, $off, and $emitLegacy methods to all components in tests
+config.global.mixins = [legacyEventsMixin]
+
+// Initialize custom Jest matchers globally
+// This provides toHaveBeenWarned and toHaveBeenTipped matchers for all tests
+toHaveBeenWarnedInit()
+
+// Import Jest custom matchers types
+/// <reference path="./types/jest.d.ts" />
 
 // Vue.prototype.$vuetify = {
 //   icons: {},
@@ -77,7 +90,5 @@ export const scrollWindow = (y: number) => {
     return null
   }
 }
-
-toHaveBeenWarnedInit()
 
 
