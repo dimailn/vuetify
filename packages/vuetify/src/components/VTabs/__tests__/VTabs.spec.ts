@@ -38,9 +38,9 @@ describe('VTabs.ts', () => {
           },
           directives: {
             Resize: {
-              inserted: () => {},
-              update: () => {},
-              unbind: () => {},
+              mounted: () => {},
+              updated: () => {},
+              unmounted: () => {},
             },
           },
           mocks: {
@@ -198,5 +198,63 @@ describe('VTabs.ts', () => {
     const emitted = wrapper.emitted('update:modelValue')
 
     expect(emitted).toStrictEqual([['second']])
+  })
+
+  it('should preserve initial active tab when component is mounted', async () => {
+    // Тест для проверки, что при загрузке компонента с modelValue не равным первому элементу,
+    // активным остается указанный в modelValue таб, а не первый
+    const wrapper = mountFunction({
+      props: {
+        modelValue: 'second', // Устанавливаем второй таб как активный
+      },
+      slots: {
+        default: () => [h('div', [
+          h(VTab, { tabValue: 'first' }),
+          h(VTab, { tabValue: 'second' }),
+          h(VTab, { tabValue: 'third' }),
+        ])],
+      },
+    })
+
+    await wrapper.vm.$nextTick()
+
+    // Проверяем, что internalValue соответствует modelValue
+    expect(wrapper.vm.internalValue).toBe('second')
+
+    // Проверяем, что не было эмиттов update:modelValue при инициализации
+    const emitted = wrapper.emitted('update:modelValue')
+    expect(emitted).toBeFalsy() // Не должно быть эмиттов при инициализации
+
+    // Дополнительно проверим, что правильный элемент активен в дочернем компоненте
+    const tabsBar = wrapper.findComponent({ name: 'v-tabs-bar' })
+    if (tabsBar.exists()) {
+      await wrapper.vm.$nextTick()
+      expect(tabsBar.vm.internalValue).toBe('second')
+    }
+  })
+
+  it('should preserve initial active tab with numeric indices', async () => {
+    // Тест для проверки с числовыми индексами
+    const wrapper = mountFunction({
+      props: {
+        modelValue: 2, // Устанавливаем третий таб (индекс 2) как активный
+      },
+      slots: {
+        default: () => [h('div', [
+          h(VTab), // индекс 0
+          h(VTab), // индекс 1
+          h(VTab), // индекс 2
+        ])],
+      },
+    })
+
+    await wrapper.vm.$nextTick()
+
+    // Проверяем, что internalValue соответствует modelValue
+    expect(wrapper.vm.internalValue).toBe(2)
+
+    // Проверяем, что не было эмиттов update:modelValue при инициализации
+    const emitted = wrapper.emitted('update:modelValue')
+    expect(emitted).toBeFalsy() // Не должно быть эмиттов при инициализации
   })
 })
