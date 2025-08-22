@@ -23,6 +23,13 @@ config.global.mixins = [
   }
 ]
 
+// Configure global stubs for transition components
+// This prevents transition-stub elements from appearing in snapshots
+config.global.stubs = {
+  'transition': false,
+  'transition-group': false,
+}
+
 // Initialize custom Jest matchers globally
 // This provides toHaveBeenWarned and toHaveBeenTipped matchers for all tests
 toHaveBeenWarnedInit()
