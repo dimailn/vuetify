@@ -106,8 +106,8 @@
     "vue": "^2.5.0"
   },
   "engines": {
-    "node": ">= 4.0.0",
-    "npm": ">= 3.0.0"
+    "node": "16.x",
+    "yarn": "1.x"
   },
   "jest": {
     "verbose": false,
