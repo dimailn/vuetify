@@ -3,8 +3,6 @@ import { defineComponent, VNode, h } from 'vue'
 export default defineComponent({
   name: 'row-group',
 
-  functional: true,
-
   props: {
     value: {
       type: Boolean,
@@ -23,28 +21,44 @@ export default defineComponent({
 
   render (): VNode {
     const props = this.$props
-
     const computedSlots = this.$slots
     const children = []
 
     if (computedSlots['column.header']) {
       children.push(h('tr', {
         class: props.headerClass,
-      }, computedSlots['column.header']))
+      }, computedSlots['column.header']()))
     } else if (computedSlots['row.header']) {
-      children.push(...computedSlots['row.header'])
+      const headerResult = computedSlots['row.header']()
+      if (Array.isArray(headerResult)) {
+        children.push(...headerResult)
+      } else {
+        children.push(headerResult)
+      }
     }
 
-    if (computedSlots['row.content'] && props.value) children.push(...computedSlots['row.content'])
+    if (computedSlots['row.content'] && props.value) {
+      const contentResult = computedSlots['row.content']()
+      if (Array.isArray(contentResult)) {
+        children.push(...contentResult)
+      } else {
+        children.push(contentResult)
+      }
+    }
 
     if (computedSlots['column.summary']) {
       children.push(h('tr', {
         class: props.summaryClass,
-      }, computedSlots['column.summary']))
+      }, computedSlots['column.summary']()))
     } else if (computedSlots['row.summary']) {
-      children.push(...computedSlots['row.summary'])
+      const summaryResult = computedSlots['row.summary']()
+      if (Array.isArray(summaryResult)) {
+        children.push(...summaryResult)
+      } else {
+        children.push(summaryResult)
+      }
     }
 
-    return children as any
+    return children.filter(Boolean)
   },
 })

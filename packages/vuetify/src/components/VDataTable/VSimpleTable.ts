@@ -30,25 +30,30 @@ export default mixins(Themeable).extend({
 
   methods: {
     genWrapper () {
-      const wrapperSlot = getSlot(this, 'wrapper')
-      return wrapperSlot || h('div', {
+      const wrapperSlot = this.$slots.wrapper
+      return wrapperSlot ? wrapperSlot() : h('div', {
         class: 'v-data-table__wrapper',
         style: {
           height: convertToUnit(this.height),
         },
       }, [
-        h('table', getSlot(this)),
+        h('table', this.$slots.default ? this.$slots.default() : undefined),
       ])
     },
   },
 
   render (): VNode {
+    const children = []
+    if (this.$slots.top) {
+      children.push(this.$slots.top())
+    }
+    children.push(this.genWrapper())
+    if (this.$slots.bottom) {
+      children.push(this.$slots.bottom())
+    }
+
     return h('div', {
       class: ['v-data-table', this.classes],
-    }, [
-      getSlot(this, 'top'),
-      this.genWrapper(),
-      getSlot(this, 'bottom'),
-    ])
+    }, children.filter(Boolean))
   },
 })
