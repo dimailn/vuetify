@@ -81,10 +81,10 @@ describe('VToolbar.ts', () => {
       dense: false,
       prominent: false,
     })
-    
+
     // Проверяем значение по умолчанию (smAndDown: false)
     expect(wrapper.vm.computedContentHeight).toBe(64)
-    
+
     // Создаем новый wrapper с smAndDown: true
     const wrapperMobile = mountFunction({
       global: {
@@ -97,13 +97,13 @@ describe('VToolbar.ts', () => {
         },
       },
     })
-    
+
     await wrapperMobile.setProps({
       height: undefined,
       dense: false,
       prominent: false,
     })
-    
+
     expect(wrapperMobile.vm.computedContentHeight).toBe(56)
   })
 
