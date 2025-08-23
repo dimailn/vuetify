@@ -173,7 +173,7 @@ export default baseMixins.extend({
       return this.normalize(this.internalLazyValue)
     },
     reactive (): boolean {
-      return Boolean(this.$listeners.change) || Boolean(this.$listeners['update:modelValue'])
+      return Boolean(this.$listeners.onChange) || Boolean(this.$listeners['onUpdate:modelValue'])
     },
     styles (): object {
       const styles: Record<string, any> = {}
