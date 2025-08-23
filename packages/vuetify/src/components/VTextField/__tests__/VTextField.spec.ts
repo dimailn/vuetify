@@ -650,6 +650,56 @@ describe('VTextField.ts', () => { // eslint-disable-line max-statements
     expect(wrapper.vm.badInput).toBe(true)
   })
 
+  it('should apply style to root element, not input element', () => {
+    const wrapper = mountFunction({
+      attrs: {
+        style: { minHeight: '96px' },
+      },
+    })
+
+    // Style should be on root div, not on input
+    expect(wrapper.element.style.minHeight).toBe('96px')
+    expect(wrapper.find('input').element.style.minHeight).toBe('')
+  })
+
+  it('should pass other attrs to input element, not root element', () => {
+    const wrapper = mountFunction({
+      attrs: {
+        'data-test': 'test-input',
+        'aria-label': 'Test input',
+        style: { minHeight: '96px' },
+      },
+    })
+
+    const input = wrapper.find('input')
+    const root = wrapper.element
+
+    // Style should be on root div
+    expect(root.style.minHeight).toBe('96px')
+    expect(input.element.style.minHeight).toBe('')
+
+    // Other attrs should be on input
+    expect(input.element.getAttribute('data-test')).toBe('test-input')
+    expect(input.element.getAttribute('aria-label')).toBe('Test input')
+    expect(root.getAttribute('data-test')).toBeFalsy()
+    expect(root.getAttribute('aria-label')).toBeFalsy()
+  })
+
+  it('should not render empty comment nodes for unused slots', () => {
+    const wrapper = mountFunction({
+      props: {
+        label: 'Test',
+      },
+    })
+
+    // The HTML should not contain excessive comment nodes
+    const html = wrapper.html()
+    const commentCount = (html.match(/<!---->|<!-- -->/g) || []).length
+
+    // There should be minimal comment nodes (Vue 3 may still create some)
+    expect(commentCount).toBeLessThan(10)
+  })
+
   it('should not apply id to root element', () => {
     const wrapper = mountFunction({
       attrs: { id: 'foo' },

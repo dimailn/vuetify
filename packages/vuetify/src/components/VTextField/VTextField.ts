@@ -196,10 +196,13 @@ export default baseMixins.extend({
     labelValue (): boolean {
       return this.isFocused || this.isLabelActive || this.persistentPlaceholder
     },
-    // Only pass class to root div, everything else goes to input
+    // Only pass class and style to root div, everything else goes to input
     rootAttrs (): object {
-      const { class: classList } = this.$attrs
-      return classList ? { class: classList } : {}
+      const { class: classList, style: styleList } = this.$attrs
+      return {
+        ...(styleList ? { style: styleList } : {}),
+        class: undefined // class will be handled separately in render
+      }
     },
   },
 
@@ -273,7 +276,7 @@ export default baseMixins.extend({
       const slot = []
 
       if (this.$slots['append-outer']) {
-        slot.push(this.$slots['append-outer'] as VNode[])
+        slot.push(this.$slots['append-outer']() as VNode[])
       } else if (this.appendOuterIcon) {
         slot.push(this.genIcon('appendOuter'))
       }
@@ -295,7 +298,7 @@ export default baseMixins.extend({
       const slot = []
 
       if (this.$slots.append) {
-        slot.push(this.$slots.append as VNode[])
+        slot.push(this.$slots.append() as VNode[])
       } else if (this.appendIcon) {
         slot.push(this.genIcon('append'))
       }
@@ -401,10 +404,9 @@ export default baseMixins.extend({
       delete listeners.change // Change should not be bound externally
 
       // Get all attrs except class (class goes to root div)
-      const { class: _, ...inputAttrs } = this.$attrs
+      const { class: _, style: __, ...inputAttrs } = this.$attrs
 
       const node = h('input', {
-        style: {},
         value: (this.type === 'number' && Object.is(this.lazyValue, -0)) ? '-0' : this.lazyValue,
         ...inputAttrs,
         autofocus: this.autofocus,
@@ -570,6 +572,7 @@ export default baseMixins.extend({
     const additionalClasses = this.rootAttrs.class
 
     return h('div', this.setTextColor(this.validationState, {
+      ...this.rootAttrs,
       class: {'v-input': true, ...this.classes, ...normalizeClasses(additionalClasses)},
     }), {
       default: () => this.genContent()
