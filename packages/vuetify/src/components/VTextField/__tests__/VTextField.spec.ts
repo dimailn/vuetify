@@ -414,11 +414,9 @@ describe('VTextField.ts', () => { // eslint-disable-line max-statements
     const progress = {
       render () {
         return h(VProgressLinear, {
-          props: {
-            indeterminate: true,
-            height: 7,
-            color: 'orange',
-          },
+          indeterminate: true,
+          height: 7,
+          color: 'orange',
         })
       },
     }
