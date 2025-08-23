@@ -9,6 +9,8 @@ import mixins from '../../util/mixins'
 
 // Types
 import Vue from 'vue'
+import { withDirectives, h } from 'vue'
+import resize from '../../directives/resize'
 
 interface options extends Vue {
   $refs: {
@@ -90,14 +92,37 @@ export default baseMixins.extend({
       input.style.height = Math.max(minHeight, height) + 'px'
     },
     genInput () {
-      const input = VTextField.methods.genInput.call(this)
+      const listeners = Object.assign({}, this.listeners$)
+      delete listeners.change // Change should not be bound externally
 
-      input.tag = 'textarea'
-      input.type = 'textarea'
-      delete input.props.type
-      input.rows = this.rows
+      // Get all attrs except class (class goes to root div)
+      const { class: _, ...inputAttrs } = this.$attrs
 
-      return input
+      const node = h('textarea', {
+        style: {},
+        ...inputAttrs,
+        autofocus: this.autofocus,
+        disabled: this.isDisabled,
+        id: this.computedId,
+        placeholder: this.persistentPlaceholder || this.isFocused || !this.hasLabel ? this.placeholder : undefined,
+        readonly: this.isReadonly,
+        rows: this.rows,
+        onBlur: this.onBlur,
+        onInput: this.onInput,
+        onFocus: this.onFocus,
+        onKeydown: this.onKeyDown,
+        ...listeners,
+        ref: 'input'
+      }, this.lazyValue || '')
+
+      return withDirectives(node, [
+        [
+          resize,
+          this.onResize,
+          '',
+          { quiet: true }
+        ]
+      ])
     },
     onInput (e: Event) {
       VTextField.methods.onInput.call(this, e)
