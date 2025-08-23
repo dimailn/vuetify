@@ -19,12 +19,12 @@ import ripple from '../../directives/ripple'
 
 // Utilities
 import { attachedRoot } from '../../util/dom'
-import { convertToUnit, getSlot, keyCodes } from '../../util/helpers'
+import { convertToUnit, getSlot, keyCodes, normalizeClasses } from '../../util/helpers'
 import { breaking, consoleWarn } from '../../util/console'
 
 // Types
 import mixins from '../../util/mixins'
-import { VNode, PropType } from 'vue/types'
+import { VNode, PropType } from 'vue'
 import { withDirectives, h } from 'vue'
 
 const baseMixins = mixins(
@@ -52,6 +52,8 @@ const dirtyTypes = ['color', 'file', 'time', 'date', 'datetime-local', 'week', '
 /* @vue/component */
 export default baseMixins.extend({
   name: 'v-text-field',
+
+  inheritAttrs: false,
 
   directives: {
     resize,
@@ -146,6 +148,7 @@ export default baseMixins.extend({
       },
       set (val: any) {
         this.lazyValue = val
+        this.$emit('input', this.lazyValue)
         this.$emit('update:modelValue', this.lazyValue)
       },
     },
@@ -193,6 +196,11 @@ export default baseMixins.extend({
     labelValue (): boolean {
       return this.isFocused || this.isLabelActive || this.persistentPlaceholder
     },
+    // Only pass class to root div, everything else goes to input
+    rootAttrs (): object {
+      const { class: classList } = this.$attrs
+      return classList ? { class: classList } : {}
+    },
   },
 
   watch: {
@@ -206,6 +214,9 @@ export default baseMixins.extend({
     },
     isFocused: 'updateValue',
     modelValue (val) {
+      this.lazyValue = val
+    },
+    value (val) {
       this.lazyValue = val
     },
   },
@@ -368,7 +379,9 @@ export default baseMixins.extend({
         value: this.labelValue
       }
 
-      return h(VLabel, data, getSlot(this, 'label') || this.label)
+      return h(VLabel, data, {
+        default: () => getSlot(this, "label") || this.label
+      });
     },
     genLegend () {
       const width = !this.singleLine && (this.labelValue || this.isDirty) ? this.labelWidth : 0
@@ -386,7 +399,9 @@ export default baseMixins.extend({
     genInput () {
       const listeners = Object.assign({}, this.listeners$)
       delete listeners.change // Change should not be bound externally
-      const { title, ...inputAttrs } = this.attrs$
+
+      // Get all attrs except class (class goes to root div)
+      const { class: _, ...inputAttrs } = this.$attrs
 
       const node = h('input', {
         style: {},
@@ -446,6 +461,10 @@ export default baseMixins.extend({
     },
     onBlur (e?: Event) {
       this.isFocused = false
+      if (this.initialValue !== this.lazyValue) {
+        this.$emit('change', this.lazyValue)
+        this.initialValue = this.lazyValue
+      }
       e && this.$nextTick(() => this.$emit('blur', e))
     },
     onClick () {
@@ -475,10 +494,11 @@ export default baseMixins.extend({
     },
     onKeyDown (e: KeyboardEvent) {
       if (
-        e.keyCode === keyCodes.enter &&
+        (e.keyCode === keyCodes.enter || e.key === 'Enter') &&
         this.lazyValue !== this.initialValue
       ) {
         this.initialValue = this.lazyValue
+        this.$emit('change', this.initialValue)
         this.$emit('update:modelValue', this.initialValue)
       }
 
@@ -535,6 +555,7 @@ export default baseMixins.extend({
       if (val) {
         this.initialValue = this.lazyValue
       } else if (this.initialValue !== this.lazyValue) {
+        this.$emit('change', this.lazyValue)
         this.$emit('update:modelValue', this.lazyValue)
       }
     },
@@ -543,5 +564,15 @@ export default baseMixins.extend({
       this.setPrefixWidth()
       this.setPrependWidth()
     },
+  },
+
+  render (): VNode {
+    const additionalClasses = this.rootAttrs.class
+
+    return h('div', this.setTextColor(this.validationState, {
+      class: {'v-input': true, ...this.classes, ...normalizeClasses(additionalClasses)},
+    }), {
+      default: () => this.genContent()
+    })
   },
 })
