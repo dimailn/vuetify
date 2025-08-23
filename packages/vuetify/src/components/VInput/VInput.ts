@@ -94,7 +94,7 @@ export default baseMixins.extend({
         (this.persistentHint || this.isFocused)
     },
     hasLabel (): boolean {
-      return !!(this.$slots.label || this.label)
+      return !!(getSlot(this, 'label') || this.label)
     },
     // Proxy for `lazyValue`
     // This allows an input
@@ -279,8 +279,9 @@ export default baseMixins.extend({
     genPrependSlot () {
       const slot = []
 
-      if (this.$slots.prepend) {
-        slot.push(this.$slots.prepend)
+      const prependSlot = getSlot(this, 'prepend')
+      if (prependSlot) {
+        slot.push(prependSlot)
       } else if (this.prependIcon) {
         slot.push(this.genIcon('prepend'))
       }
@@ -294,8 +295,9 @@ export default baseMixins.extend({
       // an appended inner icon, v-text-field
       // will overwrite this method in order to obtain
       // backwards compat
-      if (this.$slots.append) {
-        slot.push(this.$slots.append)
+      const appendSlot = getSlot(this, 'append')
+      if (appendSlot) {
+        slot.push(appendSlot)
       } else if (this.appendIcon) {
         slot.push(this.genIcon('append'))
       }

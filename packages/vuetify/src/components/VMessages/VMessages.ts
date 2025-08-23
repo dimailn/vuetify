@@ -33,10 +33,11 @@ export default mixins(Colorable, Themeable).extend({
       }, this.value.map(this.genMessage))
     },
     genMessage (message: string, key: number) {
+      const slotContent = getSlot(this, 'default', { message, key })
       return h('div', {
         class: 'v-messages__message',
         key,
-      }, getSlot(this, 'default', { message, key }) || [message])
+      }, slotContent || message)
     },
   },
 
