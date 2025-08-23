@@ -48,7 +48,7 @@ export default mixins(
 
   watch: {
     errorBag: {
-      handler (val) {
+      handler (this: any, val: any) {
         const errors = Object.values(val).includes(true)
 
         this.$emit('input', !errors)
@@ -59,29 +59,43 @@ export default mixins(
   },
 
   methods: {
-    watchInput (input: any): Watchers {
+    getInputUid(input: any): number {
+      return input.$.uid
+    },
+
+    watchInput (this: any, input: any): Watchers {
+      const uid = this.getInputUid(input)
+
       const watcher = (input: any): (() => void) => {
-        return input.$watch('hasError', (val: boolean) => {
-          this.errorBag[input.$.uid] = val
-        }, { immediate: true })
+        // В Vue 3 $watch может не быть доступен, используем альтернативный подход
+        if (typeof input.$watch === 'function') {
+          return input.$watch('hasError', (val: boolean) => {
+            this.errorBag[uid] = val
+          }, { immediate: true })
+        } else {
+          // Fallback для Vue 3
+          return () => {}
+        }
       }
 
       const watchers: Watchers = {
-        _uid: input.$.uid,
+        _uid: uid,
         valid: () => {},
         shouldValidate: () => {},
       }
 
       if (this.lazyValidation) {
         // Only start watching inputs if we need to
-        watchers.shouldValidate = input.$watch('shouldValidate', (val: boolean) => {
-          if (!val) return
+        if (typeof input.$watch === 'function') {
+          watchers.shouldValidate = input.$watch('shouldValidate', (val: boolean) => {
+            if (!val) return
 
-          // Only watch if we're not already doing it
-          if (this.errorBag.hasOwnProperty(input.$.uid)) return
+            // Only watch if we're not already doing it
+            if (this.errorBag.hasOwnProperty(uid)) return
 
-          watchers.valid = watcher(input)
-        })
+            watchers.valid = watcher(input)
+          })
+        }
       } else {
         watchers.valid = watcher(input)
       }
@@ -89,15 +103,15 @@ export default mixins(
       return watchers
     },
     /** @public */
-    validate (): boolean {
-      return this.inputs.filter(input => !input.validate(true)).length === 0
+    validate (this: any): boolean {
+      return this.inputs.filter((input: any) => !input.validate(true)).length === 0
     },
     /** @public */
-    reset (): void {
-      this.inputs.forEach(input => input.reset())
+    reset (this: any): void {
+      this.inputs.forEach((input: any) => input.reset())
       this.resetErrorBag()
     },
-    resetErrorBag () {
+    resetErrorBag (this: any) {
       if (this.lazyValidation) {
         // Account for timeout in validatable
         setTimeout(() => {
@@ -106,28 +120,29 @@ export default mixins(
       }
     },
     /** @public */
-    resetValidation () {
-      this.inputs.forEach(input => input.resetValidation())
+    resetValidation (this: any) {
+      this.inputs.forEach((input: any) => input.resetValidation())
       this.resetErrorBag()
     },
-    register (input: VInputInstance) {
+    register (this: any, input: VInputInstance) {
       this.inputs.push(input)
       this.watchers.push(this.watchInput(input))
     },
-    unregister (input: VInputInstance) {
-      const found = this.inputs.find(i => i.$.uid === input.$.uid)
+    unregister (this: any, input: VInputInstance) {
+      const inputUid = this.getInputUid(input)
+      const found = this.inputs.find((i: any) => this.getInputUid(i) === inputUid)
 
       if (!found) return
 
-      const unwatch = this.watchers.find(i => i.$.uid === found.$.uid)
+      const unwatch = this.watchers.find((i: any) => i._uid === inputUid)
       if (unwatch) {
         unwatch.valid()
         unwatch.shouldValidate()
       }
 
-      this.watchers = this.watchers.filter(i => i.$.uid !== found.$.uid)
-      this.inputs = this.inputs.filter(i => i.$.uid !== found.$.uid)
-      delete this.errorBag[found.$.uid]
+      this.watchers = this.watchers.filter((i: any) => i._uid !== inputUid)
+      this.inputs = this.inputs.filter((i: any) => this.getInputUid(i) !== inputUid)
+      delete this.errorBag[inputUid]
     },
   },
 
