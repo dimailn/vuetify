@@ -162,7 +162,9 @@ export default defineComponent({
         default: () => [
           h(VIcon, {
             large: true,
-          }, icon),
+          }, {
+            default: () => icon
+          }),
         ]
       })]
 
