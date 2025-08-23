@@ -1,29 +1,20 @@
-// Libraries
-import Vue from 'vue'
-
 // Components
 import VLabel from '../VLabel'
 
 // Utilities
 import {
-  createLocalVue,
   mount,
-  Wrapper,
+  VueWrapper,
 } from '@vue/test-utils'
 
 describe('VLabel', () => {
-  let mountFunction: (options?: object) => Wrapper<Vue>
-  let localVue: typeof Vue
+  type Instance = InstanceType<typeof VLabel>
+  let mountFunction: (options?: any) => VueWrapper<Instance>
 
   beforeEach(() => {
-    localVue = createLocalVue()
-
-    mountFunction = (ctx = {}) => {
+    mountFunction = (options = {}) => {
       return mount(VLabel, {
-        localVue,
-        context: {
-          ...ctx,
-        },
+        ...options,
       })
     }
   })
