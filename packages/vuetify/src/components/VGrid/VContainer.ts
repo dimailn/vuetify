@@ -1,16 +1,12 @@
 import './_grid.sass'
 import './VGrid.sass'
 
-import Grid from './grid'
-
 import mergeData from '../../util/mergeData'
 import { defineComponent, h } from 'vue'
 
 /* @vue/component */
 export default defineComponent({
   name: 'v-container',
-  extends: Grid('container'),
-  functional: true,
   props: {
     id: String,
     tag: {
@@ -24,7 +20,6 @@ export default defineComponent({
   },
   render () {
     let classes
-    // const { attrs } = data
 
     const attrs = this.$attrs
 
@@ -40,18 +35,12 @@ export default defineComponent({
         // add back data attributes like data-test="foo" but do not
         // add them as classes
         if (key.startsWith('data-')) {
-          // data.attrs![key] = value
           return false
         }
 
         return value || typeof value === 'string'
       })
     }
-
-    // if (props.id) {
-    //   data.domProps = data.domProps || {}
-    //   data.domProps.id = props.id
-    // }
 
     return h(
       this.tag,

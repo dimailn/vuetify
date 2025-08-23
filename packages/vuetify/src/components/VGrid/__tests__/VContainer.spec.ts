@@ -4,13 +4,13 @@ import VContainer from '../VContainer'
 // Utilities
 import {
   mount,
-  MountOptions,
-  Wrapper,
+  MountingOptions,
+  VueWrapper,
 } from '@vue/test-utils'
 
 describe('VContainer.ts', () => {
   type Instance = InstanceType<typeof VContainer>
-  let mountFunction: (options?: MountOptions<Instance>) => Wrapper<Instance>
+  let mountFunction: (options?: MountingOptions<Instance>) => VueWrapper<Instance>
 
   beforeEach(() => {
     mountFunction = (options = {}) => {
