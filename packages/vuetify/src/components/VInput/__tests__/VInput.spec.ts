@@ -206,7 +206,7 @@ describe('VInput.ts', () => {
 
   })
 
-  it('should not apply attrs to element', () => {
+  it('should apply attrs to root element', () => {
     const wrapper = mountFunction({
       props: {
         foo: 'bar',
@@ -214,6 +214,6 @@ describe('VInput.ts', () => {
     })
 
     expect(wrapper.html()).toMatchSnapshot()
-    expect(wrapper.attributes()).not.toHaveProperty('foobar')
+    expect(wrapper.attributes()).toHaveProperty('foo', 'bar')
   })
 })

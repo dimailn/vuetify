@@ -342,4 +342,32 @@ describe('VCheckbox.ts', () => { // eslint-disable-line max-statements
 
     expect(wrapper.html()).toMatchSnapshot()
   })
+
+  it('should apply classes to root element', () => {
+    const wrapper = mountFunction({
+      props: {
+        modelValue: true,
+        class: 'shrink mr-2 mt-0',
+      } as any,
+    })
+
+    const rootElement = wrapper.element
+
+    // Проверяем что корневой элемент имеет основные классы VInput
+    expect(rootElement.classList.contains('v-input')).toBe(true)
+    expect(rootElement.classList.contains('v-input--selection-controls')).toBe(true)
+    expect(rootElement.classList.contains('v-input--checkbox')).toBe(true)
+    expect(rootElement.classList.contains('v-input--is-dirty')).toBe(true)
+
+    // Проверяем что переданные классы применены к корневому элементу
+    expect(rootElement.classList.contains('shrink')).toBe(true)
+    expect(rootElement.classList.contains('mr-2')).toBe(true)
+    expect(rootElement.classList.contains('mt-0')).toBe(true)
+
+    // Проверяем что HTML input НЕ содержит эти классы
+    const input = wrapper.find('input')
+    expect(input.element.classList.contains('shrink')).toBe(false)
+    expect(input.element.classList.contains('mr-2')).toBe(false)
+    expect(input.element.classList.contains('mt-0')).toBe(false)
+  })
 })

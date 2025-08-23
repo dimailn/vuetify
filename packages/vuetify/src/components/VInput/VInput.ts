@@ -15,6 +15,7 @@ import {
   convertToUnit,
   getSlot,
   kebabCase,
+  normalizeClasses,
 } from '../../util/helpers'
 import mergeData from '../../util/mergeData'
 
@@ -332,8 +333,11 @@ export default baseMixins.extend({
   },
 
   render (): VNode {
+    const { class: additionalClasses, ...restAttrs } = this.attrs$ as Record<string, any>
+
     return h('div', this.setTextColor(this.validationState, {
-      class: {'v-input': true, ...this.classes},
+      class: {'v-input': true, ...this.classes, ...normalizeClasses(additionalClasses)},
+      ...restAttrs
     }), {
       default: () => this.genContent()
     })

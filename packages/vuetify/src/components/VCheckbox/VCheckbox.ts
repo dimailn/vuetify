@@ -83,7 +83,7 @@ export default defineComponent({
 
   methods: {
     genCheckbox () {
-      const { title, ...checkboxAttrs } = this.attrs$ as any
+      const { title, class: cls, ...checkboxAttrs } = this.attrs$ as any
       return h('div', {
         class: 'v-input--selection-controls__input',
       }, [
