@@ -157,10 +157,12 @@ export default baseMixins.extend({
       return h('div', {
         class: 'v-input__control',
         title: this.attrs$.title,
-      }, [
-        this.genInputSlot(),
-        this.genMessages(),
-      ])
+      }, {
+        default: () => [
+          this.genInputSlot(),
+          this.genMessages(),
+        ]
+      })
     },
     genDefaultSlot () {
       return [
@@ -219,13 +221,17 @@ export default baseMixins.extend({
           'v-input__icon': true,
           [`v-input__icon--${kebabCase(type)}`]: type
         },
-      }, [
-        h(
-          VIcon,
-          data,
-          icon
-        ),
-      ])
+      }, {
+        default: () => [
+          h(
+            VIcon,
+            data,
+            {
+              default: () => icon
+            }
+          ),
+        ]
+      })
     },
     genInputSlot () {
       return h('div', this.setBackgroundColor(this.backgroundColor, {
@@ -235,10 +241,14 @@ export default baseMixins.extend({
         onMousedown: this.onMouseDown,
         onMouseup: this.onMouseUp,
         ref: 'input-slot',
-      }), [this.genDefaultSlot()])
+      }), {
+        default: () => this.genDefaultSlot()
+      })
     },
     genLabel () {
       if (!this.hasLabel) return null
+
+      const slotContent = getSlot(this, 'label')
 
       return h(VLabel, {
         color: this.validationState,
@@ -247,7 +257,9 @@ export default baseMixins.extend({
         focused: this.hasState,
         for: this.computedId,
         light: this.light,
-      }, getSlot(this, 'label') || this.label)
+      }, {
+        default: slotContent ? () => slotContent : () => this.label
+      })
     },
     genMessages () {
       if (!this.showDetails) return null
@@ -274,7 +286,9 @@ export default baseMixins.extend({
       return h('div', {
         class: `v-input__${ref}`,
         ref,
-      }, slot)
+      }, {
+        default: () => slot
+      })
     },
     genPrependSlot () {
       const slot = []
@@ -320,6 +334,8 @@ export default baseMixins.extend({
   render (): VNode {
     return h('div', this.setTextColor(this.validationState, {
       class: {'v-input': true, ...this.classes},
-    }), this.genContent())
+    }), {
+      default: () => this.genContent()
+    })
   },
 })
