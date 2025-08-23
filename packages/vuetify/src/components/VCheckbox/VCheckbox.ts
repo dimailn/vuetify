@@ -83,28 +83,30 @@ export default defineComponent({
 
   methods: {
     genCheckbox () {
-      const { title, ...checkboxAttrs } = this.attrs$
+      const { title, ...checkboxAttrs } = this.attrs$ as any
       return h('div', {
         class: 'v-input--selection-controls__input',
       }, [
-        h(VIcon, this.setTextColor(this.validationState, {
+        h(VIcon, (this as any).setTextColor(this.validationState, {
           dense: this.dense,
           dark: this.dark,
           light: this.light
-        }), this.computedIcon),
-        this.genInput('checkbox', {
-          ...checkboxAttrs,
-          'aria-checked': this.inputIndeterminate
-            ? 'mixed'
-            : this.isActive.toString(),
+        }), {
+          default: () => this.computedIcon
         }),
-        this.genRipple(this.setTextColor(this.rippleState)),
+        (this as any).genInput('checkbox', {
+          ...checkboxAttrs,
+          'aria-checked': this.indeterminate
+            ? 'mixed'
+            : (this as any).isActive.toString(),
+        }),
+        (this as any).genRipple((this as any).setTextColor((this as any).rippleState)),
       ])
     },
     genDefaultSlot () {
       return [
         this.genCheckbox(),
-        this.genLabel(),
+        (this as any).genLabel(),
       ]
     },
   },

@@ -30,6 +30,40 @@ config.global.stubs = {
   'transition-group': false,
 }
 
+// Configure global mocks for Vuetify
+config.global.mocks = {
+  $vuetify: {
+    icons: {
+      component: 'VIcon',
+      values: {
+        checkboxOn: 'mdi-checkbox-marked',
+        checkboxOff: 'mdi-checkbox-blank-outline',
+        checkboxIndeterminate: 'mdi-minus-box',
+      }
+    },
+    theme: {
+      current: 'light',
+      dark: false,
+      themes: {
+        light: {},
+        dark: {}
+      }
+    },
+    rtl: false,
+    breakpoint: {
+      mobile: false,
+      mobileBreakpoint: 600,
+      thresholds: {
+        xs: 0,
+        sm: 600,
+        md: 960,
+        lg: 1264,
+        xl: 1904
+      }
+    }
+  }
+}
+
 // Initialize custom Jest matchers globally
 // This provides toHaveBeenWarned and toHaveBeenTipped matchers for all tests
 toHaveBeenWarnedInit()
