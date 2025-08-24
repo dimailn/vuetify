@@ -148,7 +148,6 @@ export default baseMixins.extend({
       },
       set (val: any) {
         this.lazyValue = val
-        this.$emit('input', this.lazyValue)
         this.$emit('update:modelValue', this.lazyValue)
       },
     },
