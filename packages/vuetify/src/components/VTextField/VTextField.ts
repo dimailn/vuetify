@@ -218,10 +218,7 @@ export default baseMixins.extend({
     isFocused: 'updateValue',
     modelValue (val) {
       this.lazyValue = val
-    },
-    value (val) {
-      this.lazyValue = val
-    },
+    }
   },
 
   created () {
