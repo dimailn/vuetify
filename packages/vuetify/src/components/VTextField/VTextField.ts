@@ -459,10 +459,6 @@ export default baseMixins.extend({
     },
     onBlur (e?: Event) {
       this.isFocused = false
-      if (this.initialValue !== this.lazyValue) {
-        this.$emit('change', this.lazyValue)
-        this.initialValue = this.lazyValue
-      }
       e && this.$nextTick(() => this.$emit('blur', e))
     },
     onClick () {
@@ -496,7 +492,6 @@ export default baseMixins.extend({
         this.lazyValue !== this.initialValue
       ) {
         this.initialValue = this.lazyValue
-        this.$emit('change', this.initialValue)
         this.$emit('update:modelValue', this.initialValue)
       }
 
@@ -553,7 +548,6 @@ export default baseMixins.extend({
       if (val) {
         this.initialValue = this.lazyValue
       } else if (this.initialValue !== this.lazyValue) {
-        this.$emit('change', this.lazyValue)
         this.$emit('update:modelValue', this.lazyValue)
       }
     },
