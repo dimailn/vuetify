@@ -119,13 +119,13 @@ export default mixins(
 
       if (!found) return
 
-      const unwatch = this.watchers.find(i => i.$.uid === found.$.uid)
+      const unwatch = this.watchers.find(i => i._uid === found.$.uid)
       if (unwatch) {
         unwatch.valid()
         unwatch.shouldValidate()
       }
 
-      this.watchers = this.watchers.filter(i => i.$.uid !== found.$.uid)
+      this.watchers = this.watchers.filter(i => i._uid !== found.$.uid)
       this.inputs = this.inputs.filter(i => i.$.uid !== found.$.uid)
       delete this.errorBag[found.$.uid]
     },
