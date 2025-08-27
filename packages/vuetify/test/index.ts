@@ -20,14 +20,6 @@ config.global.stubs = {
 // Configure global mocks for Vuetify
 config.global.mocks = {
   $vuetify: {
-    icons: {
-      component: 'VIcon',
-      values: {
-        checkboxOn: 'mdi-checkbox-marked',
-        checkboxOff: 'mdi-checkbox-blank-outline',
-        checkboxIndeterminate: 'mdi-minus-box',
-      },
-    },
     theme: {
       current: 'light',
       dark: false,
@@ -54,13 +46,6 @@ config.global.mocks = {
 // Initialize custom Jest matchers globally
 // This provides toHaveBeenWarned and toHaveBeenTipped matchers for all tests
 toHaveBeenWarnedInit()
-
-// Import Jest custom matchers types
-/// <reference path="./types/jest.d.ts" />
-
-// Vue.prototype.$vuetify = {
-//   icons: {},
-// }
 
 export function functionalContext (context: ComponentOptions<ComponentPublicInstance> = {}, children = []) {
   if (!Array.isArray(children)) children = [children]

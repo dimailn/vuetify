@@ -1,4 +1,3 @@
-import { h } from 'vue'
 import {
   deepEqual,
   getNestedValue,
