@@ -1,12 +1,68 @@
-import Vue, { ComponentOptions } from 'vue'
-import { Wrapper } from '@vue/test-utils'
+import { ComponentPublicInstance, ComponentOptions } from 'vue'
+import { VueWrapper, config } from '@vue/test-utils'
+import { legacyEventsMixin } from '../src/util/legacyEventsMixin'
 import toHaveBeenWarnedInit from './util/to-have-been-warned'
+
+// Configure global mixins for all tests
+// This provides $on, $off, and $emitLegacy methods to all components in tests
+// Also provides $listeners for Vue 3 compatibility
+config.global.mixins = [
+  legacyEventsMixin,
+]
+
+// Configure global stubs for transition components
+// This prevents transition-stub elements from appearing in snapshots
+config.global.stubs = {
+  transition: false,
+  'transition-group': false,
+}
+
+// Configure global mocks for Vuetify
+config.global.mocks = {
+  $vuetify: {
+    icons: {
+      component: 'VIcon',
+      values: {
+        checkboxOn: 'mdi-checkbox-marked',
+        checkboxOff: 'mdi-checkbox-blank-outline',
+        checkboxIndeterminate: 'mdi-minus-box',
+      },
+    },
+    theme: {
+      current: 'light',
+      dark: false,
+      themes: {
+        light: {},
+        dark: {},
+      },
+    },
+    rtl: false,
+    breakpoint: {
+      mobile: false,
+      mobileBreakpoint: 600,
+      thresholds: {
+        xs: 0,
+        sm: 600,
+        md: 960,
+        lg: 1264,
+        xl: 1904,
+      },
+    },
+  },
+}
+
+// Initialize custom Jest matchers globally
+// This provides toHaveBeenWarned and toHaveBeenTipped matchers for all tests
+toHaveBeenWarnedInit()
+
+// Import Jest custom matchers types
+/// <reference path="./types/jest.d.ts" />
 
 // Vue.prototype.$vuetify = {
 //   icons: {},
 // }
 
-export function functionalContext (context: ComponentOptions<Vue> = {}, children = []) {
+export function functionalContext (context: ComponentOptions<ComponentPublicInstance> = {}, children = []) {
   if (!Array.isArray(children)) children = [children]
   return {
     context: {
@@ -18,7 +74,7 @@ export function functionalContext (context: ComponentOptions<Vue> = {}, children
   }
 }
 
-export function touch (element: Wrapper<any>) {
+export function touch (element: VueWrapper<any>) {
   const createTrigger = (eventName: string) => (clientX: number, clientY: number) => {
     const touches = [{ clientX, clientY }]
     const event = new Event(eventName)
@@ -61,9 +117,9 @@ export const scrollWindow = (y: number) => {
 
 // Add a global mockup for IntersectionObserver
 (global as any).IntersectionObserver = class IntersectionObserver {
-  callback: (entries: any, observer: any) => {}
+  callback: (entries: any, observer: any) => void
 
-  constructor (callback, options) {
+  constructor (callback: (entries: any, observer: any) => void, options?: any) {
     this.callback = callback
   }
 
@@ -73,11 +129,7 @@ export const scrollWindow = (y: number) => {
   }
 
   unobserve () {
-    this.callback = undefined
+    this.callback = () => {}
     return null
   }
 }
-
-toHaveBeenWarnedInit()
-
-

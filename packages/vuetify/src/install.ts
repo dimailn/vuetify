@@ -1,17 +1,18 @@
 import { createApp, reactive } from 'vue'
 import { VuetifyUseOptions } from 'vuetify/types'
 import { consoleError } from './util/console'
+import { legacyEventsMixin } from './util/legacyEventsMixin'
 
 export function install (Vue: ReturnType<typeof createApp>, args: VuetifyUseOptions = {}) {
   // if ((install as any).installed) return
   // (install as any).installed = true
 
-//   if (OurVue !== Vue) {
-//     consoleError(`Multiple instances of Vue detected
-// See https://github.com/vuetifyjs/vuetify/issues/4068
+  //   if (OurVue !== Vue) {
+  //     consoleError(`Multiple instances of Vue detected
+  // See https://github.com/vuetifyjs/vuetify/issues/4068
 
-// If you're seeing "$attrs is readonly", it's caused by this`)
-//   }
+  // If you're seeing "$attrs is readonly", it's caused by this`)
+  //   }
 
   const components = args.components || {}
   const directives = args.directives || {}
@@ -21,7 +22,6 @@ export function install (Vue: ReturnType<typeof createApp>, args: VuetifyUseOpti
 
     Vue.directive(name, directive)
   }
-
 
   (function registerComponents (components: any) {
     if (components) {
@@ -43,6 +43,9 @@ export function install (Vue: ReturnType<typeof createApp>, args: VuetifyUseOpti
   Vue.$_vuetify_installed = true
 
   Vue.mixin({
+    computed: {
+      ...legacyEventsMixin.computed,
+    },
     beforeCreate () {
       const options = this.$options as any
 
@@ -70,32 +73,7 @@ export function install (Vue: ReturnType<typeof createApp>, args: VuetifyUseOpti
       }
     },
     methods: {
-      $emitLegacy(eventName, args) {
-        if(!this.eventsLegacy || !this.eventsLegacy[eventName]) return
-
-
-        this.eventsLegacy[eventName].forEach(listener => listener(args))
-      },
-      $on(eventName, listener) {
-        this.eventsLegacy ||= {}
-        this.eventsLegacy[eventName] ||= []
-        this.eventsLegacy[eventName].push(listener)
-        // console.warn("$on is not available")
-      },
-      $off(eventName, listener) {
-        this.eventsLegacy[eventName] = this.eventsLegacy[eventName].filter(_listener => _listener !== listener)
-        // console.warn('$off is not available')
-      }
+      ...legacyEventsMixin.methods,
     },
-    computed: {
-      $listeners() {
-        const names = Object.keys(this.$attrs).filter(name => name.startsWith('on'))
-
-        return names.reduce((listeners, name) => {
-          listeners[name] = this.$attrs[name]
-          return listeners
-        }, {})
-      }
-    }
   })
 }

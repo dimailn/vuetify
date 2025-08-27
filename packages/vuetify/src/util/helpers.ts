@@ -532,3 +532,44 @@ export function normalizeAttrs (attrs) {
 
   return obj
 }
+
+/**
+ * Нормализует классы из различных форматов в объект
+ * @param classes - классы в виде строки, объекта или массива
+ * @returns объект с нормализованными классами
+ */
+export function normalizeClasses (classes: string | Record<string, any> | Array<string | Record<string, any>> | undefined): Record<string, any> {
+  if (!classes) return {}
+
+  if (typeof classes === 'object' && !Array.isArray(classes)) {
+    return classes
+  }
+
+  if (typeof classes === 'string') {
+    const trimmed = classes.trim()
+    if (!trimmed) return {}
+
+    return trimmed.split(/\s+/).reduce((acc, cls) => {
+      acc[cls] = true
+      return acc
+    }, {} as Record<string, any>)
+  }
+
+  if (Array.isArray(classes)) {
+    return classes.reduce((acc, cls) => {
+      if (typeof cls === 'string') {
+        const trimmed = cls.trim()
+        if (trimmed) {
+          trimmed.split(/\s+/).forEach(className => {
+            acc[className] = true
+          })
+        }
+      } else if (cls && typeof cls === 'object') {
+        Object.assign(acc, cls)
+      }
+      return acc
+    }, {} as Record<string, any>)
+  }
+
+  return {}
+}

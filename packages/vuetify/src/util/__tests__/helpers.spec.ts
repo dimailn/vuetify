@@ -1,4 +1,4 @@
-import Vue from 'vue/dist/vue.common.js'
+import { h } from 'vue'
 import {
   deepEqual,
   getNestedValue,
@@ -10,6 +10,7 @@ import {
   humanReadableFileSize,
   sortItems,
   createSimpleFunctional,
+  normalizeClasses,
 } from '../helpers'
 import { mount } from '@vue/test-utils'
 
@@ -377,5 +378,66 @@ describe('helpers', () => {
 
     sortItems(items = getItems(), ['number', 'string'], [], 'en', { number: (a, b) => b - a })
     expect(items).toStrictEqual([{ string: 'bar', number: 3 }, { string: 'baz', number: 2 }, { string: 'baz', number: 1 }, { string: 'foo', number: 1 }])
+  })
+})
+
+describe('normalizeClasses', () => {
+  it('should return empty object for undefined input', () => {
+    expect(normalizeClasses(undefined)).toEqual({})
+  })
+
+  it('should return empty object for null input', () => {
+    expect(normalizeClasses(null as any)).toEqual({})
+  })
+
+  it('should normalize string classes', () => {
+    expect(normalizeClasses('class1 class2 class3')).toEqual({
+      class1: true,
+      class2: true,
+      class3: true
+    })
+  })
+
+  it('should handle string with extra spaces', () => {
+    expect(normalizeClasses('  class1   class2  ')).toEqual({
+      class1: true,
+      class2: true
+    })
+  })
+
+  it('should return object as is', () => {
+    const classes = { class1: true, class2: false }
+    expect(normalizeClasses(classes)).toBe(classes)
+  })
+
+  it('should normalize array of strings', () => {
+    expect(normalizeClasses(['class1', 'class2', 'class3'])).toEqual({
+      class1: true,
+      class2: true,
+      class3: true
+    })
+  })
+
+  it('should normalize array of objects', () => {
+    expect(normalizeClasses([{ class1: true }, { class2: false }])).toEqual({
+      class1: true,
+      class2: false
+    })
+  })
+
+  it('should normalize mixed array', () => {
+    expect(normalizeClasses(['class1', { class2: true }, 'class3'])).toEqual({
+      class1: true,
+      class2: true,
+      class3: true
+    })
+  })
+
+  it('should handle empty string', () => {
+    expect(normalizeClasses('')).toEqual({})
+  })
+
+  it('should handle string with only spaces', () => {
+    expect(normalizeClasses('   ')).toEqual({})
   })
 })
