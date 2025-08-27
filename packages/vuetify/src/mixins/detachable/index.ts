@@ -126,7 +126,8 @@ export default mixins<options &
 
   methods: {
     getScopeIdAttrs () {
-      const scopeId = getObjectValueByPath(this.$vnode, 'context.$options._scopeId')
+      // В Vue 3 $vnode больше не существует, используем современный способ
+      const scopeId = this.$options._scopeId || this.$options.__scopeId
 
       return scopeId && {
         [scopeId]: '',
