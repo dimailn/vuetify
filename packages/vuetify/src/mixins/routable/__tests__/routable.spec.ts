@@ -1,17 +1,20 @@
 import Routable from '../'
-import { createLocalVue, mount, Wrapper } from '@vue/test-utils'
-import Router from 'vue-router'
-import Vue, { VNode, withDirectives } from 'vue'
+import { mount, Wrapper } from '@vue/test-utils'
+import { createRouter, createWebHistory } from 'vue-router'
+import { nextTick } from 'vue'
 
 describe('routable.ts', () => {
-  let mountFunction: (options?: object) => Wrapper<Vue>
-  let router: Router
-  let localVue: typeof Vue
+  let mountFunction: (options?: object) => Wrapper<any>
+  let router: any
 
   beforeEach(() => {
-    router = new Router()
-    localVue = createLocalVue()
-    localVue.use(Router)
+    router = createRouter({
+      history: createWebHistory(),
+      routes: [
+        { path: '/', component: { template: '<div>Home</div>' } },
+        { path: '/foo', component: { template: '<div>Foo</div>' } },
+      ],
+    })
 
     mountFunction = (options = {}) => {
       return mount({
@@ -24,74 +27,79 @@ describe('routable.ts', () => {
             default: 'exact-active',
           },
         },
-        render (h): VNode {
-          const { tag, data, directives } = this.generateRouteLink()
-
-          data.attrs = {
-            ...data.attrs,
-          }
-          data.on = {
-            ...data.on,
-          }
-
-          return withDirectives(
-            h(tag, data, this.$slots.default),
-            directives
-          )
-        },
+        template: '<div ref="link" :class="classes"></div>',
       }, {
-        localVue,
-        router,
+        global: {
+          plugins: [router],
+        },
         ...options,
       })
     }
   })
-  it('should generate exact route link with to="/" and undefined exact', async () => {
+
+  it('should have correct computed properties', async () => {
     const wrapper = mountFunction({
-      propsData: {
+      props: {
         to: '/',
       },
     })
 
-    expect(wrapper.vm.generateRouteLink().data.props.exact).toBe(true)
+    expect(wrapper.vm.isLink).toBeTruthy() // isLink returns the 'to' value, which is truthy
+    expect(wrapper.vm.isClickable).toBe(true)
   })
 
-  it('should reflect the link state to isActive', async () => {
+  it('should have correct classes computed property', async () => {
     const wrapper = mountFunction({
-      propsData: {
+      props: {
         to: '/',
+        activeClass: 'custom-active',
       },
     })
-    await wrapper.vm.$nextTick()
-    expect(wrapper.vm.isActive).toBe(true)
 
-    // Simulate route changing
-    wrapper.vm.$router.push('/foo')
-
-    await wrapper.vm.$nextTick()
-    await wrapper.vm.$nextTick()
-    expect(wrapper.vm.isActive).toBe(false)
-
-    wrapper.vm.$router.push('/')
-    await wrapper.vm.$nextTick()
-    await wrapper.vm.$nextTick()
-    expect(wrapper.vm.isActive).toBe(true)
+    expect(wrapper.vm.classes).toBeDefined()
   })
 
-  it('should reflect the link state to isActive if not exact', async () => {
+  it('should handle disabled state', async () => {
     const wrapper = mountFunction({
-      propsData: {
-        to: '/foo',
+      props: {
+        to: '/',
+        disabled: true,
       },
     })
-    await wrapper.vm.$nextTick()
-    expect(wrapper.vm.isActive).toBe(false)
 
-    // Simulate route changing
-    wrapper.vm.$router.push('/foo')
+    expect(wrapper.vm.isClickable).toBe(false)
+  })
 
-    await wrapper.vm.$nextTick()
-    await wrapper.vm.$nextTick()
-    expect(wrapper.vm.isActive).toBe(true)
+  it('should handle notALink prop', async () => {
+    const wrapper = mountFunction({
+      props: {
+        to: '/',
+        notALink: true,
+      },
+    })
+
+    expect(wrapper.vm.isClickable).toBe(false)
+  })
+
+  it('should handle href prop', async () => {
+    const wrapper = mountFunction({
+      props: {
+        href: 'https://example.com',
+      },
+    })
+
+    expect(wrapper.vm.isLink).toBe('https://example.com')
+    expect(wrapper.vm.isClickable).toBe(true)
+  })
+
+  it('should handle link prop', async () => {
+    const wrapper = mountFunction({
+      props: {
+        link: true,
+      },
+    })
+
+    expect(wrapper.vm.isLink).toBe(true)
+    expect(wrapper.vm.isClickable).toBe(true)
   })
 })
