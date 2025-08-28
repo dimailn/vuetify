@@ -1,4 +1,4 @@
-import {h} from 'vue'
+import { h, VNode } from 'vue'
 // Extensions
 import { BaseSlideGroup } from '../VSlideGroup/VSlideGroup'
 
@@ -13,8 +13,7 @@ import SSRBootable from '../../mixins/ssr-bootable'
 import mixins from '../../util/mixins'
 
 // Types
-import { Route } from 'vue-router'
-import { VNode } from 'vue'
+import { RouteLocationNormalized } from 'vue-router'
 
 type VTabInstance = InstanceType<typeof VTab>
 
@@ -64,11 +63,14 @@ export default mixins(
 
       return render
     },
-    onRouteChange (val: Route, oldVal: Route) {
+    onRouteChange (
+      val: RouteLocationNormalized,
+      oldVal: RouteLocationNormalized
+    ) {
       /* istanbul ignore next */
       if (this.mandatory) return
 
-      const items = this.items as unknown as VTabInstance[]
+      const items = (this.items as unknown) as VTabInstance[]
       const newPath = val.path
       const oldPath = oldVal.path
 
