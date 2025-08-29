@@ -15,7 +15,7 @@ exports[`VCheckbox.ts should be render colored checkbox 1`] = `
     <div class="v-input__slot">
       <div class="v-input--selection-controls__input">
         <i aria-hidden="true"
-           class="v-icon notranslate material-icons mdi-checkbox-blank-outline theme--light"
+           class="v-icon notranslate mdi mdi-checkbox-blank-outline theme--light"
         >
         </i>
         <input aria-checked="false"
@@ -41,7 +41,7 @@ exports[`VCheckbox.ts should render themed component 1`] = `
     <div class="v-input__slot">
       <div class="v-input--selection-controls__input">
         <i aria-hidden="true"
-           class="v-icon notranslate material-icons mdi-checkbox-blank-outline theme--light"
+           class="v-icon notranslate mdi mdi-checkbox-blank-outline theme--light"
         >
         </i>
         <input aria-checked="false"
