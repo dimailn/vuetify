@@ -144,10 +144,10 @@ export default mixins(
 
       if (!foundInput) return
 
-      const inputWatchers = this.watchers.find((watcher: Watchers) => watcher._uid === inputId)
-      if (inputWatchers) {
-        inputWatchers.valid()
-        inputWatchers.shouldValidate()
+      const inputWatcher = this.watchers.find((watcher: Watchers) => watcher._uid === inputId)
+      if (inputWatcher) {
+        inputWatcher.valid()
+        inputWatcher.shouldValidate()
       }
 
       this.watchers = this.watchers.filter((watcher: Watchers) => watcher._uid !== inputId)
