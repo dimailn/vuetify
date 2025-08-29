@@ -6,7 +6,7 @@ on:
 
 jobs:
   deploy:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     if: ${{ github.repository_owner == 'vuetifyjs' }}
     strategy:
       max-parallel: 1
@@ -31,7 +31,7 @@ jobs:
       - run: |
           git config --global user.email "actions@github.com"
           git config --global user.name "GitHub Actions"
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
         with:
           ref: ${{ matrix.branch }}
           fetch-depth: 0
@@ -43,7 +43,7 @@ jobs:
               echo "Last commit was more than 24 hours ago, skipping release"
               exit 1
           fi
-      - uses: actions/cache@v2
+      - uses: actions/cache@v4
         with:
           path: |
             node_modules
@@ -71,10 +71,10 @@ jobs:
 
   percy:
     name: Visual regression tests
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     if: ${{ github.repository_owner == 'vuetifyjs' }}
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
         with:
           ref: next
           fetch-depth: 0
@@ -86,7 +86,7 @@ jobs:
               echo "Last commit was more than 24 hours ago, skipping tests"
               exit 1
           fi
-      - uses: actions/cache@v2
+      - uses: actions/cache@v4
         with:
           path: |
             node_modules
@@ -102,7 +102,7 @@ jobs:
           PERCY_BRANCH: next
           PERCY_TARGET_BRANCH: next
           PERCY_COMMIT: ${{ env.COMMIT }}
-      - uses: actions/upload-artifact@v2
+      - uses: actions/upload-artifact@v4
         if: failure()
         with:
           name: cypress-screenshots

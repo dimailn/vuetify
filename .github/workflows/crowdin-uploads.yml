@@ -21,12 +21,12 @@ env:
 
 jobs:
   upload-to-crowdin:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
 
     steps:
 
     - name: Checkout
-      uses: actions/checkout@v2
+      uses: actions/checkout@v4
 
     - name: Upload
       uses: crowdin/github-action@1.1.2
