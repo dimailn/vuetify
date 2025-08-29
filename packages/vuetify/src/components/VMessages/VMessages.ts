@@ -30,7 +30,9 @@ export default mixins(Colorable, Themeable).extend({
         class: 'v-messages__wrapper',
         name: 'message-transition',
         tag: 'div',
-      }, this.value.map(this.genMessage))
+      }, {
+        default: () => this.value.map(this.genMessage)
+      })
     },
     genMessage (message: string, key: number) {
       return h('div', {

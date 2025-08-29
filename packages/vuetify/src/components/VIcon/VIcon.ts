@@ -32,7 +32,6 @@ function isSvgPath (icon: string): boolean {
   return (/^[mzlhvcsqta]\s*[-+.0-9][^mlhvzcsqta]+/i.test(icon) && /[\dz]$/i.test(icon) && icon.length > 4)
 }
 
-
 const VIcon = mixins(
   BindsAttrs,
   Colorable,
@@ -71,9 +70,7 @@ const VIcon = mixins(
       let iconName = ''
       if (this.$slots.default) {
         const children = this.$slots.default()[0].children
-        if(typeof children === 'string')
-          iconName = this.$slots.default()[0].children!.trim()
-
+        if (typeof children === 'string') { iconName = this.$slots.default()[0].children!.trim() }
       }
       return remapInternalIcon(this, iconName)
     },
@@ -102,7 +99,7 @@ const VIcon = mixins(
           'v-icon--right': this.right,
           'v-icon--dense': this.dense,
           'v-icon': true,
-          'notranslate': true
+          notranslate: true,
         },
         'aria-hidden': !this.hasClickListener,
         type: this.hasClickListener ? 'button' : undefined,
@@ -110,7 +107,7 @@ const VIcon = mixins(
         ...this.listeners$,
       }
 
-      if(this.hasClickListener && this.disabled) {
+      if (this.hasClickListener && this.disabled) {
         data.disabled = true
       }
       return data
@@ -135,23 +132,27 @@ const VIcon = mixins(
     },
     renderFontIcon (icon: string): VNode {
       const newChildren: VNodeChildren = []
-      let data = this.getDefaultData()
+      const data = this.getDefaultData()
 
       let iconType = 'material-icons'
+      // Check for Material Design Icons (mdi-)
+      const isMaterialDesignIcon = icon.startsWith('mdi-')
       // Material Icon delimiter is _
       // https://material.io/icons/
       const delimiterIndex = icon.indexOf('-')
       const isMaterialIcon = delimiterIndex <= -1
 
-      if (isMaterialIcon) {
+      if (isMaterialIcon || isMaterialDesignIcon) {
         // Material icon uses ligatures.
-        newChildren.push(icon)
+        // For MDI, remove the 'mdi-' prefix to get the actual icon name
+        const iconName = isMaterialDesignIcon ? icon.replace('mdi-', '') : icon
+        newChildren.push(iconName)
       } else {
         iconType = icon.slice(0, delimiterIndex)
         if (isFontAwesome5(iconType)) iconType = ''
       }
 
-      if(typeof data.class === 'string') {
+      if (typeof data.class === 'string') {
         data.class = data.class.split(' ').reduce((classes, className) => {
           classes[className] = true
           return classes
@@ -166,7 +167,7 @@ const VIcon = mixins(
 
       this.applyColors(data)
 
-      return h(this.hasClickListener ? 'button' : this.tag, normalizeAttrs(data), {default: () => newChildren})
+      return h(this.hasClickListener ? 'button' : this.tag, normalizeAttrs(data), { default: () => newChildren })
     },
     renderSvgIcon (icon: string): VNode {
       const svgData: VNodeData = {
@@ -222,9 +223,11 @@ const VIcon = mixins(
       data.props = icon.props
       data.nativeOn = data.on
 
-      return h(this.hasClickListener ? 'button' : 'span', this.getSvgWrapperData(), {default: () =>[
-        h(component, data),
-      ]})
+      return h(this.hasClickListener ? 'button' : 'span', this.getSvgWrapperData(), {
+        default: () => [
+          h(component, data),
+        ],
+      })
     },
   },
 
@@ -249,31 +252,42 @@ export default defineComponent({
 
   functional: true,
 
-  mounted() {
+  mounted () {
     this.$el.innerHTML = ''
   },
 
   render (): VNode {
     const data = { ...this.$attrs }
 
-
-    // console.log(children && children[0]?.children)
     return h(VIcon, data, {
       default: () => {
         let iconName = ''
 
         // Support usage of v-text and v-html
-        // if (data.domProps) {
-        if(this.$.vnode.props?.textContent) {
-          iconName = this.$.vnode.props.textContent  ||
+        if (this.$.vnode.props?.textContent) {
+          iconName = this.$.vnode.props.textContent ||
           this.$.vnode.props.innerHTML ||
             iconName
         }
 
         const children = this.$slots.default?.()
 
-        return iconName ? [iconName] : children && children[0]?.children
-      }
+        if (iconName) {
+          return [iconName]
+        }
+
+        if (children && children.length > 0) {
+          const firstChild = children[0]
+          if (typeof firstChild === 'string') {
+            return [firstChild]
+          }
+          if (firstChild.children) {
+            return Array.isArray(firstChild.children) ? firstChild.children : [firstChild.children]
+          }
+        }
+
+        return []
+      },
     })
-  }
+  },
 })
