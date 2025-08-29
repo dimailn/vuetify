@@ -59,9 +59,7 @@ const VIcon = mixins(
       return false
     },
     hasClickListener (): boolean {
-      return Boolean(
-        this.listeners$.onClick
-      )
+      return Boolean(this.listeners$.onClick)
     },
   },
 
@@ -70,7 +68,9 @@ const VIcon = mixins(
       let iconName = ''
       if (this.$slots.default) {
         const children = this.$slots.default()[0].children
-        if (typeof children === 'string') { iconName = this.$slots.default()[0].children!.trim() }
+        if (typeof children === 'string') {
+          iconName = this.$slots.default()[0].children!.trim()
+        }
       }
       return remapInternalIcon(this, iconName)
     },
@@ -116,11 +116,13 @@ const VIcon = mixins(
       const fontSize = this.getSize()
       const wrapperData = {
         ...this.getDefaultData(),
-        style: fontSize ? {
-          fontSize,
-          height: fontSize,
-          width: fontSize,
-        } : undefined,
+        style: fontSize
+          ? {
+            fontSize,
+            height: fontSize,
+            width: fontSize,
+          }
+          : undefined,
       }
       this.applyColors(wrapperData)
 
@@ -131,32 +133,30 @@ const VIcon = mixins(
       this.setTextColor(this.color, data)
     },
     renderFontIcon (icon: string): VNode {
-      const newChildren: VNodeChildren = []
+      const newChildren: any[] = []
       const data = this.getDefaultData()
 
       let iconType = 'material-icons'
-      // Check for Material Design Icons (mdi-)
-      const isMaterialDesignIcon = icon.startsWith('mdi-')
       // Material Icon delimiter is _
       // https://material.io/icons/
       const delimiterIndex = icon.indexOf('-')
       const isMaterialIcon = delimiterIndex <= -1
 
-      if (isMaterialIcon || isMaterialDesignIcon) {
+      if (isMaterialIcon) {
         // Material icon uses ligatures.
-        // For MDI, remove the 'mdi-' prefix to get the actual icon name
-        const iconName = isMaterialDesignIcon ? icon.replace('mdi-', '') : icon
-        newChildren.push(iconName)
+        newChildren.push(icon)
       } else {
         iconType = icon.slice(0, delimiterIndex)
         if (isFontAwesome5(iconType)) iconType = ''
       }
 
       if (typeof data.class === 'string') {
-        data.class = data.class.split(' ').reduce((classes, className) => {
-          classes[className] = true
-          return classes
-        }, {})
+        data.class = data.class
+          .split(' ')
+          .reduce((classes: Record<string, any>, className: string) => {
+            classes[className] = true
+            return classes
+          }, {})
       }
 
       data.class[iconType] = true
@@ -167,7 +167,11 @@ const VIcon = mixins(
 
       this.applyColors(data)
 
-      return h(this.hasClickListener ? 'button' : this.tag, normalizeAttrs(data), { default: () => newChildren })
+      return h(
+        this.hasClickListener ? 'button' : this.tag,
+        normalizeAttrs(data),
+        { default: () => newChildren }
+      )
     },
     renderSvgIcon (icon: string): VNode {
       const svgData: VNodeData = {
@@ -189,19 +193,21 @@ const VIcon = mixins(
         }
       }
 
-      return h(this.hasClickListener ? 'button' : 'span', this.getSvgWrapperData(), [
-        h('svg', svgData, [
-          h('path', {
-            attrs: {
-              d: icon,
-            },
-          }),
-        ]),
-      ])
+      return h(
+        this.hasClickListener ? 'button' : 'span',
+        this.getSvgWrapperData(),
+        [
+          h('svg', svgData, [
+            h('path', {
+              attrs: {
+                d: icon,
+              },
+            }),
+          ]),
+        ]
+      )
     },
-    renderSvgIconComponent (
-      icon: VuetifyIconComponent
-    ): VNode {
+    renderSvgIconComponent (icon: VuetifyIconComponent): VNode {
       const data: VNodeData = {
         class: {
           'v-icon__component': true,
@@ -223,11 +229,13 @@ const VIcon = mixins(
       data.props = icon.props
       data.nativeOn = data.on
 
-      return h(this.hasClickListener ? 'button' : 'span', this.getSvgWrapperData(), {
-        default: () => [
-          h(component, data),
-        ],
-      })
+      return h(
+        this.hasClickListener ? 'button' : 'span',
+        this.getSvgWrapperData(),
+        {
+          default: () => [h(component, data)],
+        }
+      )
     },
   },
 
