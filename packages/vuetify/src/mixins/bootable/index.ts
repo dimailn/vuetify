@@ -50,7 +50,7 @@ export default defineComponent({
 
   methods: {
     showLazyContent (content?: () => VNode[]): VNode[] {
-      return (this.hasContent && content) ? content() : [h(Comment, '', '')]
+      return (this.hasContent && content) ? content() : [h(Comment)]
     },
   },
 })
