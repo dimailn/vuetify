@@ -107,6 +107,10 @@ export default baseMixins.extend({
       set (val: any) {
         this.lazyValue = val
         this.$emit(this.$_modelEvent, val)
+
+        if('$_emitChangeEvent' in this) {
+          this.$emit('change', val)
+        }
       },
     },
     isDirty (): boolean {

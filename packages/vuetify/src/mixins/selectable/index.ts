@@ -40,6 +40,10 @@ export default mixins(
     }
   },
 
+  created() {
+    this.$_emitChangeEvent = true
+  },
+
   computed: {
     computedColor (): string | undefined {
       if (!this.isActive) return undefined
