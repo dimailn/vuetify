@@ -54,7 +54,6 @@ describe('Bootable.ts', () => {
       }),
     })
 
-    // В Vue 3 создаем комментарий как заглушку, аналогично Vue 2
     const lazyResult = wrapperLazy.vm.showLazyContent(() => 'content')
     expect(Array.isArray(lazyResult)).toBe(true)
     expect(lazyResult[0].type).toBe(Comment)
