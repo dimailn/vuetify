@@ -3,6 +3,8 @@ import { VueWrapper, config } from '@vue/test-utils'
 import { legacyEventsMixin } from '../src/util/legacyEventsMixin'
 import toHaveBeenWarnedInit from './util/to-have-been-warned'
 
+import mdiIcons from '../src/services/icons/presets/mdi'
+
 // Configure global mixins for all tests
 // This provides $on, $off, and $emitLegacy methods to all components in tests
 // Also provides $listeners for Vue 3 compatibility
@@ -38,6 +40,10 @@ config.global.mocks = {
         md: 960,
         lg: 1264,
         xl: 1904,
+      },
+      icons: {
+        component: null,
+        values: mdiIcons,
       },
     },
   },
