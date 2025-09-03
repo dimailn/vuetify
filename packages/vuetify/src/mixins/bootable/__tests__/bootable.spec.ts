@@ -4,18 +4,22 @@ import Bootable from '../index'
 // Utilities
 import {
   mount,
-  Wrapper,
+  enableAutoUnmount,
+  VueWrapper,
 } from '@vue/test-utils'
+import { h, nextTick, Comment } from 'vue'
 
 describe('Bootable.ts', () => {
   type Instance = InstanceType<typeof Bootable>
-  let mountFunction: (options?: object) => Wrapper<Instance>
+  let mountFunction: (options?: object) => VueWrapper<Instance>
+
+  enableAutoUnmount(afterEach)
 
   beforeEach(() => {
     mountFunction = (options = {}) => {
       return mount({
         mixins: [Bootable],
-        render: h => h('div'),
+        render: () => h('div'),
       }, {
         ...options,
       })
@@ -31,13 +35,13 @@ describe('Bootable.ts', () => {
 
     expect(wrapper.vm.isBooted).toBe(false)
     wrapper.vm.isActive = true
-    await wrapper.vm.$nextTick()
+    await nextTick()
     expect(wrapper.vm.isBooted).toBe(true)
   })
 
   it('should return lazy content', async () => {
     const wrapper = mountFunction({
-      propsData: {
+      props: {
         eager: true,
       },
     })
@@ -50,18 +54,20 @@ describe('Bootable.ts', () => {
       }),
     })
 
-    expect(wrapperLazy.vm.showLazyContent(() => 'content')).toMatchObject([{ isComment: true }])
+    const lazyResult = wrapperLazy.vm.showLazyContent(() => 'content')
+    expect(Array.isArray(lazyResult)).toBe(true)
+    expect(lazyResult[0].type).toBe(Comment)
     wrapperLazy.vm.isActive = true
-    await wrapper.vm.$nextTick()
+    await nextTick()
     expect(wrapperLazy.vm.showLazyContent(() => 'content')).toBe('content')
     wrapperLazy.vm.isActive = false
-    await wrapper.vm.$nextTick()
+    await nextTick()
     expect(wrapperLazy.vm.showLazyContent(() => 'content')).toBe('content')
   })
 
   it('should show if lazy and active at boot', async () => {
     const wrapper = mountFunction({
-      propsData: {
+      props: {
         eager: true,
       },
     })
@@ -77,8 +83,8 @@ describe('Bootable.ts', () => {
     expect(wrapper.vm.isActive).toBe(false)
     expect(wrapper.vm.isBooted).toBe(false)
 
-    wrapper.setData({ isActive: true })
-    await wrapper.vm.$nextTick()
+    wrapper.vm.isActive = true
+    await nextTick()
     expect(wrapper.vm.isBooted).toBe(true)
   })
 })
