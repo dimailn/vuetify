@@ -2,25 +2,26 @@
 import VBadge from '../VBadge'
 
 // Utilities
-import {
-  mount,
-  Wrapper,
-} from '@vue/test-utils'
-import { compileToFunctions } from 'vue-template-compiler'
+import { mount, enableAutoUnmount, VueWrapper } from '@vue/test-utils'
 
 // Types
-import { ExtractVue } from '../../../util/mixins'
+import { ComponentPublicInstance } from 'vue'
 
 describe('VBadge.ts', () => {
-  type Instance = ExtractVue<typeof VBadge>
-  let mountFunction: (options?: object) => Wrapper<Instance>
+  type Instance = ComponentPublicInstance
+  let mountFunction: (options?: object) => VueWrapper<Instance>
+
+  enableAutoUnmount(afterEach)
 
   beforeEach(() => {
     mountFunction = (options = {}) => {
       return mount(VBadge, {
-        mocks: {
-          $vuetify: {
-            lang: { t: (text = '') => text },
+        global: {
+          mocks: {
+            $vuetify: {
+              lang: { t: (text = '') => text },
+              rtl: false,
+            },
           },
         },
         ...options,
@@ -31,22 +32,22 @@ describe('VBadge.ts', () => {
   it('should render component and match snapshot', async () => {
     const wrapper = mountFunction({
       slots: {
-        badge: [compileToFunctions('<span>content</span>')],
-        default: [compileToFunctions('<span>element</span>')],
+        badge: '<span>content</span>',
+        default: '<span>element</span>',
       },
     })
 
     expect(wrapper.html()).toMatchSnapshot()
   })
 
-  it('should render component with with value=false and match snapshot', async () => {
+  it('should render component with with modelValue=false and match snapshot', async () => {
     const wrapper = mountFunction({
-      propsData: {
-        value: false,
+      props: {
+        modelValue: false,
       },
       slots: {
-        badge: [compileToFunctions('<span>content</span>')],
-        default: [compileToFunctions('<span>element</span>')],
+        badge: '<span>content</span>',
+        default: '<span>element</span>',
       },
     })
 
@@ -55,7 +56,7 @@ describe('VBadge.ts', () => {
 
   it('should render component with bottom prop', () => {
     const wrapper = mountFunction({
-      propsData: {
+      props: {
         bottom: true,
       },
     })
@@ -65,7 +66,7 @@ describe('VBadge.ts', () => {
 
   it('should render component with left prop', () => {
     const wrapper = mountFunction({
-      propsData: {
+      props: {
         left: true,
       },
     })
@@ -75,7 +76,7 @@ describe('VBadge.ts', () => {
 
   it('should render component with overlap prop', () => {
     const wrapper = mountFunction({
-      propsData: {
+      props: {
         overlap: true,
       },
     })
@@ -85,11 +86,11 @@ describe('VBadge.ts', () => {
 
   it('should render component with color prop', () => {
     const wrapper = mountFunction({
-      propsData: {
+      props: {
         color: 'green lighten-1',
       },
       slots: {
-        badge: [compileToFunctions('<span>content</span>')],
+        badge: '<span>content</span>',
       },
     })
 
@@ -104,9 +105,17 @@ describe('VBadge.ts', () => {
       render: jest.fn(),
     }
 
-    mountFunction({
-      stubs: {
-        transition: transitionStub,
+    const wrapper = mount(VBadge, {
+      global: {
+        mocks: {
+          $vuetify: {
+            lang: { t: (text = '') => text },
+            rtl: false,
+          },
+        },
+        stubs: {
+          transition: transitionStub,
+        },
       },
     })
 
@@ -119,12 +128,20 @@ describe('VBadge.ts', () => {
       render: jest.fn(),
     }
 
-    mountFunction({
-      propsData: {
+    const wrapper = mount(VBadge, {
+      props: {
         transition: '',
       },
-      stubs: {
-        transition: transitionStub,
+      global: {
+        mocks: {
+          $vuetify: {
+            lang: { t: (text = '') => text },
+            rtl: false,
+          },
+        },
+        stubs: {
+          transition: transitionStub,
+        },
       },
     })
 

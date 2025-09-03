@@ -6,11 +6,11 @@ exports[`VBadge.ts should render component and match snapshot 1`] = `
     element
   </span>
   <span class="v-badge__wrapper">
-    <span aria-atomic="true"
+    <span class="v-badge__badge primary"
+          aria-atomic="true"
           aria-label="$vuetify.badge"
           aria-live="polite"
           role="status"
-          class="v-badge__badge primary"
     >
       <span>
         content
@@ -20,17 +20,17 @@ exports[`VBadge.ts should render component and match snapshot 1`] = `
 </span>
 `;
 
-exports[`VBadge.ts should render component with with value=false and match snapshot 1`] = `
+exports[`VBadge.ts should render component with with modelValue=false and match snapshot 1`] = `
 <span class="v-badge theme--light">
   <span>
     element
   </span>
   <span class="v-badge__wrapper">
-    <span aria-atomic="true"
+    <span class="v-badge__badge primary"
+          aria-atomic="true"
           aria-label="$vuetify.badge"
           aria-live="polite"
           role="status"
-          class="v-badge__badge primary"
           style="display: none;"
     >
       <span>
