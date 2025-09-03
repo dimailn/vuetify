@@ -1,4 +1,4 @@
-import {Transition, h} from 'vue'
+import { Transition, h, defineComponent, VNode, withDirectives, vShow } from 'vue'
 // Styles
 import './VBadge.sass'
 
@@ -8,29 +8,28 @@ import VIcon from '../VIcon/VIcon'
 // Mixins
 import Colorable from '../../mixins/colorable'
 import Themeable from '../../mixins/themeable'
-import Toggleable from '../../mixins/toggleable'
+import { factory as ToggleableFactory } from '../../mixins/toggleable'
 import Transitionable from '../../mixins/transitionable'
 import { factory as PositionableFactory } from '../../mixins/positionable'
 import mergeData from '../../util/mergeData'
 // Utilities
-import mixins from '../../util/mixins'
 import {
   convertToUnit,
   getSlot,
 } from '../../util/helpers'
 
-// Types
-import { VNode } from 'vue'
+const Toggleable = ToggleableFactory('modelValue', 'update:modelValue')
 
-export default mixins(
-  Colorable,
-  PositionableFactory(['left', 'bottom']),
-  Themeable,
-  Toggleable,
-  Transitionable,
-/* @vue/component */
-).extend({
+export default defineComponent({
   name: 'v-badge',
+
+  mixins: [
+    Colorable,
+    PositionableFactory(['left', 'bottom']),
+    Themeable,
+    Toggleable,
+    Transitionable,
+  ],
 
   props: {
     avatar: Boolean,
@@ -55,7 +54,7 @@ export default mixins(
       type: String,
       default: 'scale-rotate-transition',
     },
-    value: { default: true },
+    modelValue: { default: true },
   },
 
   computed: {
@@ -136,13 +135,12 @@ export default mixins(
         'aria-live': this.$attrs['aria-live'] || 'polite',
         title: this.$attrs.title,
         role: this.$attrs.role || 'status',
-        directives: [{
-          name: 'show',
-          value: this.isActive,
-        }],
       })
 
-      const badge = h('span', data, [this.genBadgeContent()])
+      const badge = withDirectives(
+        h('span', data, [this.genBadgeContent()]),
+        [[vShow, this.isActive]]
+      )
 
       if (!this.transition) return badge
 
@@ -150,7 +148,9 @@ export default mixins(
         name: this.transition,
         origin: this.origin,
         mode: this.mode,
-      }, [badge])
+      }, {
+        default: () => [badge],
+      })
     },
     genBadgeContent () {
       // Dot prop shows no content
@@ -160,7 +160,7 @@ export default mixins(
 
       if (slot) return slot
       if (this.content) return String(this.content)
-      if (this.icon) return h(VIcon, this.icon)
+      if (this.icon) return h(VIcon, { icon: this.icon })
 
       return undefined
     },
@@ -187,8 +187,7 @@ export default mixins(
     else children.push(badge)
 
     return h('span', mergeData({
-      class: ['v-badge', this.classes]
-    }, attrs)
-    , children)
+      class: ['v-badge', this.classes],
+    }, attrs), children)
   },
 })
