@@ -176,6 +176,7 @@ export default mixins(Colorable, Themeable).extend({
         attrs: {
           ...tile.attrs,
           ...tile.props,
+          ...tile.on
         },
         on: tile.on,
       })

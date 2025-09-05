@@ -92,7 +92,8 @@ export default baseMixins.extend({
         attrs: {
           ...this.genActivatorListeners(),
           ...this.genActivatorAttributes(),
-        }
+        },
+        on: this.genActivatorListeners()
       })) || []
 
       node = Array.isArray(node) ? node : [node]
