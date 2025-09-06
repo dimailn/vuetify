@@ -40,7 +40,6 @@ interface options extends ExtractVue<typeof baseMixins> {
 
 export default baseMixins.extend({
   name: 'v-btn',
-  inheritAttrs: false,
   props: {
     activeClass: {
       type: String,
@@ -158,7 +157,6 @@ export default baseMixins.extend({
       this.$emit('click', e)
       this.$emitLegacy('click', e)
 
-
       this.btnToggle && this.toggle()
     },
     genContent (): VNode {
@@ -187,18 +185,10 @@ export default baseMixins.extend({
       ? this.setBackgroundColor
       : this.setTextColor
 
-    // Merge component classes with routable classes and user classes from $attrs
+    // Merge component classes with routable classes
     const mergedClasses = {
       ...this.classes,
       ...linkData.class,
-    }
-
-    // Add classes from $attrs.class
-    if (this.$attrs.class) {
-      const userClasses = typeof this.$attrs.class === 'string'
-        ? this.$attrs.class.split(' ').reduce((acc, cls) => ({ ...acc, [cls]: true }), {})
-        : this.$attrs.class
-      Object.assign(mergedClasses, userClasses)
     }
 
     if (tag === 'button') {
@@ -215,9 +205,11 @@ export default baseMixins.extend({
       style: this.styles,
     }
 
+    // Apply color styling but preserve Vue's automatic attribute inheritance
+    const finalData = this.disabled ? data : setColor(this.color, data)
 
     return withDirectives(
-      h(tag, this.disabled ? data : setColor(this.color, data), children),
+      h(tag, finalData, children),
       directives
     )
   },

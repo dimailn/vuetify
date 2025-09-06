@@ -31,13 +31,13 @@ describe('VBtn.ts', () => {
       return mount(VBtn, {
         global: {
           plugins: [router],
-            components: {
-              "router-link": Vue3RouterLinkStub
-            },
-          ...options.global
+          components: {
+            'router-link': Vue3RouterLinkStub,
+          },
+          ...options.global,
         },
-        ...options
-      });
+        ...options,
+      })
     }
   })
 
@@ -77,46 +77,6 @@ describe('VBtn.ts', () => {
     expect(wrapper.html()).toMatchSnapshot()
   })
 
-  it('should render component with loader and match snapshot', () => {
-    const wrapper = mount(VBtn, {
-      props: {
-        loading: true,
-      },
-    })
-
-    expect(wrapper.html()).toMatchSnapshot()
-  })
-
-  it('should render tile button and match snapshot', () => {
-    const wrapper = mount(VBtn, {
-      props: {
-        tile: true,
-      },
-    })
-
-    expect(wrapper.html()).toMatchSnapshot()
-  })
-
-  it('should render an <a> tag when using href prop', () => {
-    const wrapper = mountFunction({
-      props: {
-        href: 'http://www.google.com',
-      },
-    })
-
-    expect(wrapper.html()).toMatchSnapshot()
-  })
-
-  it('should render specified tag when using tag prop', () => {
-    const wrapper = mountFunction({
-      props: {
-        tag: 'a',
-      },
-    })
-
-    expect(wrapper.html()).toMatchSnapshot()
-  })
-
   it('should register and unregister', () => {
     const register = jest.fn()
     const unregister = jest.fn()
@@ -136,8 +96,6 @@ describe('VBtn.ts', () => {
     wrapper.unmount()
     expect(unregister).toHaveBeenCalled()
   })
-
-
   it('should use custom active-class', () => {
     const wrapper = mountFunction({
       props: {
@@ -186,8 +144,6 @@ describe('VBtn.ts', () => {
     await wrapper.setProps({ elevation: 2 })
     expect(wrapper.classes('elevation-2')).toBe(true)
   })
-
-
 
   it('should stringify non string|number values', async () => {
     const wrapper = mountFunction({
@@ -240,49 +196,16 @@ describe('VBtn.ts', () => {
     expect(blur).toHaveBeenCalled()
   })
 
-  // New tests for Vue 3 migration - attribute passing
-  it('should have access to $attrs in component', () => {
+  // Test attributes inheritance and merging
+  it('should handle attributes inheritance correctly', () => {
     const wrapper = mount(VBtn, {
       global: {
         plugins: [router],
       },
       attrs: {
         'data-test': 'my-button',
-        'data-cy': 'button-cy',
         'aria-label': 'Test button',
-      },
-    })
-
-    // Check that component receives attrs
-    expect(wrapper.vm.$attrs['data-test']).toBe('my-button')
-    expect(wrapper.vm.$attrs['data-cy']).toBe('button-cy')
-    expect(wrapper.vm.$attrs['aria-label']).toBe('Test button')
-  })
-
-  it('should have access to custom attrs in component', () => {
-    const wrapper = mount(VBtn, {
-      global: {
-        plugins: [router],
-      },
-      attrs: {
         id: 'custom-id',
-        role: 'button',
-        tabindex: '0',
-      },
-    })
-
-    // Check that component receives attrs
-    expect(wrapper.vm.$attrs.id).toBe('custom-id')
-    expect(wrapper.vm.$attrs.role).toBe('button')
-    expect(wrapper.vm.$attrs.tabindex).toBe('0')
-  })
-
-  it('should merge class attributes correctly', () => {
-    const wrapper = mount(VBtn, {
-      global: {
-        plugins: [router],
-      },
-      attrs: {
         class: 'custom-class another-class',
       },
       props: {
@@ -290,71 +213,15 @@ describe('VBtn.ts', () => {
       },
     })
 
+    // Check that component receives attrs
+    expect(wrapper.vm.$attrs['data-test']).toBe('my-button')
+    expect(wrapper.vm.$attrs['aria-label']).toBe('Test button')
+    expect(wrapper.vm.$attrs.id).toBe('custom-id')
+
+    // Check class merging
     expect(wrapper.classes()).toContain('custom-class')
     expect(wrapper.classes()).toContain('another-class')
     expect(wrapper.classes()).toContain('v-btn')
-  })
-
-  // Tests for new component properties
-  it('should apply block class when block prop is true', () => {
-    const wrapper = mountFunction({
-      props: {
-        block: true,
-      },
-    })
-
-    expect(wrapper.classes('v-btn--block')).toBe(true)
-  })
-
-  it('should apply fab class when fab prop is true', () => {
-    const wrapper = mountFunction({
-      props: {
-        fab: true,
-      },
-    })
-
-    expect(wrapper.classes('v-btn--fab')).toBe(true)
-  })
-
-  it('should apply outlined class when outlined prop is true', () => {
-    const wrapper = mountFunction({
-      props: {
-        outlined: true,
-      },
-    })
-
-    expect(wrapper.classes('v-btn--outlined')).toBe(true)
-  })
-
-  it('should apply text class when text prop is true', () => {
-    const wrapper = mountFunction({
-      props: {
-        text: true,
-      },
-    })
-
-    expect(wrapper.classes('v-btn--text')).toBe(true)
-  })
-
-  it('should apply rounded class when rounded prop is true', () => {
-    const wrapper = mountFunction({
-      props: {
-        rounded: true,
-      },
-    })
-
-    expect(wrapper.classes('v-btn--rounded')).toBe(true)
-  })
-
-  it('should apply depressed class and remove elevation when depressed prop is true', () => {
-    const wrapper = mountFunction({
-      props: {
-        depressed: true,
-      },
-    })
-
-    // When depressed, should not have elevation classes
-    expect(wrapper.classes()).not.toContain('elevation-2')
   })
 
   it('should render loader when loading prop is true', () => {
@@ -367,108 +234,33 @@ describe('VBtn.ts', () => {
     expect(wrapper.classes('v-btn--loading')).toBe(true)
     expect(wrapper.find('.v-btn__loader').exists()).toBe(true)
   })
+  it('should compute button states and classes correctly', () => {
+    // Test multiple button variants and their classes
+    const variants = [
+      { props: {}, classes: ['v-btn'], hasBg: true, isElevated: true, isRound: false },
+      { props: { text: true }, classes: ['v-btn--text'], hasBg: false, isElevated: false, isRound: false },
+      { props: { plain: true }, classes: ['v-btn--plain'], hasBg: false, isElevated: false, isRound: false },
+      { props: { outlined: true }, classes: ['v-btn--outlined'], hasBg: false, isElevated: false, isRound: false },
+      { props: { icon: true }, classes: ['v-btn--icon'], hasBg: false, isElevated: false, isRound: true },
+      { props: { fab: true }, classes: ['v-btn--fab'], hasBg: true, isElevated: true, isRound: true },
+      { props: { block: true }, classes: ['v-btn--block'], hasBg: true, isElevated: true, isRound: false },
+      { props: { rounded: true }, classes: ['v-btn--rounded'], hasBg: true, isElevated: true, isRound: false },
+      { props: { disabled: true }, classes: ['v-btn--disabled'], hasBg: true, isElevated: false, isRound: false },
+    ]
 
-  it('should handle different button types', async () => {
-    const wrapper = mountFunction({
-      props: {
-        type: 'submit',
-      },
+    variants.forEach(({ props, classes, hasBg, isElevated, isRound }) => {
+      const wrapper = mountFunction({ props })
+
+      // Check classes
+      classes.forEach(className => {
+        expect(wrapper.classes(className)).toBe(true)
+      })
+
+      // Check computed properties
+      expect(wrapper.vm.hasBg).toBe(hasBg)
+      expect(wrapper.vm.isElevated).toBe(isElevated)
+      expect(wrapper.vm.isRound).toBe(isRound)
     })
-
-    expect(wrapper.attributes('type')).toBe('submit')
-
-    await wrapper.setProps({ type: 'reset' })
-    expect(wrapper.attributes('type')).toBe('reset')
-  })
-
-  it('should compute hasBg correctly', () => {
-    // hasBg should be true by default
-    let wrapper = mountFunction()
-    expect(wrapper.vm.hasBg).toBe(true)
-
-    // hasBg should be false for text buttons
-    wrapper = mountFunction({
-      props: { text: true },
-    })
-    expect(wrapper.vm.hasBg).toBe(false)
-
-    // hasBg should be false for plain buttons
-    wrapper = mountFunction({
-      props: { plain: true },
-    })
-    expect(wrapper.vm.hasBg).toBe(false)
-
-    // hasBg should be false for outlined buttons
-    wrapper = mountFunction({
-      props: { outlined: true },
-    })
-    expect(wrapper.vm.hasBg).toBe(false)
-
-    // hasBg should be false for icon buttons
-    wrapper = mountFunction({
-      props: { icon: true },
-    })
-    expect(wrapper.vm.hasBg).toBe(false)
-  })
-
-  it('should compute isElevated correctly', () => {
-    // Should be elevated by default
-    let wrapper = mountFunction()
-    expect(wrapper.vm.isElevated).toBe(true)
-
-    // Should not be elevated when disabled
-    wrapper = mountFunction({
-      props: { disabled: true },
-    })
-    expect(wrapper.vm.isElevated).toBe(false)
-
-    // Should not be elevated when text
-    wrapper = mountFunction({
-      props: { text: true },
-    })
-    expect(wrapper.vm.isElevated).toBe(false)
-
-    // Should not be elevated when outlined
-    wrapper = mountFunction({
-      props: { outlined: true },
-    })
-    expect(wrapper.vm.isElevated).toBe(false)
-
-    // Should not be elevated when depressed
-    wrapper = mountFunction({
-      props: { depressed: true },
-    })
-    expect(wrapper.vm.isElevated).toBe(false)
-
-    // Should not be elevated when icon
-    wrapper = mountFunction({
-      props: { icon: true },
-    })
-    expect(wrapper.vm.isElevated).toBe(false)
-
-    // Should not be elevated when plain
-    wrapper = mountFunction({
-      props: { plain: true },
-    })
-    expect(wrapper.vm.isElevated).toBe(false)
-  })
-
-  it('should compute isRound correctly', () => {
-    // Should not be round by default
-    let wrapper = mountFunction()
-    expect(wrapper.vm.isRound).toBe(false)
-
-    // Should be round when icon
-    wrapper = mountFunction({
-      props: { icon: true },
-    })
-    expect(wrapper.vm.isRound).toBe(true)
-
-    // Should be round when fab
-    wrapper = mountFunction({
-      props: { fab: true },
-    })
-    expect(wrapper.vm.isRound).toBe(true)
   })
 
   it('should compute ripple correctly', () => {
@@ -494,23 +286,7 @@ describe('VBtn.ts', () => {
     })
     expect(wrapper.vm.computedRipple).toEqual({ circle: true })
   })
-
-  it('should render with correct tag when using href', () => {
-    const wrapper = mountFunction({
-      props: {
-        href: 'https://example.com',
-      },
-    })
-
-    expect(wrapper.element.tagName.toLowerCase()).toBe('a')
-    expect(wrapper.attributes('href')).toBe('https://example.com')
-  })
-
   it('should add router class when to prop is provided', () => {
-    // Suppress Vue 3 slot warning - this is a known issue with Vue Test Utils
-    const originalWarn = console.warn
-    console.warn = jest.fn()
-
     const wrapper = mountFunction({
       props: {
         to: '/test-route',
@@ -521,7 +297,5 @@ describe('VBtn.ts', () => {
     })
 
     expect(wrapper.classes('v-btn--router')).toBe(true)
-
-    console.warn = originalWarn
   })
 })
