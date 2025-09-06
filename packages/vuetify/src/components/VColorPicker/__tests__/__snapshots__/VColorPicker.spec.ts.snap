@@ -26,9 +26,7 @@ exports[`VColorPicker.ts should change canvas height 1`] = `
         <div class="v-input v-input--hide-details theme--light v-input__slider">
           <div class="v-input__control">
             <div class="v-input__slot">
-              <div class="v-slider v-slider--horizontal theme--light"
-                   directives="[object Object]"
-              >
+              <div class="v-slider v-slider--horizontal theme--light">
                 <input id="input-16"
                        disabled
                        readonly
@@ -66,9 +64,7 @@ exports[`VColorPicker.ts should change canvas height 1`] = `
         <div class="v-input v-input--hide-details v-input--is-label-active v-input--is-dirty theme--light v-input__slider">
           <div class="v-input__control">
             <div class="v-input__slot">
-              <div class="v-slider v-slider--horizontal theme--light"
-                   directives="[object Object]"
-              >
+              <div class="v-slider v-slider--horizontal theme--light">
                 <input id="input-17"
                        disabled
                        readonly
@@ -179,9 +175,7 @@ exports[`VColorPicker.ts should hide canvas 1`] = `
         <div class="v-input v-input--hide-details theme--light v-input__slider">
           <div class="v-input__control">
             <div class="v-input__slot">
-              <div class="v-slider v-slider--horizontal theme--light"
-                   directives="[object Object]"
-              >
+              <div class="v-slider v-slider--horizontal theme--light">
                 <input id="input-38"
                        disabled
                        readonly
@@ -219,9 +213,7 @@ exports[`VColorPicker.ts should hide canvas 1`] = `
         <div class="v-input v-input--hide-details v-input--is-label-active v-input--is-dirty theme--light v-input__slider">
           <div class="v-input__control">
             <div class="v-input__slot">
-              <div class="v-slider v-slider--horizontal theme--light"
-                   directives="[object Object]"
-              >
+              <div class="v-slider v-slider--horizontal theme--light">
                 <input id="input-39"
                        disabled
                        readonly
@@ -363,9 +355,7 @@ exports[`VColorPicker.ts should hide inputs 1`] = `
         <div class="v-input v-input--hide-details theme--light v-input__slider">
           <div class="v-input__control">
             <div class="v-input__slot">
-              <div class="v-slider v-slider--horizontal theme--light"
-                   directives="[object Object]"
-              >
+              <div class="v-slider v-slider--horizontal theme--light">
                 <input id="input-57"
                        disabled
                        readonly
@@ -403,9 +393,7 @@ exports[`VColorPicker.ts should hide inputs 1`] = `
         <div class="v-input v-input--hide-details v-input--is-label-active v-input--is-dirty theme--light v-input__slider">
           <div class="v-input__control">
             <div class="v-input__slot">
-              <div class="v-slider v-slider--horizontal theme--light"
-                   directives="[object Object]"
-              >
+              <div class="v-slider v-slider--horizontal theme--light">
                 <input id="input-58"
                        disabled
                        readonly
@@ -549,9 +537,7 @@ exports[`VColorPicker.ts should not show alpha controls if given hex value witho
         <div class="v-input v-input--hide-details v-input--is-label-active v-input--is-dirty theme--light v-input__slider">
           <div class="v-input__control">
             <div class="v-input__slot">
-              <div class="v-slider v-slider--horizontal theme--light"
-                   directives="[object Object]"
-              >
+              <div class="v-slider v-slider--horizontal theme--light">
                 <input id="input-88"
                        disabled
                        readonly
@@ -663,9 +649,7 @@ exports[`VColorPicker.ts should render color picker 1`] = `
         <div class="v-input v-input--hide-details theme--light v-input__slider">
           <div class="v-input__control">
             <div class="v-input__slot">
-              <div class="v-slider v-slider--horizontal theme--light"
-                   directives="[object Object]"
-              >
+              <div class="v-slider v-slider--horizontal theme--light">
                 <input id="input-5"
                        disabled
                        readonly
@@ -703,9 +687,7 @@ exports[`VColorPicker.ts should render color picker 1`] = `
         <div class="v-input v-input--hide-details v-input--is-label-active v-input--is-dirty theme--light v-input__slider">
           <div class="v-input__control">
             <div class="v-input__slot">
-              <div class="v-slider v-slider--horizontal theme--light"
-                   directives="[object Object]"
-              >
+              <div class="v-slider v-slider--horizontal theme--light">
                 <input id="input-6"
                        disabled
                        readonly
@@ -828,9 +810,7 @@ exports[`VColorPicker.ts should render flat picker 1`] = `
         <div class="v-input v-input--hide-details theme--light v-input__slider">
           <div class="v-input__control">
             <div class="v-input__slot">
-              <div class="v-slider v-slider--horizontal theme--light"
-                   directives="[object Object]"
-              >
+              <div class="v-slider v-slider--horizontal theme--light">
                 <input id="input-109"
                        disabled
                        readonly
@@ -868,9 +848,7 @@ exports[`VColorPicker.ts should render flat picker 1`] = `
         <div class="v-input v-input--hide-details v-input--is-label-active v-input--is-dirty theme--light v-input__slider">
           <div class="v-input__control">
             <div class="v-input__slot">
-              <div class="v-slider v-slider--horizontal theme--light"
-                   directives="[object Object]"
-              >
+              <div class="v-slider v-slider--horizontal theme--light">
                 <input id="input-110"
                        disabled
                        readonly
@@ -993,9 +971,7 @@ exports[`VColorPicker.ts should render picker with elevation 1`] = `
         <div class="v-input v-input--hide-details theme--light v-input__slider">
           <div class="v-input__control">
             <div class="v-input__slot">
-              <div class="v-slider v-slider--horizontal theme--light"
-                   directives="[object Object]"
-              >
+              <div class="v-slider v-slider--horizontal theme--light">
                 <input id="input-120"
                        disabled
                        readonly
@@ -1033,9 +1009,7 @@ exports[`VColorPicker.ts should render picker with elevation 1`] = `
         <div class="v-input v-input--hide-details v-input--is-label-active v-input--is-dirty theme--light v-input__slider">
           <div class="v-input__control">
             <div class="v-input__slot">
-              <div class="v-slider v-slider--horizontal theme--light"
-                   directives="[object Object]"
-              >
+              <div class="v-slider v-slider--horizontal theme--light">
                 <input id="input-121"
                        disabled
                        readonly
@@ -1158,9 +1132,7 @@ exports[`VColorPicker.ts should show swatches 1`] = `
         <div class="v-input v-input--hide-details theme--light v-input__slider">
           <div class="v-input__control">
             <div class="v-input__slot">
-              <div class="v-slider v-slider--horizontal theme--light"
-                   directives="[object Object]"
-              >
+              <div class="v-slider v-slider--horizontal theme--light">
                 <input id="input-27"
                        disabled
                        readonly
@@ -1198,9 +1170,7 @@ exports[`VColorPicker.ts should show swatches 1`] = `
         <div class="v-input v-input--hide-details v-input--is-label-active v-input--is-dirty theme--light v-input__slider">
           <div class="v-input__control">
             <div class="v-input__slot">
-              <div class="v-slider v-slider--horizontal theme--light"
-                   directives="[object Object]"
-              >
+              <div class="v-slider v-slider--horizontal theme--light">
                 <input id="input-28"
                        disabled
                        readonly
@@ -2141,9 +2111,7 @@ exports[`VColorPicker.ts should work correctly when initial value is null 1`] = 
         <div class="v-input v-input--hide-details theme--light v-input__slider">
           <div class="v-input__control">
             <div class="v-input__slot">
-              <div class="v-slider v-slider--horizontal theme--light"
-                   directives="[object Object]"
-              >
+              <div class="v-slider v-slider--horizontal theme--light">
                 <input id="input-98"
                        disabled
                        readonly
@@ -2181,9 +2149,7 @@ exports[`VColorPicker.ts should work correctly when initial value is null 1`] = 
         <div class="v-input v-input--hide-details v-input--is-label-active v-input--is-dirty theme--light v-input__slider">
           <div class="v-input__control">
             <div class="v-input__slot">
-              <div class="v-slider v-slider--horizontal theme--light"
-                   directives="[object Object]"
-              >
+              <div class="v-slider v-slider--horizontal theme--light">
                 <input id="input-99"
                        disabled
                        readonly

@@ -16,11 +16,10 @@ import { addOnceEventListener, deepEqual, keyCodes, createRange, convertToUnit, 
 import { consoleWarn } from '../../util/console'
 
 // Types
-import Vue, { VNode, VNodeChildrenArrayContents, PropType, h } from 'vue'
-import { ScopedSlotChildren } from 'vue/types/vnode'
+import { defineComponent, VNode, PropType, h, getCurrentInstance, withDirectives, vShow } from 'vue'
 import { PropValidator } from 'vue/types/options'
 
-interface options extends Vue {
+interface options {
   $refs: {
     track: HTMLElement
   }
@@ -63,7 +62,7 @@ export default mixins<options &
     thumbLabel: {
       type: [Boolean, String] as PropType<boolean | 'always' | undefined>,
       default: undefined,
-      validator: v => typeof v === 'boolean' || v === 'always',
+      validator: (v: any) => typeof v === 'boolean' || v === 'always' || v === undefined,
     },
     thumbSize: {
       type: [Number, String],
@@ -76,7 +75,7 @@ export default mixins<options &
     ticks: {
       type: [Boolean, String] as PropType<boolean | 'always'>,
       default: false,
-      validator: v => typeof v === 'boolean' || v === 'always',
+      validator: (v: any) => typeof v === 'boolean' || v === 'always',
     },
     tickSize: {
       type: [Number, String],
@@ -87,6 +86,16 @@ export default mixins<options &
     modelValue: [Number, String],
     vertical: Boolean,
   },
+
+  emits: [
+    'update:modelValue',
+    'start',
+    'end',
+    'mouseup',
+    'change',
+    'focus',
+    'blur',
+  ],
 
   data: () => ({
     app: null as any,
@@ -113,11 +122,14 @@ export default mixins<options &
         return this.lazyValue
       },
       set (val: number) {
+        const originalVal = val
         val = isNaN(val) ? this.minValue : val
         // Round value to ensure the
         // entire slider range can
         // be selected with step
-        const value = this.roundValue(Math.min(Math.max(val, this.minValue), this.maxValue))
+        let value = this.roundValue(val)
+        // Then clamp to min/max
+        value = Math.min(Math.max(value, this.minValue), this.maxValue)
 
         if (value === this.lazyValue) return
 
@@ -140,7 +152,8 @@ export default mixins<options &
       return parseFloat(this.max)
     },
     stepNumeric (): number {
-      return this.step > 0 ? parseFloat(this.step) : 0
+      const step = parseFloat(this.step)
+      return step > 0 ? step : 0
     },
     inputWidth (): number {
       const inputWidth = (this.roundValue(this.internalValue) - this.minValue) / (this.maxValue - this.minValue) * 100
@@ -209,19 +222,25 @@ export default mixins<options &
   watch: {
     min (val) {
       const parsed = parseFloat(val)
-      parsed > this.internalValue && this.$emit('update:modelValue', parsed)
+      if (parsed > this.internalValue) {
+        this.$emit('update:modelValue', parsed)
+      }
     },
     max (val) {
       const parsed = parseFloat(val)
-      parsed < this.internalValue && this.$emit('update:modelValue', parsed)
+      if (parsed < this.internalValue) {
+        this.$emit('update:modelValue', parsed)
+      }
     },
     modelValue: {
       handler (v: number) {
+        // Use the setter to ensure proper rounding and validation
         this.internalValue = v
       },
       immediate: true,
     },
   },
+
 
   mounted () {
     // Without a v-app, iOS does not work with body selectors
@@ -230,8 +249,8 @@ export default mixins<options &
   },
 
   methods: {
-    genDefaultSlot (): VNodeChildrenArrayContents {
-      const children: VNodeChildrenArrayContents = [this.genLabel()]
+    genDefaultSlot (): VNode[] {
+      const children: VNode[] = [this.genLabel()]
       const slider = this.genSlider()
       this.inverseLabel
         ? children.unshift(slider)
@@ -242,7 +261,7 @@ export default mixins<options &
       return children
     },
     genSlider (): VNode {
-      return h('div', {
+      return withDirectives(h('div', {
         class: {
           'v-slider': true,
           'v-slider--horizontal': !this.vertical,
@@ -253,16 +272,14 @@ export default mixins<options &
           'v-slider--readonly': this.isReadonly,
           ...this.themeClasses,
         },
-        directives: [{
-          name: 'click-outside',
-          value: this.onBlur,
-        }],
         onClick: this.onSliderClick,
         onMousedown: this.onSliderMouseDown,
         onTouchstart: this.onSliderMouseDown,
-      }, this.genChildren())
+      }, this.genChildren()), [
+        [ClickOutside, this.onBlur],
+      ])
     },
-    genChildren (): VNodeChildrenArrayContents {
+    genChildren (): VNode[] {
       return [
         this.genInput(),
         this.genTrackContainer(),
@@ -378,17 +395,17 @@ export default mixins<options &
         'aria-valuenow': this.internalValue,
         'aria-readonly': String(this.isReadonly),
         'aria-orientation': this.vertical ? 'vertical' : 'horizontal',
-        onFocus: onFocus,
-        onBlur: onBlur,
+        onFocus,
+        onBlur,
         onKeydown: this.onKeyDown,
       }), children)
     },
-    genThumbLabelContent (value: number | string): ScopedSlotChildren {
+    genThumbLabelContent (value: number | string): any {
       return this.$slots['thumb-label']
         ? this.$slots['thumb-label']!({ value })
         : [h('span', [String(value)])]
     },
-    genThumbLabel (content: ScopedSlotChildren): VNode {
+    genThumbLabel (content: any): VNode {
       const size = convertToUnit(this.thumbSize)
 
       const transform = this.vertical
@@ -398,12 +415,8 @@ export default mixins<options &
       return h(VScaleTransition, {
         origin: 'bottom center',
       }, [
-        h('div', {
+        withDirectives(h('div', {
           class: 'v-slider__thumb-label-container',
-          directives: [{
-            name: 'show',
-            value: this.isFocused || this.isActive || this.thumbLabel === 'always',
-          }],
         }, [
           h('div', this.setBackgroundColor(this.computedThumbColor, {
             class: 'v-slider__thumb-label',
@@ -413,6 +426,8 @@ export default mixins<options &
               transform,
             },
           }), [h('div', content)]),
+        ]), [
+          [vShow, this.isFocused || this.isActive || this.thumbLabel === 'always'],
         ]),
       ])
     },
@@ -510,6 +525,7 @@ export default mixins<options &
 
       this.onMouseMove(e)
       this.$emit('update:modelValue', this.internalValue)
+      this.$emit('change', this.internalValue)
     },
     onBlur (e: Event) {
       this.isFocused = false
