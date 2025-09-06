@@ -298,7 +298,7 @@ export default mixins(
     genLoading () {
       const th = h('th', {
         class: 'column',
-        attrs: this.colspanAttrs,
+        ...this.colspanAttrs,
       }, [this.genProgress()])
 
       const tr = h('tr', {
@@ -348,7 +348,7 @@ export default mixins(
         class: 'v-data-table__empty-wrapper',
       }, [
         h('td', {
-          attrs: this.colspanAttrs,
+          ...this.colspanAttrs,
         }, content),
       ])
     },
@@ -419,7 +419,7 @@ export default mixins(
 
         const column = h('td', {
           class: 'text-start',
-          attrs: this.colspanAttrs,
+          ...this.colspanAttrs,
         }, [toggle, `${this.groupByText}: ${group}`, remove])
 
         children.unshift(h('template', { slot: 'column.header' }, [column]))
