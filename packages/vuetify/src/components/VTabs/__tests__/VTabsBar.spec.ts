@@ -5,9 +5,9 @@ import VTabsBar from '../VTabsBar'
 // Utilities
 import {
   mount,
-  RouterLinkStub,
   VueWrapper,
 } from '@vue/test-utils'
+import { Vue3RouterLinkStub } from '../../../../test/util/stubs'
 import { h, nextTick } from 'vue'
 
 describe('VTabsBar.ts', () => {
@@ -21,7 +21,7 @@ describe('VTabsBar.ts', () => {
             warnHandler: () => {}, // Подавляем предупреждения Vue
           },
           stubs: {
-            RouterLink: RouterLinkStub,
+            RouterLink: Vue3RouterLinkStub,
           },
           mocks: {
             $vuetify: {
