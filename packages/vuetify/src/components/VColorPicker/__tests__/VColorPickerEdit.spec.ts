@@ -16,6 +16,16 @@ describe('VColorPickerEdit.ts', () => {
     mountFunction = (options: any = {}) => {
       return mount(VColorPickerEdit, {
         ...options,
+        global: {
+          mocks: {
+            $vuetify: {
+              icons: {
+                component: 'div',
+              },
+            },
+          },
+          ...options.global,
+        },
       })
     }
   })

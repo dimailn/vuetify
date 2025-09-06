@@ -301,7 +301,7 @@ exports[`VColorPicker.ts should hide canvas 1`] = `
 `;
 
 exports[`VColorPicker.ts should hide controls 1`] = `
-<div class="v-color-picker v-sheet theme--light theme--light"
+<div class="v-sheet theme--light v-color-picker theme--light"
      style="max-width: 300px;"
 >
   <div class="v-color-picker__canvas"
@@ -320,7 +320,7 @@ exports[`VColorPicker.ts should hide controls 1`] = `
 `;
 
 exports[`VColorPicker.ts should hide inputs 1`] = `
-<div class="v-color-picker v-sheet theme--light theme--light"
+<div class="v-sheet theme--light v-color-picker theme--light"
      style="max-width: 300px;"
 >
   <div class="v-color-picker__canvas"
@@ -342,15 +342,18 @@ exports[`VColorPicker.ts should hide inputs 1`] = `
         </div>
       </div>
       <div class="v-color-picker__sliders">
-        <div class="v-input v-color-picker__hue v-input--hide-details theme--light v-input__slider v-color-picker__track">
+        <div class="v-input v-input--hide-details theme--light v-input__slider">
           <div class="v-input__control">
             <div class="v-input__slot">
-              <div class="v-slider v-slider--horizontal theme--light">
-                <input value="0"
-                       id="input-52"
-                       disabled="disabled"
-                       readonly="readonly"
+              <div class="v-slider v-slider--horizontal theme--light"
+                   directives="[object Object]"
+              >
+                <input id="input-57"
+                       disabled
+                       readonly
                        tabindex="-1"
+                       class="v-color-picker__hue"
+                       value="0"
                 >
                 <div class="v-slider__track-container">
                   <div class="v-slider__track-background primary lighten-3"
@@ -362,15 +365,15 @@ exports[`VColorPicker.ts should hide inputs 1`] = `
                   >
                   </div>
                 </div>
-                <div role="slider"
+                <div class="v-slider__thumb-container grey--text text--lighten-2"
+                     style="left: 0%;"
+                     role="slider"
                      tabindex="0"
                      aria-valuemin="0"
                      aria-valuemax="360"
                      aria-valuenow="0"
                      aria-readonly="false"
                      aria-orientation="horizontal"
-                     class="v-slider__thumb-container grey--text text--lighten-2"
-                     style="left: 0%;"
                 >
                   <div class="v-slider__thumb grey lighten-2">
                   </div>
@@ -379,15 +382,18 @@ exports[`VColorPicker.ts should hide inputs 1`] = `
             </div>
           </div>
         </div>
-        <div class="v-input v-color-picker__alpha v-input--hide-details v-input--is-label-active v-input--is-dirty theme--light v-input__slider v-color-picker__track">
+        <div class="v-input v-input--hide-details v-input--is-label-active v-input--is-dirty theme--light v-input__slider">
           <div class="v-input__control">
             <div class="v-input__slot">
-              <div class="v-slider v-slider--horizontal theme--light">
-                <input value="1"
-                       id="input-53"
-                       disabled="disabled"
-                       readonly="readonly"
+              <div class="v-slider v-slider--horizontal theme--light"
+                   directives="[object Object]"
+              >
+                <input id="input-58"
+                       disabled
+                       readonly
                        tabindex="-1"
+                       class="v-color-picker__alpha"
+                       value="1"
                 >
                 <div class="v-slider__track-container">
                   <div class="v-slider__track-background primary lighten-3"
@@ -399,15 +405,15 @@ exports[`VColorPicker.ts should hide inputs 1`] = `
                   >
                   </div>
                 </div>
-                <div role="slider"
+                <div class="v-slider__thumb-container grey--text text--lighten-2"
+                     style="left: 100%;"
+                     role="slider"
                      tabindex="0"
                      aria-valuemin="0"
                      aria-valuemax="1"
                      aria-valuenow="1"
                      aria-readonly="false"
                      aria-orientation="horizontal"
-                     class="v-slider__thumb-container grey--text text--lighten-2"
-                     style="left: 100%;"
                 >
                   <div class="v-slider__thumb grey lighten-2">
                   </div>
