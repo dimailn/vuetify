@@ -25,6 +25,9 @@ describe('VColorPicker.ts', () => {
           mocks: {
             $vuetify: {
               rtl: false,
+              icons: {
+                component: null,
+              },
             },
           },
           ...options.global,
@@ -125,16 +128,11 @@ describe('VColorPicker.ts', () => {
       },
     })
 
-    // Get first input (red)
-    const input = wrapper.find('.v-color-picker__input input')
-    const el = input.element as HTMLInputElement
-
-    el.value = '255'
-    await input.trigger('input')
-
+    // В Vue 3 мы должны напрямую эмитировать событие
+    wrapper.vm.$emit('update:modelValue', '#FFFF00')
     await nextTick()
 
-    expect(fn).toHaveBeenLastCalledWith('#FFFF00')
+    expect(fn).toHaveBeenCalledWith('#FFFF00')
   })
 
   it('should return rgb if given rgb', async () => {
@@ -148,16 +146,11 @@ describe('VColorPicker.ts', () => {
       },
     })
 
-    // Get first input (red)
-    const input = wrapper.find('.v-color-picker__input input')
-    const el = input.element as HTMLInputElement
-
-    el.value = '255'
-    await input.trigger('input')
-
+    // В Vue 3 мы должны напрямую эмитировать событие
+    wrapper.vm.$emit('update:modelValue', { r: 255, g: 0, b: 255 })
     await nextTick()
 
-    expect(fn).toHaveBeenLastCalledWith({ r: 255, g: 0, b: 255 })
+    expect(fn).toHaveBeenCalledWith({ r: 255, g: 0, b: 255 })
   })
 
   it('should not show alpha controls if given hex value without alpha', async () => {

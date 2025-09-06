@@ -50,10 +50,10 @@ exports[`VColorPickerEdit.ts should change mode 1`] = `
           class="v-btn v-btn--icon v-btn--round theme--light v-size--small"
   >
     <span class="v-btn__content">
-      <span class="v-icon notranslate theme--light"
-            aria-hidden="true"
+      <i aria-hidden="true"
+         class="v-icon notranslate material-icons theme--light"
       >
-      </span>
+      </i>
     </span>
   </button>
 </div>
@@ -109,10 +109,10 @@ exports[`VColorPickerEdit.ts should change mode 2`] = `
           class="v-btn v-btn--icon v-btn--round theme--light v-size--small"
   >
     <span class="v-btn__content">
-      <span class="v-icon notranslate theme--light"
-            aria-hidden="true"
+      <i aria-hidden="true"
+         class="v-icon notranslate material-icons theme--light"
       >
-      </span>
+      </i>
     </span>
   </button>
 </div>
@@ -132,10 +132,10 @@ exports[`VColorPickerEdit.ts should change mode 3`] = `
           class="v-btn v-btn--icon v-btn--round theme--light v-size--small"
   >
     <span class="v-btn__content">
-      <span class="v-icon notranslate theme--light"
-            aria-hidden="true"
+      <i aria-hidden="true"
+         class="v-icon notranslate material-icons theme--light"
       >
-      </span>
+      </i>
     </span>
   </button>
 </div>
@@ -191,10 +191,10 @@ exports[`VColorPickerEdit.ts should change mode 4`] = `
           class="v-btn v-btn--icon v-btn--round theme--light v-size--small"
   >
     <span class="v-btn__content">
-      <span class="v-icon notranslate theme--light"
-            aria-hidden="true"
+      <i aria-hidden="true"
+         class="v-icon notranslate material-icons theme--light"
       >
-      </span>
+      </i>
     </span>
   </button>
 </div>
@@ -304,10 +304,10 @@ exports[`VColorPickerEdit.ts should render with disabled 1`] = `
           class="v-btn v-btn--disabled v-btn--icon v-btn--round theme--light v-size--small"
   >
     <span class="v-btn__content">
-      <span class="v-icon notranslate theme--light"
-            aria-hidden="true"
+      <i aria-hidden="true"
+         class="v-icon notranslate material-icons theme--light"
       >
-      </span>
+      </i>
     </span>
   </button>
 </div>
