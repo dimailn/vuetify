@@ -1,22 +1,28 @@
 import VColorPickerPreview from '../VColorPickerPreview'
 import {
   mount,
-  MountOptions,
-  Wrapper,
+  VueWrapper,
+  enableAutoUnmount,
 } from '@vue/test-utils'
 import { fromRGBA } from '../util'
+import { nextTick } from 'vue'
+
+enableAutoUnmount(afterEach)
 
 describe('VColorPickerPreview.ts', () => {
   type Instance = InstanceType<typeof VColorPickerPreview>
-  let mountFunction: (options?: MountOptions<Instance>) => Wrapper<Instance>
+  let mountFunction: (options?: any) => VueWrapper<Instance>
   beforeEach(() => {
-    mountFunction = (options?: MountOptions<Instance>) => {
+    mountFunction = (options: any = {}) => {
       return mount(VColorPickerPreview, {
         ...options,
-        mocks: {
-          $vuetify: {
-            rtl: false,
+        global: {
+          mocks: {
+            $vuetify: {
+              rtl: false,
+            },
           },
+          ...options.global,
         },
       })
     }
@@ -28,18 +34,18 @@ describe('VColorPickerPreview.ts', () => {
 
     const update = jest.fn()
     const wrapper = mountFunction({
-      propsData: {
+      props: {
         color: fromRGBA({ r: 0, g: 0, b: 0, a: 0 }),
       },
-      listeners: {
-        'update:color': update,
+      attrs: {
+        'onUpdate:color': update,
       },
     })
 
     const slider = wrapper.find('.v-slider__thumb-container')
 
-    slider.trigger('keydown.right')
-    await wrapper.vm.$nextTick()
+    await slider.trigger('keydown.right')
+    await nextTick()
     expect(update).toHaveBeenCalledTimes(1)
     expect(update.mock.calls[0][0].hue).toBe(1)
 
@@ -52,18 +58,18 @@ describe('VColorPickerPreview.ts', () => {
 
     const update = jest.fn()
     const wrapper = mountFunction({
-      propsData: {
+      props: {
         color: fromRGBA({ r: 0, g: 0, b: 0, a: 0 }),
       },
-      listeners: {
-        'update:color': update,
+      attrs: {
+        'onUpdate:color': update,
       },
     })
 
-    const slider = wrapper.findAll('.v-slider__thumb-container').at(1)
+    const slider = wrapper.findAll('.v-slider__thumb-container')[1]
 
-    slider.trigger('keydown.right')
-    await wrapper.vm.$nextTick()
+    await slider.trigger('keydown.right')
+    await nextTick()
     expect(update).toHaveBeenCalledTimes(1)
     expect(update.mock.calls[0][0].alpha).toBe(1)
 

@@ -1,13 +1,16 @@
 import VColorPicker from '../VColorPicker'
 import {
   mount,
-  MountOptions,
-  Wrapper,
+  VueWrapper,
+  enableAutoUnmount,
 } from '@vue/test-utils'
+import { nextTick } from 'vue'
+
+enableAutoUnmount(afterEach)
 
 describe('VColorPicker.ts', () => {
   type Instance = InstanceType<typeof VColorPicker>
-  let mountFunction: (options?: MountOptions<Instance>) => Wrapper<Instance>
+  let mountFunction: (options?: any) => VueWrapper<Instance>
   let el
 
   beforeEach(() => {
@@ -15,21 +18,25 @@ describe('VColorPicker.ts', () => {
     el.setAttribute('data-app', 'true')
     document.body.appendChild(el)
 
-    mountFunction = (options?: MountOptions<Instance>) => {
+    mountFunction = (options: any = {}) => {
       return mount(VColorPicker, {
         ...options,
-        mocks: {
-          $vuetify: {
-            rtl: false,
+        global: {
+          mocks: {
+            $vuetify: {
+              rtl: false,
+            },
           },
+          ...options.global,
         },
-        sync: false,
       })
     }
   })
 
   afterEach(() => {
-    document.body.removeChild(el)
+    if (el && el.parentNode) {
+      document.body.removeChild(el)
+    }
   })
 
   it('should render color picker', () => {
@@ -40,7 +47,7 @@ describe('VColorPicker.ts', () => {
 
   it('should change canvas height', () => {
     const wrapper = mountFunction({
-      propsData: {
+      props: {
         canvasHeight: 200,
       },
     })
@@ -51,7 +58,7 @@ describe('VColorPicker.ts', () => {
 
   it('should show swatches', () => {
     const wrapper = mountFunction({
-      propsData: {
+      props: {
         showSwatches: true,
       },
     })
@@ -62,7 +69,7 @@ describe('VColorPicker.ts', () => {
 
   it('should hide canvas', () => {
     const wrapper = mountFunction({
-      propsData: {
+      props: {
         hideCanvas: true,
       },
     })
@@ -73,7 +80,7 @@ describe('VColorPicker.ts', () => {
 
   it('should hide sliders', () => {
     const wrapper = mountFunction({
-      propsData: {
+      props: {
         hideSliders: true,
       },
     })
@@ -84,7 +91,7 @@ describe('VColorPicker.ts', () => {
 
   it('should hide inputs', () => {
     const wrapper = mountFunction({
-      propsData: {
+      props: {
         hideInputs: true,
       },
     })
@@ -95,7 +102,7 @@ describe('VColorPicker.ts', () => {
 
   it('should hide controls', () => {
     const wrapper = mountFunction({
-      propsData: {
+      props: {
         hideInputs: true,
         hideSliders: true,
       },
@@ -110,11 +117,11 @@ describe('VColorPicker.ts', () => {
   it('should return hex if given hex', async () => {
     const fn = jest.fn()
     const wrapper = mountFunction({
-      propsData: {
-        value: '#00FF00',
+      props: {
+        modelValue: '#00FF00',
       },
-      listeners: {
-        input: fn,
+      attrs: {
+        'onUpdate:modelValue': fn,
       },
     })
 
@@ -123,9 +130,9 @@ describe('VColorPicker.ts', () => {
     const el = input.element as HTMLInputElement
 
     el.value = '255'
-    input.trigger('input')
+    await input.trigger('input')
 
-    await wrapper.vm.$nextTick()
+    await nextTick()
 
     expect(fn).toHaveBeenLastCalledWith('#FFFF00')
   })
@@ -133,11 +140,11 @@ describe('VColorPicker.ts', () => {
   it('should return rgb if given rgb', async () => {
     const fn = jest.fn()
     const wrapper = mountFunction({
-      propsData: {
-        value: { r: 0, g: 0, b: 255 },
+      props: {
+        modelValue: { r: 0, g: 0, b: 255 },
       },
-      listeners: {
-        input: fn,
+      attrs: {
+        'onUpdate:modelValue': fn,
       },
     })
 
@@ -146,17 +153,17 @@ describe('VColorPicker.ts', () => {
     const el = input.element as HTMLInputElement
 
     el.value = '255'
-    input.trigger('input')
+    await input.trigger('input')
 
-    await wrapper.vm.$nextTick()
+    await nextTick()
 
     expect(fn).toHaveBeenLastCalledWith({ r: 255, g: 0, b: 255 })
   })
 
   it('should not show alpha controls if given hex value without alpha', async () => {
     const wrapper = mountFunction({
-      propsData: {
-        value: '#00FF00',
+      props: {
+        modelValue: '#00FF00',
       },
     })
 
@@ -168,8 +175,8 @@ describe('VColorPicker.ts', () => {
   // TODO: snapshot is too complex for this
   it('should work correctly when initial value is null', () => {
     const wrapper = mountFunction({
-      propsData: {
-        value: null,
+      props: {
+        modelValue: null,
       },
     })
 
@@ -178,7 +185,7 @@ describe('VColorPicker.ts', () => {
 
   it('should render flat picker', () => {
     const wrapper = mountFunction({
-      propsData: {
+      props: {
         flat: true,
       },
     })
@@ -188,7 +195,7 @@ describe('VColorPicker.ts', () => {
 
   it('should render picker with elevation', () => {
     const wrapper = mountFunction({
-      propsData: {
+      props: {
         elevation: 15,
       },
     })
