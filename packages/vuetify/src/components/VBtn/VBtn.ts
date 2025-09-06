@@ -19,13 +19,11 @@ import Sizeable from '../../mixins/sizeable'
 import mixins, { ExtractVue } from '../../util/mixins'
 import { breaking } from '../../util/console'
 import { getSlot } from '../../util/helpers'
-import mergeData from '../../util/mergeData'
 
 // Types
-import { VNode, withDirectives } from 'vue'
+import { VNode, withDirectives, h } from 'vue'
 import { PropValidator, PropType } from 'vue/types/options'
 import { RippleOptions } from '../../directives/ripple'
-import {h} from 'vue'
 
 const baseMixins = mixins(
   VSheet,
@@ -77,7 +75,6 @@ export default baseMixins.extend({
     classes (): any {
       return {
         'v-btn': true,
-        ...Routable.computed.classes.call(this),
         'v-btn--absolute': this.absolute,
         'v-btn--block': this.block,
         'v-btn--bottom': this.bottom,
@@ -107,7 +104,7 @@ export default baseMixins.extend({
     computedElevation (): string | number | undefined {
       if (this.disabled) return undefined
 
-      return Elevatable.computed.computedElevation.call(this)
+      return this.elevation
     },
     computedRipple (): RippleOptions | boolean {
       const defaultRipple = this.icon || this.fab ? { circle: true } : true
@@ -175,7 +172,7 @@ export default baseMixins.extend({
       }, getSlot(this, 'loader') || [h(VProgressCircular, {
         indeterminate: true,
         size: 23,
-        width: 2
+        width: 2,
       })])
     },
   },
@@ -190,22 +187,34 @@ export default baseMixins.extend({
       ? this.setBackgroundColor
       : this.setTextColor
 
-    let data = {}
+    // Merge component classes with routable classes and user classes from $attrs
+    const mergedClasses = {
+      ...this.classes,
+      ...linkData.class,
+    }
+
+    // Add classes from $attrs.class
+    if (this.$attrs.class) {
+      const userClasses = typeof this.$attrs.class === 'string'
+        ? this.$attrs.class.split(' ').reduce((acc, cls) => ({ ...acc, [cls]: true }), {})
+        : this.$attrs.class
+      Object.assign(mergedClasses, userClasses)
+    }
 
     if (tag === 'button') {
-      data.type = this.type
-      data.disabled = this.disabled
+      linkData.type = this.type
+      linkData.disabled = this.disabled
     }
-    data.value = ['string', 'number'].includes(typeof this.value)
+    linkData.value = ['string', 'number'].includes(typeof this.value)
       ? this.value
       : JSON.stringify(this.value)
 
-    data = {
-      ...data,
-      ...linkData
+    const data = {
+      ...linkData,
+      class: mergedClasses,
+      style: this.styles,
     }
 
-    data = mergeData(data, { class: this.$attrs.class })
 
     return withDirectives(
       h(tag, this.disabled ? data : setColor(this.color, data), children),

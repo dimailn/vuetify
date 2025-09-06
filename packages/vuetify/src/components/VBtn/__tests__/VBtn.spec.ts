@@ -1,36 +1,43 @@
-// Libraries
-import Vue from 'vue'
-
-// Plugins
-import Router from 'vue-router'
-
+/* eslint-disable max-statements */
 // Components
 import VBtn from '../VBtn'
 
 // Utilities
-import {
-  createLocalVue,
-  mount,
-  Wrapper,
-} from '@vue/test-utils'
-// import { compileToFunctions } from 'vue-template-compiler'
+import { mount, enableAutoUnmount, VueWrapper } from '@vue/test-utils'
+import { createRouter, createWebHistory } from 'vue-router'
+import { nextTick } from 'vue'
+import { Vue3RouterLinkStub } from '../../../../test/util/stubs'
 
-describe('VBtn.ts', () => { // eslint-disable-line max-statements
-  let mountFunction: (options?: object) => Wrapper<Vue>
-  let router: Router
-  let localVue: typeof Vue
+// Auto cleanup after each test
+enableAutoUnmount(afterEach)
+
+describe('VBtn.ts', () => {
+  // eslint-disable-line max-statements
+  let mountFunction: (options?: object) => VueWrapper<any>
+  let router: any
 
   beforeEach(() => {
-    // router = new Router()
-    // localVue = createLocalVue()
-    // localVue.use(Router)
+    router = createRouter({
+      history: createWebHistory(),
+      routes: [
+        { path: '/', component: { template: '<div>Home</div>' } },
+        { path: '/foobar', component: { template: '<div>Foobar</div>' } },
+        { path: '/fizzbuzz', component: { template: '<div>Fizzbuzz</div>' } },
+        { path: '/foo', component: { template: '<div>Foo</div>' } },
+      ],
+    })
 
     mountFunction = (options = {}) => {
       return mount(VBtn, {
-        // localVue,
-        // router,
-        ...options,
-      })
+        global: {
+          plugins: [router],
+            components: {
+              "router-link": Vue3RouterLinkStub
+            },
+          ...options.global
+        },
+        ...options
+      });
     }
   })
 
@@ -39,27 +46,31 @@ describe('VBtn.ts', () => { // eslint-disable-line max-statements
   })
 
   it('should render component with color prop and match snapshot', () => {
-    expect(mountFunction({
-      props: {
-        color: 'green darken-1',
-      },
-    }).html()).toMatchSnapshot()
+    expect(
+      mountFunction({
+        props: {
+          color: 'green darken-1',
+        },
+      }).html()
+    ).toMatchSnapshot()
 
-    expect(mountFunction({
-      props: {
-        color: 'green darken-1',
-        text: true,
-      },
-    }).html()).toMatchSnapshot()
+    expect(
+      mountFunction({
+        props: {
+          color: 'green darken-1',
+          text: true,
+        },
+      }).html()
+    ).toMatchSnapshot()
   })
 
   it('should render component with loader slot and match snapshot', () => {
     const wrapper = mountFunction({
       props: {
-        loading: true
+        loading: true,
       },
       slots: {
-      loader: [{template: '<span>loader</span>' }],
+        loader: '<span>loader</span>',
       },
     })
 
@@ -76,211 +87,441 @@ describe('VBtn.ts', () => { // eslint-disable-line max-statements
     expect(wrapper.html()).toMatchSnapshot()
   })
 
-  // it('should render tile button and match snapshot', () => {
-  //   const wrapper = mount(VBtn, {
-  //     propsData: {
-  //       tile: true,
-  //     },
-  //   })
+  it('should render tile button and match snapshot', () => {
+    const wrapper = mount(VBtn, {
+      props: {
+        tile: true,
+      },
+    })
 
-  //   expect(wrapper.html()).toMatchSnapshot()
-  // })
+    expect(wrapper.html()).toMatchSnapshot()
+  })
 
-  // it('should render an <a> tag when using href prop', () => {
-  //   const wrapper = mountFunction({
-  //     propsData: {
-  //       href: 'http://www.google.com',
-  //     },
-  //   })
+  it('should render an <a> tag when using href prop', () => {
+    const wrapper = mountFunction({
+      props: {
+        href: 'http://www.google.com',
+      },
+    })
 
-  //   expect(wrapper.html()).toMatchSnapshot()
-  // })
+    expect(wrapper.html()).toMatchSnapshot()
+  })
 
-  // it('should render specified tag when using tag prop', () => {
-  //   const wrapper = mountFunction({
-  //     propsData: {
-  //       tag: 'a',
-  //     },
-  //   })
+  it('should render specified tag when using tag prop', () => {
+    const wrapper = mountFunction({
+      props: {
+        tag: 'a',
+      },
+    })
 
-  //   expect(wrapper.html()).toMatchSnapshot()
-  // })
+    expect(wrapper.html()).toMatchSnapshot()
+  })
 
-  // it('should register and unregister', () => {
-  //   const register = jest.fn()
-  //   const unregister = jest.fn()
+  it('should register and unregister', () => {
+    const register = jest.fn()
+    const unregister = jest.fn()
 
-  //   const wrapper = mountFunction({
-  //     provide: {
-  //       btnToggle: {
-  //         register,
-  //         unregister,
-  //       },
-  //     },
-  //   })
+    const wrapper = mountFunction({
+      global: {
+        provide: {
+          btnToggle: {
+            register,
+            unregister,
+          },
+        },
+      },
+    })
 
-  //   expect(register).toHaveBeenCalled()
-  //   wrapper.destroy()
-  //   expect(unregister).toHaveBeenCalled()
-  // })
+    expect(register).toHaveBeenCalled()
+    wrapper.unmount()
+    expect(unregister).toHaveBeenCalled()
+  })
 
-  // it('should emit a click event', async () => {
-  //   const wrapper = mountFunction({
-  //     propsData: {
-  //       href: '#!',
-  //     },
-  //   })
 
-  //   const click = jest.fn()
-  //   wrapper.vm.$on('click', click)
-  //   wrapper.trigger('click')
+  it('should use custom active-class', () => {
+    const wrapper = mountFunction({
+      props: {
+        inputValue: true,
+        activeClass: 'foo',
+      },
+    })
 
-  //   wrapper.setProps({ href: undefined, to: '/foo' })
-  //   wrapper.trigger('click')
+    expect(wrapper.classes('foo')).toBe(true)
+  })
 
-  //   expect(click.mock.calls).toHaveLength(2)
-  // })
+  it('should have v-btn--plain class when plain prop is set to true', () => {
+    const wrapper = mountFunction({
+      props: {
+        plain: true,
+      },
+    })
 
-  // it('should use custom active-class', () => {
-  //   const wrapper = mountFunction({
-  //     propsData: {
-  //       inputValue: true,
-  //       activeClass: 'foo',
-  //     },
-  //   })
+    expect(wrapper.classes('v-btn--plain')).toBe(true)
+  })
 
-  //   expect(wrapper.classes('foo')).toBe(true)
-  // })
+  it('should have the correct icon classes', async () => {
+    const wrapper = mountFunction({
+      props: {
+        icon: true,
+      },
+    })
+    expect(wrapper.classes('v-btn--icon')).toBe(true)
 
-  // it('should have v-btn--plain class when plain prop is set to true', () => {
-  //   const wrapper = mountFunction({
-  //     propsData: {
-  //       plain: true,
-  //     },
-  //   })
+    await wrapper.setProps({ icon: false })
 
-  //   expect(wrapper.classes('v-btn--plain')).toBe(true)
-  // })
+    expect(wrapper.classes('v-btn--icon')).toBe(false)
+  })
 
-  // it('should have the correct icon classes', () => {
-  //   const wrapper = mountFunction({
-  //     propsData: {
-  //       icon: true,
-  //     },
-  //   })
-  //   expect(wrapper.classes('v-btn--icon')).toBe(true)
+  it('should have the correct elevation', async () => {
+    // eslint-disable-line max-statements
+    const wrapper = mountFunction()
 
-  //   wrapper.setProps({ icon: false })
+    await wrapper.setProps({ disabled: true })
+    expect(wrapper.classes('elevation-2')).toBe(false)
+    expect(wrapper.classes('v-btn--disabled')).toBe(true)
 
-  //   expect(wrapper.classes('v-btn--icon')).toBe(false)
-  // })
+    await wrapper.setProps({ disabled: false, elevation: 24 })
+    expect(wrapper.classes('elevation-24')).toBe(true)
 
-  // it('should have the correct elevation', async () => { // eslint-disable-line max-statements
-  //   const wrapper = mountFunction()
+    await wrapper.setProps({ elevation: 2 })
+    expect(wrapper.classes('elevation-2')).toBe(true)
+  })
 
-  //   wrapper.setProps({ disabled: true })
-  //   expect(wrapper.classes('elevation-2')).toBe(false)
-  //   expect(wrapper.classes('v-btn--disabled')).toBe(true)
 
-  //   wrapper.setProps({ disabled: false, elevation: 24 })
-  //   expect(wrapper.classes('elevation-24')).toBe(true)
 
-  //   wrapper.setProps({ elevation: 2 })
-  //   expect(wrapper.classes('elevation-2')).toBe(true)
-  // })
+  it('should stringify non string|number values', async () => {
+    const wrapper = mountFunction({
+      props: {
+        value: 'foo',
+      },
+    })
 
-  // it('should toggle on route change if provided a to prop', async () => {
-  //   const toggle = jest.fn()
-  //   const register = jest.fn()
-  //   const unregister = jest.fn()
-  //   const wrapper = mountFunction({
-  //     provide: {
-  //       btnToggle: {
-  //         activeClass: 'foobar',
-  //         register,
-  //         unregister,
-  //       },
-  //     },
-  //     methods: { toggle },
-  //     ref: 'link',
-  //   })
+    expect(wrapper.attributes('value')).toBe('foo')
 
-  //   router.push('/foobar')
+    await wrapper.setProps({ value: 2 })
+    expect(wrapper.attributes('value')).toBe('2')
 
-  //   await wrapper.vm.$nextTick()
-  //   expect(toggle).not.toHaveBeenCalled()
+    await wrapper.setProps({ value: { foo: 'bar' } })
+    expect(wrapper.attributes('value')).toBe('{"foo":"bar"}')
+  })
 
-  //   wrapper.setProps({ to: 'fizzbuzz' })
+  it('should not add color classes if disabled', async () => {
+    const wrapper = mountFunction({
+      props: {
+        color: 'primary darken-2',
+      },
+    })
 
-  //   router.push('/fizzbuzz')
+    expect(wrapper.html()).toMatchSnapshot()
 
-  //   await wrapper.vm.$nextTick()
-  //   expect(toggle).toHaveBeenCalled()
-  // })
+    await wrapper.setProps({
+      disabled: true,
+    })
+    expect(wrapper.html()).toMatchSnapshot()
+  })
 
-  // it('should call toggle when used in button group', () => {
-  //   const register = jest.fn()
-  //   const unregister = jest.fn()
-  //   const toggle = jest.fn()
-  //   const wrapper = mountFunction({
-  //     provide: {
-  //       btnToggle: { register, unregister },
-  //     },
-  //     methods: { toggle },
-  //   })
+  it('should retain focus when clicked', async () => {
+    const wrapper = mountFunction({
+      props: {
+        retainFocusOnClick: true,
+      },
+    })
+    const event = new MouseEvent('click', { detail: 1 })
+    const blur = jest.fn()
 
-  //   wrapper.trigger('click')
-  //   expect(toggle).toHaveBeenCalled()
-  // })
+    wrapper.element.blur = blur
+    wrapper.element.dispatchEvent(event)
 
-  // it('should stringify non string|number values', () => {
-  //   const wrapper = mountFunction({
-  //     propsData: {
-  //       value: 'foo',
-  //     },
-  //   })
+    expect(blur).not.toHaveBeenCalled()
 
-  //   expect(wrapper.attributes('value')).toBe('foo')
+    await wrapper.setProps({ retainFocusOnClick: false })
+    wrapper.element.dispatchEvent(event)
 
-  //   wrapper.setProps({ value: 2 })
-  //   expect(wrapper.attributes('value')).toBe('2')
+    expect(blur).toHaveBeenCalled()
+  })
 
-  //   wrapper.setProps({ value: { foo: 'bar' } })
-  //   expect(wrapper.attributes('value')).toBe('{"foo":"bar"}')
-  // })
+  // New tests for Vue 3 migration - attribute passing
+  it('should have access to $attrs in component', () => {
+    const wrapper = mount(VBtn, {
+      global: {
+        plugins: [router],
+      },
+      attrs: {
+        'data-test': 'my-button',
+        'data-cy': 'button-cy',
+        'aria-label': 'Test button',
+      },
+    })
 
-  // it('should not add color classes if disabled', () => {
-  //   const wrapper = mountFunction({
-  //     propsData: {
-  //       color: 'primary darken-2',
-  //     },
-  //   })
+    // Check that component receives attrs
+    expect(wrapper.vm.$attrs['data-test']).toBe('my-button')
+    expect(wrapper.vm.$attrs['data-cy']).toBe('button-cy')
+    expect(wrapper.vm.$attrs['aria-label']).toBe('Test button')
+  })
 
-  //   expect(wrapper.html()).toMatchSnapshot()
+  it('should have access to custom attrs in component', () => {
+    const wrapper = mount(VBtn, {
+      global: {
+        plugins: [router],
+      },
+      attrs: {
+        id: 'custom-id',
+        role: 'button',
+        tabindex: '0',
+      },
+    })
 
-  //   wrapper.setProps({
-  //     disabled: true,
-  //   })
-  //   expect(wrapper.html()).toMatchSnapshot()
-  // })
+    // Check that component receives attrs
+    expect(wrapper.vm.$attrs.id).toBe('custom-id')
+    expect(wrapper.vm.$attrs.role).toBe('button')
+    expect(wrapper.vm.$attrs.tabindex).toBe('0')
+  })
 
-  // it('should retain focus when clicked', async () => {
-  //   const wrapper = mountFunction({
-  //     propsData: {
-  //       retainFocusOnClick: true,
-  //     },
-  //   })
-  //   const event = new MouseEvent('click', { detail: 1 })
-  //   const blur = jest.fn()
+  it('should merge class attributes correctly', () => {
+    const wrapper = mount(VBtn, {
+      global: {
+        plugins: [router],
+      },
+      attrs: {
+        class: 'custom-class another-class',
+      },
+      props: {
+        color: 'primary',
+      },
+    })
 
-  //   wrapper.element.blur = blur
-  //   wrapper.element.dispatchEvent(event)
+    expect(wrapper.classes()).toContain('custom-class')
+    expect(wrapper.classes()).toContain('another-class')
+    expect(wrapper.classes()).toContain('v-btn')
+  })
 
-  //   expect(blur).not.toHaveBeenCalled()
+  // Tests for new component properties
+  it('should apply block class when block prop is true', () => {
+    const wrapper = mountFunction({
+      props: {
+        block: true,
+      },
+    })
 
-  //   wrapper.setProps({ retainFocusOnClick: false })
-  //   wrapper.element.dispatchEvent(event)
+    expect(wrapper.classes('v-btn--block')).toBe(true)
+  })
 
-  //   expect(blur).toHaveBeenCalled()
-  // })
+  it('should apply fab class when fab prop is true', () => {
+    const wrapper = mountFunction({
+      props: {
+        fab: true,
+      },
+    })
+
+    expect(wrapper.classes('v-btn--fab')).toBe(true)
+  })
+
+  it('should apply outlined class when outlined prop is true', () => {
+    const wrapper = mountFunction({
+      props: {
+        outlined: true,
+      },
+    })
+
+    expect(wrapper.classes('v-btn--outlined')).toBe(true)
+  })
+
+  it('should apply text class when text prop is true', () => {
+    const wrapper = mountFunction({
+      props: {
+        text: true,
+      },
+    })
+
+    expect(wrapper.classes('v-btn--text')).toBe(true)
+  })
+
+  it('should apply rounded class when rounded prop is true', () => {
+    const wrapper = mountFunction({
+      props: {
+        rounded: true,
+      },
+    })
+
+    expect(wrapper.classes('v-btn--rounded')).toBe(true)
+  })
+
+  it('should apply depressed class and remove elevation when depressed prop is true', () => {
+    const wrapper = mountFunction({
+      props: {
+        depressed: true,
+      },
+    })
+
+    // When depressed, should not have elevation classes
+    expect(wrapper.classes()).not.toContain('elevation-2')
+  })
+
+  it('should render loader when loading prop is true', () => {
+    const wrapper = mountFunction({
+      props: {
+        loading: true,
+      },
+    })
+
+    expect(wrapper.classes('v-btn--loading')).toBe(true)
+    expect(wrapper.find('.v-btn__loader').exists()).toBe(true)
+  })
+
+  it('should handle different button types', async () => {
+    const wrapper = mountFunction({
+      props: {
+        type: 'submit',
+      },
+    })
+
+    expect(wrapper.attributes('type')).toBe('submit')
+
+    await wrapper.setProps({ type: 'reset' })
+    expect(wrapper.attributes('type')).toBe('reset')
+  })
+
+  it('should compute hasBg correctly', () => {
+    // hasBg should be true by default
+    let wrapper = mountFunction()
+    expect(wrapper.vm.hasBg).toBe(true)
+
+    // hasBg should be false for text buttons
+    wrapper = mountFunction({
+      props: { text: true },
+    })
+    expect(wrapper.vm.hasBg).toBe(false)
+
+    // hasBg should be false for plain buttons
+    wrapper = mountFunction({
+      props: { plain: true },
+    })
+    expect(wrapper.vm.hasBg).toBe(false)
+
+    // hasBg should be false for outlined buttons
+    wrapper = mountFunction({
+      props: { outlined: true },
+    })
+    expect(wrapper.vm.hasBg).toBe(false)
+
+    // hasBg should be false for icon buttons
+    wrapper = mountFunction({
+      props: { icon: true },
+    })
+    expect(wrapper.vm.hasBg).toBe(false)
+  })
+
+  it('should compute isElevated correctly', () => {
+    // Should be elevated by default
+    let wrapper = mountFunction()
+    expect(wrapper.vm.isElevated).toBe(true)
+
+    // Should not be elevated when disabled
+    wrapper = mountFunction({
+      props: { disabled: true },
+    })
+    expect(wrapper.vm.isElevated).toBe(false)
+
+    // Should not be elevated when text
+    wrapper = mountFunction({
+      props: { text: true },
+    })
+    expect(wrapper.vm.isElevated).toBe(false)
+
+    // Should not be elevated when outlined
+    wrapper = mountFunction({
+      props: { outlined: true },
+    })
+    expect(wrapper.vm.isElevated).toBe(false)
+
+    // Should not be elevated when depressed
+    wrapper = mountFunction({
+      props: { depressed: true },
+    })
+    expect(wrapper.vm.isElevated).toBe(false)
+
+    // Should not be elevated when icon
+    wrapper = mountFunction({
+      props: { icon: true },
+    })
+    expect(wrapper.vm.isElevated).toBe(false)
+
+    // Should not be elevated when plain
+    wrapper = mountFunction({
+      props: { plain: true },
+    })
+    expect(wrapper.vm.isElevated).toBe(false)
+  })
+
+  it('should compute isRound correctly', () => {
+    // Should not be round by default
+    let wrapper = mountFunction()
+    expect(wrapper.vm.isRound).toBe(false)
+
+    // Should be round when icon
+    wrapper = mountFunction({
+      props: { icon: true },
+    })
+    expect(wrapper.vm.isRound).toBe(true)
+
+    // Should be round when fab
+    wrapper = mountFunction({
+      props: { fab: true },
+    })
+    expect(wrapper.vm.isRound).toBe(true)
+  })
+
+  it('should compute ripple correctly', () => {
+    // Should have ripple by default
+    let wrapper = mountFunction()
+    expect(wrapper.vm.computedRipple).toBe(true)
+
+    // Should not have ripple when disabled
+    wrapper = mountFunction({
+      props: { disabled: true },
+    })
+    expect(wrapper.vm.computedRipple).toBe(false)
+
+    // Should have circle ripple for icon buttons
+    wrapper = mountFunction({
+      props: { icon: true },
+    })
+    expect(wrapper.vm.computedRipple).toEqual({ circle: true })
+
+    // Should have circle ripple for fab buttons
+    wrapper = mountFunction({
+      props: { fab: true },
+    })
+    expect(wrapper.vm.computedRipple).toEqual({ circle: true })
+  })
+
+  it('should render with correct tag when using href', () => {
+    const wrapper = mountFunction({
+      props: {
+        href: 'https://example.com',
+      },
+    })
+
+    expect(wrapper.element.tagName.toLowerCase()).toBe('a')
+    expect(wrapper.attributes('href')).toBe('https://example.com')
+  })
+
+  it('should add router class when to prop is provided', () => {
+    // Suppress Vue 3 slot warning - this is a known issue with Vue Test Utils
+    const originalWarn = console.warn
+    console.warn = jest.fn()
+
+    const wrapper = mountFunction({
+      props: {
+        to: '/test-route',
+      },
+      slots: {
+        default: () => 'Router Button',
+      },
+    })
+
+    expect(wrapper.classes('v-btn--router')).toBe(true)
+
+    console.warn = originalWarn
+  })
 })
