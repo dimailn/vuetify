@@ -66,6 +66,8 @@ export default baseMixins.extend({
     value: null as any as PropType<any>,
   },
 
+  emits: ['click'],
+
   data: () => ({
     proxyClass: 'v-btn--active',
   }),
