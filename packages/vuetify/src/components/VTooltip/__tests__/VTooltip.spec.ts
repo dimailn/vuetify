@@ -1,13 +1,16 @@
 import VTooltip from '../VTooltip'
 import {
   mount,
-  MountOptions,
-  Wrapper,
+  enableAutoUnmount,
+  VueWrapper,
 } from '@vue/test-utils'
+import { h } from 'vue'
 
 describe('VTooltip', () => {
   type Instance = InstanceType<typeof VTooltip>
-  let mountFunction: (options?: MountOptions<Instance>) => Wrapper<Instance>
+  let mountFunction: (options?: any) => VueWrapper<Instance>
+
+  enableAutoUnmount(afterEach)
 
   beforeEach(() => {
     document.body.setAttribute('data-app', 'true')
@@ -19,15 +22,13 @@ describe('VTooltip', () => {
 
   it('should render component with top and match snapshot', async () => {
     const wrapper = mountFunction({
-      propsData: {
+      props: {
         openDelay: 0,
         top: true,
       },
-      scopedSlots: {
-        activator: '<span>activator</span>',
-      },
       slots: {
-        default: '<span>content</span>',
+        activator: () => h('span', 'activator'),
+        default: () => h('span', 'content'),
       },
     })
 
@@ -35,24 +36,21 @@ describe('VTooltip', () => {
     expect(wrapper.vm.offsetY).toBeTruthy()
     expect(wrapper.html()).toMatchSnapshot()
 
-    wrapper.setProps({
-      value: true,
+    await wrapper.setProps({
+      modelValue: true,
     })
-    await wrapper.vm.$nextTick()
     expect(wrapper.html()).toMatchSnapshot()
   })
 
   it('should render component with left and match snapshot', async () => {
     const wrapper = mountFunction({
-      propsData: {
+      props: {
         openDelay: 0,
         left: true,
       },
-      scopedSlots: {
-        activator: '<span>activator</span>',
-      },
       slots: {
-        default: '<span>content</span>',
+        activator: () => h('span', 'activator'),
+        default: () => h('span', 'content'),
       },
     })
 
@@ -60,24 +58,21 @@ describe('VTooltip', () => {
     expect(wrapper.vm.offsetY).toBeFalsy()
     expect(wrapper.html()).toMatchSnapshot()
 
-    wrapper.setProps({
-      value: true,
+    await wrapper.setProps({
+      modelValue: true,
     })
-    await wrapper.vm.$nextTick()
     expect(wrapper.html()).toMatchSnapshot()
   })
 
   it('should render component with bottom and match snapshot', async () => {
     const wrapper = mountFunction({
-      propsData: {
+      props: {
         openDelay: 0,
         bottom: true,
       },
-      scopedSlots: {
-        activator: '<span>activator</span>',
-      },
       slots: {
-        default: '<span>content</span>',
+        activator: () => h('span', 'activator'),
+        default: () => h('span', 'content'),
       },
     })
 
@@ -85,24 +80,21 @@ describe('VTooltip', () => {
     expect(wrapper.vm.offsetY).toBeTruthy()
     expect(wrapper.html()).toMatchSnapshot()
 
-    wrapper.setProps({
-      value: true,
+    await wrapper.setProps({
+      modelValue: true,
     })
-    await wrapper.vm.$nextTick()
     expect(wrapper.html()).toMatchSnapshot()
   })
 
   it('should render component with right and match snapshot', async () => {
     const wrapper = mountFunction({
-      propsData: {
+      props: {
         openDelay: 0,
         right: true,
       },
-      scopedSlots: {
-        activator: '<span>activator</span>',
-      },
       slots: {
-        default: '<span>content</span>',
+        activator: () => h('span', 'activator'),
+        default: () => h('span', 'content'),
       },
     })
 
@@ -110,39 +102,34 @@ describe('VTooltip', () => {
     expect(wrapper.vm.offsetY).toBeFalsy()
     expect(wrapper.html()).toMatchSnapshot()
 
-    wrapper.setProps({
-      value: true,
+    await wrapper.setProps({
+      modelValue: true,
     })
-    await wrapper.vm.$nextTick()
     expect(wrapper.html()).toMatchSnapshot()
   })
 
   it('should render component with custom eager and match snapshot', () => {
     const wrapper = mountFunction({
-      propsData: {
+      props: {
         eager: true,
       },
-      scopedSlots: {
-        activator: '<span>activator</span>',
-      },
       slots: {
-        default: '<span>content</span>',
+        activator: () => h('span', 'activator'),
+        default: () => h('span', 'content'),
       },
     })
 
     expect(wrapper.html()).toMatchSnapshot()
   })
 
-  it('should render component with value=true and match snapshot', async () => {
+  it('should render component with modelValue=true and match snapshot', async () => {
     const wrapper = mountFunction({
-      propsData: {
-        value: true,
-      },
-      scopedSlots: {
-        activator: '<span>activator</span>',
+      props: {
+        modelValue: true,
       },
       slots: {
-        default: '<span>content</span>',
+        activator: () => h('span', 'activator'),
+        default: () => h('span', 'content'),
       },
     })
 
@@ -152,16 +139,14 @@ describe('VTooltip', () => {
 
   it('should render component with min/max width and match snapshot', async () => {
     const wrapper = mountFunction({
-      propsData: {
-        value: true,
+      props: {
+        modelValue: true,
         minWidth: 100,
         maxWidth: 200,
       },
-      scopedSlots: {
-        activator: '<span>activator</span>',
-      },
       slots: {
-        default: '<span>content</span>',
+        activator: () => h('span', 'activator'),
+        default: () => h('span', 'content'),
       },
     })
 
@@ -170,7 +155,7 @@ describe('VTooltip', () => {
 
   it('should render component with zIndex prop and match snapshot', async () => {
     const wrapper = mountFunction({
-      propsData: {
+      props: {
         zIndex: 42,
       },
     })
@@ -181,43 +166,45 @@ describe('VTooltip', () => {
   it('should display tooltip after mouseenter and hide after mouseleave', async () => {
     jest.useFakeTimers()
     const wrapper = mountFunction({
-      propsData: {
+      props: {
         openDelay: 123,
         closeDelay: 321,
       },
-      scopedSlots: {
-        activator: '<span v-on="props.on" class="activator">activator</span>',
-      },
       slots: {
-        default: '<span class="content">content</span>',
+        activator: ({ on }: any) => h('span', { ...on, class: 'activator' }, 'activator'),
+        default: () => h('span', { class: 'content' }, 'content'),
       },
     })
 
     const activator = wrapper.find('.activator')
-    const cb = jest.fn()
-    wrapper.vm.$on('input', cb)
 
-    activator.trigger('mouseenter')
+    await activator.trigger('mouseenter')
     jest.runAllTimers()
     await wrapper.vm.$nextTick()
-    expect((setTimeout as any).mock.calls[0][1]).toBe(123)
-    expect(cb).toHaveBeenCalledWith(true)
 
-    activator.trigger('mouseleave')
+    // Check if tooltip became active
+    expect(wrapper.vm.isActive).toBe(true)
+    expect(wrapper.emitted()['update:modelValue']).toBeTruthy()
+    expect(wrapper.emitted()['update:modelValue'][0]).toEqual([true])
+
+    await activator.trigger('mouseleave')
     jest.runAllTimers()
     await wrapper.vm.$nextTick()
-    expect((setTimeout as any).mock.calls[1][1]).toBe(321)
-    expect(cb).toHaveBeenCalledWith(false)
+
+    expect(wrapper.vm.isActive).toBe(false)
+    expect(wrapper.emitted()['update:modelValue'][1]).toEqual([false])
+
+    jest.useRealTimers()
   })
 
   it(`should warn if activator isn't scoped`, () => {
     mountFunction({
-      propsData: {
+      props: {
         openDelay: 0,
       },
       slots: {
-        activator: '<span>activator</span>',
-        default: '<span>content</span>',
+        activator: () => h('span', 'activator'),
+        default: () => h('span', 'content'),
       },
     })
 
@@ -227,15 +214,13 @@ describe('VTooltip', () => {
   it(`should open and close`, () => {
     jest.useFakeTimers()
     const wrapper = mountFunction({
-      propsData: {
+      props: {
         openDelay: 0,
         closeDelay: 0,
       },
-      scopedSlots: {
-        activator: '<span v-on="props.on" class="activator">activator</span>',
-      },
       slots: {
-        default: '<span class="content">content</span>',
+        activator: ({ on }: any) => h('span', { ...on, class: 'activator' }, 'activator'),
+        default: () => h('span', { class: 'content' }, 'content'),
       },
     })
 
