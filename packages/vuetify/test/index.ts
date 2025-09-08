@@ -31,6 +31,10 @@ config.global.mocks = {
       },
     },
     rtl: false,
+    icons: {
+      component: null,
+      values: mdiIcons,
+    },
     breakpoint: {
       mobile: false,
       mobileBreakpoint: 600,
@@ -40,10 +44,6 @@ config.global.mocks = {
         md: 960,
         lg: 1264,
         xl: 1904,
-      },
-      icons: {
-        component: null,
-        values: mdiIcons,
       },
     },
   },

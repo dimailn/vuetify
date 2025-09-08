@@ -1,4 +1,5 @@
-import {h} from 'vue'
+import { h, defineComponent } from 'vue'
+
 // Styles
 import './VColorPickerEdit.sass'
 
@@ -10,7 +11,7 @@ import VIcon from '../VIcon'
 import { parseHex } from '../../util/colorUtils'
 
 // Types
-import { defineComponent, VNode, PropType } from 'vue'
+import type { VNode, PropType } from 'vue'
 import { VColorPickerColor, fromRGBA, fromHexa, fromHSLA } from './util'
 
 type Input = [string, number, string]
@@ -48,7 +49,10 @@ export default defineComponent({
   name: 'v-color-picker-edit',
 
   props: {
-    color: Object as PropType<VColorPickerColor>,
+    color: {
+      type: Object as PropType<VColorPickerColor>,
+      required: true,
+    },
     disabled: Boolean,
     hideAlpha: Boolean,
     hideModeSwitch: Boolean,
@@ -59,27 +63,24 @@ export default defineComponent({
     },
   },
 
+  emits: ['update:color', 'update:mode'],
+
   data () {
     return {
-      modes,
       internalMode: this.mode,
     }
   },
 
   computed: {
     currentMode (): Mode {
-      return this.modes[this.internalMode]
+      return modes[this.internalMode]
     },
   },
 
   watch: {
-    mode (mode) {
+    mode (mode: string) {
       this.internalMode = mode
     },
-  },
-
-  created () {
-    this.internalMode = this.mode
   },
 
   methods: {
@@ -88,19 +89,22 @@ export default defineComponent({
       else if (type === 'int') return Math.round(v)
       else return 0
     },
+
     parseValue (v: string, type: string) {
       if (type === 'float') return parseFloat(v)
       else if (type === 'int') return parseInt(v, 10) || 0
       else return 0
     },
+
     changeMode () {
-      const modes = Object.keys(this.modes)
-      const index = modes.indexOf(this.internalMode)
-      const newMode = modes[(index + 1) % modes.length]
+      const modeKeys = Object.keys(modes)
+      const index = modeKeys.indexOf(this.internalMode)
+      const newMode = modeKeys[(index + 1) % modeKeys.length]
       this.internalMode = newMode
       this.$emit('update:mode', newMode)
     },
-    genInput (target: string, attrs: any, value: any, on: any): VNode {
+
+    genInput (target: string, attrs: any, value: any, onChange: any): VNode {
       return h('div', {
         class: 'v-color-picker__input',
       }, [
@@ -108,14 +112,15 @@ export default defineComponent({
           key: target,
           ...attrs,
           value,
-          ...on,
+          onChange,
         }),
         h('span', target.toUpperCase()),
       ])
     },
+
     genInputs (): VNode[] | VNode {
       if (this.internalMode === 'hexa') {
-        const hex = this.color.hexa
+        const hex = this.color!.hexa
         const value = this.hideAlpha && hex.endsWith('FF') ? hex.substr(0, 7) : hex
         return this.genInput(
           'hex',
@@ -124,17 +129,15 @@ export default defineComponent({
             disabled: this.disabled,
           },
           value,
-          {
-            change: (e: Event) => {
-              const el = e.target as HTMLInputElement
-              this.$emit('update:color', this.currentMode.from(parseHex(el.value)))
-            },
+          (e: Event) => {
+            const el = e.target as HTMLInputElement
+            this.$emit('update:color', this.currentMode.from(parseHex(el.value)))
           }
         )
       } else {
         const inputs = this.hideAlpha ? this.currentMode.inputs!.slice(0, -1) : this.currentMode.inputs!
         return inputs.map(([target, max, type]) => {
-          const value = this.color[this.internalMode as keyof VColorPickerColor] as any
+          const value = this.color![this.internalMode as keyof VColorPickerColor] as any
           return this.genInput(
             target,
             {
@@ -145,30 +148,29 @@ export default defineComponent({
               disabled: this.disabled,
             },
             this.getValue(value[target], type),
-            {
-              input: (e: Event) => {
-                const el = e.target as HTMLInputElement
-                const newVal = this.parseValue(el.value || '0', type)
+            (e: Event) => {
+              const el = e.target as HTMLInputElement
+              const newVal = this.parseValue(el.value || '0', type)
 
-                this.$emit('update:color', this.currentMode.from(
-                  Object.assign({}, value, { [target]: newVal }),
-                  this.color.alpha
-                ))
-              },
+              this.$emit('update:color', this.currentMode.from(
+                Object.assign({}, value, { [target]: newVal }),
+                this.color!.alpha
+              ))
             }
           )
         })
       }
     },
+
     genSwitch (): VNode {
       return h(VBtn, {
         small: true,
         icon: true,
         disabled: this.disabled,
         onClick: this.changeMode,
-      }, [
-        h(VIcon, '$unfold'),
-      ])
+      }, {
+        default: () => [h(VIcon, {}, '$unfold')]
+      })
     },
   },
 

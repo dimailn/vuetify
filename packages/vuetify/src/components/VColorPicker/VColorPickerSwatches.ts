@@ -1,4 +1,5 @@
-import {h} from 'vue'
+import { h, defineComponent } from 'vue'
+
 // Styles
 import './VColorPickerSwatches.sass'
 
@@ -9,12 +10,13 @@ import VIcon from '../VIcon'
 import colors from '../../util/colors'
 import { VColorPickerColor, fromHex, parseColor } from './util'
 import { convertToUnit, deepEqual } from '../../util/helpers'
-import mixins from '../../util/mixins'
+import { contrastRatio } from '../../util/colorUtils'
+
+// Mixins
 import Themeable from '../../mixins/themeable'
 
 // Types
-import { VNode, PropType } from 'vue'
-import { contrastRatio } from '../../util/colorUtils'
+import type { VNode, PropType } from 'vue'
 
 function parseDefaultColors (colors: Record<string, Record<string, string>>) {
   return Object.keys(colors).map(key => {
@@ -41,8 +43,10 @@ function parseDefaultColors (colors: Record<string, Record<string, string>>) {
 const white = fromHex('#FFFFFF').rgba
 const black = fromHex('#000000').rgba
 
-export default mixins(Themeable).extend({
+export default defineComponent({
   name: 'v-color-picker-swatches',
+
+  mixins: [Themeable],
 
   props: {
     swatches: {
@@ -50,13 +54,18 @@ export default mixins(Themeable).extend({
       default: () => parseDefaultColors(colors),
     },
     disabled: Boolean,
-    color: Object as PropType<VColorPickerColor>,
+    color: {
+      type: Object as PropType<VColorPickerColor>,
+      required: true,
+    },
     maxWidth: [Number, String],
     maxHeight: [Number, String],
   },
 
+  emits: ['update:color'],
+
   methods: {
-    genColor (color: string) {
+    genColor (color: string): VNode {
       const content = h('div', {
         style: {
           background: color,
@@ -71,13 +80,15 @@ export default mixins(Themeable).extend({
 
       return h('div', {
         class: 'v-color-picker__color',
-        on: {
-          // TODO: Less hacky way of catching transparent
-          click: () => this.disabled || this.$emit('update:color', fromHex(color === 'transparent' ? '#00000000' : color)),
+        onClick: () => {
+          if (!this.disabled) {
+            this.$emit('update:color', fromHex(color === 'transparent' ? '#00000000' : color))
+          }
         },
       }, [content])
     },
-    genSwatches () {
+
+    genSwatches (): VNode[] {
       return this.swatches.map(swatch => {
         const colors = swatch.map(this.genColor)
 
@@ -90,7 +101,7 @@ export default mixins(Themeable).extend({
 
   render (): VNode {
     return h('div', {
-      class: 'v-color-picker__swatches',
+      class: ['v-color-picker__swatches', this.themeClasses],
       style: {
         maxWidth: convertToUnit(this.maxWidth),
         maxHeight: convertToUnit(this.maxHeight),

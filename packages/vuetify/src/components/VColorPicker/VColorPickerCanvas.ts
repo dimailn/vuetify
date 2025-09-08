@@ -1,4 +1,5 @@
-import {h} from 'vue'
+import { h, defineComponent } from 'vue'
+
 // Styles
 import './VColorPickerCanvas.sass'
 
@@ -7,7 +8,7 @@ import { clamp, convertToUnit } from '../../util/helpers'
 import { fromHSVA, VColorPickerColor, fromRGBA } from './util'
 
 // Types
-import { defineComponent, VNode, PropType } from 'vue'
+import type { VNode, PropType } from 'vue'
 
 export default defineComponent({
   name: 'v-color-picker-canvas',
@@ -32,6 +33,8 @@ export default defineComponent({
     },
   },
 
+  emits: ['update:color'],
+
   data () {
     return {
       boundingRect: {
@@ -44,18 +47,20 @@ export default defineComponent({
   },
 
   computed: {
-    dot (): { x: number, y: number} {
+    dot () {
       if (!this.color) return { x: 0, y: 0 }
 
       return {
-        x: this.color.hsva.s * parseInt(this.width, 10),
-        y: (1 - this.color.hsva.v) * parseInt(this.height, 10),
+        x: this.color.hsva.s * parseInt(String(this.width), 10),
+        y: (1 - this.color.hsva.v) * parseInt(String(this.height), 10),
       }
     },
   },
 
   watch: {
-    'color.hue': 'updateCanvas',
+    'color.hue' () {
+      this.updateCanvas()
+    },
   },
 
   mounted () {
@@ -63,22 +68,13 @@ export default defineComponent({
   },
 
   methods: {
-    emitColor (x: number, y: number) {
-      const { left, top, width, height } = this.boundingRect
-
-      this.$emit('update:color', fromHSVA({
-        h: this.color.hue,
-        s: clamp(x - left, 0, width) / width,
-        v: 1 - clamp(y - top, 0, height) / height,
-        a: this.color.alpha,
-      }))
-    },
     updateCanvas () {
       if (!this.color) return
 
       const canvas = this.$refs.canvas as HTMLCanvasElement
-      const ctx = canvas.getContext('2d')
+      if (!canvas) return
 
+      const ctx = canvas.getContext('2d')
       if (!ctx) return
 
       const saturationGradient = ctx.createLinearGradient(0, 0, canvas.width, 0)
@@ -93,12 +89,35 @@ export default defineComponent({
       ctx.fillStyle = valueGradient
       ctx.fillRect(0, 0, canvas.width, canvas.height)
     },
+
+    emitColor (x: number, y: number) {
+      const { left, top, width, height } = this.boundingRect
+
+      this.$emit('update:color', fromHSVA({
+        h: this.color!.hue,
+        s: clamp(x - left, 0, width) / width,
+        v: 1 - clamp(y - top, 0, height) / height,
+        a: this.color!.alpha,
+      }))
+    },
+
     handleClick (e: MouseEvent) {
       if (this.disabled) return
 
       this.boundingRect = this.$el.getBoundingClientRect()
       this.emitColor(e.clientX, e.clientY)
     },
+
+    handleMouseMove (e: MouseEvent) {
+      if (this.disabled) return
+      this.emitColor(e.clientX, e.clientY)
+    },
+
+    handleMouseUp () {
+      window.removeEventListener('mousemove', this.handleMouseMove)
+      window.removeEventListener('mouseup', this.handleMouseUp)
+    },
+
     handleMouseDown (e: MouseEvent) {
       // To prevent selection while moving cursor
       e.preventDefault()
@@ -110,34 +129,24 @@ export default defineComponent({
       window.addEventListener('mousemove', this.handleMouseMove)
       window.addEventListener('mouseup', this.handleMouseUp)
     },
-    handleMouseMove (e: MouseEvent) {
-      if (this.disabled) return
 
-      this.emitColor(e.clientX, e.clientY)
-    },
-    handleMouseUp () {
-      window.removeEventListener('mousemove', this.handleMouseMove)
-      window.removeEventListener('mouseup', this.handleMouseUp)
-    },
     genCanvas (): VNode {
       return h('canvas', {
         ref: 'canvas',
-        attrs: {
-          width: this.width,
-          height: this.height,
-        },
+        width: this.width,
+        height: this.height,
       })
     },
+
     genDot (): VNode {
-      const radius = parseInt(this.dotSize, 10) / 2
+      const radius = parseInt(String(this.dotSize), 10) / 2
       const x = convertToUnit(this.dot.x - radius)
       const y = convertToUnit(this.dot.y - radius)
 
       return h('div', {
-        class: 'v-color-picker__canvas-dot',
-        class: {
+        class: ['v-color-picker__canvas-dot', {
           'v-color-picker__canvas-dot--disabled': this.disabled,
-        },
+        }],
         style: {
           width: convertToUnit(this.dotSize),
           height: convertToUnit(this.dotSize),
@@ -154,10 +163,8 @@ export default defineComponent({
         width: convertToUnit(this.width),
         height: convertToUnit(this.height),
       },
-      on: {
-        click: this.handleClick,
-        mousedown: this.handleMouseDown,
-      },
+      onClick: this.handleClick,
+      onMousedown: this.handleMouseDown,
     }, [
       this.genCanvas(),
       this.genDot(),

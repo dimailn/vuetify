@@ -7,6 +7,7 @@ exports[`VColorPickerEdit.ts should change mode 1`] = `
            min="0"
            max="255"
            step="1"
+           value="0"
     >
     <span>
       R
@@ -17,6 +18,7 @@ exports[`VColorPickerEdit.ts should change mode 1`] = `
            min="0"
            max="255"
            step="1"
+           value="0"
     >
     <span>
       G
@@ -27,6 +29,7 @@ exports[`VColorPickerEdit.ts should change mode 1`] = `
            min="0"
            max="255"
            step="1"
+           value="0"
     >
     <span>
       B
@@ -37,6 +40,7 @@ exports[`VColorPickerEdit.ts should change mode 1`] = `
            min="0"
            max="1"
            step="0.01"
+           value="0"
     >
     <span>
       A
@@ -49,7 +53,6 @@ exports[`VColorPickerEdit.ts should change mode 1`] = `
       <i aria-hidden="true"
          class="v-icon notranslate material-icons theme--light"
       >
-        $unfold
       </i>
     </span>
   </button>
@@ -63,6 +66,7 @@ exports[`VColorPickerEdit.ts should change mode 2`] = `
            min="0"
            max="360"
            step="1"
+           value="0"
     >
     <span>
       H
@@ -73,6 +77,7 @@ exports[`VColorPickerEdit.ts should change mode 2`] = `
            min="0"
            max="1"
            step="0.01"
+           value="0"
     >
     <span>
       S
@@ -83,6 +88,7 @@ exports[`VColorPickerEdit.ts should change mode 2`] = `
            min="0"
            max="1"
            step="0.01"
+           value="0"
     >
     <span>
       L
@@ -93,6 +99,7 @@ exports[`VColorPickerEdit.ts should change mode 2`] = `
            min="0"
            max="1"
            step="0.01"
+           value="0"
     >
     <span>
       A
@@ -105,7 +112,6 @@ exports[`VColorPickerEdit.ts should change mode 2`] = `
       <i aria-hidden="true"
          class="v-icon notranslate material-icons theme--light"
       >
-        $unfold
       </i>
     </span>
   </button>
@@ -115,7 +121,9 @@ exports[`VColorPickerEdit.ts should change mode 2`] = `
 exports[`VColorPickerEdit.ts should change mode 3`] = `
 <div class="v-color-picker__edit">
   <div class="v-color-picker__input">
-    <input maxlength="9">
+    <input maxlength="9"
+           value="#00000000"
+    >
     <span>
       HEX
     </span>
@@ -127,7 +135,6 @@ exports[`VColorPickerEdit.ts should change mode 3`] = `
       <i aria-hidden="true"
          class="v-icon notranslate material-icons theme--light"
       >
-        $unfold
       </i>
     </span>
   </button>
@@ -141,6 +148,7 @@ exports[`VColorPickerEdit.ts should change mode 4`] = `
            min="0"
            max="360"
            step="1"
+           value="0"
     >
     <span>
       H
@@ -151,6 +159,7 @@ exports[`VColorPickerEdit.ts should change mode 4`] = `
            min="0"
            max="1"
            step="0.01"
+           value="0"
     >
     <span>
       S
@@ -161,6 +170,7 @@ exports[`VColorPickerEdit.ts should change mode 4`] = `
            min="0"
            max="1"
            step="0.01"
+           value="0"
     >
     <span>
       L
@@ -171,6 +181,7 @@ exports[`VColorPickerEdit.ts should change mode 4`] = `
            min="0"
            max="1"
            step="0.01"
+           value="0"
     >
     <span>
       A
@@ -183,7 +194,6 @@ exports[`VColorPickerEdit.ts should change mode 4`] = `
       <i aria-hidden="true"
          class="v-icon notranslate material-icons theme--light"
       >
-        $unfold
       </i>
     </span>
   </button>
@@ -197,6 +207,7 @@ exports[`VColorPickerEdit.ts should hide mode switch button 1`] = `
            min="0"
            max="255"
            step="1"
+           value="0"
     >
     <span>
       R
@@ -207,6 +218,7 @@ exports[`VColorPickerEdit.ts should hide mode switch button 1`] = `
            min="0"
            max="255"
            step="1"
+           value="0"
     >
     <span>
       G
@@ -217,6 +229,7 @@ exports[`VColorPickerEdit.ts should hide mode switch button 1`] = `
            min="0"
            max="255"
            step="1"
+           value="0"
     >
     <span>
       B
@@ -227,6 +240,7 @@ exports[`VColorPickerEdit.ts should hide mode switch button 1`] = `
            min="0"
            max="1"
            step="0.01"
+           value="0"
     >
     <span>
       A
@@ -242,7 +256,8 @@ exports[`VColorPickerEdit.ts should render with disabled 1`] = `
            min="0"
            max="255"
            step="1"
-           disabled="disabled"
+           disabled
+           value="0"
     >
     <span>
       R
@@ -253,7 +268,8 @@ exports[`VColorPickerEdit.ts should render with disabled 1`] = `
            min="0"
            max="255"
            step="1"
-           disabled="disabled"
+           disabled
+           value="0"
     >
     <span>
       G
@@ -264,7 +280,8 @@ exports[`VColorPickerEdit.ts should render with disabled 1`] = `
            min="0"
            max="255"
            step="1"
-           disabled="disabled"
+           disabled
+           value="0"
     >
     <span>
       B
@@ -275,21 +292,21 @@ exports[`VColorPickerEdit.ts should render with disabled 1`] = `
            min="0"
            max="1"
            step="0.01"
-           disabled="disabled"
+           disabled
+           value="0"
     >
     <span>
       A
     </span>
   </div>
   <button type="button"
-          disabled="disabled"
+          disabled
           class="v-btn v-btn--disabled v-btn--icon v-btn--round theme--light v-size--small"
   >
     <span class="v-btn__content">
       <i aria-hidden="true"
          class="v-icon notranslate material-icons theme--light"
       >
-        $unfold
       </i>
     </span>
   </button>

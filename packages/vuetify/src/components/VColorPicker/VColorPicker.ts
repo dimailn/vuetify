@@ -1,4 +1,5 @@
-import {h} from 'vue'
+import { h, defineComponent } from 'vue'
+
 // Styles
 import './VColorPicker.sass'
 
@@ -11,7 +12,6 @@ import VColorPickerSwatches from './VColorPickerSwatches'
 
 // Helpers
 import { VColorPickerColor, parseColor, fromRGBA, extractColor, hasAlpha } from './util'
-import mixins from '../../util/mixins'
 import { deepEqual } from '../../util/helpers'
 
 // Mixins
@@ -19,10 +19,12 @@ import Elevatable from '../../mixins/elevatable'
 import Themeable from '../../mixins/themeable'
 
 // Types
-import { VNode, PropType } from 'vue'
+import type { VNode, PropType } from 'vue'
 
-export default mixins(Elevatable, Themeable).extend({
+export default defineComponent({
   name: 'v-color-picker',
+
+  mixins: [Elevatable, Themeable],
 
   props: {
     canvasHeight: {
@@ -59,20 +61,23 @@ export default mixins(Elevatable, Themeable).extend({
     },
   },
 
-  data: () => ({
-    internalValue: fromRGBA({ r: 255, g: 0, b: 0, a: 1 }),
-  }),
+  emits: ['update:modelValue', 'update:color', 'update:mode'],
+
+  data () {
+    return {
+      internalValue: fromRGBA({ r: 255, g: 0, b: 0, a: 1 }),
+    }
+  },
 
   computed: {
     hideAlpha (): boolean {
       if (!this.modelValue) return false
-
       return !hasAlpha(this.modelValue)
     },
   },
 
   watch: {
-    value: {
+    modelValue: {
       handler (color: any) {
         this.updateColor(parseColor(color, this.internalValue))
       },
@@ -90,6 +95,7 @@ export default mixins(Elevatable, Themeable).extend({
         this.$emit('update:color', this.internalValue)
       }
     },
+
     genCanvas (): VNode {
       return h(VColorPickerCanvas, {
         color: this.internalValue,
@@ -100,6 +106,7 @@ export default mixins(Elevatable, Themeable).extend({
         'onUpdate:color': this.updateColor
       })
     },
+
     genControls (): VNode {
       return h('div', {
         class: 'v-color-picker__controls',
@@ -108,6 +115,7 @@ export default mixins(Elevatable, Themeable).extend({
         !this.hideInputs && this.genEdit(),
       ])
     },
+
     genEdit (): VNode {
       return h(VColorPickerEdit, {
         color: this.internalValue,
@@ -116,49 +124,38 @@ export default mixins(Elevatable, Themeable).extend({
         hideModeSwitch: this.hideModeSwitch,
         mode: this.mode,
         'onUpdate:color': this.updateColor,
-        'onUpdate:mode': (v: Mode) => this.$emit('update:mode', v),
+        'onUpdate:mode': (v: string) => this.$emit('update:mode', v),
       })
     },
+
     genPreview (): VNode {
       return h(VColorPickerPreview, {
-        props: {
-          color: this.internalValue,
-          disabled: this.disabled,
-          hideAlpha: this.hideAlpha,
-        },
-        on: {
-          'update:color': this.updateColor,
-        },
+        color: this.internalValue,
+        disabled: this.disabled,
+        hideAlpha: this.hideAlpha,
+        'onUpdate:color': this.updateColor,
       })
     },
+
     genSwatches (): VNode {
       return h(VColorPickerSwatches, {
-        props: {
-          dark: this.dark,
-          light: this.light,
-          disabled: this.disabled,
-          swatches: this.swatches,
-          color: this.internalValue,
-          maxHeight: this.swatchesMaxHeight,
-        },
-        on: {
-          'update:color': this.updateColor,
-        },
+        disabled: this.disabled,
+        swatches: this.swatches,
+        color: this.internalValue,
+        maxHeight: this.swatchesMaxHeight,
+        'onUpdate:color': this.updateColor,
       })
     },
   },
 
   render (): VNode {
     return h(VSheet, {
-      class: 'v-color-picker',
-      class: {
+      class: ['v-color-picker', {
         'v-color-picker--flat': this.flat,
         ...this.themeClasses,
         ...this.elevationClasses,
-      },
-      props: {
-        maxWidth: this.width,
-      },
+      }],
+      maxWidth: this.width,
     }, [
       !this.hideCanvas && this.genCanvas(),
       (!this.hideSliders || !this.hideInputs) && this.genControls(),
