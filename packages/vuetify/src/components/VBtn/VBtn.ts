@@ -19,13 +19,11 @@ import Sizeable from '../../mixins/sizeable'
 import mixins, { ExtractVue } from '../../util/mixins'
 import { breaking } from '../../util/console'
 import { getSlot } from '../../util/helpers'
-import mergeData from '../../util/mergeData'
 
 // Types
-import { VNode, withDirectives } from 'vue'
+import { VNode, withDirectives, h } from 'vue'
 import { PropValidator, PropType } from 'vue/types/options'
 import { RippleOptions } from '../../directives/ripple'
-import {h} from 'vue'
 
 const baseMixins = mixins(
   VSheet,
@@ -42,7 +40,6 @@ interface options extends ExtractVue<typeof baseMixins> {
 
 export default baseMixins.extend({
   name: 'v-btn',
-  inheritAttrs: false,
   props: {
     activeClass: {
       type: String,
@@ -107,7 +104,7 @@ export default baseMixins.extend({
     computedElevation (): string | number | undefined {
       if (this.disabled) return undefined
 
-      return Elevatable.computed.computedElevation.call(this)
+      return this.elevation
     },
     computedRipple (): RippleOptions | boolean {
       const defaultRipple = this.icon || this.fab ? { circle: true } : true
@@ -161,7 +158,6 @@ export default baseMixins.extend({
       this.$emit('click', e)
       this.$emitLegacy('click', e)
 
-
       this.btnToggle && this.toggle()
     },
     genContent (): VNode {
@@ -175,7 +171,7 @@ export default baseMixins.extend({
       }, getSlot(this, 'loader') || [h(VProgressCircular, {
         indeterminate: true,
         size: 23,
-        width: 2
+        width: 2,
       })])
     },
   },
@@ -190,25 +186,31 @@ export default baseMixins.extend({
       ? this.setBackgroundColor
       : this.setTextColor
 
-    let data = {}
+    // Merge component classes with routable classes
+    const mergedClasses = {
+      ...this.classes,
+      ...linkData.class,
+    }
 
     if (tag === 'button') {
-      data.type = this.type
-      data.disabled = this.disabled
+      linkData.type = this.type
+      linkData.disabled = this.disabled
     }
-    data.value = ['string', 'number'].includes(typeof this.value)
+    linkData.value = ['string', 'number'].includes(typeof this.value)
       ? this.value
       : JSON.stringify(this.value)
 
-    data = {
-      ...data,
-      ...linkData
+    const data = {
+      ...linkData,
+      class: mergedClasses,
+      style: this.styles,
     }
 
-    data = mergeData(data, { class: this.$attrs.class })
+    // Apply color styling but preserve Vue's automatic attribute inheritance
+    const finalData = this.disabled ? data : setColor(this.color, data)
 
     return withDirectives(
-      h(tag, this.disabled ? data : setColor(this.color, data), children),
+      h(tag, finalData, children),
       directives
     )
   },

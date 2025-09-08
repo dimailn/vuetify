@@ -4,9 +4,9 @@ import VTab from '../VTab'
 // Utilities
 import {
   mount,
-  RouterLinkStub,
   VueWrapper,
 } from '@vue/test-utils'
+import { Vue3RouterLinkStub } from '../../../../test/util/stubs'
 
 describe('VTab.ts', () => {
   type Instance = InstanceType<typeof VTab>
@@ -38,7 +38,7 @@ describe('VTab.ts', () => {
           },
         },
         stubs: {
-          'router-link': RouterLinkStub,
+          'router-link': Vue3RouterLinkStub,
         },
       },
     })
@@ -63,7 +63,7 @@ describe('VTab.ts', () => {
           $route: { path: '/' },
         },
         stubs: {
-          'router-link': RouterLinkStub,
+          'router-link': Vue3RouterLinkStub,
         },
       },
     })
