@@ -1,4 +1,4 @@
-import {h, Transition} from 'vue'
+import { h, Transition, vShow, withDirectives, VNode } from 'vue'
 import './VTooltip.sass'
 
 // Mixins
@@ -13,7 +13,6 @@ import { convertToUnit, keyCodes, getSlotType } from '../../util/helpers'
 import { consoleError } from '../../util/console'
 
 // Types
-import { VNode } from 'vue'
 import mixins from '../../util/mixins'
 
 /* @vue/component */
@@ -137,7 +136,7 @@ export default mixins(Colorable, Delayable, Dependent, Menuable).extend({
 
   beforeMount () {
     this.$nextTick(() => {
-      this.value && this.callActivate()
+      this.modelValue && this.callActivate()
     })
   },
 
@@ -197,23 +196,24 @@ export default mixins(Colorable, Delayable, Dependent, Menuable).extend({
       }, [content])
     },
     genContent () {
-      return h(
-        'div',
-        this.setBackgroundColor(this.color, {
-          class: ['v-tooltip__content', {
-            [this.contentClass]: true,
-            menuable__content__active: this.isActive,
-            'v-tooltip__content--fixed': this.activatorFixed,
-          }],
-          style: this.styles,
-          attrs: this.getScopeIdAttrs(),
-          directives: [{
-            name: 'show',
-            value: this.isContentActive,
-          }],
-          ref: 'content',
-        }),
-        this.getContentSlot()
+      return withDirectives(
+        h(
+          'div',
+          this.setBackgroundColor(this.color, {
+            class: ['v-tooltip__content', {
+              [this.contentClass]: true,
+              menuable__content__active: this.isActive,
+              'v-tooltip__content--fixed': this.activatorFixed,
+            }],
+            style: this.styles,
+            attrs: this.getScopeIdAttrs(),
+            ref: 'content',
+          }),
+          this.getContentSlot()
+        ),
+        [
+          [vShow, this.isContentActive]
+        ]
       )
     },
   },
