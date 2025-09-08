@@ -74,6 +74,7 @@ export default baseMixins.extend({
     classes (): any {
       return {
         'v-btn': true,
+        ...Routable.computed.classes.call(this),
         'v-btn--absolute': this.absolute,
         'v-btn--block': this.block,
         'v-btn--bottom': this.bottom,
