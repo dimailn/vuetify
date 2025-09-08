@@ -88,7 +88,7 @@ export function createSimpleTransition (
           el.style.setProperty('display', 'none', 'important')
         })
       }
-      return h(tag, mergeData(this.$attrs, data), this.$slots.default())
+      return h(tag, mergeData(this.$attrs, data), () => this.$slots.default())
     },
   }
 }
@@ -117,7 +117,7 @@ export function createJavascriptTransition (
           name,
           ...functions,
         }),
-        this.$slots.default()
+        () => this.$slots.default()
       )
     },
   }

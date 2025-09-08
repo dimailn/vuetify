@@ -131,7 +131,7 @@ export default mixins(
       return h(Transition, {
         name: this.transition,
         mode: 'in-out',
-      }, [image])
+      }, () => [image])
     },
   },
 
@@ -265,7 +265,7 @@ export default mixins(
         return h(Transition, {
           appear: true,
           name: this.transition,
-        }, placeholder)
+        }, () => placeholder)
       }
     },
   },

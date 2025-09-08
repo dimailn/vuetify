@@ -47,17 +47,17 @@ export default mixins(
       }) : getSlot(this)
     },
     genPicker (staticClass: string) {
-      const children = {}
+      const children: Record<string, any> = {}
 
       if (!this.noTitle) {
         const title = this.genPickerTitle()
-        title && (children.title = title)
+        title && (children.title = () => [title])
       }
 
       const body = this.genPickerBody()
-      body && (children.default = body)
+      body && (children.default = () => [body])
 
-      children.actions = (h('template', {}, [this.genPickerActionsSlot()]))
+      children.actions = () => [this.genPickerActionsSlot()]
 
       return h(VPicker, {
         class: staticClass,

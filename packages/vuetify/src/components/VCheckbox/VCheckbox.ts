@@ -91,7 +91,7 @@ export default defineComponent({
           dense: this.dense,
           dark: this.dark,
           light: this.light
-        }), this.computedIcon),
+        }), () => this.computedIcon),
         this.genInput('checkbox', {
           ...checkboxAttrs,
           'aria-checked': this.inputIndeterminate

@@ -33,12 +33,10 @@ export default defineComponent({
     }
 
     // dedupeModelListeners(data)
-    const children = rebuildSlots(this.$slots, h)
-
     if (props.mobile) {
-      return h(VDataTableHeaderMobile, data, children)
+      return h(VDataTableHeaderMobile, data, this.$slots)
     } else {
-      return h(VDataTableHeaderDesktop, data, children)
+      return h(VDataTableHeaderDesktop, data, this.$slots)
     }
   },
 })

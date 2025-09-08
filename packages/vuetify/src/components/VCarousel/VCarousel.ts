@@ -148,10 +148,10 @@ export default defineComponent({
           small: true,
           value: this.getValue(this.items[i], i),
           key: i,
-        }, [
+        }, () => [
           h(VIcon, {
             size: 18
-          }, this.delimiterIcon),
+          }, () => this.delimiterIcon),
         ])
 
         children.push(child)
@@ -163,7 +163,7 @@ export default defineComponent({
         onChange: (val: unknown) => {
           this.internalValue = val
         }
-      }, children)
+      }, () => children)
     },
     genProgress () {
       return h(VProgressLinear, {

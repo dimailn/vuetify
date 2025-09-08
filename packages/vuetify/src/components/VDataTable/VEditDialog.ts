@@ -69,7 +69,7 @@ export default mixins(Returnable, Themeable).extend({
         color: 'primary',
         light: true,
         onClick: fn,
-      }, text)
+      }, () => text)
     },
     genActions (): VNode {
       return h('div', {
@@ -123,7 +123,7 @@ export default mixins(Returnable, Themeable).extend({
           ])
         },
       },
-    }, [
+    }, () => [
       this.genContent(),
       this.large ? this.genActions() : null,
     ])

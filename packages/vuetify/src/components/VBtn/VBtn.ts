@@ -211,8 +211,12 @@ export default baseMixins.extend({
     // Apply color styling but preserve Vue's automatic attribute inheritance
     const finalData = this.disabled ? data : setColor(this.color, data)
 
+    const vnode = typeof tag === 'string'
+      ? h(tag, finalData, children)
+      : h(tag, finalData, () => children)
+
     return withDirectives(
-      h(tag, finalData, children),
+      vnode,
       directives
     )
   },

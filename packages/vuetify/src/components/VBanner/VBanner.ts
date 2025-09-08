@@ -93,7 +93,7 @@ export default mixins(
         content = h(VIcon, {
           color: this.iconColor,
           size: 28
-        }, [this.icon])
+        }, () => [this.icon])
       } else {
         content = getSlot(this, 'icon')
       }
@@ -103,7 +103,7 @@ export default mixins(
         color: this.color,
         size: 40,
         onClick: this.iconClick,
-      }, [content])
+      }, () => [content])
     },
     genText () {
       return h('div', {
@@ -151,7 +151,7 @@ export default mixins(
       }],
     }
 
-    return h(VExpandTransition, [
+    return h(VExpandTransition, {}, () => [
       h(
         'div',
         this.outlined ? data : this.setBackgroundColor(this.color, data),

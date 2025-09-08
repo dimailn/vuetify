@@ -156,7 +156,7 @@ export default defineComponent({
         // light: this.light // TODO: add mixin
         onClick: click,
         'aria-label': label, // TODO: Localization
-      }, [h(VIcon, icon)])
+      }, () => [h(VIcon, {}, () => icon)])
     },
     genIcons () {
       const before: VNodeChildrenArrayContents = []

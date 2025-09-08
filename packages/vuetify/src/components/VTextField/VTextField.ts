@@ -368,7 +368,7 @@ export default baseMixins.extend({
         value: this.labelValue
       }
 
-      return h(VLabel, data, getSlot(this, 'label') || this.label)
+      return h(VLabel, data, () => getSlot(this, 'label') || this.label)
     },
     genLegend () {
       const width = !this.singleLine && (this.labelValue || this.isDirty) ? this.labelWidth : 0

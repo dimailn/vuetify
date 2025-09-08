@@ -404,7 +404,7 @@ export default mixins(
           icon: true,
           small: true,
           onClick: toggleFn
-        }, [h(VIcon, [isOpen ? '$minus' : '$plus'])])
+        }, () => [h(VIcon, {}, () => [isOpen ? '$minus' : '$plus'])])
 
         const remove = h(VBtn, {
           class: 'ma-0',
@@ -415,7 +415,7 @@ export default mixins(
           on: {
             click: removeFn,
           },
-        }, [h(VIcon, ['$close'])])
+        }, () => [h(VIcon, {}, () => ['$close'])])
 
         const column = h('td', {
           class: 'text-start',
@@ -528,7 +528,7 @@ export default mixins(
             e.stopPropagation()
             data.expand(!data.isExpanded)
           }
-        }, [this.expandIcon])
+        }, () => [this.expandIcon])
       }
 
       return h(this.isMobile ? MobileRow : Row, {
@@ -634,11 +634,11 @@ export default mixins(
           this.genBody(props),
           this.genFoot(props),
         ],
-        top: getSlot(this, 'top', {
+        top: () => getSlot(this, 'top', {
           ...props,
           isMobile: this.isMobile,
         }, true),
-        bottom: this.genFooters(props)
+        bottom: () => this.genFooters(props)
       })
     }
   },

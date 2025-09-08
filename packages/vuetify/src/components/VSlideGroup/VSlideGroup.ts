@@ -323,9 +323,9 @@ export const BaseSlideGroup = mixins<options &
         !hasAffix
       ) return null
 
-      return h(VIcon, {
+      return h(VIcon, () => ({
         disabled: !hasAffix,
-      }, (this as any)[`${icon}Icon`])
+      }, (this as any)[`${icon}Icon`]))
     },
     // Always generate prev for scrollable hint
     genPrev (): VNode | null {
@@ -342,7 +342,7 @@ export const BaseSlideGroup = mixins<options &
       }, [slot])
     },
     genTransition (location: 'prev' | 'next') {
-      return h(VFadeTransition, [this.genIcon(location)])
+      return h(VFadeTransition, () => [this.genIcon(location)])
     },
     genWrapper (): VNode {
       return withDirectives(h('div', {

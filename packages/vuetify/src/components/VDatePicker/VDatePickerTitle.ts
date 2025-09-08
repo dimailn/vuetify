@@ -59,7 +59,7 @@ export default mixins(
     genYearIcon (): VNode {
       return h(VIcon, {
         dark: true,
-      }, this.yearIcon)
+      }, () => this.yearIcon)
     },
     getYearBtn (): VNode {
       return this.genPickerButton('selectingYear', true, [
@@ -70,7 +70,7 @@ export default mixins(
     genTitleText (): VNode {
       return h(Transition, {
         name: this.computedTransition,
-      }, [
+      }, () => [
         h('div', {
           innerHTML: this.date || '&nbsp;',
           key: this.value

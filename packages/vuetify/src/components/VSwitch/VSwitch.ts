@@ -110,7 +110,7 @@ export default defineComponent({
       ])
     },
     genProgress (): VNode {
-      return h(VFabTransition, {}, [
+      return h(VFabTransition, {}, () => [
         this.loading === false
           ? null
           : getSlot(this, 'progress') || h(VProgressCircular, {

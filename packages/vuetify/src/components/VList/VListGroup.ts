@@ -122,7 +122,7 @@ export default baseMixins.extend({
       this.$nextTick(() => (this.isActive = !this.isActive))
     },
     genIcon (icon: string | false): VNode {
-      return h(VIcon, icon)
+      return h(VIcon, {}, () => icon)
     },
     genAppendIcon (): VNode | null {
       const icon = !this.subGroup ? this.appendIcon : false
@@ -132,7 +132,7 @@ export default baseMixins.extend({
 
       return h(VListItemIcon, {
         class: 'v-list-group__header__append-icon',
-      }, [
+      }, () => [
         slot || this.genIcon(icon),
       ])
     },
@@ -147,7 +147,7 @@ export default baseMixins.extend({
         inputValue: this.isActive,
         ...this.listeners$,
         onClick: this.click
-      }, [
+      }, () => [
         this.genPrependIcon(),
         getSlot(this, 'activator'),
         this.genAppendIcon(),
@@ -178,7 +178,7 @@ export default baseMixins.extend({
 
       return h(VListItemIcon, {
         class: 'v-list-group__header__prepend-icon',
-      }, [
+      }, () => [
         slot || this.genIcon(icon),
       ])
     },
@@ -211,7 +211,7 @@ export default baseMixins.extend({
       class: ['v-list-group', this.classes]
     }), [
       this.genHeader(),
-      h(VExpandTransition, this.genItems()),
+      h(VExpandTransition, {}, () => this.genItems()),
     ])
   },
 })

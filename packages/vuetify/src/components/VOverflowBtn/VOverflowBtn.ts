@@ -99,7 +99,7 @@ export default defineComponent({
             itemObj.callback(e)
           },
         },
-      }, [itemObj.text])
+      }, () => [itemObj.text])
     },
     updateValue (val: boolean) {
       if (val) {

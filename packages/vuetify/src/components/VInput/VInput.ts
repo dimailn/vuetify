@@ -228,7 +228,7 @@ export default baseMixins.extend({
         h(
           VIcon,
           data,
-          icon
+          () => icon
         ),
       ])
     },
@@ -252,7 +252,7 @@ export default baseMixins.extend({
         focused: this.hasState,
         for: this.computedId,
         light: this.light,
-      }, getSlot(this, 'label') || this.label)
+      }, () => getSlot(this, 'label') || this.label)
     },
     genMessages () {
       if (!this.showDetails) return null

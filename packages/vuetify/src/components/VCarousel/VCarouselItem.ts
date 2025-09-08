@@ -51,7 +51,7 @@ export default baseMixins.extend({
           ...this.$attrs,
           height: this.windowGroup.internalHeight,
           ...this.$listeners,
-        }, { default: getSlot(this), placeholder: this.$slots.placeholder }),
+        }, { default: () => getSlot(this), placeholder: this.$slots.placeholder }),
       ]
     },
     genWindowItem () {

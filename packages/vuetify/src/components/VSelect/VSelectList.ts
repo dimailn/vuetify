@@ -87,7 +87,7 @@ export default mixins(Colorable, Themeable).extend({
 
   methods: {
     genAction (item: object, inputValue: any): VNode {
-      return h(VListItemAction, [
+      return h(VListItemAction, {}, () => [
         h(VSimpleCheckbox, {
           color: this.color,
           modelValue: inputValue,
@@ -186,8 +186,8 @@ export default mixins(Colorable, Themeable).extend({
         : scopedSlot
     },
     genTileContent (item: any, index = 0): VNode {
-      return h(VListItemContent, [
-        h(VListItemTitle, [
+      return h(VListItemContent, {}, () => [
+        h(VListItemTitle, {}, () => [
           this.genFilteredText(this.getText(item)),
         ]),
       ])

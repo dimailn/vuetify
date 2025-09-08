@@ -55,7 +55,7 @@ export default mixins(
     genBodyTransition () {
       return h(Transition, {
         name: this.transition,
-      }, getSlot(this))
+      }, () => getSlot(this))
     },
     genBody () {
       return h('div', {

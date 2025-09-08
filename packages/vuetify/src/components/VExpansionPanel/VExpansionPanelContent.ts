@@ -60,7 +60,7 @@ export default baseMixins.extend({
   },
 
   render (): VNode {
-    return h(VExpandTransition, this.showLazyContent(() => [
+    return h(VExpandTransition, {}, () => this.showLazyContent(() => [
       withDirectives(h('div', this.setBackgroundColor(this.color, {
         class: 'v-expansion-panel-content'
       }), [

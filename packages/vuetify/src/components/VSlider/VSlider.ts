@@ -414,7 +414,7 @@ export default mixins<options &
 
       return h(VScaleTransition, {
         origin: 'bottom center',
-      }, [
+      }, () => [
         withDirectives(h('div', {
           class: 'v-slider__thumb-label-container',
         }, [

@@ -197,7 +197,7 @@ export default mixins(
             'aria-label': label,
             ...(disabled ? {} : { onClick: fn }),
           }),
-          [h(VIcon, { color: this.navigationTextColor }, [icon])]
+          [h(VIcon, { color: this.navigationTextColor }, () => [icon])]
         ),
       ])
     },

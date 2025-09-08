@@ -379,7 +379,7 @@ export default baseMixins.extend({
         },
         'onClick:close': () => this.onChipInput(item),
         key: JSON.stringify(this.getValue(item)),
-      }, this.getText(item))
+      }, () => this.getText(item))
     },
     genCommaSelection (item: object, index: number, last: boolean) {
       const color = index === this.selectedIndex && this.computedColor
@@ -535,7 +535,7 @@ export default baseMixins.extend({
         },
         onScroll: this.onScroll,
         ref: 'menu',
-      }, [this.genList()])
+      }, () => [this.genList()])
     },
     genSelections (): VNode {
       let length = this.selectedItems.length

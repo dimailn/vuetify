@@ -139,7 +139,7 @@ export default baseMixins.extend({
         for: this.computedId,
         color: this.validationState,
         focused: this.hasState,
-      }, getSlot(this, 'label') || this.label)
+      }, () => getSlot(this, 'label') || this.label)
     },
     genRadio () {
       const { title, ...radioAttrs } = this.attrs$
@@ -149,7 +149,7 @@ export default baseMixins.extend({
       }, [
         h(VIcon, this.setTextColor(this.validationState, {
           dense: this.radioGroup && this.radioGroup.dense,
-        }), this.computedIcon),
+        }), () => this.computedIcon),
         this.genInput({
           name: this.computedName,
           value: this.value,

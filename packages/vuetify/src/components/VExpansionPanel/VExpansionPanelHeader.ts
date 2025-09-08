@@ -83,9 +83,9 @@ export default baseMixins.extend({
     },
     genIcon () {
       const icon = getSlot(this, 'actions', { open: this.isActive }) ||
-        [h(VIcon, this.expandIcon)]
+        [h(VIcon, {}, () => this.expandIcon)]
 
-      return h(VFadeTransition, [
+      return h(VFadeTransition, {}, () => [
         withDirectives(h('div', {
           class: ['v-expansion-panel-header__icon', {
             'v-expansion-panel-header__icon--disable-rotate': this.disableIconRotate,

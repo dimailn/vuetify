@@ -193,7 +193,7 @@ export default mixins(Colorable, Delayable, Dependent, Menuable).extend({
 
       return h(Transition, {
         name: this.computedTransition,
-      }, [content])
+      }, () => [content])
     },
     genContent () {
       return withDirectives(

@@ -213,7 +213,7 @@ export default mixins(
     genTable (staticClass: string, children: VNodeChildren, calculateTableDate: CalculateTableDateFunction) {
       const transition = h(Transition, {
         name: this.computedTransition,
-      }, [h('table', { key: this.tableDate }, children)])
+      }, () => [h('table', { key: this.tableDate }, children)])
 
       const touchDirective = [
         Touch,

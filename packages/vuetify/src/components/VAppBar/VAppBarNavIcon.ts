@@ -21,6 +21,6 @@ export default defineComponent({
 
     const defaultSlot = this.$slots.default?.()
 
-    return h(VBtn, d, defaultSlot || [h(VIcon, '$menu')])
+    return h(VBtn, d, defaultSlot || (() => [h(VIcon, {}, () => '$menu')]))
   },
 })

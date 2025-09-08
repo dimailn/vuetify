@@ -215,7 +215,7 @@ export default baseMixins.extend({
       this.setTextColor(this.computedColor, data)
       this.setBackgroundColor(this.backgroundColor, data)
 
-      return h(VTabsBar, data, [
+      return h(VTabsBar, data, () => [
         this.genSlider(slider),
         items,
       ])
@@ -234,7 +234,7 @@ export default baseMixins.extend({
         'onUpdate:modelValue': (val: any) => {
           this.internalValue = val
         }
-      }, item)
+      }, () => item)
     },
     genSlider (slider: VNode | null) {
       if (this.hideSlider) return null

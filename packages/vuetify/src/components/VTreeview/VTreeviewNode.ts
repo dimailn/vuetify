@@ -234,7 +234,7 @@ const VTreeviewNode = baseMixins.extend({
 
           this.checkChildren().then(() => this.open())
         }
-      }, [this.isLoading ? this.loadingIcon : this.expandIcon])
+      }, () => [this.isLoading ? this.loadingIcon : this.expandIcon])
     },
     genCheckbox () {
       return h(VIcon, {
@@ -257,7 +257,7 @@ const VTreeviewNode = baseMixins.extend({
             })
           })
         },
-      }, [this.computedIcon])
+      }, () => [this.computedIcon])
     },
     genLevel (level: number) {
       return createRange(level).map(() => h('div', {
@@ -331,7 +331,7 @@ const VTreeviewNode = baseMixins.extend({
       }, children)
     },
     genTransition () {
-      return h(VExpandTransition, [this.genChildrenWrapper()])
+      return h(VExpandTransition, {}, () => [this.genChildrenWrapper()])
     },
   },
 

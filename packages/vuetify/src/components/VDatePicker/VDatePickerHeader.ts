@@ -90,8 +90,8 @@ export default mixins(
           e.stopPropagation()
           this.$emit('input', this.calculateChange(change))
         }
-      }, [
-        h(VIcon, ((change < 0) === !this.$vuetify.rtl) ? this.prevIcon : this.nextIcon),
+      }, () => [
+        h(VIcon, {}, () => (((change < 0) === !this.$vuetify.rtl) ? this.prevIcon : this.nextIcon)),
       ])
     },
     calculateChange (sign: number) {
@@ -114,7 +114,7 @@ export default mixins(
 
       const transition = h(Transition, {
         name: (this.isReversing === !this.$vuetify.rtl) ? 'tab-reverse-transition' : 'tab-transition',
-      }, [header])
+      }, () => [header])
 
       return h('div', {
         class: ['v-date-picker-header__value', {

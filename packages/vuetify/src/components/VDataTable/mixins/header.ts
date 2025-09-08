@@ -72,7 +72,7 @@ export default mixins<HeaderOptions>().extend({
       return h(VIcon, {
         class: 'v-data-table-header__icon',
         size: 18,
-      }, [this.sortIcon])
+      }, () => [this.sortIcon])
     },
   },
 })

@@ -192,9 +192,12 @@ export default baseMixins.extend({
       toggle: this.toggle,
     })
 
-    return withDirectives(
-      h(tag, this.isActive ? this.setTextColor(this.color, data) : data, children),
-      directives
-    )
+    const nodeData = this.isActive ? this.setTextColor(this.color, data) : data
+
+    const node = typeof tag === 'string'
+      ? h(tag, nodeData, children)
+      : h(tag, nodeData, () => children)
+
+    return withDirectives(node, directives)
   },
 })

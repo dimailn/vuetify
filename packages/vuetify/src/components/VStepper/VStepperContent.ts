@@ -168,6 +168,6 @@ export default baseMixins.extend({
 
     return h(this.computedTransition, {
       ...this.$listeners,
-    }, [content])
+    }, () => [content])
   },
 })

@@ -244,7 +244,7 @@ export default baseMixins.extend({
           root: true,
           light: this.light,
           dark: this.dark
-        }, [
+        }, () => [
           h('div', {
             class: this.contentClasses,
             role: 'dialog',
@@ -266,7 +266,7 @@ export default baseMixins.extend({
         name: this.transition,
         origin: this.origin,
         appear: true
-      }, [content])
+      }, () => [content])
     },
     genInnerContent () {
       const directives = [
