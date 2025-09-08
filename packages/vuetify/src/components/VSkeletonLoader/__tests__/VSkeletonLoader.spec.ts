@@ -4,21 +4,26 @@ import VSkeletonLoader, { HTMLSkeletonLoaderElement } from '../VSkeletonLoader'
 // Utilities
 import {
   mount,
-  MountOptions,
-  Wrapper,
+  enableAutoUnmount,
+  VueWrapper,
 } from '@vue/test-utils'
+import { nextTick } from 'vue'
 
 describe('VSkeletonLoader.ts', () => {
   type Instance = InstanceType<typeof VSkeletonLoader>
-  let mountFunction: (options?: MountOptions<Instance>) => Wrapper<Instance>
+  let mountFunction: (options?: any) => VueWrapper
+
+  enableAutoUnmount(afterEach)
 
   beforeEach(() => {
     mountFunction = (options = {}) => {
       return mount(VSkeletonLoader, {
-        mocks: {
-          $vuetify: {
-            lang: {
-              t: (v: string) => v,
+        global: {
+          mocks: {
+            $vuetify: {
+              lang: {
+                t: (v: string) => v,
+              },
             },
           },
         },
@@ -40,13 +45,13 @@ describe('VSkeletonLoader.ts', () => {
     for (const key in wrapper.vm.rootTypes) {
       const type = wrapper.vm.rootTypes[key]
 
-      const iteration = mountFunction({ propsData: { type } })
+      const iteration = mountFunction({ props: { type } })
 
       expect(iteration.html()).toMatchSnapshot()
     }
   })
 
-  it('should dynamically render content', () => {
+  it('should dynamically render content', async () => {
     const wrapper = mountFunction({
       slots: {
         default: '<div>foobar</div>',
@@ -55,14 +60,15 @@ describe('VSkeletonLoader.ts', () => {
 
     expect(wrapper.html()).toMatchSnapshot()
 
-    wrapper.setProps({ loading: true })
+    await wrapper.setProps({ loading: true })
+    await nextTick()
 
     expect(wrapper.html()).toMatchSnapshot()
   })
 
-  it('should have the correct a11y attributes when loading', () => {
+  it('should have the correct a11y attributes when loading', async () => {
     const wrapper = mountFunction({
-      propsData: { loading: true },
+      props: { loading: true },
       slots: {
         // Add a default slot to allow
         // toggling the loading prop
@@ -74,7 +80,8 @@ describe('VSkeletonLoader.ts', () => {
     expect(wrapper.element.getAttribute('aria-live')).toBe('polite')
     expect(wrapper.element.getAttribute('role')).toBe('alert')
 
-    wrapper.setProps({ loading: false })
+    await wrapper.setProps({ loading: false })
+    await nextTick()
 
     expect(wrapper.element.getAttribute('aria-busy')).toBeNull()
     expect(wrapper.element.getAttribute('aria-live')).toBeNull()
@@ -83,7 +90,7 @@ describe('VSkeletonLoader.ts', () => {
 
   it('should not render aria attributes when using boilerplate', () => {
     const wrapper = mountFunction({
-      propsData: { boilerplate: true },
+      props: { boilerplate: true },
     })
 
     expect(wrapper.vm.attrs).toEqual({})
@@ -94,7 +101,7 @@ describe('VSkeletonLoader.ts', () => {
   it('should remove transition when loading content', () => {
     const el = document.createElement('div') as HTMLSkeletonLoaderElement
     const wrapper = mountFunction({
-      propsData: { loading: true },
+      props: { loading: true },
     })
 
     wrapper.vm.onBeforeEnter(el)
