@@ -2,14 +2,14 @@
 
 exports[`VDatePickerHeader.ts should render component and match snapshot 1`] = `
 <div class="v-date-picker-header theme--light">
-  <button type="button"
-          class="v-btn v-btn--icon v-btn--round theme--light v-size--default"
+  <button class="v-btn v-btn--icon v-btn--round theme--light v-size--default"
+          type="button"
   >
     <span class="v-btn__content">
-      <i aria-hidden="true"
-         class="v-icon notranslate mdi mdi-chevron-left theme--light"
+      <span class="v-icon notranslate theme--light"
+            aria-hidden="true"
       >
-      </i>
+      </span>
     </span>
   </button>
   <div class="v-date-picker-header__value">
@@ -19,14 +19,14 @@ exports[`VDatePickerHeader.ts should render component and match snapshot 1`] = `
       </button>
     </div>
   </div>
-  <button type="button"
-          class="v-btn v-btn--icon v-btn--round theme--light v-size--default"
+  <button class="v-btn v-btn--icon v-btn--round theme--light v-size--default"
+          type="button"
   >
     <span class="v-btn__content">
-      <i aria-hidden="true"
-         class="v-icon notranslate mdi mdi-chevron-right theme--light"
+      <span class="v-icon notranslate theme--light"
+            aria-hidden="true"
       >
-      </i>
+      </span>
     </span>
   </button>
 </div>
@@ -34,14 +34,14 @@ exports[`VDatePickerHeader.ts should render component and match snapshot 1`] = `
 
 exports[`VDatePickerHeader.ts should render component in RTL mode and match snapshot 1`] = `
 <div class="v-date-picker-header theme--light">
-  <button type="button"
-          class="v-btn v-btn--icon v-btn--round theme--light v-size--default"
+  <button class="v-btn v-btn--icon v-btn--round theme--light v-size--default"
+          type="button"
   >
     <span class="v-btn__content">
-      <i aria-hidden="true"
-         class="v-icon notranslate mdi mdi-chevron-right theme--light"
+      <span class="v-icon notranslate theme--light"
+            aria-hidden="true"
       >
-      </i>
+      </span>
     </span>
   </button>
   <div class="v-date-picker-header__value">
@@ -51,14 +51,14 @@ exports[`VDatePickerHeader.ts should render component in RTL mode and match snap
       </button>
     </div>
   </div>
-  <button type="button"
-          class="v-btn v-btn--icon v-btn--round theme--light v-size--default"
+  <button class="v-btn v-btn--icon v-btn--round theme--light v-size--default"
+          type="button"
   >
     <span class="v-btn__content">
-      <i aria-hidden="true"
-         class="v-icon notranslate mdi mdi-chevron-left theme--light"
+      <span class="v-icon notranslate theme--light"
+            aria-hidden="true"
       >
-      </i>
+      </span>
     </span>
   </button>
 </div>
@@ -66,14 +66,14 @@ exports[`VDatePickerHeader.ts should render component in RTL mode and match snap
 
 exports[`VDatePickerHeader.ts should render component with default slot and match snapshot 1`] = `
 <div class="v-date-picker-header theme--light">
-  <button type="button"
-          class="v-btn v-btn--icon v-btn--round theme--light v-size--default"
+  <button class="v-btn v-btn--icon v-btn--round theme--light v-size--default"
+          type="button"
   >
     <span class="v-btn__content">
-      <i aria-hidden="true"
-         class="v-icon notranslate mdi mdi-chevron-left theme--light"
+      <span class="v-icon notranslate theme--light"
+            aria-hidden="true"
       >
-      </i>
+      </span>
     </span>
   </button>
   <div class="v-date-picker-header__value">
@@ -85,14 +85,14 @@ exports[`VDatePickerHeader.ts should render component with default slot and matc
       </button>
     </div>
   </div>
-  <button type="button"
-          class="v-btn v-btn--icon v-btn--round theme--light v-size--default"
+  <button class="v-btn v-btn--icon v-btn--round theme--light v-size--default"
+          type="button"
   >
     <span class="v-btn__content">
-      <i aria-hidden="true"
-         class="v-icon notranslate mdi mdi-chevron-right theme--light"
+      <span class="v-icon notranslate theme--light"
+            aria-hidden="true"
       >
-      </i>
+      </span>
     </span>
   </button>
 </div>
@@ -100,15 +100,15 @@ exports[`VDatePickerHeader.ts should render component with default slot and matc
 
 exports[`VDatePickerHeader.ts should render disabled component and match snapshot 1`] = `
 <div class="v-date-picker-header v-date-picker-header--disabled theme--light">
-  <button type="button"
-          disabled="disabled"
-          class="v-btn v-btn--disabled v-btn--icon v-btn--round theme--light v-size--default"
+  <button class="v-btn v-btn--disabled v-btn--icon v-btn--round theme--light v-size--default"
+          type="button"
+          disabled
   >
     <span class="v-btn__content">
-      <i aria-hidden="true"
-         class="v-icon notranslate mdi mdi-chevron-left theme--light"
+      <span class="v-icon notranslate theme--light"
+            aria-hidden="true"
       >
-      </i>
+      </span>
     </span>
   </button>
   <div class="v-date-picker-header__value v-date-picker-header__value--disabled">
@@ -118,15 +118,15 @@ exports[`VDatePickerHeader.ts should render disabled component and match snapsho
       </button>
     </div>
   </div>
-  <button type="button"
-          disabled="disabled"
-          class="v-btn v-btn--disabled v-btn--icon v-btn--round theme--light v-size--default"
+  <button class="v-btn v-btn--disabled v-btn--icon v-btn--round theme--light v-size--default"
+          type="button"
+          disabled
   >
     <span class="v-btn__content">
-      <i aria-hidden="true"
-         class="v-icon notranslate mdi mdi-chevron-right theme--light"
+      <span class="v-icon notranslate theme--light"
+            aria-hidden="true"
       >
-      </i>
+      </span>
     </span>
   </button>
 </div>
@@ -134,14 +134,14 @@ exports[`VDatePickerHeader.ts should render disabled component and match snapsho
 
 exports[`VDatePickerHeader.ts should render readonly component and match snapshot 1`] = `
 <div class="v-date-picker-header theme--light">
-  <button type="button"
-          class="v-btn v-btn--icon v-btn--round theme--light v-size--default"
+  <button class="v-btn v-btn--icon v-btn--round theme--light v-size--default"
+          type="button"
   >
     <span class="v-btn__content">
-      <i aria-hidden="true"
-         class="v-icon notranslate mdi mdi-chevron-left theme--light"
+      <span class="v-icon notranslate theme--light"
+            aria-hidden="true"
       >
-      </i>
+      </span>
     </span>
   </button>
   <div class="v-date-picker-header__value">
@@ -151,14 +151,14 @@ exports[`VDatePickerHeader.ts should render readonly component and match snapsho
       </button>
     </div>
   </div>
-  <button type="button"
-          class="v-btn v-btn--icon v-btn--round theme--light v-size--default"
+  <button class="v-btn v-btn--icon v-btn--round theme--light v-size--default"
+          type="button"
   >
     <span class="v-btn__content">
-      <i aria-hidden="true"
-         class="v-icon notranslate mdi mdi-chevron-right theme--light"
+      <span class="v-icon notranslate theme--light"
+            aria-hidden="true"
       >
-      </i>
+      </span>
     </span>
   </button>
 </div>

@@ -41,8 +41,8 @@ exports[`VDatePickerDateTable.ts should match snapshot with first day of week 1`
         <td>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               1
@@ -50,8 +50,8 @@ exports[`VDatePickerDateTable.ts should match snapshot with first day of week 1`
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               2
@@ -61,8 +61,8 @@ exports[`VDatePickerDateTable.ts should match snapshot with first day of week 1`
       </tr>
       <tr>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               3
@@ -70,8 +70,8 @@ exports[`VDatePickerDateTable.ts should match snapshot with first day of week 1`
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               4
@@ -79,8 +79,8 @@ exports[`VDatePickerDateTable.ts should match snapshot with first day of week 1`
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               5
@@ -88,8 +88,8 @@ exports[`VDatePickerDateTable.ts should match snapshot with first day of week 1`
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               6
@@ -97,8 +97,8 @@ exports[`VDatePickerDateTable.ts should match snapshot with first day of week 1`
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               7
@@ -106,8 +106,8 @@ exports[`VDatePickerDateTable.ts should match snapshot with first day of week 1`
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               8
@@ -115,8 +115,8 @@ exports[`VDatePickerDateTable.ts should match snapshot with first day of week 1`
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               9
@@ -126,8 +126,8 @@ exports[`VDatePickerDateTable.ts should match snapshot with first day of week 1`
       </tr>
       <tr>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               10
@@ -135,8 +135,8 @@ exports[`VDatePickerDateTable.ts should match snapshot with first day of week 1`
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               11
@@ -144,8 +144,8 @@ exports[`VDatePickerDateTable.ts should match snapshot with first day of week 1`
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               12
@@ -153,8 +153,8 @@ exports[`VDatePickerDateTable.ts should match snapshot with first day of week 1`
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               13
@@ -162,8 +162,8 @@ exports[`VDatePickerDateTable.ts should match snapshot with first day of week 1`
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               14
@@ -171,8 +171,8 @@ exports[`VDatePickerDateTable.ts should match snapshot with first day of week 1`
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               15
@@ -180,8 +180,8 @@ exports[`VDatePickerDateTable.ts should match snapshot with first day of week 1`
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               16
@@ -191,8 +191,8 @@ exports[`VDatePickerDateTable.ts should match snapshot with first day of week 1`
       </tr>
       <tr>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               17
@@ -200,8 +200,8 @@ exports[`VDatePickerDateTable.ts should match snapshot with first day of week 1`
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               18
@@ -209,8 +209,8 @@ exports[`VDatePickerDateTable.ts should match snapshot with first day of week 1`
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               19
@@ -218,8 +218,8 @@ exports[`VDatePickerDateTable.ts should match snapshot with first day of week 1`
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               20
@@ -227,8 +227,8 @@ exports[`VDatePickerDateTable.ts should match snapshot with first day of week 1`
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               21
@@ -236,8 +236,8 @@ exports[`VDatePickerDateTable.ts should match snapshot with first day of week 1`
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               22
@@ -245,8 +245,8 @@ exports[`VDatePickerDateTable.ts should match snapshot with first day of week 1`
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               23
@@ -256,8 +256,8 @@ exports[`VDatePickerDateTable.ts should match snapshot with first day of week 1`
       </tr>
       <tr>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               24
@@ -265,8 +265,8 @@ exports[`VDatePickerDateTable.ts should match snapshot with first day of week 1`
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               25
@@ -274,8 +274,8 @@ exports[`VDatePickerDateTable.ts should match snapshot with first day of week 1`
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               26
@@ -283,8 +283,8 @@ exports[`VDatePickerDateTable.ts should match snapshot with first day of week 1`
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               27
@@ -292,8 +292,8 @@ exports[`VDatePickerDateTable.ts should match snapshot with first day of week 1`
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               28
@@ -301,8 +301,8 @@ exports[`VDatePickerDateTable.ts should match snapshot with first day of week 1`
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               29
@@ -310,8 +310,8 @@ exports[`VDatePickerDateTable.ts should match snapshot with first day of week 1`
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               30
@@ -321,8 +321,8 @@ exports[`VDatePickerDateTable.ts should match snapshot with first day of week 1`
       </tr>
       <tr>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               31
@@ -378,8 +378,8 @@ exports[`VDatePickerDateTable.ts should render component and match snapshot 1`] 
     <tbody>
       <tr>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               1
@@ -387,8 +387,8 @@ exports[`VDatePickerDateTable.ts should render component and match snapshot 1`] 
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               2
@@ -396,8 +396,8 @@ exports[`VDatePickerDateTable.ts should render component and match snapshot 1`] 
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               3
@@ -405,8 +405,8 @@ exports[`VDatePickerDateTable.ts should render component and match snapshot 1`] 
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               4
@@ -414,8 +414,8 @@ exports[`VDatePickerDateTable.ts should render component and match snapshot 1`] 
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               5
@@ -423,8 +423,8 @@ exports[`VDatePickerDateTable.ts should render component and match snapshot 1`] 
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               6
@@ -432,8 +432,8 @@ exports[`VDatePickerDateTable.ts should render component and match snapshot 1`] 
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               7
@@ -443,8 +443,8 @@ exports[`VDatePickerDateTable.ts should render component and match snapshot 1`] 
       </tr>
       <tr>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               8
@@ -452,8 +452,8 @@ exports[`VDatePickerDateTable.ts should render component and match snapshot 1`] 
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               9
@@ -461,8 +461,8 @@ exports[`VDatePickerDateTable.ts should render component and match snapshot 1`] 
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               10
@@ -470,8 +470,8 @@ exports[`VDatePickerDateTable.ts should render component and match snapshot 1`] 
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               11
@@ -479,8 +479,8 @@ exports[`VDatePickerDateTable.ts should render component and match snapshot 1`] 
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               12
@@ -488,8 +488,8 @@ exports[`VDatePickerDateTable.ts should render component and match snapshot 1`] 
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               13
@@ -497,8 +497,8 @@ exports[`VDatePickerDateTable.ts should render component and match snapshot 1`] 
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               14
@@ -508,8 +508,8 @@ exports[`VDatePickerDateTable.ts should render component and match snapshot 1`] 
       </tr>
       <tr>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               15
@@ -517,8 +517,8 @@ exports[`VDatePickerDateTable.ts should render component and match snapshot 1`] 
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               16
@@ -526,8 +526,8 @@ exports[`VDatePickerDateTable.ts should render component and match snapshot 1`] 
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               17
@@ -535,8 +535,8 @@ exports[`VDatePickerDateTable.ts should render component and match snapshot 1`] 
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               18
@@ -544,8 +544,8 @@ exports[`VDatePickerDateTable.ts should render component and match snapshot 1`] 
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               19
@@ -553,8 +553,8 @@ exports[`VDatePickerDateTable.ts should render component and match snapshot 1`] 
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               20
@@ -562,8 +562,8 @@ exports[`VDatePickerDateTable.ts should render component and match snapshot 1`] 
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               21
@@ -573,8 +573,8 @@ exports[`VDatePickerDateTable.ts should render component and match snapshot 1`] 
       </tr>
       <tr>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               22
@@ -582,8 +582,8 @@ exports[`VDatePickerDateTable.ts should render component and match snapshot 1`] 
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               23
@@ -591,8 +591,8 @@ exports[`VDatePickerDateTable.ts should render component and match snapshot 1`] 
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               24
@@ -600,8 +600,8 @@ exports[`VDatePickerDateTable.ts should render component and match snapshot 1`] 
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               25
@@ -609,8 +609,8 @@ exports[`VDatePickerDateTable.ts should render component and match snapshot 1`] 
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               26
@@ -618,8 +618,8 @@ exports[`VDatePickerDateTable.ts should render component and match snapshot 1`] 
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               27
@@ -627,8 +627,8 @@ exports[`VDatePickerDateTable.ts should render component and match snapshot 1`] 
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               28
@@ -638,8 +638,8 @@ exports[`VDatePickerDateTable.ts should render component and match snapshot 1`] 
       </tr>
       <tr>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               29
@@ -647,8 +647,8 @@ exports[`VDatePickerDateTable.ts should render component and match snapshot 1`] 
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               30
@@ -656,8 +656,8 @@ exports[`VDatePickerDateTable.ts should render component and match snapshot 1`] 
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               31
@@ -680,7 +680,7 @@ exports[`VDatePickerDateTable.ts should render component and match snapshot 1`] 
 
 exports[`VDatePickerDateTable.ts should render component and match snapshot for multiple selection 1`] = `
 <div class="v-date-picker-table v-date-picker-table--date theme--light"
-     multiple="multiple"
+     multiple="true"
      selecteddates="2005-11-03,2005-11-05,2005-11-08"
 >
   <table>
@@ -712,8 +712,8 @@ exports[`VDatePickerDateTable.ts should render component and match snapshot for 
     <tbody>
       <tr>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               1
@@ -721,8 +721,8 @@ exports[`VDatePickerDateTable.ts should render component and match snapshot for 
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               2
@@ -730,8 +730,8 @@ exports[`VDatePickerDateTable.ts should render component and match snapshot for 
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               3
@@ -739,8 +739,8 @@ exports[`VDatePickerDateTable.ts should render component and match snapshot for 
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               4
@@ -748,8 +748,8 @@ exports[`VDatePickerDateTable.ts should render component and match snapshot for 
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               5
@@ -757,8 +757,8 @@ exports[`VDatePickerDateTable.ts should render component and match snapshot for 
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               6
@@ -766,8 +766,8 @@ exports[`VDatePickerDateTable.ts should render component and match snapshot for 
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               7
@@ -777,8 +777,8 @@ exports[`VDatePickerDateTable.ts should render component and match snapshot for 
       </tr>
       <tr>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               8
@@ -786,8 +786,8 @@ exports[`VDatePickerDateTable.ts should render component and match snapshot for 
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               9
@@ -795,8 +795,8 @@ exports[`VDatePickerDateTable.ts should render component and match snapshot for 
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               10
@@ -804,8 +804,8 @@ exports[`VDatePickerDateTable.ts should render component and match snapshot for 
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               11
@@ -813,8 +813,8 @@ exports[`VDatePickerDateTable.ts should render component and match snapshot for 
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               12
@@ -822,8 +822,8 @@ exports[`VDatePickerDateTable.ts should render component and match snapshot for 
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               13
@@ -831,8 +831,8 @@ exports[`VDatePickerDateTable.ts should render component and match snapshot for 
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               14
@@ -842,8 +842,8 @@ exports[`VDatePickerDateTable.ts should render component and match snapshot for 
       </tr>
       <tr>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               15
@@ -851,8 +851,8 @@ exports[`VDatePickerDateTable.ts should render component and match snapshot for 
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               16
@@ -860,8 +860,8 @@ exports[`VDatePickerDateTable.ts should render component and match snapshot for 
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               17
@@ -869,8 +869,8 @@ exports[`VDatePickerDateTable.ts should render component and match snapshot for 
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               18
@@ -878,8 +878,8 @@ exports[`VDatePickerDateTable.ts should render component and match snapshot for 
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               19
@@ -887,8 +887,8 @@ exports[`VDatePickerDateTable.ts should render component and match snapshot for 
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               20
@@ -896,8 +896,8 @@ exports[`VDatePickerDateTable.ts should render component and match snapshot for 
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               21
@@ -907,8 +907,8 @@ exports[`VDatePickerDateTable.ts should render component and match snapshot for 
       </tr>
       <tr>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               22
@@ -916,8 +916,8 @@ exports[`VDatePickerDateTable.ts should render component and match snapshot for 
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               23
@@ -925,8 +925,8 @@ exports[`VDatePickerDateTable.ts should render component and match snapshot for 
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               24
@@ -934,8 +934,8 @@ exports[`VDatePickerDateTable.ts should render component and match snapshot for 
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               25
@@ -943,8 +943,8 @@ exports[`VDatePickerDateTable.ts should render component and match snapshot for 
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               26
@@ -952,8 +952,8 @@ exports[`VDatePickerDateTable.ts should render component and match snapshot for 
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               27
@@ -961,8 +961,8 @@ exports[`VDatePickerDateTable.ts should render component and match snapshot for 
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               28
@@ -972,8 +972,8 @@ exports[`VDatePickerDateTable.ts should render component and match snapshot for 
       </tr>
       <tr>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               29
@@ -981,8 +981,8 @@ exports[`VDatePickerDateTable.ts should render component and match snapshot for 
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               30
@@ -990,8 +990,8 @@ exports[`VDatePickerDateTable.ts should render component and match snapshot for 
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               31
@@ -1043,8 +1043,8 @@ exports[`VDatePickerDateTable.ts should render component with events (array) and
     <tbody>
       <tr>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               1
@@ -1052,8 +1052,8 @@ exports[`VDatePickerDateTable.ts should render component with events (array) and
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               2
@@ -1061,8 +1061,8 @@ exports[`VDatePickerDateTable.ts should render component with events (array) and
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               3
@@ -1074,8 +1074,8 @@ exports[`VDatePickerDateTable.ts should render component with events (array) and
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               4
@@ -1083,8 +1083,8 @@ exports[`VDatePickerDateTable.ts should render component with events (array) and
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               5
@@ -1092,8 +1092,8 @@ exports[`VDatePickerDateTable.ts should render component with events (array) and
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               6
@@ -1101,8 +1101,8 @@ exports[`VDatePickerDateTable.ts should render component with events (array) and
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               7
@@ -1112,8 +1112,8 @@ exports[`VDatePickerDateTable.ts should render component with events (array) and
       </tr>
       <tr>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               8
@@ -1121,8 +1121,8 @@ exports[`VDatePickerDateTable.ts should render component with events (array) and
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               9
@@ -1130,8 +1130,8 @@ exports[`VDatePickerDateTable.ts should render component with events (array) and
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               10
@@ -1139,8 +1139,8 @@ exports[`VDatePickerDateTable.ts should render component with events (array) and
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               11
@@ -1148,8 +1148,8 @@ exports[`VDatePickerDateTable.ts should render component with events (array) and
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               12
@@ -1157,8 +1157,8 @@ exports[`VDatePickerDateTable.ts should render component with events (array) and
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               13
@@ -1166,8 +1166,8 @@ exports[`VDatePickerDateTable.ts should render component with events (array) and
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               14
@@ -1177,8 +1177,8 @@ exports[`VDatePickerDateTable.ts should render component with events (array) and
       </tr>
       <tr>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               15
@@ -1186,8 +1186,8 @@ exports[`VDatePickerDateTable.ts should render component with events (array) and
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               16
@@ -1195,8 +1195,8 @@ exports[`VDatePickerDateTable.ts should render component with events (array) and
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               17
@@ -1204,8 +1204,8 @@ exports[`VDatePickerDateTable.ts should render component with events (array) and
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               18
@@ -1213,8 +1213,8 @@ exports[`VDatePickerDateTable.ts should render component with events (array) and
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               19
@@ -1222,8 +1222,8 @@ exports[`VDatePickerDateTable.ts should render component with events (array) and
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               20
@@ -1231,8 +1231,8 @@ exports[`VDatePickerDateTable.ts should render component with events (array) and
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               21
@@ -1242,8 +1242,8 @@ exports[`VDatePickerDateTable.ts should render component with events (array) and
       </tr>
       <tr>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               22
@@ -1251,8 +1251,8 @@ exports[`VDatePickerDateTable.ts should render component with events (array) and
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               23
@@ -1260,8 +1260,8 @@ exports[`VDatePickerDateTable.ts should render component with events (array) and
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               24
@@ -1269,8 +1269,8 @@ exports[`VDatePickerDateTable.ts should render component with events (array) and
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               25
@@ -1278,8 +1278,8 @@ exports[`VDatePickerDateTable.ts should render component with events (array) and
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               26
@@ -1287,8 +1287,8 @@ exports[`VDatePickerDateTable.ts should render component with events (array) and
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               27
@@ -1296,8 +1296,8 @@ exports[`VDatePickerDateTable.ts should render component with events (array) and
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               28
@@ -1307,8 +1307,8 @@ exports[`VDatePickerDateTable.ts should render component with events (array) and
       </tr>
       <tr>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               29
@@ -1316,8 +1316,8 @@ exports[`VDatePickerDateTable.ts should render component with events (array) and
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               30
@@ -1325,8 +1325,8 @@ exports[`VDatePickerDateTable.ts should render component with events (array) and
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               31
@@ -1378,8 +1378,8 @@ exports[`VDatePickerDateTable.ts should render component with events (function) 
     <tbody>
       <tr>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               1
@@ -1387,8 +1387,8 @@ exports[`VDatePickerDateTable.ts should render component with events (function) 
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               2
@@ -1396,8 +1396,8 @@ exports[`VDatePickerDateTable.ts should render component with events (function) 
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               3
@@ -1409,8 +1409,8 @@ exports[`VDatePickerDateTable.ts should render component with events (function) 
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               4
@@ -1418,8 +1418,8 @@ exports[`VDatePickerDateTable.ts should render component with events (function) 
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               5
@@ -1427,8 +1427,8 @@ exports[`VDatePickerDateTable.ts should render component with events (function) 
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               6
@@ -1436,8 +1436,8 @@ exports[`VDatePickerDateTable.ts should render component with events (function) 
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               7
@@ -1447,8 +1447,8 @@ exports[`VDatePickerDateTable.ts should render component with events (function) 
       </tr>
       <tr>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               8
@@ -1456,8 +1456,8 @@ exports[`VDatePickerDateTable.ts should render component with events (function) 
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               9
@@ -1465,8 +1465,8 @@ exports[`VDatePickerDateTable.ts should render component with events (function) 
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               10
@@ -1474,8 +1474,8 @@ exports[`VDatePickerDateTable.ts should render component with events (function) 
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               11
@@ -1483,8 +1483,8 @@ exports[`VDatePickerDateTable.ts should render component with events (function) 
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               12
@@ -1492,8 +1492,8 @@ exports[`VDatePickerDateTable.ts should render component with events (function) 
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               13
@@ -1501,8 +1501,8 @@ exports[`VDatePickerDateTable.ts should render component with events (function) 
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               14
@@ -1512,8 +1512,8 @@ exports[`VDatePickerDateTable.ts should render component with events (function) 
       </tr>
       <tr>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               15
@@ -1521,8 +1521,8 @@ exports[`VDatePickerDateTable.ts should render component with events (function) 
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               16
@@ -1530,8 +1530,8 @@ exports[`VDatePickerDateTable.ts should render component with events (function) 
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               17
@@ -1539,8 +1539,8 @@ exports[`VDatePickerDateTable.ts should render component with events (function) 
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               18
@@ -1548,8 +1548,8 @@ exports[`VDatePickerDateTable.ts should render component with events (function) 
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               19
@@ -1557,8 +1557,8 @@ exports[`VDatePickerDateTable.ts should render component with events (function) 
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               20
@@ -1566,8 +1566,8 @@ exports[`VDatePickerDateTable.ts should render component with events (function) 
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               21
@@ -1577,8 +1577,8 @@ exports[`VDatePickerDateTable.ts should render component with events (function) 
       </tr>
       <tr>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               22
@@ -1586,8 +1586,8 @@ exports[`VDatePickerDateTable.ts should render component with events (function) 
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               23
@@ -1595,8 +1595,8 @@ exports[`VDatePickerDateTable.ts should render component with events (function) 
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               24
@@ -1604,8 +1604,8 @@ exports[`VDatePickerDateTable.ts should render component with events (function) 
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               25
@@ -1613,8 +1613,8 @@ exports[`VDatePickerDateTable.ts should render component with events (function) 
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               26
@@ -1622,8 +1622,8 @@ exports[`VDatePickerDateTable.ts should render component with events (function) 
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               27
@@ -1631,8 +1631,8 @@ exports[`VDatePickerDateTable.ts should render component with events (function) 
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               28
@@ -1642,8 +1642,8 @@ exports[`VDatePickerDateTable.ts should render component with events (function) 
       </tr>
       <tr>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               29
@@ -1651,8 +1651,8 @@ exports[`VDatePickerDateTable.ts should render component with events (function) 
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               30
@@ -1660,8 +1660,8 @@ exports[`VDatePickerDateTable.ts should render component with events (function) 
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               31
@@ -1713,8 +1713,8 @@ exports[`VDatePickerDateTable.ts should render component with events colored by 
     <tbody>
       <tr>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               1
@@ -1722,8 +1722,8 @@ exports[`VDatePickerDateTable.ts should render component with events colored by 
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               2
@@ -1731,8 +1731,8 @@ exports[`VDatePickerDateTable.ts should render component with events colored by 
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               3
@@ -1744,8 +1744,8 @@ exports[`VDatePickerDateTable.ts should render component with events colored by 
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               4
@@ -1753,8 +1753,8 @@ exports[`VDatePickerDateTable.ts should render component with events colored by 
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               5
@@ -1762,8 +1762,8 @@ exports[`VDatePickerDateTable.ts should render component with events colored by 
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               6
@@ -1771,8 +1771,8 @@ exports[`VDatePickerDateTable.ts should render component with events colored by 
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               7
@@ -1782,8 +1782,8 @@ exports[`VDatePickerDateTable.ts should render component with events colored by 
       </tr>
       <tr>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               8
@@ -1791,8 +1791,8 @@ exports[`VDatePickerDateTable.ts should render component with events colored by 
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               9
@@ -1800,8 +1800,8 @@ exports[`VDatePickerDateTable.ts should render component with events colored by 
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               10
@@ -1809,8 +1809,8 @@ exports[`VDatePickerDateTable.ts should render component with events colored by 
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               11
@@ -1818,8 +1818,8 @@ exports[`VDatePickerDateTable.ts should render component with events colored by 
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               12
@@ -1827,8 +1827,8 @@ exports[`VDatePickerDateTable.ts should render component with events colored by 
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               13
@@ -1836,8 +1836,8 @@ exports[`VDatePickerDateTable.ts should render component with events colored by 
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               14
@@ -1847,8 +1847,8 @@ exports[`VDatePickerDateTable.ts should render component with events colored by 
       </tr>
       <tr>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               15
@@ -1856,8 +1856,8 @@ exports[`VDatePickerDateTable.ts should render component with events colored by 
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               16
@@ -1865,8 +1865,8 @@ exports[`VDatePickerDateTable.ts should render component with events colored by 
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               17
@@ -1874,8 +1874,8 @@ exports[`VDatePickerDateTable.ts should render component with events colored by 
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               18
@@ -1883,8 +1883,8 @@ exports[`VDatePickerDateTable.ts should render component with events colored by 
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               19
@@ -1892,8 +1892,8 @@ exports[`VDatePickerDateTable.ts should render component with events colored by 
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               20
@@ -1901,8 +1901,8 @@ exports[`VDatePickerDateTable.ts should render component with events colored by 
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               21
@@ -1912,8 +1912,8 @@ exports[`VDatePickerDateTable.ts should render component with events colored by 
       </tr>
       <tr>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               22
@@ -1921,8 +1921,8 @@ exports[`VDatePickerDateTable.ts should render component with events colored by 
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               23
@@ -1930,8 +1930,8 @@ exports[`VDatePickerDateTable.ts should render component with events colored by 
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               24
@@ -1939,8 +1939,8 @@ exports[`VDatePickerDateTable.ts should render component with events colored by 
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               25
@@ -1948,8 +1948,8 @@ exports[`VDatePickerDateTable.ts should render component with events colored by 
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               26
@@ -1957,8 +1957,8 @@ exports[`VDatePickerDateTable.ts should render component with events colored by 
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               27
@@ -1966,8 +1966,8 @@ exports[`VDatePickerDateTable.ts should render component with events colored by 
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               28
@@ -1977,8 +1977,8 @@ exports[`VDatePickerDateTable.ts should render component with events colored by 
       </tr>
       <tr>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               29
@@ -1986,8 +1986,8 @@ exports[`VDatePickerDateTable.ts should render component with events colored by 
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               30
@@ -1995,8 +1995,8 @@ exports[`VDatePickerDateTable.ts should render component with events colored by 
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               31
@@ -2048,8 +2048,8 @@ exports[`VDatePickerDateTable.ts should render component with events colored by 
     <tbody>
       <tr>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               1
@@ -2057,8 +2057,8 @@ exports[`VDatePickerDateTable.ts should render component with events colored by 
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               2
@@ -2066,8 +2066,8 @@ exports[`VDatePickerDateTable.ts should render component with events colored by 
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               3
@@ -2079,8 +2079,8 @@ exports[`VDatePickerDateTable.ts should render component with events colored by 
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               4
@@ -2092,8 +2092,8 @@ exports[`VDatePickerDateTable.ts should render component with events colored by 
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               5
@@ -2101,8 +2101,8 @@ exports[`VDatePickerDateTable.ts should render component with events colored by 
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               6
@@ -2110,8 +2110,8 @@ exports[`VDatePickerDateTable.ts should render component with events colored by 
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               7
@@ -2121,8 +2121,8 @@ exports[`VDatePickerDateTable.ts should render component with events colored by 
       </tr>
       <tr>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               8
@@ -2130,8 +2130,8 @@ exports[`VDatePickerDateTable.ts should render component with events colored by 
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               9
@@ -2139,8 +2139,8 @@ exports[`VDatePickerDateTable.ts should render component with events colored by 
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               10
@@ -2148,8 +2148,8 @@ exports[`VDatePickerDateTable.ts should render component with events colored by 
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               11
@@ -2157,8 +2157,8 @@ exports[`VDatePickerDateTable.ts should render component with events colored by 
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               12
@@ -2166,8 +2166,8 @@ exports[`VDatePickerDateTable.ts should render component with events colored by 
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               13
@@ -2175,8 +2175,8 @@ exports[`VDatePickerDateTable.ts should render component with events colored by 
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               14
@@ -2186,8 +2186,8 @@ exports[`VDatePickerDateTable.ts should render component with events colored by 
       </tr>
       <tr>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               15
@@ -2195,8 +2195,8 @@ exports[`VDatePickerDateTable.ts should render component with events colored by 
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               16
@@ -2204,8 +2204,8 @@ exports[`VDatePickerDateTable.ts should render component with events colored by 
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               17
@@ -2213,8 +2213,8 @@ exports[`VDatePickerDateTable.ts should render component with events colored by 
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               18
@@ -2222,8 +2222,8 @@ exports[`VDatePickerDateTable.ts should render component with events colored by 
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               19
@@ -2231,8 +2231,8 @@ exports[`VDatePickerDateTable.ts should render component with events colored by 
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               20
@@ -2240,8 +2240,8 @@ exports[`VDatePickerDateTable.ts should render component with events colored by 
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               21
@@ -2251,8 +2251,8 @@ exports[`VDatePickerDateTable.ts should render component with events colored by 
       </tr>
       <tr>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               22
@@ -2260,8 +2260,8 @@ exports[`VDatePickerDateTable.ts should render component with events colored by 
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               23
@@ -2269,8 +2269,8 @@ exports[`VDatePickerDateTable.ts should render component with events colored by 
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               24
@@ -2278,8 +2278,8 @@ exports[`VDatePickerDateTable.ts should render component with events colored by 
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               25
@@ -2287,8 +2287,8 @@ exports[`VDatePickerDateTable.ts should render component with events colored by 
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               26
@@ -2296,8 +2296,8 @@ exports[`VDatePickerDateTable.ts should render component with events colored by 
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               27
@@ -2305,8 +2305,8 @@ exports[`VDatePickerDateTable.ts should render component with events colored by 
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               28
@@ -2316,8 +2316,8 @@ exports[`VDatePickerDateTable.ts should render component with events colored by 
       </tr>
       <tr>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               29
@@ -2325,8 +2325,8 @@ exports[`VDatePickerDateTable.ts should render component with events colored by 
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               30
@@ -2334,8 +2334,8 @@ exports[`VDatePickerDateTable.ts should render component with events colored by 
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               31
@@ -2398,8 +2398,8 @@ exports[`VDatePickerDateTable.ts should render component with showWeek and match
         <td>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               1
@@ -2407,8 +2407,8 @@ exports[`VDatePickerDateTable.ts should render component with showWeek and match
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               2
@@ -2416,8 +2416,8 @@ exports[`VDatePickerDateTable.ts should render component with showWeek and match
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               3
@@ -2425,8 +2425,8 @@ exports[`VDatePickerDateTable.ts should render component with showWeek and match
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               4
@@ -2434,8 +2434,8 @@ exports[`VDatePickerDateTable.ts should render component with showWeek and match
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               5
@@ -2450,8 +2450,8 @@ exports[`VDatePickerDateTable.ts should render component with showWeek and match
           </small>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               6
@@ -2459,8 +2459,8 @@ exports[`VDatePickerDateTable.ts should render component with showWeek and match
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               7
@@ -2468,8 +2468,8 @@ exports[`VDatePickerDateTable.ts should render component with showWeek and match
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               8
@@ -2477,8 +2477,8 @@ exports[`VDatePickerDateTable.ts should render component with showWeek and match
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               9
@@ -2486,8 +2486,8 @@ exports[`VDatePickerDateTable.ts should render component with showWeek and match
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               10
@@ -2495,8 +2495,8 @@ exports[`VDatePickerDateTable.ts should render component with showWeek and match
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               11
@@ -2504,8 +2504,8 @@ exports[`VDatePickerDateTable.ts should render component with showWeek and match
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               12
@@ -2520,8 +2520,8 @@ exports[`VDatePickerDateTable.ts should render component with showWeek and match
           </small>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               13
@@ -2529,8 +2529,8 @@ exports[`VDatePickerDateTable.ts should render component with showWeek and match
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               14
@@ -2538,8 +2538,8 @@ exports[`VDatePickerDateTable.ts should render component with showWeek and match
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               15
@@ -2547,8 +2547,8 @@ exports[`VDatePickerDateTable.ts should render component with showWeek and match
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               16
@@ -2556,8 +2556,8 @@ exports[`VDatePickerDateTable.ts should render component with showWeek and match
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               17
@@ -2565,8 +2565,8 @@ exports[`VDatePickerDateTable.ts should render component with showWeek and match
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               18
@@ -2574,8 +2574,8 @@ exports[`VDatePickerDateTable.ts should render component with showWeek and match
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               19
@@ -2590,8 +2590,8 @@ exports[`VDatePickerDateTable.ts should render component with showWeek and match
           </small>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               20
@@ -2599,8 +2599,8 @@ exports[`VDatePickerDateTable.ts should render component with showWeek and match
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               21
@@ -2608,8 +2608,8 @@ exports[`VDatePickerDateTable.ts should render component with showWeek and match
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               22
@@ -2617,8 +2617,8 @@ exports[`VDatePickerDateTable.ts should render component with showWeek and match
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               23
@@ -2626,8 +2626,8 @@ exports[`VDatePickerDateTable.ts should render component with showWeek and match
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               24
@@ -2635,8 +2635,8 @@ exports[`VDatePickerDateTable.ts should render component with showWeek and match
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               25
@@ -2644,8 +2644,8 @@ exports[`VDatePickerDateTable.ts should render component with showWeek and match
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               26
@@ -2660,8 +2660,8 @@ exports[`VDatePickerDateTable.ts should render component with showWeek and match
           </small>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               27
@@ -2669,8 +2669,8 @@ exports[`VDatePickerDateTable.ts should render component with showWeek and match
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               28
@@ -2724,8 +2724,8 @@ exports[`VDatePickerDateTable.ts should render disabled component and match snap
     <tbody>
       <tr>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--flat v-btn--text v-btn--rounded v-btn--disabled theme--light"
+          <button class="v-btn v-btn--flat v-btn--text v-btn--rounded v-btn--disabled theme--light"
+                  type="button"
                   disabled
           >
             <div class="v-btn__content">
@@ -2734,8 +2734,8 @@ exports[`VDatePickerDateTable.ts should render disabled component and match snap
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--flat v-btn--text v-btn--rounded v-btn--disabled theme--light"
+          <button class="v-btn v-btn--flat v-btn--text v-btn--rounded v-btn--disabled theme--light"
+                  type="button"
                   disabled
           >
             <div class="v-btn__content">
@@ -2744,8 +2744,8 @@ exports[`VDatePickerDateTable.ts should render disabled component and match snap
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--flat v-btn--text v-btn--rounded v-btn--disabled theme--light"
+          <button class="v-btn v-btn--flat v-btn--text v-btn--rounded v-btn--disabled theme--light"
+                  type="button"
                   disabled
           >
             <div class="v-btn__content">
@@ -2754,8 +2754,8 @@ exports[`VDatePickerDateTable.ts should render disabled component and match snap
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--flat v-btn--text v-btn--rounded v-btn--disabled theme--light"
+          <button class="v-btn v-btn--flat v-btn--text v-btn--rounded v-btn--disabled theme--light"
+                  type="button"
                   disabled
           >
             <div class="v-btn__content">
@@ -2764,8 +2764,8 @@ exports[`VDatePickerDateTable.ts should render disabled component and match snap
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--flat v-btn--text v-btn--rounded v-btn--disabled theme--light"
+          <button class="v-btn v-btn--flat v-btn--text v-btn--rounded v-btn--disabled theme--light"
+                  type="button"
                   disabled
           >
             <div class="v-btn__content">
@@ -2774,8 +2774,8 @@ exports[`VDatePickerDateTable.ts should render disabled component and match snap
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--flat v-btn--text v-btn--rounded v-btn--disabled theme--light"
+          <button class="v-btn v-btn--flat v-btn--text v-btn--rounded v-btn--disabled theme--light"
+                  type="button"
                   disabled
           >
             <div class="v-btn__content">
@@ -2784,8 +2784,8 @@ exports[`VDatePickerDateTable.ts should render disabled component and match snap
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--flat v-btn--text v-btn--rounded v-btn--disabled theme--light"
+          <button class="v-btn v-btn--flat v-btn--text v-btn--rounded v-btn--disabled theme--light"
+                  type="button"
                   disabled
           >
             <div class="v-btn__content">
@@ -2796,8 +2796,8 @@ exports[`VDatePickerDateTable.ts should render disabled component and match snap
       </tr>
       <tr>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--flat v-btn--text v-btn--rounded v-btn--disabled theme--light"
+          <button class="v-btn v-btn--flat v-btn--text v-btn--rounded v-btn--disabled theme--light"
+                  type="button"
                   disabled
           >
             <div class="v-btn__content">
@@ -2806,8 +2806,8 @@ exports[`VDatePickerDateTable.ts should render disabled component and match snap
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--flat v-btn--text v-btn--rounded v-btn--disabled theme--light"
+          <button class="v-btn v-btn--flat v-btn--text v-btn--rounded v-btn--disabled theme--light"
+                  type="button"
                   disabled
           >
             <div class="v-btn__content">
@@ -2816,8 +2816,8 @@ exports[`VDatePickerDateTable.ts should render disabled component and match snap
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--flat v-btn--text v-btn--rounded v-btn--disabled theme--light"
+          <button class="v-btn v-btn--flat v-btn--text v-btn--rounded v-btn--disabled theme--light"
+                  type="button"
                   disabled
           >
             <div class="v-btn__content">
@@ -2826,8 +2826,8 @@ exports[`VDatePickerDateTable.ts should render disabled component and match snap
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--flat v-btn--text v-btn--rounded v-btn--disabled theme--light"
+          <button class="v-btn v-btn--flat v-btn--text v-btn--rounded v-btn--disabled theme--light"
+                  type="button"
                   disabled
           >
             <div class="v-btn__content">
@@ -2836,8 +2836,8 @@ exports[`VDatePickerDateTable.ts should render disabled component and match snap
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--flat v-btn--text v-btn--rounded v-btn--disabled theme--light"
+          <button class="v-btn v-btn--flat v-btn--text v-btn--rounded v-btn--disabled theme--light"
+                  type="button"
                   disabled
           >
             <div class="v-btn__content">
@@ -2846,8 +2846,8 @@ exports[`VDatePickerDateTable.ts should render disabled component and match snap
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--flat v-btn--text v-btn--rounded v-btn--disabled theme--light"
+          <button class="v-btn v-btn--flat v-btn--text v-btn--rounded v-btn--disabled theme--light"
+                  type="button"
                   disabled
           >
             <div class="v-btn__content">
@@ -2856,8 +2856,8 @@ exports[`VDatePickerDateTable.ts should render disabled component and match snap
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--flat v-btn--text v-btn--rounded v-btn--disabled theme--light"
+          <button class="v-btn v-btn--flat v-btn--text v-btn--rounded v-btn--disabled theme--light"
+                  type="button"
                   disabled
           >
             <div class="v-btn__content">
@@ -2868,8 +2868,8 @@ exports[`VDatePickerDateTable.ts should render disabled component and match snap
       </tr>
       <tr>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--flat v-btn--text v-btn--rounded v-btn--disabled theme--light"
+          <button class="v-btn v-btn--flat v-btn--text v-btn--rounded v-btn--disabled theme--light"
+                  type="button"
                   disabled
           >
             <div class="v-btn__content">
@@ -2878,8 +2878,8 @@ exports[`VDatePickerDateTable.ts should render disabled component and match snap
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--flat v-btn--text v-btn--rounded v-btn--disabled theme--light"
+          <button class="v-btn v-btn--flat v-btn--text v-btn--rounded v-btn--disabled theme--light"
+                  type="button"
                   disabled
           >
             <div class="v-btn__content">
@@ -2888,8 +2888,8 @@ exports[`VDatePickerDateTable.ts should render disabled component and match snap
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--flat v-btn--text v-btn--rounded v-btn--disabled theme--light"
+          <button class="v-btn v-btn--flat v-btn--text v-btn--rounded v-btn--disabled theme--light"
+                  type="button"
                   disabled
           >
             <div class="v-btn__content">
@@ -2898,8 +2898,8 @@ exports[`VDatePickerDateTable.ts should render disabled component and match snap
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--flat v-btn--text v-btn--rounded v-btn--disabled theme--light"
+          <button class="v-btn v-btn--flat v-btn--text v-btn--rounded v-btn--disabled theme--light"
+                  type="button"
                   disabled
           >
             <div class="v-btn__content">
@@ -2908,8 +2908,8 @@ exports[`VDatePickerDateTable.ts should render disabled component and match snap
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--flat v-btn--text v-btn--rounded v-btn--disabled theme--light"
+          <button class="v-btn v-btn--flat v-btn--text v-btn--rounded v-btn--disabled theme--light"
+                  type="button"
                   disabled
           >
             <div class="v-btn__content">
@@ -2918,8 +2918,8 @@ exports[`VDatePickerDateTable.ts should render disabled component and match snap
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--flat v-btn--text v-btn--rounded v-btn--disabled theme--light"
+          <button class="v-btn v-btn--flat v-btn--text v-btn--rounded v-btn--disabled theme--light"
+                  type="button"
                   disabled
           >
             <div class="v-btn__content">
@@ -2928,8 +2928,8 @@ exports[`VDatePickerDateTable.ts should render disabled component and match snap
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--flat v-btn--text v-btn--rounded v-btn--disabled theme--light"
+          <button class="v-btn v-btn--flat v-btn--text v-btn--rounded v-btn--disabled theme--light"
+                  type="button"
                   disabled
           >
             <div class="v-btn__content">
@@ -2940,8 +2940,8 @@ exports[`VDatePickerDateTable.ts should render disabled component and match snap
       </tr>
       <tr>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--flat v-btn--text v-btn--rounded v-btn--disabled theme--light"
+          <button class="v-btn v-btn--flat v-btn--text v-btn--rounded v-btn--disabled theme--light"
+                  type="button"
                   disabled
           >
             <div class="v-btn__content">
@@ -2950,8 +2950,8 @@ exports[`VDatePickerDateTable.ts should render disabled component and match snap
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--flat v-btn--text v-btn--rounded v-btn--disabled theme--light"
+          <button class="v-btn v-btn--flat v-btn--text v-btn--rounded v-btn--disabled theme--light"
+                  type="button"
                   disabled
           >
             <div class="v-btn__content">
@@ -2960,8 +2960,8 @@ exports[`VDatePickerDateTable.ts should render disabled component and match snap
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--flat v-btn--text v-btn--rounded v-btn--disabled theme--light"
+          <button class="v-btn v-btn--flat v-btn--text v-btn--rounded v-btn--disabled theme--light"
+                  type="button"
                   disabled
           >
             <div class="v-btn__content">
@@ -2970,8 +2970,8 @@ exports[`VDatePickerDateTable.ts should render disabled component and match snap
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--flat v-btn--text v-btn--rounded v-btn--disabled theme--light"
+          <button class="v-btn v-btn--flat v-btn--text v-btn--rounded v-btn--disabled theme--light"
+                  type="button"
                   disabled
           >
             <div class="v-btn__content">
@@ -2980,8 +2980,8 @@ exports[`VDatePickerDateTable.ts should render disabled component and match snap
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--flat v-btn--text v-btn--rounded v-btn--disabled theme--light"
+          <button class="v-btn v-btn--flat v-btn--text v-btn--rounded v-btn--disabled theme--light"
+                  type="button"
                   disabled
           >
             <div class="v-btn__content">
@@ -2990,8 +2990,8 @@ exports[`VDatePickerDateTable.ts should render disabled component and match snap
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--flat v-btn--text v-btn--rounded v-btn--disabled theme--light"
+          <button class="v-btn v-btn--flat v-btn--text v-btn--rounded v-btn--disabled theme--light"
+                  type="button"
                   disabled
           >
             <div class="v-btn__content">
@@ -3000,8 +3000,8 @@ exports[`VDatePickerDateTable.ts should render disabled component and match snap
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--flat v-btn--text v-btn--rounded v-btn--disabled theme--light"
+          <button class="v-btn v-btn--flat v-btn--text v-btn--rounded v-btn--disabled theme--light"
+                  type="button"
                   disabled
           >
             <div class="v-btn__content">
@@ -3012,8 +3012,8 @@ exports[`VDatePickerDateTable.ts should render disabled component and match snap
       </tr>
       <tr>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--flat v-btn--text v-btn--rounded v-btn--disabled theme--light"
+          <button class="v-btn v-btn--flat v-btn--text v-btn--rounded v-btn--disabled theme--light"
+                  type="button"
                   disabled
           >
             <div class="v-btn__content">
@@ -3022,8 +3022,8 @@ exports[`VDatePickerDateTable.ts should render disabled component and match snap
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--flat v-btn--text v-btn--rounded v-btn--disabled theme--light"
+          <button class="v-btn v-btn--flat v-btn--text v-btn--rounded v-btn--disabled theme--light"
+                  type="button"
                   disabled
           >
             <div class="v-btn__content">
@@ -3032,8 +3032,8 @@ exports[`VDatePickerDateTable.ts should render disabled component and match snap
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--flat v-btn--text v-btn--rounded v-btn--disabled theme--light"
+          <button class="v-btn v-btn--flat v-btn--text v-btn--rounded v-btn--disabled theme--light"
+                  type="button"
                   disabled
           >
             <div class="v-btn__content">
@@ -3086,8 +3086,8 @@ exports[`VDatePickerDateTable.ts should render readonly component and match snap
     <tbody>
       <tr>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               1
@@ -3095,8 +3095,8 @@ exports[`VDatePickerDateTable.ts should render readonly component and match snap
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               2
@@ -3104,8 +3104,8 @@ exports[`VDatePickerDateTable.ts should render readonly component and match snap
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               3
@@ -3113,8 +3113,8 @@ exports[`VDatePickerDateTable.ts should render readonly component and match snap
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               4
@@ -3122,8 +3122,8 @@ exports[`VDatePickerDateTable.ts should render readonly component and match snap
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               5
@@ -3131,8 +3131,8 @@ exports[`VDatePickerDateTable.ts should render readonly component and match snap
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               6
@@ -3140,8 +3140,8 @@ exports[`VDatePickerDateTable.ts should render readonly component and match snap
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               7
@@ -3151,8 +3151,8 @@ exports[`VDatePickerDateTable.ts should render readonly component and match snap
       </tr>
       <tr>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               8
@@ -3160,8 +3160,8 @@ exports[`VDatePickerDateTable.ts should render readonly component and match snap
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               9
@@ -3169,8 +3169,8 @@ exports[`VDatePickerDateTable.ts should render readonly component and match snap
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               10
@@ -3178,8 +3178,8 @@ exports[`VDatePickerDateTable.ts should render readonly component and match snap
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               11
@@ -3187,8 +3187,8 @@ exports[`VDatePickerDateTable.ts should render readonly component and match snap
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               12
@@ -3196,8 +3196,8 @@ exports[`VDatePickerDateTable.ts should render readonly component and match snap
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               13
@@ -3205,8 +3205,8 @@ exports[`VDatePickerDateTable.ts should render readonly component and match snap
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               14
@@ -3216,8 +3216,8 @@ exports[`VDatePickerDateTable.ts should render readonly component and match snap
       </tr>
       <tr>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               15
@@ -3225,8 +3225,8 @@ exports[`VDatePickerDateTable.ts should render readonly component and match snap
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               16
@@ -3234,8 +3234,8 @@ exports[`VDatePickerDateTable.ts should render readonly component and match snap
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               17
@@ -3243,8 +3243,8 @@ exports[`VDatePickerDateTable.ts should render readonly component and match snap
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               18
@@ -3252,8 +3252,8 @@ exports[`VDatePickerDateTable.ts should render readonly component and match snap
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               19
@@ -3261,8 +3261,8 @@ exports[`VDatePickerDateTable.ts should render readonly component and match snap
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               20
@@ -3270,8 +3270,8 @@ exports[`VDatePickerDateTable.ts should render readonly component and match snap
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               21
@@ -3281,8 +3281,8 @@ exports[`VDatePickerDateTable.ts should render readonly component and match snap
       </tr>
       <tr>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               22
@@ -3290,8 +3290,8 @@ exports[`VDatePickerDateTable.ts should render readonly component and match snap
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               23
@@ -3299,8 +3299,8 @@ exports[`VDatePickerDateTable.ts should render readonly component and match snap
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               24
@@ -3308,8 +3308,8 @@ exports[`VDatePickerDateTable.ts should render readonly component and match snap
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               25
@@ -3317,8 +3317,8 @@ exports[`VDatePickerDateTable.ts should render readonly component and match snap
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               26
@@ -3326,8 +3326,8 @@ exports[`VDatePickerDateTable.ts should render readonly component and match snap
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               27
@@ -3335,8 +3335,8 @@ exports[`VDatePickerDateTable.ts should render readonly component and match snap
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               28
@@ -3346,8 +3346,8 @@ exports[`VDatePickerDateTable.ts should render readonly component and match snap
       </tr>
       <tr>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               29
@@ -3355,8 +3355,8 @@ exports[`VDatePickerDateTable.ts should render readonly component and match snap
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               30
@@ -3364,8 +3364,8 @@ exports[`VDatePickerDateTable.ts should render readonly component and match snap
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-btn--text v-btn--rounded theme--light"
+          <button class="v-btn v-btn--text v-btn--rounded theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               31

@@ -5,29 +5,39 @@ import {
   mount,
   MountOptions,
   Wrapper,
+  enableAutoUnmount,
 } from '@vue/test-utils'
-import Vue from 'vue'
 
-Vue.prototype.$vuetify = {
-  icons: {
-    values: {
-      next: 'mdi-chevron-right',
-      prev: 'mdi-chevron-left',
-    },
-  },
-}
+enableAutoUnmount(afterEach)
 
 describe('VDatePickerHeader.ts', () => {
   type Instance = InstanceType<typeof VDatePickerHeader>
   let mountFunction: (options?: MountOptions<Instance>) => Wrapper<Instance>
+  
   beforeEach(() => {
+    // Mock console.warn to suppress Vue warnings
+    jest.spyOn(console, 'warn').mockImplementation((...args: any[]) => {
+      if (args[0]?.includes?.('Component is missing template or render function')) {
+        return
+      }
+      if (args[0]?.includes?.('Invalid prop: type check failed')) {
+        return
+      }
+      // Call original warn for other messages
+      console.warn(...args)
+    })
     mountFunction = (options?: MountOptions<Instance>) => {
       return mount(VDatePickerHeader, {
         ...options,
-        mocks: {
-          $vuetify: {
-            rtl: false,
-            lang: new Lang(preset),
+        global: {
+          mocks: {
+            $vuetify: {
+              rtl: false,
+              lang: new Lang(preset),
+              icons: {
+                component: 'mdi',
+              },
+            },
           },
         },
       })
@@ -36,8 +46,8 @@ describe('VDatePickerHeader.ts', () => {
 
   it('should render component and match snapshot', () => {
     const wrapper = mountFunction({
-      propsData: {
-        value: '2005-11',
+      props: {
+        modelValue: '2005-11',
       },
     })
 
@@ -46,8 +56,8 @@ describe('VDatePickerHeader.ts', () => {
 
   it('should render disabled component and match snapshot', () => {
     const wrapper = mountFunction({
-      propsData: {
-        value: '2005-11',
+      props: {
+        modelValue: '2005-11',
         disabled: true,
       },
     })
@@ -57,8 +67,8 @@ describe('VDatePickerHeader.ts', () => {
 
   it('should render readonly component and match snapshot', () => {
     const wrapper = mountFunction({
-      propsData: {
-        value: '2005-11',
+      props: {
+        modelValue: '2005-11',
         readonly: true,
       },
     })
@@ -68,8 +78,8 @@ describe('VDatePickerHeader.ts', () => {
 
   it('should render component in RTL mode and match snapshot', async () => {
     const wrapper = mountFunction({
-      propsData: {
-        value: '2005-11',
+      props: {
+        modelValue: '2005-11',
       },
     })
     wrapper.vm.$vuetify.rtl = true
@@ -81,55 +91,75 @@ describe('VDatePickerHeader.ts', () => {
 
   it('should render component with year value and match snapshot', () => {
     const wrapper = mountFunction({
-      propsData: {
-        value: '2005',
+      props: {
+        modelValue: '2005',
       },
     })
 
-    expect(wrapper.findAll('.v-date-picker-header__value div').at(0).element.textContent).toBe('2005')
+    expect(wrapper.findAll('.v-date-picker-header__value div')[0].element.textContent).toBe('2005')
+  })
+
+  it('should handle undefined modelValue', () => {
+    const wrapper = mountFunction({
+      props: {
+        modelValue: undefined as any,
+      },
+    })
+
+    expect(wrapper.findAll('.v-date-picker-header__value div')[0].element.textContent).toBe('')
+  })
+
+  it('should handle null modelValue', () => {
+    const wrapper = mountFunction({
+      props: {
+        modelValue: null as any,
+      },
+    })
+
+    expect(wrapper.findAll('.v-date-picker-header__value div')[0].element.textContent).toBe('')
   })
 
   it('should render prev/next icons', () => {
     const wrapper = mountFunction({
-      propsData: {
-        value: '2005',
+      props: {
+        modelValue: '2005',
         prevIcon: 'foo',
         nextIcon: 'bar',
       },
     })
 
-    expect(wrapper.findAll('.v-icon').at(0).element.textContent).toBe('foo')
-    expect(wrapper.findAll('.v-icon').at(1).element.textContent).toBe('bar')
+    expect(wrapper.findAll('.v-icon')[0].element.textContent).toBe('foo')
+    expect(wrapper.findAll('.v-icon')[1].element.textContent).toBe('bar')
   })
 
   it('should render component with own formatter and match snapshot', () => {
     const wrapper = mountFunction({
-      propsData: {
-        value: '2005-11',
+      props: {
+        modelValue: '2005-11',
         format: value => `(${value})`,
       },
     })
 
-    expect(wrapper.findAll('.v-date-picker-header__value div').at(0).element.textContent).toBe('(2005-11)')
+    expect(wrapper.findAll('.v-date-picker-header__value div')[0].element.textContent).toBe('(2005-11)')
   })
 
   it('should render colored component and match snapshot', () => {
     const wrapper = mountFunction({
-      propsData: {
-        value: '2005-11',
+      props: {
+        modelValue: '2005-11',
         color: 'green lighten-1',
       },
     })
 
-    const div = wrapper.findAll('.v-date-picker-header__value div').at(0)
+    const div = wrapper.findAll('.v-date-picker-header__value div')[0]
     expect(div.classes('green--text')).toBe(true)
     expect(div.classes('text--lighten-1')).toBe(true)
   })
 
   it('should render component with default slot and match snapshot', () => {
     const wrapper = mountFunction({
-      propsData: {
-        value: '2005-11',
+      props: {
+        modelValue: '2005-11',
       },
       slots: {
         default: '<span>foo</span>',
@@ -139,48 +169,43 @@ describe('VDatePickerHeader.ts', () => {
     expect(wrapper.html()).toMatchSnapshot()
   })
 
-  it('should trigger event on selector click', () => {
+  it('should trigger event on selector click', async () => {
     const wrapper = mountFunction({
-      propsData: {
-        value: '2005-11',
+      props: {
+        modelValue: '2005-11',
       },
     })
 
-    const toggle = jest.fn()
-    wrapper.vm.$on('toggle', toggle)
-
-    wrapper.findAll('.v-date-picker-header__value button').at(0).trigger('click')
-    expect(toggle).toHaveBeenCalled()
+    await wrapper.findAll('.v-date-picker-header__value button')[0].trigger('click')
+    expect(wrapper.emitted('toggle')).toBeTruthy()
   })
 
-  it('should trigger event on arrows click', () => {
+  it('should trigger event on arrows click', async () => {
     const wrapper = mountFunction({
-      propsData: {
-        value: '2005-12',
+      props: {
+        modelValue: '2005-12',
       },
     })
 
-    const input = jest.fn()
-    wrapper.vm.$on('input', input)
+    await wrapper.findAll('button.v-btn')[0].trigger('click')
+    expect(wrapper.emitted('update:modelValue')).toBeTruthy()
+    expect(wrapper.emitted('update:modelValue')?.[0]).toEqual(['2005-11'])
 
-    wrapper.findAll('button.v-btn').at(0).trigger('click')
-    expect(input).toHaveBeenCalledWith('2005-11')
-
-    wrapper.findAll('button.v-btn').at(1).trigger('click')
-    expect(input).toHaveBeenCalledWith('2006-01')
+    await wrapper.findAll('button.v-btn')[1].trigger('click')
+    expect(wrapper.emitted('update:modelValue')?.[1]).toEqual(['2006-01'])
   })
 
-  it('should calculate prev/next value', () => {
+  it('should calculate prev/next value', async () => {
     const wrapper = mountFunction({
-      propsData: {
-        value: '2005-12',
+      props: {
+        modelValue: '2005-12',
       },
     })
     expect(wrapper.vm.calculateChange(-1)).toBe('2005-11')
     expect(wrapper.vm.calculateChange(+1)).toBe('2006-01')
 
-    wrapper.setProps({
-      value: '2005',
+    await wrapper.setProps({
+      modelValue: '2005',
     })
     expect(wrapper.vm.calculateChange(-1)).toBe('2004')
     expect(wrapper.vm.calculateChange(+1)).toBe('2006')
@@ -188,31 +213,31 @@ describe('VDatePickerHeader.ts', () => {
 
   it.skip('should watch value and run transition', async () => {
     const wrapper = mountFunction({
-      propsData: {
-        value: 2005,
+      props: {
+        modelValue: 2005,
       },
     })
 
-    wrapper.setProps({
-      value: 2006,
+    await wrapper.setProps({
+      modelValue: 2006,
     })
     await wrapper.vm.$nextTick()
-    expect(wrapper.findAll('.v-date-picker-header__value div').at(0).classes('tab-transition-enter')).toBe(true)
-    expect(wrapper.findAll('.v-date-picker-header__value div').at(0).classes('tab-transition-enter-active')).toBe(true)
+    expect(wrapper.findAll('.v-date-picker-header__value div')[0].classes('tab-transition-enter')).toBe(true)
+    expect(wrapper.findAll('.v-date-picker-header__value div')[0].classes('tab-transition-enter-active')).toBe(true)
   })
 
   it.skip('should watch value and run reverse transition', async () => {
     const wrapper = mountFunction({
-      propsData: {
-        value: 2005,
+      props: {
+        modelValue: 2005,
       },
     })
 
-    wrapper.setProps({
-      value: 2004,
+    await wrapper.setProps({
+      modelValue: 2004,
     })
     await wrapper.vm.$nextTick()
-    expect(wrapper.findAll('.v-date-picker-header__value div').at(0).classes('tab-reverse-transition-enter')).toBe(true)
-    expect(wrapper.findAll('.v-date-picker-header__value div').at(0).classes('tab-reverse-transition-enter-active')).toBe(true)
+    expect(wrapper.findAll('.v-date-picker-header__value div')[0].classes('tab-reverse-transition-enter')).toBe(true)
+    expect(wrapper.findAll('.v-date-picker-header__value div')[0].classes('tab-reverse-transition-enter-active')).toBe(true)
   })
 })

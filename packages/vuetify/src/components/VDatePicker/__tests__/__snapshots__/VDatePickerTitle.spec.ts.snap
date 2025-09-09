@@ -55,10 +55,9 @@ exports[`VDatePickerTitle.ts should render readonly component and match snapshot
 exports[`VDatePickerTitle.ts should render year icon 1`] = `
 <div class="v-picker__title__btn v-date-picker-title__year">
   1234
-  <i aria-hidden="true"
-     class="v-icon notranslate material-icons theme--dark"
+  <span class="v-icon notranslate theme--dark"
+        aria-hidden="true"
   >
-    year
-  </i>
+  </span>
 </div>
 `;

@@ -6,7 +6,7 @@ import { pad, createNativeLocaleFormatter } from './util'
 import mixins from '../../util/mixins'
 
 // Types
-import { VNode } from 'vue'
+import { VNode, h } from 'vue'
 import { DatePickerFormatter } from 'vuetify/types'
 
 export default mixins(

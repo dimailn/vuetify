@@ -23,6 +23,9 @@ function createNativeLocaleFormatter (
   substrOptions: SubstrOptions = { start: 0, length: 0 }
 ): DatePickerFormatter | undefined {
   const makeIsoString = (dateString: string) => {
+    if (!dateString || dateString === 'undefined' || dateString === 'null') {
+      return '1970-01-01' // fallback date
+    }
     const [year, month, date] = dateString.trim().split(' ')[0].split('-')
     return [pad(year, 4), pad(month || 1), pad(date || 1)].join('-')
   }
