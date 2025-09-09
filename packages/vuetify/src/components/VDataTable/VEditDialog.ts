@@ -60,7 +60,6 @@ export default mixins(Returnable, Themeable).extend({
     cancel () {
       this.isActive = false
       this.$emit('cancel')
-      this.$emit('update:return-value', this.returnValue)
     },
     focus () {
       const input = (this.$refs.content as Element).querySelector('input')
@@ -82,7 +81,6 @@ export default mixins(Returnable, Themeable).extend({
         this.genButton(() => {
           this.save(this.returnValue)
           this.$emit('save')
-          this.$emit('update:return-value', this.returnValue)
         }, this.saveText),
       ])
     },
@@ -94,7 +92,6 @@ export default mixins(Returnable, Themeable).extend({
           if (e.keyCode === keyCodes.enter) {
             this.save(this.returnValue)
             this.$emit('save')
-            this.$emit('update:return-value', this.returnValue)
           }
         },
         ref: 'content',
