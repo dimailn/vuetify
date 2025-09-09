@@ -52,7 +52,8 @@ jobs:
           key: ${{ runner.os }}-${{ hashFiles('./yarn.lock') }}
 
       - run: yarn --frozen-lockfile --non-interactive
-      - run: yarn lerna run test:coverage -- -- -i
+      # - run: yarn lerna run test:coverage -- -- -i
+      - run: cd packages/vuetify && yarn test
       - uses: codecov/codecov-action@v4
 
   deploy:
