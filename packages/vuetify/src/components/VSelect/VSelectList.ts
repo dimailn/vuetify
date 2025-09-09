@@ -148,7 +148,10 @@ export default mixins(Colorable, Themeable).extend({
           // Prevent onBlur from being called
           e.preventDefault()
         },
-        onClick: () => disabled || this.$emit('select', item),
+        onClick: (e) => {
+          e.stopPropagation()
+          disabled || this.$emit('select', item)
+        },
         activeClass: this.tileActiveClass,
         disabled,
         ripple: true,
@@ -185,8 +188,8 @@ export default mixins(Colorable, Themeable).extend({
       });
 
       return this.needsTile(scopedSlot)
-        ? h(VListItem, attrsWithoutEvents, scopedSlot)
-        : scopedSlot
+        ? h(VListItem, tile, scopedSlot)
+        : scopedSlot;
     },
     genTileContent (item: any, index = 0): VNode {
       return h(VListItemContent, {}, () => [
