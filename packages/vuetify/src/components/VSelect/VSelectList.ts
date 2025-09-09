@@ -173,16 +173,16 @@ export default mixins(Colorable, Themeable).extend({
       }
 
       const parent = this
+      const { onClick, onMousedown, ...attrsWithoutEvents } = tile
       const scopedSlot = this.$slots.item({
         parent,
         item,
         active: value,
-        attrs: {
-          ...tile.attrs,
-          ...tile.props,
-          ...tile.on,
+        attrs: attrsWithoutEvents,
+        on: {
+          mousedown: onMousedown,
+          click: onClick,
         },
-        on: tile.on,
       })
 
       return this.needsTile(scopedSlot)
