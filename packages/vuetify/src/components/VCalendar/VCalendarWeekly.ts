@@ -1,9 +1,9 @@
-import {h} from 'vue'
+import { h, defineComponent } from 'vue'
 // Styles
 import './VCalendarWeekly.sass'
 
 // Types
-import { VNode, defineComponent } from 'vue'
+import { VNode } from 'vue'
 
 // Components
 import VBtn from '../VBtn'
@@ -92,9 +92,7 @@ export default defineComponent({
     genHead (): VNode {
       return h('div', {
         class: 'v-calendar-weekly__head',
-        attrs: {
-          role: 'row',
-        },
+        role: 'row',
       }, this.genHeadDays())
     },
     genHeadDays (): VNode[] {
@@ -114,11 +112,8 @@ export default defineComponent({
 
       return h('div', this.setTextColor(color, {
         key: day.date,
-        class: 'v-calendar-weekly__head-weekday',
-        class: this.getRelativeClasses(day, outside),
-        attrs: {
-          role: 'columnheader',
-        },
+        class: ['v-calendar-weekly__head-weekday', this.getRelativeClasses(day, outside)],
+        role: 'columnheader',
       }), this.weekdayFormatter(day, this.shortWeekdays))
     },
     genWeeks (): VNode[] {
@@ -142,9 +137,7 @@ export default defineComponent({
       return h('div', {
         key: week[0].date,
         class: 'v-calendar-weekly__week',
-        attrs: {
-          role: 'row',
-        },
+        role: 'row',
       }, weekNodes)
     },
     getWeekNumber (determineDay: CalendarTimestamp) {
@@ -168,17 +161,14 @@ export default defineComponent({
 
       return h('div', {
         key: day.date,
-        class: 'v-calendar-weekly__day',
-        class: this.getRelativeClasses(day, outside),
-        attrs: {
-          role: 'cell',
-        },
-        on: this.getDefaultMouseEventHandlers(':day', nativeEvent => {
+        class: ['v-calendar-weekly__day', this.getRelativeClasses(day, outside)],
+        role: 'cell',
+        ...this.getDefaultMouseEventHandlers(':day', nativeEvent => {
           return { nativeEvent, ...day }
         }),
       }, [
         this.genDayLabel(day),
-        ...(getSlot(this, 'day', () => ({ outside, index, week, ...day })) || []),
+        ...(getSlot(this, 'day', { outside, index, week, ...day }) || []),
       ])
     },
     genDayLabel (day: CalendarTimestamp): VNode {
@@ -199,10 +189,11 @@ export default defineComponent({
           'click:date': { event: 'click', stop: true },
           'contextmenu:date': { event: 'contextmenu', stop: true, prevent: true, result: false },
         }, nativeEvent => ({ nativeEvent, ...day })),
-      }, hasMonth
-        ? this.monthFormatter(day, this.shortMonths) + ' ' + this.dayFormatter(day, false)
-        : this.dayFormatter(day, false)
-      )
+      }, {
+        default: () => hasMonth
+          ? this.monthFormatter(day, this.shortMonths) + ' ' + this.dayFormatter(day, false)
+          : this.dayFormatter(day, false)
+      })
     },
     genDayMonth (day: CalendarTimestamp): VNode | string {
       const color = day.present ? this.color : undefined
@@ -215,12 +206,9 @@ export default defineComponent({
 
   render (): VNode {
     return h('div', {
-      class: this.staticClass,
-      class: this.classes,
-      on: {
-        dragstart: (e: MouseEvent) => {
-          e.preventDefault()
-        },
+      class: [this.staticClass, this.classes],
+      onDragstart: (e: MouseEvent) => {
+        e.preventDefault()
       },
     }, [
       !this.hideHeader ? this.genHead() : '',
