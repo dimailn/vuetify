@@ -266,4 +266,63 @@ describe('VListItem.ts', () => {
 
     expect(click).not.toHaveBeenCalled()
   })
+
+  it('should be clickable when href is provided', () => {
+    const wrapper = mountFunction({
+      props: {
+        href: 'http://www.google.com',
+      },
+    })
+
+    expect(wrapper.vm.isClickable).toBe(true)
+  })
+
+  it('should be clickable when to is provided', () => {
+    const wrapper = mountFunction({
+      props: {
+        to: '/home',
+      },
+    })
+
+    expect(wrapper.vm.isClickable).toBe(true)
+  })
+
+  it('should be clickable when in listItemGroup', () => {
+    const wrapper = mountFunction({
+      global: {
+        provide: {
+          listItemGroup: {
+            register: () => {},
+            unregister: () => {},
+          },
+        },
+      },
+    })
+
+    expect(wrapper.vm.isClickable).toBe(true)
+  })
+
+  it('should not be clickable when no href, to, or listItemGroup', () => {
+    const wrapper = mountFunction()
+
+    expect(wrapper.vm.isClickable).toBe(false)
+  })
+
+  it('should be clickable when both href and listItemGroup are present', () => {
+    const wrapper = mountFunction({
+      props: {
+        href: 'http://www.google.com',
+      },
+      global: {
+        provide: {
+          listItemGroup: {
+            register: () => {},
+            unregister: () => {},
+          },
+        },
+      },
+    })
+
+    expect(wrapper.vm.isClickable).toBe(true)
+  })
 })
