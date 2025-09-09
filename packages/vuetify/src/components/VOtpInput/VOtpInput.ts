@@ -52,6 +52,7 @@ export default baseMixins.extend({
     initialValue: null,
     isBooted: false,
     otp: [] as string[],
+    fullWidth: false
   }),
 
   computed: {

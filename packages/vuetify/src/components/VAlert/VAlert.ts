@@ -57,7 +57,6 @@ export default mixins(
       default: '$cancel',
     },
     icon: {
-      default: '',
       type: [Boolean, String],
       validator (val: boolean | string) {
         return typeof val === 'string' || val === false

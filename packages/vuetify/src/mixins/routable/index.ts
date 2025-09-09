@@ -48,7 +48,8 @@ export default defineComponent({
 
       if (this.to) return classes
 
-      const activeClass = this.activeClass || this.$activeClass
+      const activeClass = this.activeClass || ('$activeClass' in this ? this.$activeClass : undefined)
+      // const activeClass = this.activeClass || this.$activeClass
 
       if (activeClass) classes[activeClass] = this.isActive
       if (this.proxyClass) classes[this.proxyClass] = this.isActive

@@ -168,11 +168,6 @@ export default mixins(
   },
 
   mounted () {
-    // Save the developer from themselves
-    if (this.$slots.prepend || this.$slots.append) {
-      consoleWarn('The prepend and append slots require a slot-scope attribute', this)
-    }
-
     if (this.openAll) {
       this.updateAll(true)
     } else {
