@@ -1,4 +1,4 @@
-import {h, withDirectives} from 'vue'
+import { h, withDirectives } from 'vue'
 // Styles
 import './VTabs.sass'
 
@@ -37,10 +37,6 @@ interface options extends ExtractVue<typeof baseMixins> {
 
 export default baseMixins.extend({
   name: 'v-tabs',
-
-  directives: {
-    Resize,
-  },
 
   props: {
     activeClass: {
@@ -139,9 +135,14 @@ export default baseMixins.extend({
     '$vuetify.application.left': 'onResize',
     '$vuetify.application.right': 'onResize',
     '$vuetify.rtl': 'onResize',
+    modelValue (val: any) {
+      this.validateModelValue(val)
+    },
   },
 
   mounted () {
+    this.validateModelValue(this.modelValue)
+
     if (typeof ResizeObserver !== 'undefined') {
       const obs = new ResizeObserver(() => {
         this.onResize()
@@ -158,6 +159,11 @@ export default baseMixins.extend({
   },
 
   methods: {
+    validateModelValue (val: any) {
+      if (typeof val === 'number' && val < 0) {
+        this.internalValue = 0
+      }
+    },
     callSlider () {
       if (
         this.hideSlider ||
@@ -233,7 +239,7 @@ export default baseMixins.extend({
         modelValue: this.internalValue,
         'onUpdate:modelValue': (val: any) => {
           this.internalValue = val
-        }
+        },
       }, () => item)
     },
     genSlider (slider: VNode | null) {
@@ -241,7 +247,7 @@ export default baseMixins.extend({
 
       if (!slider) {
         slider = h(VTabsSlider, {
-          color: this.sliderColor
+          color: this.sliderColor,
         })
       }
 
@@ -297,7 +303,7 @@ export default baseMixins.extend({
     const { tab, slider, items, item } = this.parseNodes()
 
     return withDirectives(h('div', {
-      class: ['v-tabs', this.classes]
+      class: ['v-tabs', this.classes],
     }, [
       this.genBar(tab, slider),
       this.genItems(items, item),
@@ -306,8 +312,8 @@ export default baseMixins.extend({
         Resize,
         this.onResize,
         '',
-        { quiet: true }
-      ]
+        { quiet: true },
+      ],
     ])
   },
 })

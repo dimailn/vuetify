@@ -63,6 +63,8 @@ export default baseMixins.extend({
     },
   },
 
+  emits: ['update:modelValue'],
+
   data () {
     return {
       isActive: this.value,
@@ -239,9 +241,16 @@ export default baseMixins.extend({
     genBackground () {
       const render = VToolbar.methods.genBackground.call(this)
 
-      render.props = mergeProps(render.props || {}, {
-        style: { opacity: this.computedOpacity }
-      })
+      // Merge opacity style with existing props
+      if (render.props) {
+        render.props = mergeProps(render.props, {
+          style: { opacity: this.computedOpacity }
+        })
+      } else {
+        render.props = {
+          style: { opacity: this.computedOpacity }
+        }
+      }
 
       return render
     },

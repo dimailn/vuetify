@@ -126,12 +126,18 @@ export default mixins<options &
 
   methods: {
     getScopeIdAttrs () {
-      // В Vue 3 $vnode больше не существует, используем современный способ
-      const scopeId = this.$options._scopeId || this.$options.__scopeId
+      if (!this.$attrs) return {}
 
-      return scopeId && {
-        [scopeId]: '',
-      }
+      const scopeIdAttrs: Record<string, any> = {}
+
+      // Ищем все data-v- атрибуты в $attrs
+      Object.keys(this.$attrs).forEach(key => {
+        if (key.startsWith('data-v-')) {
+          scopeIdAttrs[key] = ''
+        }
+      })
+
+      return scopeIdAttrs
     },
     initDetach () {
       if (this._isDestroyed ||

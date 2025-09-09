@@ -1,22 +1,23 @@
 // Types
-import { defineComponent, VNode, h } from 'vue'
+import { defineComponent, VNode, h, Comment } from 'vue'
 
 /* @vue/component */
 export default defineComponent({
   name: 'v-list-item-action',
 
-  functional: true,
-
   render (): VNode {
-    const data = this.$attrs
-    data.class = data.class ? `v-list-item__action ${data.class}` : 'v-list-item__action'
-    const children = this.$slots.default()
+    const { class: attrClass, ...otherAttrs } = this.$attrs
+    let className = attrClass ? `v-list-item__action ${attrClass}` : 'v-list-item__action'
+    const children = this.$slots.default?.() || []
 
-    const filteredChild = children.filter(VNode => {
-      return VNode.isComment === false && VNode.text !== ' '
+    const filteredChild = children.filter((vnode: any) => {
+      return vnode?.type !== Comment && vnode?.children !== ' '
     })
-    if (filteredChild.length > 1) data.class += ' v-list-item__action--stack'
+    if (filteredChild.length > 1) className += ' v-list-item__action--stack'
 
-    return h('div', data, children)
+    return h('div', {
+      ...otherAttrs,
+      class: className
+    }, children)
   },
 })

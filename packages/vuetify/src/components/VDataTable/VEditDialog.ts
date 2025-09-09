@@ -1,4 +1,4 @@
-import {h} from 'vue'
+import { h } from 'vue'
 // Styles
 import './VEditDialog.sass'
 
@@ -36,6 +36,8 @@ export default mixins(Returnable, Themeable).extend({
       default: 'slide-x-reverse-transition',
     },
   },
+
+  emits: ['update:return-value', 'open', 'close', 'cancel', 'save'],
 
   data () {
     return {
@@ -92,7 +94,7 @@ export default mixins(Returnable, Themeable).extend({
             this.$emit('save')
           }
         },
-        ref: 'content'
+        ref: 'content',
       }, getSlot(this, 'input'))
     },
   },
@@ -111,21 +113,21 @@ export default mixins(Returnable, Themeable).extend({
       light: this.light,
       dark: this.dark,
       onInput: (val: boolean) => (this.isActive = val),
-      scopedSlots: {
-        activator: ({ on }) => {
-          return h('div', {
-            class: 'v-small-dialog__activator',
-            on,
-          }, [
-            h('span', {
-              class: 'v-small-dialog__activator__content',
-            }, getSlot(this)),
-          ])
-        },
+    }, {
+      activator: ({ on }: { on: any }) => {
+        return h('div', {
+          class: 'v-small-dialog__activator',
+          ...on,
+        }, [
+          h('span', {
+            class: 'v-small-dialog__activator__content',
+          }, getSlot(this)),
+        ])
       },
-    }, () => [
-      this.genContent(),
-      this.large ? this.genActions() : null,
-    ])
+      default: () => [
+        this.genContent(),
+        this.large ? this.genActions() : null,
+      ],
+    })
   },
 })

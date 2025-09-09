@@ -1,4 +1,4 @@
-import {h, Transition, vShow, withDirectives} from 'vue'
+import { h, Transition, vShow, withDirectives } from 'vue'
 // Styles
 import './VMenu.sass'
 
@@ -83,6 +83,8 @@ export default baseMixins.extend({
       default: () => ({}),
     },
   },
+
+  emits: ['keydown'],
 
   data () {
     return {

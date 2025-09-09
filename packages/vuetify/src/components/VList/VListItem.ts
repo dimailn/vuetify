@@ -1,4 +1,4 @@
-import {h, withDirectives} from 'vue'
+import { h, withDirectives, VNode, PropType, PropValidator } from 'vue'
 // Styles
 import './VListItem.sass'
 
@@ -14,21 +14,19 @@ import Ripple from '../../directives/ripple'
 
 // Utilities
 import { getSlot, keyCodes } from './../../util/helpers'
-import mergeData from './../../util/mergeData'
+import mergeData, { mergeClasses } from './../../util/mergeData'
 import { ExtractVue } from './../../util/mixins'
 import { removed } from '../../util/console'
 
 // Types
 import mixins from '../../util/mixins'
-import { VNode } from 'vue'
-import { PropType, PropValidator } from 'vue/types/options'
 
 const baseMixins = mixins(
   Colorable,
   Routable,
   Themeable,
   GroupableFactory('listItemGroup'),
-  ToggleableFactory('inputValue')
+  ToggleableFactory('modelValue')
 )
 
 interface options extends ExtractVue<typeof baseMixins> {
@@ -43,9 +41,6 @@ interface options extends ExtractVue<typeof baseMixins> {
 export default baseMixins.extend({
   name: 'v-list-item',
 
-  directives: {
-    Ripple,
-  },
 
   inject: {
     isInGroup: {
@@ -66,7 +61,7 @@ export default baseMixins.extend({
 
   props: {
     activeClass: {
-      type: String
+      type: String,
     } as any as PropValidator<string>,
     dense: Boolean,
     inactive: Boolean,
@@ -80,16 +75,23 @@ export default baseMixins.extend({
     },
     threeLine: Boolean,
     twoLine: Boolean,
-    value: null as any as PropType<any>,
+    modelValue: null as any as PropType<any>,
   },
+
+  emits: [
+    'click',
+    'keydown',
+    'change',
+    'update:modelValue',
+  ],
 
   data: () => ({
     proxyClass: 'v-list-item--active',
   }),
 
   computed: {
-    $activeClass() {
-      if(this.activeClass) return this.activeClass
+    $activeClass () {
+      if (this.activeClass) return this.activeClass
       if (!this.listItemGroup) return ''
 
       return this.listItemGroup.activeClass
@@ -131,10 +133,11 @@ export default baseMixins.extend({
       this.to || this.toggle()
     },
     genAttrs () {
+      const { class: _, ...otherAttrs } = this.$attrs
       const attrs: Record<string, any> = {
+        ...otherAttrs,
         'aria-disabled': this.disabled ? true : undefined,
         tabindex: this.isClickable && !this.disabled ? 0 : -1,
-        ...this.$attrs,
       }
 
       if (this.$attrs.hasOwnProperty('role')) {
@@ -154,19 +157,21 @@ export default baseMixins.extend({
       return attrs
     },
     toggle () {
-      if (this.to && this.inputValue === undefined) {
+      if (this.to && this.modelValue === undefined) {
         this.isActive = !this.isActive
       }
       this.$emit('change')
+      this.$emitLegacy('change')
     },
   },
 
   render (): VNode {
     let { tag, data, directives } = this.generateRouteLink()
+    const attrs = this.genAttrs()
 
     data = mergeData(
       data,
-      this.genAttrs()
+      attrs
     )
 
     data = {
@@ -179,6 +184,8 @@ export default baseMixins.extend({
           this.$emit('keydown', e)
         }
       },
+      // Ensure our attrs take precedence over routable
+      ...attrs,
     }
 
     if (this.inactive) tag = 'div'
@@ -193,6 +200,13 @@ export default baseMixins.extend({
     })
 
     const nodeData = this.isActive ? this.setTextColor(this.color, data) : data
+
+    const attrsClasses = this.$attrs.class
+    if (attrsClasses) {
+      nodeData.class = [this.classes, attrsClasses]
+    } else {
+      nodeData.class = this.classes
+    }
 
     const node = typeof tag === 'string'
       ? h(tag, nodeData, children)
