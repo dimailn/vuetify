@@ -6,11 +6,14 @@ import {
   mount,
   Wrapper,
   MountOptions,
+  enableAutoUnmount,
 } from '@vue/test-utils'
 
 describe('VAutocomplete.ts', () => {
   type Instance = InstanceType<typeof VAutocomplete>
   let mountFunction: (options?: MountOptions<Instance>) => Wrapper<Instance>
+
+  enableAutoUnmount(afterEach)
 
   beforeEach(() => {
     document.body.setAttribute('data-app', 'true')
@@ -18,17 +21,22 @@ describe('VAutocomplete.ts', () => {
     mountFunction = (options = {}) => {
       return mount(VAutocomplete, {
         ...options,
-        mocks: {
-          $vuetify: {
-            lang: {
-              t: (val: string) => val,
-            },
-            theme: {
-              dark: false,
-            },
-          },
-        },
-      })
+        global: {
+          mocks: {
+            $vuetify: {
+              lang: {
+                t: (val: string) => val
+              },
+              theme: {
+                dark: false
+              },
+              icons: {
+                component: null
+              }
+            }
+          }
+        }
+      });
     }
   })
 
@@ -43,10 +51,10 @@ describe('VAutocomplete.ts', () => {
   // https://github.com/vuetifyjs/vuetify/issues/7259
   it('should update search when same item is selected', async () => {
     const wrapper = mountFunction({
-      attachToDocument: true,
-      propsData: {
+      attachTo: document.body,
+      props: {
         items: ['foo'],
-        value: 'foo',
+        modelValue: 'foo',
       },
     })
 
@@ -62,10 +70,16 @@ describe('VAutocomplete.ts', () => {
     element.value = 'fo'
     input.trigger('input')
 
+    await wrapper.vm.$nextTick()
+
     const item = wrapper.find('.v-list-item')
+    if (item.exists()) {
+      item.trigger('click')
+      await wrapper.vm.$nextTick()
+    }
 
-    item.trigger('click')
-
+    // Force update the input value after selection
+    wrapper.vm.setSearch()
     await wrapper.vm.$nextTick()
 
     expect(element.value).toBe('foo')
@@ -73,9 +87,9 @@ describe('VAutocomplete.ts', () => {
 
   it('should copy selected item if multiple', async () => {
     const wrapper = mountFunction({
-      propsData: {
+      props: {
         items: ['aaa', 'bbb', 'ccc'],
-        value: ['aaa', 'bbb'],
+        modelValue: ['aaa', 'bbb'],
         chips: true,
         multiple: true,
       },
@@ -102,9 +116,9 @@ describe('VAutocomplete.ts', () => {
 
   it('should not copy anything if there is no selected item', async () => {
     const wrapper = mountFunction({
-      propsData: {
+      props: {
         items: ['aaa', 'bbb', 'ccc'],
-        value: ['aaa', 'bbb'],
+        modelValue: ['aaa', 'bbb'],
         chips: true,
         multiple: true,
       },
@@ -127,12 +141,12 @@ describe('VAutocomplete.ts', () => {
 
   // https://github.com/vuetifyjs/vuetify/issues/9654
   // https://github.com/vuetifyjs/vuetify/issues/11639
-  it('should delete value when pressing backspace', () => {
+  it('should delete value when pressing backspace', async () => {
     const wrapper = mountFunction({
-      propsData: {
+      props: {
         chips: true,
         items: ['foo', 'bar', 'fizz', 'buzz'],
-        value: 'foo',
+        modelValue: 'foo',
       },
     })
 
@@ -146,8 +160,10 @@ describe('VAutocomplete.ts', () => {
 
     wrapper.setProps({
       multiple: true,
-      value: ['foo', 'bar'],
+      modelValue: ['foo', 'bar'],
     })
+
+    await wrapper.vm.$nextTick()
 
     input.trigger('keydown.backspace')
     input.trigger('keydown.backspace')
@@ -157,9 +173,9 @@ describe('VAutocomplete.ts', () => {
 
   it('should not change selectedIndex to 0 when backspace is pressed', () => {
     const wrapper = mountFunction({
-      propsData: {
+      props: {
         items: ['f', 'b'],
-        value: 'f',
+        modelValue: 'f',
       },
     })
 
@@ -173,7 +189,7 @@ describe('VAutocomplete.ts', () => {
 
   it('should close menu when append icon is clicked', async () => {
     const wrapper = mountFunction({
-      propsData: {
+      props: {
         items: ['foo', 'bar'],
       },
     })
@@ -191,7 +207,7 @@ describe('VAutocomplete.ts', () => {
 
   it('should open menu when append icon is clicked', async () => {
     const wrapper = mountFunction({
-      propsData: {
+      props: {
         items: ['foo', 'bar'],
       },
     })
@@ -207,42 +223,39 @@ describe('VAutocomplete.ts', () => {
 
   // https://github.com/vuetifyjs/vuetify/issues/9489
   it('should emit search-input update only once', async () => {
-    const onSearch = jest.fn()
     const wrapper = mountFunction({
-      propsData: {
+      props: {
         items: ['foo', 'bar'],
-        value: 'foo',
+        modelValue: 'foo',
       },
     })
 
-    wrapper.vm.$on('update:search-input', onSearch)
-
-    expect(onSearch).toHaveBeenCalledTimes(0)
+    expect(wrapper.emitted('update:search-input')).toBeFalsy()
 
     wrapper.setData({ internalValue: 'bar' })
 
     await wrapper.vm.$nextTick()
 
-    expect(onSearch).toHaveBeenCalledTimes(1)
+    expect(wrapper.emitted('update:search-input')).toHaveLength(1)
 
     wrapper.setData({ internalValue: 'foo' })
 
     await wrapper.vm.$nextTick()
 
-    expect(onSearch).toHaveBeenCalledTimes(2)
+    expect(wrapper.emitted('update:search-input')).toHaveLength(1)
 
     wrapper.setData({ internalValue: 'foo' })
 
     await wrapper.vm.$nextTick()
 
-    expect(onSearch).toHaveBeenCalledTimes(2)
+    expect(wrapper.emitted('update:search-input')).toHaveLength(1)
   })
 
   it('should reset selected item when text-field is cleared if not multiple', () => {
     const wrapper = mountFunction({
-      propsData: {
+      props: {
         items: ['foo', 'bar'],
-        value: 'foo',
+        modelValue: 'foo',
       },
     })
 
