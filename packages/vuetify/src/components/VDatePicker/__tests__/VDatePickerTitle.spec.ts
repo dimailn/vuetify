@@ -3,20 +3,39 @@ import {
   mount,
   MountOptions,
   Wrapper,
+  enableAutoUnmount,
 } from '@vue/test-utils'
 
 describe('VDatePickerTitle.ts', () => {
   type Instance = InstanceType<typeof VDatePickerTitle>
   let mountFunction: (options?: MountOptions<Instance>) => Wrapper<Instance>
+
+  enableAutoUnmount(afterEach)
+
   beforeEach(() => {
     mountFunction = (options?: MountOptions<Instance>) => {
-      return mount(VDatePickerTitle, options)
+      return mount(VDatePickerTitle, {
+        ...options,
+        global: {
+          mocks: {
+            $vuetify: {
+              icons: {
+                values: {
+                  next: 'mdi-chevron-right',
+                  prev: 'mdi-chevron-left',
+                },
+                component: 'mdi',
+              },
+            },
+          },
+        },
+      })
     }
   })
 
   it('should render component and match snapshot', () => {
     const wrapper = mountFunction({
-      propsData: {
+      props: {
         year: '1234',
         date: '2005-11-01',
       },
@@ -27,7 +46,7 @@ describe('VDatePickerTitle.ts', () => {
 
   it('should render disabled component and match snapshot', () => {
     const wrapper = mountFunction({
-      propsData: {
+      props: {
         year: '1234',
         date: '2005-11-01',
         disabled: true,
@@ -39,7 +58,7 @@ describe('VDatePickerTitle.ts', () => {
 
   it('should render readonly component and match snapshot', () => {
     const wrapper = mountFunction({
-      propsData: {
+      props: {
         year: '1234',
         date: '2005-11-01',
         readonly: true,
@@ -51,7 +70,7 @@ describe('VDatePickerTitle.ts', () => {
 
   it('should render component when selecting year and match snapshot', () => {
     const wrapper = mountFunction({
-      propsData: {
+      props: {
         year: '1234',
         date: '2005-11-01',
         selectingYear: true,
@@ -63,60 +82,61 @@ describe('VDatePickerTitle.ts', () => {
 
   it('should render year icon', () => {
     const wrapper = mountFunction({
-      propsData: {
+      props: {
         year: '1234',
         yearIcon: 'year',
         date: '2005-11-01',
       },
     })
 
-    expect(wrapper.findAll('.v-date-picker-title__year').at(0).html()).toMatchSnapshot()
+    expect(wrapper.findAll('.v-date-picker-title__year')[0].html()).toMatchSnapshot()
   })
 
-  it('should emit input event on year/date click', () => {
+  it('should emit input event on year/date click', async () => {
     const wrapper = mountFunction({
-      propsData: {
+      props: {
         year: '1234',
         yearIcon: 'year',
         date: '2005-11-01',
       },
     })
 
-    const input = jest.fn(value => wrapper.setProps({ selectingYear: value }))
-    wrapper.vm.$on('update:selecting-year', input)
+    // Клик по дате не должен эмитить событие
+    await wrapper.findAll('.v-date-picker-title__date')[0].trigger('click')
+    expect(wrapper.emitted('update:selecting-year')).toBeFalsy()
 
-    wrapper.findAll('.v-date-picker-title__date').at(0).trigger('click')
-    expect(input).not.toHaveBeenCalled()
-    wrapper.findAll('.v-date-picker-title__year').at(0).trigger('click')
-    expect(input).toHaveBeenCalledWith(true)
-    wrapper.findAll('.v-date-picker-title__date').at(0).trigger('click')
-    expect(input).toHaveBeenCalledWith(false)
-    wrapper.findAll('.v-date-picker-title__year').at(0).trigger('click')
-    wrapper.findAll('.v-date-picker-title__year').at(0).trigger('click')
-    expect(input).toHaveBeenCalledWith(false)
+    // Клик по году должен эмитить true
+    await wrapper.findAll('.v-date-picker-title__year')[0].trigger('click')
+    expect(wrapper.emitted('update:selecting-year')).toHaveLength(1)
+    expect(wrapper.emitted('update:selecting-year')[0]).toEqual([true])
+
+    // Клик по дате должен эмитить false (переключение обратно)
+    await wrapper.findAll('.v-date-picker-title__date')[0].trigger('click')
+    expect(wrapper.emitted('update:selecting-year')).toHaveLength(2)
+    expect(wrapper.emitted('update:selecting-year')[1]).toEqual([false])
   })
 
-  it('should have the correct transition', () => {
+  it('should have the correct transition', async () => {
     const wrapper = mountFunction({
-      propsData: {
+      props: {
         year: '2018',
         date: 'Tue, Mar 3',
-        value: '2018-03-03',
+        modelValue: '2018-03-03',
       },
     })
 
     expect(wrapper.vm.isReversing).toBe(false)
 
-    wrapper.setProps({
+    await wrapper.setProps({
       date: 'Wed, Mar 4',
-      value: '2018-03-04',
+      modelValue: '2018-03-04',
     })
 
     expect(wrapper.vm.isReversing).toBe(false)
 
-    wrapper.setProps({
+    await wrapper.setProps({
       date: 'Wed, Mar 3',
-      value: '2018-03-03',
+      modelValue: '2018-03-03',
     })
 
     expect(wrapper.vm.isReversing).toBe(true)

@@ -6,8 +6,8 @@ exports[`VDatePickerMonthTable.ts should render component and match snapshot (mu
     <tbody>
       <tr>
         <td>
-          <button type="button"
-                  class="v-btn v-size--default v-btn--text theme--light"
+          <button class="v-btn v-size--default v-btn--text theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               Jan
@@ -15,8 +15,8 @@ exports[`VDatePickerMonthTable.ts should render component and match snapshot (mu
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-size--default v-btn--text theme--light"
+          <button class="v-btn v-size--default v-btn--text theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               Feb
@@ -24,8 +24,8 @@ exports[`VDatePickerMonthTable.ts should render component and match snapshot (mu
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-size--default v-btn--text theme--light"
+          <button class="v-btn v-size--default v-btn--text theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               Mar
@@ -35,8 +35,8 @@ exports[`VDatePickerMonthTable.ts should render component and match snapshot (mu
       </tr>
       <tr>
         <td>
-          <button type="button"
-                  class="v-btn v-size--default v-btn--text theme--light"
+          <button class="v-btn v-size--default v-btn--text theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               Apr
@@ -44,8 +44,8 @@ exports[`VDatePickerMonthTable.ts should render component and match snapshot (mu
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-size--default v-date-picker-table__current v-btn--outlined theme--light accent--text"
+          <button class="v-btn v-size--default v-date-picker-table__current v-btn--outlined theme--light accent--text"
+                  type="button"
           >
             <div class="v-btn__content">
               May
@@ -53,8 +53,8 @@ exports[`VDatePickerMonthTable.ts should render component and match snapshot (mu
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-size--default v-btn--text theme--light"
+          <button class="v-btn v-size--default v-btn--text theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               Jun
@@ -64,8 +64,8 @@ exports[`VDatePickerMonthTable.ts should render component and match snapshot (mu
       </tr>
       <tr>
         <td>
-          <button type="button"
-                  class="v-btn v-size--default v-btn--text theme--light"
+          <button class="v-btn v-size--default v-btn--text theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               Jul
@@ -73,8 +73,8 @@ exports[`VDatePickerMonthTable.ts should render component and match snapshot (mu
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-size--default v-btn--text theme--light"
+          <button class="v-btn v-size--default v-btn--text theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               Aug
@@ -82,8 +82,8 @@ exports[`VDatePickerMonthTable.ts should render component and match snapshot (mu
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-size--default v-btn--text theme--light"
+          <button class="v-btn v-size--default v-btn--text theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               Sep
@@ -93,8 +93,8 @@ exports[`VDatePickerMonthTable.ts should render component and match snapshot (mu
       </tr>
       <tr>
         <td>
-          <button type="button"
-                  class="v-btn v-size--default v-btn--active theme--light accent"
+          <button class="v-btn v-size--default v-btn--active theme--light accent"
+                  type="button"
           >
             <div class="v-btn__content">
               Oct
@@ -102,8 +102,8 @@ exports[`VDatePickerMonthTable.ts should render component and match snapshot (mu
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-size--default v-btn--active theme--light accent"
+          <button class="v-btn v-size--default v-btn--active theme--light accent"
+                  type="button"
           >
             <div class="v-btn__content">
               Nov
@@ -111,8 +111,8 @@ exports[`VDatePickerMonthTable.ts should render component and match snapshot (mu
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-size--default v-btn--text theme--light"
+          <button class="v-btn v-size--default v-btn--text theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               Dec
@@ -131,8 +131,8 @@ exports[`VDatePickerMonthTable.ts should render component and match snapshot 1`]
     <tbody>
       <tr>
         <td>
-          <button type="button"
-                  class="v-btn v-size--default v-btn--text theme--light"
+          <button class="v-btn v-size--default v-btn--text theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               Jan
@@ -140,8 +140,8 @@ exports[`VDatePickerMonthTable.ts should render component and match snapshot 1`]
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-size--default v-btn--text theme--light"
+          <button class="v-btn v-size--default v-btn--text theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               Feb
@@ -149,8 +149,8 @@ exports[`VDatePickerMonthTable.ts should render component and match snapshot 1`]
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-size--default v-btn--text theme--light"
+          <button class="v-btn v-size--default v-btn--text theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               Mar
@@ -160,8 +160,8 @@ exports[`VDatePickerMonthTable.ts should render component and match snapshot 1`]
       </tr>
       <tr>
         <td>
-          <button type="button"
-                  class="v-btn v-size--default v-btn--text theme--light"
+          <button class="v-btn v-size--default v-btn--text theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               Apr
@@ -169,8 +169,8 @@ exports[`VDatePickerMonthTable.ts should render component and match snapshot 1`]
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-size--default v-date-picker-table__current v-btn--outlined theme--light accent--text"
+          <button class="v-btn v-size--default v-date-picker-table__current v-btn--outlined theme--light accent--text"
+                  type="button"
           >
             <div class="v-btn__content">
               May
@@ -178,8 +178,8 @@ exports[`VDatePickerMonthTable.ts should render component and match snapshot 1`]
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-size--default v-btn--text theme--light"
+          <button class="v-btn v-size--default v-btn--text theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               Jun
@@ -189,8 +189,8 @@ exports[`VDatePickerMonthTable.ts should render component and match snapshot 1`]
       </tr>
       <tr>
         <td>
-          <button type="button"
-                  class="v-btn v-size--default v-btn--text theme--light"
+          <button class="v-btn v-size--default v-btn--text theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               Jul
@@ -198,8 +198,8 @@ exports[`VDatePickerMonthTable.ts should render component and match snapshot 1`]
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-size--default v-btn--text theme--light"
+          <button class="v-btn v-size--default v-btn--text theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               Aug
@@ -207,8 +207,8 @@ exports[`VDatePickerMonthTable.ts should render component and match snapshot 1`]
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-size--default v-btn--text theme--light"
+          <button class="v-btn v-size--default v-btn--text theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               Sep
@@ -218,8 +218,8 @@ exports[`VDatePickerMonthTable.ts should render component and match snapshot 1`]
       </tr>
       <tr>
         <td>
-          <button type="button"
-                  class="v-btn v-size--default v-btn--text theme--light"
+          <button class="v-btn v-size--default v-btn--text theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               Oct
@@ -227,8 +227,8 @@ exports[`VDatePickerMonthTable.ts should render component and match snapshot 1`]
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-size--default v-btn--active theme--light accent"
+          <button class="v-btn v-size--default v-btn--active theme--light accent"
+                  type="button"
           >
             <div class="v-btn__content">
               Nov
@@ -236,8 +236,8 @@ exports[`VDatePickerMonthTable.ts should render component and match snapshot 1`]
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-size--default v-btn--text theme--light"
+          <button class="v-btn v-size--default v-btn--text theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               Dec
@@ -256,8 +256,8 @@ exports[`VDatePickerMonthTable.ts should render component with events (array) an
     <tbody>
       <tr>
         <td>
-          <button type="button"
-                  class="v-btn v-size--default v-btn--text theme--light"
+          <button class="v-btn v-size--default v-btn--text theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               Jan
@@ -265,8 +265,8 @@ exports[`VDatePickerMonthTable.ts should render component with events (array) an
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-size--default v-btn--text theme--light"
+          <button class="v-btn v-size--default v-btn--text theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               Feb
@@ -274,8 +274,8 @@ exports[`VDatePickerMonthTable.ts should render component with events (array) an
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-size--default v-btn--text theme--light"
+          <button class="v-btn v-size--default v-btn--text theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               Mar
@@ -285,8 +285,8 @@ exports[`VDatePickerMonthTable.ts should render component with events (array) an
       </tr>
       <tr>
         <td>
-          <button type="button"
-                  class="v-btn v-size--default v-btn--text theme--light"
+          <button class="v-btn v-size--default v-btn--text theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               Apr
@@ -294,8 +294,8 @@ exports[`VDatePickerMonthTable.ts should render component with events (array) an
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-size--default v-btn--text theme--light"
+          <button class="v-btn v-size--default v-btn--text theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               May
@@ -303,8 +303,8 @@ exports[`VDatePickerMonthTable.ts should render component with events (array) an
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-size--default v-btn--text theme--light"
+          <button class="v-btn v-size--default v-btn--text theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               Jun
@@ -314,8 +314,8 @@ exports[`VDatePickerMonthTable.ts should render component with events (array) an
       </tr>
       <tr>
         <td>
-          <button type="button"
-                  class="v-btn v-size--default v-btn--text theme--light"
+          <button class="v-btn v-size--default v-btn--text theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               Jul
@@ -327,8 +327,8 @@ exports[`VDatePickerMonthTable.ts should render component with events (array) an
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-size--default v-btn--text theme--light"
+          <button class="v-btn v-size--default v-btn--text theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               Aug
@@ -336,8 +336,8 @@ exports[`VDatePickerMonthTable.ts should render component with events (array) an
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-size--default v-btn--text theme--light"
+          <button class="v-btn v-size--default v-btn--text theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               Sep
@@ -347,8 +347,8 @@ exports[`VDatePickerMonthTable.ts should render component with events (array) an
       </tr>
       <tr>
         <td>
-          <button type="button"
-                  class="v-btn v-size--default v-btn--text theme--light"
+          <button class="v-btn v-size--default v-btn--text theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               Oct
@@ -356,8 +356,8 @@ exports[`VDatePickerMonthTable.ts should render component with events (array) an
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-size--default v-btn--text theme--light"
+          <button class="v-btn v-size--default v-btn--text theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               Nov
@@ -369,8 +369,8 @@ exports[`VDatePickerMonthTable.ts should render component with events (array) an
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-size--default v-btn--text theme--light"
+          <button class="v-btn v-size--default v-btn--text theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               Dec
@@ -389,8 +389,8 @@ exports[`VDatePickerMonthTable.ts should render component with events (function)
     <tbody>
       <tr>
         <td>
-          <button type="button"
-                  class="v-btn v-size--default v-btn--text theme--light"
+          <button class="v-btn v-size--default v-btn--text theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               Jan
@@ -398,8 +398,8 @@ exports[`VDatePickerMonthTable.ts should render component with events (function)
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-size--default v-btn--text theme--light"
+          <button class="v-btn v-size--default v-btn--text theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               Feb
@@ -407,8 +407,8 @@ exports[`VDatePickerMonthTable.ts should render component with events (function)
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-size--default v-btn--text theme--light"
+          <button class="v-btn v-size--default v-btn--text theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               Mar
@@ -418,8 +418,8 @@ exports[`VDatePickerMonthTable.ts should render component with events (function)
       </tr>
       <tr>
         <td>
-          <button type="button"
-                  class="v-btn v-size--default v-btn--text theme--light"
+          <button class="v-btn v-size--default v-btn--text theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               Apr
@@ -427,8 +427,8 @@ exports[`VDatePickerMonthTable.ts should render component with events (function)
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-size--default v-btn--text theme--light"
+          <button class="v-btn v-size--default v-btn--text theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               May
@@ -436,8 +436,8 @@ exports[`VDatePickerMonthTable.ts should render component with events (function)
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-size--default v-btn--text theme--light"
+          <button class="v-btn v-size--default v-btn--text theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               Jun
@@ -447,8 +447,8 @@ exports[`VDatePickerMonthTable.ts should render component with events (function)
       </tr>
       <tr>
         <td>
-          <button type="button"
-                  class="v-btn v-size--default v-btn--text theme--light"
+          <button class="v-btn v-size--default v-btn--text theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               Jul
@@ -460,8 +460,8 @@ exports[`VDatePickerMonthTable.ts should render component with events (function)
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-size--default v-btn--text theme--light"
+          <button class="v-btn v-size--default v-btn--text theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               Aug
@@ -469,8 +469,8 @@ exports[`VDatePickerMonthTable.ts should render component with events (function)
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-size--default v-btn--text theme--light"
+          <button class="v-btn v-size--default v-btn--text theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               Sep
@@ -480,8 +480,8 @@ exports[`VDatePickerMonthTable.ts should render component with events (function)
       </tr>
       <tr>
         <td>
-          <button type="button"
-                  class="v-btn v-size--default v-btn--text theme--light"
+          <button class="v-btn v-size--default v-btn--text theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               Oct
@@ -489,8 +489,8 @@ exports[`VDatePickerMonthTable.ts should render component with events (function)
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-size--default v-btn--text theme--light"
+          <button class="v-btn v-size--default v-btn--text theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               Nov
@@ -502,8 +502,8 @@ exports[`VDatePickerMonthTable.ts should render component with events (function)
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-size--default v-btn--text theme--light"
+          <button class="v-btn v-size--default v-btn--text theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               Dec
@@ -522,8 +522,8 @@ exports[`VDatePickerMonthTable.ts should render component with events colored by
     <tbody>
       <tr>
         <td>
-          <button type="button"
-                  class="v-btn v-size--default v-btn--text theme--light"
+          <button class="v-btn v-size--default v-btn--text theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               Jan
@@ -531,8 +531,8 @@ exports[`VDatePickerMonthTable.ts should render component with events colored by
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-size--default v-btn--text theme--light"
+          <button class="v-btn v-size--default v-btn--text theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               Feb
@@ -540,8 +540,8 @@ exports[`VDatePickerMonthTable.ts should render component with events colored by
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-size--default v-btn--text theme--light"
+          <button class="v-btn v-size--default v-btn--text theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               Mar
@@ -551,8 +551,8 @@ exports[`VDatePickerMonthTable.ts should render component with events colored by
       </tr>
       <tr>
         <td>
-          <button type="button"
-                  class="v-btn v-size--default v-btn--text theme--light"
+          <button class="v-btn v-size--default v-btn--text theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               Apr
@@ -560,8 +560,8 @@ exports[`VDatePickerMonthTable.ts should render component with events colored by
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-size--default v-btn--text theme--light"
+          <button class="v-btn v-size--default v-btn--text theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               May
@@ -569,8 +569,8 @@ exports[`VDatePickerMonthTable.ts should render component with events colored by
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-size--default v-btn--text theme--light"
+          <button class="v-btn v-size--default v-btn--text theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               Jun
@@ -580,8 +580,8 @@ exports[`VDatePickerMonthTable.ts should render component with events colored by
       </tr>
       <tr>
         <td>
-          <button type="button"
-                  class="v-btn v-size--default v-btn--text theme--light"
+          <button class="v-btn v-size--default v-btn--text theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               Jul
@@ -593,8 +593,8 @@ exports[`VDatePickerMonthTable.ts should render component with events colored by
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-size--default v-btn--text theme--light"
+          <button class="v-btn v-size--default v-btn--text theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               Aug
@@ -602,8 +602,8 @@ exports[`VDatePickerMonthTable.ts should render component with events colored by
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-size--default v-btn--text theme--light"
+          <button class="v-btn v-size--default v-btn--text theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               Sep
@@ -613,8 +613,8 @@ exports[`VDatePickerMonthTable.ts should render component with events colored by
       </tr>
       <tr>
         <td>
-          <button type="button"
-                  class="v-btn v-size--default v-btn--text theme--light"
+          <button class="v-btn v-size--default v-btn--text theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               Oct
@@ -622,8 +622,8 @@ exports[`VDatePickerMonthTable.ts should render component with events colored by
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-size--default v-btn--text theme--light"
+          <button class="v-btn v-size--default v-btn--text theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               Nov
@@ -635,8 +635,8 @@ exports[`VDatePickerMonthTable.ts should render component with events colored by
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-size--default v-btn--text theme--light"
+          <button class="v-btn v-size--default v-btn--text theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               Dec
@@ -655,8 +655,8 @@ exports[`VDatePickerMonthTable.ts should render component with events colored by
     <tbody>
       <tr>
         <td>
-          <button type="button"
-                  class="v-btn v-size--default v-btn--text theme--light"
+          <button class="v-btn v-size--default v-btn--text theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               Jan
@@ -664,8 +664,8 @@ exports[`VDatePickerMonthTable.ts should render component with events colored by
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-size--default v-btn--text theme--light"
+          <button class="v-btn v-size--default v-btn--text theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               Feb
@@ -673,8 +673,8 @@ exports[`VDatePickerMonthTable.ts should render component with events colored by
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-size--default v-btn--text theme--light"
+          <button class="v-btn v-size--default v-btn--text theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               Mar
@@ -684,8 +684,8 @@ exports[`VDatePickerMonthTable.ts should render component with events colored by
       </tr>
       <tr>
         <td>
-          <button type="button"
-                  class="v-btn v-size--default v-btn--text theme--light"
+          <button class="v-btn v-size--default v-btn--text theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               Apr
@@ -693,8 +693,8 @@ exports[`VDatePickerMonthTable.ts should render component with events colored by
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-size--default v-btn--text theme--light"
+          <button class="v-btn v-size--default v-btn--text theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               May
@@ -702,8 +702,8 @@ exports[`VDatePickerMonthTable.ts should render component with events colored by
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-size--default v-btn--text theme--light"
+          <button class="v-btn v-size--default v-btn--text theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               Jun
@@ -713,8 +713,8 @@ exports[`VDatePickerMonthTable.ts should render component with events colored by
       </tr>
       <tr>
         <td>
-          <button type="button"
-                  class="v-btn v-size--default v-btn--text theme--light"
+          <button class="v-btn v-size--default v-btn--text theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               Jul
@@ -726,8 +726,8 @@ exports[`VDatePickerMonthTable.ts should render component with events colored by
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-size--default v-btn--text theme--light"
+          <button class="v-btn v-size--default v-btn--text theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               Aug
@@ -735,8 +735,8 @@ exports[`VDatePickerMonthTable.ts should render component with events colored by
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-size--default v-btn--text theme--light"
+          <button class="v-btn v-size--default v-btn--text theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               Sep
@@ -746,8 +746,8 @@ exports[`VDatePickerMonthTable.ts should render component with events colored by
       </tr>
       <tr>
         <td>
-          <button type="button"
-                  class="v-btn v-size--default v-btn--text theme--light"
+          <button class="v-btn v-size--default v-btn--text theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               Oct
@@ -755,8 +755,8 @@ exports[`VDatePickerMonthTable.ts should render component with events colored by
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-size--default v-btn--text theme--light"
+          <button class="v-btn v-size--default v-btn--text theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               Nov
@@ -768,8 +768,8 @@ exports[`VDatePickerMonthTable.ts should render component with events colored by
           </button>
         </td>
         <td>
-          <button type="button"
-                  class="v-btn v-size--default v-btn--text theme--light"
+          <button class="v-btn v-size--default v-btn--text theme--light"
+                  type="button"
           >
             <div class="v-btn__content">
               Dec

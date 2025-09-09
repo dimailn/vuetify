@@ -407,9 +407,9 @@ export default mixins(
         prevAriaLabel: this.internalActivePicker === 'DATE' ? this.prevMonthAriaLabel : this.prevYearAriaLabel,
         prevIcon: this.prevIcon,
         readonly: this.readonly,
-        value: this.internalActivePicker === 'DATE' ? `${pad(this.tableYear, 4)}-${pad(this.tableMonth + 1)}` : `${pad(this.tableYear, 4)}`,
+        modelValue: this.internalActivePicker === 'DATE' ? `${pad(this.tableYear, 4)}-${pad(this.tableMonth + 1)}` : `${pad(this.tableYear, 4)}`,
         onToggle: () => this.internalActivePicker = (this.internalActivePicker === 'DATE' ? 'MONTH' : 'YEAR'),
-        onInput: (value: string) => this.tableDate = value,
+        'onUpdate:modelValue': (value: string) => this.tableDate = value,
       })
     },
     genDateTable (): VNode {
@@ -434,10 +434,10 @@ export default mixins(
         showAdjacentMonths: this.showAdjacentMonths,
         showWeek: this.showWeek,
         tableDate: `${pad(this.tableYear, 4)}-${pad(this.tableMonth + 1)}`,
-        value: this.modelValue,
+        modelValue: this.modelValue,
         weekdayFormat: this.weekdayFormat,
         ref: 'table',
-        onInput: this.dateClick,
+        'onUpdate:modelValue': this.dateClick,
         'onUpdate:table-date': (value: string) => this.tableDate = value,
         ...createItemTypeListeners(this, ':date'),
       })
@@ -459,10 +459,10 @@ export default mixins(
         range: this.range,
         readonly: this.readonly && this.type === 'month',
         scrollable: this.scrollable,
-        value: this.selectedMonths,
+        modelValue: this.selectedMonths,
         tableDate: `${pad(this.tableYear, 4)}`,
         ref: 'table',
-        onInput: this.monthClick,
+        'onUpdate:modelValue': this.monthClick,
         'onUpdate:table-date': (value: string) => this.tableDate = value,
         ...createItemTypeListeners(this, ':month'),
       })
@@ -474,8 +474,8 @@ export default mixins(
         locale: this.locale,
         min: this.minYear,
         max: this.maxYear,
-        value: this.tableYear,
-        onInput: this.yearClick,
+        modelValue: this.tableYear,
+        'onUpdate:modelValue': this.yearClick,
         ...createItemTypeListeners(this, ':year'),
       })
     },

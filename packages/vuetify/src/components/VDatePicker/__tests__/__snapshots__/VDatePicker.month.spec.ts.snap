@@ -4,8 +4,8 @@ exports[`VDatePicker.ts should match snapshot with allowed dates as array 1`] = 
 <tbody>
   <tr>
     <td>
-      <button type="button"
-              class="v-btn v-size--default v-btn--text theme--light"
+      <button class="v-btn v-size--default v-btn--text theme--light"
+              type="button"
       >
         <div class="v-btn__content">
           Jan
@@ -13,8 +13,8 @@ exports[`VDatePicker.ts should match snapshot with allowed dates as array 1`] = 
       </button>
     </td>
     <td>
-      <button type="button"
-              class="v-btn v-size--default v-btn--flat v-btn--text v-btn--disabled theme--light"
+      <button class="v-btn v-size--default v-btn--flat v-btn--text v-btn--disabled theme--light"
+              type="button"
               disabled
       >
         <div class="v-btn__content">
@@ -23,8 +23,8 @@ exports[`VDatePicker.ts should match snapshot with allowed dates as array 1`] = 
       </button>
     </td>
     <td>
-      <button type="button"
-              class="v-btn v-size--default v-btn--text theme--light"
+      <button class="v-btn v-size--default v-btn--text theme--light"
+              type="button"
       >
         <div class="v-btn__content">
           Mar
@@ -34,8 +34,8 @@ exports[`VDatePicker.ts should match snapshot with allowed dates as array 1`] = 
   </tr>
   <tr>
     <td>
-      <button type="button"
-              class="v-btn v-size--default v-btn--flat v-btn--text v-btn--disabled theme--light"
+      <button class="v-btn v-size--default v-btn--flat v-btn--text v-btn--disabled theme--light"
+              type="button"
               disabled
       >
         <div class="v-btn__content">
@@ -44,8 +44,8 @@ exports[`VDatePicker.ts should match snapshot with allowed dates as array 1`] = 
       </button>
     </td>
     <td>
-      <button type="button"
-              class="v-btn v-size--default v-btn--active theme--light accent"
+      <button class="v-btn v-size--default v-btn--active theme--light accent"
+              type="button"
       >
         <div class="v-btn__content">
           May
@@ -53,8 +53,8 @@ exports[`VDatePicker.ts should match snapshot with allowed dates as array 1`] = 
       </button>
     </td>
     <td>
-      <button type="button"
-              class="v-btn v-size--default v-btn--flat v-btn--text v-btn--disabled theme--light"
+      <button class="v-btn v-size--default v-btn--flat v-btn--text v-btn--disabled theme--light"
+              type="button"
               disabled
       >
         <div class="v-btn__content">
@@ -65,8 +65,8 @@ exports[`VDatePicker.ts should match snapshot with allowed dates as array 1`] = 
   </tr>
   <tr>
     <td>
-      <button type="button"
-              class="v-btn v-size--default v-btn--text theme--light"
+      <button class="v-btn v-size--default v-btn--text theme--light"
+              type="button"
       >
         <div class="v-btn__content">
           Jul
@@ -74,8 +74,8 @@ exports[`VDatePicker.ts should match snapshot with allowed dates as array 1`] = 
       </button>
     </td>
     <td>
-      <button type="button"
-              class="v-btn v-size--default v-btn--flat v-btn--text v-btn--disabled theme--light"
+      <button class="v-btn v-size--default v-btn--flat v-btn--text v-btn--disabled theme--light"
+              type="button"
               disabled
       >
         <div class="v-btn__content">
@@ -84,8 +84,8 @@ exports[`VDatePicker.ts should match snapshot with allowed dates as array 1`] = 
       </button>
     </td>
     <td>
-      <button type="button"
-              class="v-btn v-size--default v-btn--flat v-btn--text v-btn--disabled theme--light"
+      <button class="v-btn v-size--default v-btn--flat v-btn--text v-btn--disabled theme--light"
+              type="button"
               disabled
       >
         <div class="v-btn__content">
@@ -96,8 +96,8 @@ exports[`VDatePicker.ts should match snapshot with allowed dates as array 1`] = 
   </tr>
   <tr>
     <td>
-      <button type="button"
-              class="v-btn v-size--default v-btn--flat v-btn--text v-btn--disabled theme--light"
+      <button class="v-btn v-size--default v-btn--flat v-btn--text v-btn--disabled theme--light"
+              type="button"
               disabled
       >
         <div class="v-btn__content">
@@ -106,8 +106,8 @@ exports[`VDatePicker.ts should match snapshot with allowed dates as array 1`] = 
       </button>
     </td>
     <td>
-      <button type="button"
-              class="v-btn v-size--default v-btn--flat v-btn--text v-btn--disabled theme--light"
+      <button class="v-btn v-size--default v-btn--flat v-btn--text v-btn--disabled theme--light"
+              type="button"
               disabled
       >
         <div class="v-btn__content">
@@ -116,8 +116,8 @@ exports[`VDatePicker.ts should match snapshot with allowed dates as array 1`] = 
       </button>
     </td>
     <td>
-      <button type="button"
-              class="v-btn v-size--default v-btn--flat v-btn--text v-btn--disabled theme--light"
+      <button class="v-btn v-size--default v-btn--flat v-btn--text v-btn--disabled theme--light"
+              type="button"
               disabled
       >
         <div class="v-btn__content">
@@ -130,7 +130,7 @@ exports[`VDatePicker.ts should match snapshot with allowed dates as array 1`] = 
 `;
 
 exports[`VDatePicker.ts should match snapshot with colored picker & header 1`] = `
-<div class="v-picker v-card v-picker--date theme--light">
+<div class="v-picker v-card theme--light v-picker--date">
   <div class="v-picker__title orange darken-1">
     <div class="v-date-picker-title">
       <div class="v-picker__title__btn v-date-picker-title__year">
@@ -148,8 +148,8 @@ exports[`VDatePicker.ts should match snapshot with colored picker & header 1`] =
   >
     <div>
       <div class="v-date-picker-header theme--light">
-        <button type="button"
-                class="v-btn v-btn--icon v-btn--round theme--light v-size--default"
+        <button class="v-btn v-btn--icon v-btn--round theme--light v-size--default"
+                type="button"
                 aria-label="Previous year"
         >
           <span class="v-btn__content">
@@ -166,8 +166,8 @@ exports[`VDatePicker.ts should match snapshot with colored picker & header 1`] =
             </button>
           </div>
         </div>
-        <button type="button"
-                class="v-btn v-btn--icon v-btn--round theme--light v-size--default"
+        <button class="v-btn v-btn--icon v-btn--round theme--light v-size--default"
+                type="button"
                 aria-label="Next year"
         >
           <span class="v-btn__content">
@@ -183,8 +183,8 @@ exports[`VDatePicker.ts should match snapshot with colored picker & header 1`] =
           <tbody>
             <tr>
               <td>
-                <button type="button"
-                        class="v-btn v-size--default v-btn--text theme--light"
+                <button class="v-btn v-size--default v-btn--text theme--light"
+                        type="button"
                 >
                   <div class="v-btn__content">
                     Jan
@@ -192,8 +192,8 @@ exports[`VDatePicker.ts should match snapshot with colored picker & header 1`] =
                 </button>
               </td>
               <td>
-                <button type="button"
-                        class="v-btn v-size--default v-btn--text theme--light"
+                <button class="v-btn v-size--default v-btn--text theme--light"
+                        type="button"
                 >
                   <div class="v-btn__content">
                     Feb
@@ -201,8 +201,8 @@ exports[`VDatePicker.ts should match snapshot with colored picker & header 1`] =
                 </button>
               </td>
               <td>
-                <button type="button"
-                        class="v-btn v-size--default v-btn--text theme--light"
+                <button class="v-btn v-size--default v-btn--text theme--light"
+                        type="button"
                 >
                   <div class="v-btn__content">
                     Mar
@@ -212,8 +212,8 @@ exports[`VDatePicker.ts should match snapshot with colored picker & header 1`] =
             </tr>
             <tr>
               <td>
-                <button type="button"
-                        class="v-btn v-size--default v-btn--text theme--light"
+                <button class="v-btn v-size--default v-btn--text theme--light"
+                        type="button"
                 >
                   <div class="v-btn__content">
                     Apr
@@ -221,8 +221,8 @@ exports[`VDatePicker.ts should match snapshot with colored picker & header 1`] =
                 </button>
               </td>
               <td>
-                <button type="button"
-                        class="v-btn v-size--default v-btn--text theme--light"
+                <button class="v-btn v-size--default v-btn--text theme--light"
+                        type="button"
                 >
                   <div class="v-btn__content">
                     May
@@ -230,8 +230,8 @@ exports[`VDatePicker.ts should match snapshot with colored picker & header 1`] =
                 </button>
               </td>
               <td>
-                <button type="button"
-                        class="v-btn v-size--default v-btn--text theme--light"
+                <button class="v-btn v-size--default v-btn--text theme--light"
+                        type="button"
                 >
                   <div class="v-btn__content">
                     Jun
@@ -241,8 +241,8 @@ exports[`VDatePicker.ts should match snapshot with colored picker & header 1`] =
             </tr>
             <tr>
               <td>
-                <button type="button"
-                        class="v-btn v-size--default v-btn--text theme--light"
+                <button class="v-btn v-size--default v-btn--text theme--light"
+                        type="button"
                 >
                   <div class="v-btn__content">
                     Jul
@@ -250,8 +250,8 @@ exports[`VDatePicker.ts should match snapshot with colored picker & header 1`] =
                 </button>
               </td>
               <td>
-                <button type="button"
-                        class="v-btn v-size--default v-btn--text theme--light"
+                <button class="v-btn v-size--default v-btn--text theme--light"
+                        type="button"
                 >
                   <div class="v-btn__content">
                     Aug
@@ -259,8 +259,8 @@ exports[`VDatePicker.ts should match snapshot with colored picker & header 1`] =
                 </button>
               </td>
               <td>
-                <button type="button"
-                        class="v-btn v-size--default v-btn--text theme--light"
+                <button class="v-btn v-size--default v-btn--text theme--light"
+                        type="button"
                 >
                   <div class="v-btn__content">
                     Sep
@@ -270,8 +270,8 @@ exports[`VDatePicker.ts should match snapshot with colored picker & header 1`] =
             </tr>
             <tr>
               <td>
-                <button type="button"
-                        class="v-btn v-size--default v-btn--text theme--light"
+                <button class="v-btn v-size--default v-btn--text theme--light"
+                        type="button"
                 >
                   <div class="v-btn__content">
                     Oct
@@ -279,8 +279,8 @@ exports[`VDatePicker.ts should match snapshot with colored picker & header 1`] =
                 </button>
               </td>
               <td>
-                <button type="button"
-                        class="v-btn v-size--default v-btn--text theme--light"
+                <button class="v-btn v-size--default v-btn--text theme--light"
+                        type="button"
                 >
                   <div class="v-btn__content">
                     Nov
@@ -288,8 +288,8 @@ exports[`VDatePicker.ts should match snapshot with colored picker & header 1`] =
                 </button>
               </td>
               <td>
-                <button type="button"
-                        class="v-btn v-size--default v-btn--text theme--light"
+                <button class="v-btn v-size--default v-btn--text theme--light"
+                        type="button"
                 >
                   <div class="v-btn__content">
                     Dec
@@ -302,11 +302,13 @@ exports[`VDatePicker.ts should match snapshot with colored picker & header 1`] =
       </div>
     </div>
   </div>
+  <div class="v-picker__actions v-card__actions">
+  </div>
 </div>
 `;
 
 exports[`VDatePicker.ts should match snapshot with colored picker 1`] = `
-<div class="v-picker v-card v-picker--date theme--light">
+<div class="v-picker v-card theme--light v-picker--date">
   <div class="v-picker__title orange darken-1">
     <div class="v-date-picker-title">
       <div class="v-picker__title__btn v-date-picker-title__year">
@@ -324,8 +326,8 @@ exports[`VDatePicker.ts should match snapshot with colored picker 1`] = `
   >
     <div>
       <div class="v-date-picker-header theme--light">
-        <button type="button"
-                class="v-btn v-btn--icon v-btn--round theme--light v-size--default"
+        <button class="v-btn v-btn--icon v-btn--round theme--light v-size--default"
+                type="button"
                 aria-label="Previous year"
         >
           <span class="v-btn__content">
@@ -342,8 +344,8 @@ exports[`VDatePicker.ts should match snapshot with colored picker 1`] = `
             </button>
           </div>
         </div>
-        <button type="button"
-                class="v-btn v-btn--icon v-btn--round theme--light v-size--default"
+        <button class="v-btn v-btn--icon v-btn--round theme--light v-size--default"
+                type="button"
                 aria-label="Next year"
         >
           <span class="v-btn__content">
@@ -359,8 +361,8 @@ exports[`VDatePicker.ts should match snapshot with colored picker 1`] = `
           <tbody>
             <tr>
               <td>
-                <button type="button"
-                        class="v-btn v-size--default v-btn--text theme--light"
+                <button class="v-btn v-size--default v-btn--text theme--light"
+                        type="button"
                 >
                   <div class="v-btn__content">
                     Jan
@@ -368,8 +370,8 @@ exports[`VDatePicker.ts should match snapshot with colored picker 1`] = `
                 </button>
               </td>
               <td>
-                <button type="button"
-                        class="v-btn v-size--default v-btn--text theme--light"
+                <button class="v-btn v-size--default v-btn--text theme--light"
+                        type="button"
                 >
                   <div class="v-btn__content">
                     Feb
@@ -377,8 +379,8 @@ exports[`VDatePicker.ts should match snapshot with colored picker 1`] = `
                 </button>
               </td>
               <td>
-                <button type="button"
-                        class="v-btn v-size--default v-btn--text theme--light"
+                <button class="v-btn v-size--default v-btn--text theme--light"
+                        type="button"
                 >
                   <div class="v-btn__content">
                     Mar
@@ -388,8 +390,8 @@ exports[`VDatePicker.ts should match snapshot with colored picker 1`] = `
             </tr>
             <tr>
               <td>
-                <button type="button"
-                        class="v-btn v-size--default v-btn--text theme--light"
+                <button class="v-btn v-size--default v-btn--text theme--light"
+                        type="button"
                 >
                   <div class="v-btn__content">
                     Apr
@@ -397,8 +399,8 @@ exports[`VDatePicker.ts should match snapshot with colored picker 1`] = `
                 </button>
               </td>
               <td>
-                <button type="button"
-                        class="v-btn v-size--default v-btn--text theme--light"
+                <button class="v-btn v-size--default v-btn--text theme--light"
+                        type="button"
                 >
                   <div class="v-btn__content">
                     May
@@ -406,8 +408,8 @@ exports[`VDatePicker.ts should match snapshot with colored picker 1`] = `
                 </button>
               </td>
               <td>
-                <button type="button"
-                        class="v-btn v-size--default v-btn--text theme--light"
+                <button class="v-btn v-size--default v-btn--text theme--light"
+                        type="button"
                 >
                   <div class="v-btn__content">
                     Jun
@@ -417,8 +419,8 @@ exports[`VDatePicker.ts should match snapshot with colored picker 1`] = `
             </tr>
             <tr>
               <td>
-                <button type="button"
-                        class="v-btn v-size--default v-btn--text theme--light"
+                <button class="v-btn v-size--default v-btn--text theme--light"
+                        type="button"
                 >
                   <div class="v-btn__content">
                     Jul
@@ -426,8 +428,8 @@ exports[`VDatePicker.ts should match snapshot with colored picker 1`] = `
                 </button>
               </td>
               <td>
-                <button type="button"
-                        class="v-btn v-size--default v-btn--text theme--light"
+                <button class="v-btn v-size--default v-btn--text theme--light"
+                        type="button"
                 >
                   <div class="v-btn__content">
                     Aug
@@ -435,8 +437,8 @@ exports[`VDatePicker.ts should match snapshot with colored picker 1`] = `
                 </button>
               </td>
               <td>
-                <button type="button"
-                        class="v-btn v-size--default v-btn--text theme--light"
+                <button class="v-btn v-size--default v-btn--text theme--light"
+                        type="button"
                 >
                   <div class="v-btn__content">
                     Sep
@@ -446,8 +448,8 @@ exports[`VDatePicker.ts should match snapshot with colored picker 1`] = `
             </tr>
             <tr>
               <td>
-                <button type="button"
-                        class="v-btn v-size--default v-btn--text theme--light"
+                <button class="v-btn v-size--default v-btn--text theme--light"
+                        type="button"
                 >
                   <div class="v-btn__content">
                     Oct
@@ -455,8 +457,8 @@ exports[`VDatePicker.ts should match snapshot with colored picker 1`] = `
                 </button>
               </td>
               <td>
-                <button type="button"
-                        class="v-btn v-size--default v-btn--text theme--light"
+                <button class="v-btn v-size--default v-btn--text theme--light"
+                        type="button"
                 >
                   <div class="v-btn__content">
                     Nov
@@ -464,8 +466,8 @@ exports[`VDatePicker.ts should match snapshot with colored picker 1`] = `
                 </button>
               </td>
               <td>
-                <button type="button"
-                        class="v-btn v-size--default v-btn--text theme--light"
+                <button class="v-btn v-size--default v-btn--text theme--light"
+                        type="button"
                 >
                   <div class="v-btn__content">
                     Dec
@@ -478,6 +480,8 @@ exports[`VDatePicker.ts should match snapshot with colored picker 1`] = `
       </div>
     </div>
   </div>
+  <div class="v-picker__actions v-card__actions">
+  </div>
 </div>
 `;
 
@@ -485,8 +489,8 @@ exports[`VDatePicker.ts should match snapshot with month formatting functions 1`
 <tbody>
   <tr>
     <td>
-      <button type="button"
-              class="v-btn v-size--default v-btn--text theme--light"
+      <button class="v-btn v-size--default v-btn--text theme--light"
+              type="button"
       >
         <div class="v-btn__content">
           (01)
@@ -494,8 +498,8 @@ exports[`VDatePicker.ts should match snapshot with month formatting functions 1`
       </button>
     </td>
     <td>
-      <button type="button"
-              class="v-btn v-size--default v-btn--text theme--light"
+      <button class="v-btn v-size--default v-btn--text theme--light"
+              type="button"
       >
         <div class="v-btn__content">
           (02)
@@ -503,8 +507,8 @@ exports[`VDatePicker.ts should match snapshot with month formatting functions 1`
       </button>
     </td>
     <td>
-      <button type="button"
-              class="v-btn v-size--default v-btn--text theme--light"
+      <button class="v-btn v-size--default v-btn--text theme--light"
+              type="button"
       >
         <div class="v-btn__content">
           (03)
@@ -514,8 +518,8 @@ exports[`VDatePicker.ts should match snapshot with month formatting functions 1`
   </tr>
   <tr>
     <td>
-      <button type="button"
-              class="v-btn v-size--default v-btn--text theme--light"
+      <button class="v-btn v-size--default v-btn--text theme--light"
+              type="button"
       >
         <div class="v-btn__content">
           (04)
@@ -523,8 +527,8 @@ exports[`VDatePicker.ts should match snapshot with month formatting functions 1`
       </button>
     </td>
     <td>
-      <button type="button"
-              class="v-btn v-size--default v-btn--text theme--light"
+      <button class="v-btn v-size--default v-btn--text theme--light"
+              type="button"
       >
         <div class="v-btn__content">
           (05)
@@ -532,8 +536,8 @@ exports[`VDatePicker.ts should match snapshot with month formatting functions 1`
       </button>
     </td>
     <td>
-      <button type="button"
-              class="v-btn v-size--default v-btn--text theme--light"
+      <button class="v-btn v-size--default v-btn--text theme--light"
+              type="button"
       >
         <div class="v-btn__content">
           (06)
@@ -543,8 +547,8 @@ exports[`VDatePicker.ts should match snapshot with month formatting functions 1`
   </tr>
   <tr>
     <td>
-      <button type="button"
-              class="v-btn v-size--default v-btn--text theme--light"
+      <button class="v-btn v-size--default v-btn--text theme--light"
+              type="button"
       >
         <div class="v-btn__content">
           (07)
@@ -552,8 +556,8 @@ exports[`VDatePicker.ts should match snapshot with month formatting functions 1`
       </button>
     </td>
     <td>
-      <button type="button"
-              class="v-btn v-size--default v-btn--text theme--light"
+      <button class="v-btn v-size--default v-btn--text theme--light"
+              type="button"
       >
         <div class="v-btn__content">
           (08)
@@ -561,8 +565,8 @@ exports[`VDatePicker.ts should match snapshot with month formatting functions 1`
       </button>
     </td>
     <td>
-      <button type="button"
-              class="v-btn v-size--default v-btn--text theme--light"
+      <button class="v-btn v-size--default v-btn--text theme--light"
+              type="button"
       >
         <div class="v-btn__content">
           (09)
@@ -572,8 +576,8 @@ exports[`VDatePicker.ts should match snapshot with month formatting functions 1`
   </tr>
   <tr>
     <td>
-      <button type="button"
-              class="v-btn v-size--default v-btn--text theme--light"
+      <button class="v-btn v-size--default v-btn--text theme--light"
+              type="button"
       >
         <div class="v-btn__content">
           (10)
@@ -581,8 +585,8 @@ exports[`VDatePicker.ts should match snapshot with month formatting functions 1`
       </button>
     </td>
     <td>
-      <button type="button"
-              class="v-btn v-size--default v-btn--text theme--light"
+      <button class="v-btn v-size--default v-btn--text theme--light"
+              type="button"
       >
         <div class="v-btn__content">
           (11)
@@ -590,8 +594,8 @@ exports[`VDatePicker.ts should match snapshot with month formatting functions 1`
       </button>
     </td>
     <td>
-      <button type="button"
-              class="v-btn v-size--default v-btn--text theme--light"
+      <button class="v-btn v-size--default v-btn--text theme--light"
+              type="button"
       >
         <div class="v-btn__content">
           (12)
@@ -603,7 +607,7 @@ exports[`VDatePicker.ts should match snapshot with month formatting functions 1`
 `;
 
 exports[`VDatePicker.ts should match snapshot with pick-month prop 1`] = `
-<div class="v-picker v-card v-picker--date theme--light">
+<div class="v-picker v-card theme--light v-picker--date">
   <div class="v-picker__title primary">
     <div class="v-date-picker-title">
       <div class="v-picker__title__btn v-date-picker-title__year">
@@ -621,8 +625,8 @@ exports[`VDatePicker.ts should match snapshot with pick-month prop 1`] = `
   >
     <div>
       <div class="v-date-picker-header theme--light">
-        <button type="button"
-                class="v-btn v-btn--icon v-btn--round theme--light v-size--default"
+        <button class="v-btn v-btn--icon v-btn--round theme--light v-size--default"
+                type="button"
                 aria-label="Previous year"
         >
           <span class="v-btn__content">
@@ -639,8 +643,8 @@ exports[`VDatePicker.ts should match snapshot with pick-month prop 1`] = `
             </button>
           </div>
         </div>
-        <button type="button"
-                class="v-btn v-btn--icon v-btn--round theme--light v-size--default"
+        <button class="v-btn v-btn--icon v-btn--round theme--light v-size--default"
+                type="button"
                 aria-label="Next year"
         >
           <span class="v-btn__content">
@@ -656,8 +660,8 @@ exports[`VDatePicker.ts should match snapshot with pick-month prop 1`] = `
           <tbody>
             <tr>
               <td>
-                <button type="button"
-                        class="v-btn v-size--default v-btn--text theme--light"
+                <button class="v-btn v-size--default v-btn--text theme--light"
+                        type="button"
                 >
                   <div class="v-btn__content">
                     Jan
@@ -665,8 +669,8 @@ exports[`VDatePicker.ts should match snapshot with pick-month prop 1`] = `
                 </button>
               </td>
               <td>
-                <button type="button"
-                        class="v-btn v-size--default v-btn--text theme--light"
+                <button class="v-btn v-size--default v-btn--text theme--light"
+                        type="button"
                 >
                   <div class="v-btn__content">
                     Feb
@@ -674,8 +678,8 @@ exports[`VDatePicker.ts should match snapshot with pick-month prop 1`] = `
                 </button>
               </td>
               <td>
-                <button type="button"
-                        class="v-btn v-size--default v-btn--text theme--light"
+                <button class="v-btn v-size--default v-btn--text theme--light"
+                        type="button"
                 >
                   <div class="v-btn__content">
                     Mar
@@ -685,8 +689,8 @@ exports[`VDatePicker.ts should match snapshot with pick-month prop 1`] = `
             </tr>
             <tr>
               <td>
-                <button type="button"
-                        class="v-btn v-size--default v-btn--text theme--light"
+                <button class="v-btn v-size--default v-btn--text theme--light"
+                        type="button"
                 >
                   <div class="v-btn__content">
                     Apr
@@ -694,8 +698,8 @@ exports[`VDatePicker.ts should match snapshot with pick-month prop 1`] = `
                 </button>
               </td>
               <td>
-                <button type="button"
-                        class="v-btn v-size--default v-btn--text theme--light"
+                <button class="v-btn v-size--default v-btn--text theme--light"
+                        type="button"
                 >
                   <div class="v-btn__content">
                     May
@@ -703,8 +707,8 @@ exports[`VDatePicker.ts should match snapshot with pick-month prop 1`] = `
                 </button>
               </td>
               <td>
-                <button type="button"
-                        class="v-btn v-size--default v-btn--text theme--light"
+                <button class="v-btn v-size--default v-btn--text theme--light"
+                        type="button"
                 >
                   <div class="v-btn__content">
                     Jun
@@ -714,8 +718,8 @@ exports[`VDatePicker.ts should match snapshot with pick-month prop 1`] = `
             </tr>
             <tr>
               <td>
-                <button type="button"
-                        class="v-btn v-size--default v-btn--text theme--light"
+                <button class="v-btn v-size--default v-btn--text theme--light"
+                        type="button"
                 >
                   <div class="v-btn__content">
                     Jul
@@ -723,8 +727,8 @@ exports[`VDatePicker.ts should match snapshot with pick-month prop 1`] = `
                 </button>
               </td>
               <td>
-                <button type="button"
-                        class="v-btn v-size--default v-btn--text theme--light"
+                <button class="v-btn v-size--default v-btn--text theme--light"
+                        type="button"
                 >
                   <div class="v-btn__content">
                     Aug
@@ -732,8 +736,8 @@ exports[`VDatePicker.ts should match snapshot with pick-month prop 1`] = `
                 </button>
               </td>
               <td>
-                <button type="button"
-                        class="v-btn v-size--default v-btn--text theme--light"
+                <button class="v-btn v-size--default v-btn--text theme--light"
+                        type="button"
                 >
                   <div class="v-btn__content">
                     Sep
@@ -743,8 +747,8 @@ exports[`VDatePicker.ts should match snapshot with pick-month prop 1`] = `
             </tr>
             <tr>
               <td>
-                <button type="button"
-                        class="v-btn v-size--default v-btn--text theme--light"
+                <button class="v-btn v-size--default v-btn--text theme--light"
+                        type="button"
                 >
                   <div class="v-btn__content">
                     Oct
@@ -752,8 +756,8 @@ exports[`VDatePicker.ts should match snapshot with pick-month prop 1`] = `
                 </button>
               </td>
               <td>
-                <button type="button"
-                        class="v-btn v-size--default v-btn--text theme--light"
+                <button class="v-btn v-size--default v-btn--text theme--light"
+                        type="button"
                 >
                   <div class="v-btn__content">
                     Nov
@@ -761,8 +765,8 @@ exports[`VDatePicker.ts should match snapshot with pick-month prop 1`] = `
                 </button>
               </td>
               <td>
-                <button type="button"
-                        class="v-btn v-size--default v-btn--text theme--light"
+                <button class="v-btn v-size--default v-btn--text theme--light"
+                        type="button"
                 >
                   <div class="v-btn__content">
                     Dec
@@ -774,12 +778,14 @@ exports[`VDatePicker.ts should match snapshot with pick-month prop 1`] = `
         </table>
       </div>
     </div>
+  </div>
+  <div class="v-picker__actions v-card__actions">
   </div>
 </div>
 `;
 
 exports[`VDatePicker.ts should render flat picker 1`] = `
-<div class="v-picker v-card v-picker--date v-picker--flat theme--light">
+<div class="v-picker v-card v-picker--flat theme--light v-picker--date">
   <div class="v-picker__title primary">
     <div class="v-date-picker-title">
       <div class="v-picker__title__btn v-date-picker-title__year">
@@ -797,8 +803,8 @@ exports[`VDatePicker.ts should render flat picker 1`] = `
   >
     <div>
       <div class="v-date-picker-header theme--light">
-        <button type="button"
-                class="v-btn v-btn--icon v-btn--round theme--light v-size--default"
+        <button class="v-btn v-btn--icon v-btn--round theme--light v-size--default"
+                type="button"
                 aria-label="Previous year"
         >
           <span class="v-btn__content">
@@ -815,8 +821,8 @@ exports[`VDatePicker.ts should render flat picker 1`] = `
             </button>
           </div>
         </div>
-        <button type="button"
-                class="v-btn v-btn--icon v-btn--round theme--light v-size--default"
+        <button class="v-btn v-btn--icon v-btn--round theme--light v-size--default"
+                type="button"
                 aria-label="Next year"
         >
           <span class="v-btn__content">
@@ -832,8 +838,8 @@ exports[`VDatePicker.ts should render flat picker 1`] = `
           <tbody>
             <tr>
               <td>
-                <button type="button"
-                        class="v-btn v-size--default v-btn--text theme--light"
+                <button class="v-btn v-size--default v-btn--text theme--light"
+                        type="button"
                 >
                   <div class="v-btn__content">
                     Jan
@@ -841,8 +847,8 @@ exports[`VDatePicker.ts should render flat picker 1`] = `
                 </button>
               </td>
               <td>
-                <button type="button"
-                        class="v-btn v-size--default v-btn--text theme--light"
+                <button class="v-btn v-size--default v-btn--text theme--light"
+                        type="button"
                 >
                   <div class="v-btn__content">
                     Feb
@@ -850,8 +856,8 @@ exports[`VDatePicker.ts should render flat picker 1`] = `
                 </button>
               </td>
               <td>
-                <button type="button"
-                        class="v-btn v-size--default v-btn--text theme--light"
+                <button class="v-btn v-size--default v-btn--text theme--light"
+                        type="button"
                 >
                   <div class="v-btn__content">
                     Mar
@@ -861,8 +867,8 @@ exports[`VDatePicker.ts should render flat picker 1`] = `
             </tr>
             <tr>
               <td>
-                <button type="button"
-                        class="v-btn v-size--default v-btn--text theme--light"
+                <button class="v-btn v-size--default v-btn--text theme--light"
+                        type="button"
                 >
                   <div class="v-btn__content">
                     Apr
@@ -870,8 +876,8 @@ exports[`VDatePicker.ts should render flat picker 1`] = `
                 </button>
               </td>
               <td>
-                <button type="button"
-                        class="v-btn v-size--default v-btn--active theme--light accent"
+                <button class="v-btn v-size--default v-btn--active theme--light accent"
+                        type="button"
                 >
                   <div class="v-btn__content">
                     May
@@ -879,8 +885,8 @@ exports[`VDatePicker.ts should render flat picker 1`] = `
                 </button>
               </td>
               <td>
-                <button type="button"
-                        class="v-btn v-size--default v-btn--text theme--light"
+                <button class="v-btn v-size--default v-btn--text theme--light"
+                        type="button"
                 >
                   <div class="v-btn__content">
                     Jun
@@ -890,8 +896,8 @@ exports[`VDatePicker.ts should render flat picker 1`] = `
             </tr>
             <tr>
               <td>
-                <button type="button"
-                        class="v-btn v-size--default v-btn--text theme--light"
+                <button class="v-btn v-size--default v-btn--text theme--light"
+                        type="button"
                 >
                   <div class="v-btn__content">
                     Jul
@@ -899,8 +905,8 @@ exports[`VDatePicker.ts should render flat picker 1`] = `
                 </button>
               </td>
               <td>
-                <button type="button"
-                        class="v-btn v-size--default v-btn--text theme--light"
+                <button class="v-btn v-size--default v-btn--text theme--light"
+                        type="button"
                 >
                   <div class="v-btn__content">
                     Aug
@@ -908,8 +914,8 @@ exports[`VDatePicker.ts should render flat picker 1`] = `
                 </button>
               </td>
               <td>
-                <button type="button"
-                        class="v-btn v-size--default v-btn--text theme--light"
+                <button class="v-btn v-size--default v-btn--text theme--light"
+                        type="button"
                 >
                   <div class="v-btn__content">
                     Sep
@@ -919,8 +925,8 @@ exports[`VDatePicker.ts should render flat picker 1`] = `
             </tr>
             <tr>
               <td>
-                <button type="button"
-                        class="v-btn v-size--default v-btn--text theme--light"
+                <button class="v-btn v-size--default v-btn--text theme--light"
+                        type="button"
                 >
                   <div class="v-btn__content">
                     Oct
@@ -928,8 +934,8 @@ exports[`VDatePicker.ts should render flat picker 1`] = `
                 </button>
               </td>
               <td>
-                <button type="button"
-                        class="v-btn v-size--default v-btn--text theme--light"
+                <button class="v-btn v-size--default v-btn--text theme--light"
+                        type="button"
                 >
                   <div class="v-btn__content">
                     Nov
@@ -937,8 +943,8 @@ exports[`VDatePicker.ts should render flat picker 1`] = `
                 </button>
               </td>
               <td>
-                <button type="button"
-                        class="v-btn v-size--default v-btn--text theme--light"
+                <button class="v-btn v-size--default v-btn--text theme--light"
+                        type="button"
                 >
                   <div class="v-btn__content">
                     Dec
@@ -950,12 +956,14 @@ exports[`VDatePicker.ts should render flat picker 1`] = `
         </table>
       </div>
     </div>
+  </div>
+  <div class="v-picker__actions v-card__actions">
   </div>
 </div>
 `;
 
 exports[`VDatePicker.ts should render picker with elevation 1`] = `
-<div class="v-picker v-card v-picker--date theme--light elevation-15">
+<div class="v-picker v-card theme--light elevation-15 v-picker--date">
   <div class="v-picker__title primary">
     <div class="v-date-picker-title">
       <div class="v-picker__title__btn v-date-picker-title__year">
@@ -973,8 +981,8 @@ exports[`VDatePicker.ts should render picker with elevation 1`] = `
   >
     <div>
       <div class="v-date-picker-header theme--light">
-        <button type="button"
-                class="v-btn v-btn--icon v-btn--round theme--light v-size--default"
+        <button class="v-btn v-btn--icon v-btn--round theme--light v-size--default"
+                type="button"
                 aria-label="Previous year"
         >
           <span class="v-btn__content">
@@ -991,8 +999,8 @@ exports[`VDatePicker.ts should render picker with elevation 1`] = `
             </button>
           </div>
         </div>
-        <button type="button"
-                class="v-btn v-btn--icon v-btn--round theme--light v-size--default"
+        <button class="v-btn v-btn--icon v-btn--round theme--light v-size--default"
+                type="button"
                 aria-label="Next year"
         >
           <span class="v-btn__content">
@@ -1008,8 +1016,8 @@ exports[`VDatePicker.ts should render picker with elevation 1`] = `
           <tbody>
             <tr>
               <td>
-                <button type="button"
-                        class="v-btn v-size--default v-btn--text theme--light"
+                <button class="v-btn v-size--default v-btn--text theme--light"
+                        type="button"
                 >
                   <div class="v-btn__content">
                     Jan
@@ -1017,8 +1025,8 @@ exports[`VDatePicker.ts should render picker with elevation 1`] = `
                 </button>
               </td>
               <td>
-                <button type="button"
-                        class="v-btn v-size--default v-btn--text theme--light"
+                <button class="v-btn v-size--default v-btn--text theme--light"
+                        type="button"
                 >
                   <div class="v-btn__content">
                     Feb
@@ -1026,8 +1034,8 @@ exports[`VDatePicker.ts should render picker with elevation 1`] = `
                 </button>
               </td>
               <td>
-                <button type="button"
-                        class="v-btn v-size--default v-btn--text theme--light"
+                <button class="v-btn v-size--default v-btn--text theme--light"
+                        type="button"
                 >
                   <div class="v-btn__content">
                     Mar
@@ -1037,8 +1045,8 @@ exports[`VDatePicker.ts should render picker with elevation 1`] = `
             </tr>
             <tr>
               <td>
-                <button type="button"
-                        class="v-btn v-size--default v-btn--text theme--light"
+                <button class="v-btn v-size--default v-btn--text theme--light"
+                        type="button"
                 >
                   <div class="v-btn__content">
                     Apr
@@ -1046,8 +1054,8 @@ exports[`VDatePicker.ts should render picker with elevation 1`] = `
                 </button>
               </td>
               <td>
-                <button type="button"
-                        class="v-btn v-size--default v-btn--active theme--light accent"
+                <button class="v-btn v-size--default v-btn--active theme--light accent"
+                        type="button"
                 >
                   <div class="v-btn__content">
                     May
@@ -1055,8 +1063,8 @@ exports[`VDatePicker.ts should render picker with elevation 1`] = `
                 </button>
               </td>
               <td>
-                <button type="button"
-                        class="v-btn v-size--default v-btn--text theme--light"
+                <button class="v-btn v-size--default v-btn--text theme--light"
+                        type="button"
                 >
                   <div class="v-btn__content">
                     Jun
@@ -1066,8 +1074,8 @@ exports[`VDatePicker.ts should render picker with elevation 1`] = `
             </tr>
             <tr>
               <td>
-                <button type="button"
-                        class="v-btn v-size--default v-btn--text theme--light"
+                <button class="v-btn v-size--default v-btn--text theme--light"
+                        type="button"
                 >
                   <div class="v-btn__content">
                     Jul
@@ -1075,8 +1083,8 @@ exports[`VDatePicker.ts should render picker with elevation 1`] = `
                 </button>
               </td>
               <td>
-                <button type="button"
-                        class="v-btn v-size--default v-btn--text theme--light"
+                <button class="v-btn v-size--default v-btn--text theme--light"
+                        type="button"
                 >
                   <div class="v-btn__content">
                     Aug
@@ -1084,8 +1092,8 @@ exports[`VDatePicker.ts should render picker with elevation 1`] = `
                 </button>
               </td>
               <td>
-                <button type="button"
-                        class="v-btn v-size--default v-btn--text theme--light"
+                <button class="v-btn v-size--default v-btn--text theme--light"
+                        type="button"
                 >
                   <div class="v-btn__content">
                     Sep
@@ -1095,8 +1103,8 @@ exports[`VDatePicker.ts should render picker with elevation 1`] = `
             </tr>
             <tr>
               <td>
-                <button type="button"
-                        class="v-btn v-size--default v-btn--text theme--light"
+                <button class="v-btn v-size--default v-btn--text theme--light"
+                        type="button"
                 >
                   <div class="v-btn__content">
                     Oct
@@ -1104,8 +1112,8 @@ exports[`VDatePicker.ts should render picker with elevation 1`] = `
                 </button>
               </td>
               <td>
-                <button type="button"
-                        class="v-btn v-size--default v-btn--text theme--light"
+                <button class="v-btn v-size--default v-btn--text theme--light"
+                        type="button"
                 >
                   <div class="v-btn__content">
                     Nov
@@ -1113,8 +1121,8 @@ exports[`VDatePicker.ts should render picker with elevation 1`] = `
                 </button>
               </td>
               <td>
-                <button type="button"
-                        class="v-btn v-size--default v-btn--text theme--light"
+                <button class="v-btn v-size--default v-btn--text theme--light"
+                        type="button"
                 >
                   <div class="v-btn__content">
                     Dec
@@ -1126,6 +1134,8 @@ exports[`VDatePicker.ts should render picker with elevation 1`] = `
         </table>
       </div>
     </div>
+  </div>
+  <div class="v-picker__actions v-card__actions">
   </div>
 </div>
 `;
