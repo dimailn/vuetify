@@ -133,7 +133,6 @@ export default baseMixins.extend({
       this.to || this.toggle()
     },
     genAttrs () {
-      // Исключаем class из attrs, так как он обрабатывается отдельно
       const { class: _, ...otherAttrs } = this.$attrs
       const attrs: Record<string, any> = {
         ...otherAttrs,
@@ -202,10 +201,9 @@ export default baseMixins.extend({
 
     const nodeData = this.isActive ? this.setTextColor(this.color, data) : data
 
-    // Объединяем классы компонента с переданными через атрибуты
-    const passedClasses = this.$attrs.class
-    if (passedClasses) {
-      nodeData.class = [this.classes, passedClasses]
+    const attrsClasses = this.$attrs.class
+    if (attrsClasses) {
+      nodeData.class = [this.classes, attrsClasses]
     } else {
       nodeData.class = this.classes
     }
