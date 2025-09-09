@@ -113,7 +113,6 @@ export default baseMixins.extend({
 
   data () {
     return {
-      $_emitChangeEvent: true,
       cachedItems: this.cacheItems ? this.items : [],
       menuIsBooted: false,
       isMenuActive: false,
@@ -917,10 +916,7 @@ export default baseMixins.extend({
       if (!this.valueComparator(value, this.internalValue)) {
         this.internalValue = value
         this.$emit('update:modelValue', value)
-        // Emit change event if flag is set
-        if('$_emitChangeEvent' in this) {
-          this.$emit('change', value)
-        }
+        // Note: change event is already emitted by VInput's internalValue setter
       }
     },
     isAppendInner (target: any) {
