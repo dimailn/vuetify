@@ -53,7 +53,6 @@ const dirtyTypes = ['color', 'file', 'time', 'date', 'datetime-local', 'week', '
 export default baseMixins.extend({
   name: 'v-text-field',
 
-
   props: {
     appendOuterIcon: String,
     autofocus: Boolean,
@@ -209,15 +208,15 @@ export default baseMixins.extend({
   },
 
   created () {
-    /* istanbul ignore next */
-    if (this.$attrs.hasOwnProperty('box')) {
-      breaking('box', 'filled', this)
-    }
+    const breakingProps = [
+      ['value', 'modelValue'],
+      ['onInput', 'onUpdate:modelValue'],
+    ]
 
     /* istanbul ignore next */
-    if (this.$attrs.hasOwnProperty('browser-autocomplete')) {
-      breaking('browser-autocomplete', 'autocomplete', this)
-    }
+    breakingProps.forEach(([original, replacement]) => {
+      if (this.$attrs.hasOwnProperty(original)) breaking(original, replacement, this)
+    })
 
     /* istanbul ignore if */
     if (this.shaped && !(this.filled || this.outlined || this.isSolo)) {
