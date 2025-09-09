@@ -21,7 +21,7 @@ import {
   VNodeChildren,
   Transition,
   withDirectives,
-  h
+  h,
 } from 'vue'
 import { PropValidator } from 'vue/types/options'
 import {
@@ -64,7 +64,7 @@ export default mixins(
       type: String,
       required: true,
     },
-    value: [String, Array] as PropType<string | string[]>,
+    modelValue: [String, Array] as PropType<string | string[]>,
   },
 
   data: () => ({
@@ -81,6 +81,10 @@ export default mixins(
     },
     displayedYear (): number {
       return Number(this.tableDate.split('-')[0])
+    },
+    // Vue 3 compatibility: use modelValue
+    currentValue (): string | string[] | undefined {
+      return this.modelValue
     },
   },
 
@@ -122,7 +126,9 @@ export default mixins(
 
       return mergeListeners({
         onClick: () => {
-          if (isAllowed && !this.readonly) this.$emit('input', value)
+          if (isAllowed && !this.readonly) {
+            this.$emit('update:modelValue', value)
+          }
         },
       }, createItemTypeNativeListeners(this, `:${mouseEventType}`, value))
     },
@@ -134,9 +140,9 @@ export default mixins(
       const color = (isSelected || isCurrent) && (this.color || 'accent')
       let isFirst = false
       let isLast = false
-      if (this.range && !!this.value && Array.isArray(this.value)) {
-        isFirst = value === this.value[0]
-        isLast = value === this.value[this.value.length - 1]
+      if (this.range && !!this.currentValue && Array.isArray(this.currentValue)) {
+        isFirst = value === this.currentValue[0]
+        isLast = value === this.currentValue[this.currentValue.length - 1]
       }
 
       return h('button', setColor(color, {
@@ -221,7 +227,7 @@ export default mixins(
             (this.isValidScroll(1, calculateTableDate) && this.touch(1, calculateTableDate)),
           right: (e: TouchWrapper) => (e.offsetX > 15) &&
             (this.isValidScroll(-1, calculateTableDate) && this.touch(-1, calculateTableDate)),
-        }
+        },
       ]
 
       return withDirectives(h('div', {
@@ -239,16 +245,16 @@ export default mixins(
       }, [transition]), [touchDirective])
     },
     isSelected (value: string): boolean {
-      if (Array.isArray(this.value)) {
-        if (this.range && this.value.length === 2) {
-          const [from, to] = [...this.value].sort()
+      if (Array.isArray(this.currentValue)) {
+        if (this.range && this.currentValue.length === 2) {
+          const [from, to] = [...this.currentValue].sort()
           return from <= value && value <= to
         } else {
-          return this.value.indexOf(value) !== -1
+          return this.currentValue.indexOf(value) !== -1
         }
       }
 
-      return value === this.value
+      return value === this.currentValue
     },
   },
 })
