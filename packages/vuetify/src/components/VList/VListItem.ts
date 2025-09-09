@@ -78,7 +78,6 @@ export default baseMixins.extend({
   },
 
   emits: [
-    'click',
     'keydown',
     'change',
     'update:modelValue',
