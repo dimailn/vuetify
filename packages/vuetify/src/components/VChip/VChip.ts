@@ -118,7 +118,7 @@ export default mixins(
       ['outline', 'outlined'],
       ['selected', 'input-value'],
       ['value', 'modelValue'],
-      ['@input', '@update:modelValue'],
+      ['onInput', 'onUpdate:modelValue'],
     ]
 
     /* istanbul ignore next */
@@ -162,7 +162,7 @@ export default mixins(
 
           this.$emit('click:close')
           this.$emit('update:modelValue', false)
-        }
+        },
       }, this.closeIcon)
     },
     genContent (): VNode {
