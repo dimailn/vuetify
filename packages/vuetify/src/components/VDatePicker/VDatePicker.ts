@@ -386,13 +386,10 @@ export default mixins(
         disabled: this.disabled,
         readonly: this.readonly,
         selectingYear: this.internalActivePicker === 'YEAR',
-        year: this.formatters.year(this.multipleValue.length ? `${this.inputYear}` : this.tableDate),
+        year: this.formatters.year(this.multipleValue.length ? `${this.inputYear || new Date().getFullYear()}` : this.tableDate),
         yearIcon: this.yearIcon,
-        value: this.multipleValue[0],
-        slot: 'title',
-        on: {
-          'update:selecting-year': (value: boolean) => this.internalActivePicker = value ? 'YEAR' : this.type.toUpperCase(),
-        },
+        modelValue: this.multipleValue[0],
+        onUpdateSelectingYear: (value: boolean) => this.internalActivePicker = value ? 'YEAR' : this.type.toUpperCase(),
       })
     },
     genTableHeader (): VNode {
@@ -442,7 +439,7 @@ export default mixins(
         ref: 'table',
         onInput: this.dateClick,
         'onUpdate:table-date': (value: string) => this.tableDate = value,
-        ...createItemTypeListeners(this, ':date')
+        ...createItemTypeListeners(this, ':date'),
       })
     },
     genMonthTable (): VNode {
@@ -467,7 +464,7 @@ export default mixins(
         ref: 'table',
         onInput: this.monthClick,
         'onUpdate:table-date': (value: string) => this.tableDate = value,
-        ...createItemTypeListeners(this, ':month')
+        ...createItemTypeListeners(this, ':month'),
       })
     },
     genYears (): VNode {
@@ -478,10 +475,8 @@ export default mixins(
         min: this.minYear,
         max: this.maxYear,
         value: this.tableYear,
-        on: {
-          input: this.yearClick,
-          ...createItemTypeListeners(this, ':year'),
-        },
+        onInput: this.yearClick,
+        ...createItemTypeListeners(this, ':year'),
       })
     },
     genPickerBody (): VNode {

@@ -11,20 +11,16 @@ import Themeable from '../../mixins/themeable'
 
 // Utils
 import { createNativeLocaleFormatter, monthChange } from './util'
-import mixins from '../../util/mixins'
 import { getSlot } from '../../util/helpers'
 
 // Types
-import { VNode, PropType, Transition, h } from 'vue'
+import { VNode, PropType, Transition, h, defineComponent } from 'vue'
 import { DatePickerFormatter } from 'vuetify/types'
 
-export default mixins(
-  Colorable,
-  Localable,
-  Themeable
-/* @vue/component */
-).extend({
+export default defineComponent({
   name: 'v-date-picker-header',
+
+  mixins: [Colorable, Localable, Themeable],
 
   props: {
     disabled: Boolean,
@@ -42,11 +38,13 @@ export default mixins(
       default: '$prev',
     },
     readonly: Boolean,
-    value: {
+    modelValue: {
       type: [Number, String],
       required: true,
     },
   },
+
+  emits: ['update:modelValue', 'toggle'],
 
   data () {
     return {
@@ -58,7 +56,7 @@ export default mixins(
     formatter (): DatePickerFormatter {
       if (this.format) {
         return this.format
-      } else if (String(this.value).split('-')[1]) {
+      } else if (String(this.modelValue).split('-')[1]) {
         return createNativeLocaleFormatter(this.currentLocale, { month: 'long', year: 'numeric', timeZone: 'UTC' }, { length: 7 })
       } else {
         return createNativeLocaleFormatter(this.currentLocale, { year: 'numeric', timeZone: 'UTC' }, { length: 4 })
@@ -67,7 +65,7 @@ export default mixins(
   },
 
   watch: {
-    value (newVal, oldVal) {
+    modelValue (newVal, oldVal) {
       this.isReversing = newVal < oldVal
     },
   },
@@ -88,39 +86,51 @@ export default mixins(
         light: this.light,
         onClick: (e: Event) => {
           e.stopPropagation()
-          this.$emit('input', this.calculateChange(change))
-        }
-      }, () => [
-        h(VIcon, {}, () => (((change < 0) === !this.$vuetify.rtl) ? this.prevIcon : this.nextIcon)),
-      ])
+          this.$emit('update:modelValue', this.calculateChange(change))
+        },
+      }, {
+        default: () => [
+          h(VIcon, {}, {
+            default: () => (((change < 0) === !this.$vuetify.rtl) ? this.prevIcon : this.nextIcon),
+          }),
+        ],
+      })
     },
     calculateChange (sign: number) {
-      const [year, month] = String(this.value).split('-').map(Number)
+      const [year, month] = String(this.modelValue).split('-').map(Number)
 
       if (month == null) {
         return `${year + sign}`
       } else {
-        return monthChange(String(this.value), sign)
+        return monthChange(String(this.modelValue), sign)
       }
     },
     genHeader () {
       const color = !this.disabled && (this.color || 'accent')
       const header = h('div', this.setTextColor(color, {
-        key: String(this.value),
-      }), [h('button', {
-        type: 'button',
-        onClick: () => this.$emit('toggle'),
-      }, getSlot(this) || [this.formatter(String(this.value))])])
+        key: String(this.modelValue),
+      }), {
+        default: () => [h('button', {
+          type: 'button',
+          onClick: () => this.$emit('toggle'),
+        }, {
+          default: () => getSlot(this) || [this.modelValue ? this.formatter(String(this.modelValue)) : ''],
+        })],
+      })
 
       const transition = h(Transition, {
         name: (this.isReversing === !this.$vuetify.rtl) ? 'tab-reverse-transition' : 'tab-transition',
-      }, () => [header])
+      }, {
+        default: () => [header],
+      })
 
       return h('div', {
         class: ['v-date-picker-header__value', {
           'v-date-picker-header__value--disabled': this.disabled,
-        }]
-      }, [transition])
+        }],
+      }, {
+        default: () => [transition],
+      })
     },
   },
 
@@ -129,11 +139,13 @@ export default mixins(
       class: ['v-date-picker-header', {
         'v-date-picker-header--disabled': this.disabled,
         ...this.themeClasses,
-      }]
-    }, [
-      this.genBtn(-1),
-      this.genHeader(),
-      this.genBtn(+1),
-    ])
+      }],
+    }, {
+      default: () => [
+        this.genBtn(-1),
+        this.genHeader(),
+        this.genBtn(+1),
+      ],
+    })
   },
 })

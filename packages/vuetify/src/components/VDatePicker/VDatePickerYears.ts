@@ -6,17 +6,15 @@ import Localable from '../../mixins/localable'
 
 // Utils
 import {
-  createItemTypeNativeListeners,
   createNativeLocaleFormatter,
 } from './util'
-import { mergeListeners } from '../../util/mergeData'
 import mixins, { ExtractVue } from '../../util/mixins'
 
 // Types
-import Vue, { VNode, PropType } from 'vue'
+import { VNode, PropType, h } from 'vue'
 import { DatePickerFormatter } from 'vuetify/types'
 
-interface options extends Vue {
+interface options {
   $el: HTMLElement
 }
 
@@ -39,7 +37,7 @@ export default mixins<options &
     min: [Number, String],
     max: [Number, String],
     readonly: Boolean,
-    value: [Number, String],
+    modelValue: [Number, String],
   },
 
   data () {
@@ -72,21 +70,19 @@ export default mixins<options &
   methods: {
     genYearItem (year: number): VNode {
       const formatted = this.formatter(`${year}`)
-      const active = parseInt(this.value, 10) === year
+      const active = parseInt(this.modelValue, 10) === year
       const color = active && (this.color || 'primary')
 
       return h('li', this.setTextColor(color, {
         key: year,
         class: { active },
-        on: mergeListeners({
-          click: () => this.$emit('input', year),
-        }, createItemTypeNativeListeners(this, ':year', year)),
+        onClick: () => this.$emit('update:modelValue', year),
       }), formatted)
     },
 
     genYearItems (): VNode[] {
       const children = []
-      const selectedYear = this.value ? parseInt(this.value, 10) : new Date().getFullYear()
+      const selectedYear = this.modelValue ? parseInt(this.modelValue, 10) : new Date().getFullYear()
       const maxYear = this.max ? parseInt(this.max, 10) : (selectedYear + 100)
       const minYear = Math.min(maxYear, this.min ? parseInt(this.min, 10) : (selectedYear - 100))
 

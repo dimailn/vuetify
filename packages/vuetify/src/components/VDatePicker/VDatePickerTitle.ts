@@ -1,4 +1,4 @@
-import {h, Transition} from 'vue'
+import { h, Transition } from 'vue'
 import './VDatePickerTitle.sass'
 
 // Components
@@ -27,7 +27,7 @@ export default mixins(
     disabled: Boolean,
     readonly: Boolean,
     selectingYear: Boolean,
-    value: {
+    modelValue: {
       type: String,
     },
     year: {
@@ -38,6 +38,8 @@ export default mixins(
       type: String,
     },
   },
+
+  emits: ['update:selecting-year'],
 
   data: () => ({
     isReversing: false,
@@ -50,7 +52,7 @@ export default mixins(
   },
 
   watch: {
-    value (val: string, prev: string) {
+    modelValue (val: string, prev: string) {
       this.isReversing = val < prev
     },
   },
@@ -73,7 +75,7 @@ export default mixins(
       }, () => [
         h('div', {
           innerHTML: this.date || '&nbsp;',
-          key: this.value
+          key: this.modelValue,
         }),
       ])
     },
@@ -86,7 +88,7 @@ export default mixins(
     return h('div', {
       class: ['v-date-picker-title', {
         'v-date-picker-title--disabled': this.disabled,
-      }]
+      }],
     }, [
       this.getYearBtn(),
       this.genTitleDate(),
