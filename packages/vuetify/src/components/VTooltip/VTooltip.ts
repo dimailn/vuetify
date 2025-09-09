@@ -161,17 +161,17 @@ export default mixins(Colorable, Delayable, Dependent, Menuable).extend({
       const listeners = Activatable.methods.genActivatorListeners.call(this)
 
       if (this.openOnFocus) {
-        listeners.focus = (e: Event) => {
+        listeners.onFocus = (e: Event) => {
           this.getActivator(e)
           this.runDelay('open')
         }
-        listeners.blur = (e: Event) => {
+        listeners.onBlur = (e: Event) => {
           this.getActivator(e)
           this.runDelay('close')
         }
       }
 
-      listeners.keydown = (e: KeyboardEvent) => {
+      listeners.onKeydown = (e: KeyboardEvent) => {
         if (e.keyCode === keyCodes.esc) {
           this.getActivator(e)
           this.runDelay('close')
