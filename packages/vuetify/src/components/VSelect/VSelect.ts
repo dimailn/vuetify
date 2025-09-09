@@ -172,8 +172,8 @@ export default baseMixins.extend({
             handler: () => this.isFocused && this.blur(),
             closeConditional: this.closeConditional,
             include: () => this.getOpenDependentElements(),
-          }
-        ]
+          },
+        ],
       ]
     },
     dynamicHeight () {
@@ -256,37 +256,24 @@ export default baseMixins.extend({
     },
   },
 
-  mounted () {
-    this.$nextTick(() => {
-      if (this.$el && this.$el.attributes) {
-        const attrs = this.$el.attributes
-        for (let i = 0; i < attrs.length; i++) {
-          const attr = attrs[i]
-          if (attr.name.startsWith('data-v-')) {
-            this.detectedScopeId = attr.name
-            // scopeId найден и сохранен для использования в dropdown
-            break
-          }
-        }
-      }
-    })
-  },
-
   watch: {
-    internalValue (val) {
-      this.initialValue = val
-      this.setSelectedItems()
+    internalValue: {
+      handler (val) {
+        this.initialValue = val
+        this.setSelectedItems()
 
-      if (this.multiple) {
-        this.$nextTick(() => {
-          this.$refs.menu?.updateDimensions()
-        })
-      }
-      if (this.hideSelected) {
-        this.$nextTick(() => {
-          this.onScroll()
-        })
-      }
+        if (this.multiple) {
+          this.$nextTick(() => {
+            this.$refs.menu?.updateDimensions()
+          })
+        }
+        if (this.hideSelected) {
+          this.$nextTick(() => {
+            this.onScroll()
+          })
+        }
+      },
+      deep: true,
     },
     isMenuActive (val) {
       window.setTimeout(() => this.onMenuActiveChange(val))
@@ -306,6 +293,22 @@ export default baseMixins.extend({
         this.setSelectedItems()
       },
     },
+  },
+
+  mounted () {
+    this.$nextTick(() => {
+      if (this.$el && this.$el.attributes) {
+        const attrs = this.$el.attributes
+        for (let i = 0; i < attrs.length; i++) {
+          const attr = attrs[i]
+          if (attr.name.startsWith('data-v-')) {
+            this.detectedScopeId = attr.name
+            // scopeId найден и сохранен для использования в dropdown
+            break
+          }
+        }
+      }
+    })
   },
 
   methods: {
@@ -436,7 +439,7 @@ export default baseMixins.extend({
       return [
         this.genFieldset(),
         withDirectives(h('div', {
-          class: 'v-select__slot'
+          class: 'v-select__slot',
         }, [
           this.genLabel(),
           this.prefix ? this.genAffix('prefix') : null,
@@ -464,7 +467,7 @@ export default baseMixins.extend({
         iconChild.props = mergeData(iconChild.props || {}, {
           tabindex: hasListeners ? '-1' : undefined,
           'aria-hidden': 'true',
-          'aria-label': undefined
+          'aria-label': undefined,
         })
       }
 
@@ -505,9 +508,9 @@ export default baseMixins.extend({
       }
 
       return h('input', {
-        value: value,
+        value,
         type: 'hidden',
-        name: this.$attrs.name
+        name: this.$attrs.name,
       })
     },
     genInputSlot (): VNode {
@@ -518,7 +521,7 @@ export default baseMixins.extend({
         'aria-haspopup': 'listbox',
         'aria-expanded': String(this.isMenuActive),
         'aria-owns': this.computedOwns,
-        ...render.props
+        ...render.props,
       }
 
       return render
@@ -536,8 +539,8 @@ export default baseMixins.extend({
         .filter(slotName => this.$slots[slotName])
         .map(slotName => [
           slotName,
-          this.$slots[slotName]
-          ]
+          this.$slots[slotName],
+        ]
         ))
       // Requires destructuring due to Vue
       // modifying the `on` property when passed
@@ -545,7 +548,7 @@ export default baseMixins.extend({
       return h(VSelectList, {
         ...this.listData,
         ...this.listAttrs,
-      }, {...slots, item: this.$slots.item})
+      }, { ...slots, item: this.$slots.item })
     },
     genMenu (): VNode {
       const props = this.$_menuProps as any
