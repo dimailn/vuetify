@@ -140,9 +140,9 @@ export default baseMixins.extend({
     },
     genAttrs () {
       const attrs: Record<string, any> = {
+        ...this.$attrs,
         'aria-disabled': this.disabled ? true : undefined,
         tabindex: this.isClickable && !this.disabled ? 0 : -1,
-        ...this.$attrs,
       }
 
       if (this.$attrs.hasOwnProperty('role')) {
@@ -206,7 +206,12 @@ export default baseMixins.extend({
 
     const nodeData = this.isActive ? this.setTextColor(this.color, data) : data
 
-    nodeData.class = this.classes
+    // Объединяем классы: сначала переданные через атрибуты, потом классы компонента
+    const passedClasses = this.$attrs.class || {}
+    nodeData.class = {
+      ...normalizeClasses(passedClasses),
+      ...this.classes
+    }
 
     const node = typeof tag === 'string'
       ? h(tag, nodeData, children)
