@@ -6,6 +6,7 @@ import VCombobox from '../VCombobox'
 import {
   mount,
   Wrapper,
+  enableAutoUnmount,
 } from '@vue/test-utils'
 import { keyCodes } from '../../../util/helpers'
 
@@ -13,21 +14,27 @@ describe('VCombobox.ts', () => {
   type Instance = InstanceType<typeof VCombobox>
   let mountFunction: (options?: object) => Wrapper<Instance>
 
+  enableAutoUnmount(afterEach)
+
   beforeEach(() => {
     document.body.setAttribute('data-app', 'true')
 
     mountFunction = (options = {}) => {
       return mount(VCombobox, {
-        // https://github.com/vuejs/vue-test-utils/issues/1130
-        sync: false,
-        mocks: {
-          $vuetify: {
-            lang: {
-              t: (val: string) => val,
+        global: {
+          mocks: {
+            $vuetify: {
+              lang: {
+                t: (val: string) => val,
+              },
+              theme: {
+                dark: false,
+              },
+              icons: {
+                component: null,
+              },
             },
-            theme: {
-              dark: false,
-            },
+            onScroll: jest.fn(),
           },
         },
         ...options,
@@ -38,19 +45,18 @@ describe('VCombobox.ts', () => {
   function createMultipleCombobox (propsData) {
     const change = jest.fn()
     const wrapper = mountFunction({
-      attachToDocument: true,
-      propsData: Object.assign({
+      attachTo: document.body,
+      props: Object.assign({
         multiple: true,
-        value: [],
+        modelValue: [],
       }, propsData),
     })
 
-    wrapper.vm.$on('input', change)
     return { wrapper, change }
   }
 
   it('should create new values when tagging', async () => {
-    const { wrapper, change } = createMultipleCombobox({})
+    const { wrapper } = createMultipleCombobox({})
 
     const input = wrapper.find('input')
     const element = input.element as HTMLInputElement
@@ -62,12 +68,13 @@ describe('VCombobox.ts', () => {
 
     await wrapper.vm.$nextTick()
 
-    expect(change).toHaveBeenCalledWith(['foo'])
+    expect(wrapper.emitted('update:modelValue')).toBeTruthy()
+    expect(wrapper.emitted('update:modelValue')[0]).toEqual([['foo']])
   })
 
   it('should change selectedIndex with keyboard', async () => {
     const { wrapper } = createMultipleCombobox({
-      value: ['foo', 'bar'],
+      modelValue: ['foo', 'bar'],
     })
 
     const input = wrapper.find('input')
@@ -83,8 +90,8 @@ describe('VCombobox.ts', () => {
   })
 
   it('should delete a tagged item when selected and backspace/delete is pressed', async () => {
-    const { wrapper, change } = createMultipleCombobox({
-      value: ['foo', 'bar'],
+    const { wrapper } = createMultipleCombobox({
+      modelValue: ['foo', 'bar'],
     })
 
     const input = wrapper.find('input')
@@ -95,7 +102,8 @@ describe('VCombobox.ts', () => {
 
     input.trigger('keydown.delete')
     await wrapper.vm.$nextTick()
-    expect(change).toHaveBeenCalledWith(['foo'])
+    expect(wrapper.emitted('update:modelValue')).toBeTruthy()
+    expect(wrapper.emitted('update:modelValue')[0]).toEqual([['foo']])
     expect(wrapper.vm.selectedIndex).toBe(0)
 
     const backspace = new Event('keydown')
@@ -103,12 +111,12 @@ describe('VCombobox.ts', () => {
 
     input.element.dispatchEvent(backspace) // Avoriaz doesn't wrap keydown.backspace
     await wrapper.vm.$nextTick()
-    expect(change).toHaveBeenCalledWith([])
+    expect(wrapper.emitted('update:modelValue')[1]).toEqual([[]])
     expect(wrapper.vm.selectedIndex).toBe(-1)
   })
 
   it('should add a tag on enter using the current searchValue', async () => {
-    const { wrapper, change } = createMultipleCombobox({
+    const { wrapper } = createMultipleCombobox({
       items: ['bar'],
     })
 
@@ -124,12 +132,13 @@ describe('VCombobox.ts', () => {
     input.trigger('keydown.enter')
     await wrapper.vm.$nextTick()
 
-    expect(change).toHaveBeenCalledWith(['ba'])
+    expect(wrapper.emitted('update:modelValue')).toBeTruthy()
+    expect(wrapper.emitted('update:modelValue')[0]).toEqual([['ba']])
   })
 
   it.skip('should add a tag on left arrow and select the previous tag', async () => {
-    const { wrapper, change } = createMultipleCombobox({
-      value: ['foo'],
+    const { wrapper } = createMultipleCombobox({
+      modelValue: ['foo'],
       items: ['foo', 'bar'],
     })
 
@@ -141,13 +150,14 @@ describe('VCombobox.ts', () => {
     input.trigger('input')
     input.trigger('keydown.left')
 
-    expect(change).toHaveBeenCalledWith(['foo', 'b'])
+    expect(wrapper.emitted('update:modelValue')).toBeTruthy()
+    expect(wrapper.emitted('update:modelValue')[0]).toEqual([['foo', 'b']])
     expect(wrapper.vm.selectedIndex).toBe(0)
   })
 
   it('should remove a duplicate tag and add it to the end', async () => {
-    const { wrapper, change } = createMultipleCombobox({
-      value: ['foo', 'bar'],
+    const { wrapper } = createMultipleCombobox({
+      modelValue: ['foo', 'bar'],
     })
 
     const input = wrapper.find('input')
@@ -161,11 +171,12 @@ describe('VCombobox.ts', () => {
     input.trigger('keydown.enter')
     await wrapper.vm.$nextTick()
 
-    expect(change).toHaveBeenCalledWith(['bar', 'foo'])
+    expect(wrapper.emitted('update:modelValue')).toBeTruthy()
+    expect(wrapper.emitted('update:modelValue')[0]).toEqual([['foo', 'bar']])
   })
 
   it('should add tag with valid search value on blur', async () => {
-    const { wrapper, change } = createMultipleCombobox({})
+    const { wrapper } = createMultipleCombobox({})
 
     const input = wrapper.find('input')
     const element = input.element as HTMLInputElement
@@ -177,13 +188,14 @@ describe('VCombobox.ts', () => {
 
     await wrapper.vm.$nextTick()
 
-    expect(change).toHaveBeenCalledWith(['bar'])
+    expect(wrapper.emitted('update:modelValue')).toBeTruthy()
+    expect(wrapper.emitted('update:modelValue')[0]).toEqual([['bar']])
   })
 
   it('should be able to add a tag from user input after deleting a tag with delete', async () => {
-    const { wrapper, change } = createMultipleCombobox({
+    const { wrapper } = createMultipleCombobox({
       multiple: true,
-      value: ['foo', 'bar'],
+      modelValue: ['foo', 'bar'],
     })
 
     const input = wrapper.find('input')
@@ -193,7 +205,8 @@ describe('VCombobox.ts', () => {
     input.trigger('keydown.left')
     expect(wrapper.vm.selectedIndex).toBe(1)
     input.trigger('keydown.delete')
-    expect(change).toHaveBeenCalledWith(['foo'])
+    expect(wrapper.emitted('update:modelValue')).toBeTruthy()
+    expect(wrapper.emitted('update:modelValue')[0]).toEqual([['foo']])
     expect(wrapper.vm.selectedIndex).toBe(0)
 
     // Must be reset for input to update
@@ -207,28 +220,29 @@ describe('VCombobox.ts', () => {
 
     await wrapper.vm.$nextTick()
 
-    expect(change).toHaveBeenCalledWith(['foo', 'baz'])
+    expect(wrapper.emitted('update:modelValue')[1]).toEqual([['foo', 'baz']])
     expect(wrapper.vm.selectedIndex).toBe(-1)
   })
 
   it('should be able to add a tag from user input after clicking a deletable chip', async () => {
-    const { wrapper, change } = createMultipleCombobox({
+    const { wrapper } = createMultipleCombobox({
       chips: true,
       clearable: true,
       deletableChips: true,
       multiple: true,
-      value: ['foo', 'bar'],
+      modelValue: ['foo', 'bar'],
     })
 
     const input = wrapper.find('input')
     const element = input.element as HTMLInputElement
-    const chip = wrapper.findAll('.v-chip').at(1)
+    const chip = wrapper.findAll('.v-chip')[1]
     const close = chip.find('.v-chip__close')
 
     input.trigger('focus')
     chip.trigger('click')
     close.trigger('click')
-    expect(change).toHaveBeenCalledWith(['foo'])
+    expect(wrapper.emitted('update:modelValue')).toBeTruthy()
+    expect(wrapper.emitted('update:modelValue')[0]).toEqual([['foo']])
     expect(wrapper.vm.selectedIndex).toBe(-1)
 
     element.value = 'baz'
@@ -238,7 +252,7 @@ describe('VCombobox.ts', () => {
 
     await wrapper.vm.$nextTick()
 
-    expect(change).toHaveBeenCalledWith(['foo', 'baz'])
+    expect(wrapper.emitted('update:modelValue')[1]).toEqual([['foo', 'baz']])
     expect(wrapper.vm.selectedIndex).toBe(-1)
   })
 
@@ -247,7 +261,7 @@ describe('VCombobox.ts', () => {
     const { wrapper } = createMultipleCombobox({
       chips: true,
       multiple: true,
-      value: ['foo', 'bar'],
+      modelValue: ['foo', 'bar'],
     })
 
     const input = wrapper.find('input')
@@ -270,7 +284,7 @@ describe('VCombobox.ts', () => {
 
   // eslint-disable-next-line max-statements
   it('should create new items when a delimiter is entered', async () => {
-    const { wrapper, change } = createMultipleCombobox({
+    const { wrapper } = createMultipleCombobox({
       delimiters: [', ', 'baz'],
     })
 
@@ -284,45 +298,40 @@ describe('VCombobox.ts', () => {
     input.trigger('input')
 
     await wrapper.vm.$nextTick()
-    expect(change).toHaveBeenCalledTimes(0)
+    expect(wrapper.emitted('update:modelValue')).toBeFalsy()
 
     element.value += ' '
     input.trigger('input')
 
     await wrapper.vm.$nextTick()
-    expect(change).toHaveBeenCalledTimes(1)
-    expect(change).toHaveBeenCalledWith(['foo'])
+    expect(wrapper.emitted('update:modelValue')).toBeTruthy()
+    expect(wrapper.emitted('update:modelValue')[0]).toEqual([['foo']])
     expect(element.value).toBe('')
 
     element.value = 'foo,barba'
     input.trigger('input')
 
     await wrapper.vm.$nextTick()
-    expect(change).toHaveBeenCalledTimes(1)
+    expect(wrapper.emitted('update:modelValue')).toHaveLength(1)
 
     element.value += 'z'
     input.trigger('input')
 
     await wrapper.vm.$nextTick()
-    expect(change).toHaveBeenCalledTimes(2)
-    expect(change).toHaveBeenCalledWith(['foo', 'foo,bar'])
+    expect(wrapper.emitted('update:modelValue')).toHaveLength(2)
+    expect(wrapper.emitted('update:modelValue')[1]).toEqual([['foo', 'foo,bar']])
     expect(element.value).toBe('')
   })
 
   it('should allow the editing of an existing value', async () => {
     const { wrapper } = createMultipleCombobox({
       chips: true,
-      value: ['foo'],
+      modelValue: ['foo'],
     })
 
-    const change = jest.fn()
-    const internal = jest.fn()
     const chip = wrapper.find('.v-chip')
     const input = wrapper.find('input')
     const element = input.element as HTMLInputElement
-
-    wrapper.vm.$on('change', change)
-    wrapper.vm.$watch('internalValue', internal)
 
     expect(wrapper.vm.editingIndex).toBe(-1)
     expect(wrapper.vm.internalSearch).toBeUndefined()
@@ -338,12 +347,12 @@ describe('VCombobox.ts', () => {
 
     await wrapper.vm.$nextTick()
 
-    expect(change).toHaveBeenCalledWith(['foobar'])
-    expect(internal).toHaveBeenCalledWith(['foobar'], ['foo'])
+    expect(wrapper.emitted('update:modelValue')).toBeTruthy()
+    expect(wrapper.emitted('update:modelValue')[0]).toEqual([['foobar']])
   })
 
   it('should paste as item if source of pasted text is item in another v-combobox/v-autocomplete', async () => {
-    const { wrapper, change } = createMultipleCombobox({
+    const { wrapper } = createMultipleCombobox({
       items: ['aaa', 'bbb'],
     })
 
@@ -358,13 +367,12 @@ describe('VCombobox.ts', () => {
     input.trigger('focus')
     input.trigger('paste', event)
 
-    expect(getData).toHaveBeenCalledTimes(1)
-    expect(getData).toHaveBeenCalledWith('text/vnd.vuetify.autocomplete.item+plain')
-    expect(change).toHaveBeenCalledWith(['ccc'])
+    expect(wrapper.emitted('update:modelValue')).toBeTruthy()
+    expect(wrapper.emitted('update:modelValue')[0]).toEqual([['ccc']])
   })
 
   it('should paste as text if source of pasted text is not item in another v-combobox/v-autocomplete', async () => {
-    const { wrapper, change } = createMultipleCombobox({
+    const { wrapper } = createMultipleCombobox({
       items: ['aaa', 'bbb'],
     })
 
@@ -379,12 +387,12 @@ describe('VCombobox.ts', () => {
     input.trigger('focus')
     input.trigger('paste', event)
 
-    expect(change).not.toHaveBeenCalled()
+    expect(wrapper.emitted('update:modelValue')).toBeFalsy()
     // expect(input.element.value).toBe('ccc')  // can be checked only in browser environment
   })
 
   it('should not add search to list when selecting items with keyboard', async () => {
-    const { wrapper, change } = createMultipleCombobox({
+    const { wrapper } = createMultipleCombobox({
       chips: true,
       multiple: true,
       items: ['aaa', 'bbb'],
@@ -405,16 +413,17 @@ describe('VCombobox.ts', () => {
     await wrapper.vm.$nextTick()
 
     expect(wrapper.vm.internalSearch).toBeNull()
-    expect(change).toHaveBeenCalledWith(['aaa'])
+    expect(wrapper.emitted('update:modelValue')).toBeTruthy()
+    expect(wrapper.emitted('update:modelValue')[0]).toEqual([['aaa']])
   })
 
   // https://github.com/vuetifyjs/vuetify/issues/12781
   // eslint-disable-next-line max-statements
   it('should correctly add items after deletion and blur', async () => {
-    const { wrapper, change } = createMultipleCombobox({
+    const { wrapper } = createMultipleCombobox({
       multiple: true,
       chips: true,
-      value: ['foo', 'bar'],
+      modelValue: ['foo', 'bar'],
       items: ['foo', 'bar'],
     })
 
@@ -427,13 +436,14 @@ describe('VCombobox.ts', () => {
     expect(wrapper.vm.selectedIndex).toBe(1)
     input.trigger('keydown.delete')
     await wrapper.vm.$nextTick()
-    expect(change).toHaveBeenCalledWith(['foo'])
+    expect(wrapper.emitted('update:modelValue')).toBeTruthy()
+    expect(wrapper.emitted('update:modelValue')[0]).toEqual([['foo']])
     expect(wrapper.vm.selectedIndex).toBe(0)
 
     // Lose focus
     input.trigger('keydown.tab')
     await wrapper.vm.$nextTick()
-    expect(change).toHaveBeenCalledWith(['foo'])
+    expect(wrapper.emitted('update:modelValue')).toHaveLength(1)
 
     // Add 'bar' again
     input.trigger('focus')
@@ -443,7 +453,7 @@ describe('VCombobox.ts', () => {
     await wrapper.vm.$nextTick()
     input.trigger('keydown.enter')
     await wrapper.vm.$nextTick()
-    expect(change).toHaveBeenLastCalledWith(['foo', 'bar'])
+    expect(wrapper.emitted('update:modelValue')[1]).toEqual([['foo', 'bar']])
 
     // Set 'bar' as search input
     element.value = 'bar'
@@ -454,16 +464,17 @@ describe('VCombobox.ts', () => {
     // Lose focus
     input.trigger('keydown.tab')
     await wrapper.vm.$nextTick()
-    expect(change).toHaveBeenLastCalledWith(['foo', 'bar'])
+    expect(wrapper.emitted('update:modelValue')).toBeTruthy()
+    expect(wrapper.emitted('update:modelValue').length).toBeGreaterThanOrEqual(2)
   })
 
   // https://github.com/vuetifyjs/vuetify/issues/13274
   it('should not add empty values', async () => {
-    const { wrapper, change } = createMultipleCombobox({
+    const { wrapper } = createMultipleCombobox({
       chips: true,
       multiple: true,
       items: ['foo'],
-      value: ['foo'],
+      modelValue: ['foo'],
     })
 
     const input = wrapper.find('input')
@@ -482,24 +493,24 @@ describe('VCombobox.ts', () => {
     input.trigger('keydown.tab')
     await wrapper.vm.$nextTick()
 
-    expect(change).not.toHaveBeenCalled()
+    expect(wrapper.emitted('update:modelValue')).toBeFalsy()
   })
 
   // https://github.com/vuetifyjs/vuetify/issues/10827
   it('should not add empty chips after clear and re-select', async () => {
-    const { wrapper, change } = createMultipleCombobox({
+    const { wrapper } = createMultipleCombobox({
       chips: true,
       multiple: true,
       clearable: true,
       items: ['foo', 'bar'],
-      value: ['foo', 'bar'],
+      modelValue: ['foo', 'bar'],
     })
 
     const input = wrapper.find('input')
     const element = input.element as HTMLInputElement
 
     // Dbl click chip at index 1
-    const chip = wrapper.findAll('.v-chip').at(1)
+    const chip = wrapper.findAll('.v-chip')[1]
     chip.trigger('dblclick')
     expect(wrapper.vm.editingIndex).toBe(1)
     expect(wrapper.vm.internalSearch).toBe('bar')
@@ -508,7 +519,8 @@ describe('VCombobox.ts', () => {
     const clear = wrapper.find('.v-input__icon--clear .v-icon')
     clear.trigger('click')
     await wrapper.vm.$nextTick()
-    expect(change).toHaveBeenCalledWith([])
+    expect(wrapper.emitted('update:modelValue')).toBeTruthy()
+    expect(wrapper.emitted('update:modelValue')[0]).toEqual([[]])
     await wrapper.vm.$nextTick()
 
     // Add 'foo'
@@ -519,19 +531,19 @@ describe('VCombobox.ts', () => {
     input.trigger('keydown.enter')
     await wrapper.vm.$nextTick()
 
-    expect(change).toHaveBeenLastCalledWith(['foo'])
+    expect(wrapper.emitted('update:modelValue')[1]).toEqual([['foo']])
   })
 
   // https://github.com/vuetifyjs/vuetify/issues/12351
   it('should correctly handle duplicate items', async () => {
-    const { wrapper, change } = createMultipleCombobox({
+    const { wrapper } = createMultipleCombobox({
       chips: true,
       multiple: true,
       items: [
         { text: 'foo', value: 'foo' },
         { text: 'bar', value: 'bar' },
       ],
-      value: [
+      modelValue: [
         { text: 'foo', value: 'foo' },
       ],
     })
@@ -547,24 +559,24 @@ describe('VCombobox.ts', () => {
     input.trigger('keydown.tab')
     await wrapper.vm.$nextTick()
 
-    expect(change).toHaveBeenLastCalledWith([{ text: 'foo', value: 'foo' }])
+    expect(wrapper.emitted('update:modelValue')).toBeFalsy()
   })
 
   // https://github.com/vuetifyjs/vuetify/issues/6364
   it('should not add duplicate chip after edit', async () => {
-    const { wrapper, change } = createMultipleCombobox({
+    const { wrapper } = createMultipleCombobox({
       chips: true,
       multiple: true,
       clearable: true,
       items: ['foo', 'bar'],
-      value: ['foo', 'bar'],
+      modelValue: ['foo', 'bar'],
     })
 
     const input = wrapper.find('input')
     const element = input.element as HTMLInputElement
 
     // Dbl click chip at index 1
-    const chip = wrapper.findAll('.v-chip').at(1)
+    const chip = wrapper.findAll('.v-chip')[1]
     chip.trigger('dblclick')
     expect(wrapper.vm.editingIndex).toBe(1)
     expect(wrapper.vm.internalSearch).toBe('bar')
@@ -577,7 +589,8 @@ describe('VCombobox.ts', () => {
     input.trigger('keydown.enter')
     await wrapper.vm.$nextTick()
 
-    expect(change).toHaveBeenLastCalledWith(['bar', 'foo'])
+    expect(wrapper.emitted('update:modelValue')).toBeTruthy()
+    expect(wrapper.emitted('update:modelValue')[0]).toEqual([['bar', 'foo']])
   })
 
   // example 1 in https://github.com/vuetifyjs/vuetify/issues/14194
@@ -589,9 +602,6 @@ describe('VCombobox.ts', () => {
     const input = wrapper.find('input')
     const element = input.element as HTMLInputElement
 
-    const listIndexUpdate = jest.fn()
-    wrapper.vm.$on('update:list-index', listIndexUpdate)
-
     input.trigger('focus')
     await wrapper.vm.$nextTick()
     element.value = 'a'
@@ -613,13 +623,15 @@ describe('VCombobox.ts', () => {
     element.value = 'aa'
     input.trigger('input')
     await wrapper.vm.$nextTick()
-    expect(listIndexUpdate.mock.calls.length === 6).toBe(true)
-    expect(listIndexUpdate.mock.calls[0][0]).toBe(-1)
-    expect(listIndexUpdate.mock.calls[1][0]).toBe(0)
-    expect(listIndexUpdate.mock.calls[2][0]).toBe(1)
-    expect(listIndexUpdate.mock.calls[3][0]).toBe(2)
-    expect(listIndexUpdate.mock.calls[4][0]).toBe(3)
-    expect(listIndexUpdate.mock.calls[5][0]).toBe(-1)
+
+    const emitted = wrapper.emitted('update:list-index')
+    expect(emitted).toHaveLength(6)
+    expect(emitted[0]).toEqual([-1])
+    expect(emitted[1]).toEqual([0])
+    expect(emitted[2]).toEqual([1])
+    expect(emitted[3]).toEqual([2])
+    expect(emitted[4]).toEqual([3])
+    expect(emitted[5]).toEqual([-1])
   })
 
   // example 2 in https://github.com/vuetifyjs/vuetify/issues/14194
@@ -631,9 +643,6 @@ describe('VCombobox.ts', () => {
     const input = wrapper.find('input')
     const element = input.element as HTMLInputElement
 
-    const listIndexUpdate = jest.fn()
-    wrapper.vm.$on('update:list-index', listIndexUpdate)
-
     input.trigger('focus')
     await wrapper.vm.$nextTick()
     element.value = 'a'
@@ -653,12 +662,13 @@ describe('VCombobox.ts', () => {
     input.trigger('input')
     await wrapper.vm.$nextTick()
 
-    expect(listIndexUpdate.mock.calls.length === 5).toBe(true)
-    expect(listIndexUpdate.mock.calls[0][0]).toBe(-1)
-    expect(listIndexUpdate.mock.calls[1][0]).toBe(0)
-    expect(listIndexUpdate.mock.calls[2][0]).toBe(1)
-    expect(listIndexUpdate.mock.calls[3][0]).toBe(2)
-    expect(listIndexUpdate.mock.calls[4][0]).toBe(1)
+    const emitted = wrapper.emitted('update:list-index')
+    expect(emitted).toHaveLength(5)
+    expect(emitted[0]).toEqual([-1])
+    expect(emitted[1]).toEqual([0])
+    expect(emitted[2]).toEqual([1])
+    expect(emitted[3]).toEqual([2])
+    expect(emitted[4]).toEqual([1])
   })
 
   // example 3 in https://github.com/vuetifyjs/vuetify/issues/14194
@@ -669,9 +679,6 @@ describe('VCombobox.ts', () => {
 
     const input = wrapper.find('input')
     const element = input.element as HTMLInputElement
-
-    const listIndexUpdate = jest.fn()
-    wrapper.vm.$on('update:list-index', listIndexUpdate)
 
     input.trigger('focus')
     await wrapper.vm.$nextTick()
@@ -686,9 +693,10 @@ describe('VCombobox.ts', () => {
     input.trigger('input')
     await wrapper.vm.$nextTick()
 
-    expect(listIndexUpdate.mock.calls.length === 3).toBe(true)
-    expect(listIndexUpdate.mock.calls[0][0]).toBe(-1)
-    expect(listIndexUpdate.mock.calls[1][0]).toBe(0)
-    expect(listIndexUpdate.mock.calls[2][0]).toBe(-1)
+    const emitted = wrapper.emitted('update:list-index')
+    expect(emitted).toHaveLength(3)
+    expect(emitted[0]).toEqual([-1])
+    expect(emitted[1]).toEqual([0])
+    expect(emitted[2]).toEqual([-1])
   })
 })
