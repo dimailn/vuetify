@@ -55,7 +55,7 @@ jobs:
       - name: Run tests with summary
         run: |
           echo "::group::Running Vue 3 migration tests"
-          yarn lerna run test:coverage -- -- -i --verbose=false --passWithNoTests --maxWorkers=2 || {
+          yarn lerna run test:coverage -- -- --verbose=false --passWithNoTests --maxWorkers=2 || {
             echo "::endgroup::"
             echo "::error::Tests failed - check the collapsible test results above"
             exit 1
