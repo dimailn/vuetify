@@ -185,7 +185,7 @@ export default mixins(Colorable, Themeable).extend({
       });
 
       return this.needsTile(scopedSlot)
-        ? h(VListItem, tile, scopedSlot)
+        ? h(VListItem, attrsWithoutEvents, scopedSlot)
         : scopedSlot
     },
     genTileContent (item: any, index = 0): VNode {
