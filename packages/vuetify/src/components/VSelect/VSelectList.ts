@@ -176,6 +176,7 @@ export default mixins(Colorable, Themeable).extend({
       const scopedSlot = this.$slots.item({
         parent,
         item,
+        active: value,
         attrs: {
           ...tile.attrs,
           ...tile.props,
