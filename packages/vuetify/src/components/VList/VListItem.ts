@@ -64,6 +64,7 @@ export default baseMixins.extend({
     } as any as PropValidator<string>,
     dense: Boolean,
     inactive: Boolean,
+    onClick: Function as PropType<(e: MouseEvent) => void>,
     link: Boolean,
     selectable: {
       type: Boolean,
@@ -78,6 +79,7 @@ export default baseMixins.extend({
   },
 
   emits: [
+    'click',
     'keydown',
     'change',
     'update:modelValue',

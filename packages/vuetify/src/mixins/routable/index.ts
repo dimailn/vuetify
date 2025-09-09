@@ -66,9 +66,10 @@ export default defineComponent({
       return Boolean(
         this.isLink ||
         this.$attrs.onClick ||
-        this.$attrs['on!click'] ||
-        this.$attrs.tabindex
-      )
+        this.$attrs["on!click"] ||
+        this.$attrs.tabindex ||
+        this.$props?.onClick
+      );
     },
     isLink (): boolean {
       return this.to || this.href || this.link
