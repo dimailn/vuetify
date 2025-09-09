@@ -29,6 +29,28 @@ export default defineComponent({
   name: 'v-autocomplete',
   extends: VSelect,
 
+  emits: [
+    'update:search-input',
+    'update:modelValue',
+    'change',
+    'focus',
+    'blur',
+    'keydown',
+    'click',
+    'update:list-index',
+    'mousedown',
+    'mouseup',
+    'touchstart',
+    'touchend',
+    'click:prepend',
+    'click:append',
+    'click:append-outer',
+    'click:prepend-inner',
+    'click:clear',
+    'input',
+    'update:error',
+  ],
+
   props: {
     autoSelectFirst: {
       type: Boolean,

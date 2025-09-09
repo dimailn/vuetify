@@ -915,8 +915,6 @@ export default baseMixins.extend({
     setValue (value: any) {
       if (!this.valueComparator(value, this.internalValue)) {
         this.internalValue = value
-        this.$emit('update:modelValue', value)
-        // Note: change event is already emitted by VInput's internalValue setter
       }
     },
     isAppendInner (target: any) {
