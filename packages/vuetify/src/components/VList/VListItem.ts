@@ -13,7 +13,7 @@ import { factory as ToggleableFactory } from '../../mixins/toggleable'
 import Ripple from '../../directives/ripple'
 
 // Utilities
-import { getSlot, keyCodes, normalizeClasses } from './../../util/helpers'
+import { getSlot, keyCodes } from './../../util/helpers'
 import mergeData, { mergeClasses } from './../../util/mergeData'
 import { ExtractVue } from './../../util/mixins'
 import { removed } from '../../util/console'
@@ -76,7 +76,6 @@ export default baseMixins.extend({
     threeLine: Boolean,
     twoLine: Boolean,
     modelValue: null as any as PropType<any>,
-    customClasses: [String, Object, Array] as PropType<any>,
   },
 
   emits: [
@@ -98,7 +97,7 @@ export default baseMixins.extend({
       return this.listItemGroup.activeClass
     },
     classes (): object {
-      const baseClasses = {
+      return {
         'v-list-item': true,
         ...Routable.computed.classes.call(this),
         'v-list-item--dense': this.dense,
@@ -108,11 +107,6 @@ export default baseMixins.extend({
         'v-list-item--three-line': this.threeLine,
         'v-list-item--two-line': this.twoLine,
         ...this.themeClasses,
-      }
-
-      return {
-        ...baseClasses,
-        ...normalizeClasses(this.customClasses)
       }
     },
     isClickable (): boolean {
@@ -139,8 +133,10 @@ export default baseMixins.extend({
       this.to || this.toggle()
     },
     genAttrs () {
+      // Исключаем class из attrs, так как он обрабатывается отдельно
+      const { class: _, ...otherAttrs } = this.$attrs
       const attrs: Record<string, any> = {
-        ...this.$attrs,
+        ...otherAttrs,
         'aria-disabled': this.disabled ? true : undefined,
         tabindex: this.isClickable && !this.disabled ? 0 : -1,
       }
@@ -206,11 +202,12 @@ export default baseMixins.extend({
 
     const nodeData = this.isActive ? this.setTextColor(this.color, data) : data
 
-    // Объединяем классы: сначала переданные через атрибуты, потом классы компонента
-    const passedClasses = this.$attrs.class || {}
-    nodeData.class = {
-      ...normalizeClasses(passedClasses),
-      ...this.classes
+    // Объединяем классы компонента с переданными через атрибуты
+    const passedClasses = this.$attrs.class
+    if (passedClasses) {
+      nodeData.class = [this.classes, passedClasses]
+    } else {
+      nodeData.class = this.classes
     }
 
     const node = typeof tag === 'string'
