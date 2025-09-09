@@ -260,7 +260,11 @@ export const BaseItemGroup = mixins(
   },
 
   render (): VNode {
-    return h(this.tag, this.genData(), getSlot(this))
+    const data = this.genData()
+    return h(this.tag, {
+      class: data.class,
+      ...data.attrs,
+    }, getSlot(this))
   },
 })
 
