@@ -8,6 +8,7 @@ import {
   MountOptions,
   enableAutoUnmount,
 } from '@vue/test-utils'
+import { h } from 'vue'
 
 describe('VAutocomplete.ts', () => {
   type Instance = InstanceType<typeof VAutocomplete>
@@ -265,5 +266,53 @@ describe('VAutocomplete.ts', () => {
     input.trigger('input')
 
     expect(wrapper.vm.internalValue).toBeNull()
+  })
+
+  it('should update visual chips when model changes (props, mutation, replacement)', async () => {
+    const wrapper = mountFunction({
+      props: {
+        items: [
+          { name: 'Sandra Adams', group: 'Group 1', avatar: 'avatar1.jpg' },
+          { name: 'Ali Connors', group: 'Group 1', avatar: 'avatar2.jpg' },
+          { name: 'Trevor Hansen', group: 'Group 1', avatar: 'avatar3.jpg' },
+        ],
+        modelValue: ['Sandra Adams', 'Ali Connors'],
+        multiple: true,
+        chips: true,
+        itemText: 'name',
+        itemValue: 'name',
+      },
+    })
+
+    await wrapper.vm.$nextTick()
+
+    let chips = wrapper.findAll('.v-chip')
+    expect(chips).toHaveLength(2)
+    expect(wrapper.vm.internalValue).toEqual(['Sandra Adams', 'Ali Connors'])
+
+    wrapper.setProps({ modelValue: ['Ali Connors'] })
+    await wrapper.vm.$nextTick()
+    chips = wrapper.findAll('.v-chip')
+    expect(chips).toHaveLength(1)
+    expect(chips[0].text()).toBe('Ali Connors')
+
+    wrapper.setProps({ modelValue: ['Sandra Adams', 'Ali Connors'] })
+    await wrapper.vm.$nextTick()
+    const friends = wrapper.vm.internalValue as string[]
+    const index = friends.indexOf('Sandra Adams')
+    if (index >= 0) friends.splice(index, 1)
+    await wrapper.vm.$nextTick()
+    chips = wrapper.findAll('.v-chip')
+    expect(chips).toHaveLength(1)
+    expect(chips[0].text()).toBe('Ali Connors')
+
+    wrapper.setProps({ modelValue: ['Sandra Adams', 'Ali Connors'] })
+    await wrapper.vm.$nextTick()
+    const newFriends = ['Ali Connors']
+    wrapper.vm.setValue(newFriends)
+    await wrapper.vm.$nextTick()
+    chips = wrapper.findAll('.v-chip')
+    expect(chips).toHaveLength(1)
+    expect(chips[0].text()).toBe('Ali Connors')
   })
 })
