@@ -1,5 +1,9 @@
 module.exports = {
-  verbose: false,
+  verbose: !process.env.CI, // Подробный вывод локально, краткий в CI
+  silent: process.env.CI === 'true',
+  testFailureExitCode: 1,
+  bail: false,
+  errorOnDeprecated: false,
   testEnvironment: 'jest-environment-jsdom-fourteen',
   roots: [
     '<rootDir>/src',
@@ -35,6 +39,14 @@ module.exports = {
   snapshotSerializers: [
     'jest-serializer-html',
   ],
+  reporters: process.env.CI ? [
+    'default',
+    ['jest-junit', {
+      outputDirectory: './test-results',
+      outputName: 'junit.xml',
+      suiteName: 'Vuetify Jest Tests'
+    }]
+  ] : ['default'],
   testMatch: [
     // Default
     '**/test/**/*.js',
