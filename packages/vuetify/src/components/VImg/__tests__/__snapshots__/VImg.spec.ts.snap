@@ -40,16 +40,18 @@ exports[`VImg.ts should display placeholders 2`] = `
 exports[`VImg.ts should have aria attributes 1`] = `
 <div aria-label="this is not a decorative image"
      role="img"
-     class="v-image v-responsive theme--light"
+     class="theme--light v-image v-responsive"
 >
-  <div class="v-responsive__sizer"
-       style="padding-bottom: 56.25%;"
+  <div class="v-image__image--preload v-image__image--cover v-image__image"
+       style="background-position: center center;"
   >
   </div>
-  <div class="v-image__image v-image__image--cover"
+  <div style="padding-bottom: 56.25%;"
+       class="v-responsive__sizer"
+  >
+  </div>
+  <div class="v-image__image--cover v-image__image fade-transition-enter-from fade-transition-enter-active"
        style="background-image: url(LOAD_SUCCESS_SRC); background-position: center center;"
-       name="fade-transition"
-       mode="in-out"
   >
   </div>
   <div class="v-responsive__content"
@@ -60,11 +62,9 @@ exports[`VImg.ts should have aria attributes 1`] = `
 `;
 
 exports[`VImg.ts should load 1`] = `
-<div class="v-image v-responsive theme--light">
-  <div class="v-image__image v-image__image--preload v-image__image--cover"
+<div class="theme--light v-image v-responsive">
+  <div class="v-image__image--preload v-image__image--cover v-image__image"
        style="background-position: center center;"
-       name="fade-transition"
-       mode="in-out"
   >
   </div>
   <div class="v-responsive__content">
@@ -73,15 +73,17 @@ exports[`VImg.ts should load 1`] = `
 `;
 
 exports[`VImg.ts should load 2`] = `
-<div class="v-image v-responsive theme--light">
-  <div class="v-responsive__sizer"
-       style="padding-bottom: 56.25%;"
+<div class="theme--light v-image v-responsive">
+  <div class="v-image__image--preload v-image__image--cover v-image__image"
+       style="background-position: center center;"
   >
   </div>
-  <div class="v-image__image v-image__image--cover"
+  <div style="padding-bottom: 56.25%;"
+       class="v-responsive__sizer"
+  >
+  </div>
+  <div class="v-image__image--cover v-image__image fade-transition-enter-from fade-transition-enter-active"
        style="background-image: url(LOAD_SUCCESS_SRC); background-position: center center;"
-       name="fade-transition"
-       mode="in-out"
   >
   </div>
   <div class="v-responsive__content"
@@ -92,15 +94,13 @@ exports[`VImg.ts should load 2`] = `
 `;
 
 exports[`VImg.ts should override vuetify-loader values 1`] = `
-<div class="v-image v-responsive theme--light">
-  <div class="v-responsive__sizer"
-       style="padding-bottom: 50%;"
+<div class="theme--light v-image v-responsive">
+  <div style="padding-bottom: 50%;"
+       class="v-responsive__sizer"
   >
   </div>
-  <div class="v-image__image v-image__image--cover"
-       style="background-image: url(LOAD_SUCCESS_SRC); background-position: center center;"
-       name="fade-transition"
-       mode="in-out"
+  <div class="v-image__image--preload v-image__image--cover v-image__image"
+       style="background-image: url(lazySrc_manual); background-position: center center;"
   >
   </div>
   <div class="v-responsive__content">
@@ -109,15 +109,17 @@ exports[`VImg.ts should override vuetify-loader values 1`] = `
 `;
 
 exports[`VImg.ts should update src 1`] = `
-<div class="v-image v-responsive theme--light">
-  <div class="v-responsive__sizer"
-       style="padding-bottom: 56.25%;"
+<div class="theme--light v-image v-responsive">
+  <div class="v-image__image--preload v-image__image--cover v-image__image"
+       style="background-position: center center;"
   >
   </div>
-  <div class="v-image__image v-image__image--cover"
+  <div style="padding-bottom: 56.25%;"
+       class="v-responsive__sizer"
+  >
+  </div>
+  <div class="v-image__image--cover v-image__image fade-transition-enter-from fade-transition-enter-active"
        style="background-image: url(LOAD_SUCCESS_SRC); background-position: center center;"
-       name="fade-transition"
-       mode="in-out"
   >
   </div>
   <div class="v-responsive__content"
@@ -128,15 +130,17 @@ exports[`VImg.ts should update src 1`] = `
 `;
 
 exports[`VImg.ts should update src 2`] = `
-<div class="v-image v-responsive theme--light">
-  <div class="v-responsive__sizer"
-       style="padding-bottom: 56.25%;"
+<div class="theme--light v-image v-responsive">
+  <div class="v-image__image--preload v-image__image--cover v-image__image"
+       style="background-position: center center;"
   >
   </div>
-  <div class="v-image__image v-image__image--cover"
+  <div style="padding-bottom: 56.25%;"
+       class="v-responsive__sizer"
+  >
+  </div>
+  <div class="v-image__image--cover v-image__image fade-transition-enter-from fade-transition-enter-active"
        style="background-image: url(LOAD_SUCCESS_SRC1); background-position: center center;"
-       name="fade-transition"
-       mode="in-out"
   >
   </div>
   <div class="v-responsive__content"
@@ -147,11 +151,9 @@ exports[`VImg.ts should update src 2`] = `
 `;
 
 exports[`VImg.ts should update src while still loading 1`] = `
-<div class="v-image v-responsive theme--light">
-  <div class="v-image__image v-image__image--preload v-image__image--cover"
+<div class="theme--light v-image v-responsive">
+  <div class="v-image__image--preload v-image__image--cover v-image__image"
        style="background-position: center center;"
-       name="fade-transition"
-       mode="in-out"
   >
   </div>
   <div class="v-responsive__content">
@@ -160,15 +162,17 @@ exports[`VImg.ts should update src while still loading 1`] = `
 `;
 
 exports[`VImg.ts should update src while still loading 2`] = `
-<div class="v-image v-responsive theme--light">
-  <div class="v-responsive__sizer"
-       style="padding-bottom: 56.25%;"
+<div class="theme--light v-image v-responsive">
+  <div class="v-image__image--preload v-image__image--cover v-image__image"
+       style="background-position: center center;"
   >
   </div>
-  <div class="v-image__image v-image__image--cover"
+  <div style="padding-bottom: 56.25%;"
+       class="v-responsive__sizer"
+  >
+  </div>
+  <div class="v-image__image--cover v-image__image fade-transition-enter-from fade-transition-enter-active"
        style="background-image: url(LOAD_SUCCESS_SRC1); background-position: center center;"
-       name="fade-transition"
-       mode="in-out"
   >
   </div>
   <div class="v-responsive__content"
@@ -179,20 +183,16 @@ exports[`VImg.ts should update src while still loading 2`] = `
 `;
 
 exports[`VImg.ts should use vuetify-loader data 1`] = `
-<div class="v-image v-responsive theme--light">
-  <div class="v-responsive__sizer"
-       style="padding-bottom: 100%;"
+<div class="theme--light v-image v-responsive">
+  <div style="padding-bottom: 100%;"
+       class="v-responsive__sizer"
   >
   </div>
-  <div class="v-image__image v-image__image--cover"
-       style="background-image: url(LOAD_SUCCESS_SRC); background-position: center center;"
-       name="fade-transition"
-       mode="in-out"
+  <div class="v-image__image--preload v-image__image--cover v-image__image"
+       style="background-image: url(lazySrc_auto); background-position: center center;"
   >
   </div>
-  <div class="v-responsive__content"
-       style="width: 1600px;"
-  >
+  <div class="v-responsive__content">
   </div>
 </div>
 `;

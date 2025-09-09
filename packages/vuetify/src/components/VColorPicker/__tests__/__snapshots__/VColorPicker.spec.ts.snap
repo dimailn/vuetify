@@ -23,7 +23,7 @@ exports[`VColorPicker.ts should change canvas height 1`] = `
         </div>
       </div>
       <div class="v-color-picker__sliders">
-        <div class="v-input v-input--hide-details theme--light v-input__slider">
+        <div class="v-input v-input--hide-details theme--light v-input__slider v-color-picker__hue">
           <div class="v-input__control">
             <div class="v-input__slot">
               <div class="v-slider v-slider--horizontal theme--light">
@@ -61,7 +61,7 @@ exports[`VColorPicker.ts should change canvas height 1`] = `
             </div>
           </div>
         </div>
-        <div class="v-input v-input--hide-details v-input--is-label-active v-input--is-dirty theme--light v-input__slider">
+        <div class="v-input v-input--hide-details v-input--is-label-active v-input--is-dirty theme--light v-input__slider v-color-picker__alpha">
           <div class="v-input__control">
             <div class="v-input__slot">
               <div class="v-slider v-slider--horizontal theme--light">
@@ -146,8 +146,8 @@ exports[`VColorPicker.ts should change canvas height 1`] = `
           A
         </span>
       </div>
-      <button type="button"
-              class="v-btn v-btn--icon v-btn--round theme--light v-size--small"
+      <button class="v-btn v-btn--icon v-btn--round theme--light v-size--small"
+              type="button"
       >
         <span class="v-btn__content">
           <i aria-hidden="true"
@@ -172,7 +172,7 @@ exports[`VColorPicker.ts should hide canvas 1`] = `
         </div>
       </div>
       <div class="v-color-picker__sliders">
-        <div class="v-input v-input--hide-details theme--light v-input__slider">
+        <div class="v-input v-input--hide-details theme--light v-input__slider v-color-picker__hue">
           <div class="v-input__control">
             <div class="v-input__slot">
               <div class="v-slider v-slider--horizontal theme--light">
@@ -210,7 +210,7 @@ exports[`VColorPicker.ts should hide canvas 1`] = `
             </div>
           </div>
         </div>
-        <div class="v-input v-input--hide-details v-input--is-label-active v-input--is-dirty theme--light v-input__slider">
+        <div class="v-input v-input--hide-details v-input--is-label-active v-input--is-dirty theme--light v-input__slider v-color-picker__alpha">
           <div class="v-input__control">
             <div class="v-input__slot">
               <div class="v-slider v-slider--horizontal theme--light">
@@ -295,8 +295,8 @@ exports[`VColorPicker.ts should hide canvas 1`] = `
           A
         </span>
       </div>
-      <button type="button"
-              class="v-btn v-btn--icon v-btn--round theme--light v-size--small"
+      <button class="v-btn v-btn--icon v-btn--round theme--light v-size--small"
+              type="button"
       >
         <span class="v-btn__content">
           <i aria-hidden="true"
@@ -352,7 +352,7 @@ exports[`VColorPicker.ts should hide inputs 1`] = `
         </div>
       </div>
       <div class="v-color-picker__sliders">
-        <div class="v-input v-input--hide-details theme--light v-input__slider">
+        <div class="v-input v-input--hide-details theme--light v-input__slider v-color-picker__hue">
           <div class="v-input__control">
             <div class="v-input__slot">
               <div class="v-slider v-slider--horizontal theme--light">
@@ -390,7 +390,7 @@ exports[`VColorPicker.ts should hide inputs 1`] = `
             </div>
           </div>
         </div>
-        <div class="v-input v-input--hide-details v-input--is-label-active v-input--is-dirty theme--light v-input__slider">
+        <div class="v-input v-input--hide-details v-input--is-label-active v-input--is-dirty theme--light v-input__slider v-color-picker__alpha">
           <div class="v-input__control">
             <div class="v-input__slot">
               <div class="v-slider v-slider--horizontal theme--light">
@@ -496,8 +496,8 @@ exports[`VColorPicker.ts should hide sliders 1`] = `
           A
         </span>
       </div>
-      <button type="button"
-              class="v-btn v-btn--icon v-btn--round theme--light v-size--small"
+      <button class="v-btn v-btn--icon v-btn--round theme--light v-size--small"
+              type="button"
       >
         <span class="v-btn__content">
           <i aria-hidden="true"
@@ -534,7 +534,7 @@ exports[`VColorPicker.ts should not show alpha controls if given hex value witho
         </div>
       </div>
       <div class="v-color-picker__sliders">
-        <div class="v-input v-input--hide-details v-input--is-label-active v-input--is-dirty theme--light v-input__slider">
+        <div class="v-input v-input--hide-details v-input--is-label-active v-input--is-dirty theme--light v-input__slider v-color-picker__hue">
           <div class="v-input__control">
             <div class="v-input__slot">
               <div class="v-slider v-slider--horizontal theme--light">
@@ -608,8 +608,8 @@ exports[`VColorPicker.ts should not show alpha controls if given hex value witho
           B
         </span>
       </div>
-      <button type="button"
-              class="v-btn v-btn--icon v-btn--round theme--light v-size--small"
+      <button class="v-btn v-btn--icon v-btn--round theme--light v-size--small"
+              type="button"
       >
         <span class="v-btn__content">
           <i aria-hidden="true"
@@ -646,7 +646,7 @@ exports[`VColorPicker.ts should render color picker 1`] = `
         </div>
       </div>
       <div class="v-color-picker__sliders">
-        <div class="v-input v-input--hide-details theme--light v-input__slider">
+        <div class="v-input v-input--hide-details theme--light v-input__slider v-color-picker__hue">
           <div class="v-input__control">
             <div class="v-input__slot">
               <div class="v-slider v-slider--horizontal theme--light">
@@ -684,7 +684,7 @@ exports[`VColorPicker.ts should render color picker 1`] = `
             </div>
           </div>
         </div>
-        <div class="v-input v-input--hide-details v-input--is-label-active v-input--is-dirty theme--light v-input__slider">
+        <div class="v-input v-input--hide-details v-input--is-label-active v-input--is-dirty theme--light v-input__slider v-color-picker__alpha">
           <div class="v-input__control">
             <div class="v-input__slot">
               <div class="v-slider v-slider--horizontal theme--light">
@@ -769,8 +769,8 @@ exports[`VColorPicker.ts should render color picker 1`] = `
           A
         </span>
       </div>
-      <button type="button"
-              class="v-btn v-btn--icon v-btn--round theme--light v-size--small"
+      <button class="v-btn v-btn--icon v-btn--round theme--light v-size--small"
+              type="button"
       >
         <span class="v-btn__content">
           <i aria-hidden="true"
@@ -807,7 +807,7 @@ exports[`VColorPicker.ts should render flat picker 1`] = `
         </div>
       </div>
       <div class="v-color-picker__sliders">
-        <div class="v-input v-input--hide-details theme--light v-input__slider">
+        <div class="v-input v-input--hide-details theme--light v-input__slider v-color-picker__hue">
           <div class="v-input__control">
             <div class="v-input__slot">
               <div class="v-slider v-slider--horizontal theme--light">
@@ -845,7 +845,7 @@ exports[`VColorPicker.ts should render flat picker 1`] = `
             </div>
           </div>
         </div>
-        <div class="v-input v-input--hide-details v-input--is-label-active v-input--is-dirty theme--light v-input__slider">
+        <div class="v-input v-input--hide-details v-input--is-label-active v-input--is-dirty theme--light v-input__slider v-color-picker__alpha">
           <div class="v-input__control">
             <div class="v-input__slot">
               <div class="v-slider v-slider--horizontal theme--light">
@@ -930,8 +930,8 @@ exports[`VColorPicker.ts should render flat picker 1`] = `
           A
         </span>
       </div>
-      <button type="button"
-              class="v-btn v-btn--icon v-btn--round theme--light v-size--small"
+      <button class="v-btn v-btn--icon v-btn--round theme--light v-size--small"
+              type="button"
       >
         <span class="v-btn__content">
           <i aria-hidden="true"
@@ -968,7 +968,7 @@ exports[`VColorPicker.ts should render picker with elevation 1`] = `
         </div>
       </div>
       <div class="v-color-picker__sliders">
-        <div class="v-input v-input--hide-details theme--light v-input__slider">
+        <div class="v-input v-input--hide-details theme--light v-input__slider v-color-picker__hue">
           <div class="v-input__control">
             <div class="v-input__slot">
               <div class="v-slider v-slider--horizontal theme--light">
@@ -1006,7 +1006,7 @@ exports[`VColorPicker.ts should render picker with elevation 1`] = `
             </div>
           </div>
         </div>
-        <div class="v-input v-input--hide-details v-input--is-label-active v-input--is-dirty theme--light v-input__slider">
+        <div class="v-input v-input--hide-details v-input--is-label-active v-input--is-dirty theme--light v-input__slider v-color-picker__alpha">
           <div class="v-input__control">
             <div class="v-input__slot">
               <div class="v-slider v-slider--horizontal theme--light">
@@ -1091,8 +1091,8 @@ exports[`VColorPicker.ts should render picker with elevation 1`] = `
           A
         </span>
       </div>
-      <button type="button"
-              class="v-btn v-btn--icon v-btn--round theme--light v-size--small"
+      <button class="v-btn v-btn--icon v-btn--round theme--light v-size--small"
+              type="button"
       >
         <span class="v-btn__content">
           <i aria-hidden="true"
@@ -1129,7 +1129,7 @@ exports[`VColorPicker.ts should show swatches 1`] = `
         </div>
       </div>
       <div class="v-color-picker__sliders">
-        <div class="v-input v-input--hide-details theme--light v-input__slider">
+        <div class="v-input v-input--hide-details theme--light v-input__slider v-color-picker__hue">
           <div class="v-input__control">
             <div class="v-input__slot">
               <div class="v-slider v-slider--horizontal theme--light">
@@ -1167,7 +1167,7 @@ exports[`VColorPicker.ts should show swatches 1`] = `
             </div>
           </div>
         </div>
-        <div class="v-input v-input--hide-details v-input--is-label-active v-input--is-dirty theme--light v-input__slider">
+        <div class="v-input v-input--hide-details v-input--is-label-active v-input--is-dirty theme--light v-input__slider v-color-picker__alpha">
           <div class="v-input__control">
             <div class="v-input__slot">
               <div class="v-slider v-slider--horizontal theme--light">
@@ -1252,8 +1252,8 @@ exports[`VColorPicker.ts should show swatches 1`] = `
           A
         </span>
       </div>
-      <button type="button"
-              class="v-btn v-btn--icon v-btn--round theme--light v-size--small"
+      <button class="v-btn v-btn--icon v-btn--round theme--light v-size--small"
+              type="button"
       >
         <span class="v-btn__content">
           <i aria-hidden="true"
@@ -2108,7 +2108,7 @@ exports[`VColorPicker.ts should work correctly when initial value is null 1`] = 
         </div>
       </div>
       <div class="v-color-picker__sliders">
-        <div class="v-input v-input--hide-details theme--light v-input__slider">
+        <div class="v-input v-input--hide-details theme--light v-input__slider v-color-picker__hue">
           <div class="v-input__control">
             <div class="v-input__slot">
               <div class="v-slider v-slider--horizontal theme--light">
@@ -2146,7 +2146,7 @@ exports[`VColorPicker.ts should work correctly when initial value is null 1`] = 
             </div>
           </div>
         </div>
-        <div class="v-input v-input--hide-details v-input--is-label-active v-input--is-dirty theme--light v-input__slider">
+        <div class="v-input v-input--hide-details v-input--is-label-active v-input--is-dirty theme--light v-input__slider v-color-picker__alpha">
           <div class="v-input__control">
             <div class="v-input__slot">
               <div class="v-slider v-slider--horizontal theme--light">
@@ -2231,8 +2231,8 @@ exports[`VColorPicker.ts should work correctly when initial value is null 1`] = 
           A
         </span>
       </div>
-      <button type="button"
-              class="v-btn v-btn--icon v-btn--round theme--light v-size--small"
+      <button class="v-btn v-btn--icon v-btn--round theme--light v-size--small"
+              type="button"
       >
         <span class="v-btn__content">
           <i aria-hidden="true"
