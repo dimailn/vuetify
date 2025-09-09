@@ -24,4 +24,11 @@ describe('VDatePicker/util/createNativeLocaleFormatter.ts', () => {
     expect(nullFormatter).toBeUndefined()
     global.Intl = oldIntl
   })
+
+  it('should handle invalid date strings', () => {
+    const formatter = createNativeLocaleFormatter(undefined, { year: 'numeric', timeZone: 'UTC' })
+    expect(formatter('undefined')).toBe('1970')
+    expect(formatter('null')).toBe('1970')
+    expect(formatter('')).toBe('1970')
+  })
 })
