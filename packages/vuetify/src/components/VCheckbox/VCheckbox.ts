@@ -8,6 +8,10 @@ import VInput from '../VInput'
 
 // Mixins
 import Selectable from '../../mixins/selectable'
+
+// Utilities
+import { breaking } from '../../util/console'
+
 import { defineComponent, h } from 'vue'
 
 /* @vue/component */
@@ -83,6 +87,18 @@ export default defineComponent({
     },
   },
 
+  created () {
+    const breakingProps = [
+      ['inputValue', 'model-value'],
+      ['input-value', 'model-value'],
+    ]
+
+    /* istanbul ignore next */
+    breakingProps.forEach(([original, replacement]) => {
+      if (this.$attrs.hasOwnProperty(original)) breaking(original, replacement, this)
+    })
+  },
+
   methods: {
     genCheckbox () {
       const { title, ...checkboxAttrs } = this.attrs$
@@ -92,7 +108,7 @@ export default defineComponent({
         h(VIcon, this.setTextColor(this.validationState, {
           dense: this.dense,
           dark: this.dark,
-          light: this.light
+          light: this.light,
         }), () => this.computedIcon),
         this.genInput('checkbox', {
           ...checkboxAttrs,
