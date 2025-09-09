@@ -106,17 +106,29 @@ export default defineComponent({
       }
     },
     genHeader () {
+      console.log("genHeader", this.formatter(String(this.modelValue)));
       const color = !this.disabled && (this.color || 'accent')
-      const header = h('div', this.setTextColor(color, {
-        key: String(this.modelValue),
-      }), {
-        default: () => [h('button', {
-          type: 'button',
-          onClick: () => this.$emit('toggle'),
-        }, {
-          default: () => getSlot(this) || [this.modelValue ? this.formatter(String(this.modelValue)) : ''],
-        })],
-      })
+      const header = h(
+        "div",
+        this.setTextColor(color, {
+          key: String(this.modelValue)
+        }),
+        {
+          default: () => [
+            h(
+              "button",
+              {
+                type: "button",
+                onClick: () => this.$emit("toggle")
+              },
+              {
+                default: () =>
+                  getSlot(this) || [this.formatter(String(this.modelValue))]
+              }
+            )
+          ]
+        }
+      );
 
       const transition = h(Transition, {
         name: (this.isReversing === !this.$vuetify.rtl) ? 'tab-reverse-transition' : 'tab-transition',

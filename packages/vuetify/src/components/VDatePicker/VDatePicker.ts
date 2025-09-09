@@ -386,7 +386,7 @@ export default mixins(
         disabled: this.disabled,
         readonly: this.readonly,
         selectingYear: this.internalActivePicker === 'YEAR',
-        year: this.formatters.year(this.multipleValue.length ? `${this.inputYear || new Date().getFullYear()}` : this.tableDate),
+        year: this.formatters.year(this.multipleValue.length ? `${this.inputYear}` : this.tableDate),
         yearIcon: this.yearIcon,
         modelValue: this.multipleValue[0],
         onUpdateSelectingYear: (value: boolean) => this.internalActivePicker = value ? 'YEAR' : this.type.toUpperCase(),
