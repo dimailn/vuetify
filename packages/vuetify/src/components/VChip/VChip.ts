@@ -44,6 +44,7 @@ export default mixins(
       type: String,
     } as any as PropValidator<string>,
     close: Boolean,
+    onClick: Function as PropType<(e: MouseEvent) => void>,
     closeIcon: {
       type: String,
       default: '$delete',

@@ -32,7 +32,6 @@ type ListTile = { item: any, disabled?: null | boolean, value?: boolean, index: 
 export default mixins(Colorable, Themeable).extend({
   name: 'v-select-list',
 
-
   props: {
     action: Boolean,
     dense: Boolean,
@@ -160,7 +159,7 @@ export default mixins(Colorable, Themeable).extend({
             acc[key] = this.$attrs[key]
           }
           return acc
-        }, {} as Record<string, any>)
+        }, {} as Record<string, any>),
       }
 
       if (!this.$slots.item) {
@@ -173,16 +172,17 @@ export default mixins(Colorable, Themeable).extend({
       }
 
       const parent = this
+      const { onClick, onMousedown, ...attrsWithoutEvents } = tile
       const scopedSlot = this.$slots.item({
         parent,
         item,
-        attrs: {
-          ...tile.attrs,
-          ...tile.props,
-          ...tile.on,
-        },
-        on: tile.on,
-      })
+        active: value,
+        attrs: tile,
+        on: {
+          onMousedown,
+          onClick
+        }
+      });
 
       return this.needsTile(scopedSlot)
         ? h(VListItem, tile, scopedSlot)

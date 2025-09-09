@@ -41,7 +41,6 @@ interface options extends ExtractVue<typeof baseMixins> {
 export default baseMixins.extend({
   name: 'v-list-item',
 
-
   inject: {
     isInGroup: {
       default: false,
@@ -65,6 +64,7 @@ export default baseMixins.extend({
     } as any as PropValidator<string>,
     dense: Boolean,
     inactive: Boolean,
+    onClick: Function as PropType<(e: MouseEvent) => void>,
     link: Boolean,
     selectable: {
       type: Boolean,
@@ -194,10 +194,16 @@ export default baseMixins.extend({
     //   delete data.nativeOn
     // }
 
-    const children = getSlot(this, 'default', {
+    const slotProps = {
       active: this.isActive,
       toggle: this.toggle,
-    })
+    }
+
+    const children = [
+      getSlot(this, 'prepend', slotProps),
+      getSlot(this, 'default', slotProps),
+      getSlot(this, 'append', slotProps),
+    ].filter(Boolean)
 
     const nodeData = this.isActive ? this.setTextColor(this.color, data) : data
 

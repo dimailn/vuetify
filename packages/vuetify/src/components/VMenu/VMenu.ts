@@ -303,7 +303,7 @@ export default baseMixins.extend({
       const listeners = Menuable.methods.genActivatorListeners.call(this)
 
       if (!this.disableKeys) {
-        listeners.keydown = this.onKeyDown
+        listeners.onKeydown = this.onKeyDown;
       }
 
       return listeners
