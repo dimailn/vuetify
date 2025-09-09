@@ -1,4 +1,4 @@
-import {h} from 'vue'
+import { h } from 'vue'
 // Styles
 import './VEditDialog.sass'
 
@@ -37,6 +37,8 @@ export default mixins(Returnable, Themeable).extend({
     },
   },
 
+  emits: ['update:return-value', 'open', 'close', 'cancel', 'save'],
+
   data () {
     return {
       isActive: false,
@@ -58,6 +60,7 @@ export default mixins(Returnable, Themeable).extend({
     cancel () {
       this.isActive = false
       this.$emit('cancel')
+      this.$emit('update:return-value', this.returnValue)
     },
     focus () {
       const input = (this.$refs.content as Element).querySelector('input')
@@ -79,6 +82,7 @@ export default mixins(Returnable, Themeable).extend({
         this.genButton(() => {
           this.save(this.returnValue)
           this.$emit('save')
+          this.$emit('update:return-value', this.returnValue)
         }, this.saveText),
       ])
     },
@@ -90,9 +94,10 @@ export default mixins(Returnable, Themeable).extend({
           if (e.keyCode === keyCodes.enter) {
             this.save(this.returnValue)
             this.$emit('save')
+            this.$emit('update:return-value', this.returnValue)
           }
         },
-        ref: 'content'
+        ref: 'content',
       }, getSlot(this, 'input'))
     },
   },
@@ -111,21 +116,21 @@ export default mixins(Returnable, Themeable).extend({
       light: this.light,
       dark: this.dark,
       onInput: (val: boolean) => (this.isActive = val),
-      scopedSlots: {
-        activator: ({ on }) => {
-          return h('div', {
-            class: 'v-small-dialog__activator',
-            on,
-          }, [
-            h('span', {
-              class: 'v-small-dialog__activator__content',
-            }, getSlot(this)),
-          ])
-        },
+    }, {
+      activator: ({ on }: { on: any }) => {
+        return h('div', {
+          class: 'v-small-dialog__activator',
+          ...on,
+        }, [
+          h('span', {
+            class: 'v-small-dialog__activator__content',
+          }, getSlot(this)),
+        ])
       },
-    }, () => [
-      this.genContent(),
-      this.large ? this.genActions() : null,
-    ])
+      default: () => [
+        this.genContent(),
+        this.large ? this.genActions() : null,
+      ],
+    })
   },
 })

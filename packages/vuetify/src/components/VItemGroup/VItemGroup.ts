@@ -30,6 +30,8 @@ export const BaseItemGroup = mixins(
 ).extend({
   name: 'base-item-group',
 
+  emits: ['update:modelValue'],
+
   props: {
     activeClass: {
       type: String,
