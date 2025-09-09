@@ -52,12 +52,47 @@ export default baseMixins.extend({
     initialValue: null,
     isBooted: false,
     otp: [] as string[],
-    fullWidth: false
   }),
 
   computed: {
-    outlined (): Boolean {
+    outlined (): boolean {
       return !this.plain
+    },
+    fullWidth (): boolean {
+      return false
+    },
+    prefix (): boolean {
+      return false
+    },
+    isSingle (): boolean {
+      return true
+    },
+    isSolo (): boolean {
+      return false
+    },
+    soloInverted (): boolean {
+      return false
+    },
+    flat (): boolean {
+      return false
+    },
+    filled (): boolean {
+      return false
+    },
+    isEnclosed (): boolean {
+      return this.outlined
+    },
+    reverse (): boolean {
+      return false
+    },
+    placeholder (): string {
+      return ''
+    },
+    rounded (): boolean {
+      return false
+    },
+    shaped (): boolean {
+      return false
     },
     classes (): object {
       return {
