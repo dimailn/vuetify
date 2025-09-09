@@ -131,8 +131,6 @@ exports[`VTimePicker.ts should accept a date object for a value 1`] = `
     </div>
   </div>
   <div class="v-picker__actions v-card__actions">
-    <template>
-    </template>
   </div>
 </div>
 `;
@@ -274,8 +272,6 @@ exports[`VTimePicker.ts should accept a date object for a value. with useSeconds
     </div>
   </div>
   <div class="v-picker__actions v-card__actions">
-    <template>
-    </template>
   </div>
 </div>
 `;
@@ -411,8 +407,6 @@ exports[`VTimePicker.ts should accept a value 1`] = `
     </div>
   </div>
   <div class="v-picker__actions v-card__actions">
-    <template>
-    </template>
   </div>
 </div>
 `;
@@ -554,8 +548,6 @@ exports[`VTimePicker.ts should accept a value. with useSeconds 1`] = `
     </div>
   </div>
   <div class="v-picker__actions v-card__actions">
-    <template>
-    </template>
   </div>
 </div>
 `;
@@ -691,8 +683,6 @@ exports[`VTimePicker.ts should change am/pm when updated from model 1`] = `
     </div>
   </div>
   <div class="v-picker__actions v-card__actions">
-    <template>
-    </template>
   </div>
 </div>
 `;
@@ -834,8 +824,6 @@ exports[`VTimePicker.ts should change am/pm when updated from model. with useSec
     </div>
   </div>
   <div class="v-picker__actions v-card__actions">
-    <template>
-    </template>
   </div>
 </div>
 `;
@@ -971,8 +959,6 @@ exports[`VTimePicker.ts should render colored time picker 1`] = `
     </div>
   </div>
   <div class="v-picker__actions v-card__actions">
-    <template>
-    </template>
   </div>
 </div>
 `;
@@ -1108,8 +1094,6 @@ exports[`VTimePicker.ts should render colored time picker, header 1`] = `
     </div>
   </div>
   <div class="v-picker__actions v-card__actions">
-    <template>
-    </template>
   </div>
 </div>
 `;
@@ -1251,8 +1235,6 @@ exports[`VTimePicker.ts should render colored time picker, header. with useSecon
     </div>
   </div>
   <div class="v-picker__actions v-card__actions">
-    <template>
-    </template>
   </div>
 </div>
 `;
@@ -1394,8 +1376,6 @@ exports[`VTimePicker.ts should render colored time picker. with useSeconds 1`] =
     </div>
   </div>
   <div class="v-picker__actions v-card__actions">
-    <template>
-    </template>
   </div>
 </div>
 `;
@@ -1531,8 +1511,6 @@ exports[`VTimePicker.ts should render component with elevation 1`] = `
     </div>
   </div>
   <div class="v-picker__actions v-card__actions">
-    <template>
-    </template>
   </div>
 </div>
 `;
@@ -1674,8 +1652,6 @@ exports[`VTimePicker.ts should render component with elevation. with useSeconds 
     </div>
   </div>
   <div class="v-picker__actions v-card__actions">
-    <template>
-    </template>
   </div>
 </div>
 `;
@@ -1811,8 +1787,6 @@ exports[`VTimePicker.ts should render dark time picker 1`] = `
     </div>
   </div>
   <div class="v-picker__actions v-card__actions">
-    <template>
-    </template>
   </div>
 </div>
 `;
@@ -1954,8 +1928,6 @@ exports[`VTimePicker.ts should render dark time picker. with useSeconds 1`] = `
     </div>
   </div>
   <div class="v-picker__actions v-card__actions">
-    <template>
-    </template>
   </div>
 </div>
 `;
@@ -2091,8 +2063,6 @@ exports[`VTimePicker.ts should render disabled component 1`] = `
     </div>
   </div>
   <div class="v-picker__actions v-card__actions">
-    <template>
-    </template>
   </div>
 </div>
 `;
@@ -2234,8 +2204,6 @@ exports[`VTimePicker.ts should render disabled component. with useSeconds 1`] = 
     </div>
   </div>
   <div class="v-picker__actions v-card__actions">
-    <template>
-    </template>
   </div>
 </div>
 `;
@@ -2371,8 +2339,6 @@ exports[`VTimePicker.ts should render flat component 1`] = `
     </div>
   </div>
   <div class="v-picker__actions v-card__actions">
-    <template>
-    </template>
   </div>
 </div>
 `;
@@ -2514,8 +2480,6 @@ exports[`VTimePicker.ts should render flat component. with useSeconds 1`] = `
     </div>
   </div>
   <div class="v-picker__actions v-card__actions">
-    <template>
-    </template>
   </div>
 </div>
 `;
@@ -2651,8 +2615,6 @@ exports[`VTimePicker.ts should render landscape component 1`] = `
     </div>
   </div>
   <div class="v-picker__actions v-card__actions">
-    <template>
-    </template>
   </div>
 </div>
 `;
@@ -2794,8 +2756,6 @@ exports[`VTimePicker.ts should render landscape component. with useSeconds 1`] =
     </div>
   </div>
   <div class="v-picker__actions v-card__actions">
-    <template>
-    </template>
   </div>
 </div>
 `;

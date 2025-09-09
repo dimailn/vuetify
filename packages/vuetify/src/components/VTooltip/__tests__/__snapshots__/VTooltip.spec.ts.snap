@@ -10,9 +10,13 @@ exports[`VTooltip should render component with bottom and match snapshot 1`] = `
 
 exports[`VTooltip should render component with bottom and match snapshot 2`] = `
 <span class="v-tooltip v-tooltip--bottom">
-  <span>
-    activator
-  </span>
+  <div class="v-tooltip__content  menuable__content__active"
+       style="left: 0px; max-width: auto; top: 12px; z-index: 8; display: none;"
+  >
+    <span>
+      content
+    </span>
+  </div>
 </span>
 `;
 
@@ -34,13 +38,25 @@ exports[`VTooltip should render component with left and match snapshot 1`] = `
 
 exports[`VTooltip should render component with left and match snapshot 2`] = `
 <span class="v-tooltip v-tooltip--left">
+  <div class="v-tooltip__content  menuable__content__active"
+       style="left: 12px; max-width: auto; top: 12px; z-index: 8; display: none;"
+  >
+    <span>
+      content
+    </span>
+  </div>
+</span>
+`;
+
+exports[`VTooltip should render component with min/max width and match snapshot 1`] = `
+<span class="v-tooltip">
   <span>
     activator
   </span>
 </span>
 `;
 
-exports[`VTooltip should render component with min/max width and match snapshot 1`] = `
+exports[`VTooltip should render component with modelValue=true and match snapshot 1`] = `
 <span class="v-tooltip">
   <span>
     activator
@@ -58,9 +74,13 @@ exports[`VTooltip should render component with right and match snapshot 1`] = `
 
 exports[`VTooltip should render component with right and match snapshot 2`] = `
 <span class="v-tooltip v-tooltip--right">
-  <span>
-    activator
-  </span>
+  <div class="v-tooltip__content  menuable__content__active"
+       style="left: 0px; max-width: auto; top: 12px; z-index: 8; display: none;"
+  >
+    <span>
+      content
+    </span>
+  </div>
 </span>
 `;
 
@@ -74,17 +94,13 @@ exports[`VTooltip should render component with top and match snapshot 1`] = `
 
 exports[`VTooltip should render component with top and match snapshot 2`] = `
 <span class="v-tooltip v-tooltip--top">
-  <span>
-    activator
-  </span>
-</span>
-`;
-
-exports[`VTooltip should render component with value=true and match snapshot 1`] = `
-<span class="v-tooltip">
-  <span>
-    activator
-  </span>
+  <div class="v-tooltip__content  menuable__content__active"
+       style="left: 0px; max-width: auto; top: 12px; z-index: 8; display: none;"
+  >
+    <span>
+      content
+    </span>
+  </div>
 </span>
 `;
 

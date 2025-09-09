@@ -2,10 +2,12 @@
 
 exports[`VItem should match snapshot activeClass 1`] = `
 <div class>
+  test content
 </div>
 `;
 
 exports[`VItem should match snapshot activeClass 2`] = `
 <div class="foo">
+  test content
 </div>
 `;
