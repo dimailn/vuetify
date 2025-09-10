@@ -109,6 +109,7 @@ export default mixins(
     } as PropValidator<DataTableHeader[]>,
     showSelect: Boolean,
     checkboxColor: String,
+    color: String,
     showExpand: Boolean,
     showGroupBy: Boolean,
     // TODO: Fix
@@ -512,7 +513,7 @@ export default mixins(
           modelValue: data.isSelected,
           disabled: !this.isSelectable(item),
           color: this.checkboxColor ?? '',
-          onInput: (val: boolean) => data.select(val),
+          'onUpdate:modelValue': (val: boolean) => data.select(val),
         })
       }
 

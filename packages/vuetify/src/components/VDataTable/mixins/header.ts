@@ -52,7 +52,7 @@ export default mixins<HeaderOptions>().extend({
         modelValue: this.everyItem,
         indeterminate: !this.everyItem && this.someItems,
         color: this.checkboxColor ?? '',
-        onInput: (v: boolean) => this.$emit('toggle-select-all', v)
+        'onUpdate:modelValue': (v: boolean) => this.$emit('toggle-select-all', v)
       }
 
       if (this.$slots['data-table-select']) {

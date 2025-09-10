@@ -112,7 +112,7 @@ export default mixins(Returnable, Themeable).extend({
       eager: this.eager,
       light: this.light,
       dark: this.dark,
-      onInput: (val: boolean) => (this.isActive = val),
+      'onUpdate:modelValue': (val: boolean) => (this.isActive = val),
     }, {
       activator: ({ on }: { on: any }) => {
         return h('div', {

@@ -122,7 +122,7 @@ export default defineComponent({
           hideDetails: true,
           auto: true,
           minWidth: '75px',
-          onInput: this.onChangeItemsPerPage,
+          'onUpdate:modelValue': this.onChangeItemsPerPage,
         })),
       ])
     },

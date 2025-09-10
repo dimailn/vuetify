@@ -87,7 +87,7 @@ export default mixins(Colorable, Themeable).extend({
           color: this.color,
           modelValue: inputValue,
           ripple: false,
-          onInput: () => this.$emit('select', item),
+          'onUpdate:modelValue': () => this.$emit('select', item),
         }),
       ])
     },

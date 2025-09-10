@@ -571,7 +571,7 @@ export default baseMixins.extend({
       return h(VMenu, {
         role: undefined,
         ...props,
-        onInput: (val: boolean) => {
+        'onUpdate:modelValue': (val: boolean) => {
           this.isMenuActive = val
           this.isFocused = val
         },

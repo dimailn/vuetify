@@ -130,19 +130,24 @@ describe('VDataTable.ts', () => {
     document.body.setAttribute('data-app', 'true')
 
     mountFunction = (options?: MountingOptions<Instance>) => {
+      const vuetifyInstance = {
+        breakpoint: new Breakpoint(preset),
+        lang: new Lang(preset),
+        theme: {
+          dark: false,
+        },
+        icons: {}
+      }
+
       return mount(VDataTable, {
         global: {
           config: {
             globalProperties: {
-              $vuetify: {
-                breakpoint: new Breakpoint(preset),
-                lang: new Lang(preset),
-                theme: {
-                  dark: false,
-                },
-                icons: {}
-              }
+              $vuetify: vuetifyInstance
             }
+          },
+          mocks: {
+            $vuetify: vuetifyInstance
           }
         },
         ...options,
@@ -202,7 +207,7 @@ describe('VDataTable.ts', () => {
 
   })
 
-  it.skip('should render virtual table', () => {
+  it('should render virtual table', () => {
     const wrapper = mountFunction({
       props: {
         headers: testHeaders,
@@ -344,6 +349,8 @@ describe('VDataTable.ts', () => {
     const wrapper = mountFunction({
       props: {
         loading: true,
+        checkboxColor: 'primary',
+        color: 'primary',
       },
     })
 
