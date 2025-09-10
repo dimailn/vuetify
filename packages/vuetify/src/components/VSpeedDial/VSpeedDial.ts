@@ -57,14 +57,12 @@ export default mixins(Positionable, Toggleable, Transitionable).extend({
     let children: VNode[] = []
     const data: VNodeData = {
       class: this.classes,
-      on: {
-        click: () => (this.isActive = !this.isActive),
-      },
+      onClick: () => (this.isActive = !this.isActive),
     }
 
     if (this.openOnHover) {
-      data.on!.mouseenter = () => (this.isActive = true)
-      data.on!.mouseleave = () => (this.isActive = false)
+      data.onMouseenter = () => (this.isActive = true)
+      data.onMouseleave = () => (this.isActive = false)
     }
 
     if (this.isActive) {
