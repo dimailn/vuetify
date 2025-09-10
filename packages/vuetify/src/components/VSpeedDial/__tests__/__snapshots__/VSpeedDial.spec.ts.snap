@@ -2,24 +2,24 @@
 
 exports[`VSpeedDial.ts should render active component and match snapshot 1`] = `
 <div class="v-speed-dial v-speed-dial--direction-top v-speed-dial--is-active">
-  <span class="v-speed-dial__list">
+  <div class="v-speed-dial__list">
     <span>
       test
     </span>
-  </span>
+  </div>
 </div>
 `;
 
 exports[`VSpeedDial.ts should render component and match snapshot 1`] = `
 <div class="v-speed-dial v-speed-dial--direction-top">
-  <span class="v-speed-dial__list">
-  </span>
+  <div class="v-speed-dial__list">
+  </div>
 </div>
 `;
 
 exports[`VSpeedDial.ts should render component with custom direction and match snapshot 1`] = `
 <div class="v-speed-dial v-speed-dial--direction-right">
-  <span class="v-speed-dial__list">
-  </span>
+  <div class="v-speed-dial__list">
+  </div>
 </div>
 `;
