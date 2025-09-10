@@ -1,4 +1,5 @@
-import { defineComponent, VNode, h } from 'vue'
+import { defineComponent, VNode, h, Fragment } from 'vue'
+import { getSlot } from '../../util/helpers'
 
 export default defineComponent({
   name: 'row-group',
@@ -6,7 +7,7 @@ export default defineComponent({
   functional: true,
 
   props: {
-    value: {
+    modelValue: {
       type: Boolean,
       default: true,
     },
@@ -23,28 +24,34 @@ export default defineComponent({
 
   render (): VNode {
     const props = this.$props
-
-    const computedSlots = this.$slots
     const children = []
 
-    if (computedSlots['column.header']) {
+    const columnHeaderSlot = getSlot(this, 'column.header')
+    const rowHeaderSlot = getSlot(this, 'row.header')
+    const rowContentSlot = getSlot(this, 'row.content')
+    const columnSummarySlot = getSlot(this, 'column.summary')
+    const rowSummarySlot = getSlot(this, 'row.summary')
+
+    if (columnHeaderSlot) {
       children.push(h('tr', {
         class: props.headerClass,
-      }, computedSlots['column.header']))
-    } else if (computedSlots['row.header']) {
-      children.push(...computedSlots['row.header'])
+      }, columnHeaderSlot))
+    } else if (rowHeaderSlot) {
+      children.push(...(Array.isArray(rowHeaderSlot) ? rowHeaderSlot : [rowHeaderSlot]))
     }
 
-    if (computedSlots['row.content'] && props.value) children.push(...computedSlots['row.content'])
+    if (rowContentSlot && props.modelValue) {
+      children.push(...(Array.isArray(rowContentSlot) ? rowContentSlot : [rowContentSlot]))
+    }
 
-    if (computedSlots['column.summary']) {
+    if (columnSummarySlot) {
       children.push(h('tr', {
         class: props.summaryClass,
-      }, computedSlots['column.summary']))
-    } else if (computedSlots['row.summary']) {
-      children.push(...computedSlots['row.summary'])
+      }, columnSummarySlot))
+    } else if (rowSummarySlot) {
+      children.push(...(Array.isArray(rowSummarySlot) ? rowSummarySlot : [rowSummarySlot]))
     }
 
-    return children as any
+    return h(Fragment, children)
   },
 })

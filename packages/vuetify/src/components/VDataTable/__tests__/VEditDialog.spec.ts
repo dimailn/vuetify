@@ -86,11 +86,11 @@ describe('VEditDialog.ts', () => {
 
     const menu = wrapper.findComponent(VMenu)
 
-    menu.vm.$emit('input', true)
+    menu.vm.$emit('update:modelValue', true)
     await wrapper.vm.$nextTick()
     expect(open).toHaveBeenCalledTimes(1)
 
-    menu.vm.$emit('input', false)
+    menu.vm.$emit('update:modelValue', false)
     await wrapper.vm.$nextTick()
     expect(close).toHaveBeenCalledTimes(1)
   })
@@ -126,22 +126,27 @@ describe('VEditDialog.ts', () => {
 
     // Make sure originalValue gets set
     wrapper.vm.isActive = true
+    await wrapper.vm.$nextTick()
     field.setValue('test')
     // Update the parent component's val to match the input value
     parentWrapper.vm.val = 'test'
     input.dispatchEvent(new KeyboardEvent('keydown', { keyCode: keyCodes.esc } as KeyboardEventInit))
+    await wrapper.vm.$nextTick()
     expect(wrapper.emitted('cancel')).toBeTruthy()
     expect(wrapper.emitted('update:return-value')?.[0]).toEqual(['test'])
     expect(wrapper.props('returnValue')).toBe('test')
 
     wrapper.vm.isActive = true
+    await wrapper.vm.$nextTick()
     field.setValue('test')
     // Update the parent component's val to match the input value
     parentWrapper.vm.val = 'test'
     input.dispatchEvent(new KeyboardEvent('keydown', { keyCode: keyCodes.enter } as KeyboardEventInit))
+    await wrapper.vm.$nextTick()
     expect(wrapper.emitted('save')).toBeTruthy()
     expect(setTimeout).toHaveBeenLastCalledWith(expect.any(Function))
     jest.advanceTimersByTime(0)
+    await wrapper.vm.$nextTick()
     expect(wrapper.emitted('update:return-value')?.[1]).toEqual(['test'])
     expect(wrapper.props('returnValue')).toBe('test')
 

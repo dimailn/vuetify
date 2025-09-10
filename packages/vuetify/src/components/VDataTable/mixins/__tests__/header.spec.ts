@@ -2,13 +2,18 @@ import Header from '../header'
 import {
   mount,
   MountOptions,
-  Wrapper,
+  VueWrapper,
+  enableAutoUnmount,
 } from '@vue/test-utils'
+import { h } from 'vue'
 import { wrapInArray } from '../../../../util/helpers'
 
 describe('VDataTable/header.ts', () => {
   type Instance = InstanceType<typeof Header>
-  let mountFunction: (options?: MountOptions<Instance>) => Wrapper<Instance>
+  let mountFunction: (options?: MountOptions<Instance>) => VueWrapper<Instance>
+
+  enableAutoUnmount(afterEach)
+
   beforeEach(() => {
     mountFunction = (options?: MountOptions<Instance>) => {
       return mount(Header, {
@@ -26,7 +31,7 @@ describe('VDataTable/header.ts', () => {
 
   it('should generate sort icon', async () => {
     const wrapper = mountFunction({
-      propsData: {
+      props: {
         sortIcon: 'mdi-sort',
       },
       render () {
@@ -39,7 +44,7 @@ describe('VDataTable/header.ts', () => {
 
   it('should generate select', async () => {
     const wrapper = mountFunction({
-      render (h) {
+      render () {
         return h('div', wrapInArray(this.genSelectAll()))
       },
     })
@@ -64,21 +69,17 @@ describe('VDataTable/header.ts', () => {
   })
 
   it('should generate select scoped slot', async () => {
-    const sel = jest.fn()
     const wrapper = mountFunction({
-      render (h) {
+      render () {
         return h('div', wrapInArray(this.genSelectAll()))
       },
-      scopedSlots: {
+      slots: {
         'data-table-select' (props) {
           return h('div', {
-            on: props.on,
+            onClick: () => props['onUpdate:modelValue'](true),
             class: 'test',
           }, [JSON.stringify(props)])
         },
-      },
-      listeners: {
-        'toggle-select-all': sel,
       },
     })
 
@@ -101,9 +102,8 @@ describe('VDataTable/header.ts', () => {
     expect(wrapper.html()).toMatchSnapshot()
 
     const select = wrapper.find('.test')
-    select.trigger('input', { value: true })
-    expect(sel.mock.calls[0][0].value).toBeTruthy()
-    select.trigger('input', { value: false })
-    expect(sel.mock.calls[1][0].value).toBeFalsy()
+    await select.trigger('click')
+    expect(wrapper.emitted('toggle-select-all')).toBeTruthy()
+    expect(wrapper.emitted('toggle-select-all')![0]).toEqual([true])
   })
 })

@@ -38,30 +38,23 @@ export default mixins(header).extend({
 
       return h(VChip, {
         class: 'sortable',
-        on: {
-          click: (e: MouseEvent) => {
-            e.stopPropagation()
-            this.$emit('sort', props.item.value)
-          },
+        onClick: (e: MouseEvent) => {
+          e.stopPropagation()
+          this.$emit('sort', props.item.value)
         },
       }, children)
     },
     genSortSelect (items: any[]) {
       return h(VSelect, {
-        props: {
-          label: this.$vuetify.lang.t(this.sortByText),
-          items,
-          hideDetails: true,
-          multiple: this.options.multiSort,
-          value: this.options.multiSort ? this.options.sortBy : this.options.sortBy[0],
-          menuProps: { closeOnContentClick: true },
-        },
-        on: {
-          change: (v: string | string[]) => this.$emit('sort', v),
-        },
-        scopedSlots: {
-          selection: props => this.genSortChip(props),
-        },
+        label: this.$vuetify.lang.t(this.sortByText),
+        items,
+        hideDetails: true,
+        multiple: this.options.multiSort,
+        modelValue: this.options.multiSort ? this.options.sortBy : this.options.sortBy[0],
+        menuProps: { closeOnContentClick: true },
+        'onUpdate:modelValue': (v: string | string[]) => this.$emit('sort', v),
+      }, {
+        selection: (props: any) => this.genSortChip(props),
       })
     },
   },
@@ -76,9 +69,7 @@ export default mixins(header).extend({
           'v-data-table-header-mobile__select',
           ...wrapInArray(header.class),
         ],
-        attrs: {
-          width: header.width,
-        },
+        width: header.width,
       }, [this.genSelectAll()]))
     }
 

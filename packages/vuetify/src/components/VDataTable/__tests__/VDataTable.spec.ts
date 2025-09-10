@@ -136,19 +136,19 @@ describe('VDataTable.ts', () => {
         theme: {
           dark: false,
         },
-        icons: {}
+        icons: {},
       }
 
       return mount(VDataTable, {
         global: {
           config: {
             globalProperties: {
-              $vuetify: vuetifyInstance
-            }
+              $vuetify: vuetifyInstance,
+            },
           },
           mocks: {
-            $vuetify: vuetifyInstance
-          }
+            $vuetify: vuetifyInstance,
+          },
         },
         ...options,
       })
@@ -188,7 +188,6 @@ describe('VDataTable.ts', () => {
     })
 
     expect(wrapper.html()).toMatchSnapshot()
-
   })
 
   it('should render with foot slot', () => {
@@ -204,7 +203,6 @@ describe('VDataTable.ts', () => {
     })
 
     expect(wrapper.html()).toMatchSnapshot()
-
   })
 
   it('should render virtual table', () => {
@@ -237,7 +235,6 @@ describe('VDataTable.ts', () => {
 
     expect(wrapper.html()).toMatchSnapshot()
 
-
     const expandIcon = wrapper.findAll('.v-data-table__expand-icon')[0]
     if (expandIcon) {
       expandIcon.trigger('click')
@@ -259,7 +256,6 @@ describe('VDataTable.ts', () => {
     })
 
     expect(wrapper.html()).toMatchSnapshot()
-
   })
 
   it('should render with item.expanded scoped slot', async () => {
@@ -278,7 +274,6 @@ describe('VDataTable.ts', () => {
     await nextTick()
 
     expect(wrapper.html()).toMatchSnapshot()
-
   })
 
   it('should render with group.summary scoped slot', () => {
@@ -295,7 +290,6 @@ describe('VDataTable.ts', () => {
     })
 
     expect(wrapper.html()).toMatchSnapshot()
-
   })
 
   it('should render with item scoped slot', () => {
@@ -311,7 +305,6 @@ describe('VDataTable.ts', () => {
     })
 
     expect(wrapper.html()).toMatchSnapshot()
-
   })
 
   it('should render with grouped rows', () => {
@@ -325,7 +318,6 @@ describe('VDataTable.ts', () => {
     })
 
     expect(wrapper.html()).toMatchSnapshot()
-
   })
 
   it('should render with group scoped slot', () => {
@@ -342,7 +334,6 @@ describe('VDataTable.ts', () => {
     })
 
     expect(wrapper.html()).toMatchSnapshot()
-
   })
 
   it('should render loading state', () => {
@@ -356,7 +347,6 @@ describe('VDataTable.ts', () => {
 
     expect(wrapper.html()).toMatchSnapshot()
 
-
     const wrapper2 = mountFunction({
       props: {
         headers: testHeaders,
@@ -368,7 +358,6 @@ describe('VDataTable.ts', () => {
     })
 
     expect(wrapper2.html()).toMatchSnapshot()
-
   })
 
   it.each([

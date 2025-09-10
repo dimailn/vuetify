@@ -41,7 +41,7 @@ export default mixins(Returnable, Themeable).extend({
 
   data () {
     return {
-      isActive: false,
+      // isActive is provided by Returnable mixin
     }
   },
 
@@ -106,7 +106,7 @@ export default mixins(Returnable, Themeable).extend({
       transition: this.transition,
       origin: 'top right',
       right: true,
-      value: this.isActive,
+      modelValue: this.isActive,
       closeOnClick: !this.persistent,
       closeOnContentClick: false,
       eager: this.eager,

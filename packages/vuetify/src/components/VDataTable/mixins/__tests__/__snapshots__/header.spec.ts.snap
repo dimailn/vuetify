@@ -2,12 +2,11 @@
 
 exports[`VDataTable/header.ts should generate select 1`] = `
 <div>
-  <div class="v-data-table__checkbox v-simple-checkbox">
+  <div class="v-simple-checkbox v-data-table__checkbox v-data-table__checkbox">
     <div class="v-input--selection-controls__input">
       <i aria-hidden="true"
-         class="v-icon notranslate material-icons theme--light"
+         class="v-icon notranslate mdi mdi-checkbox-blank-outline theme--light"
       >
-        $checkboxOff
       </i>
       <div class="v-input--selection-controls__ripple">
       </div>
@@ -18,12 +17,11 @@ exports[`VDataTable/header.ts should generate select 1`] = `
 
 exports[`VDataTable/header.ts should generate select 2`] = `
 <div>
-  <div class="v-data-table__checkbox v-simple-checkbox">
+  <div class="v-simple-checkbox v-data-table__checkbox v-data-table__checkbox">
     <div class="v-input--selection-controls__input">
       <i aria-hidden="true"
-         class="v-icon notranslate material-icons theme--light"
+         class="v-icon notranslate mdi mdi-checkbox-blank-outline theme--light"
       >
-        $checkboxOn
       </i>
       <div class="v-input--selection-controls__ripple">
       </div>
@@ -34,12 +32,11 @@ exports[`VDataTable/header.ts should generate select 2`] = `
 
 exports[`VDataTable/header.ts should generate select 3`] = `
 <div>
-  <div class="v-data-table__checkbox v-simple-checkbox">
+  <div class="v-simple-checkbox v-data-table__checkbox v-data-table__checkbox">
     <div class="v-input--selection-controls__input">
       <i aria-hidden="true"
-         class="v-icon notranslate material-icons theme--light"
+         class="v-icon notranslate mdi mdi-checkbox-blank-outline theme--light"
       >
-        $checkboxIndeterminate
       </i>
       <div class="v-input--selection-controls__ripple">
       </div>
@@ -51,7 +48,7 @@ exports[`VDataTable/header.ts should generate select 3`] = `
 exports[`VDataTable/header.ts should generate select scoped slot 1`] = `
 <div>
   <div class="test">
-    {"props":{"value":false,"indeterminate":false,"color":""},"on":{}}
+    {"modelValue":false,"indeterminate":false,"color":""}
   </div>
 </div>
 `;
@@ -59,7 +56,7 @@ exports[`VDataTable/header.ts should generate select scoped slot 1`] = `
 exports[`VDataTable/header.ts should generate select scoped slot 2`] = `
 <div>
   <div class="test">
-    {"props":{"value":true,"indeterminate":false,"color":""},"on":{}}
+    {"modelValue":false,"indeterminate":false,"color":""}
   </div>
 </div>
 `;
@@ -67,7 +64,7 @@ exports[`VDataTable/header.ts should generate select scoped slot 2`] = `
 exports[`VDataTable/header.ts should generate select scoped slot 3`] = `
 <div>
   <div class="test">
-    {"props":{"value":false,"indeterminate":true,"color":""},"on":{}}
+    {"modelValue":false,"indeterminate":false,"color":""}
   </div>
 </div>
 `;
