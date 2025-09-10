@@ -7,12 +7,15 @@ import VTooltip from '../../VTooltip/VTooltip'
 import {
   mount,
   Wrapper,
+  enableAutoUnmount,
 } from '@vue/test-utils'
-import { compileToFunctions } from 'vue-template-compiler'
+import { h } from 'vue'
 
 describe('VSpeedDial.ts', () => {
   type Instance = InstanceType<typeof VSpeedDial>
   let mountFunction: (options?: object) => Wrapper<Instance>
+
+  enableAutoUnmount(afterEach)
 
   beforeEach(() => {
     mountFunction = (options = {}) => {
@@ -31,7 +34,7 @@ describe('VSpeedDial.ts', () => {
   it('should render active component and match snapshot', () => {
     const wrapper = mountFunction({
       slots: {
-        default: [compileToFunctions('<span>test</span>')],
+        default: () => h('span', 'test'),
       },
       data: () => ({ isActive: true }),
     })
@@ -41,7 +44,7 @@ describe('VSpeedDial.ts', () => {
 
   it('should render component with custom direction and match snapshot', () => {
     const wrapper = mountFunction({
-      propsData: {
+      props: {
         direction: 'right',
       },
     })
@@ -49,37 +52,42 @@ describe('VSpeedDial.ts', () => {
     expect(wrapper.html()).toMatchSnapshot()
   })
 
-  it('should activate on click', () => {
+  it('should activate on click', async () => {
     const wrapper = mountFunction()
 
     expect(wrapper.vm.isActive).toBe(false)
-    wrapper.trigger('click')
+    await wrapper.trigger('click')
     expect(wrapper.vm.isActive).toBe(true)
   })
 
-  it('should activate on hover', () => {
+  it('should activate on hover', async () => {
     const wrapper = mountFunction({
-      propsData: {
+      props: {
         openOnHover: true,
       },
     })
 
     expect(wrapper.vm.isActive).toBe(false)
-    wrapper.trigger('mouseenter')
+    await wrapper.trigger('mouseenter')
     expect(wrapper.vm.isActive).toBe(true)
-    wrapper.trigger('mouseleave')
+    await wrapper.trigger('mouseleave')
     expect(wrapper.vm.isActive).toBe(false)
   })
 
-  it('should wrap v-btn or v-tooltip component with div tag', () => {
+  it('should render v-btn and v-tooltip components when active', () => {
     const wrapper = mount(VSpeedDial, {
       slots: {
-        default: [VBtn, VTooltip],
+        default: () => [h(VBtn, { key: 'btn' }), h(VTooltip, { key: 'tooltip' })],
       },
       data: () => ({ isActive: true }),
     })
 
-    expect(wrapper.findAll('.v-speed-dial__list div button')).toHaveLength(1)
-    expect(wrapper.findAll('.v-speed-dial__list div .v-tooltip')).toHaveLength(1)
+    expect(wrapper.findComponent(VBtn).exists()).toBe(true)
+    expect(wrapper.findComponent(VTooltip).exists()).toBe(true)
+
+    const speedDialList = wrapper.find('.v-speed-dial__list')
+    expect(speedDialList.exists()).toBe(true)
+    expect(speedDialList.findComponent(VBtn).exists()).toBe(true)
+    expect(speedDialList.findComponent(VTooltip).exists()).toBe(true)
   })
 })

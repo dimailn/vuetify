@@ -4,13 +4,16 @@ import VAutocomplete from '../VAutocomplete'
 // Utilities
 import {
   mount,
-  Wrapper,
+  VueWrapper,
+  enableAutoUnmount,
 } from '@vue/test-utils'
 import { keyCodes } from '../../../util/helpers'
 
 describe('VAutocomplete.ts', () => {
   type Instance = InstanceType<typeof VAutocomplete>
-  let mountFunction: (options?: object) => Wrapper<Instance>
+  let mountFunction: (options?: object) => VueWrapper<Instance>
+
+  enableAutoUnmount(afterEach)
 
   beforeEach(() => {
     document.body.setAttribute('data-app', 'true')
@@ -18,15 +21,18 @@ describe('VAutocomplete.ts', () => {
     mountFunction = (options = {}) => {
       return mount(VAutocomplete, {
         ...options,
-        // https://github.com/vuejs/vue-test-utils/issues/1130
-        sync: false,
-        mocks: {
-          $vuetify: {
-            lang: {
-              t: (val: string) => val,
-            },
-            theme: {
-              dark: false,
+        global: {
+          mocks: {
+            $vuetify: {
+              lang: {
+                t: (val: string) => val,
+              },
+              theme: {
+                dark: false,
+              },
+              icons: {
+                component: null,
+              },
             },
           },
         },
@@ -46,28 +52,23 @@ describe('VAutocomplete.ts', () => {
   })
 
   it('should emit search input changes', async () => {
-    const wrapper = mountFunction({
-      propsData: {
-      },
-    })
+    const wrapper = mountFunction()
 
     const input = wrapper.find('input')
     const element = input.element as HTMLInputElement
-
-    const update = jest.fn()
-    wrapper.vm.$on('update:search-input', update)
 
     element.value = 'test'
     input.trigger('input')
 
     await wrapper.vm.$nextTick()
 
-    expect(update).toHaveBeenCalledWith('test')
+    expect(wrapper.emitted('update:search-input')).toBeTruthy()
+    expect(wrapper.emitted('update:search-input')?.[0]).toEqual(['test'])
   })
 
   it('should filter autocomplete search results', async () => {
     const wrapper = mountFunction({
-      propsData: { items: ['foo', 'bar'] },
+      props: { items: ['foo', 'bar'] },
     })
 
     wrapper.setData({ internalSearch: 'foo' })
@@ -78,7 +79,7 @@ describe('VAutocomplete.ts', () => {
 
   it('should filter numeric primitives', () => {
     const wrapper = mountFunction({
-      propsData: {
+      props: {
         items: [1, 2],
       },
     })
@@ -91,7 +92,7 @@ describe('VAutocomplete.ts', () => {
 
   it('should activate when search changes and not active', async () => {
     const wrapper = mountFunction({
-      propsData: {
+      props: {
         items: [1, 2, 3, 4],
         multiple: true,
       },
@@ -109,7 +110,7 @@ describe('VAutocomplete.ts', () => {
   // https://github.com/vuejs/vue-test-utils/issues/1130
   it.skip('should set searchValue to null when deactivated', async () => {
     const wrapper = mountFunction({
-      propsData: {
+      props: {
         items: [1, 2, 3, 4],
         multiple: true,
       },
@@ -128,7 +129,7 @@ describe('VAutocomplete.ts', () => {
 
     wrapper.setProps({
       multiple: false,
-      value: 1,
+      modelValue: 1,
     })
 
     await wrapper.vm.$nextTick()
@@ -154,7 +155,7 @@ describe('VAutocomplete.ts', () => {
 
   it('should not duplicate items after items update when caching is turned on', async () => {
     const wrapper = mountFunction({
-      propsData: {
+      props: {
         cacheItems: true,
         returnObject: true,
         itemText: 'text',
@@ -171,7 +172,7 @@ describe('VAutocomplete.ts', () => {
 
   it('should cache items passed via prop', async () => {
     const wrapper = mountFunction({
-      propsData: {
+      props: {
         cacheItems: true,
         items: [1, 2, 3, 4],
       },
@@ -186,7 +187,7 @@ describe('VAutocomplete.ts', () => {
 
   it('should not filter text with no items', async () => {
     const wrapper = mountFunction({
-      propsData: {
+      props: {
         eager: true,
         items: ['foo', 'bar'],
       },
@@ -206,9 +207,9 @@ describe('VAutocomplete.ts', () => {
 
   it('should not display menu when tab focused', async () => {
     const wrapper = mountFunction({
-      propsData: {
+      props: {
         items: [1, 2],
-        value: 1,
+        modelValue: 1,
       },
     })
 
@@ -225,11 +226,11 @@ describe('VAutocomplete.ts', () => {
   // eslint-disable-next-line max-statements
   it.skip('should change selected index', async () => {
     const wrapper = mountFunction({
-      attachToDocument: true,
-      propsData: {
+      attachTo: document.body,
+      props: {
         items: ['foo', 'bar', 'fizz'],
         multiple: true,
-        value: ['foo', 'bar', 'fizz'],
+        modelValue: ['foo', 'bar', 'fizz'],
       },
     })
 
@@ -304,7 +305,7 @@ describe('VAutocomplete.ts', () => {
 
     expect(wrapper.vm.selectedIndex).toBe(-1)
 
-    wrapper.setProps({ value: ['foo', 'bar', 'fizz'] })
+    wrapper.setProps({ modelValue: ['foo', 'bar', 'fizz'] })
 
     await wrapper.vm.$nextTick()
 
@@ -313,7 +314,7 @@ describe('VAutocomplete.ts', () => {
     wrapper.vm.selectedIndex = 2
 
     // Simulating removing items when an index already selected
-    wrapper.setProps({ value: ['foo', 'bar'] })
+    wrapper.setProps({ modelValue: ['foo', 'bar'] })
 
     await wrapper.vm.$nextTick()
 
@@ -326,8 +327,8 @@ describe('VAutocomplete.ts', () => {
 
   it('should conditionally show the menu', async () => {
     const wrapper = mountFunction({
-      attachToDocument: true,
-      propsData: {
+      attachTo: document.body,
+      props: {
         items: ['foo', 'bar', 'fizz'],
       },
     })
@@ -367,10 +368,10 @@ describe('VAutocomplete.ts', () => {
   // https://github.com/vuejs/vue-test-utils/issues/1130
   it.skip('should have the correct selected item', async () => {
     const wrapper = mountFunction({
-      propsData: {
+      props: {
         items: ['foo', 'bar', 'fizz'],
         multiple: true,
-        value: ['foo'],
+        modelValue: ['foo'],
       },
     })
 
@@ -378,7 +379,7 @@ describe('VAutocomplete.ts', () => {
 
     wrapper.setProps({
       multiple: false,
-      value: 'foo',
+      modelValue: 'foo',
     })
 
     expect(wrapper.vm.selectedItem).toBe('foo')
@@ -386,7 +387,7 @@ describe('VAutocomplete.ts', () => {
 
   it('should reset lazySearch', async () => {
     const wrapper = mountFunction({
-      propsData: {
+      props: {
         chips: true,
         items: ['foo', 'bar', 'fizz'],
         searchInput: 'foo',
@@ -406,7 +407,7 @@ describe('VAutocomplete.ts', () => {
 
   it('should select input text on focus', async () => {
     const wrapper = mountFunction({
-      attachToDocument: true,
+      attachTo: document.body,
     })
     const select = jest.fn()
     wrapper.vm.$refs.input.select = select
@@ -430,9 +431,9 @@ describe('VAutocomplete.ts', () => {
   it('should not respond to click', () => {
     const onFocus = jest.fn()
     const wrapper = mountFunction({
-      propsData: { disabled: true },
-      methods: { onFocus },
+      props: { disabled: true },
     })
+    wrapper.vm.onFocus = onFocus
     const slot = wrapper.find('.v-input__slot')
 
     slot.trigger('click')
@@ -457,14 +458,11 @@ describe('VAutocomplete.ts', () => {
     const changeSelectedIndex = jest.fn()
     const onEscDown = jest.fn()
     const onTabDown = jest.fn()
-    const wrapper = mountFunction({
-      methods: {
-        activateMenu,
-        changeSelectedIndex,
-        onEscDown,
-        onTabDown,
-      },
-    })
+    const wrapper = mountFunction()
+    wrapper.vm.activateMenu = activateMenu
+    wrapper.vm.changeSelectedIndex = changeSelectedIndex
+    wrapper.vm.onEscDown = onEscDown
+    wrapper.vm.onTabDown = onTabDown
 
     const input = wrapper.find('input')
     const element = input.element as HTMLInputElement
@@ -509,10 +507,10 @@ describe('VAutocomplete.ts', () => {
 
   it('should not delete item if readonly', async () => {
     const wrapper = mountFunction({
-      propsData: {
+      props: {
         items: ['a', 'b', 'c'],
         multiple: true,
-        value: ['a', 'b', 'c'],
+        modelValue: ['a', 'b', 'c'],
       },
     })
     wrapper.vm.changeSelectedIndex(keyCodes.right)
