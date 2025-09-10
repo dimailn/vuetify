@@ -27,8 +27,8 @@ export default mixins(header).extend({
       const isDesc = this.options.sortDesc[sortIndex]
 
       children.push(h('div', {
-        class: 'v-chip__close',
         class: {
+          'v-chip__close': true,
           sortable: true,
           active: beingSorted,
           asc: beingSorted && !isDesc,
