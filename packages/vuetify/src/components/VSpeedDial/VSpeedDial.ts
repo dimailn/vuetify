@@ -20,8 +20,6 @@ import { getSlot } from '../../util/helpers'
 export default mixins(Positionable, Toggleable, Transitionable).extend({
   name: 'v-speed-dial',
 
-  emits: ['update:modelValue'],
-
   props: {
     direction: {
       type: String as Prop<'top' | 'right' | 'bottom' | 'left'>,
@@ -36,6 +34,8 @@ export default mixins(Positionable, Toggleable, Transitionable).extend({
       default: 'scale-transition',
     },
   },
+
+  emits: ['update:modelValue'],
 
   computed: {
     classes (): object {
@@ -70,7 +70,8 @@ export default mixins(Positionable, Toggleable, Transitionable).extend({
     if (this.isActive) {
       let btnCount = 0
       children = (getSlot(this) || []).map((b, i) => {
-        if (b.tag && typeof b.componentOptions !== 'undefined' && (b.componentOptions.Ctor.name === 'v-btn' || b.componentOptions.Ctor.name === 'v-tooltip')) {
+        const componentName = b.type && typeof b.type === 'object' && 'name' in b.type ? b.type.name : null
+        if (b.tag && (componentName === 'v-btn' || componentName === 'v-tooltip')) {
           btnCount++
           return h('div', {
             style: {

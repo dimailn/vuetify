@@ -201,10 +201,18 @@ export default mixins(Colorable, Themeable).extend({
     hasItem (item: object) {
       return this.parsedItems.indexOf(this.getValue(item)) > -1
     },
-    needsTile (slot: VNode[] | undefined) {
-      return slot!.length !== 1 ||
-        slot![0].componentOptions == null ||
-        slot![0].componentOptions.Ctor.name !== 'v-list-item'
+    needsTile (slot: VNode[] | undefined): boolean {
+      const [vnode] = slot ?? []
+
+      if (!slot?.length || slot.length !== 1) return true
+
+      const { type } = vnode ?? {}
+
+      const isComponent = type && typeof type === 'object'
+
+      const isVListItem = isComponent && 'name' in type && type.name === 'v-list-item'
+
+      return !isVListItem
     },
     getDisabled (item: object) {
       return Boolean(getPropertyFromItem(item, this.itemDisabled, false))
