@@ -72,6 +72,7 @@ export default baseMixins.extend({
       type: null as unknown as PropType<string | boolean | Element | VNode>,
       default: false,
     },
+    auto: Boolean,
     cacheItems: Boolean,
     chips: Boolean,
     clearable: Boolean,
@@ -103,6 +104,7 @@ export default baseMixins.extend({
       type: [String, Array, Object],
       default: () => defaultMenuProps,
     },
+    minWidth: [String, Number],
     multiple: Boolean,
     openOnClear: Boolean,
     returnObject: Boolean,
@@ -251,6 +253,8 @@ export default baseMixins.extend({
         eager: this.eager,
         modelValue: this.menuCanShow && this.isMenuActive,
         nudgeBottom: normalisedProps.offsetY ? 1 : 0, // convert to int
+        auto: this.auto,
+        minWidth: this.minWidth,
         ...normalisedProps,
       }
     },
