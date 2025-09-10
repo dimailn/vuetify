@@ -139,6 +139,8 @@ export default defineComponent({
 
   created () {
     const breakingProps = [
+      ['value', 'modelValue'],
+      ['onInput', 'onUpdate:modelValue'],
       ['disable-initial-sort', 'sort-by'],
       ['filter', 'custom-filter'],
       ['pagination', 'options'],

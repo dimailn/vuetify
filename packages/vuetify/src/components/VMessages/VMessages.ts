@@ -11,6 +11,7 @@ import mixins from '../../util/mixins'
 
 // Utilities
 import { getSlot } from '../../util/helpers'
+import { breaking } from '../../util/console'
 
 /* @vue/component */
 export default mixins(Colorable, Themeable).extend({
@@ -21,6 +22,17 @@ export default mixins(Colorable, Themeable).extend({
       type: Array,
       default: () => ([]),
     },
+  },
+
+  created () {
+    const breakingProps = [
+      ['value', 'modelValue'],
+    ]
+
+    /* istanbul ignore next */
+    breakingProps.forEach(([original, replacement]) => {
+      if (this.$attrs.hasOwnProperty(original)) breaking(original, replacement, this)
+    })
   },
 
   methods: {

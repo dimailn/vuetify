@@ -18,6 +18,7 @@ import {
   normalizeClasses,
 } from '../../util/helpers'
 import mergeData from '../../util/mergeData'
+import { breaking } from '../../util/console'
 
 // Types
 import { VNode, VNodeData, PropType, h, getCurrentInstance } from 'vue'
@@ -111,7 +112,7 @@ export default baseMixins.extend({
         this.lazyValue = val
         this.$emit(this.$_modelEvent, val)
 
-        if('$_emitChangeEvent' in this) {
+        if ('$_emitChangeEvent' in this) {
           this.$emit('change', val)
         }
       },
@@ -144,6 +145,18 @@ export default baseMixins.extend({
     modelValue (val) {
       this.lazyValue = val
     },
+  },
+
+  created () {
+    const breakingProps = [
+      ['value', 'modelValue'],
+      ['onInput', 'onUpdate:modelValue'],
+    ]
+
+    /* istanbul ignore next */
+    breakingProps.forEach(([original, replacement]) => {
+      if (this.$attrs.hasOwnProperty(original)) breaking(original, replacement, this)
+    })
   },
 
   beforeCreate () {
@@ -236,7 +249,7 @@ export default baseMixins.extend({
     },
     genInputSlot () {
       return h('div', this.setBackgroundColor(this.backgroundColor, {
-        class: {'v-input__slot': true},
+        class: { 'v-input__slot': true },
         style: { height: convertToUnit(this.height) },
         onClick: this.onClick,
         onMousedown: this.onMouseDown,

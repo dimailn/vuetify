@@ -22,7 +22,7 @@ import ClickOutside from '../../directives/click-outside'
 // Utilities
 import mergeData from '../../util/mergeData'
 import { getPropertyFromItem, getObjectValueByPath, keyCodes, normalizeAttrs } from '../../util/helpers'
-import { consoleError } from '../../util/console'
+import { consoleError, breaking } from '../../util/console'
 
 // Types
 import mixins from '../../util/mixins'
@@ -297,6 +297,18 @@ export default baseMixins.extend({
         this.setSelectedItems()
       },
     },
+  },
+
+  created () {
+    const breakingProps = [
+      ['value', 'modelValue'],
+      ['onInput', 'onUpdate:modelValue'],
+    ]
+
+    /* istanbul ignore next */
+    breakingProps.forEach(([original, replacement]) => {
+      if (this.$attrs.hasOwnProperty(original)) breaking(original, replacement, this)
+    })
   },
 
   mounted () {

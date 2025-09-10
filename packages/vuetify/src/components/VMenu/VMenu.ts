@@ -20,7 +20,7 @@ import Resize from '../../directives/resize'
 
 // Utilities
 import mixins from '../../util/mixins'
-import { removed } from '../../util/console'
+import { removed, breaking } from '../../util/console'
 import {
   convertToUnit,
   keyCodes,
@@ -206,6 +206,16 @@ export default baseMixins.extend({
   },
 
   created () {
+    const breakingProps = [
+      ['value', 'modelValue'],
+      ['onInput', 'onUpdate:modelValue'],
+    ]
+
+    /* istanbul ignore next */
+    breakingProps.forEach(([original, replacement]) => {
+      if (this.$attrs.hasOwnProperty(original)) breaking(original, replacement, this)
+    })
+
     /* istanbul ignore next */
     if (this.$attrs.hasOwnProperty('full-width')) {
       removed('full-width', this)
