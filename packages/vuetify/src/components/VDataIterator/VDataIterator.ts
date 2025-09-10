@@ -12,16 +12,14 @@ import { deepEqual, getObjectValueByPath, getPrefixedScopedSlots, getSlot, camel
 import { breaking, removed } from '../../util/console'
 
 // Types
-import { VNode, VNodeChildren } from 'vue'
-import { PropValidator } from 'vue/types/options'
+import { h, VNode, VNodeChildren, PropType, defineComponent } from 'vue'
 import { DataItemProps, DataScopeProps } from 'vuetify/types'
 
 /* @vue/component */
-export default mixins(
-  Mobile,
-  Themeable
-).extend({
+export default defineComponent({
   name: 'v-data-iterator',
+
+  mixins: [Mobile, Themeable],
 
   props: {
     ...VData.props, // TODO: filter out props not used
@@ -29,15 +27,15 @@ export default mixins(
       type: String,
       default: 'id',
     },
-    value: {
-      type: Array,
+    modelValue: {
+      type: Array as PropType<any[]>,
       default: () => [],
-    } as PropValidator<any[]>,
+    },
     singleSelect: Boolean,
     expanded: {
-      type: Array,
+      type: Array as PropType<any[]>,
       default: () => [],
-    } as PropValidator<any[]>,
+    },
     mobileBreakpoint: {
       ...Mobile.props.mobileBreakpoint,
       default: 600,
@@ -64,7 +62,23 @@ export default mixins(
     },
   },
 
-  emits: ['update:modelValue', 'update:expanded', 'toggle-select-all', 'item-selected', 'item-expanded', 'update:options', 'update:page', 'update:items-per-page', 'update:sort-by', 'update:sort-desc', 'update:group-by', 'update:group-desc', 'pagination', 'current-items', 'page-count'],
+  emits: [
+    'update:modelValue',
+    'update:expanded',
+    'toggle-select-all',
+    'item-selected',
+    'item-expanded',
+    'update:options',
+    'update:page',
+    'update:items-per-page',
+    'update:sort-by',
+    'update:sort-desc',
+    'update:group-by',
+    'update:group-desc',
+    'pagination',
+    'current-items',
+    'page-count',
+  ],
 
   data: () => ({
     selection: {} as Record<string, any>,
@@ -92,7 +106,7 @@ export default mixins(
   watch: {
     modelValue: {
       handler (value: any[]) {
-        if(!value) return
+        if (!value) return
 
         this.selection = value.reduce((selection, item) => {
           selection[getObjectValueByPath(item, this.itemKey)] = item
@@ -303,15 +317,14 @@ export default mixins(
         ...this.sanitizedFooterProps,
         options: props.options,
         pagination: props.pagination,
-        'onUpdate:options': (value: any) => props.updateOptions(value)
+        onUpdateOptions: (value: any) => props.updateOptions(value),
       }
 
       const scopedSlots = getPrefixedScopedSlots('footer.', this.$slots)
 
       return h(VDataFooter, {
-        scopedSlots,
         ...data,
-      })
+      }, scopedSlots)
     },
     genDefaultScopedSlot (props: any) {
       const outerProps = {
@@ -334,25 +347,22 @@ export default mixins(
 
   render (): VNode {
     return h(VData, {
-      props: this.$props,
-      on: {
-        'update:options': (v: any, old: any) => !deepEqual(v, old) && this.$emit('update:options', v),
-        'update:page': (v: any) => this.$emit('update:page', v),
-        'update:items-per-page': (v: any) => this.$emit('update:items-per-page', v),
-        'update:sort-by': (v: any) => this.$emit('update:sort-by', v),
-        'update:sort-desc': (v: any) => this.$emit('update:sort-desc', v),
-        'update:group-by': (v: any) => this.$emit('update:group-by', v),
-        'update:group-desc': (v: any) => this.$emit('update:group-desc', v),
-        pagination: (v: any, old: any) => !deepEqual(v, old) && this.$emit('pagination', v),
-        'current-items': (v: any[]) => {
-          this.internalCurrentItems = v
-          this.$emit('current-items', v)
-        },
-        'page-count': (v: number) => this.$emit('page-count', v),
+      ...this.$props,
+      onUpdateOptions: (v: any, old: any) => !deepEqual(v, old) && this.$emit('update:options', v),
+      onUpdatePage: (v: any) => this.$emit('update:page', v),
+      onUpdateItemsPerPage: (v: any) => this.$emit('update:items-per-page', v),
+      onUpdateSortBy: (v: any) => this.$emit('update:sort-by', v),
+      onUpdateSortDesc: (v: any) => this.$emit('update:sort-desc', v),
+      onUpdateGroupBy: (v: any) => this.$emit('update:group-by', v),
+      onUpdateGroupDesc: (v: any) => this.$emit('update:group-desc', v),
+      onPagination: (v: any, old: any) => !deepEqual(v, old) && this.$emit('pagination', v),
+      onCurrentItems: (v: any[]) => {
+        this.internalCurrentItems = v
+        this.$emit('current-items', v)
       },
-      scopedSlots: {
-        default: this.genDefaultScopedSlot,
-      },
+      onPageCount: (v: number) => this.$emit('page-count', v),
+    }, {
+      default: this.genDefaultScopedSlot,
     })
   },
 })
