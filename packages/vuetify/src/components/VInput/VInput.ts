@@ -59,7 +59,7 @@ export default baseMixins.extend({
     modelValue: null as any as PropType<any>,
   },
 
-  emits: ['click', 'mousedown', 'mouseup', 'touchstart', 'touchend'],
+  emits: ['click', 'mousedown', 'mouseup', 'touchstart', 'touchend', 'update:error'],
 
   data () {
     return {
@@ -263,9 +263,9 @@ export default baseMixins.extend({
         color: this.hasHint ? '' : this.validationState,
         dark: this.dark,
         light: this.light,
-        value: this.messagesToDisplay,
+        modelValue: this.messagesToDisplay,
         role: this.hasMessages ? 'alert' : null,
-      }, {default: getSlot(this, 'message') })
+      }, { default: getSlot(this, 'message') })
     },
     genSlot (
       type: string,
