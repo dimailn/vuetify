@@ -5,7 +5,7 @@ import { inject as RegistrableInject } from '../registrable'
 
 // Utilities
 import { deepEqual } from '../../util/helpers'
-import { consoleError } from '../../util/console'
+import { consoleError, breaking } from '../../util/console'
 import { defineComponent, PropType } from 'vue'
 
 // Types
@@ -222,6 +222,16 @@ export default defineComponent({
   },
 
   created () {
+    const breakingProps = [
+      ['value', 'modelValue'],
+      ['onInput', 'onUpdate:modelValue'],
+    ]
+
+    /* istanbul ignore next */
+    breakingProps.forEach(([original, replacement]) => {
+      if (this.$attrs.hasOwnProperty(original)) breaking(original, replacement, this)
+    })
+
     this.form && this.form.register(this)
   },
 

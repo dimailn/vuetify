@@ -115,6 +115,17 @@ export default defineComponent({
   },
 
   created () {
+    const breakingProps = [
+      ['value', 'modelValue'],
+      ['onInput', 'onUpdate:modelValue'],
+      ['onChange', 'onUpdate:modelValue'],
+    ]
+
+    /* istanbul ignore next */
+    breakingProps.forEach(([original, replacement]) => {
+      if (this.$attrs.hasOwnProperty(original)) breaking(original, replacement, this)
+    })
+
     /* istanbul ignore next */
     if (this.$attrs.hasOwnProperty('hide-controls')) {
       breaking('hide-controls', ':show-arrows="false"', this)

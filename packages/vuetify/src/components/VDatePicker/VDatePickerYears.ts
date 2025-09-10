@@ -9,6 +9,7 @@ import {
   createNativeLocaleFormatter,
 } from './util'
 import mixins, { ExtractVue } from '../../util/mixins'
+import { breaking } from '../../util/console'
 
 // Types
 import { VNode, PropType, h } from 'vue'
@@ -50,6 +51,18 @@ export default mixins<options &
     formatter (): DatePickerFormatter {
       return this.format || createNativeLocaleFormatter(this.currentLocale, { year: 'numeric', timeZone: 'UTC' }, { length: 4 })
     },
+  },
+
+  created () {
+    const breakingProps = [
+      ['value', 'modelValue'],
+      ['onInput', 'onUpdate:modelValue'],
+    ]
+
+    /* istanbul ignore next */
+    breakingProps.forEach(([original, replacement]) => {
+      if (this.$attrs.hasOwnProperty(original)) breaking(original, replacement, this)
+    })
   },
 
   mounted () {

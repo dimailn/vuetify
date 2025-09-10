@@ -13,7 +13,7 @@ import ClickOutside from '../../directives/click-outside'
 
 // Helpers
 import { addOnceEventListener, deepEqual, keyCodes, createRange, convertToUnit, passiveSupported } from '../../util/helpers'
-import { consoleWarn } from '../../util/console'
+import { consoleWarn, breaking } from '../../util/console'
 
 // Types
 import { defineComponent, VNode, PropType, h, getCurrentInstance, withDirectives, vShow } from 'vue'
@@ -104,6 +104,19 @@ export default mixins<options &
     noClick: false, // Prevent click event if dragging took place, hack for #7915
     startOffset: 0,
   }),
+
+  created () {
+    const breakingProps = [
+      ['value', 'modelValue'],
+      ['onInput', 'onUpdate:modelValue'],
+      ['onChange', 'onUpdate:modelValue'],
+    ]
+
+    /* istanbul ignore next */
+    breakingProps.forEach(([original, replacement]) => {
+      if (this.$attrs.hasOwnProperty(original)) breaking(original, replacement, this)
+    })
+  },
 
   computed: {
     classes (): object {

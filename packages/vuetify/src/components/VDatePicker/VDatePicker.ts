@@ -14,7 +14,7 @@ import isDateAllowed from './util/isDateAllowed'
 import mixins from '../../util/mixins'
 import { wrapInArray } from '../../util/helpers'
 import { daysInMonth } from '../VCalendar/util/timestamp'
-import { consoleWarn } from '../../util/console'
+import { consoleWarn, breaking } from '../../util/console'
 import {
   createItemTypeListeners,
   createNativeLocaleFormatter,
@@ -296,6 +296,16 @@ export default mixins(
   },
 
   created () {
+    const breakingProps = [
+      ['value', 'modelValue'],
+      ['onInput', 'onUpdate:modelValue'],
+    ]
+
+    /* istanbul ignore next */
+    breakingProps.forEach(([original, replacement]) => {
+      if (this.$attrs.hasOwnProperty(original)) breaking(original, replacement, this)
+    })
+
     this.checkMultipleProp()
 
     if (this.pickerDate !== this.tableDate) {

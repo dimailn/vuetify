@@ -9,6 +9,7 @@ import { BaseItemGroup } from '../VItemGroup/VItemGroup'
 // Utilities
 import { mergeProps, h } from 'vue'
 import mixins from '../../util/mixins'
+import { breaking } from '../../util/console'
 
 // Types
 import type { PropType } from 'vue'
@@ -54,6 +55,19 @@ export default baseMixins.extend({
         'v-input--radio-group--row': this.row,
       }
     },
+  },
+
+  created () {
+    const breakingProps = [
+      ['value', 'modelValue'],
+      ['onInput', 'onUpdate:modelValue'],
+      ['onChange', 'onUpdate:modelValue'],
+    ]
+
+    /* istanbul ignore next */
+    breakingProps.forEach(([original, replacement]) => {
+      if (this.$attrs.hasOwnProperty(original)) breaking(original, replacement, this)
+    })
   },
 
   methods: {

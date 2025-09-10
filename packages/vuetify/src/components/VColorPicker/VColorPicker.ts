@@ -13,6 +13,7 @@ import VColorPickerSwatches from './VColorPickerSwatches'
 // Helpers
 import { VColorPickerColor, parseColor, fromRGBA, extractColor, hasAlpha } from './util'
 import { deepEqual } from '../../util/helpers'
+import { breaking } from '../../util/console'
 
 // Mixins
 import Elevatable from '../../mixins/elevatable'
@@ -74,6 +75,18 @@ export default defineComponent({
       if (!this.modelValue) return false
       return !hasAlpha(this.modelValue)
     },
+  },
+
+  created () {
+    const breakingProps = [
+      ['value', 'modelValue'],
+      ['onInput', 'onUpdate:modelValue'],
+    ]
+
+    /* istanbul ignore next */
+    breakingProps.forEach(([original, replacement]) => {
+      if (this.$attrs.hasOwnProperty(original)) breaking(original, replacement, this)
+    })
   },
 
   watch: {

@@ -1,4 +1,4 @@
-import {h, withDirectives} from 'vue'
+import { h, withDirectives } from 'vue'
 import './VPagination.sass'
 
 import VIcon from '../VIcon'
@@ -13,9 +13,10 @@ import Themeable from '../../mixins/themeable'
 
 // Utilities
 import mixins from '../../util/mixins'
+import { breaking } from '../../util/console'
 
 // Types
-import { VNode, CreateElement, VNodeChildrenArrayContents } from 'vue'
+import type { VNode, CreateElement, VNodeChildrenArrayContents } from 'vue'
 
 /* @vue/component */
 export default mixins(
@@ -24,7 +25,6 @@ export default mixins(
   Themeable
 ).extend({
   name: 'v-pagination',
-
 
   props: {
     circle: Boolean,
@@ -81,7 +81,7 @@ export default mixins(
   },
 
   computed: {
-    value() {
+    value () {
       return this.modelValue
     },
     classes (): object {
@@ -137,6 +137,18 @@ export default mixins(
         ]
       }
     },
+  },
+
+  created () {
+    const breakingProps = [
+      ['value', 'modelValue'],
+      ['onInput', 'onUpdate:modelValue'],
+    ]
+
+    /* istanbul ignore next */
+    breakingProps.forEach(([original, replacement]) => {
+      if (this.$attrs.hasOwnProperty(original)) breaking(original, replacement, this)
+    })
   },
 
   watch: {
@@ -226,14 +238,14 @@ export default mixins(
     },
     genList (h: CreateElement, children: VNodeChildrenArrayContents): VNode {
       return withDirectives(h('ul', {
-        class: this.classes
+        class: this.classes,
       }, children), [
         [
           Resize,
           this.onResize,
           '',
-          { quiet: true }
-        ]
+          { quiet: true },
+        ],
       ])
     },
   },
@@ -244,13 +256,15 @@ export default mixins(
         this.$vuetify.rtl ? this.nextIcon : this.prevIcon,
         this.value <= 1,
         this.previous,
-        this.$vuetify.lang.t(this.previousAriaLabel)),
+        this.$vuetify.lang.t(this.previousAriaLabel),
+      ),
       this.genItems(h),
       this.genIcon(h,
         this.$vuetify.rtl ? this.prevIcon : this.nextIcon,
         this.value >= this.length,
         this.next,
-        this.$vuetify.lang.t(this.nextAriaLabel)),
+        this.$vuetify.lang.t(this.nextAriaLabel),
+      ),
     ]
 
     return h('nav', {

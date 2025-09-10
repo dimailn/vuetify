@@ -100,6 +100,16 @@ export default mixins(
   },
 
   created () {
+    const breakingProps = [
+      ['inputValue', 'modelValue'],
+      ['onUpdate:input-value', 'onUpdate:modelValue'],
+    ]
+
+    /* istanbul ignore next */
+    breakingProps.forEach(([original, replacement]) => {
+      if (this.$attrs.hasOwnProperty(original)) breaking(original, replacement, this)
+    })
+
     /* istanbul ignore next */
     if (this.$attrs.hasOwnProperty('active')) {
       breaking('active.sync', 'value or v-model', this)
