@@ -1,5 +1,4 @@
-import {h} from 'vue'
-import { VNode, VNodeChildrenArrayContents } from 'vue'
+import { h, VNode, VNodeChildrenArrayContents } from 'vue'
 import mixins from '../../util/mixins'
 import VSelect from '../VSelect/VSelect'
 import VChip from '../VChip'
@@ -14,6 +13,7 @@ export default mixins(header).extend({
       type: String,
       default: '$vuetify.dataTable.sortBy',
     },
+    mobile: Boolean,
   },
 
   emits: ['sort'],

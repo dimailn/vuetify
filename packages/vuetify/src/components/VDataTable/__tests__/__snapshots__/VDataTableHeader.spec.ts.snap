@@ -15,83 +15,78 @@ exports[`VDataTableHeader.ts desktop should render 1`] = `
     <th role="columnheader"
         scope="col"
         aria-label="Calories: Not sorted. Activate to sort ascending."
-        aria-sort="none"
-        class="text-start sortable"
         style="width: 50px; min-width: 50px;"
+        class="text-start sortable"
+        aria-sort="none"
     >
       <span>
         Calories
       </span>
       <i aria-hidden="true"
-         class="v-icon notranslate v-data-table-header__icon material-icons theme--light"
+         class="v-icon notranslate material-icons theme--light v-data-table-header__icon"
          style="font-size: 18px;"
       >
-        $sort
       </i>
     </th>
     <th role="columnheader"
         scope="col"
         aria-label="Fat (g): Not sorted. Activate to sort ascending."
-        aria-sort="none"
-        class="text-start sortable"
         style="width: 50em; min-width: 50em;"
+        class="text-start sortable"
+        aria-sort="none"
     >
       <span>
         Fat (g)
       </span>
       <i aria-hidden="true"
-         class="v-icon notranslate v-data-table-header__icon material-icons theme--light"
+         class="v-icon notranslate material-icons theme--light v-data-table-header__icon"
          style="font-size: 18px;"
       >
-        $sort
       </i>
     </th>
     <th role="columnheader"
         scope="col"
         aria-label="Carbs (g): Not sorted. Activate to sort ascending."
-        aria-sort="none"
         class="text-start sortable"
+        aria-sort="none"
     >
       <span>
         Carbs (g)
       </span>
       <i aria-hidden="true"
-         class="v-icon notranslate v-data-table-header__icon material-icons theme--light"
+         class="v-icon notranslate material-icons theme--light v-data-table-header__icon"
          style="font-size: 18px;"
       >
-        $sort
       </i>
     </th>
     <th role="columnheader"
         scope="col"
         aria-label="Protein (g): Not sorted. Activate to sort ascending."
-        aria-sort="none"
         class="text-start sortable"
+        aria-sort="none"
     >
       <span>
         Protein (g)
       </span>
       <i aria-hidden="true"
-         class="v-icon notranslate v-data-table-header__icon material-icons theme--light"
+         class="v-icon notranslate material-icons theme--light v-data-table-header__icon"
          style="font-size: 18px;"
       >
-        $sort
       </i>
     </th>
     <th role="columnheader"
         scope="col"
         aria-label="Iron (%): Not sorted. Activate to sort ascending."
-        aria-sort="none"
         class="text-start sortable"
+        aria-sort="none"
     >
       <span>
         Iron (%)
       </span>
       <i aria-hidden="true"
-         class="v-icon notranslate v-data-table-header__icon material-icons theme--light"
+         class="v-icon notranslate material-icons theme--light v-data-table-header__icon"
          style="font-size: 18px;"
       >
-        $sort
       </i>
     </th>
   </tr>
@@ -113,83 +108,78 @@ exports[`VDataTableHeader.ts desktop should work with multiSort 1`] = `
     <th role="columnheader"
         scope="col"
         aria-label="Calories: Not sorted. Activate to sort ascending."
-        aria-sort="none"
-        class="text-start sortable"
         style="width: 50px; min-width: 50px;"
+        class="text-start sortable"
+        aria-sort="none"
     >
       <span>
         Calories
       </span>
       <i aria-hidden="true"
-         class="v-icon notranslate v-data-table-header__icon material-icons theme--light"
+         class="v-icon notranslate material-icons theme--light v-data-table-header__icon"
          style="font-size: 18px;"
       >
-        $sort
       </i>
     </th>
     <th role="columnheader"
         scope="col"
         aria-label="Fat (g): Not sorted. Activate to sort ascending."
-        aria-sort="none"
-        class="text-start sortable"
         style="width: 50em; min-width: 50em;"
+        class="text-start sortable"
+        aria-sort="none"
     >
       <span>
         Fat (g)
       </span>
       <i aria-hidden="true"
-         class="v-icon notranslate v-data-table-header__icon material-icons theme--light"
+         class="v-icon notranslate material-icons theme--light v-data-table-header__icon"
          style="font-size: 18px;"
       >
-        $sort
       </i>
     </th>
     <th role="columnheader"
         scope="col"
         aria-label="Carbs (g): Not sorted. Activate to sort ascending."
-        aria-sort="none"
         class="text-start sortable"
+        aria-sort="none"
     >
       <span>
         Carbs (g)
       </span>
       <i aria-hidden="true"
-         class="v-icon notranslate v-data-table-header__icon material-icons theme--light"
+         class="v-icon notranslate material-icons theme--light v-data-table-header__icon"
          style="font-size: 18px;"
       >
-        $sort
       </i>
     </th>
     <th role="columnheader"
         scope="col"
         aria-label="Protein (g): Not sorted. Activate to sort ascending."
-        aria-sort="none"
         class="text-start sortable"
+        aria-sort="none"
     >
       <span>
         Protein (g)
       </span>
       <i aria-hidden="true"
-         class="v-icon notranslate v-data-table-header__icon material-icons theme--light"
+         class="v-icon notranslate material-icons theme--light v-data-table-header__icon"
          style="font-size: 18px;"
       >
-        $sort
       </i>
     </th>
     <th role="columnheader"
         scope="col"
         aria-label="Iron (%): Sorted descending. Activate to remove sorting."
-        aria-sort="descending"
         class="text-start sortable active desc"
+        aria-sort="descending"
     >
       <span>
         Iron (%)
       </span>
       <i aria-hidden="true"
-         class="v-icon notranslate v-data-table-header__icon material-icons theme--light"
+         class="v-icon notranslate material-icons theme--light v-data-table-header__icon"
          style="font-size: 18px;"
       >
-        $sort
       </i>
       <span class="v-data-table-header__sort-badge">
         1
@@ -217,18 +207,17 @@ exports[`VDataTableHeader.ts desktop should work with showGroupBy 1`] = `
     <th role="columnheader"
         scope="col"
         aria-label="Calories: Not sorted. Activate to sort ascending."
-        aria-sort="none"
-        class="text-start sortable"
         style="width: 50px; min-width: 50px;"
+        class="text-start sortable"
+        aria-sort="none"
     >
       <span>
         Calories
       </span>
       <i aria-hidden="true"
-         class="v-icon notranslate v-data-table-header__icon material-icons theme--light"
+         class="v-icon notranslate material-icons theme--light v-data-table-header__icon"
          style="font-size: 18px;"
       >
-        $sort
       </i>
       <span>
         group
@@ -237,18 +226,17 @@ exports[`VDataTableHeader.ts desktop should work with showGroupBy 1`] = `
     <th role="columnheader"
         scope="col"
         aria-label="Fat (g): Not sorted. Activate to sort ascending."
-        aria-sort="none"
-        class="text-start sortable"
         style="width: 50em; min-width: 50em;"
+        class="text-start sortable"
+        aria-sort="none"
     >
       <span>
         Fat (g)
       </span>
       <i aria-hidden="true"
-         class="v-icon notranslate v-data-table-header__icon material-icons theme--light"
+         class="v-icon notranslate material-icons theme--light v-data-table-header__icon"
          style="font-size: 18px;"
       >
-        $sort
       </i>
       <span>
         group
@@ -257,17 +245,16 @@ exports[`VDataTableHeader.ts desktop should work with showGroupBy 1`] = `
     <th role="columnheader"
         scope="col"
         aria-label="Carbs (g): Not sorted. Activate to sort ascending."
-        aria-sort="none"
         class="text-start sortable"
+        aria-sort="none"
     >
       <span>
         Carbs (g)
       </span>
       <i aria-hidden="true"
-         class="v-icon notranslate v-data-table-header__icon material-icons theme--light"
+         class="v-icon notranslate material-icons theme--light v-data-table-header__icon"
          style="font-size: 18px;"
       >
-        $sort
       </i>
       <span>
         group
@@ -276,17 +263,16 @@ exports[`VDataTableHeader.ts desktop should work with showGroupBy 1`] = `
     <th role="columnheader"
         scope="col"
         aria-label="Protein (g): Not sorted. Activate to sort ascending."
-        aria-sort="none"
         class="text-start sortable"
+        aria-sort="none"
     >
       <span>
         Protein (g)
       </span>
       <i aria-hidden="true"
-         class="v-icon notranslate v-data-table-header__icon material-icons theme--light"
+         class="v-icon notranslate material-icons theme--light v-data-table-header__icon"
          style="font-size: 18px;"
       >
-        $sort
       </i>
       <span>
         group
@@ -295,17 +281,16 @@ exports[`VDataTableHeader.ts desktop should work with showGroupBy 1`] = `
     <th role="columnheader"
         scope="col"
         aria-label="Iron (%): Not sorted. Activate to sort ascending."
-        aria-sort="none"
         class="text-start sortable"
+        aria-sort="none"
     >
       <span>
         Iron (%)
       </span>
       <i aria-hidden="true"
-         class="v-icon notranslate v-data-table-header__icon material-icons theme--light"
+         class="v-icon notranslate material-icons theme--light v-data-table-header__icon"
          style="font-size: 18px;"
       >
-        $sort
       </i>
       <span>
         group
@@ -330,83 +315,78 @@ exports[`VDataTableHeader.ts desktop should work with sortBy correctly 1`] = `
     <th role="columnheader"
         scope="col"
         aria-label="Calories: Not sorted. Activate to sort ascending."
-        aria-sort="none"
-        class="text-start sortable"
         style="width: 50px; min-width: 50px;"
+        class="text-start sortable"
+        aria-sort="none"
     >
       <span>
         Calories
       </span>
       <i aria-hidden="true"
-         class="v-icon notranslate v-data-table-header__icon material-icons theme--light"
+         class="v-icon notranslate material-icons theme--light v-data-table-header__icon"
          style="font-size: 18px;"
       >
-        $sort
       </i>
     </th>
     <th role="columnheader"
         scope="col"
         aria-label="Fat (g): Not sorted. Activate to sort ascending."
-        aria-sort="none"
-        class="text-start sortable"
         style="width: 50em; min-width: 50em;"
+        class="text-start sortable"
+        aria-sort="none"
     >
       <span>
         Fat (g)
       </span>
       <i aria-hidden="true"
-         class="v-icon notranslate v-data-table-header__icon material-icons theme--light"
+         class="v-icon notranslate material-icons theme--light v-data-table-header__icon"
          style="font-size: 18px;"
       >
-        $sort
       </i>
     </th>
     <th role="columnheader"
         scope="col"
         aria-label="Carbs (g): Not sorted. Activate to sort ascending."
-        aria-sort="none"
         class="text-start sortable"
+        aria-sort="none"
     >
       <span>
         Carbs (g)
       </span>
       <i aria-hidden="true"
-         class="v-icon notranslate v-data-table-header__icon material-icons theme--light"
+         class="v-icon notranslate material-icons theme--light v-data-table-header__icon"
          style="font-size: 18px;"
       >
-        $sort
       </i>
     </th>
     <th role="columnheader"
         scope="col"
         aria-label="Protein (g): Not sorted. Activate to sort ascending."
-        aria-sort="none"
         class="text-start sortable"
+        aria-sort="none"
     >
       <span>
         Protein (g)
       </span>
       <i aria-hidden="true"
-         class="v-icon notranslate v-data-table-header__icon material-icons theme--light"
+         class="v-icon notranslate material-icons theme--light v-data-table-header__icon"
          style="font-size: 18px;"
       >
-        $sort
       </i>
     </th>
     <th role="columnheader"
         scope="col"
         aria-label="Iron (%): Sorted descending. Activate to remove sorting."
-        aria-sort="descending"
         class="text-start sortable active desc"
+        aria-sort="descending"
     >
       <span>
         Iron (%)
       </span>
       <i aria-hidden="true"
-         class="v-icon notranslate v-data-table-header__icon material-icons theme--light"
+         class="v-icon notranslate material-icons theme--light v-data-table-header__icon"
          style="font-size: 18px;"
       >
-        $sort
       </i>
     </th>
   </tr>
@@ -428,83 +408,78 @@ exports[`VDataTableHeader.ts desktop should work with sortDesc correctly 1`] = `
     <th role="columnheader"
         scope="col"
         aria-label="Calories: Not sorted. Activate to sort ascending."
-        aria-sort="none"
-        class="text-start sortable"
         style="width: 50px; min-width: 50px;"
+        class="text-start sortable"
+        aria-sort="none"
     >
       <span>
         Calories
       </span>
       <i aria-hidden="true"
-         class="v-icon notranslate v-data-table-header__icon material-icons theme--light"
+         class="v-icon notranslate material-icons theme--light v-data-table-header__icon"
          style="font-size: 18px;"
       >
-        $sort
       </i>
     </th>
     <th role="columnheader"
         scope="col"
         aria-label="Fat (g): Not sorted. Activate to sort ascending."
-        aria-sort="none"
-        class="text-start sortable"
         style="width: 50em; min-width: 50em;"
+        class="text-start sortable"
+        aria-sort="none"
     >
       <span>
         Fat (g)
       </span>
       <i aria-hidden="true"
-         class="v-icon notranslate v-data-table-header__icon material-icons theme--light"
+         class="v-icon notranslate material-icons theme--light v-data-table-header__icon"
          style="font-size: 18px;"
       >
-        $sort
       </i>
     </th>
     <th role="columnheader"
         scope="col"
         aria-label="Carbs (g): Sorted descending. Activate to remove sorting."
-        aria-sort="descending"
         class="text-start sortable active desc"
+        aria-sort="descending"
     >
       <span>
         Carbs (g)
       </span>
       <i aria-hidden="true"
-         class="v-icon notranslate v-data-table-header__icon material-icons theme--light"
+         class="v-icon notranslate material-icons theme--light v-data-table-header__icon"
          style="font-size: 18px;"
       >
-        $sort
       </i>
     </th>
     <th role="columnheader"
         scope="col"
         aria-label="Protein (g): Not sorted. Activate to sort ascending."
-        aria-sort="none"
         class="text-start sortable"
+        aria-sort="none"
     >
       <span>
         Protein (g)
       </span>
       <i aria-hidden="true"
-         class="v-icon notranslate v-data-table-header__icon material-icons theme--light"
+         class="v-icon notranslate material-icons theme--light v-data-table-header__icon"
          style="font-size: 18px;"
       >
-        $sort
       </i>
     </th>
     <th role="columnheader"
         scope="col"
         aria-label="Iron (%): Sorted ascending. Activate to sort descending."
-        aria-sort="ascending"
         class="text-start sortable active asc"
+        aria-sort="ascending"
     >
       <span>
         Iron (%)
       </span>
       <i aria-hidden="true"
-         class="v-icon notranslate v-data-table-header__icon material-icons theme--light"
+         class="v-icon notranslate material-icons theme--light v-data-table-header__icon"
          style="font-size: 18px;"
       >
-        $sort
       </i>
     </th>
   </tr>
@@ -521,22 +496,23 @@ exports[`VDataTableHeader.ts mobile should render 1`] = `
             <div role="button"
                  aria-haspopup="listbox"
                  aria-expanded="false"
-                 aria-owns="list-37"
+                 aria-owns="list-68"
                  class="v-input__slot"
             >
               <div class="v-select__slot">
-                <label for="input-37"
-                       class="v-label theme--light"
+                <label class="v-label theme--light"
+                       for="input-68"
+                       aria-hidden="false"
                        style="left: 0px; position: absolute;"
                 >
                   Sort by
                 </label>
                 <div class="v-select__selections">
-                  <input id="input-37"
-                         readonly="readonly"
-                         type="text"
-                         aria-readonly="false"
+                  <input aria-readonly="false"
                          autocomplete="off"
+                         id="input-68"
+                         readonly
+                         type="text"
                   >
                 </div>
                 <div class="v-input__append-inner">
@@ -544,7 +520,6 @@ exports[`VDataTableHeader.ts mobile should render 1`] = `
                     <i aria-hidden="true"
                        class="v-icon notranslate material-icons theme--light"
                     >
-                      $dropdown
                     </i>
                   </div>
                 </div>
@@ -567,12 +542,11 @@ exports[`VDataTableHeader.ts mobile should render with data-table-select header 
     <th>
       <div class="v-data-table-header-mobile__wrapper">
         <div class="v-data-table-header-mobile__select">
-          <div class="v-data-table__checkbox v-simple-checkbox">
+          <div class="v-simple-checkbox v-data-table__checkbox v-data-table__checkbox">
             <div class="v-input--selection-controls__input">
               <i aria-hidden="true"
                  class="v-icon notranslate material-icons theme--light"
               >
-                $checkboxOff
               </i>
               <div class="v-input--selection-controls__ripple">
               </div>
@@ -584,22 +558,23 @@ exports[`VDataTableHeader.ts mobile should render with data-table-select header 
             <div role="button"
                  aria-haspopup="listbox"
                  aria-expanded="false"
-                 aria-owns="list-69"
+                 aria-owns="list-120"
                  class="v-input__slot"
             >
               <div class="v-select__slot">
-                <label for="input-69"
-                       class="v-label theme--light"
+                <label class="v-label theme--light"
+                       for="input-120"
+                       aria-hidden="false"
                        style="left: 0px; position: absolute;"
                 >
                   Sort by
                 </label>
                 <div class="v-select__selections">
-                  <input id="input-69"
-                         readonly="readonly"
-                         type="text"
-                         aria-readonly="false"
+                  <input aria-readonly="false"
                          autocomplete="off"
+                         id="input-120"
+                         readonly
+                         type="text"
                   >
                 </div>
                 <div class="v-input__append-inner">
@@ -607,7 +582,6 @@ exports[`VDataTableHeader.ts mobile should render with data-table-select header 
                     <i aria-hidden="true"
                        class="v-icon notranslate material-icons theme--light"
                     >
-                      $dropdown
                     </i>
                   </div>
                 </div>
@@ -634,35 +608,35 @@ exports[`VDataTableHeader.ts mobile should work with multiSort 1`] = `
             <div role="button"
                  aria-haspopup="listbox"
                  aria-expanded="false"
-                 aria-owns="list-47"
+                 aria-owns="list-84"
                  class="v-input__slot"
             >
               <div class="v-select__slot">
-                <label for="input-47"
-                       class="v-label v-label--active theme--light"
+                <label class="v-label v-label--active theme--light"
+                       for="input-84"
+                       aria-hidden="false"
                        style="left: 0px; position: absolute;"
                 >
                   Sort by
                 </label>
                 <div class="v-select__selections">
-                  <span class="sortable v-chip v-chip--clickable v-chip--no-color theme--light v-size--default">
+                  <span class="v-chip v-chip--clickable v-chip--no-color theme--light v-size--default sortable">
                     <span class="v-chip__content">
                       Iron (%)
                       <div class="v-chip__close sortable active desc">
                         <i aria-hidden="true"
-                           class="v-icon notranslate v-data-table-header__icon material-icons theme--light"
+                           class="v-icon notranslate material-icons theme--light v-data-table-header__icon"
                            style="font-size: 18px;"
                         >
-                          $sort
                         </i>
                       </div>
                     </span>
                   </span>
-                  <input id="input-47"
-                         readonly="readonly"
-                         type="text"
-                         aria-readonly="false"
+                  <input aria-readonly="false"
                          autocomplete="off"
+                         id="input-84"
+                         readonly
+                         type="text"
                   >
                 </div>
                 <div class="v-input__append-inner">
@@ -670,7 +644,6 @@ exports[`VDataTableHeader.ts mobile should work with multiSort 1`] = `
                     <i aria-hidden="true"
                        class="v-icon notranslate material-icons theme--light"
                     >
-                      $dropdown
                     </i>
                   </div>
                 </div>
@@ -699,22 +672,23 @@ exports[`VDataTableHeader.ts mobile should work with showGroupBy 1`] = `
             <div role="button"
                  aria-haspopup="listbox"
                  aria-expanded="false"
-                 aria-owns="list-42"
+                 aria-owns="list-76"
                  class="v-input__slot"
             >
               <div class="v-select__slot">
-                <label for="input-42"
-                       class="v-label theme--light"
+                <label class="v-label theme--light"
+                       for="input-76"
+                       aria-hidden="false"
                        style="left: 0px; position: absolute;"
                 >
                   Sort by
                 </label>
                 <div class="v-select__selections">
-                  <input id="input-42"
-                         readonly="readonly"
-                         type="text"
-                         aria-readonly="false"
+                  <input aria-readonly="false"
                          autocomplete="off"
+                         id="input-76"
+                         readonly
+                         type="text"
                   >
                 </div>
                 <div class="v-input__append-inner">
@@ -722,7 +696,6 @@ exports[`VDataTableHeader.ts mobile should work with showGroupBy 1`] = `
                     <i aria-hidden="true"
                        class="v-icon notranslate material-icons theme--light"
                     >
-                      $dropdown
                     </i>
                   </div>
                 </div>
@@ -749,35 +722,35 @@ exports[`VDataTableHeader.ts mobile should work with sortBy correctly 1`] = `
             <div role="button"
                  aria-haspopup="listbox"
                  aria-expanded="false"
-                 aria-owns="list-54"
+                 aria-owns="list-95"
                  class="v-input__slot"
             >
               <div class="v-select__slot">
-                <label for="input-54"
-                       class="v-label v-label--active theme--light"
+                <label class="v-label v-label--active theme--light"
+                       for="input-95"
+                       aria-hidden="false"
                        style="left: 0px; position: absolute;"
                 >
                   Sort by
                 </label>
                 <div class="v-select__selections">
-                  <span class="sortable v-chip v-chip--clickable v-chip--no-color theme--light v-size--default">
+                  <span class="v-chip v-chip--clickable v-chip--no-color theme--light v-size--default sortable">
                     <span class="v-chip__content">
                       Iron (%)
                       <div class="v-chip__close sortable active desc">
                         <i aria-hidden="true"
-                           class="v-icon notranslate v-data-table-header__icon material-icons theme--light"
+                           class="v-icon notranslate material-icons theme--light v-data-table-header__icon"
                            style="font-size: 18px;"
                         >
-                          $sort
                         </i>
                       </div>
                     </span>
                   </span>
-                  <input id="input-54"
-                         readonly="readonly"
-                         type="text"
-                         aria-readonly="false"
+                  <input aria-readonly="false"
                          autocomplete="off"
+                         id="input-95"
+                         readonly
+                         type="text"
                   >
                 </div>
                 <div class="v-input__append-inner">
@@ -785,7 +758,6 @@ exports[`VDataTableHeader.ts mobile should work with sortBy correctly 1`] = `
                     <i aria-hidden="true"
                        class="v-icon notranslate material-icons theme--light"
                     >
-                      $dropdown
                     </i>
                   </div>
                 </div>
@@ -814,35 +786,35 @@ exports[`VDataTableHeader.ts mobile should work with sortDesc correctly 1`] = `
             <div role="button"
                  aria-haspopup="listbox"
                  aria-expanded="false"
-                 aria-owns="list-61"
+                 aria-owns="list-106"
                  class="v-input__slot"
             >
               <div class="v-select__slot">
-                <label for="input-61"
-                       class="v-label v-label--active theme--light"
+                <label class="v-label v-label--active theme--light"
+                       for="input-106"
+                       aria-hidden="false"
                        style="left: 0px; position: absolute;"
                 >
                   Sort by
                 </label>
                 <div class="v-select__selections">
-                  <span class="sortable v-chip v-chip--clickable v-chip--no-color theme--light v-size--default">
+                  <span class="v-chip v-chip--clickable v-chip--no-color theme--light v-size--default sortable">
                     <span class="v-chip__content">
                       Iron (%)
                       <div class="v-chip__close sortable active asc">
                         <i aria-hidden="true"
-                           class="v-icon notranslate v-data-table-header__icon material-icons theme--light"
+                           class="v-icon notranslate material-icons theme--light v-data-table-header__icon"
                            style="font-size: 18px;"
                         >
-                          $sort
                         </i>
                       </div>
                     </span>
                   </span>
-                  <input id="input-61"
-                         readonly="readonly"
-                         type="text"
-                         aria-readonly="false"
+                  <input aria-readonly="false"
                          autocomplete="off"
+                         id="input-106"
+                         readonly
+                         type="text"
                   >
                 </div>
                 <div class="v-input__append-inner">
@@ -850,7 +822,6 @@ exports[`VDataTableHeader.ts mobile should work with sortDesc correctly 1`] = `
                     <i aria-hidden="true"
                        class="v-icon notranslate material-icons theme--light"
                     >
-                      $dropdown
                     </i>
                   </div>
                 </div>
