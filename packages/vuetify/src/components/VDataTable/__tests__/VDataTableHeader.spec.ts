@@ -135,20 +135,16 @@ describe('VDataTableHeader.ts', () => {
         it('should sort when select changes', async () => {
           const wrapper = mountFunction()
 
-          // Find the mobile header component
           const mobileHeader = wrapper.findComponent(VDataTableHeaderMobile)
           const select = mobileHeader.findComponent(VSelect)
 
-          // Test that the select component exists
           expect(select.exists()).toBe(true)
 
-          // Test that the sort function is called when the select emits update:modelValue
           select.vm.$emit('update:modelValue', 'test')
           await wrapper.vm.$nextTick()
 
-          // Check if the sort event was emitted
-          expect(wrapper.emitted('sort')).toBeTruthy()
-          expect(wrapper.emitted('sort')?.[0]).toEqual(['test'])
+          expect(mobileHeader.emitted('sort')).toBeTruthy()
+          expect(mobileHeader.emitted('sort')?.[0]).toEqual(['test'])
         })
 
         it('should apply header class and width for select-all column', () => {
