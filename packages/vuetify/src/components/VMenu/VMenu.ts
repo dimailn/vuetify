@@ -119,7 +119,7 @@ export default baseMixins.extend({
     },
     calculatedMaxHeight (): string {
       const height = this.auto
-        ? '200px'
+        ? '220px'
         : convertToUnit(this.maxHeight)
 
       return height || '0'
