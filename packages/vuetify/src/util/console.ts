@@ -13,7 +13,6 @@ function createMessage (message: string, vm?: any, parent?: any): string | void 
   }
 
   if (vm) {
-    // Only show each message once per instance
     vm.$_alreadyWarned = vm.$_alreadyWarned || []
     if (vm.$_alreadyWarned.includes(message)) return
     vm.$_alreadyWarned.push(message)
@@ -43,7 +42,7 @@ export function deprecate (original: string, replacement: string, vm?: any, pare
   consoleWarn(`[UPGRADE] '${original}' is deprecated, use '${replacement}' instead.`, vm, parent)
 }
 export function breaking (original: string, replacement: string, vm?: any, parent?: any) {
-  consoleError(`[BREAKING] '${original}' has been removed, use '${replacement}' instead. For more information, see the upgrade guide https://github.com/vuetifyjs/vuetify/releases/tag/v2.0.0#user-content-upgrade-guide`, vm, parent)
+  consoleError(`[BREAKING] '${original}' has been removed, use '${replacement}' instead.`, vm, parent)
 }
 export function removed (original: string, vm?: any, parent?: any) {
   consoleWarn(`[REMOVED] '${original}' has been removed. You can safely omit it.`, vm, parent)
@@ -58,47 +57,67 @@ const classify = (str: string) => str
   .replace(classifyRE, c => c.toUpperCase())
   .replace(/[-_]/g, '')
 
-function formatComponentName (vm: any, includeFile?: boolean): string {
-  if (vm.$root === vm) {
+function formatComponentName (vm: any): string {
+  if (vm === vm?.appContext?.app?._instance?.proxy) {
     return '<Root>'
   }
-  const options = typeof vm === 'function' && vm.cid != null
-    ? vm.options
-    : vm._isVue
-      ? vm.$options || vm.constructor.options
-      : vm || {}
-  let name = options.name || options._componentTag
-  const file = options.__file
-  if (!name && file) {
-    const match = file.match(/([^/\\]+)\.vue$/)
-    name = match && match[1]
+
+  const { name } = extractComponentInfo(vm)
+  const additionalInfo = getAdditionalVue3Info(vm)
+
+  const componentName = name ? `<${classify(name)}>` : '<Anonymous>'
+  const additionalInfoStr = additionalInfo.length > 0 ? ` (${additionalInfo.join(', ')})` : ''
+
+  return componentName + additionalInfoStr
+}
+
+function extractComponentInfo (vm: any): { name?: string } {
+  const options = vm?.$options || vm?.vnode?.type || vm?.type || vm || {}
+  return { name: options.name }
+}
+
+function getAdditionalVue3Info (vm: any): string[] {
+  const additionalInfo: string[] = []
+
+  if (vm?.props && typeof vm.props === 'object') {
+    const propKeys = Object.keys(vm.props).slice(0, 3)
+    if (propKeys.length > 0) {
+      additionalInfo.push(`props: ${propKeys.join(', ')}${Object.keys(vm.props).length > 3 ? '...' : ''}`)
+    }
   }
 
-  return (
-    (name ? `<${classify(name)}>` : `<Anonymous>`) +
-    (file && includeFile !== false ? ` at ${file}` : '')
-  )
+  if (vm?.setupState && typeof vm.setupState === 'object') {
+    const setupKeys = Object.keys(vm.setupState).slice(0, 2)
+    if (setupKeys.length > 0) {
+      additionalInfo.push(`setup: ${setupKeys.join(', ')}${Object.keys(vm.setupState).length > 2 ? '...' : ''}`)
+    }
+  }
+
+  return additionalInfo
 }
 
 function generateComponentTrace (vm: any): string {
-  if (vm._isVue && vm.$parent) {
+  if (vm?.parent || vm?.$parent) {
     const tree: any[] = []
     let currentRecursiveSequence = 0
-    while (vm) {
+    let currentVm = vm
+
+    while (currentVm) {
       if (tree.length > 0) {
         const last: any = tree[tree.length - 1]
-        if (last.constructor === vm.constructor) {
+        if (last.constructor === currentVm.constructor) {
           currentRecursiveSequence++
-          vm = vm.$parent
+          currentVm = currentVm.parent || currentVm.$parent
           continue
         } else if (currentRecursiveSequence > 0) {
           tree[tree.length - 1] = [last, currentRecursiveSequence]
           currentRecursiveSequence = 0
         }
       }
-      tree.push(vm)
-      vm = vm.$parent
+      tree.push(currentVm)
+      currentVm = currentVm.parent || currentVm.$parent
     }
+
     return '\n\nfound in\n\n' + tree
       .map((vm, i) => `${
         i === 0 ? '---> ' : ' '.repeat(5 + i * 2)
