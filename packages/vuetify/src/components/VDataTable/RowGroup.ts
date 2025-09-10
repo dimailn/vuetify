@@ -1,10 +1,9 @@
 import { defineComponent, VNode, h, Fragment } from 'vue'
 import { getSlot } from '../../util/helpers'
+import { breaking } from '../../util/console'
 
 export default defineComponent({
   name: 'row-group',
-
-  functional: true,
 
   props: {
     modelValue: {
@@ -20,6 +19,17 @@ export default defineComponent({
       type: String,
       default: 'v-row-group__summary',
     },
+  },
+
+  created () {
+    const breakingProps = [
+      ['value', 'modelValue'],
+    ]
+
+    /* istanbul ignore next */
+    breakingProps.forEach(([original, replacement]) => {
+      if (this.$attrs.hasOwnProperty(original)) breaking(original, replacement, this)
+    })
   },
 
   render (): VNode {
