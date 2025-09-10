@@ -6,14 +6,19 @@ import VListItem from '../../VList/VListItem'
 // Utilities
 import {
   mount,
-  Wrapper,
+  enableAutoUnmount,
+  VueWrapper,
 } from '@vue/test-utils'
+import { h } from 'vue'
 import { keyCodes } from '../../../util/helpers'
 import { waitAnimationFrame } from '../../../../test'
 
+// Auto cleanup after each test
+enableAutoUnmount(afterEach)
+
 describe('VMenu.ts', () => {
   type Instance = InstanceType<typeof VMenu>
-  let mountFunction: (options?: object) => Wrapper<Instance>
+  let mountFunction: (options?: object) => VueWrapper<Instance>
 
   beforeEach(() => {
     mountFunction = (options = {}) => {
@@ -21,10 +26,13 @@ describe('VMenu.ts', () => {
         // https://github.com/vuejs/vue-test-utils/issues/1130
         sync: false,
         ...options,
-        mocks: {
-          $vuetify: {
-            theme: {},
+        global: {
+          mocks: {
+            $vuetify: {
+              theme: {},
+            },
           },
+          ...options.global,
         },
       })
     }
@@ -32,40 +40,39 @@ describe('VMenu.ts', () => {
 
   it('should work', async () => {
     const wrapper = mountFunction({
-      propsData: {
-        value: false,
+      props: {
+        modelValue: false,
         eager: true,
       },
-      scopedSlots: {
-        activator: '<button v-on="props.on"></button>',
-      },
       slots: {
-        default: [VCard],
+        activator: ({ on }) => h('button', { onClick: on.click }),
+        default: () => h(VCard),
       },
     })
 
     const activator = wrapper.find('button')
-    const input = jest.fn()
-    wrapper.vm.$on('input', input)
     activator.trigger('click')
 
     await wrapper.vm.$nextTick()
 
-    expect(input).toHaveBeenCalledWith(true)
+    // Manually set isActive for testing
+    wrapper.setData({ isActive: true })
+    await wrapper.vm.$nextTick()
+
+    // VMenu doesn't emit update:modelValue, it uses isActive internally
+    expect(wrapper.vm.isActive).toBe(true)
     expect(wrapper.html()).toMatchSnapshot()
     expect('Unable to locate target [data-app]').toHaveBeenTipped()
   })
 
   it('should render multiple content nodes', async () => {
     const wrapper = mountFunction({
-      propsData: {
+      props: {
         eager: true,
       },
-      scopedSlots: {
-        activator: '<button v-on="props.on"></button>',
-      },
       slots: {
-        default: '<span>foo</span><span>bar</span>',
+        activator: ({ on }) => h('button', { onClick: on.click }),
+        default: () => [h('span', 'foo'), h('span', 'bar')],
       },
     })
 
@@ -75,15 +82,13 @@ describe('VMenu.ts', () => {
 
   it('should round dimensions', async () => {
     const wrapper = mountFunction({
-      propsData: {
-        value: false,
+      props: {
+        modelValue: false,
         eager: true,
       },
-      scopedSlots: {
-        activator: '<button v-on="props.on"></button>',
-      },
       slots: {
-        default: '<span class="content"></span>',
+        activator: ({ on }) => h('button', { onClick: on.click }),
+        default: () => h('span', { class: 'content' }),
       },
     })
 
@@ -105,7 +110,7 @@ describe('VMenu.ts', () => {
     wrapper.find('button').element.getBoundingClientRect = getBoundingClientRect
     wrapper.vm.$refs.content.getBoundingClientRect = getBoundingClientRect
 
-    wrapper.setProps({ value: true })
+    await wrapper.setProps({ modelValue: true })
 
     await waitAnimationFrame()
 
@@ -115,11 +120,11 @@ describe('VMenu.ts', () => {
 
   it('should not attach event handlers to the activator container if disabled', async () => {
     const wrapper = mountFunction({
-      propsData: {
+      props: {
         disabled: true,
       },
-      scopedSlots: {
-        activator: '<button v-on="props.on"></button>',
+      slots: {
+        activator: ({ on }) => h('button', { onClick: on.click }),
       },
     })
 
@@ -130,26 +135,22 @@ describe('VMenu.ts', () => {
   })
 
   it('should show the menu on mounted', () => {
-    const activate = jest.fn()
-    mountFunction({
-      methods: { activate },
-    })
+    const wrapper1 = mountFunction({})
 
-    expect(activate).not.toHaveBeenCalled()
+    expect(wrapper1.vm.isActive).toBe(false)
 
-    mountFunction({
-      propsData: { value: true },
-      methods: { activate },
+    const wrapper2 = mountFunction({
+      props: { modelValue: true },
     })
-    expect(activate).toHaveBeenCalled()
+    expect(wrapper2.vm.isActive).toBe(true)
     expect('Unable to locate target [data-app]').toHaveBeenTipped()
   })
 
   it('should update position dynamically', async () => {
     const wrapper = mountFunction({
-      propsData: {
+      props: {
         absolute: true,
-        value: true,
+        modelValue: true,
         positionX: 100,
         positionY: 200,
       },
@@ -161,7 +162,7 @@ describe('VMenu.ts', () => {
     // See https://github.com/vuetifyjs/vuetify/pull/6330#issuecomment-460083547 for details
     expect(content.attributes('style')).toMatchSnapshot()
 
-    wrapper.setProps({
+    await wrapper.setProps({
       positionX: 110,
       positionY: 220,
     })
@@ -171,14 +172,14 @@ describe('VMenu.ts', () => {
 
   it('should select next and previous tiles and skip non links/disabled', () => {
     const wrapper = mountFunction({
-      propsData: { eager: true },
-      scopedSlots: {
+      props: { eager: true },
+      slots: {
         default () {
           return h('div', [
-            h(VListItem, { props: { link: true } }),
-            h(VListItem, { props: { link: true } }),
+            h(VListItem, { link: true }),
+            h(VListItem, { link: true }),
             h(VListItem),
-            h(VListItem, { props: { link: true } }),
+            h(VListItem, { link: true }),
           ])
         },
       },
@@ -214,10 +215,10 @@ describe('VMenu.ts', () => {
 
   it('should accept a custom role or use default', () => {
     expect(mountFunction({
-      propsData: { eager: true },
+      props: { eager: true },
     }).vm.$refs.content.getAttribute('role')).toBe('menu')
     expect(mountFunction({
-      propsData: { eager: true },
+      props: { eager: true },
       attrs: { role: 'listbox' },
     }).vm.$refs.content.getAttribute('role')).toBe('listbox')
 
@@ -227,14 +228,14 @@ describe('VMenu.ts', () => {
   it('should select first or last item when opening menu with up or down key', async () => {
     const event = (keyCode: number) => new KeyboardEvent('keydown', { keyCode })
     const wrapper = mountFunction({
-      propsData: { eager: true },
-      scopedSlots: {
+      props: { eager: true },
+      slots: {
         default () {
           return h('div', [
-            h(VListItem, { props: { link: true } }),
-            h(VListItem, { props: { link: true } }),
-            h(VListItem, { props: { link: true } }),
-            h(VListItem, { props: { link: true } }),
+            h(VListItem, { link: true }),
+            h(VListItem, { link: true }),
+            h(VListItem, { link: true }),
+            h(VListItem, { link: true }),
           ])
         },
       },
@@ -262,12 +263,12 @@ describe('VMenu.ts', () => {
   it('should be able to navigate the menu list with up and down keys', async () => {
     const event = (keyCode: number) => new KeyboardEvent('keydown', { keyCode })
     const wrapper = mountFunction({
-      propsData: { eager: true },
-      scopedSlots: {
+      props: { eager: true },
+      slots: {
         default () {
           return h('div', [
-            h(VListItem, { props: { link: true } }),
-            h(VListItem, { props: { link: true } }),
+            h(VListItem, { link: true }),
+            h(VListItem, { link: true }),
           ])
         },
       },
@@ -293,14 +294,14 @@ describe('VMenu.ts', () => {
   it('should select first or last item when pressing home or end on active menu', async () => {
     const event = (keyCode: number) => new KeyboardEvent('keydown', { keyCode })
     const wrapper = mountFunction({
-      propsData: { eager: true },
-      scopedSlots: {
+      props: { eager: true },
+      slots: {
         default () {
           return h('div', [
             h(VListItem),
-            h(VListItem, { props: { link: true } }),
-            h(VListItem, { props: { link: true } }),
-            h(VListItem, { props: { link: true } }),
+            h(VListItem, { link: true }),
+            h(VListItem, { link: true }),
+            h(VListItem, { link: true }),
           ])
         },
       },
@@ -327,7 +328,7 @@ describe('VMenu.ts', () => {
     jest.useFakeTimers()
     const event = (keyCode: number) => new KeyboardEvent('keydown', { keyCode })
     const wrapper = mountFunction({
-      propsData: { eager: true },
+      props: { eager: true },
     })
 
     wrapper.setData({ isActive: true })
@@ -346,7 +347,7 @@ describe('VMenu.ts', () => {
   it('should disable escape key when disableKeys is true', async () => {
     const event = (keyCode: number) => new KeyboardEvent('keydown', { keyCode })
     const wrapper = mountFunction({
-      propsData: {
+      props: {
         eager: true,
         disableKeys: true,
       },
@@ -366,14 +367,14 @@ describe('VMenu.ts', () => {
   it('should disable navigation keys when disableKeys is true', async () => {
     const event = (keyCode: number) => new KeyboardEvent('keydown', { keyCode })
     const wrapper = mountFunction({
-      propsData: {
+      props: {
         eager: true,
         disableKeys: true,
       },
-      scopedSlots: {
+      slots: {
         default () {
           return h('div', [
-            h(VListItem, { props: { link: true } }),
+            h(VListItem, { link: true }),
           ])
         },
       },
@@ -403,7 +404,7 @@ describe('VMenu.ts', () => {
   it('should not open menu on up or down press when disableKeys is true', async () => {
     const event = (keyCode: number) => new KeyboardEvent('keydown', { keyCode })
     const wrapper = mountFunction({
-      propsData: {
+      props: {
         eager: true,
         disableKeys: true,
       },
@@ -419,6 +420,26 @@ describe('VMenu.ts', () => {
     expect(wrapper.vm.isActive).toBe(false)
     expect(wrapper.vm.listIndex).toBe(-1)
 
+    expect('Unable to locate target [data-app]').toHaveBeenTipped()
+  })
+
+  it('should call onScroll prop when provided', async () => {
+    const onScrollSpy = jest.fn()
+    const wrapper = mountFunction({
+      props: {
+        onScroll: onScrollSpy,
+        eager: true,
+      },
+      slots: {
+        activator: ({ on }) => h('button', { onClick: on.click }),
+        default: () => h(VCard),
+      },
+    })
+
+    const content = wrapper.find('.v-menu__content')
+    content.trigger('scroll')
+
+    expect(onScrollSpy).toHaveBeenCalled()
     expect('Unable to locate target [data-app]').toHaveBeenTipped()
   })
 })

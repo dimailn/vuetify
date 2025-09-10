@@ -82,9 +82,17 @@ export default baseMixins.extend({
       type: Object as PropType<Record<string, any>>,
       default: () => ({}),
     },
+    onScroll: {
+      type: Function as PropType<(event: Event) => void>,
+      default: undefined,
+    },
   },
 
-  emits: ['keydown'],
+  emits: [
+    'keydown',
+    'update:modelValue',
+    'update:return-value',
+  ],
 
   data () {
     return {
