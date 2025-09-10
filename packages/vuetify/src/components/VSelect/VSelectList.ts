@@ -148,10 +148,7 @@ export default mixins(Colorable, Themeable).extend({
           // Prevent onBlur from being called
           e.preventDefault()
         },
-        onClick: (e) => {
-          e.stopPropagation()
-          disabled || this.$emit('select', item)
-        },
+        onClick: () => disabled || this.$emit('select', item),
         activeClass: this.tileActiveClass,
         disabled,
         ripple: true,
