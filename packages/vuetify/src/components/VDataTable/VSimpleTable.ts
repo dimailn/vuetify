@@ -1,10 +1,9 @@
-import {h} from 'vue'
+import { h, VNode } from 'vue'
 import './VSimpleTable.sass'
 
 import { convertToUnit, getSlot } from '../../util/helpers'
 import Themeable from '../../mixins/themeable'
 import mixins from '../../util/mixins'
-import { VNode } from 'vue'
 
 export default mixins(Themeable).extend({
   name: 'v-simple-table',
@@ -30,7 +29,7 @@ export default mixins(Themeable).extend({
 
   methods: {
     genWrapper () {
-      return this.$slots.wrapper || h('div', {
+      return getSlot(this, 'wrapper') || h('div', {
         class: 'v-data-table__wrapper',
         style: {
           height: convertToUnit(this.height),
