@@ -1,34 +1,43 @@
 import VTimelineItem from '../VTimelineItem'
 import {
   mount,
-  MountOptions,
-  Wrapper,
+  VueWrapper,
+  MountingOptions,
+  enableAutoUnmount,
 } from '@vue/test-utils'
+import { h } from 'vue'
 
 describe('VTimelineItem.ts', () => {
   type Instance = InstanceType<typeof VTimelineItem>
-  let mountFunction: (options?: MountOptions<Instance>) => Wrapper<Instance>
+  let mountFunction: (options?: MountingOptions<Instance>) => VueWrapper<Instance>
+
+  enableAutoUnmount(afterEach)
+
   beforeEach(() => {
-    mountFunction = (options?: MountOptions<Instance>) => {
-      return mount(VTimelineItem, options)
+    mountFunction = (options?: MountingOptions<Instance>) => {
+      return mount(VTimelineItem, {
+        global: {
+          provide: {
+            timeline: {
+              reverse: false,
+            },
+          },
+        },
+        ...options,
+      })
     }
   })
 
-  it('should conditionally render dot', () => {
+  it('should conditionally render dot', async () => {
     const wrapper = mountFunction({
-      propsData: {
+      props: {
         hideDot: true,
-      },
-      provide: {
-        timeline: {
-          reverse: false,
-        },
       },
     })
 
     expect(wrapper.html()).toMatchSnapshot()
 
-    wrapper.setProps({ hideDot: false })
+    await wrapper.setProps({ hideDot: false })
 
     expect(wrapper.html()).toMatchSnapshot()
   })
@@ -36,38 +45,19 @@ describe('VTimelineItem.ts', () => {
   it('should conditionally render an icon or icon slot', () => {
     expect(mountFunction({
       slots: {
-        icon: [{
-          render: h => h('div', 'foo'),
-        }],
-      },
-      provide: {
-        timeline: {
-          reverse: false,
-        },
+        icon: () => h('div', 'foo'),
       },
     }).html()).toMatchSnapshot()
 
     expect(mountFunction({
-      propsData: { icon: 'foo' },
-      provide: {
-        timeline: {
-          reverse: false,
-        },
-      },
+      props: { icon: 'foo' },
     }).html()).toMatchSnapshot()
   })
 
   it('should render opposite slot', () => {
     const wrapper = mountFunction({
       slots: {
-        opposite: [{
-          render: h => h('div', 'foo'),
-        }],
-      },
-      provide: {
-        timeline: {
-          reverse: false,
-        },
+        opposite: () => h('div', 'foo'),
       },
     })
 
