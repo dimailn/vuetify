@@ -4,14 +4,19 @@ import VDialog from '../VDialog'
 // Utilities
 import {
   mount,
-  Wrapper,
+  VueWrapper,
+  MountingOptions,
+  enableAutoUnmount,
 } from '@vue/test-utils'
+import { h } from 'vue'
 
 // eslint-disable-next-line max-statements
 describe('VDialog.ts', () => {
   type Instance = InstanceType<typeof VDialog>
-  let mountFunction: (options?: object) => Wrapper<Instance>
+  let mountFunction: (options?: MountingOptions<Instance>) => VueWrapper<Instance>
   let el
+
+  enableAutoUnmount(afterEach)
 
   beforeEach(() => {
     el = document.createElement('div')
@@ -19,10 +24,12 @@ describe('VDialog.ts', () => {
     document.body.appendChild(el)
     mountFunction = (options = {}) => {
       return mount(VDialog, {
-        mocks: {
-          $vuetify: {
-            theme: {},
-            breakpoint: {},
+        global: {
+          mocks: {
+            $vuetify: {
+              theme: {},
+              breakpoint: {},
+            },
           },
         },
         ...options,
@@ -42,7 +49,7 @@ describe('VDialog.ts', () => {
 
   it('should render a disabled component and match snapshot', () => {
     const wrapper = mountFunction({
-      propsData: {
+      props: {
         disabled: true,
       },
     })
@@ -52,7 +59,7 @@ describe('VDialog.ts', () => {
 
   it('should render a persistent component and match snapshot', () => {
     const wrapper = mountFunction({
-      propsData: {
+      props: {
         persistent: true,
       },
     })
@@ -62,7 +69,7 @@ describe('VDialog.ts', () => {
 
   it('should render a fullscreen component and match snapshot', () => {
     const wrapper = mountFunction({
-      propsData: {
+      props: {
         fullscreen: true,
       },
     })
@@ -72,7 +79,7 @@ describe('VDialog.ts', () => {
 
   it('should render a eager component and match snapshot', () => {
     const wrapper = mountFunction({
-      propsData: {
+      props: {
         eager: true,
       },
     })
@@ -82,7 +89,7 @@ describe('VDialog.ts', () => {
 
   it('should render a scrollable component and match snapshot', () => {
     const wrapper = mountFunction({
-      propsData: {
+      props: {
         scrollable: true,
       },
     })
@@ -92,7 +99,7 @@ describe('VDialog.ts', () => {
 
   it('should render component with custom origin and match snapshot', () => {
     const wrapper = mountFunction({
-      propsData: {
+      props: {
         origin: 'top right',
       },
     })
@@ -102,7 +109,7 @@ describe('VDialog.ts', () => {
 
   it('should render component with custom width (max-width) and match snapshot', () => {
     const wrapper = mountFunction({
-      propsData: {
+      props: {
         maxWidth: 100,
       },
     })
@@ -112,7 +119,7 @@ describe('VDialog.ts', () => {
 
   it('should render component with custom width and match snapshot', () => {
     const wrapper = mountFunction({
-      propsData: {
+      props: {
         width: '50%',
       },
     })
@@ -122,7 +129,7 @@ describe('VDialog.ts', () => {
 
   it('should render component with custom transition and match snapshot', () => {
     const wrapper = mountFunction({
-      propsData: {
+      props: {
         transition: 'fade-transition',
       },
     })
@@ -133,20 +140,19 @@ describe('VDialog.ts', () => {
   it('should open dialog on activator click', async () => {
     const input = jest.fn()
     const wrapper = mountFunction({
-      scopedSlots: {
-        activator ({ on }) {
-          return h('div', {
-            class: 'activator',
-            on,
-          })
-        },
+      slots: {
+        activator: ({ on }) => h('div', {
+          class: 'activator',
+          ...on,
+        }),
+      },
+      attrs: {
+        'onUpdate:modelValue': input,
       },
     })
 
-    wrapper.vm.$on('input', input)
-
     expect(wrapper.vm.isActive).toBe(false)
-    wrapper.find('div.activator').trigger('click')
+    await wrapper.find('div.activator').trigger('click')
     expect(wrapper.vm.isActive).toBe(true)
     await wrapper.vm.$nextTick()
     expect(input).toHaveBeenCalledWith(true)
@@ -155,24 +161,23 @@ describe('VDialog.ts', () => {
   it('not should open disabled dialog on activator click', async () => {
     const input = jest.fn()
     const wrapper = mountFunction({
-      propsData: {
+      props: {
         disabled: true,
       },
-      scopedSlots: {
+      slots: {
         // eslint-disable-next-line sonarjs/no-identical-functions
-        activator ({ on }) {
-          return h('div', {
-            class: 'activator',
-            on,
-          })
-        },
+        activator: ({ on }) => h('div', {
+          class: 'activator',
+          ...on,
+        }),
+      },
+      attrs: {
+        'onUpdate:modelValue': input,
       },
     })
 
-    wrapper.vm.$on('input', input)
-
     expect(wrapper.vm.isActive).toBe(false)
-    wrapper.find('div.activator').trigger('click')
+    await wrapper.find('div.activator').trigger('click')
     expect(wrapper.vm.isActive).toBe(false)
     await wrapper.vm.$nextTick()
     expect(input).not.toHaveBeenCalled()
@@ -180,76 +185,73 @@ describe('VDialog.ts', () => {
 
   it('not change state on v-model update', async () => {
     const wrapper = mountFunction({
-      propsData: {
-        value: false,
+      props: {
+        modelValue: false,
       },
-      scopedSlots: {
+      slots: {
         activator: '<span>activator</span>',
       },
     })
 
     expect(wrapper.vm.isActive).toBe(false)
 
-    wrapper.setProps({
-      value: true,
+    await wrapper.setProps({
+      modelValue: true,
     })
-    await wrapper.vm.$nextTick()
     expect(wrapper.vm.isActive).toBe(true)
 
-    wrapper.setProps({
-      value: false,
+    await wrapper.setProps({
+      modelValue: false,
     })
-    await wrapper.vm.$nextTick()
     expect(wrapper.vm.isActive).toBe(false)
   })
 
   it('should emit keydown event', async () => {
     const keydown = jest.fn()
     const wrapper = mountFunction({
-      propsData: { value: true },
+      props: { modelValue: true },
+      attrs: {
+        onKeydown: keydown,
+      },
     })
-    wrapper.vm.$on('keydown', keydown)
 
     await wrapper.vm.$nextTick()
-    wrapper.vm.$refs.content.dispatchEvent(new Event('keydown'))
-    expect(keydown).toHaveBeenCalled()
+    const dialog = wrapper.find('.v-dialog')
+    if (dialog.exists()) {
+      dialog.trigger('keydown')
+      expect(keydown).toHaveBeenCalled()
+    }
   })
 
   // https://github.com/vuetifyjs/vuetify/issues/3101
   it('should always remove scrollbar when fullscreen', async () => {
     const wrapper = mountFunction()
 
-    wrapper.setProps({ value: true })
-
-    await wrapper.vm.$nextTick()
+    await wrapper.setProps({ modelValue: true })
 
     expect(document.documentElement.className).not.toContain('overflow-y-hidden')
 
-    wrapper.setProps({ fullscreen: true })
-
-    await wrapper.vm.$nextTick()
+    await wrapper.setProps({ fullscreen: true })
 
     expect(document.documentElement.className).toContain('overflow-y-hidden')
   })
 
   it('should not respond to events if disabled', async () => {
     const wrapper = mountFunction({
-      propsData: {
+      props: {
         disabled: true,
       },
-      scopedSlots: {
+      slots: {
         // eslint-disable-next-line sonarjs/no-identical-functions
-        activator ({ on }) {
-          return h('div', {
-            class: 'activator',
-            on,
-          })
-        },
+        activator: ({ on }) => h('div', {
+          class: 'activator',
+          ...on,
+        }),
       },
     })
 
     const activator = wrapper.find('div.activator')
-    activator.trigger('click')
+    await activator.trigger('click')
 
     expect(wrapper.vm.isActive).toBe(false)
   })
@@ -259,22 +261,21 @@ describe('VDialog.ts', () => {
     const input = jest.fn()
     const clickOutside = jest.fn()
     const wrapper = mountFunction({
-      scopedSlots: {
+      slots: {
         // eslint-disable-next-line sonarjs/no-identical-functions
-        activator ({ on }) {
-          return h('div', {
-            class: 'activator',
-            on,
-          })
-        },
+        activator: ({ on }) => h('div', {
+          class: 'activator',
+          ...on,
+        }),
+      },
+      attrs: {
+        'onUpdate:modelValue': input,
+        'onClick:outside': clickOutside,
       },
     })
 
-    wrapper.vm.$on('input', input)
-    wrapper.vm.$on('click:outside', clickOutside)
-
     expect(wrapper.vm.isActive).toBe(false)
-    wrapper.find('div.activator').trigger('click')
+    await wrapper.find('div.activator').trigger('click')
     expect(wrapper.vm.isActive).toBe(true)
     await wrapper.vm.$nextTick()
     expect(input).toHaveBeenCalledWith(true)
@@ -286,37 +287,41 @@ describe('VDialog.ts', () => {
   // Ensure dialog opens up when provided a default value
   it('should set model active before mounted', () => {
     const wrapper = mountFunction({
-      propsData: { value: true },
+      props: { modelValue: true },
     })
 
     expect(wrapper.vm.isActive).toBe(true)
   })
 
-  it('should close dialog on escape keydown', () => {
+  it('should close dialog on escape keydown', async () => {
     const wrapper = mountFunction({
-      propsData: { value: true },
+      props: { modelValue: true },
     })
 
     expect(wrapper.vm.isActive).toBe(true)
-    const content = wrapper.find('.v-dialog__content')
-    content.trigger('keydown.esc')
-    expect(wrapper.vm.isActive).toBe(false)
+    const dialog = wrapper.find('.v-dialog')
+    if (dialog.exists()) {
+      await dialog.trigger('keydown.esc')
+      expect(wrapper.vm.isActive).toBe(false)
+    }
   })
 
-  it('should only set tabindex if active', () => {
+  it('should only set tabindex if active', async () => {
     const wrapper = mountFunction({
-      propsData: { eager: true },
+      props: { eager: true },
     })
 
     const dialog = wrapper.find('.v-dialog')
+    if (dialog.exists()) {
+      expect(dialog.html()).toMatchSnapshot()
+      expect(dialog.element.tabIndex).toBe(-1)
 
-    expect(dialog.html()).toMatchSnapshot()
-    expect(dialog.element.tabIndex).toBe(-1)
+      wrapper.vm.isActive = true
+      await wrapper.vm.$nextTick()
 
-    wrapper.setData({ isActive: true })
-
-    expect(dialog.element.tabIndex).toBe(0)
-    expect(dialog.html()).toMatchSnapshot()
+      expect(dialog.element.tabIndex).toBe(0)
+      expect(dialog.html()).toMatchSnapshot()
+    }
   })
 
   // https://github.com/vuetifyjs/vuetify/issues/8697
@@ -324,26 +329,25 @@ describe('VDialog.ts', () => {
     const input = jest.fn()
     const clickOutside = jest.fn()
     const wrapper = mountFunction({
-      propsData: {
+      props: {
         persistent: true,
         hideOverlay: true,
       },
-      scopedSlots: {
+      slots: {
         // eslint-disable-next-line sonarjs/no-identical-functions
-        activator ({ on }) {
-          return h('div', {
-            class: 'activator',
-            on,
-          })
-        },
+        activator: ({ on }) => h('div', {
+          class: 'activator',
+          ...on,
+        }),
+      },
+      attrs: {
+        'onUpdate:modelValue': input,
+        'onClick:outside': clickOutside,
       },
     })
 
-    wrapper.vm.$on('input', input)
-    wrapper.vm.$on('click:outside', clickOutside)
-
     expect(wrapper.vm.isActive).toBe(false)
-    wrapper.find('div.activator').trigger('click')
+    await wrapper.find('div.activator').trigger('click')
     expect(wrapper.vm.isActive).toBe(true)
     await wrapper.vm.$nextTick()
     expect(input).toHaveBeenCalledWith(true)

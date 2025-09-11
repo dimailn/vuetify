@@ -18,7 +18,7 @@ import ClickOutside from '../../directives/click-outside'
 
 // Helpers
 import mixins from '../../util/mixins'
-import { removed } from '../../util/console'
+import { removed, breaking } from '../../util/console'
 import {
   convertToUnit,
   keyCodes,
@@ -64,7 +64,7 @@ export default baseMixins.extend({
     width: [String, Number],
   },
 
-  emits: ['click:outside', 'keydown'],
+  emits: ['click:outside', 'keydown', 'update:return-value', 'update:modelValue'],
 
   data () {
     return {
@@ -126,6 +126,16 @@ export default baseMixins.extend({
   },
 
   created () {
+    const breakingProps = [
+      ['value', 'modelValue'],
+      ['onInput', 'onUpdate:modelValue'],
+    ]
+
+    /* istanbul ignore next */
+    breakingProps.forEach(([original, replacement]) => {
+      if (this.$attrs.hasOwnProperty(original)) breaking(original, replacement, this)
+    })
+
     /* istanbul ignore next */
     if (this.$attrs.hasOwnProperty('full-width')) {
       removed('full-width', this)
@@ -245,7 +255,7 @@ export default baseMixins.extend({
         h(VThemeProvider, {
           root: true,
           light: this.light,
-          dark: this.dark
+          dark: this.dark,
         }, () => [
           h('div', {
             class: this.contentClasses,
@@ -267,7 +277,7 @@ export default baseMixins.extend({
       return h(Transition, {
         name: this.transition,
         origin: this.origin,
-        appear: true
+        appear: true,
       }, () => [content])
     },
     genInnerContent () {
