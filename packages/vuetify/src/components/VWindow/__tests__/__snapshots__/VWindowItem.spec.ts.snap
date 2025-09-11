@@ -1,0 +1,36 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`VWindowItem.ts should not render when not active 1`] = `""`;
+
+exports[`VWindowItem.ts should render with correct structure and classes when active 1`] = `
+<div class="v-window-item">
+</div>
+`;
+
+exports[`VWindowItem.ts should render with custom transition when active 1`] = `
+<div class="v-window-item">
+</div>
+`;
+
+exports[`VWindowItem.ts should render with disabled prop when active 1`] = `
+<div class="v-window-item">
+</div>
+`;
+
+exports[`VWindowItem.ts should render with reverse transition when active 1`] = `
+<div class="v-window-item">
+</div>
+`;
+
+exports[`VWindowItem.ts should render with slot content when active 1`] = `
+<div class="v-window-item">
+  <div class="test-content">
+    Test content
+  </div>
+</div>
+`;
+
+exports[`VWindowItem.ts should render with value prop when active 1`] = `
+<div class="v-window-item">
+</div>
+`;

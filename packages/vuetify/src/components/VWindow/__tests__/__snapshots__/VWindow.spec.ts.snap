@@ -1,0 +1,59 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`VWindow.ts should render with arrows when showArrows is true 1`] = `
+<div class="v-window v-item-group theme--light">
+  <div class="v-window__container">
+    <div class="v-window-item v-window-item--active">
+    </div>
+  </div>
+</div>
+`;
+
+exports[`VWindow.ts should render with correct structure and classes 1`] = `
+<div class="v-window v-item-group theme--light">
+  <div class="v-window__container">
+    <div class="v-window-item v-window-item--active">
+    </div>
+  </div>
+</div>
+`;
+
+exports[`VWindow.ts should render with custom height style 1`] = `
+<div class="v-window v-item-group theme--light">
+  <div class="v-window__container"
+       style="height: 300px;"
+  >
+    <div class="v-window-item v-window-item--active">
+    </div>
+  </div>
+</div>
+`;
+
+exports[`VWindow.ts should render with showArrowsOnHover prop 1`] = `
+<div class="v-window v-item-group theme--light v-window--show-arrows-on-hover">
+  <div class="v-window__container">
+    <div class="v-window-item v-window-item--active">
+    </div>
+  </div>
+</div>
+`;
+
+exports[`VWindow.ts should render with transition height style 1`] = `
+<div class="v-window v-item-group theme--light">
+  <div class="v-window__container"
+       style="height: 200px;"
+  >
+    <div class="v-window-item v-window-item--active">
+    </div>
+  </div>
+</div>
+`;
+
+exports[`VWindow.ts should render with vertical prop 1`] = `
+<div class="v-window v-item-group theme--light">
+  <div class="v-window__container">
+    <div class="v-window-item v-window-item--active">
+    </div>
+  </div>
+</div>
+`;

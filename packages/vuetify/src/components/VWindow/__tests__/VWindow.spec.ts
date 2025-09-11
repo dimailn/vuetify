@@ -398,4 +398,82 @@ describe('VWindow.ts', () => {
     vm.next()
     expect(vm.internalIndex).toBe(2)
   })
+
+  it('should render with correct structure and classes', () => {
+    const wrapper = mountFunction({
+      slots: {
+        default: () => [h(VWindowItem), h(VWindowItem)],
+      },
+    })
+
+    expect(wrapper.html()).toMatchSnapshot()
+  })
+
+  it('should render with arrows when showArrows is true', () => {
+    const wrapper = mountFunction({
+      props: {
+        showArrows: true,
+      },
+      slots: {
+        default: () => [h(VWindowItem), h(VWindowItem)],
+      },
+    })
+
+    expect(wrapper.html()).toMatchSnapshot()
+  })
+
+  it('should render with custom height style', async () => {
+    const wrapper = mountFunction({
+      slots: {
+        default: () => [h(VWindowItem), h(VWindowItem)],
+      },
+    })
+
+    const vm = wrapper.vm as any
+    vm.internalHeight = '300px'
+    await nextTick()
+
+    expect(wrapper.html()).toMatchSnapshot()
+  })
+
+  it('should render with transition height style', async () => {
+    const wrapper = mountFunction({
+      slots: {
+        default: () => [h(VWindowItem), h(VWindowItem)],
+      },
+    })
+
+    const vm = wrapper.vm as any
+    vm.transitionHeight = '200px'
+    await nextTick()
+
+    expect(wrapper.html()).toMatchSnapshot()
+  })
+
+  it('should render with vertical prop', () => {
+    const wrapper = mountFunction({
+      props: {
+        vertical: true,
+      },
+      slots: {
+        default: () => [h(VWindowItem), h(VWindowItem)],
+      },
+    })
+
+    expect(wrapper.html()).toMatchSnapshot()
+  })
+
+  it('should render with showArrowsOnHover prop', () => {
+    const wrapper = mountFunction({
+      props: {
+        showArrows: true,
+        showArrowsOnHover: true,
+      },
+      slots: {
+        default: () => [h(VWindowItem), h(VWindowItem)],
+      },
+    })
+
+    expect(wrapper.html()).toMatchSnapshot()
+  })
 })
