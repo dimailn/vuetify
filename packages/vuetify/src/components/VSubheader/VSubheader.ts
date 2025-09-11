@@ -26,7 +26,7 @@ export default mixins(
       class: ['v-subheader', {
         'v-subheader--inset': this.inset,
         ...this.themeClasses,
-      }, this.$attrs.class],
+      }],
       ...this.$listeners
     }, getSlot(this))
   },

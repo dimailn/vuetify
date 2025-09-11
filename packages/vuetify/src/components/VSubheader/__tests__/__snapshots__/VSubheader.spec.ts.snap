@@ -16,6 +16,6 @@ exports[`VSubheader.ts should be light 1`] = `
 `;
 
 exports[`VSubheader.ts should have custom class 1`] = `
-<div class="v-subheader foo theme--light">
+<div class="v-subheader theme--light foo">
 </div>
 `;

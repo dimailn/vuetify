@@ -4,12 +4,17 @@ import VSubheader from '../VSubheader'
 // Utilities
 import {
   mount,
-  Wrapper,
+  VueWrapper,
+  MountingOptions,
+  enableAutoUnmount,
 } from '@vue/test-utils'
+import { h } from 'vue'
 
 describe('VSubheader.ts', () => {
   type Instance = InstanceType<typeof VSubheader>
-  let mountFunction: (options?: object) => Wrapper<Instance>
+  let mountFunction: (options?: MountingOptions<Instance>) => VueWrapper<Instance>
+
+  enableAutoUnmount(afterEach)
 
   beforeEach(() => {
     mountFunction = (options = {}) => {
@@ -20,8 +25,8 @@ describe('VSubheader.ts', () => {
   })
 
   it('should have custom class', () => {
-    const wrapper = mount({
-      render: h => h(VSubheader, { class: 'foo' }),
+    const wrapper = mount(VSubheader, {
+      props: { class: 'foo' },
     })
 
     expect(wrapper.element.classList.contains('foo')).toBe(true)
@@ -30,7 +35,7 @@ describe('VSubheader.ts', () => {
 
   it('should be light', () => {
     const wrapper = mountFunction({
-      propsData: { light: true },
+      props: { light: true },
     })
 
     expect(wrapper.element.classList.contains('theme--light')).toBe(true)
@@ -39,7 +44,7 @@ describe('VSubheader.ts', () => {
 
   it('should be dark', () => {
     const wrapper = mountFunction({
-      propsData: { dark: true },
+      props: { dark: true },
     })
 
     expect(wrapper.element.classList.contains('theme--dark')).toBe(true)
@@ -48,7 +53,7 @@ describe('VSubheader.ts', () => {
 
   it('should be inset', () => {
     const wrapper = mountFunction({
-      propsData: { inset: true },
+      props: { inset: true },
     })
 
     expect(wrapper.element.classList.contains('v-subheader--inset')).toBe(true)
