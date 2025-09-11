@@ -165,7 +165,7 @@ export default defineComponent({
           key: i,
         }, () => [
           h(VIcon, {
-            size: 18
+            size: 18,
           }, () => this.delimiterIcon),
         ])
 
@@ -177,7 +177,7 @@ export default defineComponent({
         mandatory: this.mandatory,
         onChange: (val: unknown) => {
           this.internalValue = val
-        }
+        },
       }, () => children)
     },
     genProgress () {
@@ -203,7 +203,19 @@ export default defineComponent({
   render (): VNode {
     const render = VWindow.render.call(this, h)
 
-    render.style = `height: ${convertToUnit(this.height)};`
+    // Update the style object instead of setting render.style directly
+    if (render.props) {
+      render.props.style = {
+        ...render.props.style,
+        height: convertToUnit(this.height),
+      }
+    } else {
+      render.props = {
+        style: {
+          height: convertToUnit(this.height),
+        },
+      }
+    }
 
     /* istanbul ignore else */
     if (!this.hideDelimiters) {

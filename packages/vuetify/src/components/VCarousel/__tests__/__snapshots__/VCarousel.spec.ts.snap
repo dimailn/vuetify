@@ -22,7 +22,7 @@ exports[`VCarousel.ts should generate vertical delimiters 2`] = `
   <div class="v-window__container">
   </div>
   <div class="v-carousel__controls"
-       style="left: 0px;"
+       style="left: 0px; right: 0px;"
   >
     <div class="v-item-group theme--dark">
     </div>
