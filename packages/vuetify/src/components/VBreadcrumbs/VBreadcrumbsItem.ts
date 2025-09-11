@@ -20,6 +20,10 @@ export default mixins(Routable).extend({
       type: [Boolean, Object],
       default: false,
     },
+    text: {
+      type: String,
+      default: '',
+    },
   },
 
   computed: {
