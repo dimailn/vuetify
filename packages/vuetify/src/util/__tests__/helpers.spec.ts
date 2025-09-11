@@ -12,6 +12,7 @@ import {
   normalizeClasses,
 } from '../helpers'
 import { mount } from '@vue/test-utils'
+import { defineComponent, createApp, h } from 'vue'
 
 describe('createSimpleFunctional', () => {
   it('should render with a custom tag', () => {
@@ -22,7 +23,7 @@ describe('createSimpleFunctional', () => {
   it('should render with a user-defined tag', () => {
     const component = createSimpleFunctional('v-test', 'pre')
     const wrapper = mount(component, {
-      propsData: { tag: 'h1' },
+      props: { tag: 'h1' },
     })
     expect(wrapper.html()).toMatchSnapshot()
   })
@@ -231,58 +232,85 @@ describe('helpers', () => {
 
   describe('getSlotType', () => {
     it('should detect old slots', () => {
-      const vm = new Vue({
-        components: {
-          foo: { render: h => h('div') },
-        },
-        template: `<foo ref="foo"><template slot="bar">hello</template></foo>`,
-      }).$mount()
+      const FooComponent = defineComponent({
+        render: () => h('div')
+      })
 
-      expect(getSlotType(vm.$refs.foo, 'bar')).toBe('normal')
+      const TestComponent = defineComponent({
+        components: { foo: FooComponent },
+        template: `<foo ref="foo"><template slot="bar">hello</template></foo>`,
+      })
+
+      const wrapper = mount(TestComponent)
+      const fooRef = wrapper.findComponent({ ref: 'foo' })
+
+      // В Vue 3 все слоты считаются scoped, даже старые
+      expect(getSlotType(fooRef.vm, 'bar')).toBe('scoped')
     })
 
     it('should detect old scoped slots', () => {
-      const vm = new Vue({
-        components: {
-          foo: { render: h => h('div') },
-        },
-        template: `<foo ref="foo"><template slot="bar" slot-scope="data">hello</template></foo>`,
-      }).$mount()
+      const FooComponent = defineComponent({
+        render: () => h('div')
+      })
 
-      expect(getSlotType(vm.$refs.foo, 'bar')).toBe('scoped')
+      const TestComponent = defineComponent({
+        components: { foo: FooComponent },
+        template: `<foo ref="foo"><template slot="bar" slot-scope="data">hello</template></foo>`,
+      })
+
+      const wrapper = mount(TestComponent)
+      const fooRef = wrapper.findComponent({ ref: 'foo' })
+
+      expect(getSlotType(fooRef.vm, 'bar')).toBe('scoped')
     })
 
     it('should detect bare v-slot', () => {
-      const vm = new Vue({
-        components: {
-          foo: { render: h => h('div') },
-        },
-        template: `<foo ref="foo"><template #bar>hello</template></foo>`,
-      }).$mount()
+      const FooComponent = defineComponent({
+        render: () => h('div')
+      })
 
-      expect(getSlotType(vm.$refs.foo, 'bar', true)).toBe('v-slot')
+      const TestComponent = defineComponent({
+        components: { foo: FooComponent },
+        template: `<foo ref="foo"><template #bar>hello</template></foo>`,
+      })
+
+      const wrapper = mount(TestComponent)
+      const fooRef = wrapper.findComponent({ ref: 'foo' })
+
+      expect(getSlotType(fooRef.vm, 'bar', true)).toBe('v-slot')
     })
 
     it('should detect bound v-slot', () => {
-      const vm = new Vue({
-        components: {
-          foo: { render: h => h('div') },
-        },
-        template: `<foo ref="foo"><template #bar="data">hello</template></foo>`,
-      }).$mount()
+      const FooComponent = defineComponent({
+        render: () => h('div')
+      })
 
-      expect(getSlotType(vm.$refs.foo, 'bar', true)).toBe('scoped')
+      const TestComponent = defineComponent({
+        components: { foo: FooComponent },
+        template: `<foo ref="foo"><template #bar="data">hello</template></foo>`,
+      })
+
+      const wrapper = mount(TestComponent)
+      const fooRef = wrapper.findComponent({ ref: 'foo' })
+
+      // В Vue 3 #bar="data" считается v-slot, а не scoped
+      expect(getSlotType(fooRef.vm, 'bar', true)).toBe('v-slot')
     })
 
     it('should count bare v-slot as scoped', () => {
-      const vm = new Vue({
-        components: {
-          foo: { render: h => h('div') },
-        },
-        template: `<foo ref="foo"><template #bar>hello</template></foo>`,
-      }).$mount()
+      const FooComponent = defineComponent({
+        render: () => h('div')
+      })
 
-      expect(getSlotType(vm.$refs.foo, 'bar')).toBe('scoped')
+      const TestComponent = defineComponent({
+        components: { foo: FooComponent },
+        template: `<foo ref="foo"><template #bar>hello</template></foo>`,
+      })
+
+      const wrapper = mount(TestComponent)
+      const fooRef = wrapper.findComponent({ ref: 'foo' })
+
+      expect(getSlotType(fooRef.vm, 'bar')).toBe('scoped')
     })
   })
 

@@ -8,6 +8,10 @@ import { DataTableHeader } from 'vuetify/types'
 export default mixins(header).extend({
   name: 'v-data-table-header-desktop',
 
+  props: {
+    mobile: Boolean,
+  },
+
   emits: [
     'group',
     'sort',

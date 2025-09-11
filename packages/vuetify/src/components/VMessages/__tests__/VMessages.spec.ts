@@ -5,6 +5,7 @@ import VMessages from '../VMessages'
 import {
   mount,
   VueWrapper,
+  enableAutoUnmount,
 } from '@vue/test-utils'
 import { h } from 'vue'
 
@@ -15,9 +16,24 @@ describe('VMessages.ts', () => {
   type Instance = ComponentPublicInstance
   let mountFunction: (options?: object) => VueWrapper<Instance>
 
+  enableAutoUnmount(afterEach)
+
   beforeEach(() => {
     mountFunction = (options = {}) => {
       return mount(VMessages, {
+        global: {
+          mocks: {
+            $vuetify: {
+              rtl: false,
+              icons: {
+                component: null
+              },
+              lang: {
+                t: (val: string) => val,
+              },
+            },
+          },
+        },
         ...options,
       })
     }
@@ -33,13 +49,13 @@ describe('VMessages.ts', () => {
   it('should show messages', async () => {
     const wrapper = mountFunction({
       props: {
-        value: ['foo', 'bar'],
+        modelValue: ['foo', 'bar'],
       },
     })
 
     expect(wrapper.html()).toMatchSnapshot()
 
-    await wrapper.setProps({ value: [] })
+    await wrapper.setProps({ modelValue: [] })
 
     expect(wrapper.html()).toMatchSnapshot()
   })
@@ -47,7 +63,7 @@ describe('VMessages.ts', () => {
   it('should allow HTML', () => {
     const wrapper = mountFunction({
       props: {
-        value: ['<a href="#">a link</a>'],
+        modelValue: ['<a href="#">a link</a>'],
       },
     })
     expect(wrapper.html()).toMatchSnapshot()
@@ -56,8 +72,19 @@ describe('VMessages.ts', () => {
   // https://github.com/vuetifyjs/vuetify/issues/9491
   it('should not allow HTML', () => {
     const wrapper = mount(VMessages, {
+      global: {
+        mocks: {
+          $vuetify: {
+            rtl: false,
+            icons: {},
+            lang: {
+              t: (val: string) => val,
+            },
+          },
+        },
+      },
       props: {
-        value: ['<a href="#">a link</a>'],
+        modelValue: ['<a href="#">a link</a>'],
       },
     })
 
@@ -66,7 +93,18 @@ describe('VMessages.ts', () => {
 
   it('should accept a scoped slot', () => {
     const wrapper = mount(VMessages, {
-      props: { value: ['Foo'] },
+      global: {
+        mocks: {
+          $vuetify: {
+            rtl: false,
+            icons: {},
+            lang: {
+              t: (val: string) => val,
+            },
+          },
+        },
+      },
+      props: { modelValue: ['Foo'] },
       slots: {
         default (props: any) {
           return h('div', props.message)

@@ -1,4 +1,4 @@
-import {defineComponent, h} from 'vue'
+import { defineComponent, h } from 'vue'
 import { VNode, VNodeDirective } from 'vue/types'
 import { VuetifyIcon } from 'vuetify/types/services/icons'
 import { DataTableCompareFunction, SelectItemKey, ItemGroup } from 'vuetify/types'
@@ -125,7 +125,9 @@ export function deepEqual (a: any, b: any): boolean {
 export function getObjectValueByPath (obj: any, path: string, fallback?: any): any {
   // credit: http://stackoverflow.com/questions/6491463/accessing-nested-javascript-objects-with-string-key#comment55278413_6491621
   if (obj == null || !path || typeof path !== 'string') return fallback
-  if (path in obj && obj[path] !== undefined) return obj[path]
+  if (obj !== null && typeof obj === 'object' && !Array.isArray(obj) && path in obj && obj[path] !== undefined) {
+    return obj[path]
+  }
   path = path.replace(/\[(\w+)\]/g, '.$1') // convert indexes to properties
   path = path.replace(/^\./, '') // strip a leading dot
   return getNestedValue(obj, path.split('.'), fallback)
@@ -526,7 +528,7 @@ export function normalizeAttrs (attrs) {
 
   const obj = {}
 
-  for(let i = 0; i < keys.length; i++) {
+  for (let i = 0; i < keys.length; i++) {
     obj[keys[i]] = attrs[keys[i]]
   }
 
@@ -538,7 +540,9 @@ export function normalizeAttrs (attrs) {
  * @param classes - классы в виде строки, объекта или массива
  * @returns объект с нормализованными классами
  */
-export function normalizeClasses (classes: string | Record<string, any> | Array<string | Record<string, any>> | undefined): Record<string, any> {
+export function normalizeClasses (
+  classes: string | Record<string, any> | Array<string | Record<string, any>> | undefined
+): Record<string, any> {
   if (!classes) return {}
 
   if (typeof classes === 'object' && !Array.isArray(classes)) {

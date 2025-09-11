@@ -130,20 +130,25 @@ describe('VDataTable.ts', () => {
     document.body.setAttribute('data-app', 'true')
 
     mountFunction = (options?: MountingOptions<Instance>) => {
+      const vuetifyInstance = {
+        breakpoint: new Breakpoint(preset),
+        lang: new Lang(preset),
+        theme: {
+          dark: false,
+        },
+        icons: {},
+      }
+
       return mount(VDataTable, {
         global: {
           config: {
             globalProperties: {
-              $vuetify: {
-                breakpoint: new Breakpoint(preset),
-                lang: new Lang(preset),
-                theme: {
-                  dark: false,
-                },
-                icons: {}
-              }
-            }
-          }
+              $vuetify: vuetifyInstance,
+            },
+          },
+          mocks: {
+            $vuetify: vuetifyInstance,
+          },
         },
         ...options,
       })
@@ -183,7 +188,6 @@ describe('VDataTable.ts', () => {
     })
 
     expect(wrapper.html()).toMatchSnapshot()
-
   })
 
   it('should render with foot slot', () => {
@@ -199,10 +203,9 @@ describe('VDataTable.ts', () => {
     })
 
     expect(wrapper.html()).toMatchSnapshot()
-
   })
 
-  it.skip('should render virtual table', () => {
+  it('should render virtual table', () => {
     const wrapper = mountFunction({
       props: {
         headers: testHeaders,
@@ -232,7 +235,6 @@ describe('VDataTable.ts', () => {
 
     expect(wrapper.html()).toMatchSnapshot()
 
-
     const expandIcon = wrapper.findAll('.v-data-table__expand-icon')[0]
     if (expandIcon) {
       expandIcon.trigger('click')
@@ -254,7 +256,6 @@ describe('VDataTable.ts', () => {
     })
 
     expect(wrapper.html()).toMatchSnapshot()
-
   })
 
   it('should render with item.expanded scoped slot', async () => {
@@ -273,7 +274,6 @@ describe('VDataTable.ts', () => {
     await nextTick()
 
     expect(wrapper.html()).toMatchSnapshot()
-
   })
 
   it('should render with group.summary scoped slot', () => {
@@ -290,7 +290,6 @@ describe('VDataTable.ts', () => {
     })
 
     expect(wrapper.html()).toMatchSnapshot()
-
   })
 
   it('should render with item scoped slot', () => {
@@ -306,7 +305,6 @@ describe('VDataTable.ts', () => {
     })
 
     expect(wrapper.html()).toMatchSnapshot()
-
   })
 
   it('should render with grouped rows', () => {
@@ -320,7 +318,6 @@ describe('VDataTable.ts', () => {
     })
 
     expect(wrapper.html()).toMatchSnapshot()
-
   })
 
   it('should render with group scoped slot', () => {
@@ -337,18 +334,18 @@ describe('VDataTable.ts', () => {
     })
 
     expect(wrapper.html()).toMatchSnapshot()
-
   })
 
   it('should render loading state', () => {
     const wrapper = mountFunction({
       props: {
         loading: true,
+        checkboxColor: 'primary',
+        color: 'primary',
       },
     })
 
     expect(wrapper.html()).toMatchSnapshot()
-
 
     const wrapper2 = mountFunction({
       props: {
@@ -361,7 +358,6 @@ describe('VDataTable.ts', () => {
     })
 
     expect(wrapper2.html()).toMatchSnapshot()
-
   })
 
   it.each([

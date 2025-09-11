@@ -22,7 +22,7 @@ import ClickOutside from '../../directives/click-outside'
 // Utilities
 import mergeData from '../../util/mergeData'
 import { getPropertyFromItem, getObjectValueByPath, keyCodes, normalizeAttrs } from '../../util/helpers'
-import { consoleError } from '../../util/console'
+import { consoleError, breaking } from '../../util/console'
 
 // Types
 import mixins from '../../util/mixins'
@@ -72,6 +72,7 @@ export default baseMixins.extend({
       type: null as unknown as PropType<string | boolean | Element | VNode>,
       default: false,
     },
+    auto: Boolean,
     cacheItems: Boolean,
     chips: Boolean,
     clearable: Boolean,
@@ -103,6 +104,7 @@ export default baseMixins.extend({
       type: [String, Array, Object],
       default: () => defaultMenuProps,
     },
+    minWidth: [String, Number],
     multiple: Boolean,
     openOnClear: Boolean,
     returnObject: Boolean,
@@ -251,6 +253,8 @@ export default baseMixins.extend({
         eager: this.eager,
         modelValue: this.menuCanShow && this.isMenuActive,
         nudgeBottom: normalisedProps.offsetY ? 1 : 0, // convert to int
+        auto: this.auto,
+        minWidth: this.minWidth,
         ...normalisedProps,
       }
     },
@@ -293,6 +297,18 @@ export default baseMixins.extend({
         this.setSelectedItems()
       },
     },
+  },
+
+  created () {
+    const breakingProps = [
+      ['value', 'modelValue'],
+      ['onInput', 'onUpdate:modelValue'],
+    ]
+
+    /* istanbul ignore next */
+    breakingProps.forEach(([original, replacement]) => {
+      if (this.$attrs.hasOwnProperty(original)) breaking(original, replacement, this)
+    })
   },
 
   mounted () {
@@ -571,7 +587,7 @@ export default baseMixins.extend({
       return h(VMenu, {
         role: undefined,
         ...props,
-        onInput: (val: boolean) => {
+        'onUpdate:modelValue': (val: boolean) => {
           this.isMenuActive = val
           this.isFocused = val
         },

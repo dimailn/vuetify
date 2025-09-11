@@ -1,40 +1,36 @@
+import { h } from 'vue'
 import VDataFooter from '../VDataFooter'
 import { Lang } from '../../../services/lang'
 import {
   mount,
-  MountOptions,
-  Wrapper,
+  MountingOptions,
+  VueWrapper,
+  enableAutoUnmount,
 } from '@vue/test-utils'
-import Vue from 'vue'
 import { preset } from '../../../presets/default'
-
-Vue.prototype.$vuetify = {
-  icons: {
-    values: {
-      prev: 'mdi-chevron-left',
-      next: 'mdi-chevron-right',
-      dropdown: 'mdi-menu-down',
-      first: 'mdi-page-first',
-      last: 'mdi-page-last',
-    },
-  },
-}
 
 describe('VDataFooter.ts', () => {
   type Instance = InstanceType<typeof VDataFooter>
-  let mountFunction: (options?: MountOptions<Instance>) => Wrapper<Instance>
+  let mountFunction: (options?: MountingOptions<Instance>) => VueWrapper<Instance>
+
+  // Включаем автоматическое размонтирование после каждого теста
+  enableAutoUnmount(afterEach)
+
   beforeEach(() => {
     document.body.setAttribute('data-app', '')
 
-    mountFunction = (options?: MountOptions<Instance>) => {
+    mountFunction = (options?: MountingOptions<Instance>) => {
       return mount(VDataFooter, {
-        // https://github.com/vuejs/vue-test-utils/issues/1130
-        sync: false,
-        mocks: {
-          $vuetify: {
-            lang: new Lang(preset),
-            theme: {
-              dark: false,
+        global: {
+          mocks: {
+            $vuetify: {
+              icons: {
+                component: null,
+              },
+              lang: new Lang(preset),
+              theme: {
+                dark: false,
+              },
             },
           },
         },
@@ -45,7 +41,7 @@ describe('VDataFooter.ts', () => {
 
   it('should render with custom itemsPerPage', () => {
     const wrapper = mountFunction({
-      propsData: {
+      props: {
         itemsPerPageOptions: [50, 100],
         options: {
           page: 4,
@@ -67,7 +63,7 @@ describe('VDataFooter.ts', () => {
 
   it('should render in RTL mode', () => {
     const wrapper = mountFunction({
-      propsData: {
+      props: {
         options: {
           page: 4,
           itemsPerPage: 10,
@@ -82,12 +78,17 @@ describe('VDataFooter.ts', () => {
         },
         showFirstLastPage: true,
       },
-      mocks: {
-        $vuetify: {
-          rtl: true,
-          lang: new Lang(preset),
-          theme: {
-            dark: false,
+      global: {
+        mocks: {
+          $vuetify: {
+            rtl: true,
+            icons: {
+              component: null,
+            },
+            lang: new Lang(preset),
+            theme: {
+              dark: false,
+            },
           },
         },
       },
@@ -98,7 +99,7 @@ describe('VDataFooter.ts', () => {
 
   it('should render first & last icons with showFirstLastPage', () => {
     const wrapper = mountFunction({
-      propsData: {
+      props: {
         options: {
           page: 4,
           itemsPerPage: 10,
@@ -122,7 +123,7 @@ describe('VDataFooter.ts', () => {
     const mock = jest.fn()
 
     const wrapper = mountFunction({
-      propsData: {
+      props: {
         options: {
           page: 4,
           itemsPerPage: 10,
@@ -135,9 +136,7 @@ describe('VDataFooter.ts', () => {
           pageCount: 10,
           itemsLength: 100,
         },
-      },
-      listeners: {
-        'update:options': mock,
+        'onUpdate:options': mock,
       },
     })
 
@@ -157,7 +156,7 @@ describe('VDataFooter.ts', () => {
 
   it('should show current page if has showCurrentPage', () => {
     const wrapper = mountFunction({
-      propsData: {
+      props: {
         options: {
           page: 4,
           itemsPerPage: 10,
@@ -179,7 +178,7 @@ describe('VDataFooter.ts', () => {
 
   it('should disable last page button if no items', () => {
     const wrapper = mountFunction({
-      propsData: {
+      props: {
         options: {
           page: 1,
           itemsPerPage: 10,

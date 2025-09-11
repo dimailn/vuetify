@@ -14,7 +14,7 @@ import mergeData from '../../util/mergeData'
 import rebuildSlots from '../../util/rebuildFunctionalSlots'
 
 // Types
-import {defineComponent, h} from 'vue'
+import { defineComponent, h } from 'vue'
 
 /* @vue/component */
 export default defineComponent({
@@ -27,7 +27,7 @@ export default defineComponent({
 
   render () {
     const props = this.$props
-    let data = {
+    const data = {
       ...this.$attrs,
       ...props,
     }

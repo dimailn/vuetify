@@ -19,6 +19,7 @@ import Themeable from '../../mixins/themeable'
 
 // Helpers
 import { getPropertyFromItem } from '../../util/helpers'
+import { breaking } from '../../util/console'
 
 // Types
 import mixins from '../../util/mixins'
@@ -80,6 +81,18 @@ export default mixins(Colorable, Themeable).extend({
     },
   },
 
+  created () {
+    const breakingProps = [
+      ['value', 'modelValue'],
+      ['onInput', 'onUpdate:modelValue'],
+    ]
+
+    /* istanbul ignore next */
+    breakingProps.forEach(([original, replacement]) => {
+      if (this.$attrs.hasOwnProperty(original)) breaking(original, replacement, this)
+    })
+  },
+
   methods: {
     genAction (item: object, inputValue: any): VNode {
       return h(VListItemAction, {}, () => [
@@ -87,7 +100,7 @@ export default mixins(Colorable, Themeable).extend({
           color: this.color,
           modelValue: inputValue,
           ripple: false,
-          onInput: () => this.$emit('select', item),
+          'onUpdate:modelValue': () => this.$emit('select', item),
         }),
       ])
     },
@@ -180,13 +193,13 @@ export default mixins(Colorable, Themeable).extend({
         attrs: tile,
         on: {
           onMousedown,
-          onClick
-        }
-      });
+          onClick,
+        },
+      })
 
       return this.needsTile(scopedSlot)
         ? h(VListItem, tile, scopedSlot)
-        : scopedSlot;
+        : scopedSlot
     },
     genTileContent (item: any, index = 0): VNode {
       return h(VListItemContent, {}, () => [

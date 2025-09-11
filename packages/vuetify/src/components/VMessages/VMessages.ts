@@ -7,21 +7,32 @@ import Themeable from '../../mixins/themeable'
 
 // Types
 import { TransitionGroup, VNode, h } from 'vue'
-import { PropValidator } from 'vue/types/options'
 import mixins from '../../util/mixins'
 
 // Utilities
 import { getSlot } from '../../util/helpers'
+import { breaking } from '../../util/console'
 
 /* @vue/component */
 export default mixins(Colorable, Themeable).extend({
   name: 'v-messages',
 
   props: {
-    value: {
+    modelValue: {
       type: Array,
       default: () => ([]),
-    } as PropValidator<string[]>,
+    },
+  },
+
+  created () {
+    const breakingProps = [
+      ['value', 'modelValue'],
+    ]
+
+    /* istanbul ignore next */
+    breakingProps.forEach(([original, replacement]) => {
+      if (this.$attrs.hasOwnProperty(original)) breaking(original, replacement, this)
+    })
   },
 
   methods: {
@@ -30,7 +41,7 @@ export default mixins(Colorable, Themeable).extend({
         class: 'v-messages__wrapper',
         name: 'message-transition',
         tag: 'div',
-      }, () => this.value.map(this.genMessage))
+      }, () => this.modelValue.map(this.genMessage))
     },
     genMessage (message: string, key: number) {
       return h('div', {

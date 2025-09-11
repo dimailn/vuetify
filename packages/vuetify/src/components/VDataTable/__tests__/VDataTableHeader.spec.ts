@@ -1,4 +1,5 @@
 import VDataTableHeader from '../VDataTableHeader'
+import VDataTableHeaderMobile from '../VDataTableHeaderMobile'
 import { Lang } from '../../../services/lang'
 import ripple from '../../../directives/ripple'
 import VSelect from '../../VSelect/VSelect'
@@ -9,7 +10,6 @@ import {
   MountOptions,
   Wrapper,
 } from '@vue/test-utils'
-import Vue from 'vue'
 
 const testHeaders = [
   {
@@ -25,16 +25,6 @@ const testHeaders = [
   { text: 'Iron (%)', value: 'iron' },
 ]
 
-Vue.prototype.$vuetify = {
-  icons: {},
-  rtl: false,
-  lang: new Lang(preset),
-  theme: {
-    dark: false,
-  },
-}
-Vue.directive('ripple', ripple)
-
 describe('VDataTableHeader.ts', () => {
   type Instance = InstanceType<typeof VDataTableHeader>
   let mountFunction: (options?: MountOptions<Instance>, isMobile?: boolean) => Wrapper<Instance>
@@ -49,10 +39,28 @@ describe('VDataTableHeader.ts', () => {
             ...options,
             // https://github.com/vuejs/vue-test-utils/issues/1130
             sync: false,
-            propsData: {
+            props: {
               headers: testHeaders,
               mobile: isMobile,
-              ...(options || {}).propsData,
+              ...(options || {}).props,
+            },
+            on: {
+              ...(options || {}).on,
+            },
+            global: {
+              mocks: {
+                $vuetify: {
+                  icons: {},
+                  rtl: false,
+                  lang: new Lang(preset),
+                  theme: {
+                    dark: false,
+                  },
+                },
+              },
+              directives: {
+                ripple,
+              },
             },
           })
         }
@@ -65,7 +73,7 @@ describe('VDataTableHeader.ts', () => {
       })
       it('should work with showGroupBy', () => {
         const wrapper = mountFunction({
-          propsData: {
+          props: {
             showGroupBy: true,
           },
         })
@@ -75,7 +83,7 @@ describe('VDataTableHeader.ts', () => {
 
       it('should work with multiSort', () => {
         const wrapper = mountFunction({
-          propsData: {
+          props: {
             options: {
               multiSort: true,
               sortBy: ['iron'],
@@ -89,7 +97,7 @@ describe('VDataTableHeader.ts', () => {
 
       it('should work with sortBy correctly', () => {
         const wrapper = mountFunction({
-          propsData: {
+          props: {
             options: {
               sortBy: ['iron'],
               sortDesc: [true],
@@ -102,7 +110,7 @@ describe('VDataTableHeader.ts', () => {
 
       it('should work with sortDesc correctly', () => {
         const wrapper = mountFunction({
-          propsData: {
+          props: {
             options: {
               sortBy: ['iron', 'carbs'],
               sortDesc: [false, true],
@@ -116,7 +124,7 @@ describe('VDataTableHeader.ts', () => {
       if (isMobile) {
         it('should render with data-table-select header', () => {
           const wrapper = mountFunction({
-            propsData: {
+            props: {
               headers: [...testHeaders, { text: 'test', value: 'data-table-select' }],
             },
           })
@@ -124,22 +132,24 @@ describe('VDataTableHeader.ts', () => {
           expect(wrapper.html()).toMatchSnapshot()
         })
 
-        it('should sort when select changes', () => {
-          const sort = jest.fn()
-          const wrapper = mountFunction({
-            listeners: {
-              sort,
-            },
-          })
-          const select = wrapper.find(VSelect)
+        it('should sort when select changes', async () => {
+          const wrapper = mountFunction()
 
-          select.vm.$emit('change', 'test')
-          expect(sort).toHaveBeenLastCalledWith('test')
+          const mobileHeader = wrapper.findComponent(VDataTableHeaderMobile)
+          const select = mobileHeader.findComponent(VSelect)
+
+          expect(select.exists()).toBe(true)
+
+          select.vm.$emit('update:modelValue', 'test')
+          await wrapper.vm.$nextTick()
+
+          expect(mobileHeader.emitted('sort')).toBeTruthy()
+          expect(mobileHeader.emitted('sort')?.[0]).toEqual(['test'])
         })
 
         it('should apply header class and width for select-all column', () => {
           const wrapper = mount(VDataTableHeader, {
-            propsData: {
+            props: {
               mobile: isMobile,
               headers: [
                 {

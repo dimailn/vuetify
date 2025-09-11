@@ -109,6 +109,7 @@ export default mixins(
     } as PropValidator<DataTableHeader[]>,
     showSelect: Boolean,
     checkboxColor: String,
+    color: String,
     showExpand: Boolean,
     showGroupBy: Boolean,
     // TODO: Fix
@@ -406,13 +407,9 @@ export default mixins(
 
         const remove = h(VBtn, {
           class: 'ma-0',
-          props: {
-            icon: true,
-            small: true,
-          },
-          on: {
-            click: removeFn,
-          },
+          icon: true,
+          small: true,
+          onClick: removeFn,
         }, () => [h(VIcon, {}, () => ['$close'])])
 
         const column = h('td', {
@@ -439,9 +436,7 @@ export default mixins(
 
       return h(RowGroup, {
         key: group,
-        props: {
-          value: isOpen,
-        },
+        modelValue: isOpen,
       }, children)
     },
     genRows (items: any[], props: DataScopeProps) {
@@ -489,9 +484,7 @@ export default mixins(
       })])
 
       return h(RowGroup, {
-        props: {
-          value: isExpanded,
-        },
+        modelValue: isExpanded,
       }, [
         h('template', { slot: 'row.header' }, [headerRow]),
         h('template', { slot: 'row.content' }, [expandedRow]),
@@ -512,7 +505,7 @@ export default mixins(
           modelValue: data.isSelected,
           disabled: !this.isSelectable(item),
           color: this.checkboxColor ?? '',
-          onInput: (val: boolean) => data.select(val),
+          'onUpdate:modelValue': (val: boolean) => data.select(val),
         })
       }
 
@@ -541,7 +534,7 @@ export default mixins(
         index,
         item,
         rtl: this.$vuetify.rtl,
-        on: data.on,
+        ...data.on,
       }, scopedSlots)
     },
     genBody (props: DataScopeProps): VNode | string | VNodeChildren {

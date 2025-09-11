@@ -25,13 +25,15 @@ describe('VSimpleTable.ts', () => {
     }
   })
 
+  const createDefaultSlots = () => [
+    h('tr', [h('th', 'Foo'), h('th', 'Bar')]),
+    h('tr', [h('td', 'baz'), h('td', 'qux')]),
+  ]
+
   it('should render', () => {
     const wrapper = mountFunction({
       slots: {
-        default: () => [
-          h('tr', [h('th', 'Foo'), h('th', 'Bar')]),
-          h('tr', [h('td', 'baz'), h('td', 'qux')]),
-        ],
+        default: createDefaultSlots,
       },
     })
 
@@ -43,22 +45,18 @@ describe('VSimpleTable.ts', () => {
   it('should render with custom wrapper', () => {
     const wrapper = mountFunction({
       slots: {
-        default: () => [
-          h('tr', [h('th', 'Foo'), h('th', 'Bar')]),
-          h('tr', [h('td', 'baz'), h('td', 'qux')]),
-        ],
+        default: createDefaultSlots,
         wrapper: () => h('div', {
           class: 'custom-wrapper',
-          'data-test': 'custom-wrapper'
+          'data-test': 'custom-wrapper',
         }, [
           h('table', { class: 'custom-table' }, [
             h('tr', [h('th', 'Custom Header 1'), h('th', 'Custom Header 2')]),
             h('tr', [h('td', 'Custom Data 1'), h('td', 'Custom Data 2')]),
-          ])
-        ])
+          ]),
+        ]),
       },
     })
-
 
     // Проверяем, что дефолтный wrapper не используется
     expect(wrapper.findAll('.v-data-table__wrapper')).toHaveLength(0)
@@ -91,10 +89,7 @@ describe('VSimpleTable.ts', () => {
   it('should render with custom height', () => {
     const wrapper = mountFunction({
       slots: {
-        default: () => [
-          h('tr', [h('th', 'Foo'), h('th', 'Bar')]),
-          h('tr', [h('td', 'baz'), h('td', 'qux')]),
-        ],
+        default: createDefaultSlots,
       },
       props: {
         height: 1000,

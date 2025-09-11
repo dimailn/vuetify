@@ -20,7 +20,7 @@ import Resize from '../../directives/resize'
 
 // Utilities
 import mixins from '../../util/mixins'
-import { removed } from '../../util/console'
+import { removed, breaking } from '../../util/console'
 import {
   convertToUnit,
   keyCodes,
@@ -82,9 +82,17 @@ export default baseMixins.extend({
       type: Object as PropType<Record<string, any>>,
       default: () => ({}),
     },
+    onScroll: {
+      type: Function as PropType<(event: Event) => void>,
+      default: undefined,
+    },
   },
 
-  emits: ['keydown'],
+  emits: [
+    'keydown',
+    'update:modelValue',
+    'update:return-value',
+  ],
 
   data () {
     return {
@@ -111,7 +119,7 @@ export default baseMixins.extend({
     },
     calculatedMaxHeight (): string {
       const height = this.auto
-        ? '200px'
+        ? '220px'
         : convertToUnit(this.maxHeight)
 
       return height || '0'
@@ -198,6 +206,16 @@ export default baseMixins.extend({
   },
 
   created () {
+    const breakingProps = [
+      ['value', 'modelValue'],
+      ['onInput', 'onUpdate:modelValue'],
+    ]
+
+    /* istanbul ignore next */
+    breakingProps.forEach(([original, replacement]) => {
+      if (this.$attrs.hasOwnProperty(original)) breaking(original, replacement, this)
+    })
+
     /* istanbul ignore next */
     if (this.$attrs.hasOwnProperty('full-width')) {
       removed('full-width', this)

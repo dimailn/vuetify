@@ -8,7 +8,6 @@ import VBtn from '../VBtn'
 // Types
 import { defineComponent, VNode, VNodeChildrenArrayContents, PropType, h } from 'vue'
 import { DataPagination, DataOptions, DataItemsPerPageOption } from 'vuetify/types'
-import { PropValidator } from 'vue/types/options'
 import { getSlot, normalizeAttrs } from '../../util/helpers'
 
 export default defineComponent({
@@ -24,9 +23,9 @@ export default defineComponent({
       required: true,
     },
     itemsPerPageOptions: {
-      type: Array,
+      type: Array as PropType<DataItemsPerPageOption[]>,
       default: () => ([5, 10, 15, -1]),
-    } as PropValidator<DataItemsPerPageOption[]>,
+    },
     prevIcon: {
       type: String,
       default: '$prev',
@@ -61,7 +60,9 @@ export default defineComponent({
     },
   },
 
-  emits: ['update:options'],
+  emits: {
+    'update:options': (options: DataOptions) => true,
+  },
 
   computed: {
     disableNextPageIcon (): boolean {
@@ -122,7 +123,7 @@ export default defineComponent({
           hideDetails: true,
           auto: true,
           minWidth: '75px',
-          onInput: this.onChangeItemsPerPage,
+          'onUpdate:modelValue': this.onChangeItemsPerPage,
         })),
       ])
     },
@@ -138,11 +139,15 @@ export default defineComponent({
           ? itemsLength
           : this.pagination.pageStop
 
-        children = this.$slots['page-text']
-          ? [this.$slots['page-text']!({ pageStart, pageStop, itemsLength })]
+        const pageTextSlot = getSlot(this, 'page-text', { pageStart, pageStop, itemsLength })
+        children = pageTextSlot
+          ? [pageTextSlot]
           : [this.$vuetify.lang.t(this.pageText, pageStart, pageStop, itemsLength)]
-      } else if (this.$slots['page-text']) {
-        children = [this.$slots['page-text']!({ pageStart, pageStop, itemsLength })]
+      } else {
+        const pageTextSlot = getSlot(this, 'page-text', { pageStart, pageStop, itemsLength })
+        if (pageTextSlot) {
+          children = [pageTextSlot]
+        }
       }
 
       return h('div', {
