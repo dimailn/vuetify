@@ -5,13 +5,14 @@ import VVirtualScroll from '../VVirtualScroll'
 import {
   mount,
   VueWrapper,
+  MountingOptions,
   enableAutoUnmount,
 } from '@vue/test-utils'
-import { h } from 'vue'
+import { h, nextTick } from 'vue'
 
 describe('VVirtualScroll.ts', () => {
   type Instance = InstanceType<typeof VVirtualScroll>
-  let mountFunction: (options?: object) => VueWrapper<Instance>
+  let mountFunction: (options?: MountingOptions<Instance>) => VueWrapper<Instance>
   let propsData: Object
   let mock: jest.SpyInstance
   const elementHeight = 100
@@ -46,7 +47,7 @@ describe('VVirtualScroll.ts', () => {
       props: propsData,
     })
 
-    await wrapper.vm.$nextTick()
+    await nextTick()
     expect(wrapper.html()).toMatchSnapshot()
   })
 
@@ -68,7 +69,7 @@ describe('VVirtualScroll.ts', () => {
       },
     })
 
-    await wrapper.vm.$nextTick()
+    await nextTick()
     expect(wrapper.html()).toMatchSnapshot()
   })
 
@@ -83,6 +84,7 @@ describe('VVirtualScroll.ts', () => {
 
     wrapper.vm.scrollTop = 500
     await wrapper.trigger('scroll')
+    await nextTick()
 
     expect(wrapper.html()).toMatchSnapshot()
   })
@@ -92,11 +94,6 @@ describe('VVirtualScroll.ts', () => {
     const spy = jest.spyOn(helpers, 'getSlot')
     const wrapper = mountFunction({
       props: propsData,
-      global: {
-        mocks: {
-          firstToRender: 2,
-        },
-      },
     })
 
     wrapper.vm.first = 2
