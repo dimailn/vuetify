@@ -4,7 +4,9 @@ import VBtnToggle from '../VBtnToggle'
 // Utilities
 import {
   mount,
-  Wrapper,
+  VueWrapper,
+  MountingOptions,
+  enableAutoUnmount,
 } from '@vue/test-utils'
 
 // Types
@@ -12,24 +14,26 @@ import { ExtractVue } from '../../../util/mixins'
 
 describe('VBtnToggle.ts', () => {
   type Instance = ExtractVue<typeof VBtnToggle>
-  let mountFunction: (options?: object) => Wrapper<Instance>
+  let mountFunction: (options?: MountingOptions<Instance>) => VueWrapper<Instance>
+
+  enableAutoUnmount(afterEach)
 
   beforeEach(() => {
-    mountFunction = (options = {}) => {
+    mountFunction = (options: MountingOptions<Instance> = {}) => {
       return mount(VBtnToggle, {
         ...options,
       })
     }
   })
 
-  it('should not apply background color with group', () => {
+  it('should not apply background color with group', async () => {
     const wrapper = mountFunction({
-      propsData: { backgroundColor: 'primary' },
+      props: { backgroundColor: 'primary' },
     })
 
     expect(wrapper.element.classList.contains('primary')).toBeTruthy()
 
-    wrapper.setProps({ group: true })
+    await wrapper.setProps({ group: true })
 
     expect(wrapper.element.classList.contains('primary')).toBeFalsy()
   })
