@@ -58,7 +58,12 @@ export default mixins(
         keys.push(item.text)
 
         if (hasSlot) items.push(this.$slots.item!({ item }))
-        else items.push(h(VBreadcrumbsItem, { key: keys.join('.'), text: item.text }, () => [item.text]))
+        else {
+          items.push(h(VBreadcrumbsItem, {
+            key: keys.join('.'),
+            ...item
+          }, () => [item.text]))
+        }
 
         if (i < this.items.length - 1) items.push(this.genDivider())
       }
