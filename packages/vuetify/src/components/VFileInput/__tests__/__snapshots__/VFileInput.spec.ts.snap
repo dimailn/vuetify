@@ -500,6 +500,54 @@ exports[`VFileInput.ts should render small chips 1`] = `
 </div>
 `;
 
+exports[`VFileInput.ts should render with hideInput prop like original Vuetify 1`] = `
+<div class="v-input theme--light v-text-field v-file-input"
+     accept="image/*"
+>
+  <div class="v-input__prepend-outer">
+    <div class="v-input__icon v-input__icon--prepend">
+      <button aria-hidden="false"
+              class="v-icon--link v-icon notranslate mdi mdi-paperclip theme--light"
+              type="button"
+              aria-label="File input prepended action"
+      >
+      </button>
+    </div>
+  </div>
+  <div class="v-input__control"
+       style="display: none;"
+  >
+    <div class="v-input__slot">
+      <div class="v-text-field__slot">
+        <label class="v-label theme--light"
+               for="input-175"
+               aria-hidden="false"
+               style="left: 0px; position: absolute;"
+        >
+          File input
+        </label>
+        <div class="v-file-input__text">
+        </div>
+        <input accept="image/*"
+               id="input-175"
+               type="file"
+        >
+      </div>
+      <div class="v-input__append-inner">
+        <div>
+        </div>
+      </div>
+    </div>
+    <div class="v-text-field__details">
+      <div class="v-messages theme--light">
+        <div class="v-messages__wrapper">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
 exports[`VFileInput.ts should render without icon 1`] = `
 <div class="v-input theme--light v-text-field v-file-input">
   <div class="v-input__control">
@@ -545,7 +593,9 @@ exports[`VFileInput.ts should set display none if hide-input prop is set 1`] = `
       </button>
     </div>
   </div>
-  <div class="v-input__control">
+  <div class="v-input__control"
+       style="display: none;"
+  >
     <div class="v-input__slot">
       <div class="v-text-field__slot">
         <label class="v-label theme--light"
