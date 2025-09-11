@@ -293,4 +293,41 @@ describe('VFileInput.ts', () => {
 
     expect(wrapper.html()).toMatchSnapshot()
   })
+
+  it('should hide control element when hideInput is true', () => {
+    const wrapper = mountFunction({
+      props: { hideInput: true },
+    })
+
+    // Проверяем, что control элемент имеет display: none
+    const control = wrapper.find('.v-input__control')
+    expect(control.element.style.display).toBe('none')
+  })
+
+  it('should not hide control element when hideInput is false', () => {
+    const wrapper = mountFunction({
+      props: { hideInput: false },
+    })
+
+    // Проверяем, что control элемент не скрыт
+    const control = wrapper.find('.v-input__control')
+    expect(control.element.style.display).toBe('')
+  })
+
+  it('should render with hideInput prop like original Vuetify', () => {
+    const wrapper = mountFunction({
+      props: {
+        hideInput: true,
+        accept: 'image/*',
+        label: 'File input'
+      },
+    })
+
+    // Проверяем, что control элемент скрыт
+    const control = wrapper.find('.v-input__control')
+    expect(control.element.style.display).toBe('none')
+
+    // Проверяем снимок для полного соответствия оригинальному Vuetify
+    expect(wrapper.html()).toMatchSnapshot()
+  })
 })

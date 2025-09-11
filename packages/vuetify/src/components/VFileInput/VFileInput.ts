@@ -179,17 +179,22 @@ export default defineComponent({
           const internalValue = this.internalValue
           internalValue.splice(index, 1)
           this.internalValue = internalValue // Trigger the watcher
-        }
+        },
       }, [text]))
     },
     genControl () {
       const render = VTextField.methods.genControl.call(this)
 
       if (this.hideInput) {
-        render.style = mergeStyles(
-          render.style,
-          { display: 'none' }
-        )
+        if (render.props) {
+          render.props.style = mergeStyles(render.props.style, {
+            display: 'none',
+          })
+        } else {
+          render.props = {
+            style: { display: 'none' },
+          }
+        }
       }
 
       return render
@@ -198,10 +203,9 @@ export default defineComponent({
       // Create input without calling VTextField.genInput to avoid value setting
       const listeners = Object.assign({}, this.listeners$)
       delete listeners.change // Change should not be bound externally
-      const { title, ...inputAttrs } = this.attrs$
+      const { title, value, ...inputAttrs } = this.attrs$
 
       const input = h('input', {
-        style: {},
         ...inputAttrs,
         autofocus: this.autofocus,
         disabled: this.isDisabled,
@@ -257,7 +261,7 @@ export default defineComponent({
         class: ['v-file-input__text', {
           'v-file-input__text--placeholder': this.placeholder && !this.isDirty,
           'v-file-input__text--chips': this.hasChips && !this.$slots.selection,
-        }]
+        }],
       }, children)
     },
     genTextFieldSlot () {
@@ -268,7 +272,7 @@ export default defineComponent({
           if (e.target && (e.target as HTMLElement).nodeName === 'LABEL') return
 
           this.$refs.input.click()
-        }
+        },
       }, [
         this.genLabel(),
         this.prefix ? this.genAffix('prefix') : null,
