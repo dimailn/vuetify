@@ -5,17 +5,17 @@ exports[`VRangeSlider should render a vertical slider 1`] = `
   <div class="v-input__control">
     <div class="v-input__slot">
       <div class="v-slider v-slider--vertical theme--light">
-        <input value="0"
-               id="input-min-25"
-               disabled="disabled"
-               readonly="readonly"
+        <input id="input-25"
+               disabled
+               readonly
                tabindex="-1"
+               value="0,0"
         >
-        <input value="0"
-               id="input-max-25"
-               disabled="disabled"
-               readonly="readonly"
+        <input id="input-25"
+               disabled
+               readonly
                tabindex="-1"
+               value="0,0"
         >
         <div class="v-slider__track-container">
           <div class="v-slider__track-background primary lighten-3">
@@ -25,28 +25,28 @@ exports[`VRangeSlider should render a vertical slider 1`] = `
           <div class="v-slider__track-background primary lighten-3">
           </div>
         </div>
-        <div role="slider"
+        <div class="v-slider__thumb-container primary--text"
+             style="top: 100%;"
+             role="slider"
              tabindex="0"
              aria-valuemin="0"
              aria-valuemax="100"
              aria-valuenow="0,0"
              aria-readonly="false"
              aria-orientation="vertical"
-             class="v-slider__thumb-container primary--text"
-             style="top: 100%;"
         >
           <div class="v-slider__thumb primary">
           </div>
         </div>
-        <div role="slider"
+        <div class="v-slider__thumb-container primary--text"
+             style="top: 100%;"
+             role="slider"
              tabindex="0"
              aria-valuemin="0"
              aria-valuemax="100"
              aria-valuenow="0,0"
              aria-readonly="false"
              aria-orientation="vertical"
-             class="v-slider__thumb-container primary--text"
-             style="top: 100%;"
         >
           <div class="v-slider__thumb primary">
           </div>
@@ -54,11 +54,8 @@ exports[`VRangeSlider should render a vertical slider 1`] = `
       </div>
     </div>
     <div class="v-messages theme--light">
-      <span name="message-transition"
-            tag="div"
-            class="v-messages__wrapper"
-      >
-      </span>
+      <div class="v-messages__wrapper">
+      </div>
     </div>
   </div>
 </div>
@@ -69,17 +66,17 @@ exports[`VRangeSlider should render disabled slider 1`] = `
   <div class="v-input__control">
     <div class="v-input__slot">
       <div class="v-slider v-slider--horizontal v-slider--disabled theme--light">
-        <input value="0"
-               id="input-min-29"
-               disabled="disabled"
-               readonly="readonly"
+        <input id="input-29"
+               disabled
+               readonly
                tabindex="-1"
+               value="0,0"
         >
-        <input value="0"
-               id="input-max-29"
-               disabled="disabled"
-               readonly="readonly"
+        <input id="input-29"
+               disabled
+               readonly
                tabindex="-1"
+               value="0,0"
         >
         <div class="v-slider__track-container">
           <div class="v-slider__track-background">
@@ -89,28 +86,28 @@ exports[`VRangeSlider should render disabled slider 1`] = `
           <div class="v-slider__track-background">
           </div>
         </div>
-        <div role="slider"
+        <div class="v-slider__thumb-container"
+             style="left: 0%;"
+             role="slider"
              tabindex="-1"
              aria-valuemin="0"
              aria-valuemax="100"
              aria-valuenow="0,0"
              aria-readonly="false"
              aria-orientation="horizontal"
-             class="v-slider__thumb-container"
-             style="left: 0%;"
         >
           <div class="v-slider__thumb">
           </div>
         </div>
-        <div role="slider"
+        <div class="v-slider__thumb-container"
+             style="left: 0%;"
+             role="slider"
              tabindex="-1"
              aria-valuemin="0"
              aria-valuemax="100"
              aria-valuenow="0,0"
              aria-readonly="false"
              aria-orientation="horizontal"
-             class="v-slider__thumb-container"
-             style="left: 0%;"
         >
           <div class="v-slider__thumb">
           </div>
@@ -118,11 +115,8 @@ exports[`VRangeSlider should render disabled slider 1`] = `
       </div>
     </div>
     <div class="v-messages theme--light">
-      <span name="message-transition"
-            tag="div"
-            class="v-messages__wrapper"
-      >
-      </span>
+      <div class="v-messages__wrapper">
+      </div>
     </div>
   </div>
 </div>
