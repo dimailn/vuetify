@@ -1,9 +1,6 @@
-import {h} from 'vue'
+import { h, VNode, VNodeChildrenArrayContents, PropType } from 'vue'
 // Styles
 import './VTreeview.sass'
-
-// Types
-import { VNode, VNodeChildrenArrayContents, PropType } from 'vue'
 import { PropValidator } from 'vue/types/options'
 import { TreeviewItemFunction } from 'vuetify/types'
 
@@ -21,7 +18,7 @@ import {
   getObjectValueByPath,
 } from '../../util/helpers'
 import mixins from '../../util/mixins'
-import { consoleWarn } from '../../util/console'
+import { consoleWarn, breaking } from '../../util/console'
 import {
   filterTreeItems,
   filterTreeItem,
@@ -67,6 +64,10 @@ export default mixins(
       type: Array,
       default: () => ([]),
     } as PropValidator<any[]>,
+    modelValue: {
+      type: Array,
+      default: () => ([]),
+    } as PropValidator<NodeArray>,
     multipleActive: Boolean,
     open: {
       type: Array,
@@ -78,10 +79,6 @@ export default mixins(
       default: false, // TODO: Should be true in next major
     },
     search: String,
-    value: {
-      type: Array,
-      default: () => ([]),
-    } as PropValidator<NodeArray>,
     ...VTreeviewNodeProps,
   },
 
@@ -145,7 +142,7 @@ export default mixins(
     active (value: (string | number | any)[]) {
       this.handleNodeCacheWatcher(value, this.activeCache, this.updateActive, this.emitActive)
     },
-    value (value: (string | number | any)[]) {
+    modelValue (value: (string | number | any)[]) {
       this.handleNodeCacheWatcher(value, this.selectedCache, this.updateSelected, this.emitSelected)
     },
     open (value: (string | number | any)[]) {
@@ -154,11 +151,22 @@ export default mixins(
   },
 
   created () {
+    const breakingProps = [
+      ['value', 'modelValue'],
+      ['onInput', 'onUpdate:modelValue'],
+      ['onChange', 'onUpdate:modelValue'],
+    ]
+
+    /* istanbul ignore next */
+    breakingProps.forEach(([original, replacement]) => {
+      if (this.$attrs.hasOwnProperty(original)) breaking(original, replacement, this)
+    })
+
     const getValue = (key: string | number) => this.returnObject ? getObjectValueByPath(key, this.itemKey) : key
 
     this.buildTree(this.items)
 
-    for (const value of this.value.map(getValue)) {
+    for (const value of this.modelValue.map(getValue)) {
       this.updateSelected(value, true, true)
     }
 
@@ -266,7 +274,7 @@ export default mixins(
       this.emitNodeCache('update:open', this.openCache)
     },
     emitSelected () {
-      this.emitNodeCache('input', this.selectedCache)
+      this.emitNodeCache('update:modelValue', this.selectedCache)
     },
     emitActive () {
       this.emitNodeCache('update:active', this.activeCache)

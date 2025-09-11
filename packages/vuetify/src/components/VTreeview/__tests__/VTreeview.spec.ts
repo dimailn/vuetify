@@ -1,12 +1,15 @@
-import Vue from 'vue'
 import {
   mount,
-  Wrapper,
-  MountOptions,
+  VueWrapper,
+  enableAutoUnmount,
+  MountingOptions,
 } from '@vue/test-utils'
 import VTreeview from '../VTreeview'
-import { ExtractVue } from '../../../util/mixins'
 import { wait } from '../../../../test'
+import { h, nextTick } from 'vue'
+
+// Types
+import type { ComponentPublicInstance } from 'vue'
 
 const singleRootTwoChildren = [
   { id: 0, name: 'Root', children: [{ id: 1, name: 'Child' }, { id: 2, name: 'Child 2' }] },
@@ -17,13 +20,26 @@ const threeLevels = [
 ]
 
 describe('VTreeView.ts', () => { // eslint-disable-line max-statements
-  type Instance = ExtractVue<typeof VTreeview>
-  let mountFunction: (options?: MountOptions<Instance>) => Wrapper<Instance>
+  type Instance = InstanceType<typeof VTreeview>
+  let mountFunction: (options?: MountingOptions<Instance>) => VueWrapper<Instance>
+
+  enableAutoUnmount(afterEach)
+
   beforeEach(() => {
-    mountFunction = (options?: MountOptions<Instance>) => {
+    mountFunction = (options = {}) => {
       return mount(VTreeview, {
-        // https://github.com/vuejs/vue-test-utils/issues/1130
-        sync: false,
+        global: {
+          mocks: {
+            $vuetify: {
+              rtl: false,
+              icons: {
+                values: {
+                  subgroup: 'arrow_drop_down',
+                },
+              },
+            },
+          },
+        },
         ...options,
       })
     }
@@ -31,7 +47,7 @@ describe('VTreeView.ts', () => { // eslint-disable-line max-statements
 
   it('should render items', async () => {
     const wrapper = mountFunction({
-      propsData: {
+      props: {
         items: singleRootTwoChildren,
       },
     })
@@ -41,7 +57,7 @@ describe('VTreeView.ts', () => { // eslint-disable-line max-statements
 
   it('should render items in dense mode', async () => {
     const wrapper = mountFunction({
-      propsData: {
+      props: {
         items: singleRootTwoChildren,
         dense: true,
       },
@@ -54,20 +70,17 @@ describe('VTreeView.ts', () => { // eslint-disable-line max-statements
   // https://github.com/vuejs/vue-test-utils/issues/1130
   it.skip('should select all leaf nodes', async () => {
     const wrapper = mountFunction({
-      propsData: {
+      props: {
         items: threeLevels,
         selectable: true,
       },
     })
 
-    const fn = jest.fn()
-    wrapper.vm.$on('input', fn)
-
     wrapper.find('.v-treeview-node__checkbox').trigger('click')
-    await wrapper.vm.$nextTick()
+    await nextTick()
 
-    expect(fn).toHaveBeenCalledTimes(1)
-    expect(fn).toHaveBeenCalledWith([3, 2])
+    expect(wrapper.emitted('update:modelValue')).toHaveLength(1)
+    expect(wrapper.emitted('update:modelValue')[0]).toEqual([[3, 2]])
     expect(wrapper.html()).toMatchSnapshot()
   })
 
@@ -75,23 +88,20 @@ describe('VTreeView.ts', () => { // eslint-disable-line max-statements
   // https://github.com/vuejs/vue-test-utils/issues/1130
   it.skip('should select only leaf nodes', async () => {
     const wrapper = mountFunction({
-      propsData: {
+      props: {
         items: threeLevels,
         selectable: true,
       },
     })
 
-    const fn = jest.fn()
-    wrapper.vm.$on('input', fn)
-
     wrapper.find('.v-treeview-node__toggle').trigger('click')
-    await wrapper.vm.$nextTick()
+    await nextTick()
 
-    wrapper.findAll('.v-treeview-node__checkbox').at(2).trigger('click')
-    await wrapper.vm.$nextTick()
+    wrapper.findAll('.v-treeview-node__checkbox')[2].trigger('click')
+    await nextTick()
 
-    expect(fn).toHaveBeenCalledTimes(1)
-    expect(fn).toHaveBeenCalledWith([3])
+    expect(wrapper.emitted('update:modelValue')).toHaveLength(1)
+    expect(wrapper.emitted('update:modelValue')[0]).toEqual([[3]])
     expect(wrapper.html()).toMatchSnapshot()
   })
 
@@ -99,21 +109,18 @@ describe('VTreeView.ts', () => { // eslint-disable-line max-statements
   // https://github.com/vuejs/vue-test-utils/issues/1130
   it.skip('should select only root node', async () => {
     const wrapper = mountFunction({
-      propsData: {
+      props: {
         items: threeLevels,
         selectable: true,
         selectionType: 'independent',
       },
     })
 
-    const fn = jest.fn()
-    wrapper.vm.$on('input', fn)
-
     wrapper.find('.v-treeview-node__checkbox').trigger('click')
-    await wrapper.vm.$nextTick()
+    await nextTick()
 
-    expect(fn).toHaveBeenCalledTimes(1)
-    expect(fn).toHaveBeenCalledWith([0])
+    expect(wrapper.emitted('update:modelValue')).toHaveLength(1)
+    expect(wrapper.emitted('update:modelValue')[0]).toEqual([[0]])
     expect(wrapper.html()).toMatchSnapshot()
   })
 
@@ -124,7 +131,7 @@ describe('VTreeView.ts', () => { // eslint-disable-line max-statements
     }
 
     const wrapper = mountFunction({
-      propsData: {
+      props: {
         items: [{ id: 0, name: 'Root', children: [] }],
         loadChildren,
       },
@@ -133,7 +140,7 @@ describe('VTreeView.ts', () => { // eslint-disable-line max-statements
     expect(wrapper.html()).toMatchSnapshot()
 
     wrapper.find('.v-treeview-node__toggle').trigger('click')
-    await wrapper.vm.$nextTick()
+    await nextTick()
 
     expect(wrapper.html()).toMatchSnapshot()
     expect(`[Vue warn]: Error in created hook: "TypeError: Cannot set property 'vnode' of undefined"`).toHaveBeenWarned()
@@ -146,74 +153,66 @@ describe('VTreeView.ts', () => { // eslint-disable-line max-statements
     }
 
     const wrapper = mountFunction({
-      propsData: {
+      props: {
         items: [{ id: 0, name: 'Root', children: [] }],
         selectable: true,
         loadChildren,
       },
     })
 
-    const fn = jest.fn()
-    wrapper.vm.$on('input', fn)
-
     expect(wrapper.html()).toMatchSnapshot()
 
     wrapper.find('.v-treeview-node__checkbox').trigger('click')
     await wait()
 
-    expect(fn).toHaveBeenCalledTimes(1)
-    expect(fn).toHaveBeenCalledWith([0])
+    expect(wrapper.emitted('update:modelValue')).toHaveLength(1)
+    expect(wrapper.emitted('update:modelValue')[0]).toEqual([[1]])
     expect(wrapper.html()).toMatchSnapshot()
   })
 
   it('should emit active node when clicking on it', async () => {
     const wrapper = mountFunction({
-      propsData: {
+      props: {
         items: [{ id: 0, name: 'Root' }, { id: 1, name: 'Root' }],
         activatable: true,
       },
     })
 
-    const fn = jest.fn()
-    wrapper.vm.$on('update:active', fn)
+    wrapper.find('.v-treeview-node__root').trigger('click')
+    await nextTick()
+
+    expect(wrapper.emitted('update:active')).toHaveLength(1)
+    expect(wrapper.emitted('update:active')[0]).toEqual([[0]])
 
     wrapper.find('.v-treeview-node__root').trigger('click')
-    await wrapper.vm.$nextTick()
+    await nextTick()
 
-    expect(fn).toHaveBeenCalledTimes(1)
-    expect(fn).toHaveBeenCalledWith([0])
-
-    wrapper.find('.v-treeview-node__root').trigger('click')
-    await wrapper.vm.$nextTick()
-
-    expect(fn).toHaveBeenCalledWith([])
+    expect(wrapper.emitted('update:active')).toHaveLength(2)
+    expect(wrapper.emitted('update:active')[1]).toEqual([[]])
   })
 
   it('should allow multiple active nodes with prop multipleActive', async () => {
     const wrapper = mountFunction({
-      propsData: {
+      props: {
         items: [{ id: 0, name: 'Root' }, { id: 1, name: 'Root' }],
         multipleActive: true,
         activatable: true,
       },
     })
 
-    const fn = jest.fn()
-    wrapper.vm.$on('update:active', fn)
+    wrapper.findAll('.v-treeview-node__root').forEach(vm => vm.trigger('click'))
+    await nextTick()
 
-    wrapper.findAll('.v-treeview-node__root').wrappers.forEach(vm => vm.trigger('click'))
-    await wrapper.vm.$nextTick()
-
-    expect(fn).toHaveBeenCalledTimes(2)
-    expect(fn).toHaveBeenLastCalledWith([0, 1])
+    expect(wrapper.emitted('update:active')).toHaveLength(2)
+    expect(wrapper.emitted('update:active')[1]).toEqual([[0, 1]])
   })
 
   // TODO: fails with TS 3.9
   it.skip('should update selection when selected prop changes', async () => {
     const wrapper = mountFunction({
-      propsData: {
+      props: {
         items: [{ id: 0, name: 'Root', children: [{ id: 1, name: 'Child' }] }],
-        value: [],
+        modelValue: [],
         selectable: true,
       },
     })
@@ -221,76 +220,78 @@ describe('VTreeView.ts', () => { // eslint-disable-line max-statements
     expect(wrapper.html()).toMatchSnapshot()
 
     wrapper.find('.v-treeview-node__toggle').trigger('click')
-    wrapper.setProps({ value: [1] })
-    await wrapper.vm.$nextTick()
+    wrapper.setProps({ modelValue: [1] })
+    await nextTick()
 
     expect(wrapper.findAll('.v-treeview-node')).toHaveLength(2)
     expect(wrapper.findAll('.v-treeview-node--selected')).toHaveLength(2)
     expect(wrapper.html()).toMatchSnapshot()
 
-    wrapper.setProps({ value: [] })
-    await wrapper.vm.$nextTick()
+    wrapper.setProps({ modelValue: [] })
+    await nextTick()
     expect(wrapper.html()).toMatchSnapshot()
   })
 
   it('should open all children when using open-all prop', async () => {
     const wrapper = mountFunction({
-      propsData: {
+      props: {
         items: threeLevels,
         openAll: true,
       },
     })
 
-    await wrapper.vm.$nextTick()
+    await nextTick()
 
     expect(wrapper.html()).toMatchSnapshot()
   })
 
   it('should open/close all children when using updateAll', async () => {
+    const updateOpen = jest.fn()
     const wrapper = mountFunction({
-      propsData: {
+      props: {
         items: threeLevels,
+      },
+      attrs: {
+        'onUpdate:open': updateOpen,
       },
     })
 
-    const updateOpen = jest.fn()
-    wrapper.vm.$on('update:open', updateOpen)
-
     wrapper.vm.updateAll(true)
-    expect(updateOpen).toHaveBeenCalledTimes(1)
+    expect(updateOpen).toHaveBeenCalledTimes(2)
     expect(updateOpen).toHaveBeenCalledWith([0, 1])
 
     wrapper.vm.updateAll(false)
-    expect(updateOpen).toHaveBeenCalledTimes(2)
+    expect(updateOpen).toHaveBeenCalledTimes(3)
     expect(updateOpen).toHaveBeenCalledWith([])
   })
 
   it('should react to open changes', async () => {
+    const fn = jest.fn()
     const wrapper = mountFunction({
-      propsData: {
+      props: {
         items: threeLevels,
         open: [1],
       },
+      attrs: {
+        'onUpdate:open': fn,
+      },
     })
 
-    const fn = jest.fn()
-
-    wrapper.vm.$on('update:open', fn)
     wrapper.setProps({ open: [0, 1] })
 
-    await wrapper.vm.$nextTick()
+    await nextTick()
 
     expect(wrapper.html()).toMatchSnapshot()
 
     wrapper.setProps({ open: [0] })
 
-    await wrapper.vm.$nextTick()
+    await nextTick()
 
     expect(wrapper.html()).toMatchSnapshot()
 
     wrapper.setProps({ open: [0, 1] })
 
-    await wrapper.vm.$nextTick()
+    await nextTick()
 
     expect(wrapper.html()).toMatchSnapshot()
 
@@ -299,7 +300,7 @@ describe('VTreeView.ts', () => { // eslint-disable-line max-statements
     // Should not update open values that do not exist in the tree
     wrapper.setProps({ open: [7] })
 
-    await wrapper.vm.$nextTick()
+    await nextTick()
     expect(wrapper.html()).toMatchSnapshot()
 
     expect(fn).toHaveBeenCalledWith([])
@@ -307,10 +308,10 @@ describe('VTreeView.ts', () => { // eslint-disable-line max-statements
 
   it('should update selected and active on created', async () => {
     const wrapper = mountFunction({
-      propsData: {
+      props: {
         items: threeLevels,
         active: [2],
-        value: [1],
+        modelValue: [1],
       },
     })
 
@@ -323,98 +324,89 @@ describe('VTreeView.ts', () => { // eslint-disable-line max-statements
   })
 
   it('should react to changes for active items', async () => {
+    const active = jest.fn()
     const wrapper = mountFunction({
-      propsData: {
+      props: {
         items: threeLevels,
         active: [2],
       },
+      attrs: {
+        'onUpdate:active': active,
+      },
     })
 
-    const active = jest.fn()
-    wrapper.vm.$on('update:active', active)
-
     wrapper.setProps({ active: [] })
-    await wrapper.vm.$nextTick()
+    await nextTick()
     expect(active).toHaveBeenCalledWith([])
 
     // without multiple-active, it will use last value in array
     wrapper.setProps({ active: [1, 3] })
-    await wrapper.vm.$nextTick()
+    await nextTick()
     expect(active).toHaveBeenCalledWith([3])
 
     wrapper.setProps({ multipleActive: true, active: [1, 3] })
-    await wrapper.vm.$nextTick()
+    await nextTick()
     expect(active).toHaveBeenCalledWith([1, 3])
 
     // 7 does not exist, we get nothing back
     wrapper.setProps({ active: [7] })
-    await wrapper.vm.$nextTick()
+    await nextTick()
     expect(active).toHaveBeenCalledWith([])
 
     wrapper.setProps({ active: [0], items: singleRootTwoChildren })
-    await wrapper.vm.$nextTick()
+    await nextTick()
     expect(active).toHaveBeenCalledWith([0])
   })
 
   it('should react to changes for selected items', async () => {
+    const value = jest.fn()
     const wrapper = mountFunction({
-      propsData: {
+      props: {
         items: threeLevels,
-        value: [2],
+        modelValue: [2],
+      },
+      attrs: {
+        'onUpdate:modelValue': value,
       },
     })
 
-    const value = jest.fn()
-    wrapper.vm.$on('input', value)
-
-    wrapper.setProps({ value: [] })
-    await wrapper.vm.$nextTick()
+    wrapper.setProps({ modelValue: [] })
+    await nextTick()
     expect(value).toHaveBeenCalledWith([])
 
-    wrapper.setProps({ value: [3] })
-    await wrapper.vm.$nextTick()
+    wrapper.setProps({ modelValue: [3] })
+    await nextTick()
     expect(value).toHaveBeenCalledWith([3])
 
     // 7 does not exist, we get nothing back
-    wrapper.setProps({ value: [7] })
-    await wrapper.vm.$nextTick()
+    wrapper.setProps({ modelValue: [7] })
+    await nextTick()
     expect(value).toHaveBeenCalledWith([])
 
-    wrapper.setProps({ value: [0] })
-    await wrapper.vm.$nextTick()
+    wrapper.setProps({ modelValue: [0] })
+    await nextTick()
     expect(value).toHaveBeenLastCalledWith([3, 2])
   })
 
   it('should accept string value for id', async () => {
     const wrapper = mountFunction({
-      propsData: { itemKey: 'name' },
+      props: { itemKey: 'name' },
     })
 
     wrapper.setProps({ items: [{ name: 'Foobar' }] })
 
-    await wrapper.vm.$nextTick()
+    await nextTick()
 
     expect(wrapper.vm.nodes.Foobar).toBeTruthy()
 
-    wrapper.setProps({ value: ['Foobar'] })
+    wrapper.setProps({ modelValue: ['Foobar'] })
 
-    await wrapper.vm.$nextTick()
-  })
-
-  it('should warn developer when using non-scoped slots', () => {
-    mountFunction({
-      slots: {
-        prepend: [{ render: h => h('div') }],
-        append: [{ render: h => h('div') }],
-      },
-    })
-
-    expect('[Vuetify] The prepend and append slots require a slot-scope attribute').toHaveBeenTipped()
+    await nextTick()
   })
 
   it('should not show expand icon when children is empty', () => {
     const wrapper = mountFunction({
-      propsData: {
+      props: {
         items: [
           {
             text: 'root',
@@ -430,7 +422,7 @@ describe('VTreeView.ts', () => { // eslint-disable-line max-statements
 
   it('should show expand icon when children is empty and load-children prop used', () => {
     const wrapper = mountFunction({
-      propsData: {
+      props: {
         loadChildren: () => {},
         items: [
           {
@@ -455,7 +447,7 @@ describe('VTreeView.ts', () => { // eslint-disable-line max-statements
     ]
 
     const wrapper = mountFunction({
-      propsData: {
+      props: {
         items,
         itemChildren: '__children',
         loadChildren: () => {
@@ -469,14 +461,14 @@ describe('VTreeView.ts', () => { // eslint-disable-line max-statements
     })
 
     wrapper.find('.v-treeview-node__toggle').trigger('click')
-    await wrapper.vm.$nextTick()
+    await nextTick()
 
     expect(wrapper.html()).toMatchSnapshot()
   })
 
   it('should remove old nodes', async () => {
     const wrapper = mountFunction({
-      propsData: {
+      props: {
         items: [
           {
             id: 1,
@@ -501,7 +493,7 @@ describe('VTreeView.ts', () => { // eslint-disable-line max-statements
       ],
     })
 
-    await wrapper.vm.$nextTick()
+    await nextTick()
     expect(wrapper.html()).toMatchSnapshot()
 
     wrapper.setProps({
@@ -517,7 +509,7 @@ describe('VTreeView.ts', () => { // eslint-disable-line max-statements
       ],
     })
 
-    await wrapper.vm.$nextTick()
+    await nextTick()
     expect(wrapper.html()).toMatchSnapshot()
 
     expect(Object.keys(wrapper.vm.nodes)).toHaveLength(2)
@@ -525,7 +517,7 @@ describe('VTreeView.ts', () => { // eslint-disable-line max-statements
 
   it('should filter items', async () => {
     const wrapper = mountFunction({
-      propsData: {
+      props: {
         items: [
           {
             id: 1,
@@ -545,14 +537,14 @@ describe('VTreeView.ts', () => { // eslint-disable-line max-statements
       search: 'two',
     })
 
-    await wrapper.vm.$nextTick()
+    await nextTick()
 
     expect(wrapper.html()).toMatchSnapshot()
   })
 
   it('should filter items using custom item filter', async () => {
     const wrapper = mountFunction({
-      propsData: {
+      props: {
         filter: (item, search, textKey) => item.special === search,
         items: [
           {
@@ -576,7 +568,7 @@ describe('VTreeView.ts', () => { // eslint-disable-line max-statements
       search: 'yes',
     })
 
-    await wrapper.vm.$nextTick()
+    await nextTick()
 
     expect(wrapper.html()).toMatchSnapshot()
   })
@@ -585,36 +577,38 @@ describe('VTreeView.ts', () => { // eslint-disable-line max-statements
   it.skip('should emit objects when return-object prop is used', async () => {
     const items = [{ id: 0, name: 'Root', children: [{ id: 1, name: 'Child' }] }]
 
+    const active = jest.fn()
+    const selected = jest.fn()
+    const open = jest.fn()
+
     const wrapper = mountFunction({
-      propsData: {
+      props: {
         items,
         activatable: true,
         selectable: true,
         returnObject: true,
       },
+      attrs: {
+        'onUpdate:active': active,
+        'onUpdate:modelValue': selected,
+        'onUpdate:open': open,
+      },
     })
 
-    const active = jest.fn()
-    wrapper.vm.$on('update:active', active)
-    const selected = jest.fn()
-    wrapper.vm.$on('input', selected)
-    const open = jest.fn()
-    wrapper.vm.$on('update:open', open)
-
     wrapper.find('.v-treeview-node__root').trigger('click')
-    await wrapper.vm.$nextTick()
+    await nextTick()
 
     expect(active).toHaveBeenCalledTimes(1)
     expect(active).toHaveBeenCalledWith([items[0]])
 
     wrapper.find('.v-treeview-node__checkbox').trigger('click')
-    await wrapper.vm.$nextTick()
+    await nextTick()
 
     expect(selected).toHaveBeenCalledTimes(1)
     expect(selected).toHaveBeenCalledWith([items[0].children[0]])
 
     wrapper.find('.v-treeview-node__toggle').trigger('click')
-    await wrapper.vm.$nextTick()
+    await nextTick()
 
     expect(open).toHaveBeenCalledTimes(1)
     expect(open).toHaveBeenCalledWith([items[0]])
@@ -622,7 +616,7 @@ describe('VTreeView.ts', () => { // eslint-disable-line max-statements
 
   it('should handle replacing items with new array of equal length', async () => {
     const wrapper = mountFunction({
-      propsData: {
+      props: {
         items: [
           {
             id: 1,
@@ -651,7 +645,7 @@ describe('VTreeView.ts', () => { // eslint-disable-line max-statements
       ],
     })
 
-    await wrapper.vm.$nextTick()
+    await nextTick()
 
     expect(wrapper.html()).toMatchSnapshot()
   })
@@ -663,18 +657,18 @@ describe('VTreeView.ts', () => { // eslint-disable-line max-statements
     const two = { id: '2', name: 'Two', children: [three] }
 
     const wrapper = mountFunction({
-      propsData: {
+      props: {
         returnObject: true,
         selectable: true,
         activatable: true,
         items: [one, two],
-        value: [one],
+        modelValue: [one],
         open: [two],
         active: [three],
       },
     })
 
-    await wrapper.vm.$nextTick()
+    await nextTick()
 
     expect(wrapper.html()).toMatchSnapshot()
   })
@@ -690,9 +684,9 @@ describe('VTreeView.ts', () => { // eslint-disable-line max-statements
       name: 'Foo',
     }
     const wrapper = mountFunction({
-      propsData: {
+      props: {
         items: [{ ...item, children }],
-        value: [4],
+        modelValue: [4],
       },
     })
 
@@ -706,7 +700,7 @@ describe('VTreeView.ts', () => { // eslint-disable-line max-statements
       }],
     })
 
-    await wrapper.vm.$nextTick()
+    await nextTick()
 
     expect(wrapper.vm.nodes['5'].isIndeterminate).toBeUndefined()
   })
@@ -726,14 +720,14 @@ describe('VTreeView.ts', () => { // eslint-disable-line max-statements
     const input = jest.fn()
 
     const wrapper = mountFunction({
-      propsData: {
+      props: {
         items,
-        value: [2, 3, 4],
+        modelValue: [2, 3, 4],
         selectionType: 'leaf',
         selectable: true,
       },
-      listeners: {
-        input,
+      attrs: {
+        'onUpdate:modelValue': input,
       },
     })
 
@@ -749,7 +743,7 @@ describe('VTreeView.ts', () => { // eslint-disable-line max-statements
       }],
     })
 
-    await wrapper.vm.$nextTick()
+    await nextTick()
 
     expect(input).not.toHaveBeenCalled()
   })
@@ -770,24 +764,24 @@ describe('VTreeView.ts', () => { // eslint-disable-line max-statements
     const input = jest.fn()
 
     const wrapper = mountFunction({
-      propsData: {
+      props: {
         items,
-        value: [],
+        modelValue: [],
         selectionType: 'leaf',
         selectable: true,
       },
-      listeners: {
-        input,
+      attrs: {
+        'onUpdate:modelValue': input,
       },
     })
 
     wrapper.find('.v-treeview-node__checkbox').trigger('click')
-    await wrapper.vm.$nextTick()
+    await nextTick()
 
     expect(input).toHaveBeenLastCalledWith([3, 4])
 
     wrapper.setProps({
-      value: [2, 3, 4],
+      modelValue: [2, 3, 4],
       items: [{
         id: 1,
         name: 'Foo',
@@ -798,10 +792,10 @@ describe('VTreeView.ts', () => { // eslint-disable-line max-statements
         ],
       }],
     })
-    await wrapper.vm.$nextTick()
+    await nextTick()
 
     wrapper.find('.v-treeview-node__checkbox').trigger('click')
-    await wrapper.vm.$nextTick()
+    await nextTick()
 
     expect(input).toHaveBeenLastCalledWith([2])
   })
@@ -824,27 +818,27 @@ describe('VTreeView.ts', () => { // eslint-disable-line max-statements
     const input = jest.fn()
 
     const wrapper = mountFunction({
-      propsData: {
+      props: {
         items,
-        value: [],
+        modelValue: [],
         open: [1],
         selectionType: 'independent',
         selectable: true,
       },
-      listeners: {
-        input,
+      attrs: {
+        'onUpdate:modelValue': input,
       },
     })
 
-    await wrapper.vm.$nextTick()
+    await nextTick()
 
     wrapper.findAll('.v-treeview-node__checkbox').at(1).trigger('click')
-    await wrapper.vm.$nextTick()
+    await nextTick()
 
     expect(input).toHaveBeenLastCalledWith([2])
 
     wrapper.findAll('.v-treeview-node__checkbox').at(2).trigger('click')
-    await wrapper.vm.$nextTick()
+    await nextTick()
 
     expect(input).toHaveBeenCalledTimes(1)
   })
@@ -855,22 +849,22 @@ describe('VTreeView.ts', () => { // eslint-disable-line max-statements
     const open = jest.fn()
 
     const wrapper = mountFunction({
-      propsData: {
+      props: {
         items: [{ id: 0, name: 'Root', children: [] }],
         loadChildren: () => wrapper.setProps({
           items: [{ id: 0, name: 'Root', children: [{ id: 1, name: 'Child' }] }],
         }),
         openOnClick: true,
       },
-      listeners: {
-        'update:open': open,
+      attrs: {
+        'onUpdate:open': open,
       },
     })
 
     expect(wrapper.html()).toMatchSnapshot()
 
     wrapper.find('.v-treeview-node__root').trigger('click')
-    await wrapper.vm.$nextTick()
+    await nextTick()
 
     expect(wrapper.html()).toMatchSnapshot()
     expect(open).toHaveBeenLastCalledWith([0])

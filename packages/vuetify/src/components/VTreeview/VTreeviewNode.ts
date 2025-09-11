@@ -191,7 +191,6 @@ const VTreeviewNode = baseMixins.extend({
       else children.push(this.text)
 
       return h('div', {
-        slot: 'label',
         class: 'v-treeview-node__label',
       }, children)
     },
@@ -226,7 +225,6 @@ const VTreeviewNode = baseMixins.extend({
           'v-treeview-node__toggle--open': this.isOpen,
           'v-treeview-node__toggle--loading': this.isLoading,
         }],
-        slot: 'prepend',
         onClick: (e: MouseEvent) => {
           e.stopPropagation()
 

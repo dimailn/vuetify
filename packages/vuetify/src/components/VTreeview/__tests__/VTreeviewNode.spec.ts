@@ -1,52 +1,53 @@
-import Vue from 'vue'
 import VTreeviewNode from '../VTreeviewNode'
 import {
   mount,
-  MountOptions,
-  Wrapper,
+  VueWrapper,
+  MountingOptions,
+  enableAutoUnmount,
 } from '@vue/test-utils'
+import { h, defineComponent } from 'vue'
 
-Vue.prototype.$vuetify = {
-  icons: {
-    values: {
-      subgroup: 'arrow_drop_down',
-    },
-  },
-}
+// Types
+import type { ComponentPublicInstance } from 'vue'
 
 const singleRootTwoChildren = { id: 0, name: 'Root', children: [{ id: 1, name: 'Child' }, { id: 2, name: 'Child 2' }] }
 
-const vm = new Vue()
-const defaultSlot = () => vm.$createElement('div', 'foobar')
+const defaultSlot = () => h('div', 'foobar')
 
-const Mock = {
+const Mock = defineComponent({
   name: 'test',
 
-  render: h => h(VTreeviewNode, {
-    scopedSlots: {
-      prepend: defaultSlot,
-      append: defaultSlot,
-    },
-  }),
-}
+  render() {
+    return h(VTreeviewNode, {
+      slots: {
+        prepend: defaultSlot,
+        append: defaultSlot,
+      },
+    })
+  },
+})
 
-const MockScopedLabel = {
+const MockScopedLabel = defineComponent({
   name: 'test',
 
-  render: h => h(VTreeviewNode, {
-    props: {
-      item: singleRootTwoChildren,
-    },
-    scopedSlots: {
-      label: props => vm.$createElement('div', [props.item.name.toUpperCase()]),
-    },
-  }),
-}
+  render() {
+    return h(VTreeviewNode, {
+      props: {
+        item: singleRootTwoChildren,
+      },
+      slots: {
+        label: (props: any) => h('div', [props.item.name.toUpperCase()]),
+      },
+    })
+  },
+})
 
 describe('VTreeViewNode.ts', () => {
   type Instance = InstanceType<typeof VTreeviewNode>
-  let mountFunction: (options?: MountOptions<Instance>) => Wrapper<Instance>
+  let mountFunction: (options?: MountingOptions<Instance>) => VueWrapper<Instance>
   let treeview
+
+  enableAutoUnmount(afterEach)
 
   beforeEach(() => {
     treeview = {
@@ -59,32 +60,42 @@ describe('VTreeViewNode.ts', () => {
       emitOpen: () => {},
     }
 
-    mountFunction = (options?: MountOptions<Instance>) => {
+    mountFunction = (options = {}) => {
       return mount(VTreeviewNode, {
-        // https://github.com/vuejs/vue-test-utils/issues/1130
-        sync: false,
+        global: {
+          mocks: {
+            $vuetify: {
+              icons: {
+                values: {
+                  subgroup: 'arrow_drop_down',
+                },
+              },
+            },
+          },
+          provide: { treeview },
+        },
         ...options,
       })
     }
   })
 
   it('should return indeterminate icon', async () => {
-    const wrapper = mountFunction({
-      provide: { treeview },
-    })
+    const wrapper = mountFunction()
 
     expect(wrapper.vm.computedIcon).toBe('$checkboxOff')
 
-    wrapper.setData({ isIndeterminate: true })
+    // В Vue 3 нужно использовать другой подход для изменения внутренних данных
+    wrapper.vm.isIndeterminate = true
+    await wrapper.vm.$nextTick()
 
     expect(wrapper.vm.computedIcon).toBe('$checkboxIndeterminate')
   })
 
   it('should use scoped slots', () => {
     const wrapper = mount(Mock, {
-      // https://github.com/vuejs/vue-test-utils/issues/1130
-      sync: false,
-      provide: { treeview },
+      global: {
+        provide: { treeview },
+      },
     })
 
     expect(wrapper.html()).toMatchSnapshot()
@@ -92,8 +103,7 @@ describe('VTreeViewNode.ts', () => {
 
   it('should generate a transition element', () => {
     const wrapper = mountFunction({
-      propsData: { transition: true },
-      provide: { treeview },
+      props: { transition: true },
     })
 
     expect(wrapper.html()).toMatchSnapshot()
@@ -101,31 +111,35 @@ describe('VTreeViewNode.ts', () => {
 
   it('should use label slot', () => {
     const wrapper = mount(MockScopedLabel, {
-      // https://github.com/vuejs/vue-test-utils/issues/1130
-      sync: false,
-      provide: { treeview },
+      global: {
+        provide: { treeview },
+      },
     })
 
     expect(wrapper.html()).toMatchSnapshot()
   })
 
   it('should render disabled item', () => {
-    const wrapper = mount({
+    const TestComponent = defineComponent({
       name: 'test',
 
-      render: h => h(VTreeviewNode, {
-        scopedSlots: {
-          prepend: defaultSlot,
-          append: defaultSlot,
-        },
-        props: {
-          item: { ...singleRootTwoChildren, disabled: true },
-        },
-      }),
-    }, {
-      // https://github.com/vuejs/vue-test-utils/issues/1130
-      sync: false,
-      provide: { treeview },
+      render() {
+        return h(VTreeviewNode, {
+          slots: {
+            prepend: defaultSlot,
+            append: defaultSlot,
+          },
+          props: {
+            item: { ...singleRootTwoChildren, disabled: true },
+          },
+        })
+      },
+    })
+
+    const wrapper = mount(TestComponent, {
+      global: {
+        provide: { treeview },
+      },
     })
 
     expect(wrapper.html()).toMatchSnapshot()
@@ -134,8 +148,7 @@ describe('VTreeViewNode.ts', () => {
   const singleRootWithEmptyChildrens = { id: 1, name: 'Child', children: [] }
   it('should be able to have active children with empty array', () => {
     const wrapper = mountFunction({
-      provide: { treeview },
-      propsData: {
+      props: {
         item: singleRootWithEmptyChildrens,
         activatable: true,
         openOnClick: true,
@@ -152,8 +165,7 @@ describe('VTreeViewNode.ts', () => {
 
   it('should not be able to have active children with empty array when loadChildren is specified', () => {
     const wrapper = mountFunction({
-      provide: { treeview },
-      propsData: {
+      props: {
         item: singleRootWithEmptyChildrens,
         activatable: true,
         openOnClick: true,
@@ -171,8 +183,7 @@ describe('VTreeViewNode.ts', () => {
 
   it('should not be able to have active children with empty array when disabled', () => {
     const wrapper = mountFunction({
-      provide: { treeview },
-      propsData: {
+      props: {
         item: { ...singleRootWithEmptyChildrens, disabled: true },
         activatable: true,
         openOnClick: true,
