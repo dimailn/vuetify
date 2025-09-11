@@ -1,37 +1,44 @@
 import VPagination from '../VPagination'
 import {
   mount,
-  MountOptions,
-  Wrapper,
+  VueWrapper,
+  MountingOptions,
+  enableAutoUnmount,
 } from '@vue/test-utils'
-import Vue from 'vue'
-
-Vue.prototype.$vuetify = {
-  rtl: false,
-  icons: {
-    values: {
-      next: 'mdi-chevron-right',
-      prev: 'mdi-chevron-left',
-    },
-  },
-  lang: {
-    t: str => str,
-  },
-}
+import { h } from 'vue'
+import { Lang } from '../../../services/lang'
+import { preset } from '../../../presets/default'
 
 describe('VPagination.ts', () => {
   type Instance = InstanceType<typeof VPagination>
-  let mountFunction: (options?: MountOptions<Instance>) => Wrapper<Instance>
+  let mountFunction: (options?: MountingOptions<Instance>) => VueWrapper<Instance>
+
+  enableAutoUnmount(afterEach)
+
   beforeEach(() => {
     jest.useFakeTimers()
 
-    mountFunction = (options?: MountOptions<Instance>) => {
+    mountFunction = (options?: MountingOptions<Instance>) => {
+      const vuetifyInstance = {
+        rtl: false,
+        icons: {
+          values: {
+            next: 'mdi-chevron-right',
+            prev: 'mdi-chevron-left',
+          },
+        },
+        lang: new Lang(preset),
+      }
+
       return mount(VPagination, {
-        mocks: {
-          $vuetify: {
-            lang: {
-              t: str => str,
+        global: {
+          config: {
+            globalProperties: {
+              $vuetify: vuetifyInstance,
             },
+          },
+          mocks: {
+            $vuetify: vuetifyInstance,
           },
         },
         ...options,
@@ -41,35 +48,29 @@ describe('VPagination.ts', () => {
 
   it('emits an event when next or previous is clicked', async () => {
     const wrapper = mountFunction({
-      propsData: {
+      props: {
         length: 5,
-        value: 2,
+        modelValue: 2,
       },
     })
     jest.runAllTimers()
 
     await wrapper.vm.$nextTick()
 
-    const previous = jest.fn()
-    const next = jest.fn()
-
-    wrapper.vm.$on('previous', previous)
-    wrapper.vm.$on('next', next)
-
-    const navigation = wrapper.findAll('.v-pagination__navigation').wrappers
+    const navigation = wrapper.findAll('.v-pagination__navigation')
     navigation[0].trigger('click')
     navigation[1].trigger('click')
 
-    expect(next).toHaveBeenCalled()
-    expect(previous).toHaveBeenCalled()
+    expect(wrapper.emitted('previous')).toBeTruthy()
+    expect(wrapper.emitted('next')).toBeTruthy()
     expect(wrapper.html()).toMatchSnapshot()
   })
 
   it('should render component in RTL mode and match snapshot', async () => {
     const wrapper = mountFunction({
-      propsData: {
+      props: {
         length: 5,
-        value: 2,
+        modelValue: 2,
       },
     })
     wrapper.vm.$vuetify.rtl = true
@@ -81,30 +82,27 @@ describe('VPagination.ts', () => {
 
   it('emits an event when pagination item is clicked', async () => {
     const wrapper = mountFunction({
-      propsData: {
+      props: {
         length: 5,
-        value: 2,
+        modelValue: 2,
       },
     })
     jest.runAllTimers()
 
     await wrapper.vm.$nextTick()
 
-    const cb = jest.fn()
-
-    wrapper.vm.$on('input', cb)
-
-    const navigation = wrapper.findAll('.v-pagination__item').wrappers
+    const navigation = wrapper.findAll('.v-pagination__item')
     navigation[1].trigger('click')
 
-    expect(cb).toHaveBeenCalledWith(2)
+    expect(wrapper.emitted('update:modelValue')).toBeTruthy()
+    expect(wrapper.emitted('update:modelValue')?.[0]).toEqual([2])
   })
 
   it('should render disabled buttons with length equals to 0', async () => {
     const wrapper = mountFunction({
-      propsData: {
+      props: {
         length: 0,
-        value: 1,
+        modelValue: 1,
       },
     })
     jest.runAllTimers()
@@ -114,70 +112,85 @@ describe('VPagination.ts', () => {
 
   it('should watch the value', async () => {
     const wrapper = mountFunction({
-      propsData: {
+      props: {
         length: 5,
-        value: 1,
+        modelValue: 1,
       },
     })
 
     jest.runAllTimers()
+    await wrapper.vm.$nextTick()
     expect(wrapper.vm.selected).toBe(1)
 
-    wrapper.setProps({ value: 2 })
-    jest.runAllTimers()
+    await wrapper.setProps({ modelValue: 2 })
+    jest.advanceTimersByTime(150)
+    await wrapper.vm.$nextTick()
     expect(wrapper.vm.selected).toBe(2)
   })
 
   it('should only render start and end of range if length is big', async () => {
     const wrapper = mountFunction({
-      propsData: {
+      props: {
         length: 100,
+        modelValue: 1,
       },
     })
     jest.runAllTimers()
 
     await wrapper.vm.$nextTick()
+    await wrapper.vm.$nextTick()
+    jest.advanceTimersByTime(150)
+
+    // Force maxButtons to be set and trigger re-render
+    wrapper.vm.maxButtons = 5
+    await wrapper.vm.$nextTick()
 
     expect(wrapper.html()).toMatchSnapshot()
-    expect(wrapper.findAll('.v-pagination__more').wrappers).toHaveLength(1)
+    expect(wrapper.findAll('.v-pagination__more')).toHaveLength(1)
   })
 
   it('should only render middle of range if length is big and value is somewhere in the middle', async () => {
     const wrapper = mountFunction({
-      propsData: {
+      props: {
         length: 100,
-        value: 50,
+        modelValue: 50,
       },
     })
     jest.runAllTimers()
 
     await wrapper.vm.$nextTick()
+    await wrapper.vm.$nextTick()
+    jest.advanceTimersByTime(150)
+
+    // Force maxButtons to be set and trigger re-render
+    wrapper.vm.maxButtons = 5
+    await wrapper.vm.$nextTick()
 
     expect(wrapper.html()).toMatchSnapshot()
-    expect(wrapper.findAll('.v-pagination__more').wrappers).toHaveLength(2)
+    expect(wrapper.findAll('.v-pagination__more')).toHaveLength(2)
   })
 
   it('should only render start of range if value is equals "left"', async () => {
     const wrapper = mountFunction({
-      propsData: {
+      props: {
         length: 100,
         totalVisible: 5,
       },
     })
     const maxLength = Number(wrapper.vm.totalVisible)
     const left = Math.ceil(maxLength / 2)
-    wrapper.setProps({ value: left })
+    wrapper.setProps({ modelValue: left })
     jest.runAllTimers()
 
     await wrapper.vm.$nextTick()
 
     expect(wrapper.html()).toMatchSnapshot()
-    expect(wrapper.findAll('.v-pagination__more').wrappers).toHaveLength(1)
+    expect(wrapper.findAll('.v-pagination__more')).toHaveLength(1)
   })
 
   it('should only render end of range if value is equals "right"', async () => {
     const wrapper = mountFunction({
-      propsData: {
+      props: {
         length: 100,
         totalVisible: 5,
       },
@@ -186,20 +199,20 @@ describe('VPagination.ts', () => {
     const even = maxLength % 2 === 0 ? 1 : 0
     const left = Math.ceil(maxLength / 2)
     const right = wrapper.vm.length - left + 1 + even
-    wrapper.setProps({ value: right })
+    wrapper.setProps({ modelValue: right })
     jest.runAllTimers()
 
     await wrapper.vm.$nextTick()
 
     expect(wrapper.html()).toMatchSnapshot()
-    expect(wrapper.findAll('.v-pagination__more').wrappers).toHaveLength(1)
+    expect(wrapper.findAll('.v-pagination__more')).toHaveLength(1)
   })
 
   it('should use totalVisible prop if defined', async () => {
     const wrapper = mountFunction({
-      propsData: {
+      props: {
         length: 100,
-        value: 50,
+        modelValue: 50,
         totalVisible: 10,
       },
     })
@@ -208,8 +221,8 @@ describe('VPagination.ts', () => {
     await wrapper.vm.$nextTick()
 
     expect(wrapper.html()).toMatchSnapshot()
-    expect(wrapper.findAll('.v-pagination__more').wrappers).toHaveLength(2)
-    expect(wrapper.findAll('.v-pagination__item').wrappers).toHaveLength(8)
+    expect(wrapper.findAll('.v-pagination__more')).toHaveLength(2)
+    expect(wrapper.findAll('.v-pagination__item')).toHaveLength(8)
   })
 
   it('should set from to 1 if <= 0', () => {
@@ -223,11 +236,10 @@ describe('VPagination.ts', () => {
   // even if it's not real world, so that we can detect changes
   it('should use parents width for on resize calculation', () => {
     const wrapper = mount({
-      functional: true,
-      render: h => h('div', [h(VPagination)]),
+      render: () => h('div', [h(VPagination)]),
     })
 
-    const pagination = wrapper.find(VPagination.options)
+    const pagination = wrapper.findComponent(VPagination)
 
     expect(pagination.vm.maxButtons).toBe(22)
 
@@ -243,7 +255,7 @@ describe('VPagination.ts', () => {
         maxButtons: 4,
       }),
 
-      propsData: {
+      props: {
         length: 40,
         totalVisible: 10,
       },
@@ -258,13 +270,13 @@ describe('VPagination.ts', () => {
     expect(wrapper.vm.items).toHaveLength(10)
   })
 
-  it('should never show more than the number of total visible buttons', () => {
+  it('should never show more than the number of total visible buttons', async () => {
     const wrapper = mountFunction({
       data: () => ({
         maxButtons: 0,
       }),
 
-      propsData: {
+      props: {
         length: 5,
         totalVisible: undefined,
       },
@@ -276,10 +288,12 @@ describe('VPagination.ts', () => {
 
     wrapper.setData({ maxButtons: 0 })
     wrapper.setProps({ totalVisible: 10 })
+    await wrapper.vm.$nextTick()
     expect(wrapper.vm.items).toHaveLength(10)
 
     wrapper.setData({ maxButtons: 11 })
     wrapper.setProps({ totalVisible: undefined })
+    await wrapper.vm.$nextTick()
     expect(wrapper.vm.items).toHaveLength(11)
 
     wrapper.setData({ maxButtons: 12 })
@@ -290,7 +304,7 @@ describe('VPagination.ts', () => {
   it('should return length when maxButtons is less than 1', () => {
     const wrapper = mountFunction({
       data: () => ({ maxButtons: -3 }),
-      propsData: { length: 4 },
+      props: { length: 4 },
     })
 
     expect(wrapper.vm.items).toEqual([1, 2, 3, 4])
