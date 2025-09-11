@@ -1,17 +1,16 @@
 // Components
 import VFileInput from '../VFileInput'
 
-// Services
-import { Lang } from '../../../services/lang'
-
 // Preset
 import { preset } from '../../../presets/default'
 
 // Libraries
 import {
-  Wrapper,
+  VueWrapper,
   mount,
-  MountOptions,
+  config,
+  MountingOptions,
+  enableAutoUnmount,
 } from '@vue/test-utils'
 
 const oneMBFile = new File([new ArrayBuffer(1048576)], 'test')
@@ -19,19 +18,23 @@ const twoMBFile = new File([new ArrayBuffer(2097152)], 'test')
 
 describe('VFileInput.ts', () => {
   type Instance = InstanceType<typeof VFileInput>
-  let mountFunction: (options?: MountOptions<Instance>) => Wrapper<Instance>
+  let mountFunction: (options?: MountingOptions<Instance>) => VueWrapper<Instance>
+
+  enableAutoUnmount(afterEach)
 
   beforeEach(() => {
-    mountFunction = (options?: MountOptions<Instance>) => {
+    mountFunction = (options?: MountingOptions<Instance>) => {
       return mount(VFileInput, {
-        // https://github.com/vuejs/vue-test-utils/issues/1130
-        sync: false,
-        mocks: {
-          $vuetify: {
-            lang: new Lang(preset),
+        ...options,
+        props: {
+          label: 'File input',
+          ...options?.props,
+        },
+        global: {
+          mocks: {
+            ...config.global.mocks,
           },
         },
-        ...options,
       })
     }
   })
@@ -44,7 +47,7 @@ describe('VFileInput.ts', () => {
 
   it('should render multiple', () => {
     const wrapper = mountFunction({
-      propsData: { multiple: true },
+      props: { multiple: true },
     })
 
     expect(wrapper.html()).toMatchSnapshot()
@@ -52,44 +55,44 @@ describe('VFileInput.ts', () => {
 
   it('should render counter', () => {
     const wrapper = mountFunction({
-      propsData: {
+      props: {
         counter: true,
-        value: [oneMBFile],
+        modelValue: [oneMBFile],
       },
     })
 
     expect(wrapper.html()).toMatchSnapshot()
   })
 
-  it('should display file size', () => {
+  it('should display file size', async () => {
     const wrapper = mountFunction({
-      propsData: {
+      props: {
         showSize: true,
-        value: [twoMBFile],
+        modelValue: [twoMBFile],
       },
     })
 
     expect(wrapper.html()).toMatchSnapshot()
 
-    wrapper.setProps({
+    await wrapper.setProps({
       showSize: 1000,
     })
 
     expect(wrapper.html()).toMatchSnapshot()
   })
 
-  it('should display total size in counter', () => {
+  it('should display total size in counter', async () => {
     const wrapper = mountFunction({
-      propsData: {
+      props: {
         showSize: true,
         counter: true,
-        value: [oneMBFile, twoMBFile],
+        modelValue: [oneMBFile, twoMBFile],
       },
     })
 
     expect(wrapper.html()).toMatchSnapshot()
 
-    wrapper.setProps({
+    await wrapper.setProps({
       showSize: 1000,
     })
 
@@ -98,7 +101,7 @@ describe('VFileInput.ts', () => {
 
   it('should be unclearable', () => {
     const wrapper = mountFunction({
-      propsData: {
+      props: {
         clearable: false,
       },
     })
@@ -108,7 +111,7 @@ describe('VFileInput.ts', () => {
 
   it('should work with accept', () => {
     const wrapper = mountFunction({
-      propsData: {
+      props: {
         accept: 'image/*',
       },
     })
@@ -118,12 +121,12 @@ describe('VFileInput.ts', () => {
 
   it('should disable file input', () => {
     const wrapper = mountFunction({
-      propsData: {
+      props: {
         disabled: true,
       },
     })
 
-    expect(wrapper.find('input').element.getAttribute('disabled')).toBe('disabled')
+    expect(wrapper.find('input').element.disabled).toBe(true)
   })
 
   it('should proxy icon and text click to input', () => {
@@ -144,7 +147,7 @@ describe('VFileInput.ts', () => {
 
   it('should clear', () => {
     const wrapper = mountFunction({
-      propsData: { value: oneMBFile },
+      props: { modelValue: oneMBFile },
     })
 
     wrapper.vm.clearableCallback()
@@ -152,7 +155,7 @@ describe('VFileInput.ts', () => {
 
     const wrapper2 = mountFunction({
       attrs: { multiple: '' },
-      propsData: { value: oneMBFile },
+      props: { modelValue: oneMBFile },
     })
 
     wrapper2.vm.clearableCallback()
@@ -163,7 +166,7 @@ describe('VFileInput.ts', () => {
     const wrapper = mountFunction()
 
     wrapper.setProps({
-      value: [oneMBFile],
+      modelValue: [oneMBFile],
     })
 
     await wrapper.vm.$nextTick()
@@ -173,9 +176,9 @@ describe('VFileInput.ts', () => {
 
   it('should render chips', () => {
     const wrapper = mountFunction({
-      propsData: {
+      props: {
         chips: true,
-        value: [oneMBFile],
+        modelValue: [oneMBFile],
       },
     })
 
@@ -184,7 +187,7 @@ describe('VFileInput.ts', () => {
 
   it('should render small chips', () => {
     const wrapper = mountFunction({
-      propsData: {
+      props: {
         smallChips: true,
       },
       data: () => ({
@@ -198,7 +201,7 @@ describe('VFileInput.ts', () => {
   // https://github.com/vuetifyjs/vuetify/issues/8049
   it('should render without icon', () => {
     const wrapper = mountFunction({
-      propsData: {
+      props: {
         prependIcon: '',
       },
     })
@@ -208,12 +211,7 @@ describe('VFileInput.ts', () => {
 
   // https://github.com/vuetifyjs/vuetify/issues/8167
   it('should not emit change event when blurred', async () => {
-    const change = jest.fn()
-    const wrapper = mountFunction({
-      listeners: {
-        change,
-      },
-    })
+    const wrapper = mountFunction()
 
     const input = wrapper.find('input')
 
@@ -226,31 +224,26 @@ describe('VFileInput.ts', () => {
     input.trigger('blur')
     await wrapper.vm.$nextTick()
 
-    expect(change).toHaveBeenCalledTimes(1)
+    expect(wrapper.emitted('change')).toHaveLength(1)
   })
 
   it('should not emit change event when pressing enter', async () => {
-    const change = jest.fn()
-    const wrapper = mountFunction({
-      listeners: {
-        change,
-      },
-    })
+    const wrapper = mountFunction()
 
     const input = wrapper.find('input')
 
     input.trigger('keydown.enter')
     await wrapper.vm.$nextTick()
 
-    expect(change).not.toHaveBeenCalled()
+    expect(wrapper.emitted('change')).toBeFalsy()
   })
 
   it('should truncate correctly', async () => {
     const fifteenCharFile = new File(['V'.repeat(15)], 'testFile15Chars')
     const wrapper = mountFunction({
-      propsData: {
+      props: {
         truncateLength: 1,
-        value: fifteenCharFile,
+        modelValue: fifteenCharFile,
       },
     })
 
@@ -281,13 +274,13 @@ describe('VFileInput.ts', () => {
     expect(wrapper.find('.v-file-input__text').text()).toBe('test…hars')
   })
 
-  it('should filter internal array values for instanceof File', () => {
+  it('should filter internal array values for instanceof File', async () => {
     const wrapper = mountFunction()
 
     const values = [null, undefined, {}, [null], [undefined], [{}]]
 
     for (const value of values) {
-      wrapper.setProps({ value })
+      await wrapper.setProps({ modelValue: value })
 
       expect(wrapper.vm.internalArrayValue).toEqual([])
     }
@@ -295,7 +288,7 @@ describe('VFileInput.ts', () => {
 
   it('should set display none if hide-input prop is set', () => {
     const wrapper = mountFunction({
-      propsData: { hideInput: true },
+      props: { hideInput: true },
     })
 
     expect(wrapper.html()).toMatchSnapshot()

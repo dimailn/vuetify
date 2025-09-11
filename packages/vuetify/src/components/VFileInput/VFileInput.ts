@@ -77,7 +77,7 @@ export default defineComponent({
     } as PropValidator<File | File[]>,
   },
 
-  emits: ['change', 'keydown'],
+  emits: ['change', 'keydown', 'click:prepend'],
 
   computed: {
     classes (): object {
@@ -104,7 +104,7 @@ export default defineComponent({
       )
     },
     internalArrayValue (): File[] {
-      return wrapInArray(this.internalValue)
+      return wrapInArray(this.internalValue).filter((v: any) => v instanceof File)
     },
     internalValue: {
       get (): File[] {
@@ -195,21 +195,26 @@ export default defineComponent({
       return render
     },
     genInput () {
-      const input = VTextField.methods.genInput.call(this)
+      // Create input without calling VTextField.genInput to avoid value setting
+      const listeners = Object.assign({}, this.listeners$)
+      delete listeners.change // Change should not be bound externally
+      const { title, ...inputAttrs } = this.attrs$
 
-      input.multiple = this.multiple
-
-      // We should not be setting value
-      // programmatically on the input
-      // when it is using type="file"
-      delete input.value
-
-      // This solves an issue in Safari where
-      // nothing happens when adding a file
-      // due to the input event not firing
-      // https://github.com/vuetifyjs/vuetify/issues/7941
-      delete input.onInput
-      input.onChange = this.onInput
+      const input = h('input', {
+        style: {},
+        ...inputAttrs,
+        autofocus: this.autofocus,
+        disabled: this.isDisabled,
+        id: this.computedId,
+        placeholder: this.placeholder,
+        readonly: this.isReadonly,
+        type: this.type,
+        multiple: this.multiple,
+        ...listeners,
+        onChange: this.onInput,
+        onKeyDown: this.onKeyDown,
+        ref: 'input',
+      })
 
       return [this.genSelections(), input]
     },
@@ -256,16 +261,20 @@ export default defineComponent({
       }, children)
     },
     genTextFieldSlot () {
-      const node = VTextField.methods.genTextFieldSlot.call(this)
+      return h('div', {
+        class: 'v-text-field__slot',
+        onClick: (e: MouseEvent) => {
+          // Clicking the label already delegates to input element, so we shouldn't click it twice
+          if (e.target && (e.target as HTMLElement).nodeName === 'LABEL') return
 
-      node.onClick = (e: MouseEvent) => {
-        // Clicking the label already delegates to input element, so we shouldn't click it twice
-        if (e.target && (e.target as HTMLElement).nodeName === 'LABEL') return
-
-        this.$refs.input.click()
-      }
-
-      return node
+          this.$refs.input.click()
+        }
+      }, [
+        this.genLabel(),
+        this.prefix ? this.genAffix('prefix') : null,
+        this.genInput(),
+        this.suffix ? this.genAffix('suffix') : null,
+      ])
     },
     onInput (e: Event) {
       const files = [...(e.target as HTMLInputElement).files || []]
