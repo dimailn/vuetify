@@ -9,6 +9,7 @@ import PickerButton from '../../mixins/picker-button'
 
 // Utils
 import mixins from '../../util/mixins'
+import { breaking } from '../../util/console'
 
 // Types
 import { VNode } from 'vue'
@@ -49,6 +50,17 @@ export default mixins(
     computedTransition (): string {
       return this.isReversing ? 'picker-reverse-transition' : 'picker-transition'
     },
+  },
+
+  created () {
+    const breakingProps = [
+      ['value', 'modelValue'],
+    ]
+
+    /* istanbul ignore next */
+    breakingProps.forEach(([original, replacement]) => {
+      if (this.$attrs.hasOwnProperty(original)) breaking(original, replacement, this)
+    })
   },
 
   watch: {

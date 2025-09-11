@@ -19,6 +19,7 @@ import Themeable from '../../mixins/themeable'
 // Utilities
 import { convertToUnit, getSlot } from '../../util/helpers'
 import mixins from '../../util/mixins'
+import { breaking } from '../../util/console'
 
 // Types
 import { VNode } from 'vue'
@@ -189,6 +190,18 @@ export default baseMixins.extend({
 
       return styles
     },
+  },
+
+  created () {
+    const breakingProps = [
+      ['value', 'modelValue'],
+      ['onChange', 'onUpdate:modelValue'],
+    ]
+
+    /* istanbul ignore next */
+    breakingProps.forEach(([original, replacement]) => {
+      if (this.$attrs.hasOwnProperty(original)) breaking(original, replacement, this)
+    })
   },
 
   watch: {

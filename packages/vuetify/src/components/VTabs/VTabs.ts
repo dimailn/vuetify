@@ -19,6 +19,7 @@ import Resize from '../../directives/resize'
 import { convertToUnit, getSlot } from '../../util/helpers'
 import { ExtractVue } from './../../util/mixins'
 import mixins from '../../util/mixins'
+import { breaking } from '../../util/console'
 
 // Types
 import { VNode } from 'vue/types'
@@ -120,6 +121,19 @@ export default baseMixins.extend({
       else if (this.isDark && !this.appIsDark) return 'white'
       else return 'primary'
     },
+  },
+
+  created () {
+    const breakingProps = [
+      ['value', 'modelValue'],
+      ['onChange', 'onUpdate:modelValue'],
+      ['onInput', 'onUpdate:modelValue'],
+    ]
+
+    /* istanbul ignore next */
+    breakingProps.forEach(([original, replacement]) => {
+      if (this.$attrs.hasOwnProperty(original)) breaking(original, replacement, this)
+    })
   },
 
   watch: {

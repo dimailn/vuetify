@@ -12,6 +12,7 @@ import Themeable from '../../mixins/themeable'
 // Utils
 import { createNativeLocaleFormatter, monthChange } from './util'
 import { getSlot } from '../../util/helpers'
+import { breaking } from '../../util/console'
 
 // Types
 import { VNode, PropType, Transition, h, defineComponent } from 'vue'
@@ -62,6 +63,18 @@ export default defineComponent({
         return createNativeLocaleFormatter(this.currentLocale, { year: 'numeric', timeZone: 'UTC' }, { length: 4 })
       }
     },
+  },
+
+  created () {
+    const breakingProps = [
+      ['value', 'modelValue'],
+      ['onInput', 'onUpdate:modelValue'],
+    ]
+
+    /* istanbul ignore next */
+    breakingProps.forEach(([original, replacement]) => {
+      if (this.$attrs.hasOwnProperty(original)) breaking(original, replacement, this)
+    })
   },
 
   watch: {

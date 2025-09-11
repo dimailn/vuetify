@@ -17,6 +17,7 @@ import {
   convertToUnit,
   getSlot,
 } from '../../util/helpers'
+import { breaking } from '../../util/console'
 
 const Toggleable = ToggleableFactory('modelValue', 'update:modelValue')
 
@@ -117,6 +118,18 @@ export default defineComponent({
         top: this.computedTop,
       }
     },
+  },
+
+  created () {
+    const breakingProps = [
+      ['value', 'modelValue'],
+      ['onInput', 'onUpdate:modelValue'],
+    ]
+
+    /* istanbul ignore next */
+    breakingProps.forEach(([original, replacement]) => {
+      if (this.$attrs.hasOwnProperty(original)) breaking(original, replacement, this)
+    })
   },
 
   methods: {

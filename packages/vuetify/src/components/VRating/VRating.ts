@@ -16,6 +16,7 @@ import Ripple from '../../directives/ripple'
 // Utilities
 import { createRange } from '../../util/helpers'
 import mixins from '../../util/mixins'
+import { breaking } from '../../util/console'
 
 // Types
 import { VNode, VNodeDirective, VNodeChildren } from 'vue'
@@ -125,6 +126,18 @@ export default mixins(
     isHovering (): boolean {
       return this.hover && this.hoverIndex >= 0
     },
+  },
+
+  created () {
+    const breakingProps = [
+      ['value', 'modelValue'],
+      ['onInput', 'onUpdate:modelValue'],
+    ]
+
+    /* istanbul ignore next */
+    breakingProps.forEach(([original, replacement]) => {
+      if (this.$attrs.hasOwnProperty(original)) breaking(original, replacement, this)
+    })
   },
 
   watch: {

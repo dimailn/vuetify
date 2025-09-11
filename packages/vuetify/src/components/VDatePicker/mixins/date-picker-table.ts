@@ -14,6 +14,7 @@ import isDateAllowed from '../util/isDateAllowed'
 import { mergeListeners } from '../../../util/mergeData'
 import mixins from '../../../util/mixins'
 import { throttle } from '../../../util/helpers'
+import { breaking } from '../../../util/console'
 
 // Types
 import {
@@ -86,6 +87,18 @@ export default mixins(
     currentValue (): string | string[] | undefined {
       return this.modelValue
     },
+  },
+
+  created () {
+    const breakingProps = [
+      ['value', 'modelValue'],
+      ['onInput', 'onUpdate:modelValue'],
+    ]
+
+    /* istanbul ignore next */
+    breakingProps.forEach(([original, replacement]) => {
+      if (this.$attrs.hasOwnProperty(original)) breaking(original, replacement, this)
+    })
   },
 
   watch: {

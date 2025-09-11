@@ -17,6 +17,7 @@ import Toggleable from '../../mixins/toggleable'
 // Utilities
 import mixins from '../../util/mixins'
 import { convertToUnit, getSlot } from '../../util/helpers'
+import { breaking } from '../../util/console'
 
 // Types
 import { VNode } from 'vue'
@@ -76,6 +77,18 @@ export default mixins(
 
       return styles
     },
+  },
+
+  created () {
+    const breakingProps = [
+      ['value', 'modelValue'],
+      ['input', 'update:modelValue'],
+    ]
+
+    /* istanbul ignore next */
+    breakingProps.forEach(([original, replacement]) => {
+      if (this.$attrs.hasOwnProperty(original)) breaking(original, replacement, this)
+    })
   },
 
   methods: {
