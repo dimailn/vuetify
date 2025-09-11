@@ -4,20 +4,24 @@ import VImg from '../VImg'
 // Utilities
 import {
   mount,
-  Wrapper,
+  VueWrapper,
+  enableAutoUnmount,
 } from '@vue/test-utils'
+import { h } from 'vue'
 
 describe('VImg.ts', () => {
   type Instance = InstanceType<typeof VImg>
-  let mountFunction: (options?: object) => Wrapper<Instance>
+  let mountFunction: (options?: object) => VueWrapper<Instance>
+
+  enableAutoUnmount(afterEach)
 
   beforeEach(() => {
     mountFunction = (options = {}) => {
       return mount(VImg, {
         ...options,
-        propsData: {
+        props: {
           eager: true,
-          ...options.propsData,
+          ...options.props,
         },
       })
     }
@@ -62,7 +66,7 @@ describe('VImg.ts', () => {
 
   it('should load', async () => {
     const wrapper = mountFunction({
-      propsData: { src: LOAD_SUCCESS_SRC },
+      props: { src: LOAD_SUCCESS_SRC },
     })
 
     expect(wrapper.html()).toMatchSnapshot()
@@ -75,12 +79,12 @@ describe('VImg.ts', () => {
 
   it('should display placeholders', async () => {
     const wrapper = mountFunction({
-      propsData: {
+      props: {
         src: 'full_src',
         lazySrc: 'lazy_src',
       },
       slots: {
-        placeholder: { render: h => h('div', ['loading...']) },
+        placeholder: () => h('div', ['loading...']),
       },
     })
 
@@ -94,23 +98,20 @@ describe('VImg.ts', () => {
 
   it('should emit errors', () => {
     const wrapper = mountFunction({
-      propsData: {
+      props: {
         src: LOAD_FAILURE_SRC,
       },
     })
 
-    const error = jest.fn()
-    wrapper.vm.$on('error', error)
-
     jest.runOnlyPendingTimers()
 
-    expect(error).toHaveBeenCalledTimes(1)
-    expect(error).toHaveBeenCalledWith(LOAD_FAILURE_SRC)
+    expect(wrapper.emitted('error')).toHaveLength(1)
+    expect(wrapper.emitted('error')[0]).toEqual([LOAD_FAILURE_SRC])
   })
 
   it('should have aria attributes', async () => {
     const wrapper = mountFunction({
-      propsData: {
+      props: {
         src: LOAD_SUCCESS_SRC,
         alt: 'this is not a decorative image',
       },
@@ -124,7 +125,7 @@ describe('VImg.ts', () => {
 
   it('should use vuetify-loader data', async () => {
     const wrapper = mountFunction({
-      propsData: {
+      props: {
         src: {
           src: LOAD_SUCCESS_SRC,
           lazySrc: 'lazySrc_auto',
@@ -140,7 +141,7 @@ describe('VImg.ts', () => {
 
   it('should override vuetify-loader values', async () => {
     const wrapper = mountFunction({
-      propsData: {
+      props: {
         src: {
           src: LOAD_SUCCESS_SRC,
           lazySrc: 'lazySrc_auto',
@@ -158,7 +159,7 @@ describe('VImg.ts', () => {
 
   it('should update src', async () => {
     const wrapper = mountFunction({
-      propsData: {
+      props: {
         src: LOAD_SUCCESS_SRC,
       },
     })
@@ -168,7 +169,7 @@ describe('VImg.ts', () => {
 
     expect(wrapper.html()).toMatchSnapshot()
 
-    wrapper.setProps({ src: LOAD_SUCCESS_SRC + 1 })
+    await wrapper.setProps({ src: LOAD_SUCCESS_SRC + 1 })
 
     jest.runOnlyPendingTimers()
     await wrapper.vm.$nextTick()
@@ -178,14 +179,14 @@ describe('VImg.ts', () => {
 
   it('should update src while still loading', async () => {
     const wrapper = mountFunction({
-      propsData: {
+      props: {
         src: LOAD_SUCCESS_SRC,
       },
     })
 
     expect(wrapper.html()).toMatchSnapshot()
 
-    wrapper.setProps({ src: LOAD_SUCCESS_SRC + 1 })
+    await wrapper.setProps({ src: LOAD_SUCCESS_SRC + 1 })
 
     jest.runOnlyPendingTimers()
     await wrapper.vm.$nextTick()
