@@ -1,14 +1,12 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`VImg.ts should display placeholders 1`] = `
-<div class="v-image v-responsive theme--light">
-  <div class="v-image__image v-image__image--preload v-image__image--cover"
+<div class="theme--light v-image v-responsive">
+  <div class="v-image__image--preload v-image__image--cover v-image__image"
        style="background-image: url(lazy_src); background-position: center center;"
-       name="fade-transition"
-       mode="in-out"
   >
   </div>
-  <div class="v-image__placeholder">
+  <div class="v-image__placeholder fade-transition-enter-from fade-transition-enter-active">
     <div>
       loading...
     </div>
@@ -19,16 +17,23 @@ exports[`VImg.ts should display placeholders 1`] = `
 `;
 
 exports[`VImg.ts should display placeholders 2`] = `
-<div class="v-image v-responsive theme--light">
-  <div class="v-responsive__sizer"
-       style="padding-bottom: 56.25%;"
+<div class="theme--light v-image v-responsive">
+  <div class="v-image__image--preload v-image__image--cover v-image__image"
+       style="background-image: url(lazy_src); background-position: center center;"
   >
   </div>
-  <div class="v-image__image v-image__image--cover"
-       style="background-image: url(full_src); background-position: center center;"
-       name="fade-transition"
-       mode="in-out"
+  <div style="padding-bottom: 56.25%;"
+       class="v-responsive__sizer"
   >
+  </div>
+  <div class="v-image__image--cover v-image__image fade-transition-enter-from fade-transition-enter-active"
+       style="background-image: url(full_src); background-position: center center;"
+  >
+  </div>
+  <div class="v-image__placeholder fade-transition-enter-from fade-transition-leave-from fade-transition-leave-active">
+    <div>
+      loading...
+    </div>
   </div>
   <div class="v-responsive__content"
        style="width: 1600px;"

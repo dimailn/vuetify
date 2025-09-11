@@ -3,18 +3,22 @@ import VBreadcrumbs from '../VBreadcrumbs'
 import VBreadcrumbsItem from '../VBreadcrumbsItem'
 
 // Utilities
-import { compileToFunctions } from 'vue-template-compiler'
+import { h } from 'vue'
 import {
   mount,
-  Wrapper,
+  VueWrapper,
+  MountingOptions,
+  enableAutoUnmount,
 } from '@vue/test-utils'
 
 describe('VBreadcrumbs.ts', () => {
   type Instance = InstanceType<typeof VBreadcrumbs>
-  let mountFunction: (options?: object) => Wrapper<Instance>
+  let mountFunction: (options?: MountingOptions<Instance>) => VueWrapper<Instance>
+
+  enableAutoUnmount(afterEach)
 
   beforeEach(() => {
-    mountFunction = (options = {}) => {
+    mountFunction = (options: MountingOptions<Instance> = {}) => {
       return mount(VBreadcrumbs, {
         ...options,
       })
@@ -30,7 +34,7 @@ describe('VBreadcrumbs.ts', () => {
 
   it('should render items without slot', () => {
     const wrapper = mountFunction({
-      propsData: {
+      props: {
         items: [
           { text: 'a' },
           { text: 'b' },
@@ -45,7 +49,7 @@ describe('VBreadcrumbs.ts', () => {
 
   it('should not complain about identical keys', () => {
     mountFunction({
-      propsData: {
+      props: {
         items: [
           { text: 'a' },
           { text: 'a' },
@@ -58,7 +62,7 @@ describe('VBreadcrumbs.ts', () => {
 
   it('should use slot to render items if present', () => {
     const wrapper = mountFunction({
-      propsData: {
+      props: {
         items: [
           { text: 'a' },
           { text: 'b' },
@@ -66,7 +70,7 @@ describe('VBreadcrumbs.ts', () => {
           { text: 'd' },
         ],
       },
-      scopedSlots: {
+      slots: {
         item (props) {
           return h(VBreadcrumbsItem, {
             key: props.item.text,
@@ -80,7 +84,7 @@ describe('VBreadcrumbs.ts', () => {
 
   it('should use a custom divider slot', () => {
     const wrapper = mountFunction({
-      propsData: {
+      props: {
         items: [
           { text: 'a' },
           { text: 'b' },
@@ -89,7 +93,7 @@ describe('VBreadcrumbs.ts', () => {
         ],
       },
       slots: {
-        divider: '/divider/',
+        divider: () => '/divider/',
       },
     })
 

@@ -213,5 +213,132 @@ describe("VWindowItem.ts", () => {
     expect(windowVm.transitionCount).toBe(0);
     expect(windowVm.isActive).toBeFalsy();
   });
+
+  it("should render with correct structure and classes when active", () => {
+    const wrapper = mountFunction({
+      data: () => ({
+        isActive: true,
+        windowGroup: {
+          internalReverse: false,
+          register: () => {},
+          unregister: () => {},
+          computedTransition: "v-window-x-transition"
+        }
+      })
+    });
+
+    expect(wrapper.html()).toMatchSnapshot();
+  });
+
+  it("should render with custom transition when active", () => {
+    const wrapper = mountFunction({
+      props: {
+        transition: "custom-transition"
+      },
+      data: () => ({
+        isActive: true,
+        windowGroup: {
+          internalReverse: false,
+          register: () => {},
+          unregister: () => {},
+          computedTransition: "v-window-x-transition"
+        }
+      })
+    });
+
+    expect(wrapper.html()).toMatchSnapshot();
+  });
+
+  it("should render with reverse transition when active", () => {
+    const wrapper = mountFunction({
+      props: {
+        reverseTransition: "custom-reverse-transition"
+      },
+      data: () => ({
+        isActive: true,
+        windowGroup: {
+          internalReverse: true,
+          register: () => {},
+          unregister: () => {},
+          computedTransition: "v-window-x-reverse-transition"
+        }
+      })
+    });
+
+    expect(wrapper.html()).toMatchSnapshot();
+  });
+
+  it("should render with disabled prop when active", () => {
+    const wrapper = mountFunction({
+      props: {
+        disabled: true
+      },
+      data: () => ({
+        isActive: true,
+        windowGroup: {
+          internalReverse: false,
+          register: () => {},
+          unregister: () => {},
+          computedTransition: "v-window-x-transition"
+        }
+      })
+    });
+
+    expect(wrapper.html()).toMatchSnapshot();
+  });
+
+  it("should render with slot content when active", () => {
+    const wrapper = mountFunction({
+      slots: {
+        default: () => h("div", { class: "test-content" }, "Test content")
+      },
+      data: () => ({
+        isActive: true,
+        windowGroup: {
+          internalReverse: false,
+          register: () => {},
+          unregister: () => {},
+          computedTransition: "v-window-x-transition"
+        }
+      })
+    });
+
+    expect(wrapper.html()).toMatchSnapshot();
+  });
+
+  it("should render with value prop when active", () => {
+    const wrapper = mountFunction({
+      props: {
+        value: "test-value"
+      },
+      data: () => ({
+        isActive: true,
+        windowGroup: {
+          internalReverse: false,
+          register: () => {},
+          unregister: () => {},
+          computedTransition: "v-window-x-transition"
+        }
+      })
+    });
+
+    expect(wrapper.html()).toMatchSnapshot();
+  });
+
+  it("should not render when not active", () => {
+    const wrapper = mountFunction({
+      data: () => ({
+        isActive: false,
+        windowGroup: {
+          internalReverse: false,
+          register: () => {},
+          unregister: () => {},
+          computedTransition: "v-window-x-transition"
+        }
+      })
+    });
+
+    expect(wrapper.html()).toMatchSnapshot();
+  });
 });
 

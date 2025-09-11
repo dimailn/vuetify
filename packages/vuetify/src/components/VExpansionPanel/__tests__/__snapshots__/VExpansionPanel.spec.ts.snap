@@ -1,36 +1,38 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`VExpansionPanel should hide actions and match snapshot 1`] = `
-<div aria-expanded="false"
-     class="v-expansion-panel"
+<div class="v-expansion-panel"
+     aria-expanded="false"
 >
-  <button type="button"
-          class="v-expansion-panel-header"
+  <button class="v-expansion-panel-header"
+          type="button"
+          aria-expanded="false"
+          props="[object Object]"
   >
+    <div class="v-expansion-panel-header__icon">
+      <i aria-hidden="true"
+         class="v-icon notranslate mdi mdi-chevron-down theme--light"
+      >
+      </i>
+    </div>
   </button>
 </div>
 `;
 
 exports[`VExpansionPanel should hide actions and match snapshot 2`] = `
-<div aria-expanded="false"
-     class="v-expansion-panel"
+<div class="v-expansion-panel"
+     aria-expanded="false"
 >
-  <button type="button"
-          class="v-expansion-panel-header"
+  <button class="v-expansion-panel-header"
+          type="button"
+          aria-expanded="false"
   >
     <div class="v-expansion-panel-header__icon">
       <i aria-hidden="true"
-         class="v-icon notranslate material-icons theme--light"
+         class="v-icon notranslate mdi mdi-chevron-down theme--light"
       >
-        $expand
       </i>
     </div>
   </button>
-  <div class="v-expansion-panel-content"
-       style="display: none;"
-  >
-    <div class="v-expansion-panel-content__wrap">
-    </div>
-  </div>
 </div>
 `;

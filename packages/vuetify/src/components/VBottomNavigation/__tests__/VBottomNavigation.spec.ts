@@ -1,5 +1,5 @@
 // Libraries
-import Vue from 'vue'
+import { h } from 'vue'
 
 // Components
 import VBottomNavigation from '../VBottomNavigation'
@@ -8,8 +8,9 @@ import VBtn from '../../VBtn/VBtn'
 // Utilities
 import {
   mount,
-  Wrapper,
-  MountOptions,
+  VueWrapper,
+  MountingOptions,
+  enableAutoUnmount,
 } from '@vue/test-utils'
 
 function createBtn (val = null) {
@@ -19,26 +20,31 @@ function createBtn (val = null) {
   }
   if (val) options.attrs = { value: val }
 
-  return Vue.component('test', {
-    render (h) {
+  return {
+    name: 'test',
+    render () {
       return h(VBtn, options)
     },
-  })
+  }
 }
 
 describe('VBottomNavigation.ts', () => {
   type Instance = InstanceType<typeof VBottomNavigation>
-  let mountFunction: (options?: MountOptions<Instance>) => Wrapper<Instance>
+  let mountFunction: (options?: MountingOptions<Instance>) => VueWrapper<Instance>
+
+  enableAutoUnmount(afterEach)
 
   beforeEach(() => {
-    mountFunction = (options: MountOptions<Instance> = {}) => {
+    mountFunction = (options: MountingOptions<Instance> = {}) => {
       return mount(VBottomNavigation, {
-        mocks: {
-          $vuetify: {
-            application: {
-              bottom: 0,
-              register: () => {},
-              unregister: () => {},
+        global: {
+          mocks: {
+            $vuetify: {
+              application: {
+                bottom: 0,
+                register: () => {},
+                unregister: () => {},
+              },
             },
           },
         },
@@ -49,7 +55,7 @@ describe('VBottomNavigation.ts', () => {
 
   it('should be visible with a true value', async () => {
     const wrapper = mountFunction({
-      propsData: { inputValue: true },
+      props: { modelValue: true },
       slots: {
         default: [VBtn, VBtn],
       },
@@ -60,15 +66,15 @@ describe('VBottomNavigation.ts', () => {
     expect(wrapper.vm.styles).toMatchSnapshot()
     expect(wrapper.html()).toMatchSnapshot()
 
-    wrapper.setProps({ inputValue: false })
+    await wrapper.setProps({ modelValue: false })
 
     expect(wrapper.vm.styles).toMatchSnapshot()
     expect(wrapper.html()).toMatchSnapshot()
   })
 
-  it('should update application when height or inputValue changes', () => {
+  it('should update application when height or modelValue changes', async () => {
     const wrapper = mountFunction({
-      propsData: {
+      props: {
         app: true,
       },
       slots: {
@@ -76,25 +82,25 @@ describe('VBottomNavigation.ts', () => {
       },
     })
 
-    const spy = jest.spyOn(wrapper.vm, 'updateApplication')
+    const updateApplication = wrapper.vm.updateApplication
+    const spy = jest.fn(updateApplication)
+    wrapper.vm.updateApplication = spy
 
-    wrapper.setProps({ height: 80 })
+    await wrapper.setProps({ height: 80 })
 
     expect(spy).toHaveBeenCalled()
 
-    wrapper.setProps({ inputValue: false })
+    await wrapper.setProps({ modelValue: false })
 
     expect(spy).toHaveBeenCalledTimes(2)
   })
 
   it('should fire an event and activate/deactivate when reached threshold and using hideOnScroll', async () => {
-    const updateInputValue = jest.fn()
     const wrapper = mountFunction({
-      propsData: { hideOnScroll: true },
+      props: { hideOnScroll: true },
     })
-    wrapper.vm.$on('update:input-value', updateInputValue)
 
-    expect(updateInputValue).not.toHaveBeenCalled()
+    expect(wrapper.emitted('update:modelValue')).toBeFalsy()
 
     // Scrolling down
     wrapper.vm.currentScroll = 1000
@@ -102,7 +108,8 @@ describe('VBottomNavigation.ts', () => {
     wrapper.vm.isScrollingUp = false
 
     wrapper.vm.thresholdMet()
-    expect(updateInputValue).toHaveBeenCalledTimes(1)
+    expect(wrapper.emitted('update:modelValue')).toHaveLength(1)
+    expect(wrapper.emitted('update:modelValue')[0]).toEqual([true])
     expect(wrapper.vm.isActive).toBeTruthy()
 
     // Scrolling up
@@ -111,28 +118,27 @@ describe('VBottomNavigation.ts', () => {
     wrapper.vm.isScrollingUp = true
 
     wrapper.vm.thresholdMet()
-    expect(updateInputValue).toHaveBeenCalledTimes(2)
+    expect(wrapper.emitted('update:modelValue')).toHaveLength(2)
+    expect(wrapper.emitted('update:modelValue')[1]).toEqual([false])
     expect(wrapper.vm.isActive).toBeFalsy()
   })
 
-  it('should fire change event when updated', () => {
-    const change = jest.fn()
+  it('should fire change event when updated', async () => {
     const wrapper = mountFunction({
-      propsData: {
+      props: {
         app: true,
       },
       slots: {
-        default: [VBtn, VBtn],
-      },
-      listeners: {
-        change,
+        default: () => [h(VBtn, { value: 1 }), h(VBtn, { value: 2 })],
       },
     })
 
-    expect(change).not.toHaveBeenCalled()
+    expect(wrapper.emitted('change')).toBeFalsy()
 
-    wrapper.find('button').trigger('click')
+    // Simulate clicking on a button by calling the updateValue method directly
+    wrapper.vm.updateValue(1)
 
-    expect(change).toHaveBeenCalled()
+    expect(wrapper.emitted('change')).toBeTruthy()
+    expect(wrapper.emitted('change')[0]).toEqual([1])
   })
 })

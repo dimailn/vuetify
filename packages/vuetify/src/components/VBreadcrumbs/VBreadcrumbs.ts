@@ -1,9 +1,8 @@
-import {h} from 'vue'
+import { h, VNode } from 'vue'
 // Styles
 import './VBreadcrumbs.sass'
 
 // Types
-import { VNode } from 'vue'
 import { PropValidator } from 'vue/types/options'
 
 // Components
@@ -46,7 +45,7 @@ export default mixins(
 
   methods: {
     genDivider () {
-      return h(VBreadcrumbsDivider, {}, () => this.$slots.divider ? this.$slots.divider : this.divider)
+      return h(VBreadcrumbsDivider, {}, () => this.$slots.divider ? this.$slots.divider() : this.divider)
     },
     genItems () {
       const items = []
@@ -59,7 +58,7 @@ export default mixins(
         keys.push(item.text)
 
         if (hasSlot) items.push(this.$slots.item!({ item }))
-        else items.push(h(VBreadcrumbsItem, { key: keys.join('.'), ...item }, () => [item.text]))
+        else items.push(h(VBreadcrumbsItem, { key: keys.join('.'), text: item.text }, () => [item.text]))
 
         if (i < this.items.length - 1) items.push(this.genDivider())
       }

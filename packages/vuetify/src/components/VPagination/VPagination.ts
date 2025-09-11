@@ -81,9 +81,6 @@ export default mixins(
   },
 
   computed: {
-    value () {
-      return this.modelValue
-    },
     classes (): object {
       return {
         'v-pagination': true,
@@ -114,20 +111,20 @@ export default mixins(
       const left = Math.floor(maxLength / 2)
       const right = this.length - left + 1 + even
 
-      if (this.value > left && this.value < right) {
+      if (this.modelValue > left && this.modelValue < right) {
         const firstItem = 1
         const lastItem = this.length
-        const start = this.value - left + 2
-        const end = this.value + left - 2 - even
+        const start = this.modelValue - left + 2
+        const end = this.modelValue + left - 2 - even
         const secondItem = start - 1 === firstItem + 1 ? 2 : '...'
         const beforeLastItem = end + 1 === lastItem - 1 ? end + 1 : '...'
 
         return [1, secondItem, ...this.range(start, end), beforeLastItem, this.length]
-      } else if (this.value === left) {
-        const end = this.value + left - 1 - even
+      } else if (this.modelValue === left) {
+        const end = this.modelValue + left - 1 - even
         return [...this.range(1, end), '...', this.length]
-      } else if (this.value === right) {
-        const start = this.value - left + 1
+      } else if (this.modelValue === right) {
+        const start = this.modelValue - left + 1
         return [1, '...', ...this.range(start, this.length)]
       } else {
         return [
@@ -152,7 +149,7 @@ export default mixins(
   },
 
   watch: {
-    value () {
+    modelValue () {
       this.init()
     },
   },
@@ -168,7 +165,7 @@ export default mixins(
       this.onResize()
       this.$nextTick(this.onResize)
       // TODO: Change this (f75dee3a, cbdf7caa)
-      setTimeout(() => (this.selected = this.value), 100)
+      setTimeout(() => (this.selected = this.modelValue), 100)
     },
     onResize () {
       const width = this.$el && this.$el.parentElement
@@ -179,12 +176,12 @@ export default mixins(
     },
     next (e: Event) {
       e.preventDefault()
-      this.$emit('update:modelValue', this.value + 1)
+      this.$emit('update:modelValue', this.modelValue + 1)
       this.$emit('next')
     },
     previous (e: Event) {
       e.preventDefault()
-      this.$emit('update:modelValue', this.value - 1)
+      this.$emit('update:modelValue', this.modelValue - 1)
       this.$emit('previous')
     },
     range (from: number, to: number) {
@@ -215,13 +212,13 @@ export default mixins(
       ])
     },
     genItem (h: CreateElement, i: string | number): VNode {
-      const color: string | false = (i === this.value) && (this.color || 'primary')
-      const isCurrentPage = i === this.value
+      const color: string | false = (i === this.modelValue) && (this.color || 'primary')
+      const isCurrentPage = i === this.modelValue
       const ariaLabel = isCurrentPage ? this.currentPageAriaLabel : this.pageAriaLabel
 
       return h('button', this.setBackgroundColor(color, {
         class: ['v-pagination__item', {
-          'v-pagination__item--active': i === this.value,
+          'v-pagination__item--active': i === this.modelValue,
         }],
         type: 'button',
         'aria-current': isCurrentPage,
@@ -254,14 +251,14 @@ export default mixins(
     const children = [
       this.genIcon(h,
         this.$vuetify.rtl ? this.nextIcon : this.prevIcon,
-        this.value <= 1,
+        this.modelValue <= 1,
         this.previous,
         this.$vuetify.lang.t(this.previousAriaLabel),
       ),
       this.genItems(h),
       this.genIcon(h,
         this.$vuetify.rtl ? this.prevIcon : this.nextIcon,
-        this.value >= this.length,
+        this.modelValue >= this.length,
         this.next,
         this.$vuetify.lang.t(this.nextAriaLabel),
       ),

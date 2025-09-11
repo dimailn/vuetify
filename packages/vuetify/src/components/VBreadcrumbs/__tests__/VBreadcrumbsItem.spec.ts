@@ -4,15 +4,19 @@ import VBreadcrumbsItem from '../VBreadcrumbsItem'
 // Utilities
 import {
   mount,
-  Wrapper,
+  VueWrapper,
+  MountingOptions,
+  enableAutoUnmount,
 } from '@vue/test-utils'
 
 describe('VBreadcrumbsItem.ts', () => {
   type Instance = InstanceType<typeof VBreadcrumbsItem>
-  let mountFunction: (options?: object) => Wrapper<Instance>
+  let mountFunction: (options?: MountingOptions<Instance>) => VueWrapper<Instance>
+
+  enableAutoUnmount(afterEach)
 
   beforeEach(() => {
-    mountFunction = (options = {}) => {
+    mountFunction = (options: MountingOptions<Instance> = {}) => {
       return mount(VBreadcrumbsItem, {
         ...options,
       })
@@ -25,13 +29,13 @@ describe('VBreadcrumbsItem.ts', () => {
     expect(wrapper.html()).toMatchSnapshot()
   })
 
-  it('should render component with active & link state and match snapshot', () => {
+  it('should render component with active & link state and match snapshot', async () => {
     const wrapper = mountFunction({
-      propsData: {
+      props: {
         link: true,
       },
     })
-    wrapper.setData({
+    await wrapper.setData({
       isActive: true,
     })
 

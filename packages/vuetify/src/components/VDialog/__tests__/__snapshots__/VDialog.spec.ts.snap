@@ -1,20 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`VDialog.ts should only set tabindex if active 1`] = `
-<div class="v-dialog"
-     style="transform-origin: center center; display: none;"
->
-</div>
-`;
-
-exports[`VDialog.ts should only set tabindex if active 2`] = `
-<div class="v-dialog v-dialog--active"
-     style="transform-origin: center center;"
-     tabindex="0"
->
-</div>
-`;
-
 exports[`VDialog.ts should render a disabled component and match snapshot 1`] = `
 <div class="v-dialog__container">
 </div>
