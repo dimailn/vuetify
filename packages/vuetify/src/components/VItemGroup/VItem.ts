@@ -61,7 +61,7 @@ export const BaseItem = defineComponent({
 
     element.props = mergeProps(element.props || {}, {
       class: {
-        [this.activeClass]: this.isActive,
+        ...(this.$activeClass && { [this.$activeClass]: this.isActive }),
         "v-item--disabled": this.disabled
       }
     })
