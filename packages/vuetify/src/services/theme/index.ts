@@ -17,7 +17,7 @@ import {
 } from 'vuetify/types/services/theme'
 
 // Vue Meta 3
-import { createMetaManager } from 'vue-meta'
+import { createMetaManager, useMeta } from 'vue-meta'
 
 export class Theme extends Service {
   static property: 'theme' = 'theme'
@@ -171,32 +171,16 @@ export class Theme extends Service {
   }
 
   private initVueMeta3 (root: App) {
-    // Создаем meta manager для vue-meta 3
-    this.metaManager = createMetaManager()
-
-    // Устанавливаем стили через vue-meta 3
-    this.metaManager.addMeta({
-      style: [{
-        cssText: this.generatedStyles,
-        type: 'text/css',
-        id: 'vuetify-theme-stylesheet',
-        nonce: this.options.cspNonce,
-      }],
-    })
+    // Vue Meta 3 теперь работает через плагин, а не через отдельный manager
+    // Стили будут добавляться напрямую через useMeta API в компонентах
+    // или через обычный DOM API
+    this.metaManager = null
   }
 
   private applyVueMeta3 (css: string) {
-    if (!this.metaManager) return
-
-    // Обновляем стили через vue-meta 3
-    this.metaManager.addMeta({
-      style: [{
-        cssText: css,
-        type: 'text/css',
-        id: 'vuetify-theme-stylesheet',
-        nonce: this.options.cspNonce,
-      }],
-    })
+    // Vue Meta 3 больше не использует manager.addMeta API
+    // Используем обычный DOM API для обновления стилей
+    this.checkOrCreateStyleElement() && (this.styleEl!.innerHTML = css)
   }
 
   private initSSR (ssrContext?: any) {
