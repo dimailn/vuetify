@@ -8,7 +8,7 @@ import { preset } from '../../../presets/default'
 import { mergeDeep } from '../../../util/helpers'
 
 // Types
-import Vue from 'vue'
+import { createApp } from 'vue'
 import {
   VuetifyParsedTheme,
   VuetifyThemeVariant,
@@ -42,17 +42,22 @@ describe('Theme.ts', () => {
   }
 
   let mockTheme: (theme?: Partial<ThemeOptions>) => Theme
-  let instance: Vue
+  let instance: any
 
   beforeEach(() => {
     mockTheme = (themeOptions?: Partial<ThemeOptions>) => {
       const options = { theme: themeOptions || {} }
       const theme = new Theme(mergeDeep(rootFactory(), options))
-      instance = new Vue({
-        beforeCreate () {
-          theme.init(this)
-        },
-      })
+      instance = {
+        $meta: jest.fn(() => ({
+          addApp: jest.fn(() => ({
+            set: jest.fn(),
+          })),
+          removeApp: jest.fn(),
+        })),
+        $nextTick: jest.fn((fn) => fn()),
+      }
+      theme.init(instance)
 
       return theme
     }

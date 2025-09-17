@@ -1,9 +1,9 @@
 // Directives
 import Scroll from '../'
-import { DirectiveBinding } from 'vue/types/options'
+import { DirectiveBinding } from 'vue'
 
 describe('scroll.ts', () => {
-  const { inserted, unbind } = Scroll
+  const { mounted, unmounted } = Scroll
 
   let binding
   let el
@@ -12,7 +12,7 @@ describe('scroll.ts', () => {
   let vnode
 
   beforeEach(() => {
-    vnode = { context: { _uid: 1 } } as any
+    vnode = { ctx: { uid: 1 } } as any
     options = { passive: true }
     binding = {
       value: jest.fn(),
@@ -29,7 +29,7 @@ describe('scroll.ts', () => {
     const spyOnWindowAddListener = jest.spyOn(window, 'addEventListener')
     const spyOnWindowRemoveListener = jest.spyOn(window, 'removeEventListener')
 
-    inserted(el, binding, vnode, vnode)
+    mounted(el, binding, vnode)
 
     expect(spyOnWindowAddListener).toHaveBeenCalledWith('scroll', binding.value, options)
     expect(el._onScroll[1]).toEqual({
@@ -38,7 +38,7 @@ describe('scroll.ts', () => {
       target: window,
     })
 
-    unbind(el, binding, vnode, vnode)
+    unmounted(el, binding, vnode)
 
     expect(spyOnWindowRemoveListener).toHaveBeenCalledWith('scroll', binding.value, options)
     expect(el._onScroll[1]).toBeUndefined()
@@ -56,14 +56,14 @@ describe('scroll.ts', () => {
     binding.arg = '#bar'
 
     // Binds nothing if element not found
-    inserted(el, binding, vnode, vnode)
+    mounted(el, binding, vnode)
 
     expect(spyOnFooAddListener).not.toHaveBeenCalled()
     expect(el._onScroll).toBeUndefined()
 
     binding.arg = '#foo'
 
-    inserted(el, binding, vnode, vnode)
+    mounted(el, binding, vnode)
 
     expect(spyOnFooAddListener).toHaveBeenCalledWith('scroll', binding.value, options)
     expect(el._onScroll[1]).toEqual({
@@ -72,7 +72,7 @@ describe('scroll.ts', () => {
       target,
     })
 
-    unbind(el, binding, vnode, vnode)
+    unmounted(el, binding, vnode)
 
     expect(spyOnFooRemoveListener).toHaveBeenCalledWith('scroll', binding.value, options)
     expect(el._onScroll[1]).toBeUndefined()
@@ -83,7 +83,7 @@ describe('scroll.ts', () => {
   it('should work with the self modifier', () => {
     binding.modifiers = { self: true }
 
-    inserted(el, binding, vnode, vnode)
+    mounted(el, binding, vnode)
 
     expect(el.addEventListener).toHaveBeenCalledWith('scroll', binding.value, options)
     expect(el._onScroll[1]).toEqual({
@@ -92,14 +92,14 @@ describe('scroll.ts', () => {
       target: undefined,
     })
 
-    unbind(el, binding, vnode, vnode)
+    unmounted(el, binding, vnode)
 
     expect(el.removeEventListener).toHaveBeenCalledWith('scroll', binding.value, options)
     expect(el._onScroll[1]).toBeUndefined()
   })
 
   it('should not remove listeners if no _onScroll property present', () => {
-    unbind(el, binding, vnode, vnode)
+    unmounted(el, binding, vnode)
 
     expect(el.removeEventListener).not.toHaveBeenCalled()
   })
@@ -109,7 +109,7 @@ describe('scroll.ts', () => {
 
     binding.value = { handler }
 
-    inserted(el, binding, vnode, vnode)
+    mounted(el, binding, vnode)
 
     expect(el._onScroll[1]).toEqual({
       handler,
@@ -119,7 +119,7 @@ describe('scroll.ts', () => {
 
     binding.value = { handler, options: { passive: false } }
 
-    inserted(el, binding, vnode, vnode)
+    mounted(el, binding, vnode)
 
     expect(el._onScroll[1]).toEqual({
       handler,
