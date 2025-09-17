@@ -91,9 +91,10 @@ describe('Theme.ts', () => {
     // Принудительно создаем стиль элемент для тестов
     theme.applyTheme()
 
-    // В тестах с vue-meta стили управляются через metaManager
-    // Проверяем, что metaManager создан и содержит стили
-    expect(theme.metaManager).toBeTruthy()
+    // В Vue Meta 3 metaManager больше не используется
+    // Проверяем, что стили применяются напрямую через DOM
+    expect(theme.styleEl).toBeTruthy()
+    expect(theme.styleEl?.innerHTML).toBeTruthy()
 
     // Проверяем сгенерированные стили
     const generatedStyles = theme.generatedStyles
@@ -117,8 +118,8 @@ describe('Theme.ts', () => {
     // Принудительно создаем стиль элемент для тестов
     theme.applyTheme()
 
-    // В тестах с vue-meta стили управляются через metaManager
-    expect(theme.metaManager).toBeTruthy()
+    // В Vue Meta 3 metaManager больше не используется
+    expect(theme.styleEl).toBeTruthy()
 
     const initialStyles = theme.generatedStyles
 
@@ -179,8 +180,8 @@ describe('Theme.ts', () => {
     // Принудительно создаем стиль элемент для тестов
     theme.applyTheme()
 
-    // В тестах с vue-meta стили управляются через metaManager
-    expect(theme.metaManager).toBeTruthy()
+    // В Vue Meta 3 metaManager больше не используется
+    expect(theme.styleEl).toBeTruthy()
 
     const generatedStyles = theme.generatedStyles
 
@@ -197,11 +198,12 @@ describe('Theme.ts', () => {
     // Принудительно создаем стиль элемент для тестов
     theme.applyTheme()
 
-    // В тестах с vue-meta стили управляются через metaManager
-    expect(theme.metaManager).toBeTruthy()
+    // В Vue Meta 3 metaManager больше не используется
+    expect(theme.styleEl).toBeTruthy()
 
-    // Проверяем, что nonce передается в metaManager
+    // Проверяем, что nonce передается правильно
     expect(theme.options.cspNonce).toBe('foobar')
+    expect(theme.styleEl?.nonce).toBe('foobar')
   })
 
   it('should initialize the theme', () => {
@@ -222,8 +224,8 @@ describe('Theme.ts', () => {
 
     theme.init(app)
 
-    // В vue-meta@next стили управляются через metaManager
-    expect(theme.metaManager).toBeTruthy()
+    // В vue-meta@next стили применяются через DOM
+    expect(theme.styleEl).toBeTruthy()
   })
 
   it('should react to theme changes', async () => {
@@ -272,8 +274,8 @@ describe('Theme.ts', () => {
     // Принудительно создаем стиль элемент для тестов
     theme.applyTheme()
 
-    // В тестах с vue-meta стили управляются через metaManager
-    expect(theme.metaManager).toBeTruthy()
+    // В Vue Meta 3 metaManager больше не используется
+    expect(theme.styleEl).toBeTruthy()
 
     const generatedStyles = theme.generatedStyles
 
