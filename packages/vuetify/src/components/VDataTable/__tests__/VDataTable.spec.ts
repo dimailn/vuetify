@@ -636,7 +636,7 @@ describe('VDataTable.ts', () => {
         headers: testHeaders,
         itemKey: 'name',
         items: testItems.slice(0, 2),
-        value: [testItems[0]],
+        modelValue: [testItems[0]],
         showSelect: true,
         singleSelect: true,
       },
