@@ -60,6 +60,6 @@ export default mixins(Themeable).extend({
       ref: 'label',
     }, data)
 
-    return h('label', Colorable.methods.setTextColor(props.focused && props.color, newData), slots.default?.())
+    return h('label', Colorable.methods.setTextColor(props.focused && props.color, newData), slots.default ? slots.default() : [])
   },
 })
