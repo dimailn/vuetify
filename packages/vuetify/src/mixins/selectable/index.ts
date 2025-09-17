@@ -101,14 +101,17 @@ export default mixins(
       return label
     },
     genInput (type: string, attrs: object) {
+      // Allow components to override aria-checked by providing it in attrs
+      const defaultAttrs = {
+        'aria-checked': this.isActive.toString(),
+        disabled: this.isDisabled,
+        id: this.computedId,
+        role: type,
+        type,
+      }
+
       return h('input', {
-        ...Object.assign({
-          'aria-checked': this.isActive.toString(),
-          disabled: this.isDisabled,
-          id: this.computedId,
-          role: type,
-          type,
-        }, attrs),
+        ...Object.assign(defaultAttrs, attrs),
         value: this.value,
         checked: this.isActive,
         onBlur: this.onBlur,

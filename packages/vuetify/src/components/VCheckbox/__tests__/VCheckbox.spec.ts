@@ -92,6 +92,9 @@ describe('VCheckbox.ts', () => { // eslint-disable-line max-statements
 
     await wrapper.setProps({ indeterminate: true } as any)
     await wrapper.vm.$nextTick()
+    // Wait for an additional tick to ensure DOM is fully updated
+    await wrapper.vm.$nextTick()
+
     expect(input.element.getAttribute('aria-checked')).toBe('mixed')
   })
 
@@ -347,8 +350,10 @@ describe('VCheckbox.ts', () => { // eslint-disable-line max-statements
     const wrapper = mountFunction({
       props: {
         modelValue: true,
-        class: 'shrink mr-2 mt-0',
       } as any,
+      attrs: {
+        class: 'shrink mr-2 mt-0',
+      },
     })
 
     const rootElement = wrapper.element
@@ -369,5 +374,6 @@ describe('VCheckbox.ts', () => { // eslint-disable-line max-statements
     expect(input.element.classList.contains('shrink')).toBe(false)
     expect(input.element.classList.contains('mr-2')).toBe(false)
     expect(input.element.classList.contains('mt-0')).toBe(false)
+    expect(wrapper.html()).toMatchSnapshot()
   })
 })

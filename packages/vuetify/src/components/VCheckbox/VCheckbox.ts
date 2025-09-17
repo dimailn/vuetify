@@ -81,10 +81,6 @@ export default defineComponent({
     inputIndeterminate (val) {
       this.$emit('update:indeterminate', val)
     },
-    isActive () {
-      if (!this.indeterminate) return
-      this.inputIndeterminate = false
-    },
   },
 
   created () {
@@ -101,7 +97,8 @@ export default defineComponent({
 
   methods: {
     genCheckbox () {
-      const { title, ...checkboxAttrs } = this.attrs$
+      const { title, class: parentClass, ...checkboxAttrs } = this.$attrs
+      const ariaChecked = this.inputIndeterminate ? 'mixed' : this.isActive.toString()
       return h('div', {
         class: 'v-input--selection-controls__input',
       }, [
@@ -112,9 +109,7 @@ export default defineComponent({
         }), () => this.computedIcon),
         this.genInput('checkbox', {
           ...checkboxAttrs,
-          'aria-checked': this.inputIndeterminate
-            ? 'mixed'
-            : this.isActive.toString(),
+          'aria-checked': ariaChecked,
         }),
         this.genRipple(this.setTextColor(this.rippleState)),
       ])
