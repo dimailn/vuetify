@@ -13,7 +13,7 @@ import { convertToUnit, keys, remapInternalIcon } from '../../util/helpers'
 import { defineComponent, CreateElement, VNode, VNodeChildren, VNodeData, h } from 'vue'
 import mixins from '../../util/mixins'
 import { VuetifyIcon, VuetifyIconComponent } from 'vuetify/types/services/icons'
-import { normalizeAttrs } from '../../util/helpers'
+import { normalizeAttrs, normalizeClasses } from '../../util/helpers'
 
 enum SIZE_MAP {
   xSmall = '12px',
@@ -32,8 +32,12 @@ function isSvgPath (icon: string): boolean {
   return (/^[mzlhvcsqta]\s*[-+.0-9][^mlhvzcsqta]+/i.test(icon) && /[\dz]$/i.test(icon) && icon.length > 4)
 }
 
+function classesToString (classObj: Record<string, boolean>): string {
+  return Object.keys(classObj).filter(key => classObj[key]).join(' ')
+}
 
-const VIcon = mixins(
+
+export const VIconInternal = mixins(
   BindsAttrs,
   Colorable,
   Sizeable,
@@ -70,10 +74,13 @@ const VIcon = mixins(
     getIcon (): VuetifyIcon {
       let iconName = ''
       if (this.$slots.default) {
-        const children = this.$slots.default()[0].children
-        if(typeof children === 'string')
-          iconName = this.$slots.default()[0].children!.trim()
-
+        const slotChildren = this.$slots.default()
+        if (slotChildren && slotChildren[0]) {
+          const children = slotChildren[0].children
+          if(typeof children === 'string') {
+            iconName = children.trim()
+          }
+        }
       }
       return remapInternalIcon(this, iconName)
     },
@@ -115,27 +122,38 @@ const VIcon = mixins(
       }
       return data
     },
+    applyColors (data: any): void {
+      this.setTextColor(this.color, data)
+    },
     getSvgWrapperData () {
       const fontSize = this.getSize()
-      const wrapperData = {
-        ...this.getDefaultData(),
+
+      const defaultData = this.getDefaultData()
+      const normalizedClasses = normalizeClasses([defaultData.class, this.themeClasses])
+
+      const wrapperData: any = {
+        class: classesToString(normalizedClasses),
+        'aria-hidden': defaultData['aria-hidden'],
+        type: defaultData.type,
         style: fontSize ? {
           fontSize,
           height: fontSize,
           width: fontSize,
         } : undefined,
+        ...this.listeners$,
       }
+
+      if(this.hasClickListener && this.disabled) {
+        wrapperData.disabled = true
+      }
+
       this.applyColors(wrapperData)
 
       return wrapperData
     },
-    applyColors (data: VNodeData): void {
-      data.class = { ...data.class, ...this.themeClasses }
-      this.setTextColor(this.color, data)
-    },
     renderFontIcon (icon: string): VNode {
       const newChildren: VNodeChildren = []
-      let data = this.getDefaultData()
+      const defaultData = this.getDefaultData()
 
       let iconType = 'material-icons'
       // Material Icon delimiter is _
@@ -151,37 +169,43 @@ const VIcon = mixins(
         if (isFontAwesome5(iconType)) iconType = ''
       }
 
-      if(typeof data.class === 'string') {
-        data.class = data.class.split(' ').reduce((classes, className) => {
-          classes[className] = true
-          return classes
-        }, {})
+      // Создаем объект классов для иконки
+      const iconClasses = { [iconType]: true }
+      if (!isMaterialIcon) {
+        iconClasses[icon] = true
       }
 
-      data.class[iconType] = true
-      data.class[icon] = !isMaterialIcon
+      const allClasses = normalizeClasses([defaultData.class, this.themeClasses, iconClasses])
 
       const fontSize = this.getSize()
-      if (fontSize) data.style = { fontSize }
-
-      this.applyColors(data)
-
-      return h(this.hasClickListener ? 'button' : this.tag, normalizeAttrs(data), {default: () => newChildren})
-    },
-    renderSvgIcon (icon: string): VNode {
-      const svgData: VNodeData = {
-        class: 'v-icon__svg',
-        attrs: {
-          xmlns: 'http://www.w3.org/2000/svg',
-          viewBox: '0 0 24 24',
-          role: 'img',
-          'aria-hidden': true,
-        },
+      const fontData: any = {
+        class: classesToString(allClasses),
+        'aria-hidden': defaultData['aria-hidden'],
+        type: defaultData.type,
+        style: fontSize ? { fontSize } : undefined,
+        ...this.listeners$,
       }
 
+      if(this.hasClickListener && this.disabled) {
+        fontData.disabled = true
+      }
+
+      this.applyColors(fontData)
+
+      return h(this.hasClickListener ? 'button' : this.tag, fontData, {default: () => newChildren})
+    },
+    renderSvgIcon (icon: string): VNode {
       const size = this.getSize()
+      const svgProps: any = {
+        class: 'v-icon__svg',
+        xmlns: 'http://www.w3.org/2000/svg',
+        viewBox: '0 0 24 24',
+        role: 'img',
+        'aria-hidden': true,
+      }
+
       if (size) {
-        svgData.style = {
+        svgProps.style = {
           fontSize: size,
           height: size,
           width: size,
@@ -189,11 +213,9 @@ const VIcon = mixins(
       }
 
       return h(this.hasClickListener ? 'button' : 'span', this.getSvgWrapperData(), [
-        h('svg', svgData, [
+        h('svg', svgProps, [
           h('path', {
-            attrs: {
-              d: icon,
-            },
+            d: icon,
           }),
         ]),
       ])
@@ -201,29 +223,26 @@ const VIcon = mixins(
     renderSvgIconComponent (
       icon: VuetifyIconComponent
     ): VNode {
-      const data: VNodeData = {
-        class: {
-          'v-icon__component': true,
-        },
-      }
-
       const size = this.getSize()
-      if (size) {
-        data.style = {
+      const componentClasses = normalizeClasses([
+        { 'v-icon__component': true },
+        this.themeClasses
+      ])
+
+      const componentData: any = {
+        class: classesToString(componentClasses),
+        style: size ? {
           fontSize: size,
           height: size,
           width: size,
-        }
+        } : undefined,
+        ...icon.props,
       }
 
-      this.applyColors(data)
-
-      const component = icon.component
-      data.props = icon.props
-      data.nativeOn = data.on
+      this.applyColors(componentData)
 
       return h(this.hasClickListener ? 'button' : 'span', this.getSvgWrapperData(), {default: () =>[
-        h(component, data),
+        h(icon.component, componentData),
       ]})
     },
   },
@@ -245,7 +264,7 @@ const VIcon = mixins(
 export default defineComponent({
   name: 'v-icon',
 
-  $_wrapperFor: VIcon,
+  $_wrapperFor: VIconInternal,
 
   functional: true,
 
@@ -258,7 +277,7 @@ export default defineComponent({
 
 
     // console.log(children && children[0]?.children)
-    return h(VIcon, data, {
+    return h(VIconInternal, data, {
       default: () => {
         let iconName = ''
 
