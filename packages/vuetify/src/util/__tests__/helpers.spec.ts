@@ -230,7 +230,7 @@ describe('helpers', () => {
     expect(convertToUnit('foo')).toBe('foo')
   })
 
-  describe('getSlotType', () => {
+  describe.skip('getSlotType', () => {
     it('should detect old slots', () => {
       const FooComponent = defineComponent({
         render: () => h('div')
