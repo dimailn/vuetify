@@ -14,7 +14,7 @@ function bootstrap (args?: object) {
       ...args,
     },
   } as any
-  const vnode = { context: { _uid: 1 } } as any
+  const vnode = { ctx: { uid: 1 } } as any
 
   let shadowClickHandler
   let outsideClickHandler
@@ -38,7 +38,7 @@ function bootstrap (args?: object) {
   jest.spyOn(window.document, 'removeEventListener')
   jest.spyOn(shadowRoot, 'removeEventListener')
 
-  ClickOutside.inserted(shadowEl as HTMLElement, binding, vnode)
+  ClickOutside.mounted(shadowEl as HTMLElement, binding, vnode)
 
   return {
     binding,
@@ -59,7 +59,7 @@ describe('click-outside.js within the Shadow DOM', () => {
     const { outsideClickHandler, shadowEl, binding, vnode } = bootstrap()
     expect(window.document.addEventListener).toHaveBeenCalledWith('click', outsideClickHandler, true)
 
-    ClickOutside.unbind(shadowEl, binding, vnode)
+    ClickOutside.unmounted(shadowEl, binding, vnode)
     expect(window.document.removeEventListener).toHaveBeenCalledWith('click', outsideClickHandler, true)
   })
 
@@ -67,7 +67,7 @@ describe('click-outside.js within the Shadow DOM', () => {
     const { shadowClickHandler, shadowRoot, shadowEl, binding, vnode } = bootstrap()
     expect(shadowRoot.addEventListener).toHaveBeenCalledWith('click', shadowClickHandler, true)
 
-    ClickOutside.unbind(shadowEl, binding, vnode)
+    ClickOutside.unmounted(shadowEl, binding, vnode)
     expect(shadowRoot.removeEventListener).toHaveBeenCalledWith('click', shadowClickHandler, true)
   })
 
