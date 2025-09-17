@@ -261,6 +261,8 @@ describe('VProgressLinear.ts', () => {
     const wrapper = mountFunction({
       props: {
         value: 33,
+        onUpdateModelValue: () => {},
+        onChange: () => {},
       },
       attrs: {
         'onUpdate:modelValue': () => {},
@@ -271,7 +273,7 @@ describe('VProgressLinear.ts', () => {
 
     // Находим элемент прогресс-бара
     const progressBar = wrapper.find('.v-progress-linear')
-    
+
     // Мокаем getBoundingClientRect для элемента
     const mockRect = {
       width: 400,
@@ -281,7 +283,7 @@ describe('VProgressLinear.ts', () => {
       right: 400,
       bottom: 20,
     }
-    
+
     // Мокаем offsetX для события клика
     const originalOffsetX = Object.getOwnPropertyDescriptor(MouseEvent.prototype, 'offsetX')
     Object.defineProperty(MouseEvent.prototype, 'offsetX', {
@@ -299,7 +301,7 @@ describe('VProgressLinear.ts', () => {
 
       // Проверяем, что событие эмитится
       expect(wrapper.emitted('update:modelValue')).toBeTruthy()
-      
+
       // Проверяем, что последнее значение примерно 50%
       const emittedValues = wrapper.emitted('update:modelValue')
       if (emittedValues && emittedValues.length > 0) {
@@ -325,7 +327,7 @@ describe('VProgressLinear.ts', () => {
 
     // Убираем все слушатели событий
     const progressBar = wrapper.find('.v-progress-linear')
-    
+
     // Мокаем getBoundingClientRect
     const mockRect = {
       width: 400,
@@ -335,7 +337,7 @@ describe('VProgressLinear.ts', () => {
       right: 400,
       bottom: 20,
     }
-    
+
     const originalGetBoundingClientRect = progressBar.element.getBoundingClientRect
     progressBar.element.getBoundingClientRect = jest.fn().mockReturnValue(mockRect)
 
@@ -355,6 +357,8 @@ describe('VProgressLinear.ts', () => {
     const wrapper = mountFunction({
       props: {
         modelValue: 0,
+        onUpdateModelValue: () => {},
+        onChange: () => {},
       },
       attrs: {
         'onUpdate:modelValue': () => {},
@@ -364,7 +368,7 @@ describe('VProgressLinear.ts', () => {
     })
 
     const progressBar = wrapper.find('.v-progress-linear')
-    
+
     // Мокаем getBoundingClientRect
     const mockRect = {
       width: 400,
@@ -374,7 +378,7 @@ describe('VProgressLinear.ts', () => {
       right: 400,
       bottom: 20,
     }
-    
+
     // Мокаем offsetX для 75% позиции
     const originalOffsetX = Object.getOwnPropertyDescriptor(MouseEvent.prototype, 'offsetX')
     Object.defineProperty(MouseEvent.prototype, 'offsetX', {
@@ -409,6 +413,8 @@ describe('VProgressLinear.ts', () => {
     const wrapper = mountFunction({
       props: {
         modelValue: 0,
+        onUpdateModelValue: () => {},
+        onChange: () => {},
       },
       attrs: {
         'onUpdate:modelValue': () => {},
@@ -418,7 +424,7 @@ describe('VProgressLinear.ts', () => {
     })
 
     const progressBar = wrapper.find('.v-progress-linear')
-    
+
     // Мокаем getBoundingClientRect
     const mockRect = {
       width: 400,
@@ -428,7 +434,7 @@ describe('VProgressLinear.ts', () => {
       right: 400,
       bottom: 20,
     }
-    
+
     const originalGetBoundingClientRect = progressBar.element.getBoundingClientRect
     progressBar.element.getBoundingClientRect = jest.fn().mockReturnValue(mockRect)
 
@@ -522,6 +528,8 @@ describe('VProgressLinear.ts', () => {
     const wrapper = mountFunction({
       props: {
         modelValue: 0,
+        onUpdateModelValue: () => {},
+        onChange: () => {},
       },
       attrs: {
         'onUpdate:modelValue': () => {},
@@ -531,7 +539,7 @@ describe('VProgressLinear.ts', () => {
     })
 
     const progressBar = wrapper.find('.v-progress-linear')
-    
+
     // Мокаем getBoundingClientRect
     const mockRect = {
       width: 400,
@@ -541,7 +549,7 @@ describe('VProgressLinear.ts', () => {
       right: 400,
       bottom: 20,
     }
-    
+
     // Мокаем offsetX для 60% позиции
     const originalOffsetX = Object.getOwnPropertyDescriptor(MouseEvent.prototype, 'offsetX')
     Object.defineProperty(MouseEvent.prototype, 'offsetX', {
@@ -558,7 +566,7 @@ describe('VProgressLinear.ts', () => {
 
       // Проверяем, что событие эмитится
       expect(wrapper.emitted('update:modelValue')).toBeTruthy()
-      
+
       // Проверяем, что значение примерно 60%
       const emittedValues = wrapper.emitted('update:modelValue')
       if (emittedValues && emittedValues.length > 0) {
