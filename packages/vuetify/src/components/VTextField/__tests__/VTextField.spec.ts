@@ -116,7 +116,7 @@ describe('VTextField.ts', () => { // eslint-disable-line max-statements
     })
 
     expect(wrapper.vm.shouldValidate).toEqual(false)
-    await wrapper.setProps({ value: 'asd' })
+    await wrapper.setProps({ modelValue: 'asd' })
     // In Vue 3, shouldValidate might not be immediately updated
     // Let's check if the component is in a valid state
     expect(wrapper.exists()).toBe(true)
@@ -130,7 +130,7 @@ describe('VTextField.ts', () => { // eslint-disable-line max-statements
     })
 
     expect(wrapper.vm.shouldValidate).toEqual(false)
-    await wrapper.setProps({ value: 'asd' })
+    await wrapper.setProps({ modelValue: 'asd' })
     // In Vue 3, shouldValidate might not be immediately updated
     expect(wrapper.exists()).toBe(true)
   })
@@ -183,7 +183,7 @@ describe('VTextField.ts', () => { // eslint-disable-line max-statements
     const wrapper = mountFunction({
       props: {
         clearable: true,
-        value: 'foo',
+        modelValue: 'foo',
       },
     })
 
@@ -206,7 +206,7 @@ describe('VTextField.ts', () => { // eslint-disable-line max-statements
     const click = jest.fn()
     const wrapper = mountFunction({
       props: {
-        value: 'foo',
+        modelValue: 'foo',
         appendIcon: 'block',
       },
       attrs: {
@@ -228,7 +228,7 @@ describe('VTextField.ts', () => { // eslint-disable-line max-statements
   it('should not clear input if not clearable and has appended icon (without callback)', async () => {
     const wrapper = mountFunction({
       props: {
-        value: 'foo',
+        modelValue: 'foo',
         appendIcon: 'block',
       },
     })
@@ -293,18 +293,18 @@ describe('VTextField.ts', () => { // eslint-disable-line max-statements
 
   it('should update if value is changed externally', async () => {
     const wrapper = mountFunction({
-      props: { value: '' },
+      props: { modelValue: '' },
     })
 
     const input = wrapper.findAll('input')[0]
     if (input) {
-      await wrapper.setProps({ value: 'fgh' })
+      await wrapper.setProps({ modelValue: 'fgh' })
       await wrapper.vm.$nextTick()
       // In Vue 3, just check that the component updated successfully
       expect(wrapper.exists()).toBe(true)
 
       input.trigger('focus')
-      await wrapper.setProps({ value: 'jkl' })
+      await wrapper.setProps({ modelValue: 'jkl' })
       await wrapper.vm.$nextTick()
       // In Vue 3, just check that the component updated successfully
       expect(wrapper.exists()).toBe(true)
@@ -352,7 +352,7 @@ describe('VTextField.ts', () => { // eslint-disable-line max-statements
       props: {
         prependIcon: 'check',
         appendIcon: 'check',
-        value: 'test',
+        modelValue: 'test',
         clearable: true,
       },
     })
@@ -504,7 +504,7 @@ describe('VTextField.ts', () => { // eslint-disable-line max-statements
     const wrapper = mountFunction({
       props: {
         clearable: true,
-        value: 'foo',
+        modelValue: 'foo',
       },
       attrs: {
         'onClick:clear': clear,
@@ -535,14 +535,14 @@ describe('VTextField.ts', () => { // eslint-disable-line max-statements
 
     wrapper.setProps({
       placeholder: undefined,
-      value: 'bar',
+      modelValue: 'bar',
     })
 
     expect(wrapper.vm.genLabel()).toBeNull()
 
     wrapper.setProps({
       label: 'bar',
-      value: undefined,
+      modelValue: undefined,
     })
 
     // In Vue 3, genLabel might return different values
@@ -868,7 +868,7 @@ describe('VTextField.ts', () => { // eslint-disable-line max-statements
             input,
           },
           props: {
-            value: 'test',
+            modelValue: 'test',
             clearable: true,
           },
         })
