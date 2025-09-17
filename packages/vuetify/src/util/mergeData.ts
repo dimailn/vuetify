@@ -146,13 +146,15 @@ export function mergeListeners (...args: [
     for (const event in arg) {
       if (!arg[event]) continue
 
-      if (dest[event]) {
+      const vueEventName = event.startsWith('on') ? event : `on${event.charAt(0).toUpperCase() + event.slice(1)}`
+
+      if (dest[vueEventName]) {
         // Merge current listeners before (because we are iterating backwards).
         // Note that neither "target" or "source" must be altered.
-        dest[event] = ([] as Function[]).concat(arg[event], dest[event])
+        dest[vueEventName] = ([] as Function[]).concat(arg[event], dest[vueEventName])
       } else {
         // Straight assign.
-        dest[event] = arg[event]
+        dest[vueEventName] = arg[event]
       }
     }
   }
