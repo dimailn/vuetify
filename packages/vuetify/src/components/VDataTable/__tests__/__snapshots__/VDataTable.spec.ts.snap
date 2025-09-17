@@ -11698,7 +11698,7 @@ exports[`VDataTable.ts should render with single-select checkboxes 1`] = `
         </tr>
       </thead>
       <tbody>
-        <tr class="v-data-table__mobile-table-row">
+        <tr class="v-data-table__mobile-table-row v-data-table__selected">
           <td class="v-data-table__mobile-row">
             <div class="v-data-table__mobile-row__header">
             </div>
