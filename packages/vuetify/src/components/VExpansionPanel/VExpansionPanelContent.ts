@@ -10,7 +10,7 @@ import { inject as RegistrableInject } from '../../mixins/registrable'
 
 // Utilities
 import { getSlot } from '../../util/helpers'
-import mixins from '../../util/mixins'
+import mixins, { ExtractVue } from '../../util/mixins'
 
 const baseMixins = mixins(
   Bootable,
@@ -18,7 +18,7 @@ const baseMixins = mixins(
   RegistrableInject<'expansionPanel', Component>('expansionPanel', 'v-expansion-panel-content', 'v-expansion-panel')
 )
 
-interface options {
+interface options extends ExtractVue<typeof baseMixins> {
   expansionPanel: InstanceType<typeof VExpansionPanel>
 }
 
