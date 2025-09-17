@@ -11,7 +11,7 @@ function bootstrap (args?: object) {
       ...args,
     },
   } as any
-  const vnode = { context: { _uid: 1 } } as any
+  const vnode = { ctx: { uid: 1 } } as any
 
   let clickHandler
   let mousedownHandler
@@ -21,7 +21,7 @@ function bootstrap (args?: object) {
   })
   jest.spyOn(window.document, 'removeEventListener')
 
-  ClickOutside.inserted(el as HTMLElement, binding, vnode)
+  ClickOutside.mounted(el as HTMLElement, binding, vnode)
 
   return {
     binding,
@@ -38,7 +38,7 @@ describe('click-outside', () => {
     const { clickHandler, el, binding, vnode } = bootstrap()
     expect(window.document.addEventListener).toHaveBeenCalledWith('click', clickHandler, true)
 
-    ClickOutside.unbind(el, binding, vnode)
+    ClickOutside.unmounted(el, binding, vnode)
     expect(window.document.removeEventListener).toHaveBeenCalledWith('click', clickHandler, true)
   })
 
