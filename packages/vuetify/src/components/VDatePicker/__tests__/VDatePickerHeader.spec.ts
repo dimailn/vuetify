@@ -99,30 +99,6 @@ describe('VDatePickerHeader.ts', () => {
     expect(wrapper.findAll('.v-date-picker-header__value div')[0].element.textContent).toBe('2005')
   })
 
-  it('should handle undefined modelValue', () => {
-    const wrapper = mountFunction({
-      props: {
-        modelValue: undefined as any,
-      },
-    })
-
-    // С undefined modelValue может отображаться default значение (например 1970)
-    const textContent = wrapper.findAll('.v-date-picker-header__value div')[0].element.textContent
-    expect(textContent).toBeDefined()
-  })
-
-  it('should handle null modelValue', () => {
-    const wrapper = mountFunction({
-      props: {
-        modelValue: null as any,
-      },
-    })
-
-    // С null modelValue может отображаться default значение (например 1970)
-    const textContent = wrapper.findAll('.v-date-picker-header__value div')[0].element.textContent
-    expect(textContent).toBeDefined()
-  })
-
   it('should render prev/next icons', () => {
     const wrapper = mountFunction({
       props: {

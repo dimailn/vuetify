@@ -98,10 +98,11 @@ describe('VDatePickerTitle.ts', () => {
         year: '1234',
         yearIcon: 'year',
         date: '2005-11-01',
+        selectingYear: false, // Изначально выбираем дату, не год
       },
     })
 
-    // Клик по дате не должен эмитить событие
+    // Клик по дате не должен эмитить событие (дата уже активна)
     await wrapper.findAll('.v-date-picker-title__date')[0].trigger('click')
     expect(wrapper.emitted('update:selecting-year')).toBeFalsy()
 
@@ -109,6 +110,9 @@ describe('VDatePickerTitle.ts', () => {
     await wrapper.findAll('.v-date-picker-title__year')[0].trigger('click')
     expect(wrapper.emitted('update:selecting-year')).toHaveLength(1)
     expect(wrapper.emitted('update:selecting-year')[0]).toEqual([true])
+
+    // Обновляем props для имитации изменения состояния
+    await wrapper.setProps({ selectingYear: true })
 
     // Клик по дате должен эмитить false (переключение обратно)
     await wrapper.findAll('.v-date-picker-title__date')[0].trigger('click')

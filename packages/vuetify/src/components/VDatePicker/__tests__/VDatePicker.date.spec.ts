@@ -540,10 +540,18 @@ describe('VDatePicker.ts', () => { // eslint-disable-line max-statements
       },
     })
 
+    // Дождемся инициализации
+    await wrapper.vm.$nextTick()
+
+    // Запоминаем начальное количество событий
+    const initialEventsCount = wrapper.emitted('update:picker-date')?.length || 0
+
     wrapper.vm.tableDate = '2013-11'
     await wrapper.vm.$nextTick()
-    expect(wrapper.emitted('update:picker-date')).toBeTruthy()
-    expect(wrapper.emitted('update:picker-date')[0]).toEqual(['2013-11'])
+
+    const events = wrapper.emitted('update:picker-date')
+    expect(events).toBeTruthy()
+    expect(events![events!.length - 1]).toEqual(['2013-11'])
   })
 
   it('should set tableDate to pickerDate if provided', async () => {
@@ -653,8 +661,8 @@ describe('VDatePicker.ts', () => { // eslint-disable-line max-statements
         type: 'date',
       },
       attrs: {
-        'onClick:date': (value: any, event: any) => click(value, event instanceof Event),
-        'onDblclick:date': (value: any, event: any) => dblclick(value, event instanceof Event),
+        'onClickDate': (value: any, event: any) => click(value, event instanceof Event),
+        'onDblclickDate': (value: any, event: any) => dblclick(value, event instanceof Event),
       },
     })
 

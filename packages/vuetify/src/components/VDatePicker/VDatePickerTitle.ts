@@ -52,6 +52,12 @@ export default mixins(
     },
   },
 
+  watch: {
+    modelValue (val: string, prev: string) {
+      this.isReversing = val < prev
+    },
+  },
+
   created () {
     const breakingProps = [
       ['value', 'modelValue'],
@@ -61,12 +67,6 @@ export default mixins(
     breakingProps.forEach(([original, replacement]) => {
       if (this.$attrs.hasOwnProperty(original)) breaking(original, replacement, this)
     })
-  },
-
-  watch: {
-    modelValue (val: string, prev: string) {
-      this.isReversing = val < prev
-    },
   },
 
   methods: {
@@ -82,14 +82,9 @@ export default mixins(
       ], false, 'v-date-picker-title__year')
     },
     genTitleText (): VNode {
-      return h(Transition, {
-        name: this.computedTransition,
-      }, () => [
-        h('div', {
-          innerHTML: this.date || '&nbsp;',
-          key: this.modelValue,
-        }),
-      ])
+      return h('div', {
+        key: this.date,
+      }, this.date || '\u00A0')
     },
     genTitleDate (): VNode {
       return this.genPickerButton('selectingYear', false, [this.genTitleText()], false, 'v-date-picker-title__date')

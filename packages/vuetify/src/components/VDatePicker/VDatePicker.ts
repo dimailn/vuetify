@@ -134,6 +134,13 @@ export default mixins(
     yearIcon: String,
   },
 
+  emits: [
+    'update:modelValue',
+    'change',
+    'update:active-picker',
+    'update:picker-date',
+  ],
+
   data () {
     const now = new Date()
     return {
@@ -272,7 +279,7 @@ export default mixins(
         this.tableDate = sanitizeDateString(this.lastValue, 'year')
       }
     },
-    value (newValue: DatePickerValue, oldValue: DatePickerValue) {
+    modelValue (newValue: DatePickerValue, oldValue: DatePickerValue) {
       this.checkMultipleProp()
       this.setInputDate()
 
@@ -315,6 +322,14 @@ export default mixins(
   },
 
   methods: {
+    save () {
+      // Метод для совместимости с Picker mixin
+      // В VDatePicker нет необходимости в отдельном сохранении
+    },
+    cancel () {
+      // Метод для совместимости с Picker mixin
+      // В VDatePicker нет необходимости в отдельной отмене
+    },
     emitInput (newInput: string) {
       if (this.range) {
         if (this.multipleValue.length !== 1) {
@@ -391,15 +406,16 @@ export default mixins(
       this.emitInput(this.inputDate)
     },
     genPickerTitle (): VNode {
+      const dateValue = this.modelValue ? (this.formatters.titleDate as (value: any) => string)(this.isMultiple ? this.multipleValue : this.modelValue) : ''
       return h(VDatePickerTitle, {
-        date: this.modelValue ? (this.formatters.titleDate as (value: any) => string)(this.isMultiple ? this.multipleValue : this.modelValue) : '',
+        date: dateValue,
         disabled: this.disabled,
         readonly: this.readonly,
         selectingYear: this.internalActivePicker === 'YEAR',
         year: this.formatters.year(this.multipleValue.length ? `${this.inputYear}` : this.tableDate),
         yearIcon: this.yearIcon,
-        modelValue: this.multipleValue[0],
-        onUpdateSelectingYear: (value: boolean) => this.internalActivePicker = value ? 'YEAR' : this.type.toUpperCase(),
+        modelValue: this.multipleValue.length ? this.multipleValue[0] : undefined,
+        'onUpdate:selecting-year': (value: boolean) => this.internalActivePicker = value ? 'YEAR' : this.type.toUpperCase(),
       })
     },
     genTableHeader (): VNode {
@@ -449,7 +465,7 @@ export default mixins(
         ref: 'table',
         'onUpdate:modelValue': this.dateClick,
         'onUpdate:table-date': (value: string) => this.tableDate = value,
-        ...createItemTypeListeners(this, ':date'),
+        ...createItemTypeListeners(this, 'Date'),
       })
     },
     genMonthTable (): VNode {
@@ -474,7 +490,7 @@ export default mixins(
         ref: 'table',
         'onUpdate:modelValue': this.monthClick,
         'onUpdate:table-date': (value: string) => this.tableDate = value,
-        ...createItemTypeListeners(this, ':month'),
+        ...createItemTypeListeners(this, 'Month'),
       })
     },
     genYears (): VNode {
@@ -486,7 +502,7 @@ export default mixins(
         max: this.maxYear,
         modelValue: this.tableYear,
         'onUpdate:modelValue': this.yearClick,
-        ...createItemTypeListeners(this, ':year'),
+        ...createItemTypeListeners(this, 'Year'),
       })
     },
     genPickerBody (): VNode {

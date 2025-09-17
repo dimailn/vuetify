@@ -312,8 +312,8 @@ describe('VDatePicker.ts', () => {
         type: 'month',
       },
       attrs: {
-        'onClick:month': (value: any, event: any) => click(value, event instanceof Event),
-        'onDblclick:month': (value: any, event: any) => dblclick(value, event instanceof Event),
+        'onClickMonth': (value: any, event: any) => click(value, event instanceof Event),
+        'onDblclickMonth': (value: any, event: any) => dblclick(value, event instanceof Event),
       },
     })
 
