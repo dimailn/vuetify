@@ -3,8 +3,8 @@
 exports[`VRadio.ts should be render colored radio 1`] = `
 <div class="v-radio theme--light">
   <div class="v-input--selection-controls__input">
-    <i aria-hidden="true"
-       class="v-icon notranslate mdi mdi-radiobox-blank theme--light"
+    <i class="v-icon notranslate theme--light mdi mdi-radiobox-blank"
+       aria-hidden="true"
     >
     </i>
     <input aria-checked="false"
@@ -21,8 +21,8 @@ exports[`VRadio.ts should be render colored radio 1`] = `
 exports[`VRadio.ts should not render aria-label attribute with no label value on input group 1`] = `
 <div class="v-radio theme--light">
   <div class="v-input--selection-controls__input">
-    <i aria-hidden="true"
-       class="v-icon notranslate mdi mdi-radiobox-blank theme--light"
+    <i class="v-icon notranslate theme--light mdi mdi-radiobox-blank"
+       aria-hidden="true"
     >
     </i>
     <input aria-checked="false"
@@ -40,8 +40,8 @@ exports[`VRadio.ts should not render aria-label attribute with no label value on
 exports[`VRadio.ts should render proper input name 1`] = `
 <div class="v-radio theme--light">
   <div class="v-input--selection-controls__input">
-    <i aria-hidden="true"
-       class="v-icon notranslate mdi mdi-radiobox-blank theme--light"
+    <i class="v-icon notranslate theme--light mdi mdi-radiobox-blank"
+       aria-hidden="true"
     >
     </i>
     <input aria-checked="false"
@@ -59,8 +59,8 @@ exports[`VRadio.ts should render proper input name 1`] = `
 exports[`VRadio.ts should render role and aria-checked attributes on input group 1`] = `
 <div class="v-radio theme--light">
   <div class="v-input--selection-controls__input">
-    <i aria-hidden="true"
-       class="v-icon notranslate mdi mdi-radiobox-blank theme--light"
+    <i class="v-icon notranslate theme--light mdi mdi-radiobox-blank"
+       aria-hidden="true"
     >
     </i>
     <input aria-checked="false"
@@ -80,8 +80,8 @@ exports[`VRadio.ts should render role and aria-checked attributes on input group
 exports[`VRadio.ts should use custom icons 1`] = `
 <div class="v-radio theme--light">
   <div class="v-input--selection-controls__input">
-    <i aria-hidden="true"
-       class="v-icon notranslate material-icons theme--light"
+    <i class="v-icon notranslate theme--light material-icons"
+       aria-hidden="true"
     >
     </i>
     <input aria-checked="false"
@@ -100,8 +100,8 @@ exports[`VRadio.ts should use custom icons 1`] = `
 exports[`VRadio.ts should use custom icons 2`] = `
 <div class="v-radio theme--light">
   <div class="v-input--selection-controls__input">
-    <i aria-hidden="true"
-       class="v-icon notranslate material-icons theme--light"
+    <i class="v-icon notranslate theme--light material-icons"
+       aria-hidden="true"
     >
     </i>
     <input aria-checked="false"

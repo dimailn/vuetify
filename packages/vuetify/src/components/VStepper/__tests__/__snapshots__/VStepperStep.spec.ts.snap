@@ -5,8 +5,8 @@ exports[`VStepperStep.ts should accept a custom color 1`] = `
      class="v-stepper__step v-stepper__step--inactive v-stepper__step--complete"
 >
   <span class="v-stepper__step__step pink">
-    <i aria-hidden="true"
-       class="v-icon notranslate mdi mdi-check theme--light"
+    <i class="v-icon notranslate theme--light mdi mdi-check"
+       aria-hidden="true"
     >
     </i>
   </span>
@@ -22,8 +22,8 @@ exports[`VStepperStep.ts should accept a custom css color 1`] = `
   <span class="v-stepper__step__step"
         style="background-color: rgb(170, 187, 204); border-color: #aabbcc;"
   >
-    <i aria-hidden="true"
-       class="v-icon notranslate mdi mdi-check theme--light"
+    <i class="v-icon notranslate theme--light mdi mdi-check"
+       aria-hidden="true"
     >
     </i>
   </span>
@@ -49,8 +49,8 @@ exports[`VStepperStep.ts should render complete step 1`] = `
      class="v-stepper__step v-stepper__step--inactive v-stepper__step--complete"
 >
   <span class="v-stepper__step__step primary">
-    <i aria-hidden="true"
-       class="v-icon notranslate mdi mdi-check theme--light"
+    <i class="v-icon notranslate theme--light mdi mdi-check"
+       aria-hidden="true"
     >
     </i>
   </span>
@@ -64,8 +64,8 @@ exports[`VStepperStep.ts should render editable step 1`] = `
      class="v-stepper__step v-stepper__step--editable v-stepper__step--inactive v-stepper__step--complete"
 >
   <span class="v-stepper__step__step primary">
-    <i aria-hidden="true"
-       class="v-icon notranslate material-icons theme--light"
+    <i class="v-icon notranslate theme--light material-icons"
+       aria-hidden="true"
     >
     </i>
   </span>
@@ -79,8 +79,8 @@ exports[`VStepperStep.ts should render step with error 1`] = `
      class="v-stepper__step v-stepper__step--inactive v-stepper__step--error error--text"
 >
   <span class="v-stepper__step__step">
-    <i aria-hidden="true"
-       class="v-icon notranslate mdi mdi-alert theme--light"
+    <i class="v-icon notranslate theme--light mdi mdi-alert"
+       aria-hidden="true"
     >
     </i>
   </span>

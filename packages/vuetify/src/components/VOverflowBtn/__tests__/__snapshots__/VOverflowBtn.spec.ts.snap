@@ -26,8 +26,8 @@ exports[`VOverflowBtn.js should show label with persistentPlaceholder property s
         </div>
         <div class="v-input__append-inner">
           <div class="v-input__icon v-input__icon--append">
-            <i aria-hidden="true"
-               class="v-icon notranslate mdi mdi-menu-down theme--light"
+            <i class="v-icon notranslate theme--light mdi mdi-menu-down"
+               aria-hidden="true"
             >
             </i>
           </div>
@@ -73,8 +73,8 @@ exports[`VOverflowBtn.js should show label with persistentPlaceholder property s
         </div>
         <div class="v-input__append-inner">
           <div class="v-input__icon v-input__icon--append">
-            <i aria-hidden="true"
-               class="v-icon notranslate mdi mdi-menu-down theme--light"
+            <i class="v-icon notranslate theme--light mdi mdi-menu-down"
+               aria-hidden="true"
             >
             </i>
           </div>
@@ -116,8 +116,8 @@ exports[`VOverflowBtn.js should use default autocomplete selections 1`] = `
         </div>
         <div class="v-input__append-inner">
           <div class="v-input__icon v-input__icon--append">
-            <i aria-hidden="true"
-               class="v-icon notranslate mdi mdi-menu-down theme--light"
+            <i class="v-icon notranslate theme--light mdi mdi-menu-down"
+               aria-hidden="true"
             >
             </i>
           </div>
@@ -165,8 +165,8 @@ exports[`VOverflowBtn.js should use default autocomplete selections 2`] = `
         </div>
         <div class="v-input__append-inner">
           <div class="v-input__icon v-input__icon--append">
-            <i aria-hidden="true"
-               class="v-icon notranslate mdi mdi-menu-down theme--light"
+            <i class="v-icon notranslate theme--light mdi mdi-menu-down"
+               aria-hidden="true"
             >
             </i>
           </div>

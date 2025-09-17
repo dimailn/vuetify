@@ -41,8 +41,8 @@ exports[`VDataIterator.ts should render and match snapshot 1`] = `
               </div>
               <div class="v-input__append-inner">
                 <div class="v-input__icon v-input__icon--append">
-                  <i aria-hidden="true"
-                     class="v-icon notranslate material-icons theme--light"
+                  <i class="v-icon notranslate theme--light material-icons"
+                     aria-hidden="true"
                   >
                   </i>
                 </div>
@@ -67,8 +67,8 @@ exports[`VDataIterator.ts should render and match snapshot 1`] = `
               aria-label="Previous page"
       >
         <span class="v-btn__content">
-          <i aria-hidden="true"
-             class="v-icon notranslate material-icons theme--light"
+          <i class="v-icon notranslate theme--light material-icons"
+             aria-hidden="true"
           >
           </i>
         </span>
@@ -81,8 +81,8 @@ exports[`VDataIterator.ts should render and match snapshot 1`] = `
               aria-label="Next page"
       >
         <span class="v-btn__content">
-          <i aria-hidden="true"
-             class="v-icon notranslate material-icons theme--light"
+          <i class="v-icon notranslate theme--light material-icons"
+             aria-hidden="true"
           >
           </i>
         </span>
@@ -134,8 +134,8 @@ exports[`VDataIterator.ts should render and match snapshot with data 1`] = `
               </div>
               <div class="v-input__append-inner">
                 <div class="v-input__icon v-input__icon--append">
-                  <i aria-hidden="true"
-                     class="v-icon notranslate material-icons theme--light"
+                  <i class="v-icon notranslate theme--light material-icons"
+                     aria-hidden="true"
                   >
                   </i>
                 </div>
@@ -160,8 +160,8 @@ exports[`VDataIterator.ts should render and match snapshot with data 1`] = `
               aria-label="Previous page"
       >
         <span class="v-btn__content">
-          <i aria-hidden="true"
-             class="v-icon notranslate material-icons theme--light"
+          <i class="v-icon notranslate theme--light material-icons"
+             aria-hidden="true"
           >
           </i>
         </span>
@@ -174,8 +174,8 @@ exports[`VDataIterator.ts should render and match snapshot with data 1`] = `
               aria-label="Next page"
       >
         <span class="v-btn__content">
-          <i aria-hidden="true"
-             class="v-icon notranslate material-icons theme--light"
+          <i class="v-icon notranslate theme--light material-icons"
+             aria-hidden="true"
           >
           </i>
         </span>
@@ -218,8 +218,8 @@ exports[`VDataIterator.ts should render valid no-data, loading and no-results st
               </div>
               <div class="v-input__append-inner">
                 <div class="v-input__icon v-input__icon--append">
-                  <i aria-hidden="true"
-                     class="v-icon notranslate material-icons theme--light"
+                  <i class="v-icon notranslate theme--light material-icons"
+                     aria-hidden="true"
                   >
                   </i>
                 </div>
@@ -244,8 +244,8 @@ exports[`VDataIterator.ts should render valid no-data, loading and no-results st
               aria-label="Previous page"
       >
         <span class="v-btn__content">
-          <i aria-hidden="true"
-             class="v-icon notranslate material-icons theme--light"
+          <i class="v-icon notranslate theme--light material-icons"
+             aria-hidden="true"
           >
           </i>
         </span>
@@ -258,8 +258,8 @@ exports[`VDataIterator.ts should render valid no-data, loading and no-results st
               aria-label="Next page"
       >
         <span class="v-btn__content">
-          <i aria-hidden="true"
-             class="v-icon notranslate material-icons theme--light"
+          <i class="v-icon notranslate theme--light material-icons"
+             aria-hidden="true"
           >
           </i>
         </span>
@@ -302,8 +302,8 @@ exports[`VDataIterator.ts should render valid no-data, loading and no-results st
               </div>
               <div class="v-input__append-inner">
                 <div class="v-input__icon v-input__icon--append">
-                  <i aria-hidden="true"
-                     class="v-icon notranslate material-icons theme--light"
+                  <i class="v-icon notranslate theme--light material-icons"
+                     aria-hidden="true"
                   >
                   </i>
                 </div>
@@ -328,8 +328,8 @@ exports[`VDataIterator.ts should render valid no-data, loading and no-results st
               aria-label="Previous page"
       >
         <span class="v-btn__content">
-          <i aria-hidden="true"
-             class="v-icon notranslate material-icons theme--light"
+          <i class="v-icon notranslate theme--light material-icons"
+             aria-hidden="true"
           >
           </i>
         </span>
@@ -342,8 +342,8 @@ exports[`VDataIterator.ts should render valid no-data, loading and no-results st
               aria-label="Next page"
       >
         <span class="v-btn__content">
-          <i aria-hidden="true"
-             class="v-icon notranslate material-icons theme--light"
+          <i class="v-icon notranslate theme--light material-icons"
+             aria-hidden="true"
           >
           </i>
         </span>
@@ -386,8 +386,8 @@ exports[`VDataIterator.ts should render valid no-data, loading and no-results st
               </div>
               <div class="v-input__append-inner">
                 <div class="v-input__icon v-input__icon--append">
-                  <i aria-hidden="true"
-                     class="v-icon notranslate material-icons theme--light"
+                  <i class="v-icon notranslate theme--light material-icons"
+                     aria-hidden="true"
                   >
                   </i>
                 </div>
@@ -412,8 +412,8 @@ exports[`VDataIterator.ts should render valid no-data, loading and no-results st
               aria-label="Previous page"
       >
         <span class="v-btn__content">
-          <i aria-hidden="true"
-             class="v-icon notranslate material-icons theme--light"
+          <i class="v-icon notranslate theme--light material-icons"
+             aria-hidden="true"
           >
           </i>
         </span>
@@ -426,8 +426,8 @@ exports[`VDataIterator.ts should render valid no-data, loading and no-results st
               aria-label="Next page"
       >
         <span class="v-btn__content">
-          <i aria-hidden="true"
-             class="v-icon notranslate material-icons theme--light"
+          <i class="v-icon notranslate theme--light material-icons"
+             aria-hidden="true"
           >
           </i>
         </span>

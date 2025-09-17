@@ -42,8 +42,8 @@ exports[`VDataTable.ts should apply class from item to rows 1`] = `
                       </div>
                       <div class="v-input__append-inner">
                         <div class="v-input__icon v-input__icon--append">
-                          <i aria-hidden="true"
-                             class="v-icon notranslate material-icons theme--light"
+                          <i class="v-icon notranslate theme--light material-icons"
+                             aria-hidden="true"
                           >
                           </i>
                         </div>
@@ -341,8 +341,8 @@ exports[`VDataTable.ts should apply class from item to rows 1`] = `
               </div>
               <div class="v-input__append-inner">
                 <div class="v-input__icon v-input__icon--append">
-                  <i aria-hidden="true"
-                     class="v-icon notranslate material-icons theme--light"
+                  <i class="v-icon notranslate theme--light material-icons"
+                     aria-hidden="true"
                   >
                   </i>
                 </div>
@@ -367,8 +367,8 @@ exports[`VDataTable.ts should apply class from item to rows 1`] = `
               aria-label="Previous page"
       >
         <span class="v-btn__content">
-          <i aria-hidden="true"
-             class="v-icon notranslate material-icons theme--light"
+          <i class="v-icon notranslate theme--light material-icons"
+             aria-hidden="true"
           >
           </i>
         </span>
@@ -380,8 +380,8 @@ exports[`VDataTable.ts should apply class from item to rows 1`] = `
               aria-label="Next page"
       >
         <span class="v-btn__content">
-          <i aria-hidden="true"
-             class="v-icon notranslate material-icons theme--light"
+          <i class="v-icon notranslate theme--light material-icons"
+             aria-hidden="true"
           >
           </i>
         </span>
@@ -433,8 +433,8 @@ exports[`VDataTable.ts should apply class function to rows 1`] = `
                       </div>
                       <div class="v-input__append-inner">
                         <div class="v-input__icon v-input__icon--append">
-                          <i aria-hidden="true"
-                             class="v-icon notranslate material-icons theme--light"
+                          <i class="v-icon notranslate theme--light material-icons"
+                             aria-hidden="true"
                           >
                           </i>
                         </div>
@@ -732,8 +732,8 @@ exports[`VDataTable.ts should apply class function to rows 1`] = `
               </div>
               <div class="v-input__append-inner">
                 <div class="v-input__icon v-input__icon--append">
-                  <i aria-hidden="true"
-                     class="v-icon notranslate material-icons theme--light"
+                  <i class="v-icon notranslate theme--light material-icons"
+                     aria-hidden="true"
                   >
                   </i>
                 </div>
@@ -758,8 +758,8 @@ exports[`VDataTable.ts should apply class function to rows 1`] = `
               aria-label="Previous page"
       >
         <span class="v-btn__content">
-          <i aria-hidden="true"
-             class="v-icon notranslate material-icons theme--light"
+          <i class="v-icon notranslate theme--light material-icons"
+             aria-hidden="true"
           >
           </i>
         </span>
@@ -771,8 +771,8 @@ exports[`VDataTable.ts should apply class function to rows 1`] = `
               aria-label="Next page"
       >
         <span class="v-btn__content">
-          <i aria-hidden="true"
-             class="v-icon notranslate material-icons theme--light"
+          <i class="v-icon notranslate theme--light material-icons"
+             aria-hidden="true"
           >
           </i>
         </span>
@@ -824,8 +824,8 @@ exports[`VDataTable.ts should apply class list to rows 1`] = `
                       </div>
                       <div class="v-input__append-inner">
                         <div class="v-input__icon v-input__icon--append">
-                          <i aria-hidden="true"
-                             class="v-icon notranslate material-icons theme--light"
+                          <i class="v-icon notranslate theme--light material-icons"
+                             aria-hidden="true"
                           >
                           </i>
                         </div>
@@ -1123,8 +1123,8 @@ exports[`VDataTable.ts should apply class list to rows 1`] = `
               </div>
               <div class="v-input__append-inner">
                 <div class="v-input__icon v-input__icon--append">
-                  <i aria-hidden="true"
-                     class="v-icon notranslate material-icons theme--light"
+                  <i class="v-icon notranslate theme--light material-icons"
+                     aria-hidden="true"
                   >
                   </i>
                 </div>
@@ -1149,8 +1149,8 @@ exports[`VDataTable.ts should apply class list to rows 1`] = `
               aria-label="Previous page"
       >
         <span class="v-btn__content">
-          <i aria-hidden="true"
-             class="v-icon notranslate material-icons theme--light"
+          <i class="v-icon notranslate theme--light material-icons"
+             aria-hidden="true"
           >
           </i>
         </span>
@@ -1162,8 +1162,8 @@ exports[`VDataTable.ts should apply class list to rows 1`] = `
               aria-label="Next page"
       >
         <span class="v-btn__content">
-          <i aria-hidden="true"
-             class="v-icon notranslate material-icons theme--light"
+          <i class="v-icon notranslate theme--light material-icons"
+             aria-hidden="true"
           >
           </i>
         </span>
@@ -1215,8 +1215,8 @@ exports[`VDataTable.ts should apply class unique to rows 1`] = `
                       </div>
                       <div class="v-input__append-inner">
                         <div class="v-input__icon v-input__icon--append">
-                          <i aria-hidden="true"
-                             class="v-icon notranslate material-icons theme--light"
+                          <i class="v-icon notranslate theme--light material-icons"
+                             aria-hidden="true"
                           >
                           </i>
                         </div>
@@ -1514,8 +1514,8 @@ exports[`VDataTable.ts should apply class unique to rows 1`] = `
               </div>
               <div class="v-input__append-inner">
                 <div class="v-input__icon v-input__icon--append">
-                  <i aria-hidden="true"
-                     class="v-icon notranslate material-icons theme--light"
+                  <i class="v-icon notranslate theme--light material-icons"
+                     aria-hidden="true"
                   >
                   </i>
                 </div>
@@ -1540,8 +1540,8 @@ exports[`VDataTable.ts should apply class unique to rows 1`] = `
               aria-label="Previous page"
       >
         <span class="v-btn__content">
-          <i aria-hidden="true"
-             class="v-icon notranslate material-icons theme--light"
+          <i class="v-icon notranslate theme--light material-icons"
+             aria-hidden="true"
           >
           </i>
         </span>
@@ -1553,8 +1553,8 @@ exports[`VDataTable.ts should apply class unique to rows 1`] = `
               aria-label="Next page"
       >
         <span class="v-btn__content">
-          <i aria-hidden="true"
-             class="v-icon notranslate material-icons theme--light"
+          <i class="v-icon notranslate theme--light material-icons"
+             aria-hidden="true"
           >
           </i>
         </span>
@@ -1606,8 +1606,8 @@ exports[`VDataTable.ts should change page if item count decreases below page sta
                       </div>
                       <div class="v-input__append-inner">
                         <div class="v-input__icon v-input__icon--append">
-                          <i aria-hidden="true"
-                             class="v-icon notranslate material-icons theme--light"
+                          <i class="v-icon notranslate theme--light material-icons"
+                             aria-hidden="true"
                           >
                           </i>
                         </div>
@@ -1737,8 +1737,8 @@ exports[`VDataTable.ts should change page if item count decreases below page sta
               aria-label="Previous page"
       >
         <span class="v-btn__content">
-          <i aria-hidden="true"
-             class="v-icon notranslate material-icons theme--light"
+          <i class="v-icon notranslate theme--light material-icons"
+             aria-hidden="true"
           >
           </i>
         </span>
@@ -1751,8 +1751,8 @@ exports[`VDataTable.ts should change page if item count decreases below page sta
               aria-label="Next page"
       >
         <span class="v-btn__content">
-          <i aria-hidden="true"
-             class="v-icon notranslate material-icons theme--light"
+          <i class="v-icon notranslate theme--light material-icons"
+             aria-hidden="true"
           >
           </i>
         </span>
@@ -1804,8 +1804,8 @@ exports[`VDataTable.ts should default to first option in itemsPerPageOptions if 
                       </div>
                       <div class="v-input__append-inner">
                         <div class="v-input__icon v-input__icon--append">
-                          <i aria-hidden="true"
-                             class="v-icon notranslate material-icons theme--light"
+                          <i class="v-icon notranslate theme--light material-icons"
+                             aria-hidden="true"
                           >
                           </i>
                         </div>
@@ -2153,8 +2153,8 @@ exports[`VDataTable.ts should default to first option in itemsPerPageOptions if 
               </div>
               <div class="v-input__append-inner">
                 <div class="v-input__icon v-input__icon--append">
-                  <i aria-hidden="true"
-                     class="v-icon notranslate material-icons theme--light"
+                  <i class="v-icon notranslate theme--light material-icons"
+                     aria-hidden="true"
                   >
                   </i>
                 </div>
@@ -2179,8 +2179,8 @@ exports[`VDataTable.ts should default to first option in itemsPerPageOptions if 
               aria-label="Previous page"
       >
         <span class="v-btn__content">
-          <i aria-hidden="true"
-             class="v-icon notranslate material-icons theme--light"
+          <i class="v-icon notranslate theme--light material-icons"
+             aria-hidden="true"
           >
           </i>
         </span>
@@ -2192,8 +2192,8 @@ exports[`VDataTable.ts should default to first option in itemsPerPageOptions if 
               aria-label="Next page"
       >
         <span class="v-btn__content">
-          <i aria-hidden="true"
-             class="v-icon notranslate material-icons theme--light"
+          <i class="v-icon notranslate theme--light material-icons"
+             aria-hidden="true"
           >
           </i>
         </span>
@@ -2241,8 +2241,8 @@ exports[`VDataTable.ts should handle filtering correctly 1`] = `
                       </div>
                       <div class="v-input__append-inner">
                         <div class="v-input__icon v-input__icon--append">
-                          <i aria-hidden="true"
-                             class="v-icon notranslate material-icons theme--light"
+                          <i class="v-icon notranslate theme--light material-icons"
+                             aria-hidden="true"
                           >
                           </i>
                         </div>
@@ -2326,8 +2326,8 @@ exports[`VDataTable.ts should handle filtering correctly 1`] = `
               </div>
               <div class="v-input__append-inner">
                 <div class="v-input__icon v-input__icon--append">
-                  <i aria-hidden="true"
-                     class="v-icon notranslate material-icons theme--light"
+                  <i class="v-icon notranslate theme--light material-icons"
+                     aria-hidden="true"
                   >
                   </i>
                 </div>
@@ -2352,8 +2352,8 @@ exports[`VDataTable.ts should handle filtering correctly 1`] = `
               aria-label="Previous page"
       >
         <span class="v-btn__content">
-          <i aria-hidden="true"
-             class="v-icon notranslate material-icons theme--light"
+          <i class="v-icon notranslate theme--light material-icons"
+             aria-hidden="true"
           >
           </i>
         </span>
@@ -2366,8 +2366,8 @@ exports[`VDataTable.ts should handle filtering correctly 1`] = `
               aria-label="Next page"
       >
         <span class="v-btn__content">
-          <i aria-hidden="true"
-             class="v-icon notranslate material-icons theme--light"
+          <i class="v-icon notranslate theme--light material-icons"
+             aria-hidden="true"
           >
           </i>
         </span>
@@ -2415,8 +2415,8 @@ exports[`VDataTable.ts should handle filtering correctly 2`] = `
                       </div>
                       <div class="v-input__append-inner">
                         <div class="v-input__icon v-input__icon--append">
-                          <i aria-hidden="true"
-                             class="v-icon notranslate material-icons theme--light"
+                          <i class="v-icon notranslate theme--light material-icons"
+                             aria-hidden="true"
                           >
                           </i>
                         </div>
@@ -2482,8 +2482,8 @@ exports[`VDataTable.ts should handle filtering correctly 2`] = `
               </div>
               <div class="v-input__append-inner">
                 <div class="v-input__icon v-input__icon--append">
-                  <i aria-hidden="true"
-                     class="v-icon notranslate material-icons theme--light"
+                  <i class="v-icon notranslate theme--light material-icons"
+                     aria-hidden="true"
                   >
                   </i>
                 </div>
@@ -2508,8 +2508,8 @@ exports[`VDataTable.ts should handle filtering correctly 2`] = `
               aria-label="Previous page"
       >
         <span class="v-btn__content">
-          <i aria-hidden="true"
-             class="v-icon notranslate material-icons theme--light"
+          <i class="v-icon notranslate theme--light material-icons"
+             aria-hidden="true"
           >
           </i>
         </span>
@@ -2522,8 +2522,8 @@ exports[`VDataTable.ts should handle filtering correctly 2`] = `
               aria-label="Next page"
       >
         <span class="v-btn__content">
-          <i aria-hidden="true"
-             class="v-icon notranslate material-icons theme--light"
+          <i class="v-icon notranslate theme--light material-icons"
+             aria-hidden="true"
           >
           </i>
         </span>
@@ -2575,8 +2575,8 @@ exports[`VDataTable.ts should handle object when checking if it should default t
                       </div>
                       <div class="v-input__append-inner">
                         <div class="v-input__icon v-input__icon--append">
-                          <i aria-hidden="true"
-                             class="v-icon notranslate material-icons theme--light"
+                          <i class="v-icon notranslate theme--light material-icons"
+                             aria-hidden="true"
                           >
                           </i>
                         </div>
@@ -3124,8 +3124,8 @@ exports[`VDataTable.ts should handle object when checking if it should default t
               </div>
               <div class="v-input__append-inner">
                 <div class="v-input__icon v-input__icon--append">
-                  <i aria-hidden="true"
-                     class="v-icon notranslate material-icons theme--light"
+                  <i class="v-icon notranslate theme--light material-icons"
+                     aria-hidden="true"
                   >
                   </i>
                 </div>
@@ -3150,8 +3150,8 @@ exports[`VDataTable.ts should handle object when checking if it should default t
               aria-label="Previous page"
       >
         <span class="v-btn__content">
-          <i aria-hidden="true"
-             class="v-icon notranslate material-icons theme--light"
+          <i class="v-icon notranslate theme--light material-icons"
+             aria-hidden="true"
           >
           </i>
         </span>
@@ -3164,8 +3164,8 @@ exports[`VDataTable.ts should handle object when checking if it should default t
               aria-label="Next page"
       >
         <span class="v-btn__content">
-          <i aria-hidden="true"
-             class="v-icon notranslate material-icons theme--light"
+          <i class="v-icon notranslate theme--light material-icons"
+             aria-hidden="true"
           >
           </i>
         </span>
@@ -3217,8 +3217,8 @@ exports[`VDataTable.ts should hide group button when column is not groupable 1`]
                       </div>
                       <div class="v-input__append-inner">
                         <div class="v-input__icon v-input__icon--append">
-                          <i aria-hidden="true"
-                             class="v-icon notranslate material-icons theme--light"
+                          <i class="v-icon notranslate theme--light material-icons"
+                             aria-hidden="true"
                           >
                           </i>
                         </div>
@@ -3766,8 +3766,8 @@ exports[`VDataTable.ts should hide group button when column is not groupable 1`]
               </div>
               <div class="v-input__append-inner">
                 <div class="v-input__icon v-input__icon--append">
-                  <i aria-hidden="true"
-                     class="v-icon notranslate material-icons theme--light"
+                  <i class="v-icon notranslate theme--light material-icons"
+                     aria-hidden="true"
                   >
                   </i>
                 </div>
@@ -3792,8 +3792,8 @@ exports[`VDataTable.ts should hide group button when column is not groupable 1`]
               aria-label="Previous page"
       >
         <span class="v-btn__content">
-          <i aria-hidden="true"
-             class="v-icon notranslate material-icons theme--light"
+          <i class="v-icon notranslate theme--light material-icons"
+             aria-hidden="true"
           >
           </i>
         </span>
@@ -3806,8 +3806,8 @@ exports[`VDataTable.ts should hide group button when column is not groupable 1`]
               aria-label="Next page"
       >
         <span class="v-btn__content">
-          <i aria-hidden="true"
-             class="v-icon notranslate material-icons theme--light"
+          <i class="v-icon notranslate theme--light material-icons"
+             aria-hidden="true"
           >
           </i>
         </span>
@@ -3859,8 +3859,8 @@ exports[`VDataTable.ts should limit page to current page count if not using serv
                       </div>
                       <div class="v-input__append-inner">
                         <div class="v-input__icon v-input__icon--append">
-                          <i aria-hidden="true"
-                             class="v-icon notranslate material-icons theme--light"
+                          <i class="v-icon notranslate theme--light material-icons"
+                             aria-hidden="true"
                           >
                           </i>
                         </div>
@@ -4158,8 +4158,8 @@ exports[`VDataTable.ts should limit page to current page count if not using serv
               </div>
               <div class="v-input__append-inner">
                 <div class="v-input__icon v-input__icon--append">
-                  <i aria-hidden="true"
-                     class="v-icon notranslate material-icons theme--light"
+                  <i class="v-icon notranslate theme--light material-icons"
+                     aria-hidden="true"
                   >
                   </i>
                 </div>
@@ -4183,8 +4183,8 @@ exports[`VDataTable.ts should limit page to current page count if not using serv
               aria-label="Previous page"
       >
         <span class="v-btn__content">
-          <i aria-hidden="true"
-             class="v-icon notranslate material-icons theme--light"
+          <i class="v-icon notranslate theme--light material-icons"
+             aria-hidden="true"
           >
           </i>
         </span>
@@ -4197,8 +4197,8 @@ exports[`VDataTable.ts should limit page to current page count if not using serv
               aria-label="Next page"
       >
         <span class="v-btn__content">
-          <i aria-hidden="true"
-             class="v-icon notranslate material-icons theme--light"
+          <i class="v-icon notranslate theme--light material-icons"
+             aria-hidden="true"
           >
           </i>
         </span>
@@ -4250,8 +4250,8 @@ exports[`VDataTable.ts should not limit page to current item count when using se
                       </div>
                       <div class="v-input__append-inner">
                         <div class="v-input__icon v-input__icon--append">
-                          <i aria-hidden="true"
-                             class="v-icon notranslate material-icons theme--light"
+                          <i class="v-icon notranslate theme--light material-icons"
+                             aria-hidden="true"
                           >
                           </i>
                         </div>
@@ -4304,8 +4304,8 @@ exports[`VDataTable.ts should not limit page to current item count when using se
               </div>
               <div class="v-input__append-inner">
                 <div class="v-input__icon v-input__icon--append">
-                  <i aria-hidden="true"
-                     class="v-icon notranslate material-icons theme--light"
+                  <i class="v-icon notranslate theme--light material-icons"
+                     aria-hidden="true"
                   >
                   </i>
                 </div>
@@ -4329,8 +4329,8 @@ exports[`VDataTable.ts should not limit page to current item count when using se
               aria-label="Previous page"
       >
         <span class="v-btn__content">
-          <i aria-hidden="true"
-             class="v-icon notranslate material-icons theme--light"
+          <i class="v-icon notranslate theme--light material-icons"
+             aria-hidden="true"
           >
           </i>
         </span>
@@ -4343,8 +4343,8 @@ exports[`VDataTable.ts should not limit page to current item count when using se
               aria-label="Next page"
       >
         <span class="v-btn__content">
-          <i aria-hidden="true"
-             class="v-icon notranslate material-icons theme--light"
+          <i class="v-icon notranslate theme--light material-icons"
+             aria-hidden="true"
           >
           </i>
         </span>
@@ -4396,8 +4396,8 @@ exports[`VDataTable.ts should not limit page to current item count when using se
                       </div>
                       <div class="v-input__append-inner">
                         <div class="v-input__icon v-input__icon--append">
-                          <i aria-hidden="true"
-                             class="v-icon notranslate material-icons theme--light"
+                          <i class="v-icon notranslate theme--light material-icons"
+                             aria-hidden="true"
                           >
                           </i>
                         </div>
@@ -4695,8 +4695,8 @@ exports[`VDataTable.ts should not limit page to current item count when using se
               </div>
               <div class="v-input__append-inner">
                 <div class="v-input__icon v-input__icon--append">
-                  <i aria-hidden="true"
-                     class="v-icon notranslate material-icons theme--light"
+                  <i class="v-icon notranslate theme--light material-icons"
+                     aria-hidden="true"
                   >
                   </i>
                 </div>
@@ -4720,8 +4720,8 @@ exports[`VDataTable.ts should not limit page to current item count when using se
               aria-label="Previous page"
       >
         <span class="v-btn__content">
-          <i aria-hidden="true"
-             class="v-icon notranslate material-icons theme--light"
+          <i class="v-icon notranslate theme--light material-icons"
+             aria-hidden="true"
           >
           </i>
         </span>
@@ -4733,8 +4733,8 @@ exports[`VDataTable.ts should not limit page to current item count when using se
               aria-label="Next page"
       >
         <span class="v-btn__content">
-          <i aria-hidden="true"
-             class="v-icon notranslate material-icons theme--light"
+          <i class="v-icon notranslate theme--light material-icons"
+             aria-hidden="true"
           >
           </i>
         </span>
@@ -4786,8 +4786,8 @@ exports[`VDataTable.ts should not search column with filterable set to false 1`]
                       </div>
                       <div class="v-input__append-inner">
                         <div class="v-input__icon v-input__icon--append">
-                          <i aria-hidden="true"
-                             class="v-icon notranslate material-icons theme--light"
+                          <i class="v-icon notranslate theme--light material-icons"
+                             aria-hidden="true"
                           >
                           </i>
                         </div>
@@ -5335,8 +5335,8 @@ exports[`VDataTable.ts should not search column with filterable set to false 1`]
               </div>
               <div class="v-input__append-inner">
                 <div class="v-input__icon v-input__icon--append">
-                  <i aria-hidden="true"
-                     class="v-icon notranslate material-icons theme--light"
+                  <i class="v-icon notranslate theme--light material-icons"
+                     aria-hidden="true"
                   >
                   </i>
                 </div>
@@ -5361,8 +5361,8 @@ exports[`VDataTable.ts should not search column with filterable set to false 1`]
               aria-label="Previous page"
       >
         <span class="v-btn__content">
-          <i aria-hidden="true"
-             class="v-icon notranslate material-icons theme--light"
+          <i class="v-icon notranslate theme--light material-icons"
+             aria-hidden="true"
           >
           </i>
         </span>
@@ -5375,8 +5375,8 @@ exports[`VDataTable.ts should not search column with filterable set to false 1`]
               aria-label="Next page"
       >
         <span class="v-btn__content">
-          <i aria-hidden="true"
-             class="v-icon notranslate material-icons theme--light"
+          <i class="v-icon notranslate theme--light material-icons"
+             aria-hidden="true"
           >
           </i>
         </span>
@@ -5428,8 +5428,8 @@ exports[`VDataTable.ts should not search column with filterable set to false 2`]
                       </div>
                       <div class="v-input__append-inner">
                         <div class="v-input__icon v-input__icon--append">
-                          <i aria-hidden="true"
-                             class="v-icon notranslate material-icons theme--light"
+                          <i class="v-icon notranslate theme--light material-icons"
+                             aria-hidden="true"
                           >
                           </i>
                         </div>
@@ -5482,8 +5482,8 @@ exports[`VDataTable.ts should not search column with filterable set to false 2`]
               </div>
               <div class="v-input__append-inner">
                 <div class="v-input__icon v-input__icon--append">
-                  <i aria-hidden="true"
-                     class="v-icon notranslate material-icons theme--light"
+                  <i class="v-icon notranslate theme--light material-icons"
+                     aria-hidden="true"
                   >
                   </i>
                 </div>
@@ -5508,8 +5508,8 @@ exports[`VDataTable.ts should not search column with filterable set to false 2`]
               aria-label="Previous page"
       >
         <span class="v-btn__content">
-          <i aria-hidden="true"
-             class="v-icon notranslate material-icons theme--light"
+          <i class="v-icon notranslate theme--light material-icons"
+             aria-hidden="true"
           >
           </i>
         </span>
@@ -5522,8 +5522,8 @@ exports[`VDataTable.ts should not search column with filterable set to false 2`]
               aria-label="Next page"
       >
         <span class="v-btn__content">
-          <i aria-hidden="true"
-             class="v-icon notranslate material-icons theme--light"
+          <i class="v-icon notranslate theme--light material-icons"
+             aria-hidden="true"
           >
           </i>
         </span>
@@ -5575,8 +5575,8 @@ exports[`VDataTable.ts should not search column with filterable set to false and
                       </div>
                       <div class="v-input__append-inner">
                         <div class="v-input__icon v-input__icon--append">
-                          <i aria-hidden="true"
-                             class="v-icon notranslate material-icons theme--light"
+                          <i class="v-icon notranslate theme--light material-icons"
+                             aria-hidden="true"
                           >
                           </i>
                         </div>
@@ -5774,8 +5774,8 @@ exports[`VDataTable.ts should not search column with filterable set to false and
               </div>
               <div class="v-input__append-inner">
                 <div class="v-input__icon v-input__icon--append">
-                  <i aria-hidden="true"
-                     class="v-icon notranslate material-icons theme--light"
+                  <i class="v-icon notranslate theme--light material-icons"
+                     aria-hidden="true"
                   >
                   </i>
                 </div>
@@ -5800,8 +5800,8 @@ exports[`VDataTable.ts should not search column with filterable set to false and
               aria-label="Previous page"
       >
         <span class="v-btn__content">
-          <i aria-hidden="true"
-             class="v-icon notranslate material-icons theme--light"
+          <i class="v-icon notranslate theme--light material-icons"
+             aria-hidden="true"
           >
           </i>
         </span>
@@ -5814,8 +5814,8 @@ exports[`VDataTable.ts should not search column with filterable set to false and
               aria-label="Next page"
       >
         <span class="v-btn__content">
-          <i aria-hidden="true"
-             class="v-icon notranslate material-icons theme--light"
+          <i class="v-icon notranslate theme--light material-icons"
+             aria-hidden="true"
           >
           </i>
         </span>
@@ -5867,8 +5867,8 @@ exports[`VDataTable.ts should not search column with filterable set to false and
                       </div>
                       <div class="v-input__append-inner">
                         <div class="v-input__icon v-input__icon--append">
-                          <i aria-hidden="true"
-                             class="v-icon notranslate material-icons theme--light"
+                          <i class="v-icon notranslate theme--light material-icons"
+                             aria-hidden="true"
                           >
                           </i>
                         </div>
@@ -6416,8 +6416,8 @@ exports[`VDataTable.ts should not search column with filterable set to false and
               </div>
               <div class="v-input__append-inner">
                 <div class="v-input__icon v-input__icon--append">
-                  <i aria-hidden="true"
-                     class="v-icon notranslate material-icons theme--light"
+                  <i class="v-icon notranslate theme--light material-icons"
+                     aria-hidden="true"
                   >
                   </i>
                 </div>
@@ -6442,8 +6442,8 @@ exports[`VDataTable.ts should not search column with filterable set to false and
               aria-label="Previous page"
       >
         <span class="v-btn__content">
-          <i aria-hidden="true"
-             class="v-icon notranslate material-icons theme--light"
+          <i class="v-icon notranslate theme--light material-icons"
+             aria-hidden="true"
           >
           </i>
         </span>
@@ -6456,8 +6456,8 @@ exports[`VDataTable.ts should not search column with filterable set to false and
               aria-label="Next page"
       >
         <span class="v-btn__content">
-          <i aria-hidden="true"
-             class="v-icon notranslate material-icons theme--light"
+          <i class="v-icon notranslate theme--light material-icons"
+             aria-hidden="true"
           >
           </i>
         </span>
@@ -6514,8 +6514,8 @@ exports[`VDataTable.ts should pass kebab-case footer props correctly 1`] = `
               </div>
               <div class="v-input__append-inner">
                 <div class="v-input__icon v-input__icon--append">
-                  <i aria-hidden="true"
-                     class="v-icon notranslate material-icons theme--light"
+                  <i class="v-icon notranslate theme--light material-icons"
+                     aria-hidden="true"
                   >
                   </i>
                 </div>
@@ -6540,8 +6540,8 @@ exports[`VDataTable.ts should pass kebab-case footer props correctly 1`] = `
               aria-label="Previous page"
       >
         <span class="v-btn__content">
-          <i aria-hidden="true"
-             class="v-icon notranslate material-icons theme--light"
+          <i class="v-icon notranslate theme--light material-icons"
+             aria-hidden="true"
           >
           </i>
         </span>
@@ -6554,8 +6554,8 @@ exports[`VDataTable.ts should pass kebab-case footer props correctly 1`] = `
               aria-label="Next page"
       >
         <span class="v-btn__content">
-          <i aria-hidden="true"
-             class="v-icon notranslate material-icons theme--light"
+          <i class="v-icon notranslate theme--light material-icons"
+             aria-hidden="true"
           >
           </i>
         </span>
@@ -6612,8 +6612,8 @@ exports[`VDataTable.ts should render 1`] = `
               </div>
               <div class="v-input__append-inner">
                 <div class="v-input__icon v-input__icon--append">
-                  <i aria-hidden="true"
-                     class="v-icon notranslate material-icons theme--light"
+                  <i class="v-icon notranslate theme--light material-icons"
+                     aria-hidden="true"
                   >
                   </i>
                 </div>
@@ -6638,8 +6638,8 @@ exports[`VDataTable.ts should render 1`] = `
               aria-label="Previous page"
       >
         <span class="v-btn__content">
-          <i aria-hidden="true"
-             class="v-icon notranslate material-icons theme--light"
+          <i class="v-icon notranslate theme--light material-icons"
+             aria-hidden="true"
           >
           </i>
         </span>
@@ -6652,8 +6652,8 @@ exports[`VDataTable.ts should render 1`] = `
               aria-label="Next page"
       >
         <span class="v-btn__content">
-          <i aria-hidden="true"
-             class="v-icon notranslate material-icons theme--light"
+          <i class="v-icon notranslate theme--light material-icons"
+             aria-hidden="true"
           >
           </i>
         </span>
@@ -6707,8 +6707,8 @@ exports[`VDataTable.ts should render footer.page-text slot content 1`] = `
               </div>
               <div class="v-input__append-inner">
                 <div class="v-input__icon v-input__icon--append">
-                  <i aria-hidden="true"
-                     class="v-icon notranslate material-icons theme--light"
+                  <i class="v-icon notranslate theme--light material-icons"
+                     aria-hidden="true"
                   >
                   </i>
                 </div>
@@ -6735,8 +6735,8 @@ exports[`VDataTable.ts should render footer.page-text slot content 1`] = `
               aria-label="Previous page"
       >
         <span class="v-btn__content">
-          <i aria-hidden="true"
-             class="v-icon notranslate material-icons theme--light"
+          <i class="v-icon notranslate theme--light material-icons"
+             aria-hidden="true"
           >
           </i>
         </span>
@@ -6749,8 +6749,8 @@ exports[`VDataTable.ts should render footer.page-text slot content 1`] = `
               aria-label="Next page"
       >
         <span class="v-btn__content">
-          <i aria-hidden="true"
-             class="v-icon notranslate material-icons theme--light"
+          <i class="v-icon notranslate theme--light material-icons"
+             aria-hidden="true"
           >
           </i>
         </span>
@@ -6807,8 +6807,8 @@ exports[`VDataTable.ts should render footer.prepend slot content 1`] = `
               </div>
               <div class="v-input__append-inner">
                 <div class="v-input__icon v-input__icon--append">
-                  <i aria-hidden="true"
-                     class="v-icon notranslate material-icons theme--light"
+                  <i class="v-icon notranslate theme--light material-icons"
+                     aria-hidden="true"
                   >
                   </i>
                 </div>
@@ -6833,8 +6833,8 @@ exports[`VDataTable.ts should render footer.prepend slot content 1`] = `
               aria-label="Previous page"
       >
         <span class="v-btn__content">
-          <i aria-hidden="true"
-             class="v-icon notranslate material-icons theme--light"
+          <i class="v-icon notranslate theme--light material-icons"
+             aria-hidden="true"
           >
           </i>
         </span>
@@ -6847,8 +6847,8 @@ exports[`VDataTable.ts should render footer.prepend slot content 1`] = `
               aria-label="Next page"
       >
         <span class="v-btn__content">
-          <i aria-hidden="true"
-             class="v-icon notranslate material-icons theme--light"
+          <i class="v-icon notranslate theme--light material-icons"
+             aria-hidden="true"
           >
           </i>
         </span>
@@ -6900,8 +6900,8 @@ exports[`VDataTable.ts should render item slot when using group-by function 1`] 
                       </div>
                       <div class="v-input__append-inner">
                         <div class="v-input__icon v-input__icon--append">
-                          <i aria-hidden="true"
-                             class="v-icon notranslate material-icons theme--light"
+                          <i class="v-icon notranslate theme--light material-icons"
+                             aria-hidden="true"
                           >
                           </i>
                         </div>
@@ -6949,8 +6949,8 @@ exports[`VDataTable.ts should render item slot when using group-by function 1`] 
               </div>
               <div class="v-input__append-inner">
                 <div class="v-input__icon v-input__icon--append">
-                  <i aria-hidden="true"
-                     class="v-icon notranslate material-icons theme--light"
+                  <i class="v-icon notranslate theme--light material-icons"
+                     aria-hidden="true"
                   >
                   </i>
                 </div>
@@ -6975,8 +6975,8 @@ exports[`VDataTable.ts should render item slot when using group-by function 1`] 
               aria-label="Previous page"
       >
         <span class="v-btn__content">
-          <i aria-hidden="true"
-             class="v-icon notranslate material-icons theme--light"
+          <i class="v-icon notranslate theme--light material-icons"
+             aria-hidden="true"
           >
           </i>
         </span>
@@ -6989,8 +6989,8 @@ exports[`VDataTable.ts should render item slot when using group-by function 1`] 
               aria-label="Next page"
       >
         <span class="v-btn__content">
-          <i aria-hidden="true"
-             class="v-icon notranslate material-icons theme--light"
+          <i class="v-icon notranslate theme--light material-icons"
+             aria-hidden="true"
           >
           </i>
         </span>
@@ -7072,8 +7072,8 @@ exports[`VDataTable.ts should render loading state 1`] = `
               </div>
               <div class="v-input__append-inner">
                 <div class="v-input__icon v-input__icon--append">
-                  <i aria-hidden="true"
-                     class="v-icon notranslate material-icons theme--light"
+                  <i class="v-icon notranslate theme--light material-icons"
+                     aria-hidden="true"
                   >
                   </i>
                 </div>
@@ -7098,8 +7098,8 @@ exports[`VDataTable.ts should render loading state 1`] = `
               aria-label="Previous page"
       >
         <span class="v-btn__content">
-          <i aria-hidden="true"
-             class="v-icon notranslate material-icons theme--light"
+          <i class="v-icon notranslate theme--light material-icons"
+             aria-hidden="true"
           >
           </i>
         </span>
@@ -7112,8 +7112,8 @@ exports[`VDataTable.ts should render loading state 1`] = `
               aria-label="Next page"
       >
         <span class="v-btn__content">
-          <i aria-hidden="true"
-             class="v-icon notranslate material-icons theme--light"
+          <i class="v-icon notranslate theme--light material-icons"
+             aria-hidden="true"
           >
           </i>
         </span>
@@ -7165,8 +7165,8 @@ exports[`VDataTable.ts should render loading state 2`] = `
                       </div>
                       <div class="v-input__append-inner">
                         <div class="v-input__icon v-input__icon--append">
-                          <i aria-hidden="true"
-                             class="v-icon notranslate material-icons theme--light"
+                          <i class="v-icon notranslate theme--light material-icons"
+                             aria-hidden="true"
                           >
                           </i>
                         </div>
@@ -7228,8 +7228,8 @@ exports[`VDataTable.ts should render loading state 2`] = `
               </div>
               <div class="v-input__append-inner">
                 <div class="v-input__icon v-input__icon--append">
-                  <i aria-hidden="true"
-                     class="v-icon notranslate material-icons theme--light"
+                  <i class="v-icon notranslate theme--light material-icons"
+                     aria-hidden="true"
                   >
                   </i>
                 </div>
@@ -7254,8 +7254,8 @@ exports[`VDataTable.ts should render loading state 2`] = `
               aria-label="Previous page"
       >
         <span class="v-btn__content">
-          <i aria-hidden="true"
-             class="v-icon notranslate material-icons theme--light"
+          <i class="v-icon notranslate theme--light material-icons"
+             aria-hidden="true"
           >
           </i>
         </span>
@@ -7268,8 +7268,8 @@ exports[`VDataTable.ts should render loading state 2`] = `
               aria-label="Next page"
       >
         <span class="v-btn__content">
-          <i aria-hidden="true"
-             class="v-icon notranslate material-icons theme--light"
+          <i class="v-icon notranslate theme--light material-icons"
+             aria-hidden="true"
           >
           </i>
         </span>
@@ -7301,8 +7301,8 @@ exports[`VDataTable.ts should render non-selectable items correctly 1`] = `
               >
                 <div class="v-simple-checkbox v-data-table__checkbox v-data-table__checkbox">
                   <div class="v-input--selection-controls__input">
-                    <i aria-hidden="true"
-                       class="v-icon notranslate material-icons theme--light"
+                    <i class="v-icon notranslate theme--light material-icons"
+                       aria-hidden="true"
                     >
                     </i>
                     <div class="v-input--selection-controls__ripple">
@@ -7336,8 +7336,8 @@ exports[`VDataTable.ts should render non-selectable items correctly 1`] = `
                       </div>
                       <div class="v-input__append-inner">
                         <div class="v-input__icon v-input__icon--append">
-                          <i aria-hidden="true"
-                             class="v-icon notranslate material-icons theme--light"
+                          <i class="v-icon notranslate theme--light material-icons"
+                             aria-hidden="true"
                           >
                           </i>
                         </div>
@@ -7361,8 +7361,8 @@ exports[`VDataTable.ts should render non-selectable items correctly 1`] = `
             <div class="v-data-table__mobile-row__cell">
               <div class="v-simple-checkbox v-simple-checkbox--disabled v-data-table__checkbox v-data-table__checkbox">
                 <div class="v-input--selection-controls__input">
-                  <i aria-hidden="true"
-                     class="v-icon--disabled v-icon notranslate material-icons theme--light"
+                  <i class="v-icon--disabled v-icon notranslate theme--light material-icons"
+                     aria-hidden="true"
                   >
                   </i>
                 </div>
@@ -7425,8 +7425,8 @@ exports[`VDataTable.ts should render non-selectable items correctly 1`] = `
             <div class="v-data-table__mobile-row__cell">
               <div class="v-simple-checkbox v-data-table__checkbox v-data-table__checkbox">
                 <div class="v-input--selection-controls__input">
-                  <i aria-hidden="true"
-                     class="v-icon notranslate material-icons theme--light"
+                  <i class="v-icon notranslate theme--light material-icons"
+                     aria-hidden="true"
                   >
                   </i>
                   <div class="v-input--selection-controls__ripple">
@@ -7515,8 +7515,8 @@ exports[`VDataTable.ts should render non-selectable items correctly 1`] = `
               </div>
               <div class="v-input__append-inner">
                 <div class="v-input__icon v-input__icon--append">
-                  <i aria-hidden="true"
-                     class="v-icon notranslate material-icons theme--light"
+                  <i class="v-icon notranslate theme--light material-icons"
+                     aria-hidden="true"
                   >
                   </i>
                 </div>
@@ -7541,8 +7541,8 @@ exports[`VDataTable.ts should render non-selectable items correctly 1`] = `
               aria-label="Previous page"
       >
         <span class="v-btn__content">
-          <i aria-hidden="true"
-             class="v-icon notranslate material-icons theme--light"
+          <i class="v-icon notranslate theme--light material-icons"
+             aria-hidden="true"
           >
           </i>
         </span>
@@ -7555,8 +7555,8 @@ exports[`VDataTable.ts should render non-selectable items correctly 1`] = `
               aria-label="Next page"
       >
         <span class="v-btn__content">
-          <i aria-hidden="true"
-             class="v-icon notranslate material-icons theme--light"
+          <i class="v-icon notranslate theme--light material-icons"
+             aria-hidden="true"
           >
           </i>
         </span>
@@ -7588,8 +7588,8 @@ exports[`VDataTable.ts should render select-all checkbox when items are selectab
               >
                 <div class="v-simple-checkbox v-data-table__checkbox v-data-table__checkbox">
                   <div class="v-input--selection-controls__input">
-                    <i aria-hidden="true"
-                       class="v-icon notranslate material-icons theme--light"
+                    <i class="v-icon notranslate theme--light material-icons"
+                       aria-hidden="true"
                     >
                     </i>
                     <div class="v-input--selection-controls__ripple">
@@ -7623,8 +7623,8 @@ exports[`VDataTable.ts should render select-all checkbox when items are selectab
                       </div>
                       <div class="v-input__append-inner">
                         <div class="v-input__icon v-input__icon--append">
-                          <i aria-hidden="true"
-                             class="v-icon notranslate material-icons theme--light"
+                          <i class="v-icon notranslate theme--light material-icons"
+                             aria-hidden="true"
                           >
                           </i>
                         </div>
@@ -7648,8 +7648,8 @@ exports[`VDataTable.ts should render select-all checkbox when items are selectab
             <div class="v-data-table__mobile-row__cell">
               <div class="v-simple-checkbox v-simple-checkbox--disabled v-data-table__checkbox v-data-table__checkbox">
                 <div class="v-input--selection-controls__input">
-                  <i aria-hidden="true"
-                     class="v-icon--disabled v-icon notranslate material-icons theme--light"
+                  <i class="v-icon--disabled v-icon notranslate theme--light material-icons"
+                     aria-hidden="true"
                   >
                   </i>
                 </div>
@@ -7712,8 +7712,8 @@ exports[`VDataTable.ts should render select-all checkbox when items are selectab
             <div class="v-data-table__mobile-row__cell">
               <div class="v-simple-checkbox v-data-table__checkbox v-data-table__checkbox">
                 <div class="v-input--selection-controls__input">
-                  <i aria-hidden="true"
-                     class="v-icon notranslate material-icons theme--light"
+                  <i class="v-icon notranslate theme--light material-icons"
+                     aria-hidden="true"
                   >
                   </i>
                   <div class="v-input--selection-controls__ripple">
@@ -7802,8 +7802,8 @@ exports[`VDataTable.ts should render select-all checkbox when items are selectab
               </div>
               <div class="v-input__append-inner">
                 <div class="v-input__icon v-input__icon--append">
-                  <i aria-hidden="true"
-                     class="v-icon notranslate material-icons theme--light"
+                  <i class="v-icon notranslate theme--light material-icons"
+                     aria-hidden="true"
                   >
                   </i>
                 </div>
@@ -7828,8 +7828,8 @@ exports[`VDataTable.ts should render select-all checkbox when items are selectab
               aria-label="Previous page"
       >
         <span class="v-btn__content">
-          <i aria-hidden="true"
-             class="v-icon notranslate material-icons theme--light"
+          <i class="v-icon notranslate theme--light material-icons"
+             aria-hidden="true"
           >
           </i>
         </span>
@@ -7842,8 +7842,8 @@ exports[`VDataTable.ts should render select-all checkbox when items are selectab
               aria-label="Next page"
       >
         <span class="v-btn__content">
-          <i aria-hidden="true"
-             class="v-icon notranslate material-icons theme--light"
+          <i class="v-icon notranslate theme--light material-icons"
+             aria-hidden="true"
           >
           </i>
         </span>
@@ -7875,8 +7875,8 @@ exports[`VDataTable.ts should render selection checkboxes on multiple pages with
               >
                 <div class="v-simple-checkbox v-data-table__checkbox v-data-table__checkbox">
                   <div class="v-input--selection-controls__input">
-                    <i aria-hidden="true"
-                       class="v-icon notranslate material-icons theme--light"
+                    <i class="v-icon notranslate theme--light material-icons"
+                       aria-hidden="true"
                     >
                     </i>
                     <div class="v-input--selection-controls__ripple">
@@ -7910,8 +7910,8 @@ exports[`VDataTable.ts should render selection checkboxes on multiple pages with
                       </div>
                       <div class="v-input__append-inner">
                         <div class="v-input__icon v-input__icon--append">
-                          <i aria-hidden="true"
-                             class="v-icon notranslate material-icons theme--light"
+                          <i class="v-icon notranslate theme--light material-icons"
+                             aria-hidden="true"
                           >
                           </i>
                         </div>
@@ -7935,8 +7935,8 @@ exports[`VDataTable.ts should render selection checkboxes on multiple pages with
             <div class="v-data-table__mobile-row__cell">
               <div class="v-simple-checkbox v-data-table__checkbox v-data-table__checkbox">
                 <div class="v-input--selection-controls__input">
-                  <i aria-hidden="true"
-                     class="v-icon notranslate material-icons theme--light"
+                  <i class="v-icon notranslate theme--light material-icons"
+                     aria-hidden="true"
                   >
                   </i>
                   <div class="v-input--selection-controls__ripple">
@@ -8001,8 +8001,8 @@ exports[`VDataTable.ts should render selection checkboxes on multiple pages with
             <div class="v-data-table__mobile-row__cell">
               <div class="v-simple-checkbox v-data-table__checkbox v-data-table__checkbox">
                 <div class="v-input--selection-controls__input">
-                  <i aria-hidden="true"
-                     class="v-icon notranslate material-icons theme--light"
+                  <i class="v-icon notranslate theme--light material-icons"
+                     aria-hidden="true"
                   >
                   </i>
                   <div class="v-input--selection-controls__ripple">
@@ -8067,8 +8067,8 @@ exports[`VDataTable.ts should render selection checkboxes on multiple pages with
             <div class="v-data-table__mobile-row__cell">
               <div class="v-simple-checkbox v-data-table__checkbox v-data-table__checkbox">
                 <div class="v-input--selection-controls__input">
-                  <i aria-hidden="true"
-                     class="v-icon notranslate material-icons theme--light"
+                  <i class="v-icon notranslate theme--light material-icons"
+                     aria-hidden="true"
                   >
                   </i>
                   <div class="v-input--selection-controls__ripple">
@@ -8157,8 +8157,8 @@ exports[`VDataTable.ts should render selection checkboxes on multiple pages with
               </div>
               <div class="v-input__append-inner">
                 <div class="v-input__icon v-input__icon--append">
-                  <i aria-hidden="true"
-                     class="v-icon notranslate material-icons theme--light"
+                  <i class="v-icon notranslate theme--light material-icons"
+                     aria-hidden="true"
                   >
                   </i>
                 </div>
@@ -8182,8 +8182,8 @@ exports[`VDataTable.ts should render selection checkboxes on multiple pages with
               aria-label="Previous page"
       >
         <span class="v-btn__content">
-          <i aria-hidden="true"
-             class="v-icon notranslate material-icons theme--light"
+          <i class="v-icon notranslate theme--light material-icons"
+             aria-hidden="true"
           >
           </i>
         </span>
@@ -8196,8 +8196,8 @@ exports[`VDataTable.ts should render selection checkboxes on multiple pages with
               disabled
       >
         <span class="v-btn__content">
-          <i aria-hidden="true"
-             class="v-icon notranslate material-icons theme--light"
+          <i class="v-icon notranslate theme--light material-icons"
+             aria-hidden="true"
           >
           </i>
         </span>
@@ -8249,8 +8249,8 @@ exports[`VDataTable.ts should render virtual table 1`] = `
                       </div>
                       <div class="v-input__append-inner">
                         <div class="v-input__icon v-input__icon--append">
-                          <i aria-hidden="true"
-                             class="v-icon notranslate material-icons theme--light"
+                          <i class="v-icon notranslate theme--light material-icons"
+                             aria-hidden="true"
                           >
                           </i>
                         </div>
@@ -8548,8 +8548,8 @@ exports[`VDataTable.ts should render virtual table 1`] = `
               </div>
               <div class="v-input__append-inner">
                 <div class="v-input__icon v-input__icon--append">
-                  <i aria-hidden="true"
-                     class="v-icon notranslate material-icons theme--light"
+                  <i class="v-icon notranslate theme--light material-icons"
+                     aria-hidden="true"
                   >
                   </i>
                 </div>
@@ -8574,8 +8574,8 @@ exports[`VDataTable.ts should render virtual table 1`] = `
               aria-label="Previous page"
       >
         <span class="v-btn__content">
-          <i aria-hidden="true"
-             class="v-icon notranslate material-icons theme--light"
+          <i class="v-icon notranslate theme--light material-icons"
+             aria-hidden="true"
           >
           </i>
         </span>
@@ -8587,8 +8587,8 @@ exports[`VDataTable.ts should render virtual table 1`] = `
               aria-label="Next page"
       >
         <span class="v-btn__content">
-          <i aria-hidden="true"
-             class="v-icon notranslate material-icons theme--light"
+          <i class="v-icon notranslate theme--light material-icons"
+             aria-hidden="true"
           >
           </i>
         </span>
@@ -8640,8 +8640,8 @@ exports[`VDataTable.ts should render with body slot 1`] = `
                       </div>
                       <div class="v-input__append-inner">
                         <div class="v-input__icon v-input__icon--append">
-                          <i aria-hidden="true"
-                             class="v-icon notranslate material-icons theme--light"
+                          <i class="v-icon notranslate theme--light material-icons"
+                             aria-hidden="true"
                           >
                           </i>
                         </div>
@@ -8690,8 +8690,8 @@ exports[`VDataTable.ts should render with body slot 1`] = `
               </div>
               <div class="v-input__append-inner">
                 <div class="v-input__icon v-input__icon--append">
-                  <i aria-hidden="true"
-                     class="v-icon notranslate material-icons theme--light"
+                  <i class="v-icon notranslate theme--light material-icons"
+                     aria-hidden="true"
                   >
                   </i>
                 </div>
@@ -8716,8 +8716,8 @@ exports[`VDataTable.ts should render with body slot 1`] = `
               aria-label="Previous page"
       >
         <span class="v-btn__content">
-          <i aria-hidden="true"
-             class="v-icon notranslate material-icons theme--light"
+          <i class="v-icon notranslate theme--light material-icons"
+             aria-hidden="true"
           >
           </i>
         </span>
@@ -8729,8 +8729,8 @@ exports[`VDataTable.ts should render with body slot 1`] = `
               aria-label="Next page"
       >
         <span class="v-btn__content">
-          <i aria-hidden="true"
-             class="v-icon notranslate material-icons theme--light"
+          <i class="v-icon notranslate theme--light material-icons"
+             aria-hidden="true"
           >
           </i>
         </span>
@@ -8782,8 +8782,8 @@ exports[`VDataTable.ts should render with data 1`] = `
                       </div>
                       <div class="v-input__append-inner">
                         <div class="v-input__icon v-input__icon--append">
-                          <i aria-hidden="true"
-                             class="v-icon notranslate material-icons theme--light"
+                          <i class="v-icon notranslate theme--light material-icons"
+                             aria-hidden="true"
                           >
                           </i>
                         </div>
@@ -9081,8 +9081,8 @@ exports[`VDataTable.ts should render with data 1`] = `
               </div>
               <div class="v-input__append-inner">
                 <div class="v-input__icon v-input__icon--append">
-                  <i aria-hidden="true"
-                     class="v-icon notranslate material-icons theme--light"
+                  <i class="v-icon notranslate theme--light material-icons"
+                     aria-hidden="true"
                   >
                   </i>
                 </div>
@@ -9107,8 +9107,8 @@ exports[`VDataTable.ts should render with data 1`] = `
               aria-label="Previous page"
       >
         <span class="v-btn__content">
-          <i aria-hidden="true"
-             class="v-icon notranslate material-icons theme--light"
+          <i class="v-icon notranslate theme--light material-icons"
+             aria-hidden="true"
           >
           </i>
         </span>
@@ -9120,8 +9120,8 @@ exports[`VDataTable.ts should render with data 1`] = `
               aria-label="Next page"
       >
         <span class="v-btn__content">
-          <i aria-hidden="true"
-             class="v-icon notranslate material-icons theme--light"
+          <i class="v-icon notranslate theme--light material-icons"
+             aria-hidden="true"
           >
           </i>
         </span>
@@ -9173,8 +9173,8 @@ exports[`VDataTable.ts should render with foot slot 1`] = `
                       </div>
                       <div class="v-input__append-inner">
                         <div class="v-input__icon v-input__icon--append">
-                          <i aria-hidden="true"
-                             class="v-icon notranslate material-icons theme--light"
+                          <i class="v-icon notranslate theme--light material-icons"
+                             aria-hidden="true"
                           >
                           </i>
                         </div>
@@ -9475,8 +9475,8 @@ exports[`VDataTable.ts should render with foot slot 1`] = `
               </div>
               <div class="v-input__append-inner">
                 <div class="v-input__icon v-input__icon--append">
-                  <i aria-hidden="true"
-                     class="v-icon notranslate material-icons theme--light"
+                  <i class="v-icon notranslate theme--light material-icons"
+                     aria-hidden="true"
                   >
                   </i>
                 </div>
@@ -9501,8 +9501,8 @@ exports[`VDataTable.ts should render with foot slot 1`] = `
               aria-label="Previous page"
       >
         <span class="v-btn__content">
-          <i aria-hidden="true"
-             class="v-icon notranslate material-icons theme--light"
+          <i class="v-icon notranslate theme--light material-icons"
+             aria-hidden="true"
           >
           </i>
         </span>
@@ -9514,8 +9514,8 @@ exports[`VDataTable.ts should render with foot slot 1`] = `
               aria-label="Next page"
       >
         <span class="v-btn__content">
-          <i aria-hidden="true"
-             class="v-icon notranslate material-icons theme--light"
+          <i class="v-icon notranslate theme--light material-icons"
+             aria-hidden="true"
           >
           </i>
         </span>
@@ -9567,8 +9567,8 @@ exports[`VDataTable.ts should render with group scoped slot 1`] = `
                       </div>
                       <div class="v-input__append-inner">
                         <div class="v-input__icon v-input__icon--append">
-                          <i aria-hidden="true"
-                             class="v-icon notranslate material-icons theme--light"
+                          <i class="v-icon notranslate theme--light material-icons"
+                             aria-hidden="true"
                           >
                           </i>
                         </div>
@@ -9628,8 +9628,8 @@ exports[`VDataTable.ts should render with group scoped slot 1`] = `
               </div>
               <div class="v-input__append-inner">
                 <div class="v-input__icon v-input__icon--append">
-                  <i aria-hidden="true"
-                     class="v-icon notranslate material-icons theme--light"
+                  <i class="v-icon notranslate theme--light material-icons"
+                     aria-hidden="true"
                   >
                   </i>
                 </div>
@@ -9654,8 +9654,8 @@ exports[`VDataTable.ts should render with group scoped slot 1`] = `
               aria-label="Previous page"
       >
         <span class="v-btn__content">
-          <i aria-hidden="true"
-             class="v-icon notranslate material-icons theme--light"
+          <i class="v-icon notranslate theme--light material-icons"
+             aria-hidden="true"
           >
           </i>
         </span>
@@ -9667,8 +9667,8 @@ exports[`VDataTable.ts should render with group scoped slot 1`] = `
               aria-label="Next page"
       >
         <span class="v-btn__content">
-          <i aria-hidden="true"
-             class="v-icon notranslate material-icons theme--light"
+          <i class="v-icon notranslate theme--light material-icons"
+             aria-hidden="true"
           >
           </i>
         </span>
@@ -9720,8 +9720,8 @@ exports[`VDataTable.ts should render with group.summary scoped slot 1`] = `
                       </div>
                       <div class="v-input__append-inner">
                         <div class="v-input__icon v-input__icon--append">
-                          <i aria-hidden="true"
-                             class="v-icon notranslate material-icons theme--light"
+                          <i class="v-icon notranslate theme--light material-icons"
+                             aria-hidden="true"
                           >
                           </i>
                         </div>
@@ -9769,8 +9769,8 @@ exports[`VDataTable.ts should render with group.summary scoped slot 1`] = `
               </div>
               <div class="v-input__append-inner">
                 <div class="v-input__icon v-input__icon--append">
-                  <i aria-hidden="true"
-                     class="v-icon notranslate material-icons theme--light"
+                  <i class="v-icon notranslate theme--light material-icons"
+                     aria-hidden="true"
                   >
                   </i>
                 </div>
@@ -9795,8 +9795,8 @@ exports[`VDataTable.ts should render with group.summary scoped slot 1`] = `
               aria-label="Previous page"
       >
         <span class="v-btn__content">
-          <i aria-hidden="true"
-             class="v-icon notranslate material-icons theme--light"
+          <i class="v-icon notranslate theme--light material-icons"
+             aria-hidden="true"
           >
           </i>
         </span>
@@ -9808,8 +9808,8 @@ exports[`VDataTable.ts should render with group.summary scoped slot 1`] = `
               aria-label="Next page"
       >
         <span class="v-btn__content">
-          <i aria-hidden="true"
-             class="v-icon notranslate material-icons theme--light"
+          <i class="v-icon notranslate theme--light material-icons"
+             aria-hidden="true"
           >
           </i>
         </span>
@@ -9861,8 +9861,8 @@ exports[`VDataTable.ts should render with grouped rows 1`] = `
                       </div>
                       <div class="v-input__append-inner">
                         <div class="v-input__icon v-input__icon--append">
-                          <i aria-hidden="true"
-                             class="v-icon notranslate material-icons theme--light"
+                          <i class="v-icon notranslate theme--light material-icons"
+                             aria-hidden="true"
                           >
                           </i>
                         </div>
@@ -9910,8 +9910,8 @@ exports[`VDataTable.ts should render with grouped rows 1`] = `
               </div>
               <div class="v-input__append-inner">
                 <div class="v-input__icon v-input__icon--append">
-                  <i aria-hidden="true"
-                     class="v-icon notranslate material-icons theme--light"
+                  <i class="v-icon notranslate theme--light material-icons"
+                     aria-hidden="true"
                   >
                   </i>
                 </div>
@@ -9936,8 +9936,8 @@ exports[`VDataTable.ts should render with grouped rows 1`] = `
               aria-label="Previous page"
       >
         <span class="v-btn__content">
-          <i aria-hidden="true"
-             class="v-icon notranslate material-icons theme--light"
+          <i class="v-icon notranslate theme--light material-icons"
+             aria-hidden="true"
           >
           </i>
         </span>
@@ -9949,8 +9949,8 @@ exports[`VDataTable.ts should render with grouped rows 1`] = `
               aria-label="Next page"
       >
         <span class="v-btn__content">
-          <i aria-hidden="true"
-             class="v-icon notranslate material-icons theme--light"
+          <i class="v-icon notranslate theme--light material-icons"
+             aria-hidden="true"
           >
           </i>
         </span>
@@ -10002,8 +10002,8 @@ exports[`VDataTable.ts should render with item scoped slot 1`] = `
                       </div>
                       <div class="v-input__append-inner">
                         <div class="v-input__icon v-input__icon--append">
-                          <i aria-hidden="true"
-                             class="v-icon notranslate material-icons theme--light"
+                          <i class="v-icon notranslate theme--light material-icons"
+                             aria-hidden="true"
                           >
                           </i>
                         </div>
@@ -10066,8 +10066,8 @@ exports[`VDataTable.ts should render with item scoped slot 1`] = `
               </div>
               <div class="v-input__append-inner">
                 <div class="v-input__icon v-input__icon--append">
-                  <i aria-hidden="true"
-                     class="v-icon notranslate material-icons theme--light"
+                  <i class="v-icon notranslate theme--light material-icons"
+                     aria-hidden="true"
                   >
                   </i>
                 </div>
@@ -10092,8 +10092,8 @@ exports[`VDataTable.ts should render with item scoped slot 1`] = `
               aria-label="Previous page"
       >
         <span class="v-btn__content">
-          <i aria-hidden="true"
-             class="v-icon notranslate material-icons theme--light"
+          <i class="v-icon notranslate theme--light material-icons"
+             aria-hidden="true"
           >
           </i>
         </span>
@@ -10105,8 +10105,8 @@ exports[`VDataTable.ts should render with item scoped slot 1`] = `
               aria-label="Next page"
       >
         <span class="v-btn__content">
-          <i aria-hidden="true"
-             class="v-icon notranslate material-icons theme--light"
+          <i class="v-icon notranslate theme--light material-icons"
+             aria-hidden="true"
           >
           </i>
         </span>
@@ -10158,8 +10158,8 @@ exports[`VDataTable.ts should render with item.expanded scoped slot 1`] = `
                       </div>
                       <div class="v-input__append-inner">
                         <div class="v-input__icon v-input__icon--append">
-                          <i aria-hidden="true"
-                             class="v-icon notranslate material-icons theme--light"
+                          <i class="v-icon notranslate theme--light material-icons"
+                             aria-hidden="true"
                           >
                           </i>
                         </div>
@@ -10207,8 +10207,8 @@ exports[`VDataTable.ts should render with item.expanded scoped slot 1`] = `
               </div>
               <div class="v-input__append-inner">
                 <div class="v-input__icon v-input__icon--append">
-                  <i aria-hidden="true"
-                     class="v-icon notranslate material-icons theme--light"
+                  <i class="v-icon notranslate theme--light material-icons"
+                     aria-hidden="true"
                   >
                   </i>
                 </div>
@@ -10233,8 +10233,8 @@ exports[`VDataTable.ts should render with item.expanded scoped slot 1`] = `
               aria-label="Previous page"
       >
         <span class="v-btn__content">
-          <i aria-hidden="true"
-             class="v-icon notranslate material-icons theme--light"
+          <i class="v-icon notranslate theme--light material-icons"
+             aria-hidden="true"
           >
           </i>
         </span>
@@ -10246,8 +10246,8 @@ exports[`VDataTable.ts should render with item.expanded scoped slot 1`] = `
               aria-label="Next page"
       >
         <span class="v-btn__content">
-          <i aria-hidden="true"
-             class="v-icon notranslate material-icons theme--light"
+          <i class="v-icon notranslate theme--light material-icons"
+             aria-hidden="true"
           >
           </i>
         </span>
@@ -10300,8 +10300,8 @@ exports[`VDataTable.ts should render with showExpand 1`] = `
                       </div>
                       <div class="v-input__append-inner">
                         <div class="v-input__icon v-input__icon--append">
-                          <i aria-hidden="true"
-                             class="v-icon notranslate material-icons theme--light"
+                          <i class="v-icon notranslate theme--light material-icons"
+                             aria-hidden="true"
                           >
                           </i>
                         </div>
@@ -10323,8 +10323,8 @@ exports[`VDataTable.ts should render with showExpand 1`] = `
             <div class="v-data-table__mobile-row__header">
             </div>
             <div class="v-data-table__mobile-row__cell">
-              <button aria-hidden="false"
-                      class="v-icon--link v-icon notranslate material-icons theme--light v-data-table__expand-icon"
+              <button class="v-icon--link v-icon notranslate theme--light material-icons v-data-table__expand-icon"
+                      aria-hidden="false"
                       type="button"
               >
               </button>
@@ -10384,8 +10384,8 @@ exports[`VDataTable.ts should render with showExpand 1`] = `
             <div class="v-data-table__mobile-row__header">
             </div>
             <div class="v-data-table__mobile-row__cell">
-              <button aria-hidden="false"
-                      class="v-icon--link v-icon notranslate material-icons theme--light v-data-table__expand-icon"
+              <button class="v-icon--link v-icon notranslate theme--light material-icons v-data-table__expand-icon"
+                      aria-hidden="false"
                       type="button"
               >
               </button>
@@ -10445,8 +10445,8 @@ exports[`VDataTable.ts should render with showExpand 1`] = `
             <div class="v-data-table__mobile-row__header">
             </div>
             <div class="v-data-table__mobile-row__cell">
-              <button aria-hidden="false"
-                      class="v-icon--link v-icon notranslate material-icons theme--light v-data-table__expand-icon"
+              <button class="v-icon--link v-icon notranslate theme--light material-icons v-data-table__expand-icon"
+                      aria-hidden="false"
                       type="button"
               >
               </button>
@@ -10506,8 +10506,8 @@ exports[`VDataTable.ts should render with showExpand 1`] = `
             <div class="v-data-table__mobile-row__header">
             </div>
             <div class="v-data-table__mobile-row__cell">
-              <button aria-hidden="false"
-                      class="v-icon--link v-icon notranslate material-icons theme--light v-data-table__expand-icon"
+              <button class="v-icon--link v-icon notranslate theme--light material-icons v-data-table__expand-icon"
+                      aria-hidden="false"
                       type="button"
               >
               </button>
@@ -10567,8 +10567,8 @@ exports[`VDataTable.ts should render with showExpand 1`] = `
             <div class="v-data-table__mobile-row__header">
             </div>
             <div class="v-data-table__mobile-row__cell">
-              <button aria-hidden="false"
-                      class="v-icon--link v-icon notranslate material-icons theme--light v-data-table__expand-icon"
+              <button class="v-icon--link v-icon notranslate theme--light material-icons v-data-table__expand-icon"
+                      aria-hidden="false"
                       type="button"
               >
               </button>
@@ -10654,8 +10654,8 @@ exports[`VDataTable.ts should render with showExpand 1`] = `
               </div>
               <div class="v-input__append-inner">
                 <div class="v-input__icon v-input__icon--append">
-                  <i aria-hidden="true"
-                     class="v-icon notranslate material-icons theme--light"
+                  <i class="v-icon notranslate theme--light material-icons"
+                     aria-hidden="true"
                   >
                   </i>
                 </div>
@@ -10680,8 +10680,8 @@ exports[`VDataTable.ts should render with showExpand 1`] = `
               aria-label="Previous page"
       >
         <span class="v-btn__content">
-          <i aria-hidden="true"
-             class="v-icon notranslate material-icons theme--light"
+          <i class="v-icon notranslate theme--light material-icons"
+             aria-hidden="true"
           >
           </i>
         </span>
@@ -10693,8 +10693,8 @@ exports[`VDataTable.ts should render with showExpand 1`] = `
               aria-label="Next page"
       >
         <span class="v-btn__content">
-          <i aria-hidden="true"
-             class="v-icon notranslate material-icons theme--light"
+          <i class="v-icon notranslate theme--light material-icons"
+             aria-hidden="true"
           >
           </i>
         </span>
@@ -10747,8 +10747,8 @@ exports[`VDataTable.ts should render with showExpand 2`] = `
                       </div>
                       <div class="v-input__append-inner">
                         <div class="v-input__icon v-input__icon--append">
-                          <i aria-hidden="true"
-                             class="v-icon notranslate material-icons theme--light"
+                          <i class="v-icon notranslate theme--light material-icons"
+                             aria-hidden="true"
                           >
                           </i>
                         </div>
@@ -10770,8 +10770,8 @@ exports[`VDataTable.ts should render with showExpand 2`] = `
             <div class="v-data-table__mobile-row__header">
             </div>
             <div class="v-data-table__mobile-row__cell">
-              <button aria-hidden="false"
-                      class="v-icon--link v-icon notranslate material-icons theme--light v-data-table__expand-icon v-data-table__expand-icon--active"
+              <button class="v-icon--link v-icon notranslate theme--light material-icons v-data-table__expand-icon v-data-table__expand-icon--active"
+                      aria-hidden="false"
                       type="button"
               >
               </button>
@@ -10831,8 +10831,8 @@ exports[`VDataTable.ts should render with showExpand 2`] = `
             <div class="v-data-table__mobile-row__header">
             </div>
             <div class="v-data-table__mobile-row__cell">
-              <button aria-hidden="false"
-                      class="v-icon--link v-icon notranslate material-icons theme--light v-data-table__expand-icon"
+              <button class="v-icon--link v-icon notranslate theme--light material-icons v-data-table__expand-icon"
+                      aria-hidden="false"
                       type="button"
               >
               </button>
@@ -10892,8 +10892,8 @@ exports[`VDataTable.ts should render with showExpand 2`] = `
             <div class="v-data-table__mobile-row__header">
             </div>
             <div class="v-data-table__mobile-row__cell">
-              <button aria-hidden="false"
-                      class="v-icon--link v-icon notranslate material-icons theme--light v-data-table__expand-icon"
+              <button class="v-icon--link v-icon notranslate theme--light material-icons v-data-table__expand-icon"
+                      aria-hidden="false"
                       type="button"
               >
               </button>
@@ -10953,8 +10953,8 @@ exports[`VDataTable.ts should render with showExpand 2`] = `
             <div class="v-data-table__mobile-row__header">
             </div>
             <div class="v-data-table__mobile-row__cell">
-              <button aria-hidden="false"
-                      class="v-icon--link v-icon notranslate material-icons theme--light v-data-table__expand-icon"
+              <button class="v-icon--link v-icon notranslate theme--light material-icons v-data-table__expand-icon"
+                      aria-hidden="false"
                       type="button"
               >
               </button>
@@ -11014,8 +11014,8 @@ exports[`VDataTable.ts should render with showExpand 2`] = `
             <div class="v-data-table__mobile-row__header">
             </div>
             <div class="v-data-table__mobile-row__cell">
-              <button aria-hidden="false"
-                      class="v-icon--link v-icon notranslate material-icons theme--light v-data-table__expand-icon"
+              <button class="v-icon--link v-icon notranslate theme--light material-icons v-data-table__expand-icon"
+                      aria-hidden="false"
                       type="button"
               >
               </button>
@@ -11101,8 +11101,8 @@ exports[`VDataTable.ts should render with showExpand 2`] = `
               </div>
               <div class="v-input__append-inner">
                 <div class="v-input__icon v-input__icon--append">
-                  <i aria-hidden="true"
-                     class="v-icon notranslate material-icons theme--light"
+                  <i class="v-icon notranslate theme--light material-icons"
+                     aria-hidden="true"
                   >
                   </i>
                 </div>
@@ -11127,8 +11127,8 @@ exports[`VDataTable.ts should render with showExpand 2`] = `
               aria-label="Previous page"
       >
         <span class="v-btn__content">
-          <i aria-hidden="true"
-             class="v-icon notranslate material-icons theme--light"
+          <i class="v-icon notranslate theme--light material-icons"
+             aria-hidden="true"
           >
           </i>
         </span>
@@ -11140,8 +11140,8 @@ exports[`VDataTable.ts should render with showExpand 2`] = `
               aria-label="Next page"
       >
         <span class="v-btn__content">
-          <i aria-hidden="true"
-             class="v-icon notranslate material-icons theme--light"
+          <i class="v-icon notranslate theme--light material-icons"
+             aria-hidden="true"
           >
           </i>
         </span>
@@ -11173,8 +11173,8 @@ exports[`VDataTable.ts should render with showSelect 1`] = `
               >
                 <div class="v-simple-checkbox v-data-table__checkbox v-data-table__checkbox">
                   <div class="v-input--selection-controls__input">
-                    <i aria-hidden="true"
-                       class="v-icon notranslate material-icons theme--light"
+                    <i class="v-icon notranslate theme--light material-icons"
+                       aria-hidden="true"
                     >
                     </i>
                     <div class="v-input--selection-controls__ripple">
@@ -11208,8 +11208,8 @@ exports[`VDataTable.ts should render with showSelect 1`] = `
                       </div>
                       <div class="v-input__append-inner">
                         <div class="v-input__icon v-input__icon--append">
-                          <i aria-hidden="true"
-                             class="v-icon notranslate material-icons theme--light"
+                          <i class="v-icon notranslate theme--light material-icons"
+                             aria-hidden="true"
                           >
                           </i>
                         </div>
@@ -11233,8 +11233,8 @@ exports[`VDataTable.ts should render with showSelect 1`] = `
             <div class="v-data-table__mobile-row__cell">
               <div class="v-simple-checkbox v-data-table__checkbox v-data-table__checkbox">
                 <div class="v-input--selection-controls__input">
-                  <i aria-hidden="true"
-                     class="v-icon notranslate material-icons theme--light"
+                  <i class="v-icon notranslate theme--light material-icons"
+                     aria-hidden="true"
                   >
                   </i>
                   <div class="v-input--selection-controls__ripple">
@@ -11299,8 +11299,8 @@ exports[`VDataTable.ts should render with showSelect 1`] = `
             <div class="v-data-table__mobile-row__cell">
               <div class="v-simple-checkbox v-data-table__checkbox v-data-table__checkbox">
                 <div class="v-input--selection-controls__input">
-                  <i aria-hidden="true"
-                     class="v-icon notranslate material-icons theme--light"
+                  <i class="v-icon notranslate theme--light material-icons"
+                     aria-hidden="true"
                   >
                   </i>
                   <div class="v-input--selection-controls__ripple">
@@ -11365,8 +11365,8 @@ exports[`VDataTable.ts should render with showSelect 1`] = `
             <div class="v-data-table__mobile-row__cell">
               <div class="v-simple-checkbox v-data-table__checkbox v-data-table__checkbox">
                 <div class="v-input--selection-controls__input">
-                  <i aria-hidden="true"
-                     class="v-icon notranslate material-icons theme--light"
+                  <i class="v-icon notranslate theme--light material-icons"
+                     aria-hidden="true"
                   >
                   </i>
                   <div class="v-input--selection-controls__ripple">
@@ -11431,8 +11431,8 @@ exports[`VDataTable.ts should render with showSelect 1`] = `
             <div class="v-data-table__mobile-row__cell">
               <div class="v-simple-checkbox v-data-table__checkbox v-data-table__checkbox">
                 <div class="v-input--selection-controls__input">
-                  <i aria-hidden="true"
-                     class="v-icon notranslate material-icons theme--light"
+                  <i class="v-icon notranslate theme--light material-icons"
+                     aria-hidden="true"
                   >
                   </i>
                   <div class="v-input--selection-controls__ripple">
@@ -11497,8 +11497,8 @@ exports[`VDataTable.ts should render with showSelect 1`] = `
             <div class="v-data-table__mobile-row__cell">
               <div class="v-simple-checkbox v-data-table__checkbox v-data-table__checkbox">
                 <div class="v-input--selection-controls__input">
-                  <i aria-hidden="true"
-                     class="v-icon notranslate material-icons theme--light"
+                  <i class="v-icon notranslate theme--light material-icons"
+                     aria-hidden="true"
                   >
                   </i>
                   <div class="v-input--selection-controls__ripple">
@@ -11587,8 +11587,8 @@ exports[`VDataTable.ts should render with showSelect 1`] = `
               </div>
               <div class="v-input__append-inner">
                 <div class="v-input__icon v-input__icon--append">
-                  <i aria-hidden="true"
-                     class="v-icon notranslate material-icons theme--light"
+                  <i class="v-icon notranslate theme--light material-icons"
+                     aria-hidden="true"
                   >
                   </i>
                 </div>
@@ -11613,8 +11613,8 @@ exports[`VDataTable.ts should render with showSelect 1`] = `
               aria-label="Previous page"
       >
         <span class="v-btn__content">
-          <i aria-hidden="true"
-             class="v-icon notranslate material-icons theme--light"
+          <i class="v-icon notranslate theme--light material-icons"
+             aria-hidden="true"
           >
           </i>
         </span>
@@ -11626,8 +11626,8 @@ exports[`VDataTable.ts should render with showSelect 1`] = `
               aria-label="Next page"
       >
         <span class="v-btn__content">
-          <i aria-hidden="true"
-             class="v-icon notranslate material-icons theme--light"
+          <i class="v-icon notranslate theme--light material-icons"
+             aria-hidden="true"
           >
           </i>
         </span>
@@ -11680,8 +11680,8 @@ exports[`VDataTable.ts should render with single-select checkboxes 1`] = `
                       </div>
                       <div class="v-input__append-inner">
                         <div class="v-input__icon v-input__icon--append">
-                          <i aria-hidden="true"
-                             class="v-icon notranslate material-icons theme--light"
+                          <i class="v-icon notranslate theme--light material-icons"
+                             aria-hidden="true"
                           >
                           </i>
                         </div>
@@ -11705,8 +11705,8 @@ exports[`VDataTable.ts should render with single-select checkboxes 1`] = `
             <div class="v-data-table__mobile-row__cell">
               <div class="v-simple-checkbox v-data-table__checkbox v-data-table__checkbox">
                 <div class="v-input--selection-controls__input">
-                  <i aria-hidden="true"
-                     class="v-icon notranslate material-icons theme--light"
+                  <i class="v-icon notranslate theme--light material-icons"
+                     aria-hidden="true"
                   >
                   </i>
                   <div class="v-input--selection-controls__ripple">
@@ -11771,8 +11771,8 @@ exports[`VDataTable.ts should render with single-select checkboxes 1`] = `
             <div class="v-data-table__mobile-row__cell">
               <div class="v-simple-checkbox v-data-table__checkbox v-data-table__checkbox">
                 <div class="v-input--selection-controls__input">
-                  <i aria-hidden="true"
-                     class="v-icon notranslate material-icons theme--light"
+                  <i class="v-icon notranslate theme--light material-icons"
+                     aria-hidden="true"
                   >
                   </i>
                   <div class="v-input--selection-controls__ripple">
@@ -11861,8 +11861,8 @@ exports[`VDataTable.ts should render with single-select checkboxes 1`] = `
               </div>
               <div class="v-input__append-inner">
                 <div class="v-input__icon v-input__icon--append">
-                  <i aria-hidden="true"
-                     class="v-icon notranslate material-icons theme--light"
+                  <i class="v-icon notranslate theme--light material-icons"
+                     aria-hidden="true"
                   >
                   </i>
                 </div>
@@ -11887,8 +11887,8 @@ exports[`VDataTable.ts should render with single-select checkboxes 1`] = `
               aria-label="Previous page"
       >
         <span class="v-btn__content">
-          <i aria-hidden="true"
-             class="v-icon notranslate material-icons theme--light"
+          <i class="v-icon notranslate theme--light material-icons"
+             aria-hidden="true"
           >
           </i>
         </span>
@@ -11901,8 +11901,8 @@ exports[`VDataTable.ts should render with single-select checkboxes 1`] = `
               aria-label="Next page"
       >
         <span class="v-btn__content">
-          <i aria-hidden="true"
-             class="v-icon notranslate material-icons theme--light"
+          <i class="v-icon notranslate theme--light material-icons"
+             aria-hidden="true"
           >
           </i>
         </span>
@@ -11949,8 +11949,8 @@ exports[`VDataTable.ts should respect mustSort property on options 1`] = `
                       </div>
                       <div class="v-input__append-inner">
                         <div class="v-input__icon v-input__icon--append">
-                          <i aria-hidden="true"
-                             class="v-icon notranslate material-icons theme--light"
+                          <i class="v-icon notranslate theme--light material-icons"
+                             aria-hidden="true"
                           >
                           </i>
                         </div>
@@ -12098,8 +12098,8 @@ exports[`VDataTable.ts should respect mustSort property on options 1`] = `
               </div>
               <div class="v-input__append-inner">
                 <div class="v-input__icon v-input__icon--append">
-                  <i aria-hidden="true"
-                     class="v-icon notranslate material-icons theme--light"
+                  <i class="v-icon notranslate theme--light material-icons"
+                     aria-hidden="true"
                   >
                   </i>
                 </div>
@@ -12124,8 +12124,8 @@ exports[`VDataTable.ts should respect mustSort property on options 1`] = `
               aria-label="Previous page"
       >
         <span class="v-btn__content">
-          <i aria-hidden="true"
-             class="v-icon notranslate material-icons theme--light"
+          <i class="v-icon notranslate theme--light material-icons"
+             aria-hidden="true"
           >
           </i>
         </span>
@@ -12138,8 +12138,8 @@ exports[`VDataTable.ts should respect mustSort property on options 1`] = `
               aria-label="Next page"
       >
         <span class="v-btn__content">
-          <i aria-hidden="true"
-             class="v-icon notranslate material-icons theme--light"
+          <i class="v-icon notranslate theme--light material-icons"
+             aria-hidden="true"
           >
           </i>
         </span>
@@ -12187,8 +12187,8 @@ exports[`VDataTable.ts should search group-by column 1`] = `
                       </div>
                       <div class="v-input__append-inner">
                         <div class="v-input__icon v-input__icon--append">
-                          <i aria-hidden="true"
-                             class="v-icon notranslate material-icons theme--light"
+                          <i class="v-icon notranslate theme--light material-icons"
+                             aria-hidden="true"
                           >
                           </i>
                         </div>
@@ -12236,8 +12236,8 @@ exports[`VDataTable.ts should search group-by column 1`] = `
               </div>
               <div class="v-input__append-inner">
                 <div class="v-input__icon v-input__icon--append">
-                  <i aria-hidden="true"
-                     class="v-icon notranslate material-icons theme--light"
+                  <i class="v-icon notranslate theme--light material-icons"
+                     aria-hidden="true"
                   >
                   </i>
                 </div>
@@ -12262,8 +12262,8 @@ exports[`VDataTable.ts should search group-by column 1`] = `
               aria-label="Previous page"
       >
         <span class="v-btn__content">
-          <i aria-hidden="true"
-             class="v-icon notranslate material-icons theme--light"
+          <i class="v-icon notranslate theme--light material-icons"
+             aria-hidden="true"
           >
           </i>
         </span>
@@ -12276,8 +12276,8 @@ exports[`VDataTable.ts should search group-by column 1`] = `
               aria-label="Next page"
       >
         <span class="v-btn__content">
-          <i aria-hidden="true"
-             class="v-icon notranslate material-icons theme--light"
+          <i class="v-icon notranslate theme--light material-icons"
+             aria-hidden="true"
           >
           </i>
         </span>
@@ -12324,8 +12324,8 @@ exports[`VDataTable.ts should search group-by column 2`] = `
                       </div>
                       <div class="v-input__append-inner">
                         <div class="v-input__icon v-input__icon--append">
-                          <i aria-hidden="true"
-                             class="v-icon notranslate material-icons theme--light"
+                          <i class="v-icon notranslate theme--light material-icons"
+                             aria-hidden="true"
                           >
                           </i>
                         </div>
@@ -12373,8 +12373,8 @@ exports[`VDataTable.ts should search group-by column 2`] = `
               </div>
               <div class="v-input__append-inner">
                 <div class="v-input__icon v-input__icon--append">
-                  <i aria-hidden="true"
-                     class="v-icon notranslate material-icons theme--light"
+                  <i class="v-icon notranslate theme--light material-icons"
+                     aria-hidden="true"
                   >
                   </i>
                 </div>
@@ -12399,8 +12399,8 @@ exports[`VDataTable.ts should search group-by column 2`] = `
               aria-label="Previous page"
       >
         <span class="v-btn__content">
-          <i aria-hidden="true"
-             class="v-icon notranslate material-icons theme--light"
+          <i class="v-icon notranslate theme--light material-icons"
+             aria-hidden="true"
           >
           </i>
         </span>
@@ -12413,8 +12413,8 @@ exports[`VDataTable.ts should search group-by column 2`] = `
               aria-label="Next page"
       >
         <span class="v-btn__content">
-          <i aria-hidden="true"
-             class="v-icon notranslate material-icons theme--light"
+          <i class="v-icon notranslate theme--light material-icons"
+             aria-hidden="true"
           >
           </i>
         </span>
@@ -12461,8 +12461,8 @@ exports[`VDataTable.ts should show correct aria-labels when sorting 1`] = `
                           <span class="v-chip__content">
                             Calories
                             <div class="v-chip__close sortable active desc">
-                              <i aria-hidden="true"
-                                 class="v-icon notranslate material-icons theme--light v-data-table-header__icon"
+                              <i class="v-icon notranslate theme--light material-icons v-data-table-header__icon"
+                                 aria-hidden="true"
                                  style="font-size: 18px;"
                               >
                               </i>
@@ -12478,8 +12478,8 @@ exports[`VDataTable.ts should show correct aria-labels when sorting 1`] = `
                       </div>
                       <div class="v-input__append-inner">
                         <div class="v-input__icon v-input__icon--append">
-                          <i aria-hidden="true"
-                             class="v-icon notranslate material-icons theme--light"
+                          <i class="v-icon notranslate theme--light material-icons"
+                             aria-hidden="true"
                           >
                           </i>
                         </div>
@@ -12779,8 +12779,8 @@ exports[`VDataTable.ts should show correct aria-labels when sorting 1`] = `
               </div>
               <div class="v-input__append-inner">
                 <div class="v-input__icon v-input__icon--append">
-                  <i aria-hidden="true"
-                     class="v-icon notranslate material-icons theme--light"
+                  <i class="v-icon notranslate theme--light material-icons"
+                     aria-hidden="true"
                   >
                   </i>
                 </div>
@@ -12805,8 +12805,8 @@ exports[`VDataTable.ts should show correct aria-labels when sorting 1`] = `
               aria-label="Previous page"
       >
         <span class="v-btn__content">
-          <i aria-hidden="true"
-             class="v-icon notranslate material-icons theme--light"
+          <i class="v-icon notranslate theme--light material-icons"
+             aria-hidden="true"
           >
           </i>
         </span>
@@ -12819,8 +12819,8 @@ exports[`VDataTable.ts should show correct aria-labels when sorting 1`] = `
               aria-label="Next page"
       >
         <span class="v-btn__content">
-          <i aria-hidden="true"
-             class="v-icon notranslate material-icons theme--light"
+          <i class="v-icon notranslate theme--light material-icons"
+             aria-hidden="true"
           >
           </i>
         </span>
@@ -12867,8 +12867,8 @@ exports[`VDataTable.ts should show correct aria-labels when sorting 2`] = `
                           <span class="v-chip__content">
                             Calories
                             <div class="v-chip__close sortable active desc">
-                              <i aria-hidden="true"
-                                 class="v-icon notranslate material-icons theme--light v-data-table-header__icon"
+                              <i class="v-icon notranslate theme--light material-icons v-data-table-header__icon"
+                                 aria-hidden="true"
                                  style="font-size: 18px;"
                               >
                               </i>
@@ -12884,8 +12884,8 @@ exports[`VDataTable.ts should show correct aria-labels when sorting 2`] = `
                       </div>
                       <div class="v-input__append-inner">
                         <div class="v-input__icon v-input__icon--append">
-                          <i aria-hidden="true"
-                             class="v-icon notranslate material-icons theme--light"
+                          <i class="v-icon notranslate theme--light material-icons"
+                             aria-hidden="true"
                           >
                           </i>
                         </div>
@@ -13185,8 +13185,8 @@ exports[`VDataTable.ts should show correct aria-labels when sorting 2`] = `
               </div>
               <div class="v-input__append-inner">
                 <div class="v-input__icon v-input__icon--append">
-                  <i aria-hidden="true"
-                     class="v-icon notranslate material-icons theme--light"
+                  <i class="v-icon notranslate theme--light material-icons"
+                     aria-hidden="true"
                   >
                   </i>
                 </div>
@@ -13211,8 +13211,8 @@ exports[`VDataTable.ts should show correct aria-labels when sorting 2`] = `
               aria-label="Previous page"
       >
         <span class="v-btn__content">
-          <i aria-hidden="true"
-             class="v-icon notranslate material-icons theme--light"
+          <i class="v-icon notranslate theme--light material-icons"
+             aria-hidden="true"
           >
           </i>
         </span>
@@ -13225,8 +13225,8 @@ exports[`VDataTable.ts should show correct aria-labels when sorting 2`] = `
               aria-label="Next page"
       >
         <span class="v-btn__content">
-          <i aria-hidden="true"
-             class="v-icon notranslate material-icons theme--light"
+          <i class="v-icon notranslate theme--light material-icons"
+             aria-hidden="true"
           >
           </i>
         </span>

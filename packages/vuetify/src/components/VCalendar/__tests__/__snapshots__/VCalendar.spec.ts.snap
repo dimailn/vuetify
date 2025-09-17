@@ -1899,12 +1899,12 @@ exports[`VCalendar should render month view 1`] = `
     >
       Tue
     </div>
-    <div class="v-calendar-weekly__head-weekday v-present"
+    <div class="v-calendar-weekly__head-weekday v-past"
          role="columnheader"
     >
       Wed
     </div>
-    <div class="v-calendar-weekly__head-weekday v-future"
+    <div class="v-calendar-weekly__head-weekday v-present"
          role="columnheader"
     >
       Thu

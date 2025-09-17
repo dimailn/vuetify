@@ -52,8 +52,8 @@ exports[`VTreeViewNode.ts should not be able to have active children with empty 
      aria-expanded="false"
 >
   <div class="v-treeview-node__root">
-    <button aria-hidden="false"
-            class="v-icon--link v-icon notranslate material-icons theme--light v-treeview-node__toggle"
+    <button class="v-icon--link v-icon notranslate theme--light material-icons v-treeview-node__toggle"
+            aria-hidden="false"
             type="button"
     >
     </button>

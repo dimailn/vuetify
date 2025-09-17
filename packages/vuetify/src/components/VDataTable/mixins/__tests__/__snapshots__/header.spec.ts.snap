@@ -4,8 +4,8 @@ exports[`VDataTable/header.ts should generate select 1`] = `
 <div>
   <div class="v-simple-checkbox v-data-table__checkbox v-data-table__checkbox">
     <div class="v-input--selection-controls__input">
-      <i aria-hidden="true"
-         class="v-icon notranslate mdi mdi-checkbox-blank-outline theme--light"
+      <i class="v-icon notranslate theme--light mdi mdi-checkbox-blank-outline"
+         aria-hidden="true"
       >
       </i>
       <div class="v-input--selection-controls__ripple">
@@ -19,8 +19,8 @@ exports[`VDataTable/header.ts should generate select 2`] = `
 <div>
   <div class="v-simple-checkbox v-data-table__checkbox v-data-table__checkbox">
     <div class="v-input--selection-controls__input">
-      <i aria-hidden="true"
-         class="v-icon notranslate mdi mdi-checkbox-blank-outline theme--light"
+      <i class="v-icon notranslate theme--light mdi mdi-checkbox-blank-outline"
+         aria-hidden="true"
       >
       </i>
       <div class="v-input--selection-controls__ripple">
@@ -34,8 +34,8 @@ exports[`VDataTable/header.ts should generate select 3`] = `
 <div>
   <div class="v-simple-checkbox v-data-table__checkbox v-data-table__checkbox">
     <div class="v-input--selection-controls__input">
-      <i aria-hidden="true"
-         class="v-icon notranslate mdi mdi-checkbox-blank-outline theme--light"
+      <i class="v-icon notranslate theme--light mdi mdi-checkbox-blank-outline"
+         aria-hidden="true"
       >
       </i>
       <div class="v-input--selection-controls__ripple">
@@ -70,8 +70,8 @@ exports[`VDataTable/header.ts should generate select scoped slot 3`] = `
 `;
 
 exports[`VDataTable/header.ts should generate sort icon 1`] = `
-<i aria-hidden="true"
-   class="v-icon notranslate mdi mdi-sort theme--light v-data-table-header__icon"
+<i class="v-icon notranslate theme--light mdi mdi-sort v-data-table-header__icon"
+   aria-hidden="true"
    style="font-size: 18px;"
 >
 </i>

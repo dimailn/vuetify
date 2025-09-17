@@ -29,8 +29,8 @@ exports[`VDataFooter.ts should disable last page button if no items 1`] = `
             </div>
             <div class="v-input__append-inner">
               <div class="v-input__icon v-input__icon--append">
-                <i aria-hidden="true"
-                   class="v-icon notranslate material-icons theme--light"
+                <i class="v-icon notranslate theme--light material-icons"
+                   aria-hidden="true"
                 >
                 </i>
               </div>
@@ -55,8 +55,8 @@ exports[`VDataFooter.ts should disable last page button if no items 1`] = `
             aria-label="First page"
     >
       <span class="v-btn__content">
-        <i aria-hidden="true"
-           class="v-icon notranslate material-icons theme--light"
+        <i class="v-icon notranslate theme--light material-icons"
+           aria-hidden="true"
         >
         </i>
       </span>
@@ -67,8 +67,8 @@ exports[`VDataFooter.ts should disable last page button if no items 1`] = `
             aria-label="Previous page"
     >
       <span class="v-btn__content">
-        <i aria-hidden="true"
-           class="v-icon notranslate material-icons theme--light"
+        <i class="v-icon notranslate theme--light material-icons"
+           aria-hidden="true"
         >
         </i>
       </span>
@@ -81,8 +81,8 @@ exports[`VDataFooter.ts should disable last page button if no items 1`] = `
             aria-label="Next page"
     >
       <span class="v-btn__content">
-        <i aria-hidden="true"
-           class="v-icon notranslate material-icons theme--light"
+        <i class="v-icon notranslate theme--light material-icons"
+           aria-hidden="true"
         >
         </i>
       </span>
@@ -93,8 +93,8 @@ exports[`VDataFooter.ts should disable last page button if no items 1`] = `
             aria-label="Last page"
     >
       <span class="v-btn__content">
-        <i aria-hidden="true"
-           class="v-icon notranslate material-icons theme--light"
+        <i class="v-icon notranslate theme--light material-icons"
+           aria-hidden="true"
         >
         </i>
       </span>
@@ -132,8 +132,8 @@ exports[`VDataFooter.ts should render first & last icons with showFirstLastPage 
             </div>
             <div class="v-input__append-inner">
               <div class="v-input__icon v-input__icon--append">
-                <i aria-hidden="true"
-                   class="v-icon notranslate material-icons theme--light"
+                <i class="v-icon notranslate theme--light material-icons"
+                   aria-hidden="true"
                 >
                 </i>
               </div>
@@ -157,8 +157,8 @@ exports[`VDataFooter.ts should render first & last icons with showFirstLastPage 
             aria-label="First page"
     >
       <span class="v-btn__content">
-        <i aria-hidden="true"
-           class="v-icon notranslate material-icons theme--light"
+        <i class="v-icon notranslate theme--light material-icons"
+           aria-hidden="true"
         >
         </i>
       </span>
@@ -168,8 +168,8 @@ exports[`VDataFooter.ts should render first & last icons with showFirstLastPage 
             aria-label="Previous page"
     >
       <span class="v-btn__content">
-        <i aria-hidden="true"
-           class="v-icon notranslate material-icons theme--light"
+        <i class="v-icon notranslate theme--light material-icons"
+           aria-hidden="true"
         >
         </i>
       </span>
@@ -181,8 +181,8 @@ exports[`VDataFooter.ts should render first & last icons with showFirstLastPage 
             aria-label="Next page"
     >
       <span class="v-btn__content">
-        <i aria-hidden="true"
-           class="v-icon notranslate material-icons theme--light"
+        <i class="v-icon notranslate theme--light material-icons"
+           aria-hidden="true"
         >
         </i>
       </span>
@@ -192,8 +192,8 @@ exports[`VDataFooter.ts should render first & last icons with showFirstLastPage 
             aria-label="Last page"
     >
       <span class="v-btn__content">
-        <i aria-hidden="true"
-           class="v-icon notranslate material-icons theme--light"
+        <i class="v-icon notranslate theme--light material-icons"
+           aria-hidden="true"
         >
         </i>
       </span>
@@ -231,8 +231,8 @@ exports[`VDataFooter.ts should render in RTL mode 1`] = `
             </div>
             <div class="v-input__append-inner">
               <div class="v-input__icon v-input__icon--append">
-                <i aria-hidden="true"
-                   class="v-icon notranslate material-icons theme--light"
+                <i class="v-icon notranslate theme--light material-icons"
+                   aria-hidden="true"
                 >
                 </i>
               </div>
@@ -256,8 +256,8 @@ exports[`VDataFooter.ts should render in RTL mode 1`] = `
             aria-label="First page"
     >
       <span class="v-btn__content">
-        <i aria-hidden="true"
-           class="v-icon notranslate material-icons theme--light"
+        <i class="v-icon notranslate theme--light material-icons"
+           aria-hidden="true"
         >
         </i>
       </span>
@@ -267,8 +267,8 @@ exports[`VDataFooter.ts should render in RTL mode 1`] = `
             aria-label="Previous page"
     >
       <span class="v-btn__content">
-        <i aria-hidden="true"
-           class="v-icon notranslate material-icons theme--light"
+        <i class="v-icon notranslate theme--light material-icons"
+           aria-hidden="true"
         >
         </i>
       </span>
@@ -280,8 +280,8 @@ exports[`VDataFooter.ts should render in RTL mode 1`] = `
             aria-label="Next page"
     >
       <span class="v-btn__content">
-        <i aria-hidden="true"
-           class="v-icon notranslate material-icons theme--light"
+        <i class="v-icon notranslate theme--light material-icons"
+           aria-hidden="true"
         >
         </i>
       </span>
@@ -291,8 +291,8 @@ exports[`VDataFooter.ts should render in RTL mode 1`] = `
             aria-label="Last page"
     >
       <span class="v-btn__content">
-        <i aria-hidden="true"
-           class="v-icon notranslate material-icons theme--light"
+        <i class="v-icon notranslate theme--light material-icons"
+           aria-hidden="true"
         >
         </i>
       </span>
@@ -330,8 +330,8 @@ exports[`VDataFooter.ts should render with custom itemsPerPage 1`] = `
             </div>
             <div class="v-input__append-inner">
               <div class="v-input__icon v-input__icon--append">
-                <i aria-hidden="true"
-                   class="v-icon notranslate material-icons theme--light"
+                <i class="v-icon notranslate theme--light material-icons"
+                   aria-hidden="true"
                 >
                 </i>
               </div>
@@ -355,8 +355,8 @@ exports[`VDataFooter.ts should render with custom itemsPerPage 1`] = `
             aria-label="Previous page"
     >
       <span class="v-btn__content">
-        <i aria-hidden="true"
-           class="v-icon notranslate material-icons theme--light"
+        <i class="v-icon notranslate theme--light material-icons"
+           aria-hidden="true"
         >
         </i>
       </span>
@@ -369,8 +369,8 @@ exports[`VDataFooter.ts should render with custom itemsPerPage 1`] = `
             aria-label="Next page"
     >
       <span class="v-btn__content">
-        <i aria-hidden="true"
-           class="v-icon notranslate material-icons theme--light"
+        <i class="v-icon notranslate theme--light material-icons"
+           aria-hidden="true"
         >
         </i>
       </span>
@@ -408,8 +408,8 @@ exports[`VDataFooter.ts should show current page if has showCurrentPage 1`] = `
             </div>
             <div class="v-input__append-inner">
               <div class="v-input__icon v-input__icon--append">
-                <i aria-hidden="true"
-                   class="v-icon notranslate material-icons theme--light"
+                <i class="v-icon notranslate theme--light material-icons"
+                   aria-hidden="true"
                 >
                 </i>
               </div>
@@ -433,8 +433,8 @@ exports[`VDataFooter.ts should show current page if has showCurrentPage 1`] = `
             aria-label="Previous page"
     >
       <span class="v-btn__content">
-        <i aria-hidden="true"
-           class="v-icon notranslate material-icons theme--light"
+        <i class="v-icon notranslate theme--light material-icons"
+           aria-hidden="true"
         >
         </i>
       </span>
@@ -449,8 +449,8 @@ exports[`VDataFooter.ts should show current page if has showCurrentPage 1`] = `
             aria-label="Next page"
     >
       <span class="v-btn__content">
-        <i aria-hidden="true"
-           class="v-icon notranslate material-icons theme--light"
+        <i class="v-icon notranslate theme--light material-icons"
+           aria-hidden="true"
         >
         </i>
       </span>
