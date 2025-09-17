@@ -56,6 +56,7 @@ export default baseMixins.extend({
     isBooted: false,
     otp: [] as string[],
     lazyValue: '',
+    inputRefs: [] as HTMLInputElement[],
   }),
 
   computed: {
@@ -212,8 +213,11 @@ export default baseMixins.extend({
           onKeydown: this.onKeyDown,
           onKeyup: (e: KeyboardEvent) => this.onKeyUp(e, otpIdx),
         }),
-        ref: 'input',
-        refInFor: true,
+        ref: (el: HTMLInputElement) => {
+          if (el) {
+            this.inputRefs[otpIdx] = el
+          }
+        },
       })
     },
     genTextFieldSlot (otpIdx: number): VNode {
@@ -228,15 +232,15 @@ export default baseMixins.extend({
       e && this.$nextTick(() => this.$emit('blur', e))
     },
     onClick (otpIdx: number) {
-      if (this.isFocused || this.isDisabled || !this.$refs.input?.[otpIdx]) return
+      if (this.isFocused || this.isDisabled || !this.inputRefs[otpIdx]) return
 
       this.onFocus(undefined, otpIdx)
     },
     onFocus (e?: Event, otpIdx?: number) {
       e?.preventDefault()
       e?.stopPropagation()
-      const elements = this.$refs.input as HTMLInputElement[]
-      const ref = this.$refs.input && elements[otpIdx || 0]
+
+      const ref = this.inputRefs[otpIdx || 0]
       if (!ref) return
 
       if (document.activeElement !== ref) {
@@ -279,7 +283,7 @@ export default baseMixins.extend({
       }
     },
     clearFocus (index: number) {
-      const input = this.$refs.input?.[index] as HTMLInputElement
+      const input = this.inputRefs[index]
       input?.blur()
     },
     onKeyDown (e: KeyboardEvent) {
@@ -290,8 +294,10 @@ export default baseMixins.extend({
       this.$emit('keydown', e)
     },
     onMouseDown (e: Event, otpIdx: number) {
+      const inputRef = this.inputRefs[otpIdx]
+
       // Prevent input from being blurred
-      if (e.target !== this.$refs.input?.[otpIdx]) {
+      if (e.target !== inputRef) {
         e.preventDefault()
         e.stopPropagation()
       }
@@ -319,6 +325,7 @@ export default baseMixins.extend({
     onKeyUp (event: KeyboardEvent, index: number) {
       event.preventDefault()
       const eventKey = event.key
+
       if (['Tab', 'Shift', 'Meta', 'Control', 'Alt'].includes(eventKey)) {
         return
       }
