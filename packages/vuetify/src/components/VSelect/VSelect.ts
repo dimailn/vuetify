@@ -63,6 +63,9 @@ interface options extends InstanceType<typeof baseMixins> {
 export default baseMixins.extend({
   name: 'v-select',
 
+  $_emitChangeEvent: true,
+  $_modelEvent: 'update:modelValue',
+
   props: {
     appendIcon: {
       type: String,
@@ -111,7 +114,7 @@ export default baseMixins.extend({
     smallChips: Boolean,
   },
 
-  emits: ['update:modelValue', 'change', 'focus', 'blur', 'keydown', 'click', 'update:list-index'],
+  emits: ['update:modelValue', 'change', 'focus', 'blur', 'keydown', 'click', 'update:list-index', 'click:clear'],
 
   data () {
     return {
@@ -351,6 +354,7 @@ export default baseMixins.extend({
       this.$nextTick(() => this.$refs.input && this.$refs.input.focus())
 
       if (this.openOnClear) this.isMenuActive = true
+      this.$emit('click:clear')
     },
     closeConditional (e: Event) {
       if (!this.isMenuActive) return true

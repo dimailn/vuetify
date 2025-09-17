@@ -52,13 +52,13 @@ describe('VSelect.ts', () => {
     wrapper.vm.selectItem('foo')
 
     expect(wrapper.vm.internalValue).toBe('foo')
-    expect(wrapper.emitted('update:modelValue')).toHaveLength(2)
+    expect(wrapper.emitted('update:modelValue')).toHaveLength(1)
     expect(wrapper.emitted('update:modelValue')?.[0]).toEqual(['foo'])
 
     await wrapper.vm.$nextTick()
 
-    expect(wrapper.emitted('change')).toHaveLength(1)
-    expect(wrapper.emitted('change')?.[0]).toEqual(['foo'])
+    expect(wrapper.emitted('update:modelValue')).toHaveLength(1)
+    expect(wrapper.emitted('update:modelValue')?.[0]).toEqual(['foo'])
 
     await wrapper.setProps({ returnObject: true })
 
@@ -66,13 +66,13 @@ describe('VSelect.ts', () => {
     wrapper.vm.selectItem(item)
 
     expect(wrapper.vm.internalValue).toStrictEqual(item)
-    expect(wrapper.emitted('update:modelValue')).toHaveLength(4)
-    expect(wrapper.emitted('update:modelValue')?.[3]).toEqual([item])
+    expect(wrapper.emitted('update:modelValue')).toHaveLength(2)
+    expect(wrapper.emitted('update:modelValue')?.[1]).toEqual([item])
 
     await wrapper.vm.$nextTick()
 
-    expect(wrapper.emitted('change')).toHaveLength(2)
-    expect(wrapper.emitted('change')?.[1]).toEqual([item])
+    expect(wrapper.emitted('update:modelValue')).toHaveLength(2)
+    expect(wrapper.emitted('update:modelValue')?.[1]).toEqual([item])
   })
 
   // TODO: this fails without sync, nextTick doesn't help

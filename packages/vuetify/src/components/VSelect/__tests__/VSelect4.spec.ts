@@ -339,12 +339,12 @@ describe('VSelect.ts', () => {
     await wrapper.vm.$nextTick()
     expect(wrapper.emitted('update:list-index')).toBeTruthy()
     expect(wrapper.emitted('update:list-index')).toHaveLength(1)
-    expect(wrapper.emitted('update:list-index')[0]).toEqual([-1])
+    expect(wrapper.emitted('update:list-index')[0]).toEqual([0])
 
     input.trigger('keydown.down')
     await wrapper.vm.$nextTick()
     expect(wrapper.emitted('update:list-index')).toHaveLength(2)
-    expect(wrapper.emitted('update:list-index')[1]).toEqual([-1])
+    expect(wrapper.emitted('update:list-index')[1]).toEqual([1])
   })
 
   it('should close menu when append icon is clicked', async () => {
