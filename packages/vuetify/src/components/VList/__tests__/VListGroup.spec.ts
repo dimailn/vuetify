@@ -190,7 +190,7 @@ describe('VListGroup.ts', () => {
     const wrapper = mountFunction()
     const header = wrapper.find('.v-list-group__header')
 
-    expect(header.element.tabIndex).toBe(-1)
+    expect(header.element.tabIndex).toBe(0)
     expect(header.element.getAttribute('aria-expanded')).toBe('false')
     expect(header.element.getAttribute('role')).toBe('button')
 

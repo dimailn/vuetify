@@ -5,10 +5,10 @@ exports[`VSelectList.ts should display falsy items 1`] = `
      role="listbox"
      tabindex="-1"
 >
-  <div tabindex="0"
-       aria-selected="false"
+  <div aria-selected="false"
        id="list-item-39-0"
        role="option"
+       tabindex="0"
        class="v-list-item v-list-item--link theme--light"
   >
     <div class="v-list-item__content">
@@ -17,10 +17,10 @@ exports[`VSelectList.ts should display falsy items 1`] = `
       </div>
     </div>
   </div>
-  <div tabindex="0"
-       aria-selected="false"
+  <div aria-selected="false"
        id="list-item-39-1"
        role="option"
+       tabindex="0"
        class="v-list-item v-list-item--link theme--light"
   >
     <div class="v-list-item__content">
@@ -29,10 +29,10 @@ exports[`VSelectList.ts should display falsy items 1`] = `
       </div>
     </div>
   </div>
-  <div tabindex="0"
-       aria-selected="false"
+  <div aria-selected="false"
        id="list-item-39-2"
        role="option"
+       tabindex="0"
        class="v-list-item v-list-item--link theme--light"
   >
     <div class="v-list-item__content">
@@ -41,10 +41,10 @@ exports[`VSelectList.ts should display falsy items 1`] = `
       </div>
     </div>
   </div>
-  <div tabindex="0"
-       aria-selected="false"
+  <div aria-selected="false"
        id="list-item-39-3"
        role="option"
+       tabindex="0"
        class="v-list-item v-list-item--link theme--light"
   >
     <div class="v-list-item__content">
@@ -53,10 +53,10 @@ exports[`VSelectList.ts should display falsy items 1`] = `
       </div>
     </div>
   </div>
-  <div tabindex="0"
-       aria-selected="false"
+  <div aria-selected="false"
        id="list-item-39-4"
        role="option"
+       tabindex="0"
        class="v-list-item v-list-item--link theme--light"
   >
     <div class="v-list-item__content">
@@ -99,10 +99,10 @@ exports[`VSelectList.ts should generate children 1`] = `
       role="separator"
       aria-orientation="horizontal"
   >
-  <div tabindex="0"
-       aria-selected="false"
+  <div aria-selected="false"
        id="list-item-16-2"
        role="option"
+       tabindex="0"
        class="v-list-item v-list-item--link theme--light"
   >
     <div class="v-list-item__content">
