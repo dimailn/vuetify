@@ -38,7 +38,7 @@ describe('activatable.ts', () => {
   it('should render activator slot with listeners', async () => {
     const wrapper = mountFunction({
       slots: {
-        activator: ({ on }: any) => h('button', { onClick: on.onClick }),
+        activator: ({ on, attrs }: any) => h('button', { ...attrs, onClick: on.onClick }),
       },
       render () {
         return h('div', [this.genActivator()])
@@ -60,7 +60,8 @@ describe('activatable.ts', () => {
   it('should pass value to the activator slot', async () => {
     const wrapper = mountFunction({
       slots: {
-        activator: ({ on, value }: any) => h('button', {
+        activator: ({ on, attrs, value }: any) => h('button', {
+          ...attrs,
           onClick: on.onClick,
         }, String(value)),
       },
@@ -84,7 +85,8 @@ describe('activatable.ts', () => {
         openOnHover: true,
       },
       slots: {
-        activator: ({ on }: any) => h('button', {
+        activator: ({ on, attrs }: any) => h('button', {
+          ...attrs,
           onMouseenter: on.onMouseenter,
           onMouseleave: on.onMouseleave,
         }),
