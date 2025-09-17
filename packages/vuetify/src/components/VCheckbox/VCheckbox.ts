@@ -35,7 +35,7 @@ export default defineComponent({
     },
   },
 
-  emits: ['click', 'focus', 'blur', 'update:indeterminate'],
+  emits: ['click', 'focus', 'blur', 'update:indeterminate', 'update:modelValue', 'change'],
 
   data () {
     return {
