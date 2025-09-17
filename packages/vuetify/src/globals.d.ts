@@ -1,7 +1,7 @@
 /* eslint-disable max-len */
 
 import {
-  VueConstructor,
+  Component,
   ComponentOptions,
   FunctionalComponentOptions,
   VNodeData,
@@ -16,7 +16,7 @@ import { TouchStoredHandlers } from './directives/touch'
 
 declare global {
   interface Window {
-    Vue: VueConstructor
+    Vue: Component
   }
 
   interface HTMLCollection {
@@ -105,7 +105,7 @@ declare module 'vue/types/options' {
 }
 
 declare module 'vue/types/vue' {
-  export type OptionsVue<Instance extends Vue, Data, Methods, Computed, Props, SetupBindings, Options = {}> = VueConstructor<
+  export type OptionsVue<Instance extends Vue, Data, Methods, Computed, Props, SetupBindings, Options = {}> = Component<
     CombinedVueInstance<Instance, Data, Methods, Computed, Props, SetupBindings> & Vue,
     Options
   >
@@ -149,7 +149,7 @@ declare module 'vue/types/vue' {
   > {
     version: string
     /* eslint-disable-next-line camelcase */
-    $_vuetify_subcomponents?: Record<string, VueConstructor>
+    $_vuetify_subcomponents?: Record<string, Component>
     /* eslint-disable-next-line camelcase */
     $_vuetify_installed?: true
     options: Options

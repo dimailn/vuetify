@@ -1,4 +1,4 @@
-import {h, vShow, withDirectives} from 'vue'
+import { h, vShow, withDirectives, VNode, Component } from 'vue'
 // Components
 import { VFadeTransition } from '../transitions'
 import VExpansionPanel from './VExpansionPanel'
@@ -13,24 +13,20 @@ import ripple, { Ripple } from '../../directives/ripple'
 
 // Utilities
 import { getSlot } from '../../util/helpers'
-import mixins, { ExtractVue } from '../../util/mixins'
-
-// Types
-import Vue, { VNode, VueConstructor } from 'vue'
+import mixins from '../../util/mixins'
 
 const baseMixins = mixins(
   Colorable,
-  RegistrableInject<'expansionPanel', VueConstructor<Vue>>('expansionPanel', 'v-expansion-panel-header', 'v-expansion-panel')
+  RegistrableInject<'expansionPanel', Component>('expansionPanel', 'v-expansion-panel-header', 'v-expansion-panel')
 )
 
-interface options extends ExtractVue<typeof baseMixins> {
+interface options {
   $el: HTMLElement
   expansionPanel: InstanceType<typeof VExpansionPanel>
 }
 
 export default baseMixins.extend({
   name: 'v-expansion-panel-header',
-
 
   props: {
     disableIconRotate: Boolean,
@@ -88,12 +84,12 @@ export default baseMixins.extend({
         withDirectives(h('div', {
           class: ['v-expansion-panel-header__icon', {
             'v-expansion-panel-header__icon--disable-rotate': this.disableIconRotate,
-          }]
+          }],
         }, icon), [
           [
             vShow,
-            !this.isDisabled
-          ]
+            !this.isDisabled,
+          ],
         ]),
       ])
     },
@@ -103,8 +99,8 @@ export default baseMixins.extend({
     const directives = [
       [
         Ripple,
-        this.ripple
-      ]
+        this.ripple,
+      ],
     ]
 
     return withDirectives(h('button', this.setBackgroundColor(this.color, {
@@ -115,7 +111,7 @@ export default baseMixins.extend({
       ...this.$listeners,
       onClick: this.onClick,
       onMousedown: () => (this.hasMousedown = true),
-      onMouseup: () => (this.hasMousedown = false)
+      onMouseup: () => (this.hasMousedown = false),
     }), [
       getSlot(this, 'default', { open: this.isActive }, true),
       this.hideActions || this.genIcon(),

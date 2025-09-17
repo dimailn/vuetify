@@ -1,20 +1,20 @@
 import {defineComponent} from 'vue'
-import { VueConstructor } from 'vue/types/vue'
+import { Component } from 'vue/types/vue'
 import { consoleWarn } from '../../util/console'
 
 function generateWarning (child: string, parent: string) {
   return () => consoleWarn(`The ${child} component must be used inside a ${parent}`)
 }
 
-export type Registrable<T extends string, C extends VueConstructor | null = null> = VueConstructor<Vue & {
-  [K in T]: C extends VueConstructor ? InstanceType<C> : {
+export type Registrable<T extends string, C extends Component | null = null> = Component<Vue & {
+  [K in T]: C extends Component ? InstanceType<C> : {
     register (...props: any[]): void
     unregister (self: any): void
   }
 }>
 
 export function inject<
-  T extends string, C extends VueConstructor | null = null
+  T extends string, C extends Component | null = null
 > (namespace: T, child?: string, parent?: string): Registrable<T, C> {
   const defaultImpl = child && parent ? {
     register: generateWarning(child, parent),

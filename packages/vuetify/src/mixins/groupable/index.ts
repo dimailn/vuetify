@@ -2,11 +2,11 @@
 import { Registrable, inject as RegistrableInject } from '../registrable'
 
 // Utilities
-import { ExtractVue } from '../../util/mixins'
-import { VueConstructor } from 'vue'
+// import { ExtractVue } from '../../util/mixins'
+import { Component } from 'vue'
 import { PropValidator } from 'vue/types/options'
 
-export type Groupable<T extends string, C extends VueConstructor | null = null> = VueConstructor<ExtractVue<Registrable<T, C>> & {
+export type Groupable<T extends string, C extends Component | null = null> = Component<Registrable<T, C> & {
   activeClass: string
   isActive: boolean
   disabled: boolean
@@ -14,7 +14,7 @@ export type Groupable<T extends string, C extends VueConstructor | null = null> 
   toggle (e?: Event): void
 }>
 
-export function factory<T extends string, C extends VueConstructor | null = null> (
+export function factory<T extends string, C extends Component | null = null> (
   namespace: T,
   child?: string,
   parent?: string
@@ -37,8 +37,8 @@ export function factory<T extends string, C extends VueConstructor | null = null
     },
 
     computed: {
-      $activeClass() {
-        if(this.activeClass) return this.activeClass
+      $activeClass () {
+        if (this.activeClass) return this.activeClass
 
         if (!this[namespace]) return undefined
 
