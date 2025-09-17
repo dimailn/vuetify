@@ -39,7 +39,6 @@ function mounted (
   target.addEventListener('scroll', handler, options)
 
   el._onScroll = Object(el._onScroll)
-  // В Vue 3 используем vnode.ctx.uid вместо vnode.context._uid
   el._onScroll![vnode.ctx!.uid] = {
     handler,
     options,

@@ -6,7 +6,7 @@ import { consoleWarn } from '../../util/console'
 import { keyCodes } from '../../util/helpers'
 import makeDirectiveActivatable from '../../util/make-directive-activatable'
 // Types
-import { VNode, VNodeDirective } from 'vue'
+import { VNode, VNodeDirective, nextTick } from 'vue'
 
 type VuetifyRippleEvent = (MouseEvent | TouchEvent | KeyboardEvent) & { rippleStop?: boolean }
 
@@ -309,10 +309,10 @@ function directive (el: HTMLElement, binding: VNodeDirective, node: VNode) {
 
   if (process.env.NODE_ENV === 'development') {
     // warn if an inline element is used, waiting for el to be in the DOM first
-    node.context && node.context.$nextTick(() => {
+    nextTick(() => {
       const computed = window.getComputedStyle(el)
       if (computed && computed.display === 'inline') {
-        const context = (node as any).fnOptions ? [(node as any).fnOptions, node.context] : [node.componentInstance]
+        const context = (node as any).fnOptions ? [(node as any).fnOptions] : [node.componentInstance]
         consoleWarn('v-ripple can only be used on block-level elements', ...context)
       }
     })
@@ -338,8 +338,5 @@ export const Ripple = {
   unmounted: unbind,
   updated: update,
 }
-
-
-
 
 export default makeDirectiveActivatable(Ripple)
