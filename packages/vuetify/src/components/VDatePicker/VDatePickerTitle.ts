@@ -76,8 +76,18 @@ export default mixins(
       }, () => this.yearIcon)
     },
     getYearBtn (): VNode {
+      const yearText = h('span', {
+        key: this.year,
+      }, String(this.year))
+
+      const yearTransition = h(Transition, {
+        name: this.computedTransition,
+      }, {
+        default: () => [yearText],
+      })
+
       return this.genPickerButton('selectingYear', true, [
-        String(this.year),
+        yearTransition,
         this.yearIcon ? this.genYearIcon() : null,
       ], false, 'v-date-picker-title__year')
     },
@@ -87,7 +97,14 @@ export default mixins(
       }, this.date || '\u00A0')
     },
     genTitleDate (): VNode {
-      return this.genPickerButton('selectingYear', false, [this.genTitleText()], false, 'v-date-picker-title__date')
+      const titleText = this.genTitleText()
+      const transition = h(Transition, {
+        name: this.computedTransition,
+      }, {
+        default: () => [titleText],
+      })
+
+      return this.genPickerButton('selectingYear', false, [transition], false, 'v-date-picker-title__date')
     },
   },
 
