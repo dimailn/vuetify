@@ -85,7 +85,7 @@ export default baseMixins.extend({
     },
   },
 
-  emits: ['update:modelValue', 'blur', 'focus', 'keydown'],
+  emits: ['update:modelValue', 'blur', 'focus', 'keydown', 'click:clear'],
 
   data: () => ({
     badInput: false,
@@ -254,6 +254,7 @@ export default baseMixins.extend({
     clearableCallback () {
       this.$refs.input && this.$refs.input.focus()
       this.$nextTick(() => this.internalValue = null)
+      this.$emit('click:clear')
     },
     genAppendSlot () {
       const slot = []

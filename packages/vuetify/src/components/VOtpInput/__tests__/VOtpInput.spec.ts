@@ -77,8 +77,8 @@ describe('VOtpInput.ts', () => {
     input.trigger('focus')
     await wrapper.vm.$nextTick()
     input.trigger('keydown.space')
-    input.trigger('keydown.enter')
-    input.trigger('keydown.enter')
+    input.trigger('keydown', { key: 'Enter' })
+    input.trigger('keydown', { key: 'Enter' })
 
     expect(wrapper.emitted('change')).toHaveLength(2)
   })
@@ -156,8 +156,8 @@ describe('VOtpInput.ts', () => {
     input.trigger('focus')
     element.value = '1'
     input.trigger('input')
-    input.trigger('keydown.enter')
-    input.trigger('keydown.enter')
+    input.trigger('keydown', { key: 'Enter' })
+    input.trigger('keydown', { key: 'Enter' })
     const keys = ['Tab', 'Shift', 'Meta', 'Control', 'Alt', 'Delete', 'ArrowRight', 'Backspace']
     keys.forEach(key => {
       input.trigger('keyup', { key })
