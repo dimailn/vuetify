@@ -7,7 +7,8 @@ import mixins from '../../util/mixins'
 import { consoleWarn } from '../../util/console'
 
 // Types
-import { VNode, ScopedSlotChildren } from 'vue/types/vnode'
+import { VNode, mergeProps } from 'vue'
+import { ScopedSlotChildren } from 'vue/types/vnode'
 
 export default mixins(
   Delayable,
@@ -43,39 +44,34 @@ export default mixins(
   render (): VNode {
     if (!this.$slots.default && this.modelValue === undefined) {
       consoleWarn('v-hover is missing a default scopedSlot or bound value', this)
-
       return null as any
     }
 
-    let element: VNode | ScopedSlotChildren
+    if (!this.$slots.default) return null as any
 
-    /* istanbul ignore else */
-    if (this.$slots.default) {
-      element = this.$slots.default({ hover: this.isActive })
+    const slotContent = this.$slots.default({ hover: this.isActive })
+
+    if (!slotContent?.length) {
+      consoleWarn('v-hover slot returned empty content', this)
+      return null as any
     }
 
-    if (Array.isArray(element)) {
-      if (element.length === 1) {
-        element = element[0]
-      } else {
-        consoleWarn('v-hover should only contain a single element', this)
-        return element as any
-      }
-    }
+    const element = slotContent[0]
 
-    if (!element || (!element.tag && !element.type)) {
-      consoleWarn('v-hover should only contain a single element', this)
-
+    if (!element?.type) {
+      consoleWarn('v-hover should only contain valid VNode elements', this)
       return element as any
     }
 
+    if (slotContent.length > 1) {
+      consoleWarn('v-hover should only contain a single element', this)
+    }
+
     if (!this.disabled) {
-      element.data = element.data || {}
-      element.data.on = {
-        ...element.data.on,
+      element.props = mergeProps(element.props || {}, {
         onMouseenter: this.onMouseEnter,
         onMouseleave: this.onMouseLeave,
-      }
+      })
     }
 
     return element
