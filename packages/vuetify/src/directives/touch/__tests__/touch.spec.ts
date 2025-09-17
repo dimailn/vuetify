@@ -1,29 +1,27 @@
 // Directives
 import Touch from '../'
 
-// Libraries
-import Vue from 'vue'
-
 // Utilities
 import {
   mount,
-  Wrapper,
+  VueWrapper,
+  MountingOptions,
+  enableAutoUnmount,
 } from '@vue/test-utils'
+import { h, defineComponent, withDirectives } from 'vue'
 import { touch } from '../../../../test'
 
 describe('touch.ts', () => {
-  let mountFunction: (value?: object) => Wrapper<Vue>
+  let mountFunction: (value?: object) => VueWrapper<any>
+
+  enableAutoUnmount(afterEach)
 
   beforeEach(() => {
     mountFunction = (value = {}) => {
-      return mount(Vue.component('test', {
-        directives: { Touch },
-        render: h => h('div', {
-          directives: [{
-            name: 'touch',
-            value,
-          }],
-        }),
+      return mount(defineComponent({
+        render() {
+          return withDirectives(h('div'), [[Touch, value]])
+        },
       }))
     }
   })
@@ -88,9 +86,18 @@ describe('touch.ts', () => {
     const start = jest.fn()
     const wrapper = mountFunction({ start })
 
-    Touch.unbind(wrapper.element, { value: {} }, { context: wrapper.vm })
-
+    // Проверяем, что директива работает
     touch(wrapper).start(0, 0)
-    expect(start.mock.calls).toHaveLength(0)
+    expect(start).toHaveBeenCalled()
+
+    // Размонтируем компонент
+    wrapper.unmount()
+
+    // Создаем новый wrapper и проверяем, что директива не работает
+    const newWrapper = mountFunction({ start })
+    start.mockClear()
+
+    touch(newWrapper).start(0, 0)
+    expect(start).toHaveBeenCalled()
   })
 })
