@@ -136,17 +136,20 @@ export function mergeListeners (...args: [
   { [key: string]: Function | Function[] } | undefined,
   { [key: string]: Function | Function[] } | undefined
 ]) {
-  if (!args[0]) return args[1]
-  if (!args[1]) return args[0]
+  if (!args[0] && !args[1]) return undefined
 
   const dest: { [key: string]: Function | Function[] } = {}
 
   for (let i = 2; i--;) {
     const arg = args[i]
+    if (!arg) continue
+
     for (const event in arg) {
       if (!arg[event]) continue
 
-      const vueEventName = event.startsWith('on') ? event : `on${event.charAt(0).toUpperCase() + event.slice(1)}`
+      const vueEventName = event.startsWith('on') && event.length > 2 && event.charAt(2) === event.charAt(2).toUpperCase()
+        ? event
+        : `on${event.charAt(0).toUpperCase() + event.slice(1)}`
 
       if (dest[vueEventName]) {
         // Merge current listeners before (because we are iterating backwards).
