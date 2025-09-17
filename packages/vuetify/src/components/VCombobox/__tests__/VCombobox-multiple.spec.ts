@@ -34,7 +34,6 @@ describe('VCombobox.ts', () => {
                 component: null,
               },
             },
-            onScroll: jest.fn(),
           },
         },
         ...options,

@@ -39,7 +39,7 @@ export default mixins(Themeable).extend({
     value: Boolean,
   },
 
-  render (_, { slots }): VNode {
+  render (): VNode {
     const data = this.$attrs
     const props = this.$props
 
@@ -60,6 +60,6 @@ export default mixins(Themeable).extend({
       ref: 'label',
     }, data)
 
-    return h('label', Colorable.methods.setTextColor(props.focused && props.color, newData), slots.default ? slots.default() : [])
+    return h('label', Colorable.methods.setTextColor(props.focused && props.color, newData), this.$slots.default?.())
   },
 })
