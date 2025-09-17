@@ -65,8 +65,9 @@ export default context => {
         // the initial data fetching on the client.
         context.state = store.state
 
-        // Inject vue-meta into template
-        context.meta = app.$meta()
+        // Vue Meta 3 SSR integration
+        // В новой версии vue-meta метаданные будут автоматически добавлены
+        // через teleport в контекст рендеринга при использовании renderToString
 
         resolve(app)
       }).catch(e => {
