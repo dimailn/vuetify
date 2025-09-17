@@ -4,13 +4,13 @@ import VThemeProvider from '../VThemeProvider'
 // Utilities
 import {
   mount,
-  MountOptions,
-  Wrapper,
+  MountingOptions,
+  VueWrapper,
 } from '@vue/test-utils'
 
 describe('VThemeProvider.ts', () => {
   type Instance = InstanceType<typeof VThemeProvider>
-  let mountFunction: (options?: MountOptions<Instance>) => Wrapper<Instance>
+  let mountFunction: (options?: MountingOptions<Instance>) => VueWrapper<Instance>
 
   beforeEach(() => {
     mountFunction = (options = {}) => {
@@ -22,12 +22,14 @@ describe('VThemeProvider.ts', () => {
 
   it('should change based upon root $vuetify', () => {
     const wrapper = mountFunction({
-      provide: {
-        theme: { isDark: true },
-      },
-      mocks: {
-        $vuetify: {
-          theme: { dark: false },
+      global: {
+        provide: {
+          theme: { isDark: true },
+        },
+        mocks: {
+          $vuetify: {
+            theme: { dark: true },
+          },
         },
       },
     })

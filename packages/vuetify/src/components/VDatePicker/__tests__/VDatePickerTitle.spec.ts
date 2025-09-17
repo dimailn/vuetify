@@ -1,19 +1,19 @@
 import VDatePickerTitle from '../VDatePickerTitle'
 import {
   mount,
-  MountOptions,
-  Wrapper,
+  MountingOptions,
+  VueWrapper,
   enableAutoUnmount,
 } from '@vue/test-utils'
 
 describe('VDatePickerTitle.ts', () => {
   type Instance = InstanceType<typeof VDatePickerTitle>
-  let mountFunction: (options?: MountOptions<Instance>) => Wrapper<Instance>
+  let mountFunction: (options?: MountingOptions<Instance>) => VueWrapper<Instance>
 
   enableAutoUnmount(afterEach)
 
   beforeEach(() => {
-    mountFunction = (options?: MountOptions<Instance>) => {
+    mountFunction = (options?: MountingOptions<Instance>) => {
       return mount(VDatePickerTitle, {
         ...options,
         global: {

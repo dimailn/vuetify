@@ -3,8 +3,8 @@ import { Lang } from '../../../services/lang'
 import { preset } from '../../../presets/default'
 import {
   mount,
-  MountOptions,
-  Wrapper,
+  MountingOptions,
+  VueWrapper,
   enableAutoUnmount,
 } from '@vue/test-utils'
 
@@ -12,8 +12,8 @@ enableAutoUnmount(afterEach)
 
 describe('VDatePickerHeader.ts', () => {
   type Instance = InstanceType<typeof VDatePickerHeader>
-  let mountFunction: (options?: MountOptions<Instance>) => Wrapper<Instance>
-  
+  let mountFunction: (options?: MountingOptions<Instance>) => VueWrapper<Instance>
+
   beforeEach(() => {
     // Mock console.warn to suppress Vue warnings
     jest.spyOn(console, 'warn').mockImplementation((...args: any[]) => {
@@ -26,7 +26,7 @@ describe('VDatePickerHeader.ts', () => {
       // Call original warn for other messages
       console.warn(...args)
     })
-    mountFunction = (options?: MountOptions<Instance>) => {
+    mountFunction = (options?: MountingOptions<Instance>) => {
       return mount(VDatePickerHeader, {
         ...options,
         global: {

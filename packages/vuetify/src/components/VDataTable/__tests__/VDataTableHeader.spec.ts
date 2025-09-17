@@ -7,9 +7,10 @@ import { preset } from '../../../presets/default'
 
 import {
   mount,
-  MountOptions,
-  Wrapper,
+  MountingOptions,
+  VueWrapper,
 } from '@vue/test-utils'
+import { nextTick } from 'vue'
 
 const testHeaders = [
   {
@@ -27,25 +28,20 @@ const testHeaders = [
 
 describe('VDataTableHeader.ts', () => {
   type Instance = InstanceType<typeof VDataTableHeader>
-  let mountFunction: (options?: MountOptions<Instance>, isMobile?: boolean) => Wrapper<Instance>
+  let mountFunction: (options?: MountingOptions<Instance>, isMobile?: boolean) => VueWrapper<Instance>
 
   ;[false, true].forEach(isMobile => {
     describe(isMobile ? 'mobile' : 'desktop', () => { // eslint-disable-line jest/valid-title
       beforeEach(() => {
         document.body.setAttribute('data-app', 'true')
 
-        mountFunction = (options?: MountOptions<Instance>) => {
+        mountFunction = (options?: MountingOptions<Instance>) => {
           return mount(VDataTableHeader, {
             ...options,
-            // https://github.com/vuejs/vue-test-utils/issues/1130
-            sync: false,
             props: {
               headers: testHeaders,
               mobile: isMobile,
               ...(options || {}).props,
-            },
-            on: {
-              ...(options || {}).on,
             },
             global: {
               mocks: {
@@ -141,7 +137,7 @@ describe('VDataTableHeader.ts', () => {
           expect(select.exists()).toBe(true)
 
           select.vm.$emit('update:modelValue', 'test')
-          await wrapper.vm.$nextTick()
+          await nextTick()
 
           expect(mobileHeader.emitted('sort')).toBeTruthy()
           expect(mobileHeader.emitted('sort')?.[0]).toEqual(['test'])

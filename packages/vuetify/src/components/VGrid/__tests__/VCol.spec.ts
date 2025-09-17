@@ -1,7 +1,9 @@
-import { mount } from '@vue/test-utils'
+import { mount, enableAutoUnmount } from '@vue/test-utils'
 import VCol from '../VCol'
 
 describe('layout > col', () => {
+  enableAutoUnmount(afterEach)
+
   it('should have default expected structure', async () => {
     const wrapper = mount(VCol)
 
@@ -143,7 +145,7 @@ describe('layout > col', () => {
     const wrapper = mount(VCol)
     const wrapper2 = mount(VCol)
 
-    // В Vue 3 структура vnode изменилась, поэтому проверяем по-другому
     expect(wrapper.classes()).toEqual(wrapper2.classes())
+    expect(wrapper.classes()).toContain('col')
   })
 })

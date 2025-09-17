@@ -2,19 +2,20 @@
 import VListItemAction from '../VListItemAction'
 
 // Utilities
-import Vue from 'vue'
 import {
   mount,
-  Wrapper,
+  VueWrapper,
+  MountingOptions,
+  enableAutoUnmount,
 } from '@vue/test-utils'
 import { functionalContext } from '../../../../test'
-
-// Types
-import { ExtractVue } from '../../../util/mixins'
+import { defineComponent, h, ComponentPublicInstance } from 'vue'
 
 describe('VListItemAction.ts', () => {
-  type Instance = ExtractVue<typeof VListItemAction>
-  let mountFunction: (options?: object) => Wrapper<Instance>
+  type Instance = InstanceType<typeof VListItemAction>
+  let mountFunction: (options?: MountingOptions<Instance>) => VueWrapper<Instance>
+
+  enableAutoUnmount(afterEach)
 
   beforeEach(() => {
     mountFunction = (options = {}) => {
@@ -25,53 +26,53 @@ describe('VListItemAction.ts', () => {
   })
 
   it('should render component and match snapshot', () => {
-    const wrapper = mountFunction(functionalContext())
+    const wrapper = mountFunction()
 
     expect(wrapper.html()).toMatchSnapshot()
   })
 
   it('should render component with static class and match snapshot', () => {
-    const wrapper = mountFunction(functionalContext({
-      class: 'static-class',
-    }))
+    const wrapper = mountFunction({
+      attrs: {
+        class: 'static-class',
+      },
+    })
 
     expect(wrapper.html()).toMatchSnapshot()
   })
 
   it('should render component with many children and match snapshot', () => {
-    const content1 = mount(Vue.component('content1', {
-      render: h => h('div'),
-    })).vNode
-    const content2 = mount(Vue.component('content2', {
-      render: h => h('span'),
-    })).vNode
-    const wrapper = mountFunction(functionalContext({}, [content1, content2]))
+    const content1 = h('div', 'content1')
+    const content2 = h('span', 'content2')
+    const wrapper = mountFunction({
+      slots: {
+        default: () => [content1, content2],
+      },
+    })
 
     expect(wrapper.html()).toMatchSnapshot()
   })
 
   it('should render component with one children and match snapshot', () => {
-    const visible = mount(Vue.component('visible', {
-      render: h => { return h('div') || h() },
-    })).vNode
-    const notVisible = mount(Vue.component('notVisible', {
-      render: h => { return h() || h('span') },
-    })).vNode
+    const visible = h('div', 'visible')
+    const notVisible = h('span', 'notVisible')
 
-    const wrapper = mountFunction(functionalContext({}, [visible, notVisible]))
+    const wrapper = mountFunction({
+      slots: {
+        default: () => [visible, notVisible],
+      },
+    })
 
     expect(wrapper.html()).toMatchSnapshot()
   })
 
   it('should work with v-html', () => {
     const wrapper = mountFunction({
-      context: Object.assign({
-        domProps: {
+      slots: {
+        default: () => h('div', {
           innerHTML: '<b>something</b>',
-        },
-        data: {},
-        props: {},
-      }),
+        }),
+      },
     })
 
     expect(wrapper.html()).toMatchSnapshot()

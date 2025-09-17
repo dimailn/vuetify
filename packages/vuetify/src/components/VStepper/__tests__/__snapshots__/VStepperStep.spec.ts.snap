@@ -67,7 +67,6 @@ exports[`VStepperStep.ts should render editable step 1`] = `
     <i aria-hidden="true"
        class="v-icon notranslate material-icons theme--light"
     >
-      $edit
     </i>
   </span>
   <div class="v-stepper__label">
@@ -81,9 +80,8 @@ exports[`VStepperStep.ts should render step with error 1`] = `
 >
   <span class="v-stepper__step__step">
     <i aria-hidden="true"
-       class="v-icon notranslate material-icons theme--light"
+       class="v-icon notranslate mdi mdi-alert theme--light"
     >
-      $error
     </i>
   </span>
   <div class="v-stepper__label">

@@ -3,7 +3,7 @@ import { Lang } from '../../../services/lang'
 import VTimePicker, { SelectingTimes } from '../VTimePicker'
 import {
   mount,
-  MountOptions,
+  MountingOptions,
   VueWrapper,
 } from '@vue/test-utils'
 
@@ -11,9 +11,9 @@ import { preset } from '../../../presets/default'
 
 describe('VTimePicker.ts', () => {
   type Instance = InstanceType<typeof VTimePicker>
-  let mountFunction: (options?: MountOptions<Instance>) => VueWrapper<Instance>
+  let mountFunction: (options?: MountingOptions<Instance>) => VueWrapper<Instance>
   beforeEach(() => {
-    mountFunction = (options?: MountOptions<Instance>) => {
+    mountFunction = (options?: MountingOptions<Instance>) => {
       return mount(VTimePicker, {
         global: {
           config: {

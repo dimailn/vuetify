@@ -40,13 +40,12 @@ describe('VGrid.ts', () => {
 
   it('should pass the id attr', () => {
     const wrapper = mountFunction({
-      attrs: {
+      props: {
         id: 'test',
       },
     })
 
-    // ID должен быть установлен через domProps, но в текущей реализации это не работает
-    expect(wrapper.attributes('id')).toBeUndefined()
+    expect(wrapper.attributes('id')).toBe('test')
   })
 
   it('should not pass data-* attrs as classes', () => {

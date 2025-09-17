@@ -1,8 +1,8 @@
 import VDatePickerYears from '../VDatePickerYears'
 import {
   mount,
-  MountOptions,
-  Wrapper,
+  MountingOptions,
+  VueWrapper,
   enableAutoUnmount,
 } from '@vue/test-utils'
 
@@ -10,9 +10,9 @@ enableAutoUnmount(afterEach)
 
 describe('VDatePickerYears.ts', () => {
   type Instance = InstanceType<typeof VDatePickerYears>
-  let mountFunction: (options?: MountOptions<Instance>) => Wrapper<Instance>
+  let mountFunction: (options?: MountingOptions<Instance>) => VueWrapper<Instance>
   beforeEach(() => {
-    mountFunction = (options?: MountOptions<Instance>) => {
+    mountFunction = (options?: MountingOptions<Instance>) => {
       return mount(VDatePickerYears, {
         ...options,
         global: {

@@ -23,7 +23,7 @@ export default mixins(Themeable).extend({
   },
 
   render (): VNode {
-    const props  = this.$props
+    const props = this.$props
     const max = parseInt(props.max, 10)
     const value = parseInt(props.value, 10)
     const content = max ? `${value} / ${max}` : String(props.value)

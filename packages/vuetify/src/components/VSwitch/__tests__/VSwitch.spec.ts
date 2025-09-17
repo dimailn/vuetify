@@ -4,18 +4,15 @@ import VSwitch from '../VSwitch'
 // Utilities
 import {
   mount,
-  MountOptions,
-  Wrapper,
+  MountingOptions,
+  VueWrapper,
   enableAutoUnmount,
 } from '@vue/test-utils'
 import { touch } from '../../../../test'
 
-// Types
-import { ExtractVue } from '../../../util/mixins'
-
 describe('VSwitch.ts', () => {
-  type Instance = ExtractVue<typeof VSwitch>
-  let mountFunction: (options?: MountOptions<Instance>) => Wrapper<Instance>
+  type Instance = InstanceType<typeof VSwitch>
+  let mountFunction: (options?: MountingOptions<Instance>) => VueWrapper<Instance>
 
   enableAutoUnmount(afterEach)
 

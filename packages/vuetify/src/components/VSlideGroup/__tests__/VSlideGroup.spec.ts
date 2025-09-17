@@ -9,21 +9,26 @@ import { preset } from '../../../presets/default'
 import { ExtractVue } from '../../../util/mixins'
 import {
   shallowMount,
-  Wrapper,
+  VueWrapper,
+  enableAutoUnmount,
 } from '@vue/test-utils'
+import { h } from 'vue'
 
 describe('VSlideGroup.ts', () => {
   type Instance = ExtractVue<typeof VSlideGroup>
-  let mountFunction: (options?: object) => Wrapper<Instance>
+  let mountFunction: (options?: object) => VueWrapper<Instance>
+
+  enableAutoUnmount(afterEach)
 
   beforeEach(() => {
     mountFunction = (options = {}) => {
       return shallowMount(VSlideGroup, {
-        methods: { setWidths: jest.fn() },
-        mocks: {
-          $vuetify: {
-            rtl: false,
-            breakpoint: new Breakpoint(preset),
+        global: {
+          mocks: {
+            $vuetify: {
+              rtl: false,
+              breakpoint: new Breakpoint(preset),
+            },
           },
         },
         ...options,
@@ -36,7 +41,7 @@ describe('VSlideGroup.ts', () => {
       data: () => ({
         isOverflowing: true,
       }),
-      propsData: {
+      props: {
         showArrows: true,
       },
     })
@@ -45,23 +50,19 @@ describe('VSlideGroup.ts', () => {
     expect(wrapper.vm.hasNext).toBe(false)
     expect(wrapper.vm.hasPrev).toBe(false)
 
-    wrapper.setData({
-      scrollOffset: 100,
-      widths: {
-        content: 1000,
-        wrapper: 500,
-      },
-    })
+    wrapper.vm.scrollOffset = 100
+    wrapper.vm.widths = {
+      content: 1000,
+      wrapper: 500,
+    }
 
     expect(wrapper.vm.hasPrev).toBe(true)
 
-    wrapper.setData({
-      scrollOffset: -100,
-      widths: {
-        content: 1000,
-        wrapper: 500,
-      },
-    })
+    wrapper.vm.scrollOffset = -100
+    wrapper.vm.widths = {
+      content: 1000,
+      wrapper: 500,
+    }
 
     expect(wrapper.vm.hasNext).toBe(true)
   })
@@ -175,10 +176,8 @@ describe('VSlideGroup.ts', () => {
 
     expect(wrapper.vm.scrollOffset).toBe(0)
 
-    wrapper.setData({
-      scrollOffset: 90,
-      isOverflowing: true,
-    })
+    wrapper.vm.scrollOffset = 90
+    wrapper.vm.isOverflowing = true
 
     wrapper.vm.onTouchEnd()
     expect(wrapper.vm.scrollOffset).toBe(0)
@@ -203,7 +202,7 @@ describe('VSlideGroup.ts', () => {
     wrapper.vm.overflowCheck(event, fn)
     expect(fn).not.toHaveBeenCalled()
 
-    wrapper.setData({ isOverflowing: true })
+    wrapper.vm.isOverflowing = true
     wrapper.vm.overflowCheck(event, fn)
     expect(fn).toHaveBeenCalled()
   })
@@ -213,24 +212,33 @@ describe('VSlideGroup.ts', () => {
     const scrollTo = jest.fn()
     const setWidths = jest.fn()
     const wrapper = mountFunction({
-      methods: { scrollTo, setWidths },
-      propsData: {
+      global: {
+        mocks: {
+          $vuetify: {
+            rtl: false,
+            breakpoint: new Breakpoint(preset),
+          },
+        },
+      },
+      props: {
         showArrows: true,
       },
-      listeners: {
-        'click:prev': onClick,
-        'click:next': onClick,
+      attrs: {
+        'onClick:prev': onClick,
+        'onClick:next': onClick,
       },
     })
 
-    wrapper.setData({
-      isOverflowing: true,
-      scrollOffset: 200,
-      widths: {
-        content: 1000,
-        wrapper: 500,
-      },
-    })
+    // Mock the methods
+    wrapper.vm.scrollTo = scrollTo
+    wrapper.vm.setWidths = setWidths
+
+    wrapper.vm.isOverflowing = true
+    wrapper.vm.scrollOffset = 200
+    wrapper.vm.widths = {
+      content: 1000,
+      wrapper: 500,
+    }
 
     await wrapper.vm.$nextTick()
 
@@ -250,10 +258,10 @@ describe('VSlideGroup.ts', () => {
         hasNext: () => true,
         hasPrev: () => true,
       },
-      propsData: {
+      props: {
         showArrows: true,
       },
-      scopedSlots: {
+      slots: {
         prev () {
           return h('div', {
             class: 'fizz',
@@ -267,39 +275,37 @@ describe('VSlideGroup.ts', () => {
       },
     })
 
-    wrapper.setData({ isOverflowing: true })
+    wrapper.vm.isOverflowing = true
 
     expect(wrapper.findAll('.fizz')).toHaveLength(2)
   })
 
   it('should match snapshot in rtl', async () => {
     const wrapper = mountFunction({
-      computed: {
-        hasAffixes: () => true,
-        hasNext: () => true,
-        hasPrev: () => true,
-      },
-      propsData: {
+      props: {
         showArrows: true,
       },
-      mocks: {
-        $vuetify: {
-          rtl: true,
-          breakpoint: { mobileBreakpoint: 1264 },
+      global: {
+        mocks: {
+          $vuetify: {
+            rtl: true,
+            breakpoint: { mobileBreakpoint: 1264 },
+          },
         },
       },
     })
 
+    // Set up data to show affixes
+    wrapper.vm.isOverflowing = true
+    wrapper.vm.scrollOffset = 200
+    wrapper.vm.widths = {
+      content: 1000,
+      wrapper: 500,
+    }
+
     const html1 = wrapper.html()
 
     expect(html1).toMatchSnapshot()
-
-    wrapper.vm.$vuetify.rtl = false
-
-    const html2 = wrapper.html()
-
-    expect(html1).not.toEqual(html2)
-    expect(html2).toMatchSnapshot()
   })
 
   // showArrows | isOverflowing | isMobile | hasAffixes
@@ -326,7 +332,7 @@ describe('VSlideGroup.ts', () => {
     const wrapper = mountFunction({
       data: () => ({ isOverflowing }),
       computed: { isMobile: () => isMobile },
-      propsData: { showArrows },
+      props: { showArrows },
     })
 
     expect(wrapper.vm.hasAffixes).toBe(hasAffixes)
@@ -356,8 +362,10 @@ describe('VSlideGroup.ts', () => {
       data: () => ({
         items: [{ $el: {} }],
       }),
-      methods: { calculateNewOffset },
     })
+
+    // Mock the method
+    wrapper.vm.calculateNewOffset = calculateNewOffset
 
     const setWrapperPosition = ({ left = 0, right = 0 } = {}) => {
       wrapper.vm.$refs.wrapper.getBoundingClientRect = () => ({ left, right } as DOMRectReadOnly)

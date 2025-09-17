@@ -21,7 +21,7 @@ export default mixins(
       type: Boolean,
       default: false,
     },
-    value: {
+    modelValue: {
       type: Boolean,
       default: undefined,
     },
@@ -31,15 +31,17 @@ export default mixins(
 
   methods: {
     onMouseEnter () {
+      if (this.disabled) return
       this.runDelay('open')
     },
     onMouseLeave () {
+      if (this.disabled) return
       this.runDelay('close')
     },
   },
 
   render (): VNode {
-    if (!this.$slots.default && this.value === undefined) {
+    if (!this.$slots.default && this.modelValue === undefined) {
       consoleWarn('v-hover is missing a default scopedSlot or bound value', this)
 
       return null as any
@@ -52,11 +54,16 @@ export default mixins(
       element = this.$slots.default({ hover: this.isActive })
     }
 
-    if (Array.isArray(element) && element.length === 1) {
-      element = element[0]
+    if (Array.isArray(element)) {
+      if (element.length === 1) {
+        element = element[0]
+      } else {
+        consoleWarn('v-hover should only contain a single element', this)
+        return element as any
+      }
     }
 
-    if (!element || Array.isArray(element) || !element.tag) {
+    if (!element || (!element.tag && !element.type)) {
       consoleWarn('v-hover should only contain a single element', this)
 
       return element as any
@@ -64,10 +71,11 @@ export default mixins(
 
     if (!this.disabled) {
       element.data = element.data || {}
-      this._g(element.data, {
-        mouseenter: this.onMouseEnter,
-        mouseleave: this.onMouseLeave,
-      })
+      element.data.on = {
+        ...element.data.on,
+        onMouseenter: this.onMouseEnter,
+        onMouseleave: this.onMouseLeave,
+      }
     }
 
     return element

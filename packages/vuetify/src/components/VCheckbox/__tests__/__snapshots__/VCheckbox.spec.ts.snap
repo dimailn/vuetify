@@ -2,11 +2,10 @@
 
 exports[`VCheckbox.ts should be disabled 1`] = `
 <input aria-checked="false"
-       disabled="disabled"
-       id="input-101"
+       disabled
+       id="input-122"
        role="checkbox"
        type="checkbox"
-       value
 >
 `;
 
@@ -16,26 +15,21 @@ exports[`VCheckbox.ts should be render colored checkbox 1`] = `
     <div class="v-input__slot">
       <div class="v-input--selection-controls__input">
         <i aria-hidden="true"
-           class="v-icon notranslate material-icons theme--light"
+           class="v-icon notranslate mdi mdi-checkbox-blank-outline theme--light"
         >
-          $checkboxOff
         </i>
         <input aria-checked="false"
-               id="input-106"
+               id="input-128"
                role="checkbox"
                type="checkbox"
-               value
         >
         <div class="v-input--selection-controls__ripple">
         </div>
       </div>
     </div>
     <div class="v-messages theme--light">
-      <span name="message-transition"
-            tag="div"
-            class="v-messages__wrapper"
-      >
-      </span>
+      <div class="v-messages__wrapper">
+      </div>
     </div>
   </div>
 </div>
@@ -47,26 +41,21 @@ exports[`VCheckbox.ts should render themed component 1`] = `
     <div class="v-input__slot">
       <div class="v-input--selection-controls__input">
         <i aria-hidden="true"
-           class="v-icon notranslate material-icons theme--light"
+           class="v-icon notranslate mdi mdi-checkbox-blank-outline theme--light"
         >
-          $checkboxOff
         </i>
         <input aria-checked="false"
-               id="input-96"
+               id="input-116"
                role="checkbox"
                type="checkbox"
-               value
         >
         <div class="v-input--selection-controls__ripple">
         </div>
       </div>
     </div>
     <div class="v-messages theme--light">
-      <span name="message-transition"
-            tag="div"
-            class="v-messages__wrapper"
-      >
-      </span>
+      <div class="v-messages__wrapper">
+      </div>
     </div>
   </div>
 </div>
@@ -80,10 +69,9 @@ exports[`VCheckbox.ts should use custom icons 1`] = `
         <i aria-hidden="true"
            class="v-icon notranslate material-icons theme--light"
         >
-          fizzbuzz
         </i>
         <input aria-checked="mixed"
-               id="input-91"
+               id="input-110"
                role="checkbox"
                type="checkbox"
                value="fizz"
@@ -93,11 +81,8 @@ exports[`VCheckbox.ts should use custom icons 1`] = `
       </div>
     </div>
     <div class="v-messages theme--light">
-      <span name="message-transition"
-            tag="div"
-            class="v-messages__wrapper"
-      >
-      </span>
+      <div class="v-messages__wrapper">
+      </div>
     </div>
   </div>
 </div>
@@ -111,10 +96,9 @@ exports[`VCheckbox.ts should use custom icons 2`] = `
         <i aria-hidden="true"
            class="v-icon notranslate material-icons theme--light"
         >
-          fizzbuzz
         </i>
         <input aria-checked="mixed"
-               id="input-91"
+               id="input-110"
                role="checkbox"
                type="checkbox"
                value="fizz"
@@ -124,11 +108,8 @@ exports[`VCheckbox.ts should use custom icons 2`] = `
       </div>
     </div>
     <div class="v-messages theme--light">
-      <span name="message-transition"
-            tag="div"
-            class="v-messages__wrapper"
-      >
-      </span>
+      <div class="v-messages__wrapper">
+      </div>
     </div>
   </div>
 </div>
@@ -142,10 +123,9 @@ exports[`VCheckbox.ts should use custom icons 3`] = `
         <i aria-hidden="true"
            class="v-icon notranslate material-icons theme--light"
         >
-          fizzbuzz
         </i>
         <input aria-checked="mixed"
-               id="input-91"
+               id="input-110"
                role="checkbox"
                type="checkbox"
                value="fizz"
@@ -155,11 +135,8 @@ exports[`VCheckbox.ts should use custom icons 3`] = `
       </div>
     </div>
     <div class="v-messages theme--light">
-      <span name="message-transition"
-            tag="div"
-            class="v-messages__wrapper"
-      >
-      </span>
+      <div class="v-messages__wrapper">
+      </div>
     </div>
   </div>
 </div>

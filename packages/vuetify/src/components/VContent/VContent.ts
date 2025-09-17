@@ -5,6 +5,7 @@ import { VNode, defineComponent } from 'vue'
 // Extensions
 import VMain from '../VMain/VMain'
 import { deprecate } from '../../util/console'
+import { normalizeClasses } from '../../util/helpers'
 
 /* @vue/component */
 export default defineComponent({
@@ -20,8 +21,15 @@ export default defineComponent({
     // Add the legacy class names
     const node = VMain.render.call(this, h)
 
-    node.data!.staticClass += ' v-content'
-    node.children![0]!.data!.staticClass += ' v-content__wrap'
+    const existingClasses = node.data?.class || ''
+    const contentClasses = normalizeClasses(`${existingClasses} v-content`)
+    node.data = { ...node.data, class: contentClasses }
+
+    if (node.children && node.children[0] && node.children[0].data) {
+      const childExistingClasses = node.children[0].data.class || ''
+      const wrapClasses = normalizeClasses(`${childExistingClasses} v-content__wrap`)
+      node.children[0].data = { ...node.children[0].data, class: wrapClasses }
+    }
 
     return h(node.tag, node.data, node.children)
   },

@@ -4,15 +4,15 @@ import VAutocomplete from '../VAutocomplete'
 // Utilities
 import {
   mount,
-  Wrapper,
-  MountOptions,
+  VueWrapper,
+  MountingOptions,
   enableAutoUnmount,
 } from '@vue/test-utils'
-import { h } from 'vue'
+import { h, nextTick } from 'vue'
 
 describe('VAutocomplete.ts', () => {
   type Instance = InstanceType<typeof VAutocomplete>
-  let mountFunction: (options?: MountOptions<Instance>) => Wrapper<Instance>
+  let mountFunction: (options?: MountingOptions<Instance>) => VueWrapper<Instance>
 
   enableAutoUnmount(afterEach)
 
@@ -108,7 +108,7 @@ describe('VAutocomplete.ts', () => {
 
     wrapper.setProps({ noFilter: true })
 
-    await wrapper.vm.$nextTick()
+    await nextTick()
 
     expect(wrapper.vm.filteredItems).toHaveLength(2)
   })
@@ -127,13 +127,13 @@ describe('VAutocomplete.ts', () => {
 
     wrapper.setProps({ hideNoData: true })
 
-    await wrapper.vm.$nextTick()
+    await nextTick()
 
     expect(wrapper.vm.menuCanShow).toBe(false)
 
     wrapper.setProps({ hideNoData: false })
 
-    await wrapper.vm.$nextTick()
+    await nextTick()
 
     expect(wrapper.vm.menuCanShow).toBe(true)
 
@@ -150,13 +150,13 @@ describe('VAutocomplete.ts', () => {
       modelValue: [1, 2, 3],
     })
 
-    await wrapper.vm.$nextTick()
+    await nextTick()
 
     expect(wrapper.vm.menuCanShow).toBe(true)
 
     wrapper.setProps({ modelValue: [1, 2, 3, 4] })
 
-    await wrapper.vm.$nextTick()
+    await nextTick()
 
     expect(wrapper.vm.menuCanShow).toBe(false)
   })
@@ -174,12 +174,12 @@ describe('VAutocomplete.ts', () => {
 
     const input = wrapper.find('input')
     input.trigger('focus')
-    await wrapper.vm.$nextTick()
+    await nextTick()
     expect(wrapper.vm.menuCanShow).toBe(true)
   })
 
   // https://github.com/vuetifyjs/vuetify/issues/2834
-  it('should not update search if selectedIndex is > -1', () => {
+  it('should not update search if selectedIndex is > -1', async () => {
     const wrapper = mountFunction()
 
     const input = wrapper.find('input')
@@ -191,10 +191,8 @@ describe('VAutocomplete.ts', () => {
 
     expect(wrapper.vm.internalSearch).toBe('foo')
 
-    wrapper.setData({
-      lazySearch: '',
-      selectedIndex: 0,
-    })
+    wrapper.vm.lazySearch = ''
+    wrapper.vm.selectedIndex = 0
 
     expect(wrapper.vm.internalSearch).toBe('')
 
@@ -238,7 +236,7 @@ describe('VAutocomplete.ts', () => {
     const slot = wrapper.find('.v-input__slot')
     slot.trigger('click')
 
-    await wrapper.vm.$nextTick()
+    await nextTick()
 
     // Try different selectors for the content
     const content = wrapper.find('.v-autocomplete__content') || wrapper.find('.v-menu__content')
@@ -264,9 +262,9 @@ describe('VAutocomplete.ts', () => {
     const input = wrapper.find('input')
     const element = input.element as HTMLInputElement
 
-    await wrapper.vm.$nextTick()
+    await nextTick()
     wrapper.setProps({ items: [{ text: 'foo', value: 1 }] })
-    await wrapper.vm.$nextTick()
+    await nextTick()
     expect(element.value).toBe('foo')
   })
 
@@ -291,7 +289,7 @@ describe('VAutocomplete.ts', () => {
       items: ['Foo', 'Bar'],
     })
 
-    await wrapper.vm.$nextTick()
+    await nextTick()
 
     expect(wrapper.vm.isMenuActive).toBe(true)
   })
@@ -316,7 +314,7 @@ describe('VAutocomplete.ts', () => {
       items: ['Foo', 'Bar'],
     })
 
-    await wrapper.vm.$nextTick()
+    await nextTick()
 
     expect(wrapper.vm.isMenuActive).toBe(false)
   })
@@ -337,29 +335,29 @@ describe('VAutocomplete.ts', () => {
 
     wrapper.vm.setSearch()
 
-    await wrapper.vm.$nextTick()
+    await nextTick()
 
     // !this.selectedItem
     expect(wrapper.vm.internalSearch).toBeNull()
 
-    wrapper.setData({ internalSearch: undefined })
+    wrapper.vm.internalSearch = undefined
     wrapper.setProps({ multiple: true, modelValue: 1 })
 
-    await wrapper.vm.$nextTick()
+    await nextTick()
 
     expect(wrapper.vm.selectedItems).toHaveLength(1)
 
     wrapper.vm.setSearch()
 
-    await wrapper.vm.$nextTick()
+    await nextTick()
 
     // this.multiple
     expect(wrapper.vm.internalSearch).toBeNull()
 
-    wrapper.setData({ internalSearch: undefined })
+    wrapper.vm.internalSearch = undefined
     wrapper.setProps({ multiple: false, modelValue: 0 })
 
-    await wrapper.vm.$nextTick()
+    await nextTick()
 
     expect(wrapper.vm.internalSearch).toBe(0)
   })
@@ -376,7 +374,7 @@ describe('VAutocomplete.ts', () => {
       },
     })
 
-    await wrapper.vm.$nextTick()
+    await nextTick()
 
     const input = wrapper.find('input')
     const element = input.element as HTMLInputElement
@@ -385,11 +383,11 @@ describe('VAutocomplete.ts', () => {
     element.value = 'fo'
     input.trigger('input')
 
-    await wrapper.vm.$nextTick()
+    await nextTick()
 
     input.trigger('keydown.enter')
 
-    await wrapper.vm.$nextTick()
+    await nextTick()
 
     expect(wrapper.vm.getMenuIndex()).toBe(0)
   })
@@ -410,24 +408,24 @@ describe('VAutocomplete.ts', () => {
     const element = input.element as HTMLInputElement
 
     input.trigger('focus')
-    await wrapper.vm.$nextTick()
+    await nextTick()
 
     element.value = '2'
     input.trigger('input')
-    await wrapper.vm.$nextTick()
+    await nextTick()
 
     expect(wrapper.vm.menuCanShow).toBe(true)
   })
 
   it('should retain search value when item selected and multiple is enabled', async () => {
     const wrapper = mountFunction({
-      propsData: {
+      props: {
         items: ['Sandra Adams', 'Ali Connors', 'Trevor Hansen', 'Tucker Smith'],
         multiple: true,
       },
     })
 
-    await wrapper.vm.$nextTick()
+    await nextTick()
 
     const input = wrapper.find('input')
     const element = input.element as HTMLInputElement
@@ -437,7 +435,7 @@ describe('VAutocomplete.ts', () => {
     input.trigger('input')
     wrapper.vm.selectItem('Trevor Hansen')
 
-    await wrapper.vm.$nextTick()
+    await nextTick()
     expect(wrapper.vm.selectedItems).toHaveLength(1)
     expect(wrapper.vm.internalSearch).toBe('t')
   })
@@ -460,19 +458,19 @@ describe('VAutocomplete.ts', () => {
       },
     })
 
-    await wrapper.vm.$nextTick()
+    await nextTick()
 
     wrapper.vm.selectItem(wrapper.vm.items[0])
-    await wrapper.vm.$nextTick()
+    await nextTick()
 
     expect(wrapper.vm.internalSearch).toEqual('ID 1 English')
 
     wrapper.setProps({ itemText: 'labels.1036' })
-    await wrapper.vm.$nextTick()
+    await nextTick()
 
     // Force update of internal search after itemText change
     wrapper.vm.setSearch()
-    await wrapper.vm.$nextTick()
+    await nextTick()
 
     expect(wrapper.vm.items).toHaveLength(2)
     expect(wrapper.vm.internalSearch).toEqual('ID 1 French')
@@ -491,10 +489,10 @@ describe('VAutocomplete.ts', () => {
 
     const input = wrapper.find('input')
     input.trigger('focus')
-    await wrapper.vm.$nextTick()
+    await nextTick()
 
     input.trigger('keypress', { key: 'f' })
-    await wrapper.vm.$nextTick()
+    await nextTick()
     expect(onKeyPress).not.toHaveBeenCalled()
   })
 })

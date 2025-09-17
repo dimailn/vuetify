@@ -10,7 +10,6 @@ import { defineComponent, h } from 'vue'
 export default defineComponent({
   name: 'v-container',
   extends: Grid('container'),
-  functional: true,
   props: {
     id: String,
     tag: {
@@ -48,18 +47,21 @@ export default defineComponent({
       })
     }
 
-    // if (props.id) {
-    //   data.domProps = data.domProps || {}
-    //   data.domProps.id = props.id
-    // }
+    const data = mergeData(this.$attrs, {
+      class: [
+        'container',
+        { 'container--fluid': this.fluid },
+        ...(classes || []),
+      ],
+    })
+
+    if (this.id) {
+      data.id = this.id
+    }
 
     return h(
       this.tag,
-      mergeData(this.$attrs, {
-        class: Array<any>({
-          'container--fluid': this.fluid,
-        }).concat(classes || []).concat('container'),
-      }),
+      data,
       this.$slots.default?.()
     )
   },
