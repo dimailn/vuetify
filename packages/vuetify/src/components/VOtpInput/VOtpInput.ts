@@ -175,9 +175,7 @@ export default baseMixins.extend({
     },
     genFieldset () {
       return h('fieldset', {
-        attrs: {
-          'aria-hidden': true,
-        },
+        'aria-hidden': 'true',
       }, [this.genLegend()])
     },
     genLegend () {
@@ -195,10 +193,9 @@ export default baseMixins.extend({
       const listeners = Object.assign({}, this.$attrs)
       delete listeners.onChange // Change should not be bound externally
 
-      return h('input', {
+      const inputProps: any = {
         style: {},
         value: this.otp[otpIdx],
-        min: this.type === 'number' ? 0 : null,
         ...this.$attrs,
         autocomplete: 'one-time-code',
         disabled: this.isDisabled,
@@ -218,7 +215,13 @@ export default baseMixins.extend({
             this.inputRefs[otpIdx] = el
           }
         },
-      })
+      }
+
+      if (this.type === 'number') {
+        inputProps.min = 0
+      }
+
+      return h('input', inputProps)
     },
     genTextFieldSlot (otpIdx: number): VNode {
       return h('div', {
