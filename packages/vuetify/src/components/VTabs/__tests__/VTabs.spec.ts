@@ -250,4 +250,70 @@ describe('VTabs.ts', () => {
     const emitted = wrapper.emitted('update:modelValue')
     expect(emitted).toBeFalsy() // Не должно быть эмиттов при инициализации
   })
+
+  it('should not close active tab when clicked (mandatory=false)', async () => {
+    // Тест для проверки бага: клик по активной вкладке не должен её закрывать
+    const wrapper = mountFunction({
+      props: {
+        modelValue: 'first',
+        optional: true, // mandatory=false
+      },
+      slots: {
+        default: () => [h('div', [
+          h(VTab, { tabValue: 'first' }, () => 'First Tab'),
+          h(VTab, { tabValue: 'second' }, () => 'Second Tab'),
+        ])],
+      },
+    })
+
+    await wrapper.vm.$nextTick()
+
+    // Проверяем, что первая вкладка активна
+    expect(wrapper.vm.internalValue).toBe('first')
+
+    // Кликаем по активной вкладке (первой)
+    const tabs = wrapper.findAllComponents({ name: 'v-tab' })
+    const firstTab = tabs[0] // Первая вкладка должна быть активной
+    await firstTab.trigger('click')
+
+    // Проверяем, что значение не изменилось (вкладка осталась активной)
+    expect(wrapper.vm.internalValue).toBe('first')
+
+    // Проверяем, что не было эмиттов update:modelValue
+    const emitted = wrapper.emitted('update:modelValue')
+    expect(emitted).toBeFalsy()
+  })
+
+  it('should not close active tab when clicked (mandatory=true)', async () => {
+    // Тест для проверки, что при mandatory=true активная вкладка не закрывается
+    const wrapper = mountFunction({
+      props: {
+        modelValue: 'first',
+        optional: false, // mandatory=true
+      },
+      slots: {
+        default: () => [h('div', [
+          h(VTab, { tabValue: 'first' }, () => 'First Tab'),
+          h(VTab, { tabValue: 'second' }, () => 'Second Tab'),
+        ])],
+      },
+    })
+
+    await wrapper.vm.$nextTick()
+
+    // Проверяем, что первая вкладка активна
+    expect(wrapper.vm.internalValue).toBe('first')
+
+    // Кликаем по активной вкладке (первой)
+    const tabs = wrapper.findAllComponents({ name: 'v-tab' })
+    const firstTab = tabs[0] // Первая вкладка должна быть активной
+    await firstTab.trigger('click')
+
+    // Проверяем, что значение не изменилось (вкладка осталась активной)
+    expect(wrapper.vm.internalValue).toBe('first')
+
+    // Проверяем, что не было эмиттов update:modelValue
+    const emitted = wrapper.emitted('update:modelValue')
+    expect(emitted).toBeFalsy()
+  })
 })

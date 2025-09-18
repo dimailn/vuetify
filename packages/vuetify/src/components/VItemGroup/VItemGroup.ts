@@ -37,6 +37,10 @@ export const BaseItemGroup = mixins(
       type: String,
       default: 'v-item--active',
     },
+    allowDeselect: {
+      type: Boolean,
+      default: true,
+    },
     mandatory: Boolean,
     max: {
       type: [Number, String],
@@ -254,6 +258,7 @@ export const BaseItemGroup = mixins(
       const isSame = this.valueComparator(this.internalValue, value)
 
       if (this.mandatory && isSame) return
+      if (!this.allowDeselect && isSame) return
 
       this.internalValue = isSame ? undefined : value
     },
