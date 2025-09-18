@@ -84,9 +84,6 @@ export default baseMixins.extend({
     filled (): boolean {
       return false
     },
-    isEnclosed (): boolean {
-      return this.outlined
-    },
     reverse (): boolean {
       return false
     },
