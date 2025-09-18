@@ -5,14 +5,14 @@ import { preset } from '../../../presets/default'
 import {
   mount,
   VueWrapper,
-  MountOptions,
+  MountingOptions,
 } from '@vue/test-utils'
 
 describe('VTimePickerTitle.ts', () => {
   type Instance = InstanceType<typeof VTimePickerTitle>
-  let mountFunction: (options?: MountOptions<Instance>) => VueWrapper<Instance>
+  let mountFunction: (options?: MountingOptions<Instance>) => VueWrapper<Instance>
   beforeEach(() => {
-    mountFunction = (options?: MountOptions<Instance>) => {
+    mountFunction = (options?: MountingOptions<Instance>) => {
       return mount(VTimePickerTitle, {
         global: {
           mocks: {

@@ -3,16 +3,14 @@
 exports[`VRadio.ts should be render colored radio 1`] = `
 <div class="v-radio theme--light">
   <div class="v-input--selection-controls__input">
-    <i aria-hidden="true"
-       class="v-icon notranslate material-icons theme--light"
+    <i class="v-icon notranslate theme--light mdi mdi-radiobox-blank"
+       aria-hidden="true"
     >
-      $radioOff
     </i>
     <input aria-checked="false"
-           id="input-22"
+           id="input-29"
            role="radio"
            type="radio"
-           value
     >
     <div class="v-input--selection-controls__ripple">
     </div>
@@ -23,16 +21,15 @@ exports[`VRadio.ts should be render colored radio 1`] = `
 exports[`VRadio.ts should not render aria-label attribute with no label value on input group 1`] = `
 <div class="v-radio theme--light">
   <div class="v-input--selection-controls__input">
-    <i aria-hidden="true"
-       class="v-icon notranslate material-icons theme--light"
+    <i class="v-icon notranslate theme--light mdi mdi-radiobox-blank"
+       aria-hidden="true"
     >
-      $radioOff
     </i>
     <input aria-checked="false"
-           id="input-4"
+           id="input-5"
            role="radio"
            type="radio"
-           value
+           name="name"
     >
     <div class="v-input--selection-controls__ripple">
     </div>
@@ -43,17 +40,15 @@ exports[`VRadio.ts should not render aria-label attribute with no label value on
 exports[`VRadio.ts should render proper input name 1`] = `
 <div class="v-radio theme--light">
   <div class="v-input--selection-controls__input">
-    <i aria-hidden="true"
-       class="v-icon notranslate material-icons theme--light"
+    <i class="v-icon notranslate theme--light mdi mdi-radiobox-blank"
+       aria-hidden="true"
     >
-      $radioOff
     </i>
     <input aria-checked="false"
-           id="input-7"
+           id="input-9"
            role="radio"
            type="radio"
            name="name"
-           value
     >
     <div class="v-input--selection-controls__ripple">
     </div>
@@ -64,18 +59,19 @@ exports[`VRadio.ts should render proper input name 1`] = `
 exports[`VRadio.ts should render role and aria-checked attributes on input group 1`] = `
 <div class="v-radio theme--light">
   <div class="v-input--selection-controls__input">
-    <i aria-hidden="true"
-       class="v-icon notranslate material-icons theme--light primary--text"
+    <i class="v-icon notranslate theme--light mdi mdi-radiobox-blank"
+       aria-hidden="true"
     >
-      $radioOn
     </i>
-    <input aria-checked="true"
+    <input aria-checked="false"
            id="input-1"
            role="radio"
            type="radio"
-           value
+           name="name"
+           modelvalue="test"
+           value="test"
     >
-    <div class="v-input--selection-controls__ripple primary--text">
+    <div class="v-input--selection-controls__ripple">
     </div>
   </div>
 </div>
@@ -84,16 +80,16 @@ exports[`VRadio.ts should render role and aria-checked attributes on input group
 exports[`VRadio.ts should use custom icons 1`] = `
 <div class="v-radio theme--light">
   <div class="v-input--selection-controls__input">
-    <i aria-hidden="true"
-       class="v-icon notranslate material-icons theme--light"
+    <i class="v-icon notranslate theme--light material-icons"
+       aria-hidden="true"
     >
-      bar
     </i>
     <input aria-checked="false"
-           id="input-13"
+           id="input-17"
            role="radio"
            type="radio"
-           value
+           modelvalue="test"
+           value="test"
     >
     <div class="v-input--selection-controls__ripple">
     </div>
@@ -104,18 +100,18 @@ exports[`VRadio.ts should use custom icons 1`] = `
 exports[`VRadio.ts should use custom icons 2`] = `
 <div class="v-radio theme--light">
   <div class="v-input--selection-controls__input">
-    <i aria-hidden="true"
-       class="v-icon notranslate material-icons theme--light primary--text"
+    <i class="v-icon notranslate theme--light material-icons"
+       aria-hidden="true"
     >
-      foo
     </i>
-    <input aria-checked="true"
-           id="input-13"
+    <input aria-checked="false"
+           id="input-17"
            role="radio"
            type="radio"
-           value
+           modelvalue="test"
+           value="test"
     >
-    <div class="v-input--selection-controls__ripple primary--text">
+    <div class="v-input--selection-controls__ripple">
     </div>
   </div>
 </div>

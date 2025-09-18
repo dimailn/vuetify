@@ -10,8 +10,8 @@ exports[`VPagination.ts emits an event when next or previous is clicked 1`] = `
               type="button"
               aria-label="Previous page"
       >
-        <i aria-hidden="true"
-           class="v-icon notranslate mdi mdi-chevron-left theme--light"
+        <i class="v-icon notranslate theme--light mdi mdi-chevron-left"
+           aria-hidden="true"
         >
         </i>
       </button>
@@ -66,8 +66,8 @@ exports[`VPagination.ts emits an event when next or previous is clicked 1`] = `
               type="button"
               aria-label="Next page"
       >
-        <i aria-hidden="true"
-           class="v-icon notranslate mdi mdi-chevron-right theme--light"
+        <i class="v-icon notranslate theme--light mdi mdi-chevron-right"
+           aria-hidden="true"
         >
         </i>
       </button>
@@ -86,8 +86,8 @@ exports[`VPagination.ts should only render end of range if value is equals "righ
               type="button"
               aria-label="Previous page"
       >
-        <i aria-hidden="true"
-           class="v-icon notranslate mdi mdi-chevron-left theme--light"
+        <i class="v-icon notranslate theme--light mdi mdi-chevron-left"
+           aria-hidden="true"
         >
         </i>
       </button>
@@ -138,8 +138,8 @@ exports[`VPagination.ts should only render end of range if value is equals "righ
               type="button"
               aria-label="Next page"
       >
-        <i aria-hidden="true"
-           class="v-icon notranslate mdi mdi-chevron-right theme--light"
+        <i class="v-icon notranslate theme--light mdi mdi-chevron-right"
+           aria-hidden="true"
         >
         </i>
       </button>
@@ -158,8 +158,8 @@ exports[`VPagination.ts should only render middle of range if length is big and 
               type="button"
               aria-label="Previous page"
       >
-        <i aria-hidden="true"
-           class="v-icon notranslate mdi mdi-chevron-left theme--light"
+        <i class="v-icon notranslate theme--light mdi mdi-chevron-left"
+           aria-hidden="true"
         >
         </i>
       </button>
@@ -206,8 +206,8 @@ exports[`VPagination.ts should only render middle of range if length is big and 
               type="button"
               aria-label="Next page"
       >
-        <i aria-hidden="true"
-           class="v-icon notranslate mdi mdi-chevron-right theme--light"
+        <i class="v-icon notranslate theme--light mdi mdi-chevron-right"
+           aria-hidden="true"
         >
         </i>
       </button>
@@ -227,8 +227,8 @@ exports[`VPagination.ts should only render start and end of range if length is b
               type="button"
               aria-label="Previous page"
       >
-        <i aria-hidden="true"
-           class="v-icon notranslate mdi mdi-chevron-left theme--light"
+        <i class="v-icon notranslate theme--light mdi mdi-chevron-left"
+           aria-hidden="true"
         >
         </i>
       </button>
@@ -279,8 +279,8 @@ exports[`VPagination.ts should only render start and end of range if length is b
               type="button"
               aria-label="Next page"
       >
-        <i aria-hidden="true"
-           class="v-icon notranslate mdi mdi-chevron-right theme--light"
+        <i class="v-icon notranslate theme--light mdi mdi-chevron-right"
+           aria-hidden="true"
         >
         </i>
       </button>
@@ -299,8 +299,8 @@ exports[`VPagination.ts should only render start of range if value is equals "le
               type="button"
               aria-label="Previous page"
       >
-        <i aria-hidden="true"
-           class="v-icon notranslate mdi mdi-chevron-left theme--light"
+        <i class="v-icon notranslate theme--light mdi mdi-chevron-left"
+           aria-hidden="true"
         >
         </i>
       </button>
@@ -351,8 +351,8 @@ exports[`VPagination.ts should only render start of range if value is equals "le
               type="button"
               aria-label="Next page"
       >
-        <i aria-hidden="true"
-           class="v-icon notranslate mdi mdi-chevron-right theme--light"
+        <i class="v-icon notranslate theme--light mdi mdi-chevron-right"
+           aria-hidden="true"
         >
         </i>
       </button>
@@ -371,8 +371,8 @@ exports[`VPagination.ts should render component in RTL mode and match snapshot 1
               type="button"
               aria-label="Previous page"
       >
-        <i aria-hidden="true"
-           class="v-icon notranslate mdi mdi-chevron-right theme--light"
+        <i class="v-icon notranslate theme--light mdi mdi-chevron-right"
+           aria-hidden="true"
         >
         </i>
       </button>
@@ -427,8 +427,8 @@ exports[`VPagination.ts should render component in RTL mode and match snapshot 1
               type="button"
               aria-label="Next page"
       >
-        <i aria-hidden="true"
-           class="v-icon notranslate mdi mdi-chevron-left theme--light"
+        <i class="v-icon notranslate theme--light mdi mdi-chevron-left"
+           aria-hidden="true"
         >
         </i>
       </button>
@@ -448,8 +448,8 @@ exports[`VPagination.ts should render disabled buttons with length equals to 0 1
               type="button"
               aria-label="Previous page"
       >
-        <i aria-hidden="true"
-           class="v-icon notranslate mdi mdi-chevron-left theme--light"
+        <i class="v-icon notranslate theme--light mdi mdi-chevron-left"
+           aria-hidden="true"
         >
         </i>
       </button>
@@ -460,8 +460,8 @@ exports[`VPagination.ts should render disabled buttons with length equals to 0 1
               type="button"
               aria-label="Next page"
       >
-        <i aria-hidden="true"
-           class="v-icon notranslate mdi mdi-chevron-right theme--light"
+        <i class="v-icon notranslate theme--light mdi mdi-chevron-right"
+           aria-hidden="true"
         >
         </i>
       </button>
@@ -480,8 +480,8 @@ exports[`VPagination.ts should use totalVisible prop if defined 1`] = `
               type="button"
               aria-label="Previous page"
       >
-        <i aria-hidden="true"
-           class="v-icon notranslate mdi mdi-chevron-left theme--light"
+        <i class="v-icon notranslate theme--light mdi mdi-chevron-left"
+           aria-hidden="true"
         >
         </i>
       </button>
@@ -573,8 +573,8 @@ exports[`VPagination.ts should use totalVisible prop if defined 1`] = `
               type="button"
               aria-label="Next page"
       >
-        <i aria-hidden="true"
-           class="v-icon notranslate mdi mdi-chevron-right theme--light"
+        <i class="v-icon notranslate theme--light mdi mdi-chevron-right"
+           aria-hidden="true"
         >
         </i>
       </button>

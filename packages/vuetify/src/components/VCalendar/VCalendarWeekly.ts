@@ -19,6 +19,7 @@ import {
   createDayList,
   getDayIdentifier,
   createNativeLocaleFormatter,
+  validateTimestamp,
 } from './util/timestamp'
 import { CalendarTimestamp, CalendarFormatter } from 'vuetify/types'
 
@@ -27,7 +28,13 @@ export default defineComponent({
   name: 'v-calendar-weekly',
   extends: CalendarBase,
 
-  props: props.weeks,
+  props: {
+    ...props.weeks,
+    now: {
+      type: String,
+      validator: validateTimestamp,
+    },
+  },
 
   computed: {
     staticClass (): string {
@@ -54,14 +61,14 @@ export default defineComponent({
       )
     },
     todayWeek (): CalendarTimestamp[] {
-      const today = this.times.today
-      const start = this.getStartOfWeek(today)
-      const end = this.getEndOfWeek(today)
+      const now = this.times.now
+      const start = this.getStartOfWeek(now)
+      const end = this.getEndOfWeek(now)
 
       return createDayList(
         start,
         end,
-        today,
+        now,
         this.weekdaySkips,
         this.parsedWeekdays.length,
         this.parsedWeekdays.length

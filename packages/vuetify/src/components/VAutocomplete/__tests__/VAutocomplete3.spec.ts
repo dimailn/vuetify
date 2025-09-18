@@ -4,15 +4,15 @@ import VAutocomplete from '../VAutocomplete'
 // Utilities
 import {
   mount,
-  Wrapper,
-  MountOptions,
+  VueWrapper,
+  MountingOptions,
   enableAutoUnmount,
 } from '@vue/test-utils'
-import { h } from 'vue'
+import { h, nextTick } from 'vue'
 
 describe('VAutocomplete.ts', () => {
   type Instance = InstanceType<typeof VAutocomplete>
-  let mountFunction: (options?: MountOptions<Instance>) => Wrapper<Instance>
+  let mountFunction: (options?: MountingOptions<Instance>) => VueWrapper<Instance>
 
   enableAutoUnmount(afterEach)
 
@@ -59,7 +59,7 @@ describe('VAutocomplete.ts', () => {
       },
     })
 
-    await wrapper.vm.$nextTick()
+    await nextTick()
 
     const input = wrapper.find('input')
     const element = input.element as HTMLInputElement
@@ -71,17 +71,17 @@ describe('VAutocomplete.ts', () => {
     element.value = 'fo'
     input.trigger('input')
 
-    await wrapper.vm.$nextTick()
+    await nextTick()
 
     const item = wrapper.find('.v-list-item')
     if (item.exists()) {
       item.trigger('click')
-      await wrapper.vm.$nextTick()
+      await nextTick()
     }
 
     // Force update the input value after selection
     wrapper.vm.setSearch()
-    await wrapper.vm.$nextTick()
+    await nextTick()
 
     expect(element.value).toBe('foo')
   })
@@ -164,7 +164,7 @@ describe('VAutocomplete.ts', () => {
       modelValue: ['foo', 'bar'],
     })
 
-    await wrapper.vm.$nextTick()
+    await nextTick()
 
     input.trigger('keydown.backspace')
     input.trigger('keydown.backspace')
@@ -202,7 +202,7 @@ describe('VAutocomplete.ts', () => {
     append.trigger('mousedown')
     append.trigger('mouseup')
     append.trigger('click')
-    await wrapper.vm.$nextTick()
+    await nextTick()
     expect(wrapper.vm.isMenuActive).toBe(false)
   })
 
@@ -218,7 +218,7 @@ describe('VAutocomplete.ts', () => {
     append.trigger('mousedown')
     append.trigger('mouseup')
     append.trigger('click')
-    await wrapper.vm.$nextTick()
+    await nextTick()
     expect(wrapper.vm.isMenuActive).toBe(true)
   })
 
@@ -233,23 +233,23 @@ describe('VAutocomplete.ts', () => {
 
     expect(wrapper.emitted('update:search-input')).toBeFalsy()
 
-    wrapper.setData({ internalValue: 'bar' })
+    wrapper.setProps({ searchInput: 'bar' })
 
-    await wrapper.vm.$nextTick()
+    await nextTick()
 
-    expect(wrapper.emitted('update:search-input')).toHaveLength(1)
+    expect(wrapper.emitted('update:search-input') || []).toHaveLength(1)
 
-    wrapper.setData({ internalValue: 'foo' })
+    wrapper.setProps({ searchInput: 'foo' })
 
-    await wrapper.vm.$nextTick()
+    await nextTick()
 
-    expect(wrapper.emitted('update:search-input')).toHaveLength(1)
+    expect(wrapper.emitted('update:search-input') || []).toHaveLength(1)
 
-    wrapper.setData({ internalValue: 'foo' })
+    wrapper.setProps({ searchInput: 'foo' })
 
-    await wrapper.vm.$nextTick()
+    await nextTick()
 
-    expect(wrapper.emitted('update:search-input')).toHaveLength(1)
+    expect(wrapper.emitted('update:search-input') || []).toHaveLength(1)
   })
 
   it('should reset selected item when text-field is cleared if not multiple', () => {
@@ -284,33 +284,33 @@ describe('VAutocomplete.ts', () => {
       },
     })
 
-    await wrapper.vm.$nextTick()
+    await nextTick()
 
     let chips = wrapper.findAll('.v-chip')
     expect(chips).toHaveLength(2)
     expect(wrapper.vm.internalValue).toEqual(['Sandra Adams', 'Ali Connors'])
 
     wrapper.setProps({ modelValue: ['Ali Connors'] })
-    await wrapper.vm.$nextTick()
+    await nextTick()
     chips = wrapper.findAll('.v-chip')
     expect(chips).toHaveLength(1)
     expect(chips[0].text()).toBe('Ali Connors')
 
     wrapper.setProps({ modelValue: ['Sandra Adams', 'Ali Connors'] })
-    await wrapper.vm.$nextTick()
+    await nextTick()
     const friends = wrapper.vm.internalValue as string[]
     const index = friends.indexOf('Sandra Adams')
     if (index >= 0) friends.splice(index, 1)
-    await wrapper.vm.$nextTick()
+    await nextTick()
     chips = wrapper.findAll('.v-chip')
     expect(chips).toHaveLength(1)
     expect(chips[0].text()).toBe('Ali Connors')
 
     wrapper.setProps({ modelValue: ['Sandra Adams', 'Ali Connors'] })
-    await wrapper.vm.$nextTick()
+    await nextTick()
     const newFriends = ['Ali Connors']
     wrapper.vm.setValue(newFriends)
-    await wrapper.vm.$nextTick()
+    await nextTick()
     chips = wrapper.findAll('.v-chip')
     expect(chips).toHaveLength(1)
     expect(chips[0].text()).toBe('Ali Connors')

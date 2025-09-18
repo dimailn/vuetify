@@ -27,7 +27,7 @@ describe('VTooltip', () => {
         top: true,
       },
       slots: {
-        activator: () => h('span', 'activator'),
+        activator: function({ on }: any) { return h('span', { ...on }, 'activator') },
         default: () => h('span', 'content'),
       },
     })
@@ -49,7 +49,7 @@ describe('VTooltip', () => {
         left: true,
       },
       slots: {
-        activator: () => h('span', 'activator'),
+        activator: function({ on }: any) { return h('span', { ...on }, 'activator') },
         default: () => h('span', 'content'),
       },
     })
@@ -71,7 +71,7 @@ describe('VTooltip', () => {
         bottom: true,
       },
       slots: {
-        activator: () => h('span', 'activator'),
+        activator: function({ on }: any) { return h('span', { ...on }, 'activator') },
         default: () => h('span', 'content'),
       },
     })
@@ -93,7 +93,7 @@ describe('VTooltip', () => {
         right: true,
       },
       slots: {
-        activator: () => h('span', 'activator'),
+        activator: function({ on }: any) { return h('span', { ...on }, 'activator') },
         default: () => h('span', 'content'),
       },
     })
@@ -114,7 +114,7 @@ describe('VTooltip', () => {
         eager: true,
       },
       slots: {
-        activator: () => h('span', 'activator'),
+        activator: function({ on }: any) { return h('span', { ...on }, 'activator') },
         default: () => h('span', 'content'),
       },
     })
@@ -128,7 +128,7 @@ describe('VTooltip', () => {
         modelValue: true,
       },
       slots: {
-        activator: () => h('span', 'activator'),
+        activator: function({ on }: any) { return h('span', { ...on }, 'activator') },
         default: () => h('span', 'content'),
       },
     })
@@ -145,7 +145,7 @@ describe('VTooltip', () => {
         maxWidth: 200,
       },
       slots: {
-        activator: () => h('span', 'activator'),
+        activator: function({ on }: any) { return h('span', { ...on }, 'activator') },
         default: () => h('span', 'content'),
       },
     })
@@ -197,18 +197,19 @@ describe('VTooltip', () => {
     jest.useRealTimers()
   })
 
-  it(`should warn if activator isn't scoped`, () => {
-    mountFunction({
+  it(`should work with normal activator slot`, () => {
+    const wrapper = mountFunction({
       props: {
         openDelay: 0,
       },
       slots: {
-        activator: () => h('span', 'activator'),
+        activator: function({ on }: any) { return h('span', { ...on }, 'activator') },
         default: () => h('span', 'content'),
       },
     })
 
-    expect(`[Vuetify] The activator slot must be bound, try '<template v-slot:activator="{ on }"><v-btn v-on="on">'`).toHaveBeenWarned()
+    // In Vue 3, all slots are functions and should work correctly
+    expect(wrapper.html()).toContain('activator')
   })
 
   it(`should open and close`, () => {

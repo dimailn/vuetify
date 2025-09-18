@@ -19,7 +19,6 @@ import Themeable from '../../mixins/themeable'
 // Utilities
 import { convertToUnit, getSlot } from '../../util/helpers'
 import mixins from '../../util/mixins'
-import { breaking } from '../../util/console'
 
 // Types
 import { VNode } from 'vue'
@@ -34,7 +33,6 @@ const baseMixins = mixins(
 /* @vue/component */
 export default baseMixins.extend({
   name: 'v-progress-linear',
-
 
   props: {
     active: {
@@ -76,9 +74,12 @@ export default baseMixins.extend({
       type: [Number, String],
       default: 0,
     },
+    // События как пропсы для определения реактивности
+    onChange: Function,
+    onUpdateModelValue: Function,
   },
 
-  emits: ['update:modelValue', 'click'],
+  emits: ['update:modelValue', 'change', 'click'],
 
   data () {
     return {
@@ -175,7 +176,8 @@ export default baseMixins.extend({
       return this.normalize(this.internalLazyValue)
     },
     reactive (): boolean {
-      return Boolean(this.$listeners.onChange) || Boolean(this.$listeners['onUpdate:modelValue'])
+      return Boolean(this.onChange) || Boolean(this.onUpdateModelValue) ||
+             Boolean(this.$attrs.onChange) || Boolean(this.$attrs['onUpdate:modelValue'])
     },
     styles (): object {
       const styles: Record<string, any> = {}
@@ -190,18 +192,6 @@ export default baseMixins.extend({
 
       return styles
     },
-  },
-
-  created () {
-    const breakingProps = [
-      ['value', 'modelValue'],
-      ['onChange', 'onUpdate:modelValue'],
-    ]
-
-    /* istanbul ignore next */
-    breakingProps.forEach(([original, replacement]) => {
-      if (this.$attrs.hasOwnProperty(original)) breaking(original, replacement, this)
-    })
   },
 
   watch: {
@@ -230,7 +220,7 @@ export default baseMixins.extend({
       )
     },
     genListeners (): any {
-      const listeners = this.$listeners
+      const listeners = this.$listeners || {}
 
       if (this.reactive) {
         listeners.onClick = this.onClick
@@ -252,7 +242,12 @@ export default baseMixins.extend({
 
       const { width } = this.$el.getBoundingClientRect()
 
-      this.internalValue = e.offsetX / width * 100
+      const newValue = e.offsetX / width * 100
+      this.internalLazyValue = newValue
+
+      this.$emit('update:modelValue', newValue)
+      this.$emit('change', newValue)
+      this.$emit('click', e)
     },
     onObserve (entries: IntersectionObserverEntry[], observer: IntersectionObserver, isIntersecting: boolean) {
       this.isVisible = isIntersecting

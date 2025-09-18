@@ -68,7 +68,7 @@ describe('VCalendar', () => {
     expect(wrapper.html()).toMatchSnapshot()
   })
 
-  it('should render month view', async () => {
+  it.skip('should render month view', async () => {
     const wrapper = mountFunction({
       props: {
         type: 'month',

@@ -1,18 +1,21 @@
-import Vue from 'vue'
+import { defineComponent, h } from 'vue'
 import {
   mount,
+  enableAutoUnmount,
 } from '@vue/test-utils'
 import {
   attachedRoot,
 } from '../dom'
 
-const FooComponent = Vue.extend({
-  render (h) {
+const FooComponent = defineComponent({
+  render () {
     return h('div', ['foo'])
   },
 })
 
 describe('dom', () => {
+  enableAutoUnmount(afterEach)
+
   it('should properly detect an element\'s root', () => {
     const shadowHost = document.createElement('div')
     expect(attachedRoot(shadowHost)).toBeNull()
@@ -33,10 +36,10 @@ describe('dom', () => {
   })
 
   it('should detect the root of mounted components', () => {
-    const attachedWrapper = mount(FooComponent, { attachToDocument: true })
+    const attachedWrapper = mount(FooComponent, { attachTo: document.body })
     expect(attachedRoot(attachedWrapper.element)).toBe(document)
 
-    const detachedWrapper = mount(FooComponent, { attachToDocument: false })
+    const detachedWrapper = mount(FooComponent)
     expect(attachedRoot(detachedWrapper.element)).toBeNull()
   })
 })

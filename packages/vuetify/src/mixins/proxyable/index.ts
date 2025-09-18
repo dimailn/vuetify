@@ -1,6 +1,6 @@
-import { defineComponent, VueConstructor, App } from 'vue'
+import { defineComponent, Component, App } from 'vue'
 
-export type Proxyable<T extends string = 'value'> = VueConstructor<App & {
+export type Proxyable<T extends string = 'value'> = Component<App & {
   internalLazyValue: unknown
   internalValue: unknown
 } & Record<T, any>>

@@ -150,21 +150,16 @@ export default baseMixins.extend({
     }
 
     if (!this.isVertical) {
-      contentData.directives = [{
-        name: 'show',
-        value: this.isActive,
-      }]
+      contentData.directives = [
+        [
+          vShow,
+          this.isActive,
+        ],
+      ]
     }
 
     const wrapper = h('div', wrapperData, getSlot(this))
-    const content = withDirectives(
-      h('div', contentData, [wrapper]), this.isVertical ? [] :
-      [
-        [
-          vShow,
-          this.isActive
-        ]
-      ])
+    const content = h('div', contentData, [wrapper])
 
     return h(this.computedTransition, {
       ...this.$listeners,

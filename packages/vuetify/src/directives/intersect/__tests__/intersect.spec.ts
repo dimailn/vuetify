@@ -2,25 +2,25 @@
 import Intersect from '../'
 
 describe('intersect', () => {
-  it('should bind event on inserted', () => {
+  it('should bind event on mounted', () => {
     const callback = jest.fn()
     const el = document.createElement('div')
     document.body.appendChild(el)
 
-    Intersect.inserted(el, {
+    Intersect.mounted(el, {
       value: callback,
       modifiers: { quiet: true },
-    } as any, { context: { _uid: 1 } } as any)
+    } as any, { ctx: { uid: 1 } } as any)
 
     expect((el as any)._observe).toBeTruthy()
     expect(callback).not.toHaveBeenCalled()
 
     document.body.removeChild(el)
 
-    Intersect.unbind(el, {
+    Intersect.unmounted(el, {
       value: callback,
       modifiers: { quiet: true },
-    } as any, { context: { _uid: 1 } } as any)
+    } as any, { ctx: { uid: 1 } } as any)
 
     expect((el as any)._observe[1]).toBeFalsy()
   })
@@ -32,10 +32,10 @@ describe('intersect', () => {
 
     const callback = jest.fn()
 
-    Intersect.inserted(el, {
+    Intersect.mounted(el, {
       value: callback,
       modifiers: { once: true },
-    } as any, { context: { _uid: 1 } } as any)
+    } as any, { ctx: { uid: 1 } } as any)
 
     expect(callback).toHaveBeenCalledTimes(0)
     expect((el as any)._observe[1]).toBeTruthy()

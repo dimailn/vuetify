@@ -4,14 +4,14 @@ import VStepper from '../VStepper'
 // Utilities
 import {
   mount,
-  MountOptions,
-  Wrapper,
+  MountingOptions,
+  VueWrapper,
   enableAutoUnmount,
 } from '@vue/test-utils'
 
 describe('VStepper.ts', () => {
   type Instance = InstanceType<typeof VStepper>
-  let mountFunction: (options?: MountOptions<Instance>) => Wrapper<Instance>
+  let mountFunction: (options?: MountingOptions<Instance>) => VueWrapper<Instance>
 
   enableAutoUnmount(afterEach)
 

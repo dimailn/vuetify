@@ -12,6 +12,8 @@ import { useVuetify } from '@/vuetify'
 export function registerPlugins (app) {
   registerComponents(app)
   // loadFonts(app)
-  // useMeta(app)
+  const metaManager = useMeta(app)
   useVuetify(app)
+  
+  return metaManager
 }

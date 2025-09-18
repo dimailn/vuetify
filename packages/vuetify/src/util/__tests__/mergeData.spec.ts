@@ -92,13 +92,13 @@ describe('mergeListeners', () => {
 
   it.each([
     [undefined, undefined, undefined],
-    [undefined, { one: listener1 }, { one: listener1 }],
-    [undefined, { one: [listener1, listener2] }, { one: [listener1, listener2] }],
-    [{ one: listener1 }, undefined, { one: listener1 }],
-    [{ one: [listener1, listener2] }, undefined, { one: [listener1, listener2] }],
-    [{ one: listener1 }, { one: listener2 }, { one: [listener1, listener2] }],
-    [{ one: listener1 }, { one: [listener2] }, { one: [listener1, listener2] }],
-    [{ one: [listener1, listener2] }, { one: [listener2] }, { one: [listener1, listener2, listener2] }],
-    [{ one: [listener1, listener2] }, { two: listener2 }, { one: [listener1, listener2], two: listener2 }],
+    [undefined, { one: listener1 }, { onOne: listener1 }],
+    [undefined, { one: [listener1, listener2] }, { onOne: [listener1, listener2] }],
+    [{ one: listener1 }, undefined, { onOne: listener1 }],
+    [{ one: [listener1, listener2] }, undefined, { onOne: [listener1, listener2] }],
+    [{ one: listener1 }, { one: listener2 }, { onOne: [listener1, listener2] }],
+    [{ one: listener1 }, { one: [listener2] }, { onOne: [listener1, listener2] }],
+    [{ one: [listener1, listener2] }, { one: [listener2] }, { onOne: [listener1, listener2, listener2] }],
+    [{ one: [listener1, listener2] }, { two: listener2 }, { onOne: [listener1, listener2], onTwo: listener2 }],
   ])('should merge listeners', verifyFactory(mergeListeners))
 })

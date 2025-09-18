@@ -11,7 +11,7 @@ import VBtn from '../VBtn'
 
 // Utilities
 import { consoleWarn } from '../../util/console'
-import { defineComponent } from 'vue'
+import { defineComponent, h } from 'vue'
 
 /* @vue/component */
 export default defineComponent({
@@ -64,9 +64,14 @@ export default defineComponent({
     genInput () {
       const input = VTextField.methods.genInput.call(this)
 
-      input.data = input.data || {}
-      input.data.domProps!.value = this.editable ? this.internalSearch : ''
-      input.data.attrs!.readonly = !this.isAnyValueAllowed
+      // Ensure data object exists
+      if (!input.props) {
+        input.props = {}
+      }
+
+      // Set value and readonly properties
+      input.props.value = this.editable ? this.internalSearch : ''
+      input.props.readonly = !this.isAnyValueAllowed
 
       return input
     },
@@ -94,12 +99,10 @@ export default defineComponent({
       }
 
       return h(VBtn, {
-        props: { text: true },
-        on: {
-          click (e: Event) {
-            e.stopPropagation()
-            itemObj.callback(e)
-          },
+        text: true,
+        onClick: (e: Event) => {
+          e.stopPropagation()
+          itemObj.callback(e)
         },
       }, () => [itemObj.text])
     },

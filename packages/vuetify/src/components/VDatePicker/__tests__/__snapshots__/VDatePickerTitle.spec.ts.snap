@@ -3,7 +3,9 @@
 exports[`VDatePickerTitle.ts should render component and match snapshot 1`] = `
 <div class="v-date-picker-title">
   <div class="v-picker__title__btn v-date-picker-title__year">
-    1234
+    <span>
+      1234
+    </span>
   </div>
   <div class="v-picker__title__btn v-date-picker-title__date v-picker__title__btn--active">
     <div>
@@ -16,7 +18,9 @@ exports[`VDatePickerTitle.ts should render component and match snapshot 1`] = `
 exports[`VDatePickerTitle.ts should render component when selecting year and match snapshot 1`] = `
 <div class="v-date-picker-title">
   <div class="v-picker__title__btn v-date-picker-title__year v-picker__title__btn--active">
-    1234
+    <span>
+      1234
+    </span>
   </div>
   <div class="v-picker__title__btn v-date-picker-title__date">
     <div>
@@ -29,7 +33,9 @@ exports[`VDatePickerTitle.ts should render component when selecting year and mat
 exports[`VDatePickerTitle.ts should render disabled component and match snapshot 1`] = `
 <div class="v-date-picker-title v-date-picker-title--disabled">
   <div class="v-picker__title__btn v-date-picker-title__year">
-    1234
+    <span>
+      1234
+    </span>
   </div>
   <div class="v-picker__title__btn v-date-picker-title__date v-picker__title__btn--active">
     <div>
@@ -42,7 +48,9 @@ exports[`VDatePickerTitle.ts should render disabled component and match snapshot
 exports[`VDatePickerTitle.ts should render readonly component and match snapshot 1`] = `
 <div class="v-date-picker-title">
   <div class="v-picker__title__btn v-date-picker-title__year">
-    1234
+    <span>
+      1234
+    </span>
   </div>
   <div class="v-picker__title__btn v-date-picker-title__date v-picker__title__btn--active">
     <div>
@@ -54,7 +62,9 @@ exports[`VDatePickerTitle.ts should render readonly component and match snapshot
 
 exports[`VDatePickerTitle.ts should render year icon 1`] = `
 <div class="v-picker__title__btn v-date-picker-title__year">
-  1234
+  <span>
+    1234
+  </span>
   <span class="v-icon notranslate theme--dark"
         aria-hidden="true"
   >

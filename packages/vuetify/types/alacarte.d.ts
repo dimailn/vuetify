@@ -1,7 +1,7 @@
 declare module 'vuetify/es5/install' {
-  import { VueConstructor } from 'vue'
+  import { Component } from 'vue'
 
-  const install: (Vue: VueConstructor, args: {}) => void
+  const install: (Vue: Component, args: {}) => void
 
   export { install }
 }
@@ -13,26 +13,26 @@ declare module 'vuetify/es5/components/Vuetify' {
 
 declare module 'vuetify/es5/components/*' {
   import { ComponentOrPack } from 'vuetify'
-  import { VueConstructor } from 'vue'
+  import { Component } from 'vue'
 
   const VuetifyComponent: {
-    default: ComponentOrPack & VueConstructor
-    [key: string]: ComponentOrPack & VueConstructor
+    default: ComponentOrPack & Component
+    [key: string]: ComponentOrPack & Component
   }
 
   export = VuetifyComponent
 }
 
 declare module 'vuetify/es5/directives' {
-  import { DirectiveOptions } from 'vue'
+  import { Directive } from 'vue'
 
-  const ClickOutside: DirectiveOptions
-  const Intersect: DirectiveOptions
-  const Mutate: DirectiveOptions
-  const Resize: DirectiveOptions
-  const Ripple: DirectiveOptions
-  const Scroll: DirectiveOptions
-  const Touch: DirectiveOptions
+  const ClickOutside: Directive
+  const Intersect: Directive
+  const Mutate: Directive
+  const Resize: Directive
+  const Ripple: Directive
+  const Scroll: Directive
+  const Touch: Directive
 
   export {
     ClickOutside,

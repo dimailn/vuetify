@@ -54,12 +54,14 @@ describe('VStepperContent.ts', () => {
     expect(wrapper.vm.isActive).toBeNull()
     expect(wrapper.vm.height).toBe(0)
 
+    await wrapper.vm.$nextTick()
     await wrapper.setData({ isActive: true })
+    await wrapper.vm.$nextTick()
     expect(wrapper.vm.isActive).toBe(true)
     expect(wrapper.vm.height).toBe('auto')
   })
 
-  it('should use reverse transition', () => {
+  it('should use reverse transition', async () => {
     const wrapper = mountFunction({
       props: { step: 1 },
       global: {
@@ -74,11 +76,12 @@ describe('VStepperContent.ts', () => {
     })
     expect(wrapper.vm.computedTransition).toBe(VTabTransition)
 
-    wrapper.setData({ isReverse: true })
+    await wrapper.setData({ isReverse: true })
+    await wrapper.vm.$nextTick()
     expect(wrapper.vm.computedTransition).toBe(VTabReverseTransition)
   })
 
-  it('should use opposite of reverse transition in rtl', () => {
+  it('should use opposite of reverse transition in rtl', async () => {
     const wrapper = mountFunction({
       global: {
         mocks: {
@@ -98,7 +101,8 @@ describe('VStepperContent.ts', () => {
     })
     expect(wrapper.vm.computedTransition).toBe(VTabReverseTransition)
 
-    wrapper.setData({ isReverse: true })
+    await wrapper.setData({ isReverse: true })
+    await wrapper.vm.$nextTick()
     expect(wrapper.vm.computedTransition).toBe(VTabTransition)
   })
 
@@ -128,6 +132,7 @@ describe('VStepperContent.ts', () => {
       isActive: true,
       isVertical: true,
     })
+    await wrapper.vm.$nextTick()
 
     const stepWrapper = wrapper.find('.v-stepper__wrapper')
 
@@ -135,9 +140,11 @@ describe('VStepperContent.ts', () => {
 
     // should call leave() -- total so far: 1
     await wrapper.setData({ isActive: false })
+    await wrapper.vm.$nextTick()
 
     // should call enter() -- total so far: 1
     await wrapper.setData({ isActive: true })
+    await wrapper.vm.$nextTick()
 
     expect(enter).toHaveBeenCalled()
     expect(leave).toHaveBeenCalled()
@@ -149,13 +156,16 @@ describe('VStepperContent.ts', () => {
     await wrapper.setData({
       isVertical: false,
     })
+    await wrapper.vm.$nextTick()
     await wrapper.setData({ isActive: false })
+    await wrapper.vm.$nextTick()
     await wrapper.setData({ isActive: true })
+    await wrapper.vm.$nextTick()
     expect(enter.mock.calls).toHaveLength(1)
     expect(leave.mock.calls).toHaveLength(1)
   })
 
-  it('should toggle isActive state', () => {
+  it('should toggle isActive state', async () => {
     const wrapper = mountFunction({
       props: { step: 1 },
       global: {
@@ -170,16 +180,19 @@ describe('VStepperContent.ts', () => {
     })
 
     wrapper.vm.toggle(1, false)
+    await wrapper.vm.$nextTick()
 
     expect(wrapper.vm.isActive).toBe(true)
     expect(wrapper.vm.isReverse).toBe(false)
 
     wrapper.vm.toggle('1', false)
+    await wrapper.vm.$nextTick()
 
     expect(wrapper.vm.isActive).toBe(true)
     expect(wrapper.vm.isReverse).toBe(false)
 
     wrapper.vm.toggle(2, true)
+    await wrapper.vm.$nextTick()
 
     expect(wrapper.vm.isActive).toBe(false)
     expect(wrapper.vm.isReverse).toBe(true)
@@ -266,10 +279,12 @@ describe('VStepperContent.ts', () => {
     expect(wrapper.vm.onTransition()).toBeUndefined()
 
     await wrapper.setData({ isActive: true })
+    await wrapper.vm.$nextTick()
 
     expect(wrapper.vm.height).toBe('auto')
 
     await wrapper.setData({ height: 0 })
+    await wrapper.vm.$nextTick()
 
     wrapper.vm.onTransition({ propertyName: 'foo' })
     expect(wrapper.vm.height).toBe(0)
@@ -287,6 +302,10 @@ describe('VStepperContent.ts', () => {
         },
       },
     })
-    // В Vue 3 нет автоматических предупреждений о контексте
+
+    expect(wrapper.vm).toBeDefined()
+
+    // Ожидаем предупреждение о том, что компонент должен использоваться внутри v-stepper
+    expect('[Vuetify] The v-stepper-content component must be used inside a v-stepper').toHaveBeenTipped()
   })
 })

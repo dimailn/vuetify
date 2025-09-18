@@ -50,8 +50,8 @@ exports[`VColorPickerEdit.ts should change mode 1`] = `
           type="button"
   >
     <span class="v-btn__content">
-      <i aria-hidden="true"
-         class="v-icon notranslate material-icons theme--light"
+      <i class="v-icon notranslate theme--light material-icons"
+         aria-hidden="true"
       >
       </i>
     </span>
@@ -109,8 +109,8 @@ exports[`VColorPickerEdit.ts should change mode 2`] = `
           type="button"
   >
     <span class="v-btn__content">
-      <i aria-hidden="true"
-         class="v-icon notranslate material-icons theme--light"
+      <i class="v-icon notranslate theme--light material-icons"
+         aria-hidden="true"
       >
       </i>
     </span>
@@ -132,8 +132,8 @@ exports[`VColorPickerEdit.ts should change mode 3`] = `
           type="button"
   >
     <span class="v-btn__content">
-      <i aria-hidden="true"
-         class="v-icon notranslate material-icons theme--light"
+      <i class="v-icon notranslate theme--light material-icons"
+         aria-hidden="true"
       >
       </i>
     </span>
@@ -191,8 +191,8 @@ exports[`VColorPickerEdit.ts should change mode 4`] = `
           type="button"
   >
     <span class="v-btn__content">
-      <i aria-hidden="true"
-         class="v-icon notranslate material-icons theme--light"
+      <i class="v-icon notranslate theme--light material-icons"
+         aria-hidden="true"
       >
       </i>
     </span>
@@ -304,8 +304,8 @@ exports[`VColorPickerEdit.ts should render with disabled 1`] = `
           disabled
   >
     <span class="v-btn__content">
-      <i aria-hidden="true"
-         class="v-icon notranslate material-icons theme--light"
+      <i class="v-icon notranslate theme--light material-icons"
+         aria-hidden="true"
       >
       </i>
     </span>

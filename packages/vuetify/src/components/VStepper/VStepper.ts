@@ -58,8 +58,8 @@ export default baseMixins.extend({
       isReverse: false,
     }
 
-    data.internalLazyValue = this.value != null
-      ? this.value
+    data.internalLazyValue = this.modelValue != null
+      ? this.modelValue
       : (data[0] || {}).step || 1
 
     return data

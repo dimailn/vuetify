@@ -1,4 +1,4 @@
-import {h} from 'vue'
+import { h } from 'vue'
 // Styles
 import '../VTextField/VTextField.sass'
 import './VOtpInput.sass'
@@ -10,12 +10,12 @@ import VTextField from '../VTextField/VTextField'
 import ripple from '../../directives/ripple'
 
 // Utilities
-import { convertToUnit, keyCodes } from '../../util/helpers'
+import { convertToUnit } from '../../util/helpers'
 import { breaking } from '../../util/console'
 
 // Types
 import mixins from '../../util/mixins'
-import { VNode } from 'vue'
+import type { VNode } from 'vue'
 
 const baseMixins = mixins(
   VInput,
@@ -31,7 +31,6 @@ interface options extends InstanceType<typeof baseMixins> {
 export default baseMixins.extend({
   name: 'v-otp-input',
 
-
   inheritAttrs: false,
 
   props: {
@@ -44,14 +43,20 @@ export default baseMixins.extend({
       default: 'text',
     },
     plain: Boolean,
+    modelValue: {
+      type: String,
+      default: '',
+    },
   },
 
-  emits: ['blur', 'focus', 'change', 'keydown', 'finish'],
+  emits: ['blur', 'focus', 'change', 'keydown', 'finish', 'update:modelValue'],
 
   data: () => ({
     initialValue: null,
     isBooted: false,
     otp: [] as string[],
+    lazyValue: '',
+    inputRefs: [] as HTMLInputElement[],
   }),
 
   computed: {
@@ -79,9 +84,6 @@ export default baseMixins.extend({
     filled (): boolean {
       return false
     },
-    isEnclosed (): boolean {
-      return this.outlined
-    },
     reverse (): boolean {
       return false
     },
@@ -94,12 +96,24 @@ export default baseMixins.extend({
     shaped (): boolean {
       return false
     },
+    internalValue: {
+      get (): string {
+        return this.lazyValue
+      },
+      set (val: string) {
+        this.lazyValue = val
+        this.$emit('update:modelValue', val)
+      },
+    },
     classes (): object {
       return {
         ...VInput.computed.classes.call(this),
         ...VTextField.computed.classes.call(this),
         'v-otp-input--plain': this.plain,
       }
+    },
+    isEnclosed (): boolean {
+      return false
     },
   },
 
@@ -117,7 +131,8 @@ export default baseMixins.extend({
       breaking('browser-autocomplete', 'autocomplete', this)
     }
 
-    this.otp = this.internalValue?.split('') || []
+    this.lazyValue = this.modelValue
+    this.otp = this.modelValue?.split('') || []
   },
 
   mounted () {
@@ -154,20 +169,18 @@ export default baseMixins.extend({
     genContent () {
       return Array.from({ length: +this.length }, (_, i) => {
         return h('div', this.setTextColor(this.validationState, {
-          class: ['v-input', this.classes]
+          class: ['v-input', this.classes],
         }), [this.genControl(i)])
       })
     },
     genFieldset () {
       return h('fieldset', {
-        attrs: {
-          'aria-hidden': true,
-        },
+        'aria-hidden': 'true',
       }, [this.genLegend()])
     },
     genLegend () {
       const span = h('span', {
-        domProps: { innerHTML: '&#8203;' },
+        innerHTML: '&#8203;',
       })
 
       return h('legend', {
@@ -177,14 +190,13 @@ export default baseMixins.extend({
       }, [span])
     },
     genInput (otpIdx: number) {
-      const listeners = Object.assign({}, this.listeners$)
-      delete listeners.change // Change should not be bound externally
+      const listeners = Object.assign({}, this.$attrs)
+      delete listeners.onChange // Change should not be bound externally
 
-      return h('input', {
+      const inputProps: any = {
         style: {},
         value: this.otp[otpIdx],
-        min: this.type === 'number' ? 0 : null,
-        ...this.attrs$,
+        ...this.$attrs,
         autocomplete: 'one-time-code',
         disabled: this.isDisabled,
         readonly: this.isReadonly,
@@ -198,9 +210,18 @@ export default baseMixins.extend({
           onKeydown: this.onKeyDown,
           onKeyup: (e: KeyboardEvent) => this.onKeyUp(e, otpIdx),
         }),
-        ref: 'input',
-        refInFor: true,
-      })
+        ref: (el: HTMLInputElement) => {
+          if (el) {
+            this.inputRefs[otpIdx] = el
+          }
+        },
+      }
+
+      if (this.type === 'number') {
+        inputProps.min = 0
+      }
+
+      return h('input', inputProps)
     },
     genTextFieldSlot (otpIdx: number): VNode {
       return h('div', {
@@ -214,19 +235,20 @@ export default baseMixins.extend({
       e && this.$nextTick(() => this.$emit('blur', e))
     },
     onClick (otpIdx: number) {
-      if (this.isFocused || this.isDisabled || !this.$refs.input[otpIdx]) return
+      if (this.isFocused || this.isDisabled || !this.inputRefs[otpIdx]) return
 
       this.onFocus(undefined, otpIdx)
     },
     onFocus (e?: Event, otpIdx?: number) {
       e?.preventDefault()
       e?.stopPropagation()
-      const elements = this.$refs.input as HTMLInputElement[]
-      const ref = this.$refs.input && elements[otpIdx || 0]
+
+      const ref = this.inputRefs[otpIdx || 0]
       if (!ref) return
 
       if (document.activeElement !== ref) {
         ref.focus()
+        this.isFocused = true
         return ref.select()
       }
 
@@ -264,19 +286,21 @@ export default baseMixins.extend({
       }
     },
     clearFocus (index: number) {
-      const input = this.$refs.input[index] as HTMLInputElement
-      input.blur()
+      const input = this.inputRefs[index]
+      input?.blur()
     },
     onKeyDown (e: KeyboardEvent) {
-      if (e.keyCode === keyCodes.enter) {
+      if (e.key === 'Enter') {
         this.$emit('change', this.internalValue)
       }
 
       this.$emit('keydown', e)
     },
     onMouseDown (e: Event, otpIdx: number) {
+      const inputRef = this.inputRefs[otpIdx]
+
       // Prevent input from being blurred
-      if (e.target !== this.$refs.input[otpIdx]) {
+      if (e.target !== inputRef) {
         e.preventDefault()
         e.stopPropagation()
       }
@@ -296,14 +320,15 @@ export default baseMixins.extend({
       this.hasColor = val
 
       if (val) {
-        this.initialValue = this.lazyValue
-      } else if (this.initialValue !== this.lazyValue) {
-        this.$emit('change', this.lazyValue)
+        this.initialValue = this.internalValue
+      } else if (this.initialValue !== this.internalValue) {
+        this.$emit('change', this.internalValue)
       }
     },
     onKeyUp (event: KeyboardEvent, index: number) {
       event.preventDefault()
       const eventKey = event.key
+
       if (['Tab', 'Shift', 'Meta', 'Control', 'Alt'].includes(eventKey)) {
         return
       }

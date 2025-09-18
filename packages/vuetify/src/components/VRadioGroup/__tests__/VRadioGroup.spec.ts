@@ -5,13 +5,13 @@ import VRadioGroup from '../VRadioGroup'
 // Utilities
 import {
   mount,
-  MountOptions,
-  Wrapper,
+  MountingOptions,
+  VueWrapper,
 } from '@vue/test-utils'
 
 describe('VRadioGroup.ts', () => {
   type Instance = InstanceType<typeof VRadioGroup>
-  let mountFunction: (options?: MountOptions<Instance>) => Wrapper<Instance>
+  let mountFunction: (options?: MountingOptions<Instance>) => VueWrapper<Instance>
 
   beforeEach(() => {
     mountFunction = (options = {}) => {
@@ -27,7 +27,7 @@ describe('VRadioGroup.ts', () => {
 
   it('should match dense snapshot', async () => {
     const wrapper = mountFunction({
-      propsData: {
+      props: {
         dense: true,
       },
       slots: {

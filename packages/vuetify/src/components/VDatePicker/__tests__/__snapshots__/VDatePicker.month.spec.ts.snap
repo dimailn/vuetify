@@ -134,7 +134,9 @@ exports[`VDatePicker.ts should match snapshot with colored picker & header 1`] =
   <div class="v-picker__title orange darken-1">
     <div class="v-date-picker-title">
       <div class="v-picker__title__btn v-date-picker-title__year">
-        2005
+        <span>
+          2005
+        </span>
       </div>
       <div class="v-picker__title__btn v-date-picker-title__date v-picker__title__btn--active">
         <div>
@@ -153,10 +155,10 @@ exports[`VDatePicker.ts should match snapshot with colored picker & header 1`] =
                 aria-label="Previous year"
         >
           <span class="v-btn__content">
-            <i aria-hidden="true"
-               class="v-icon notranslate mdi mdi-chevron-left theme--light"
+            <span class="v-icon notranslate theme--light"
+                  aria-hidden="true"
             >
-            </i>
+            </span>
           </span>
         </button>
         <div class="v-date-picker-header__value">
@@ -171,10 +173,10 @@ exports[`VDatePicker.ts should match snapshot with colored picker & header 1`] =
                 aria-label="Next year"
         >
           <span class="v-btn__content">
-            <i aria-hidden="true"
-               class="v-icon notranslate mdi mdi-chevron-right theme--light"
+            <span class="v-icon notranslate theme--light"
+                  aria-hidden="true"
             >
-            </i>
+            </span>
           </span>
         </button>
       </div>
@@ -312,7 +314,9 @@ exports[`VDatePicker.ts should match snapshot with colored picker 1`] = `
   <div class="v-picker__title orange darken-1">
     <div class="v-date-picker-title">
       <div class="v-picker__title__btn v-date-picker-title__year">
-        2005
+        <span>
+          2005
+        </span>
       </div>
       <div class="v-picker__title__btn v-date-picker-title__date v-picker__title__btn--active">
         <div>
@@ -331,10 +335,10 @@ exports[`VDatePicker.ts should match snapshot with colored picker 1`] = `
                 aria-label="Previous year"
         >
           <span class="v-btn__content">
-            <i aria-hidden="true"
-               class="v-icon notranslate mdi mdi-chevron-left theme--light"
+            <span class="v-icon notranslate theme--light"
+                  aria-hidden="true"
             >
-            </i>
+            </span>
           </span>
         </button>
         <div class="v-date-picker-header__value">
@@ -349,10 +353,10 @@ exports[`VDatePicker.ts should match snapshot with colored picker 1`] = `
                 aria-label="Next year"
         >
           <span class="v-btn__content">
-            <i aria-hidden="true"
-               class="v-icon notranslate mdi mdi-chevron-right theme--light"
+            <span class="v-icon notranslate theme--light"
+                  aria-hidden="true"
             >
-            </i>
+            </span>
           </span>
         </button>
       </div>
@@ -611,7 +615,9 @@ exports[`VDatePicker.ts should match snapshot with pick-month prop 1`] = `
   <div class="v-picker__title primary">
     <div class="v-date-picker-title">
       <div class="v-picker__title__btn v-date-picker-title__year">
-        2013
+        <span>
+          2013
+        </span>
       </div>
       <div class="v-picker__title__btn v-date-picker-title__date v-picker__title__btn--active">
         <div>
@@ -630,10 +636,10 @@ exports[`VDatePicker.ts should match snapshot with pick-month prop 1`] = `
                 aria-label="Previous year"
         >
           <span class="v-btn__content">
-            <i aria-hidden="true"
-               class="v-icon notranslate mdi mdi-chevron-left theme--light"
+            <span class="v-icon notranslate theme--light"
+                  aria-hidden="true"
             >
-            </i>
+            </span>
           </span>
         </button>
         <div class="v-date-picker-header__value">
@@ -648,10 +654,10 @@ exports[`VDatePicker.ts should match snapshot with pick-month prop 1`] = `
                 aria-label="Next year"
         >
           <span class="v-btn__content">
-            <i aria-hidden="true"
-               class="v-icon notranslate mdi mdi-chevron-right theme--light"
+            <span class="v-icon notranslate theme--light"
+                  aria-hidden="true"
             >
-            </i>
+            </span>
           </span>
         </button>
       </div>
@@ -789,7 +795,9 @@ exports[`VDatePicker.ts should render flat picker 1`] = `
   <div class="v-picker__title primary">
     <div class="v-date-picker-title">
       <div class="v-picker__title__btn v-date-picker-title__year">
-        2013
+        <span>
+          2013
+        </span>
       </div>
       <div class="v-picker__title__btn v-date-picker-title__date v-picker__title__btn--active">
         <div>
@@ -808,10 +816,10 @@ exports[`VDatePicker.ts should render flat picker 1`] = `
                 aria-label="Previous year"
         >
           <span class="v-btn__content">
-            <i aria-hidden="true"
-               class="v-icon notranslate mdi mdi-chevron-left theme--light"
+            <span class="v-icon notranslate theme--light"
+                  aria-hidden="true"
             >
-            </i>
+            </span>
           </span>
         </button>
         <div class="v-date-picker-header__value">
@@ -826,10 +834,10 @@ exports[`VDatePicker.ts should render flat picker 1`] = `
                 aria-label="Next year"
         >
           <span class="v-btn__content">
-            <i aria-hidden="true"
-               class="v-icon notranslate mdi mdi-chevron-right theme--light"
+            <span class="v-icon notranslate theme--light"
+                  aria-hidden="true"
             >
-            </i>
+            </span>
           </span>
         </button>
       </div>
@@ -967,7 +975,9 @@ exports[`VDatePicker.ts should render picker with elevation 1`] = `
   <div class="v-picker__title primary">
     <div class="v-date-picker-title">
       <div class="v-picker__title__btn v-date-picker-title__year">
-        2013
+        <span>
+          2013
+        </span>
       </div>
       <div class="v-picker__title__btn v-date-picker-title__date v-picker__title__btn--active">
         <div>
@@ -986,10 +996,10 @@ exports[`VDatePicker.ts should render picker with elevation 1`] = `
                 aria-label="Previous year"
         >
           <span class="v-btn__content">
-            <i aria-hidden="true"
-               class="v-icon notranslate mdi mdi-chevron-left theme--light"
+            <span class="v-icon notranslate theme--light"
+                  aria-hidden="true"
             >
-            </i>
+            </span>
           </span>
         </button>
         <div class="v-date-picker-header__value">
@@ -1004,10 +1014,10 @@ exports[`VDatePicker.ts should render picker with elevation 1`] = `
                 aria-label="Next year"
         >
           <span class="v-btn__content">
-            <i aria-hidden="true"
-               class="v-icon notranslate mdi mdi-chevron-right theme--light"
+            <span class="v-icon notranslate theme--light"
+                  aria-hidden="true"
             >
-            </i>
+            </span>
           </span>
         </button>
       </div>

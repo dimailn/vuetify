@@ -119,10 +119,12 @@ function unmounted (
   if (!target || !target._touchHandlers) return
 
   const handlers = target._touchHandlers[vnode.ctx!.uid]
-  keys(handlers).forEach(eventName => {
-    target.removeEventListener(eventName, handlers[eventName])
-  })
-  delete target._touchHandlers[vnode.ctx!.uid]
+  if (handlers) {
+    keys(handlers).forEach(eventName => {
+      target.removeEventListener(eventName, handlers[eventName])
+    })
+    delete target._touchHandlers[vnode.ctx!.uid]
+  }
 }
 
 export const Touch: ObjectDirective<HTMLElement, TouchValue> = {

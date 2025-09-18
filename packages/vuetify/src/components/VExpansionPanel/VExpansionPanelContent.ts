@@ -1,4 +1,4 @@
-import {h, vShow, withDirectives} from 'vue'
+import { h, vShow, withDirectives, VNode, Component } from 'vue'
 // Components
 import VExpansionPanel from './VExpansionPanel'
 import { VExpandTransition } from '../transitions'
@@ -12,13 +12,10 @@ import { inject as RegistrableInject } from '../../mixins/registrable'
 import { getSlot } from '../../util/helpers'
 import mixins, { ExtractVue } from '../../util/mixins'
 
-// Types
-import Vue, { VNode, VueConstructor } from 'vue'
-
 const baseMixins = mixins(
   Bootable,
   Colorable,
-  RegistrableInject<'expansionPanel', VueConstructor<Vue>>('expansionPanel', 'v-expansion-panel-content', 'v-expansion-panel')
+  RegistrableInject<'expansionPanel', Component>('expansionPanel', 'v-expansion-panel-content', 'v-expansion-panel')
 )
 
 interface options extends ExtractVue<typeof baseMixins> {
@@ -62,14 +59,14 @@ export default baseMixins.extend({
   render (): VNode {
     return h(VExpandTransition, {}, () => this.showLazyContent(() => [
       withDirectives(h('div', this.setBackgroundColor(this.color, {
-        class: 'v-expansion-panel-content'
+        class: 'v-expansion-panel-content',
       }), [
         h('div', { class: 'v-expansion-panel-content__wrap' }, getSlot(this, 'default', { open: this.isActive })),
       ]), [
         [
           vShow,
-          this.isActive
-        ]
+          this.isActive,
+        ],
       ]),
     ]))
   },

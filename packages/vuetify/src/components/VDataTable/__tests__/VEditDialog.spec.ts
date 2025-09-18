@@ -3,26 +3,27 @@ import VMenu from '../../VMenu'
 
 import {
   mount,
-  Wrapper,
-  MountOptions,
+  VueWrapper,
+  MountingOptions,
 } from '@vue/test-utils'
 import { keyCodes } from '../../../util/helpers'
 import mixins from '../../../util/mixins'
+import { nextTick } from 'vue'
 
 describe('VEditDialog.ts', () => {
   type Instance = InstanceType<typeof VEditDialog>
-  let mountFunction: (options?: MountOptions<Instance>) => Wrapper<Instance>
+  let mountFunction: (options?: MountingOptions<Instance>) => VueWrapper<Instance>
   beforeEach(() => {
     document.body.setAttribute('data-app', 'true')
 
-    mountFunction = (options?: MountOptions<Instance>) => {
+    mountFunction = (options?: MountingOptions<Instance>) => {
       return mount(VEditDialog, {
-        // https://github.com/vuejs/vue-test-utils/issues/1130
-        sync: false,
-        mocks: {
-          $vuetify: {
-            theme: {
-              dark: false,
+        global: {
+          mocks: {
+            $vuetify: {
+              theme: {
+                dark: false,
+              },
             },
           },
         },
@@ -62,12 +63,12 @@ describe('VEditDialog.ts', () => {
     })
 
     wrapper.vm.isActive = true
-    await wrapper.vm.$nextTick()
+    await nextTick()
     expect(open).toHaveBeenCalledTimes(1)
     expect(setTimeout).toHaveBeenLastCalledWith(wrapper.vm.focus, 50)
 
     wrapper.vm.isActive = false
-    await wrapper.vm.$nextTick()
+    await nextTick()
     expect(close).toHaveBeenCalledTimes(1)
 
     jest.useRealTimers()
@@ -87,11 +88,11 @@ describe('VEditDialog.ts', () => {
     const menu = wrapper.findComponent(VMenu)
 
     menu.vm.$emit('update:modelValue', true)
-    await wrapper.vm.$nextTick()
+    await nextTick()
     expect(open).toHaveBeenCalledTimes(1)
 
     menu.vm.$emit('update:modelValue', false)
-    await wrapper.vm.$nextTick()
+    await nextTick()
     expect(close).toHaveBeenCalledTimes(1)
   })
 
@@ -126,27 +127,29 @@ describe('VEditDialog.ts', () => {
 
     // Make sure originalValue gets set
     wrapper.vm.isActive = true
-    await wrapper.vm.$nextTick()
-    field.setValue('test')
+    await nextTick()
+    field.element.value = 'test'
+    field.trigger('input')
     // Update the parent component's val to match the input value
     parentWrapper.vm.val = 'test'
     input.dispatchEvent(new KeyboardEvent('keydown', { keyCode: keyCodes.esc } as KeyboardEventInit))
-    await wrapper.vm.$nextTick()
+    await nextTick()
     expect(wrapper.emitted('cancel')).toBeTruthy()
     expect(wrapper.emitted('update:return-value')?.[0]).toEqual(['test'])
     expect(wrapper.props('returnValue')).toBe('test')
 
     wrapper.vm.isActive = true
-    await wrapper.vm.$nextTick()
-    field.setValue('test')
+    await nextTick()
+    field.element.value = 'test'
+    field.trigger('input')
     // Update the parent component's val to match the input value
     parentWrapper.vm.val = 'test'
     input.dispatchEvent(new KeyboardEvent('keydown', { keyCode: keyCodes.enter } as KeyboardEventInit))
-    await wrapper.vm.$nextTick()
+    await nextTick()
     expect(wrapper.emitted('save')).toBeTruthy()
     expect(setTimeout).toHaveBeenLastCalledWith(expect.any(Function))
     jest.advanceTimersByTime(0)
-    await wrapper.vm.$nextTick()
+    await nextTick()
     expect(wrapper.emitted('update:return-value')?.[1]).toEqual(['test'])
     expect(wrapper.props('returnValue')).toBe('test')
 

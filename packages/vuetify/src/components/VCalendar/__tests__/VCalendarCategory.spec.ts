@@ -30,7 +30,7 @@ describe('VCalendarCategory', () => {
     const wrapper = mountFunction({
       props: {
         type: 'category',
-        events: [{ start: new Date(), category: 'Nate' }],
+        events: [{ start: '2019-02-17', category: 'Nate' }],
         categories: [{ name: 'Nate' }],
         categoryText: 'name',
       },
@@ -43,7 +43,7 @@ describe('VCalendarCategory', () => {
     const wrapper = mountFunction({
       props: {
         type: 'category',
-        events: [{ start: new Date(), category: '20' }],
+        events: [{ start: '2019-02-17', category: '20' }],
         categories: [{ name: 'Nate', age: '20' }],
         categoryText (category) {
           return category.age
@@ -64,7 +64,7 @@ describe('VCalendarCategory', () => {
     const wrapper = mountFunction({
       props: {
         type: 'category',
-        events: [{ start: new Date(), category: 'Nate' }],
+        events: [{ start: '2019-02-17', category: 'Nate' }],
         categories: [{ name: 'Nate', age: 20 }, { name: 'Bob', age: 30 }],
         categoryText: 'name',
         intervalStyle,
@@ -84,7 +84,7 @@ describe('VCalendarCategory', () => {
       props: {
         type: 'category',
         categoryShowAll: true,
-        events: [{ start: new Date(), category: 'Nate' }],
+        events: [{ start: '2019-02-17', category: 'Nate' }],
         categories: [{ name: 'Nate', age: 20 }, { name: 'Bob', age: 30 }],
         categoryText: 'name',
         intervalStyle,
@@ -103,7 +103,7 @@ describe('VCalendarCategory', () => {
     const wrapper = mountFunction({
       props: {
         type: 'category',
-        events: [{ start: new Date(), category: 'Nate' }, { start: new Date(), category: 'Bob' }],
+        events: [{ start: '2019-02-17', category: 'Nate' }, { start: '2019-02-18', category: 'Bob' }],
         categories: ['Nate', 'Bob'],
         intervalStyle,
       },

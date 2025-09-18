@@ -73,7 +73,11 @@ function updateColor (
   binding: VNodeDirective,
   node: VNode
 ) {
-  const currentTheme = node.context!.$vuetify.theme.currentTheme
+  const vuetify = (binding as any).instance?.$vuetify ||
+                  node.appContext?.config?.globalProperties?.$vuetify ||
+                  node.appContext?.provides?.$vuetify
+
+  const currentTheme = vuetify?.theme?.currentTheme
 
   if (binding.arg === undefined) {
     setBackgroundColor(el, binding.value, currentTheme)
@@ -97,8 +101,8 @@ function update (
 }
 
 export const Color = {
-  bind: updateColor,
-  update,
+  mounted: updateColor,
+  updated: update,
 }
 
 export default Color

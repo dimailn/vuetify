@@ -1,21 +1,41 @@
-import {App} from 'vue'
+// Utils for creating event listeners that work with Vue 3 emits/attrs pattern
 
-export function createItemTypeNativeListeners (instance: App, itemTypeSuffix: string, value: any) {
-  return Object.keys(instance.$listeners).reduce((on, eventName) => {
-    if (eventName.endsWith(itemTypeSuffix)) {
-      on[eventName.slice(0, -itemTypeSuffix.length)] = (event: Event) => instance.$emit(eventName, value, event)
+export function createItemTypeListeners (instance: any, itemTypeSuffix: string) {
+  const listeners: Record<string, Function> = {}
+
+  const eventAttrs = [
+    `onClick${itemTypeSuffix}`,
+    `onDblclick${itemTypeSuffix}`,
+  ]
+
+  eventAttrs.forEach(attrName => {
+    const handler = instance.$attrs[attrName]
+    if (handler && typeof handler === 'function') {
+      listeners[attrName] = handler
     }
+  })
 
-    return on
-  }, {} as typeof instance.$listeners)
+  return listeners
 }
 
-export function createItemTypeListeners (instance: App, itemTypeSuffix: string) {
-  return Object.keys(instance.$listeners).reduce((on, eventName) => {
-    if (eventName.endsWith(itemTypeSuffix)) {
-      on[eventName] = instance.$listeners[eventName]
-    }
+export function createItemTypeNativeListeners (instance: any, mouseEventType: string, value: any) {
+  const listeners: Record<string, Function> = {}
 
-    return on
-  }, {} as typeof instance.$listeners)
+  const eventAttrs = [
+    `onClick${mouseEventType.charAt(0).toUpperCase() + mouseEventType.slice(1)}`,
+    `onDblclick${mouseEventType.charAt(0).toUpperCase() + mouseEventType.slice(1)}`,
+  ]
+
+  eventAttrs.forEach(attrName => {
+    const handler = instance.$attrs[attrName]
+    if (handler && typeof handler === 'function') {
+      // Преобразуем onClickDate -> click и onDblclickDate -> dblclick для DOM событий
+      const eventName = attrName.slice(2, attrName.length - mouseEventType.length).toLowerCase()
+      listeners[eventName] = (event: Event) => {
+        handler(value, event)
+      }
+    }
+  })
+
+  return listeners
 }

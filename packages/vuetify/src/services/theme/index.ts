@@ -16,6 +16,9 @@ import {
   Theme as ITheme,
 } from 'vuetify/types/services/theme'
 
+// Vue Meta 3
+import { createMetaManager, useMeta } from 'vue-meta'
+
 export class Theme extends Service {
   static property: 'theme' = 'theme'
 
@@ -33,7 +36,7 @@ export class Theme extends Service {
 
   private unwatch = null as (() => void) | null
 
-  private vueMeta = null as any | null
+  private metaManager: any = null
 
   constructor (preset: VuetifyPreset) {
     super()
@@ -64,10 +67,8 @@ export class Theme extends Service {
   // When setting css, check for element and apply new values
   /* eslint-disable-next-line accessor-pairs */
   set css (val: string) {
-    if (this.vueMeta) {
-      if (this.isVueMeta23) {
-        this.applyVueMeta23()
-      }
+    if (this.metaManager) {
+      this.applyVueMeta3(val)
       return
     }
     this.checkOrCreateStyleElement() && (this.styleEl!.innerHTML = val)
@@ -104,19 +105,18 @@ export class Theme extends Service {
   public init (root: App, ssrContext?: any): void {
     if (this.disabled) return
 
-    /* istanbul ignore else */
-    if ((root as any).$meta) {
-      this.initVueMeta(root)
-    } else if (ssrContext) {
-      this.initSSR(ssrContext)
-    }
+    // Инициализируем vue-meta 3
+    this.initVueMeta3(root)
 
-    this.initTheme(root)
+    if (ssrContext) {
+      this.initSSR(ssrContext)
+    } else {
+      this.initTheme(root)
+    }
   }
 
   // Allows for you to set target theme
   public setTheme (theme: 'light' | 'dark', value: object) {
-    console.log('setTheme')
     this.themes[theme] = Object.assign(this.themes[theme], value)
     this.applyTheme()
   }
@@ -170,51 +170,17 @@ export class Theme extends Service {
     document.head.appendChild(this.styleEl)
   }
 
-  private initVueMeta (root: any) {
-    console.log('init vue meta')
-    this.vueMeta = root.$meta()
-    if (this.isVueMeta23) {
-      // vue-meta needs to apply after mounted()
-      root.$nextTick(() => {
-        this.applyVueMeta23()
-      })
-      return
-    }
-
-    const metaKeyName = typeof this.vueMeta.getOptions === 'function' ? this.vueMeta.getOptions().keyName : 'metaInfo'
-    const metaInfo = root.$options[metaKeyName] || {}
-
-    root.$options[metaKeyName] = () => {
-      metaInfo.style = metaInfo.style || []
-
-      const vuetifyStylesheet = metaInfo.style.find((s: any) => s.id === 'vuetify-theme-stylesheet')
-
-      if (!vuetifyStylesheet) {
-        metaInfo.style.push({
-          cssText: this.generatedStyles,
-          type: 'text/css',
-          id: 'vuetify-theme-stylesheet',
-          nonce: (this.options || {}).cspNonce,
-        })
-      } else {
-        vuetifyStylesheet.cssText = this.generatedStyles
-      }
-
-      return metaInfo
-    }
+  private initVueMeta3 (root: App) {
+    // Vue Meta 3 теперь работает через плагин, а не через отдельный manager
+    // Стили будут добавляться напрямую через useMeta API в компонентах
+    // или через обычный DOM API
+    this.metaManager = null
   }
 
-  private applyVueMeta23 () {
-    const { set } = this.vueMeta.addApp('vuetify')
-
-    set({
-      style: [{
-        cssText: this.generatedStyles,
-        type: 'text/css',
-        id: 'vuetify-theme-stylesheet',
-        nonce: this.options.cspNonce,
-      }],
-    })
+  private applyVueMeta3 (css: string) {
+    // Vue Meta 3 больше не использует manager.addMeta API
+    // Используем обычный DOM API для обновления стилей
+    this.checkOrCreateStyleElement() && (this.styleEl!.innerHTML = css)
   }
 
   private initSSR (ssrContext?: any) {
@@ -286,9 +252,5 @@ export class Theme extends Service {
     )
   }
 
-  // Is using v2.3 of vue-meta
-  // https://github.com/nuxt/vue-meta/releases/tag/v2.3.0
-  private get isVueMeta23 (): boolean {
-    return typeof this.vueMeta.addApp === 'function'
-  }
+  // Vue Meta 3 больше не нужен isVueMeta23 метод
 }

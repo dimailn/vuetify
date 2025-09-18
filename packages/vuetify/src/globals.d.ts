@@ -1,7 +1,7 @@
 /* eslint-disable max-len */
 
 import {
-  VueConstructor,
+  Component,
   ComponentOptions,
   FunctionalComponentOptions,
   VNodeData,
@@ -12,12 +12,11 @@ import {
   ThisTypedComponentOptionsWithArrayProps,
   ThisTypedComponentOptionsWithRecordProps,
 } from 'vue/types/options'
-import { MetaInfo } from 'vue-meta/types'
 import { TouchStoredHandlers } from './directives/touch'
 
 declare global {
   interface Window {
-    Vue: VueConstructor
+    Vue: Component
   }
 
   interface HTMLCollection {
@@ -100,12 +99,13 @@ declare module 'vue/types/vnode' {
 
 declare module 'vue/types/options' {
   interface ComponentOptions<V extends Vue> {
-    head?: MetaInfo | (() => MetaInfo)
+    // Vue Meta 3 использует новый API, больше не используется метод head
+    // head?: MetaInfo | (() => MetaInfo)
   }
 }
 
 declare module 'vue/types/vue' {
-  export type OptionsVue<Instance extends Vue, Data, Methods, Computed, Props, SetupBindings, Options = {}> = VueConstructor<
+  export type OptionsVue<Instance extends Vue, Data, Methods, Computed, Props, SetupBindings, Options = {}> = Component<
     CombinedVueInstance<Instance, Data, Methods, Computed, Props, SetupBindings> & Vue,
     Options
   >
@@ -149,7 +149,7 @@ declare module 'vue/types/vue' {
   > {
     version: string
     /* eslint-disable-next-line camelcase */
-    $_vuetify_subcomponents?: Record<string, VueConstructor>
+    $_vuetify_subcomponents?: Record<string, Component>
     /* eslint-disable-next-line camelcase */
     $_vuetify_installed?: true
     options: Options

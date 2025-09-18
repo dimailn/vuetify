@@ -1,7 +1,7 @@
 import Header from '../header'
 import {
   mount,
-  MountOptions,
+  MountingOptions,
   VueWrapper,
   enableAutoUnmount,
 } from '@vue/test-utils'
@@ -10,12 +10,12 @@ import { wrapInArray } from '../../../../util/helpers'
 
 describe('VDataTable/header.ts', () => {
   type Instance = InstanceType<typeof Header>
-  let mountFunction: (options?: MountOptions<Instance>) => VueWrapper<Instance>
+  let mountFunction: (options?: MountingOptions<Instance>) => VueWrapper<Instance>
 
   enableAutoUnmount(afterEach)
 
   beforeEach(() => {
-    mountFunction = (options?: MountOptions<Instance>) => {
+    mountFunction = (options?: MountingOptions<Instance>) => {
       return mount(Header, {
         props: {
           headers: [],

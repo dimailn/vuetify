@@ -1,55 +1,40 @@
-// Libraries
-import Vue from 'vue'
-
 // Components
 import VCounter from '../VCounter'
 
 // Utilities
 import {
-  createLocalVue,
   mount,
-  Wrapper,
+  VueWrapper,
+  enableAutoUnmount,
 } from '@vue/test-utils'
 
 describe('VCounter.ts', () => {
-  let mountFunction: (ctx?: object, name?: string) => Wrapper<Vue>
-  let localVue: typeof Vue
+  let mountFunction: (props?: object) => VueWrapper<InstanceType<typeof VCounter>>
+
+  enableAutoUnmount(afterEach)
 
   beforeEach(() => {
-    localVue = createLocalVue()
-
-    mountFunction = (ctx = {}, name = 'add') => {
+    mountFunction = (props = {}) => {
       return mount(VCounter, {
-        localVue,
-        context: Object.assign({
-          children: [name],
-          data: {},
-          props: {},
-        }, ctx),
+        props,
       })
     }
   })
 
   it('should render component', () => {
-    const wrapper = mountFunction({
-      props: { value: 5, max: 10 },
-    })
+    const wrapper = mountFunction({ value: 5, max: 10 })
 
     expect(wrapper.html()).toMatchSnapshot()
   })
 
   it('should render component in error state', () => {
-    const wrapper = mountFunction({
-      props: { value: 15, max: 10 },
-    })
+    const wrapper = mountFunction({ value: 15, max: 10 })
 
     expect(wrapper.classes('error--text')).toBe(true)
   })
 
   it('should render component if max is not provided', () => {
-    const wrapper = mountFunction({
-      props: { value: 15 },
-    })
+    const wrapper = mountFunction({ value: 15 })
 
     expect(wrapper.element.textContent).toBe('15')
   })

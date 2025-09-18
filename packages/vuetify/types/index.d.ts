@@ -1,4 +1,4 @@
-import Vue, { Component, PluginFunction, VueConstructor, DirectiveOptions, VNode } from 'vue'
+import Vue, { Component, PluginFunction, Directive, VNode } from 'vue'
 import './lib'
 import './alacarte'
 import './colors'
@@ -41,8 +41,8 @@ export type ComponentOrPack = Component & {
 }
 
 export interface VuetifyUseOptions {
-  transitions?: Record<string, VueConstructor>
-  directives?: Record<string, DirectiveOptions>
+  transitions?: Record<string, Component>
+  directives?: Record<string, Directive>
   components?: Record<string, ComponentOrPack>
 }
 
@@ -66,11 +66,11 @@ declare module 'vue/types/vue' {
 declare module 'vue/types/options' {
   export interface ComponentOptions<
     V extends Vue,
-    Data=DefaultData<V>,
-    Methods=DefaultMethods<V>,
-    Computed=DefaultComputed,
-    PropsDef=PropsDefinition<DefaultProps>,
-    Props=DefaultProps> {
+    Data=any,
+    Methods=any,
+    Computed=any,
+    PropsDef=any,
+    Props=any> {
     vuetify?: Vuetify
   }
 }

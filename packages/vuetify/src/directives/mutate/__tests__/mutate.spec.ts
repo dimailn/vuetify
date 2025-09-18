@@ -27,20 +27,21 @@ describe('mutate.ts', () => {
     const el = document.createElement('div') as any
     document.body.appendChild(el)
 
-    Mutate.inserted(el, {
+    Mutate.mounted(el, {
       value: callback,
-    } as any, { context: { _uid: 1 } } as any)
+    } as any, { ctx: { uid: 1 } } as any)
 
     expect(el._mutate).toBeTruthy()
     expect(callback).not.toHaveBeenCalled()
 
     document.body.removeChild(el)
 
-    Mutate.unbind(el, {
+    Mutate.unmounted(el, {
       value: callback,
-    } as any, { context: { _uid: 1 } } as any)
+    } as any, { ctx: { uid: 1 } } as any)
 
-    expect(el._mutate[1]).toBeFalsy()
+    const uid = Object.keys(el._mutate)[0]
+    expect(el._mutate[uid]).toBeFalsy()
   })
 
   it('should fire event on mutation', () => {
@@ -48,19 +49,20 @@ describe('mutate.ts', () => {
     const el = document.createElement('div') as any
     document.body.appendChild(el)
 
-    Mutate.inserted(el, {
+    Mutate.mounted(el, {
       value: callback,
-    } as any, { context: { _uid: 1 } } as any)
+    } as any, { ctx: { uid: 1 } } as any)
 
-    el._mutate[1].observer.trigger([{}])
+    const uid = Object.keys(el._mutate)[0]
+    el._mutate[uid]?.observer?.trigger([{}])
 
     expect(callback).toHaveBeenCalledTimes(1)
 
     document.body.removeChild(el)
 
-    Mutate.unbind(el, {
+    Mutate.unmounted(el, {
       value: callback,
-    } as any, { context: { _uid: 1 } } as any)
+    } as any, { ctx: { uid: 1 } } as any)
   })
 
   it('should fire event once', () => {
@@ -68,17 +70,19 @@ describe('mutate.ts', () => {
     const el = document.createElement('div') as any
     document.body.appendChild(el)
 
-    Mutate.inserted(el, {
+    Mutate.mounted(el, {
       value: callback,
       modifiers: {
         once: true,
       },
-    } as any, { context: { _uid: 1 } } as any)
+    } as any, { ctx: { uid: 1 } } as any)
 
-    el._mutate[1].observer.trigger([{}])
+    const uid = Object.keys(el._mutate)[0]
+    el._mutate[uid]?.observer?.trigger([{}])
 
     expect(callback).toHaveBeenCalledTimes(1)
-    expect(el._mutate[1]).toBeFalsy()
+    // Once modifier should remove the observer
+    expect(Object.keys(el._mutate)).toHaveLength(0)
 
     document.body.removeChild(el)
   })
@@ -88,7 +92,7 @@ describe('mutate.ts', () => {
     const el = document.createElement('div') as any
     document.body.appendChild(el)
 
-    Mutate.inserted(el, {
+    Mutate.mounted(el, {
       value: {
         options: {
           attributes: false,
@@ -96,16 +100,17 @@ describe('mutate.ts', () => {
         },
         handler: callback,
       },
-    } as any, { context: { _uid: 1 } } as any)
+    } as any, { ctx: { uid: 1 } } as any)
 
-    el._mutate[1].observer.trigger([{}])
+    const uid = Object.keys(el._mutate)[0]
+    el._mutate[uid]?.observer?.trigger([{}])
 
     expect(callback).toHaveBeenCalledTimes(1)
-    expect(el._mutate[1].observer._observe).toHaveBeenLastCalledWith({ attributes: false, subtree: true })
+    expect(el._mutate[uid].observer._observe).toHaveBeenLastCalledWith({ attributes: false, subtree: true })
 
     document.body.removeChild(el)
 
-    Mutate.unbind(el, {
+    Mutate.unmounted(el, {
       value: {
         options: {
           attributes: false,
@@ -113,7 +118,7 @@ describe('mutate.ts', () => {
         },
         handler: callback,
       },
-    } as any, { context: { _uid: 1 } } as any)
+    } as any, { ctx: { uid: 1 } } as any)
   })
 
   it('should work with observer modifiers', () => {
@@ -121,29 +126,30 @@ describe('mutate.ts', () => {
     const el = document.createElement('div') as any
     document.body.appendChild(el)
 
-    Mutate.inserted(el, {
+    Mutate.mounted(el, {
       value: callback,
       modifiers: {
         attr: true,
         child: true,
         sub: true,
       },
-    } as any, { context: { _uid: 1 } } as any)
+    } as any, { ctx: { uid: 1 } } as any)
 
-    el._mutate[1].observer.trigger([{}])
+    const uid = Object.keys(el._mutate)[0]
+    el._mutate[uid]?.observer?.trigger([{}])
 
     expect(callback).toHaveBeenCalledTimes(1)
-    expect(el._mutate[1].observer._observe).toHaveBeenLastCalledWith({ attributes: true, childList: true, subtree: true })
+    expect(el._mutate[uid].observer._observe).toHaveBeenLastCalledWith({ attributes: true, childList: true, subtree: true })
 
     document.body.removeChild(el)
 
-    Mutate.unbind(el, {
+    Mutate.unmounted(el, {
       value: callback,
       modifiers: {
         attr: true,
         child: true,
         sub: true,
       },
-    } as any, { context: { _uid: 1 } } as any)
+    } as any, { ctx: { uid: 1 } } as any)
   })
 })

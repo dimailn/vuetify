@@ -10,8 +10,8 @@ exports[`VExpansionPanel should hide actions and match snapshot 1`] = `
           props="[object Object]"
   >
     <div class="v-expansion-panel-header__icon">
-      <i aria-hidden="true"
-         class="v-icon notranslate mdi mdi-chevron-down theme--light"
+      <i class="v-icon notranslate theme--light mdi mdi-chevron-down"
+         aria-hidden="true"
       >
       </i>
     </div>
@@ -28,8 +28,8 @@ exports[`VExpansionPanel should hide actions and match snapshot 2`] = `
           aria-expanded="false"
   >
     <div class="v-expansion-panel-header__icon">
-      <i aria-hidden="true"
-         class="v-icon notranslate mdi mdi-chevron-down theme--light"
+      <i class="v-icon notranslate theme--light mdi mdi-chevron-down"
+         aria-hidden="true"
       >
       </i>
     </div>

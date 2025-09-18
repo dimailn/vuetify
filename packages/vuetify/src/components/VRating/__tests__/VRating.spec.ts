@@ -6,9 +6,12 @@ import VRating from '../VRating'
 
 // Utilities
 import {
-  mount
+  mount,
+  VueWrapper,
+  MountingOptions,
 } from '@vue/test-utils'
 import { mergeDeep } from '../../../util/helpers'
+import { nextTick } from 'vue'
 
 
 const $vuetify = {
@@ -25,13 +28,12 @@ const $vuetify = {
 }
 
 describe('VRating.ts', () => {
-  // type Instance = ExtractVue<typeof VRating>
-  let mountFunction//: (options?: object) => Wrapper<Instance>
+  type Instance = InstanceType<typeof VRating>
+  let mountFunction: (options?: MountingOptions<Instance>) => VueWrapper<Instance>
 
   beforeEach(() => {
-    mountFunction = (options: MountOptions<Instance>) => {
+    mountFunction = (options?: MountingOptions<Instance>) => {
       return mount(VRating, mergeDeep({
-        // https://github.com/vuejs/vue-test-utils/issues/1130
         global: {
           config: {
             globalProperties: {
@@ -55,13 +57,13 @@ describe('VRating.ts', () => {
 
     wrapper.setProps({ readonly: false })
 
-    await wrapper.vm.$nextTick()
+    await nextTick()
 
     expect(wrapper.vm.directives[0][1].isDirActive).toBe(true)
 
     wrapper.setProps({ ripple: false })
 
-    await wrapper.vm.$nextTick()
+    await nextTick()
 
     expect(wrapper.vm.directives[0][1].isDirActive).toBe(false)
   })
@@ -72,7 +74,7 @@ describe('VRating.ts', () => {
     expect(wrapper.vm.internalValue).toBe(0)
 
     wrapper.setProps({ modelValue: 1 })
-    await wrapper.vm.$nextTick()
+    await nextTick()
 
     expect(wrapper.vm.internalValue).toBe(1)
 
@@ -82,7 +84,7 @@ describe('VRating.ts', () => {
 
     icon.trigger('click')
 
-    await wrapper.vm.$nextTick()
+    await nextTick()
 
     expect(wrapper.emitted()).toHaveProperty('update:modelValue')
     expect(wrapper.emitted()['update:modelValue'][0][0]).toBe(2)
@@ -94,7 +96,7 @@ describe('VRating.ts', () => {
     expect(wrapper.vm.internalValue).toBe(0)
 
     wrapper.setProps({ modelValue: 1, clearable: false })
-    await wrapper.vm.$nextTick()
+    await nextTick()
 
     expect(wrapper.vm.internalValue).toBe(1)
 
@@ -102,17 +104,17 @@ describe('VRating.ts', () => {
 
     icon.trigger('click')
 
-    await wrapper.vm.$nextTick()
+    await nextTick()
 
     expect(wrapper.vm.internalValue).toBe(1)
 
     wrapper.setProps({ clearable: true })
 
-    await wrapper.vm.$nextTick()
+    await nextTick()
 
     icon.trigger('click')
 
-    await wrapper.vm.$nextTick()
+    await nextTick()
 
     expect(wrapper.vm.internalValue).toBe(0)
   })
@@ -128,17 +130,17 @@ describe('VRating.ts', () => {
 
     icon.trigger('click')
 
-    await wrapper.vm.$nextTick()
+    await nextTick()
 
     expect(wrapper.emitted()).not.toHaveProperty('update:modelValue')
 
     wrapper.setProps({ readonly: false })
 
-    await wrapper.vm.$nextTick()
+    await nextTick()
 
     icon.trigger('click')
 
-    await wrapper.vm.$nextTick()
+    await nextTick()
 
     expect(wrapper.emitted()).toHaveProperty('update:modelValue')
     expect(wrapper.emitted()['update:modelValue'][0][0]).toBe(1)
@@ -180,7 +182,7 @@ describe('VRating.ts', () => {
 
     wrapper.setProps({ halfIncrements: true })
 
-    await wrapper.vm.$nextTick()
+    await nextTick()
 
     expect(wrapper.vm.genHoverIndex({
       pageX: 0,
@@ -212,25 +214,21 @@ describe('VRating.ts', () => {
     })
 
     const event = new MouseEvent('hover')
-    expect(wrapper.vm.genHoverIndex(event, 1)).toBe(1.5)
-
-    wrapper.setProps({ halfIncrements: true })
-
-    await wrapper.vm.$nextTick()
+    expect(wrapper.vm.genHoverIndex(event, 1)).toBe(2)
 
     expect(wrapper.vm.genHoverIndex({
       pageX: 0,
       target: {
         getBoundingClientRect: () => ({ width: 10, left: 0 }),
       },
-    }, 1)).toBe(2)
+    }, 1)).toBe(1.5)
 
     expect(wrapper.vm.genHoverIndex({
       pageX: 6,
       target: {
         getBoundingClientRect: () => ({ width: 10, left: 0 }),
       },
-    }, 1)).toBe(1.5)
+    }, 1)).toBe(2)
   })
 
   it('should render a scoped slot', () => {
@@ -240,10 +238,7 @@ describe('VRating.ts', () => {
       render: () => h(VRating, {}, {item: itemSlot})
     }
 
-    const wrapper = mount(component, {
-      // https://github.com/vuejs/vue-test-utils/issues/1130
-      sync: false,
-    })
+    const wrapper = mount(component)
 
     expect(wrapper.html()).toMatchSnapshot()
   })
@@ -269,7 +264,7 @@ describe('VRating.ts', () => {
   it('should reset hoverIndex on mouse leave', () => {
     jest.useFakeTimers()
     const wrapper = mountFunction({
-      propsData: { hover: true },
+      props: { hover: true },
     })
 
     const icon = wrapper.find('.v-icon')

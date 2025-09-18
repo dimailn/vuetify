@@ -199,7 +199,7 @@ describe('VSelect.ts', () => {
     expect(wrapper.vm.computedCounterValue).toBe(2)
   })
 
-  it('should emit a single change event', async () => {
+  it('should emit a single update:modelValue event', async () => {
     const wrapper = mountFunction({
       attachTo: el,
       props: {
@@ -219,12 +219,12 @@ describe('VSelect.ts', () => {
     wrapper.vm.blur()
     await wrapper.vm.$nextTick()
 
-    const emitted = wrapper.emitted('change')
+    const emitted = wrapper.emitted('update:modelValue')
     expect(emitted).toBeTruthy()
     expect(emitted[0]).toEqual(['foo'])
   })
 
-  it('should not emit change event when clicked on the selected item', async () => {
+  it('should not emit update:modelValue event when clicked on the selected item', async () => {
     const wrapper = mountFunction({
       props: {
         items: ['foo', 'bar'],
@@ -237,7 +237,7 @@ describe('VSelect.ts', () => {
     wrapper.vm.selectItem('foo')
     await wrapper.vm.$nextTick()
 
-    const emitted = wrapper.emitted('change')
+    const emitted = wrapper.emitted('update:modelValue')
     expect(emitted).toHaveLength(1)
   })
 
@@ -376,7 +376,7 @@ describe('VSelect.ts', () => {
     clear.trigger('click')
     await wrapper.vm.$nextTick()
 
-    const emitted = wrapper.emitted('change')
+    const emitted = wrapper.emitted('update:modelValue')
     expect(emitted).toBeTruthy()
     expect(emitted[0]).toEqual([[]])
     expect(wrapper.vm.isMenuActive).toBe(false)

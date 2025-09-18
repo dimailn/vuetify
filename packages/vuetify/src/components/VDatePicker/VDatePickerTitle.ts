@@ -52,6 +52,12 @@ export default mixins(
     },
   },
 
+  watch: {
+    modelValue (val: string, prev: string) {
+      this.isReversing = val < prev
+    },
+  },
+
   created () {
     const breakingProps = [
       ['value', 'modelValue'],
@@ -63,12 +69,6 @@ export default mixins(
     })
   },
 
-  watch: {
-    modelValue (val: string, prev: string) {
-      this.isReversing = val < prev
-    },
-  },
-
   methods: {
     genYearIcon (): VNode {
       return h(VIcon, {
@@ -76,23 +76,35 @@ export default mixins(
       }, () => this.yearIcon)
     },
     getYearBtn (): VNode {
+      const yearText = h('span', {
+        key: this.year,
+      }, String(this.year))
+
+      const yearTransition = h(Transition, {
+        name: this.computedTransition,
+      }, {
+        default: () => [yearText],
+      })
+
       return this.genPickerButton('selectingYear', true, [
-        String(this.year),
+        yearTransition,
         this.yearIcon ? this.genYearIcon() : null,
       ], false, 'v-date-picker-title__year')
     },
     genTitleText (): VNode {
-      return h(Transition, {
-        name: this.computedTransition,
-      }, () => [
-        h('div', {
-          innerHTML: this.date || '&nbsp;',
-          key: this.modelValue,
-        }),
-      ])
+      return h('div', {
+        key: this.date,
+      }, this.date || '\u00A0')
     },
     genTitleDate (): VNode {
-      return this.genPickerButton('selectingYear', false, [this.genTitleText()], false, 'v-date-picker-title__date')
+      const titleText = this.genTitleText()
+      const transition = h(Transition, {
+        name: this.computedTransition,
+      }, {
+        default: () => [titleText],
+      })
+
+      return this.genPickerButton('selectingYear', false, [transition], false, 'v-date-picker-title__date')
     },
   },
 

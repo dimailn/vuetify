@@ -39,7 +39,7 @@ export default defineComponent({
     },
   },
 
-  emits: ['click', 'focus', 'blur'],
+  emits: ['click', 'focus', 'blur', 'update:modelValue', 'change'],
 
   computed: {
     classes (): object {

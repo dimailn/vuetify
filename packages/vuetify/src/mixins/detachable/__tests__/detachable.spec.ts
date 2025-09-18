@@ -1,11 +1,13 @@
 import VApp from '../../../components/VApp'
 import Detachable from '../'
 import { mount } from '@vue/test-utils'
+import { defineComponent, h } from 'vue'
 
-const Mock = Detachable.extend({
+const Mock = defineComponent({
   name: 'mock',
+  mixins: [Detachable],
 
-  render (h) {
+  render () {
     const content = h('div', {
       class: 'content',
       ref: 'content',
@@ -13,7 +15,7 @@ const Mock = Detachable.extend({
 
     return h('div', {
       class: 'mock',
-    }, [this.$slots.default, content])
+    }, [this.$slots.default?.(), content])
   },
 })
 
@@ -21,82 +23,94 @@ describe('detachable.ts', () => {
   it('should detach to app', async () => {
     const localMock = Mock
     const wrapper = mount(VApp, {
-      attachToDocument: true,
+      attachTo: document.body,
       slots: {
-        default: [{
-          render: h => h(localMock),
-        }],
+        default: () => h(localMock),
       },
-      mocks: {
-        $vuetify: {
-          rtl: false,
-          theme: {
-            dark: false,
+      global: {
+        mocks: {
+          $vuetify: {
+            rtl: false,
+            theme: {
+              dark: false,
+            },
           },
         },
       },
     })
 
-    const detach = wrapper.find(localMock)
+    const detach = wrapper.findComponent(localMock)
 
     expect(detach.vm.hasDetached).toBe(false)
 
-    wrapper.destroy()
+    wrapper.unmount()
   })
 
-  it('should attach and detach', () => {
+  it('should attach and detach', async () => {
     const localMock = Mock
-    const elementMock = mount(Mock)
+    const elementMock = mount(Mock, { attachTo: document.body })
+
+    // Создаем элемент с классом .foo в DOM для теста
+    const fooElement = document.createElement('div')
+    fooElement.className = 'foo'
+    document.body.appendChild(fooElement)
+
+    // Создаем элемент data-app для теста
+    const appElement = document.createElement('div')
+    appElement.setAttribute('data-app', 'true')
+    document.body.appendChild(appElement)
+
     const wrapper = mount(localMock, {
-      attachToDocument: true,
-      propsData: {
+      attachTo: document.body,
+      props: {
         attach: '',
       },
       slots: {
-        default: [{
-          render: h => h('div', { class: 'foo' }),
-        }],
+        default: () => h('div', { class: 'foo' }),
       },
     })
 
     expect(wrapper.vm.initDetach()).toBeUndefined()
 
-    wrapper.setProps({ attach: true })
+    await wrapper.setProps({ attach: true })
 
     expect(wrapper.vm.initDetach()).toBeUndefined()
 
-    wrapper.setProps({ attach: 'attach' })
+    await wrapper.setProps({ attach: 'attach' })
 
     expect(wrapper.vm.initDetach()).toBeUndefined()
 
-    wrapper.setProps({ attach: elementMock.vm.$el })
+    await wrapper.setProps({ attach: elementMock.vm.$el })
 
     wrapper.vm.initDetach()
 
     expect(wrapper.vm.hasDetached).toBe(true)
 
-    wrapper.setData({ hasDetached: false })
+    wrapper.vm.hasDetached = false
 
-    wrapper.setProps({ attach: '.foo' })
+    await wrapper.setProps({ attach: '.foo' })
 
     wrapper.vm.initDetach()
 
     expect(wrapper.vm.hasDetached).toBe(true)
 
-    wrapper.setData({ hasDetached: false })
+    wrapper.vm.hasDetached = false
 
-    wrapper.setProps({ attach: '.bar' })
+    await wrapper.setProps({ attach: '.bar' })
 
     wrapper.vm.initDetach()
 
     expect('[Vuetify] Unable to locate target .bar').toHaveBeenTipped()
 
-    delete wrapper.vm.$refs.content
-    wrapper.vm.$destroy()
+    // Очищаем созданные элементы
+    document.body.removeChild(fooElement)
+    document.body.removeChild(appElement)
+    elementMock.unmount()
+    wrapper.unmount()
   })
 
   it('should validate attach prop', () => {
-    const validator = Detachable.options.props.attach.validator
+    const validator = Detachable.props.attach.validator
 
     expect(validator(true)).toBe(true)
     expect(validator(false)).toBe(true)

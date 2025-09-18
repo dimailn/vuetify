@@ -67,10 +67,10 @@ describe('VOverflowBtn.js', () => {
 
   it('should use default autocomplete selections', async () => {
     const wrapper = mountFunction({
-      propsData: {
+      props: {
         items: ['foo'],
         multiple: true,
-        value: ['foo'],
+        modelValue: ['foo'],
       },
     })
 
@@ -80,7 +80,7 @@ describe('VOverflowBtn.js', () => {
       items: [{ text: 'foo', value: 'foo', callback: () => { } }],
       multiple: false,
       segmented: true,
-      value: 'foo',
+      modelValue: 'foo',
     })
 
     await wrapper.vm.$nextTick()
@@ -91,14 +91,14 @@ describe('VOverflowBtn.js', () => {
   it('should invoke item callback', () => {
     const callback = jest.fn()
     const wrapper = mountFunction({
-      propsData: {
+      props: {
         items: [{
           text: 'foo',
           value: 'bar',
           callback,
         }],
         segmented: true,
-        value: 'bar',
+        modelValue: 'bar',
       },
     })
 
@@ -111,7 +111,7 @@ describe('VOverflowBtn.js', () => {
 
   it('should show label with persistentPlaceholder property set to true', async () => {
     const wrapper = mountFunction({
-      propsData: {
+      props: {
         items: ['foo'],
         label: 'Some label',
         persistentPlaceholder: true,

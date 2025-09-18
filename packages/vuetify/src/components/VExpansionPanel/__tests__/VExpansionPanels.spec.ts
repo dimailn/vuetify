@@ -4,12 +4,16 @@ import VExpansionPanels from '../VExpansionPanels'
 // Utilities
 import {
   mount,
-  Wrapper,
+  VueWrapper,
+  MountingOptions,
+  enableAutoUnmount,
 } from '@vue/test-utils'
 
 describe('VExpansionPanels.ts', () => {
   type Instance = InstanceType<typeof VExpansionPanels>
-  let mountFunction: (options?: object) => Wrapper<Instance>
+  let mountFunction: (options?: MountingOptions<Instance>) => VueWrapper<Instance>
+
+  enableAutoUnmount(afterEach)
 
   beforeEach(() => {
     mountFunction = (options = {}) => {
@@ -19,9 +23,9 @@ describe('VExpansionPanels.ts', () => {
     }
   })
 
-  it('should work', () => {
+  it('should work', async () => {
     const wrapper = mountFunction({
-      propsData: { value: 0 },
+      props: { modelValue: 0 },
     })
 
     const item = {
@@ -35,7 +39,7 @@ describe('VExpansionPanels.ts', () => {
     expect(item.isActive).toBe(true)
     expect(item.nextIsActive).toBe(false)
 
-    wrapper.setProps({ value: 1 })
+    await wrapper.setProps({ modelValue: 1 })
     wrapper.vm.updateItem(item, 0)
 
     expect(item.isActive).toBe(false)

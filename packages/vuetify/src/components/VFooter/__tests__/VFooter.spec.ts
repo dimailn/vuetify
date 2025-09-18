@@ -4,21 +4,26 @@ import VFooter from '../VFooter'
 // Utilities
 import {
   mount,
-  Wrapper,
+  VueWrapper,
+  enableAutoUnmount,
 } from '@vue/test-utils'
 
 describe('VFooter.ts', () => {
   type Instance = InstanceType<typeof VFooter>
-  let mountFunction: (options?: object) => Wrapper<Instance>
+  let mountFunction: (options?: object) => VueWrapper<Instance>
+
+  enableAutoUnmount(afterEach)
 
   beforeEach(() => {
     mountFunction = (options = {}) => {
       return mount(VFooter, {
-        mocks: {
-          $vuetify: {
-            application: {
-              register: () => {},
-              unregister: () => {},
+        global: {
+          mocks: {
+            $vuetify: {
+              application: {
+                register: () => {},
+                unregister: () => {},
+              },
             },
           },
         },
@@ -27,30 +32,32 @@ describe('VFooter.ts', () => {
     }
   })
 
-  it('should return insetFooter', () => {
+  it('should return insetFooter', async () => {
     const wrapper = mountFunction()
 
     expect(wrapper.vm.applicationProperty).toBe('footer')
 
-    wrapper.setProps({ inset: true })
+    await wrapper.setProps({ inset: true })
 
     expect(wrapper.vm.applicationProperty).toBe('insetFooter')
   })
 
   it('should return computed values when using app', async () => {
     const wrapper = mountFunction({
-      propsData: {
+      props: {
         app: true,
       },
-      mocks: {
-        $vuetify: {
-          application: {
-            footer: 0,
-            bottom: 64,
-            left: 300,
-            right: 200,
-            register: () => {},
-            unregister: () => {},
+      global: {
+        mocks: {
+          $vuetify: {
+            application: {
+              footer: 0,
+              bottom: 64,
+              left: 300,
+              right: 200,
+              register: () => {},
+              unregister: () => {},
+            },
           },
         },
       },
@@ -60,10 +67,10 @@ describe('VFooter.ts', () => {
     expect(wrapper.vm.computedLeft).toBe(0)
     expect(wrapper.vm.computedRight).toBe(0)
 
-    wrapper.setProps({ inset: true })
+    await wrapper.setProps({ inset: true })
     expect(wrapper.vm.computedLeft).toBe(300)
     expect(wrapper.vm.computedRight).toBe(200)
 
-    wrapper.setProps({ height: 48 })
+    await wrapper.setProps({ height: 48 })
   })
 })

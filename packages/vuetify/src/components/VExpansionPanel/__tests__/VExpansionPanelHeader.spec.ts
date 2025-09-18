@@ -14,10 +14,12 @@ describe('VExpansionPanelHeader', () => {
   beforeEach(() => {
     mountFunction = (options = {}) => {
       return mount(VExpansionPanelHeader, {
-        provide: {
-          expansionPanel: {
-            registerHeader: () => {},
-            unregisterHeader: () => {},
+        global: {
+          provide: {
+            expansionPanel: {
+              registerHeader: () => {},
+              unregisterHeader: () => {},
+            },
           },
         },
         ...options,

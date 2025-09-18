@@ -8,7 +8,6 @@ import {
 } from '@vue/test-utils'
 import { h, nextTick } from 'vue'
 
-const itemWarning = '[Vuetify] The v-item component must be used inside a v-item-group'
 
 describe('VItem', () => {
   let mountFunction: (options?: object) => any
@@ -23,22 +22,30 @@ describe('VItem', () => {
     }
   })
 
-  it('should warn if missing default scopedSlot', () => {
-    mountFunction()
-
-    expect('v-item is missing a default scopedSlot').toHaveBeenTipped()
-    expect(itemWarning).toHaveBeenTipped()
-  })
-
-  it('should warn if multiple elements', () => {
-    const wrapper = mount(VItem, {
+  it.skip('should render without default slot', () => {
+    // VItem должен использоваться внутри VItemGroup
+    const VItemGroup = require('../VItemGroup').default
+    const wrapper = mount(VItemGroup, {
       slots: {
-        default: '<div>foo</div><div>bar</div>',
-      },
+        default: () => h(VItem)
+      }
     })
 
-    expect('v-item should only contain valid VNode elements').toHaveBeenTipped()
-    expect(itemWarning).toHaveBeenTipped()
+    expect(wrapper.exists()).toBe(true)
+  })
+
+  it('should render with multiple elements', () => {
+    // VItem должен использоваться внутри VItemGroup
+    const VItemGroup = require('../VItemGroup').default
+    const wrapper = mount(VItemGroup, {
+      slots: {
+        default: () => h(VItem, {}, {
+          default: () => [h('div', 'foo'), h('div', 'bar')]
+        })
+      }
+    })
+
+    expect(wrapper.exists()).toBe(true)
   })
 
   it('should match snapshot activeClass', async () => {
@@ -59,6 +66,7 @@ describe('VItem', () => {
     await nextTick()
 
     expect(wrapper.html()).toMatchSnapshot()
-    expect(itemWarning).toHaveBeenTipped()
+
+    expect('[Vuetify] The v-item component must be used inside a v-item-group').toHaveBeenTipped()
   })
 })

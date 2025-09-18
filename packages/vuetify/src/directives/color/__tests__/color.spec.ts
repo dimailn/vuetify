@@ -1,5 +1,5 @@
 // Vue
-import Vue from 'vue'
+import { h, defineComponent } from 'vue'
 
 // Directives
 import Color from '../'
@@ -7,33 +7,53 @@ import Color from '../'
 // Utilities
 import {
   mount,
-  Wrapper,
+  VueWrapper,
+  enableAutoUnmount,
 } from '@vue/test-utils'
 
 describe('color.ts', () => {
-  let mountFunction: () => Wrapper<Vue>
+  let mountFunction: (directive?: any) => VueWrapper<any>
+
+  enableAutoUnmount(afterEach)
 
   beforeEach(() => {
     mountFunction = (directive = {}) => {
-      return mount(Vue.component('test', {
+      const TestComponent = defineComponent({
         directives: { Color },
         data: () => ({
           color: '',
         }),
-        render (h) {
-          return h('div', {
-            directives: [{
-              ...directive,
-              value: this.color,
-            }],
-          })
-        },
-      }), {
-        mocks: {
-          $vuetify: {
-            theme: {
-              currentTheme: {
-                primary: '#1976d2',
+        template: `<div v-color${directive.arg ? `:${directive.arg}` : ''}${Object.keys(directive.modifiers || {}).length ? '.' + Object.keys(directive.modifiers).join('.') : ''}="color"></div>`,
+      })
+
+      return mount(TestComponent, {
+        global: {
+          config: {
+            globalProperties: {
+              $vuetify: {
+                theme: {
+                  currentTheme: {
+                    primary: '#1976d2',
+                  },
+                },
+              },
+            },
+          },
+          mocks: {
+            $vuetify: {
+              theme: {
+                currentTheme: {
+                  primary: '#1976d2',
+                },
+              },
+            },
+          },
+          provide: {
+            $vuetify: {
+              theme: {
+                currentTheme: {
+                  primary: '#1976d2',
+                },
               },
             },
           },
@@ -47,23 +67,23 @@ describe('color.ts', () => {
       name: 'color',
     })
 
-    wrapper.setData({ color: '#01f' })
+    await wrapper.setData({ color: '#01f' })
     expect(wrapper.element.style.backgroundColor).toEqual('rgb(0, 17, 255)')
     expect(wrapper.element.style.borderColor).toEqual('#01f')
 
-    wrapper.setData({ color: 'rgb(255, 255, 0)' })
+    await wrapper.setData({ color: 'rgb(255, 255, 0)' })
     expect(wrapper.element.style.backgroundColor).toEqual('rgb(255, 255, 0)')
     expect(wrapper.element.style.borderColor).toEqual('rgb(255, 255, 0)')
 
-    wrapper.setData({ color: 'red' })
+    await wrapper.setData({ color: 'red' })
     expect(wrapper.element.style.backgroundColor).toEqual('rgb(244, 67, 54)')
     expect(wrapper.element.style.borderColor).toEqual('#f44336')
 
-    wrapper.setData({ color: 'red lighten-1' })
+    await wrapper.setData({ color: 'red lighten-1' })
     expect(wrapper.element.style.backgroundColor).toEqual('rgb(239, 83, 80)')
     expect(wrapper.element.style.borderColor).toEqual('#ef5350')
 
-    wrapper.setData({ color: 'primary' })
+    await wrapper.setData({ color: 'primary' })
     expect(wrapper.element.style.backgroundColor).toEqual('rgb(25, 118, 210)')
     expect(wrapper.element.style.borderColor).toEqual('#1976d2')
   })
@@ -74,23 +94,23 @@ describe('color.ts', () => {
       arg: 'text',
     })
 
-    wrapper.setData({ color: '#01f' })
+    await wrapper.setData({ color: '#01f' })
     expect(wrapper.element.style.color).toEqual('rgb(0, 17, 255)')
     expect(wrapper.element.style.caretColor).toEqual('#01f')
 
-    wrapper.setData({ color: 'rgba(0, 1, 2, 0.5)' })
+    await wrapper.setData({ color: 'rgba(0, 1, 2, 0.5)' })
     expect(wrapper.element.style.color).toEqual('rgba(0, 1, 2, 0.5)')
     expect(wrapper.element.style.caretColor).toEqual('rgba(0, 1, 2, 0.5)')
 
-    wrapper.setData({ color: 'red' })
+    await wrapper.setData({ color: 'red' })
     expect(wrapper.element.style.color).toEqual('rgb(244, 67, 54)')
     expect(wrapper.element.style.caretColor).toEqual('#f44336')
 
-    wrapper.setData({ color: 'red lighten-1' })
+    await wrapper.setData({ color: 'red lighten-1' })
     expect(wrapper.element.style.color).toEqual('rgb(239, 83, 80)')
     expect(wrapper.element.style.caretColor).toEqual('#ef5350')
 
-    wrapper.setData({ color: 'primary' })
+    await wrapper.setData({ color: 'primary' })
     expect(wrapper.element.style.color).toEqual('rgb(25, 118, 210)')
     expect(wrapper.element.style.caretColor).toEqual('#1976d2')
   })
@@ -101,19 +121,19 @@ describe('color.ts', () => {
       arg: 'border',
     })
 
-    wrapper.setData({ color: '#01f' })
+    await wrapper.setData({ color: '#01f' })
     expect(wrapper.element.style.borderColor).toEqual('#01f')
 
-    wrapper.setData({ color: 'rgb(255, 255, 0)' })
+    await wrapper.setData({ color: 'rgb(255, 255, 0)' })
     expect(wrapper.element.style.borderColor).toEqual('rgb(255, 255, 0)')
 
-    wrapper.setData({ color: 'red' })
+    await wrapper.setData({ color: 'red' })
     expect(wrapper.element.style.borderColor).toEqual('#f44336')
 
-    wrapper.setData({ color: 'red lighten-1' })
+    await wrapper.setData({ color: 'red lighten-1' })
     expect(wrapper.element.style.borderColor).toEqual('#ef5350')
 
-    wrapper.setData({ color: 'primary' })
+    await wrapper.setData({ color: 'primary' })
     expect(wrapper.element.style.borderColor).toEqual('#1976d2')
   })
 
@@ -124,7 +144,7 @@ describe('color.ts', () => {
       modifiers: { top: true, right: true, left: true },
     })
 
-    wrapper.setData({ color: '#fff' })
+    await wrapper.setData({ color: '#fff' })
     expect(wrapper.element.style.borderTopColor).toEqual('#fff')
     expect(wrapper.element.style.borderRightColor).toEqual('#fff')
     expect(wrapper.element.style.borderLeftColor).toEqual('#fff')
