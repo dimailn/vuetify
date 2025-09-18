@@ -251,12 +251,11 @@ describe('VTabs.ts', () => {
     expect(emitted).toBeFalsy() // Не должно быть эмиттов при инициализации
   })
 
-  it('should not close active tab when clicked (mandatory=false)', async () => {
-    // Тест для проверки бага: клик по активной вкладке не должен её закрывать
+  it('should not close active tab when clicked (allowDeselect=false)', async () => {
     const wrapper = mountFunction({
       props: {
         modelValue: 'first',
-        optional: true, // mandatory=false
+        allowDeselect: false, // Запрещаем deselect
       },
       slots: {
         default: () => [h('div', [

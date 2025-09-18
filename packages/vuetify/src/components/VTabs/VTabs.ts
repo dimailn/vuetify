@@ -45,6 +45,10 @@ export default baseMixins.extend({
       default: '',
     },
     alignWithTitle: Boolean,
+    allowDeselect: {
+      type: Boolean,
+      default: false,
+    },
     backgroundColor: String,
     centerActive: Boolean,
     centered: Boolean,
@@ -216,6 +220,7 @@ export default baseMixins.extend({
           height: convertToUnit(this.height),
         },
         activeClass: this.activeClass,
+        allowDeselect: this.allowDeselect,
         centerActive: this.centerActive,
         dark: this.dark,
         light: this.light,
