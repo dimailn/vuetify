@@ -112,6 +112,9 @@ export default baseMixins.extend({
         'v-otp-input--plain': this.plain,
       }
     },
+    isEnclosed (): boolean {
+      return false
+    },
   },
 
   watch: {
