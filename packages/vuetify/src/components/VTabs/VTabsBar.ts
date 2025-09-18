@@ -31,6 +31,10 @@ export default mixins(
     }
   },
 
+  props: {
+    allowDeselect: Boolean,
+  },
+
   computed: {
     classes () {
       return {
