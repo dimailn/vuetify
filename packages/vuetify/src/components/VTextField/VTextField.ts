@@ -85,7 +85,7 @@ export default baseMixins.extend({
     },
   },
 
-  emits: ['update:modelValue', 'blur', 'focus', 'keydown', 'click:clear'],
+  emits: ['update:modelValue', 'blur', 'focus', 'keydown', 'click:clear', 'click'],
 
   data: () => ({
     badInput: false,
@@ -346,14 +346,14 @@ export default baseMixins.extend({
       if (!this.outlined) return null
 
       return h('fieldset', {
-        'aria-hidden': true
+        'aria-hidden': true,
       }, [this.genLegend()])
     },
     genLabel () {
       if (!this.showLabel) return null
 
       const data = {
-        ref: "label",
+        ref: 'label',
         absolute: true,
         color: this.validationState,
         dark: this.dark,
@@ -363,7 +363,7 @@ export default baseMixins.extend({
         left: this.labelPosition.left,
         light: this.light,
         right: this.labelPosition.right,
-        value: this.labelValue
+        value: this.labelValue,
       }
 
       return h(VLabel, data, () => getSlot(this, 'label') || this.label)
@@ -397,11 +397,12 @@ export default baseMixins.extend({
         readonly: this.isReadonly,
         type: this.type,
         onBlur: this.onBlur,
+        onClick: this.onClick,
         onInput: this.onInput,
         onFocus: this.onFocus,
         onKeydown: this.onKeyDown,
         ...listeners,
-        ref: 'input'
+        ref: 'input',
       })
 
       return withDirectives(node, [
@@ -409,8 +410,8 @@ export default baseMixins.extend({
           resize,
           this.onResize,
           '',
-          { quiet: true }
-        ]
+          { quiet: true },
+        ],
       ])
     },
     genMessages () {
@@ -446,7 +447,8 @@ export default baseMixins.extend({
       this.isFocused = false
       e && this.$nextTick(() => this.$emit('blur', e))
     },
-    onClick () {
+    onClick (e: MouseEvent) {
+      this.$emit('click', e)
       if (this.isFocused || this.isDisabled || !this.$refs.input) return
 
       this.$refs.input.focus()
