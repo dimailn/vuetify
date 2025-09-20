@@ -397,7 +397,6 @@ export default baseMixins.extend({
         readonly: this.isReadonly,
         type: this.type,
         onBlur: this.onBlur,
-        onClick: this.onClick,
         onInput: this.onInput,
         onFocus: this.onFocus,
         onKeydown: this.onKeyDown,
