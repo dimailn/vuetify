@@ -63,7 +63,7 @@ export default defineComponent({
         : (this.internalSearch || '').toString().length
     },
     hasSlot (): boolean {
-      return VSelect.computed.hasSlot.call(this) || this.multiple
+      return Boolean(this.hasChips || this.$slots.selection) || this.multiple;
     },
     isAnyValueAllowed (): boolean {
       return true

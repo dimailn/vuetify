@@ -631,7 +631,7 @@ export default baseMixins.extend({
         parent: this,
         item,
         index,
-        select: (e: Event) => {
+        onSelect: (e: Event) => {
           e.stopPropagation()
           this.selectedIndex = index
         },
