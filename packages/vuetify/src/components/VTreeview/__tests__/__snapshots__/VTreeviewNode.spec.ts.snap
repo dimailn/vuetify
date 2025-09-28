@@ -4,7 +4,7 @@ exports[`VTreeViewNode.ts should be able to have active children with empty arra
 <div class="v-treeview-node v-treeview-node--leaf v-treeview-node--click"
      aria-expanded="false"
 >
-  <div class="v-treeview-node__root">
+  <div class="v-treeview-node__root v-treeview-node--active primary--text">
     <div class="v-treeview-node__level">
     </div>
     <div class="v-treeview-node__content">
@@ -49,10 +49,10 @@ exports[`VTreeViewNode.ts should not be able to have active children with empty 
 
 exports[`VTreeViewNode.ts should not be able to have active children with empty array when loadChildren is specified 1`] = `
 <div class="v-treeview-node v-treeview-node--click"
-     aria-expanded="false"
+     aria-expanded="true"
 >
   <div class="v-treeview-node__root">
-    <button class="v-icon--link v-icon notranslate theme--light material-icons v-treeview-node__toggle"
+    <button class="v-icon--link v-icon notranslate theme--light material-icons v-treeview-node__toggle v-treeview-node__toggle--open"
             aria-hidden="false"
             type="button"
     >
@@ -63,20 +63,34 @@ exports[`VTreeViewNode.ts should not be able to have active children with empty 
       </div>
     </div>
   </div>
+  <div class="v-treeview-node__children">
+  </div>
 </div>
 `;
 
 exports[`VTreeViewNode.ts should render disabled item 1`] = `
-<div class="v-treeview-node v-treeview-node--leaf"
+<div class="v-treeview-node v-treeview-node--disabled"
      aria-expanded="false"
-     slots="[object Object]"
-     props="[object Object]"
 >
   <div class="v-treeview-node__root">
-    <div class="v-treeview-node__level">
-    </div>
+    <button class="v-icon--link v-icon notranslate theme--light mdi mdi-menu-down v-treeview-node__toggle"
+            aria-hidden="false"
+            type="button"
+    >
+    </button>
     <div class="v-treeview-node__content">
+      <div class="v-treeview-node__prepend">
+        <div>
+          foobar
+        </div>
+      </div>
       <div class="v-treeview-node__label">
+        Root
+      </div>
+      <div class="v-treeview-node__append">
+        <div>
+          foobar
+        </div>
       </div>
     </div>
   </div>
@@ -84,16 +98,20 @@ exports[`VTreeViewNode.ts should render disabled item 1`] = `
 `;
 
 exports[`VTreeViewNode.ts should use label slot 1`] = `
-<div class="v-treeview-node v-treeview-node--leaf"
+<div class="v-treeview-node"
      aria-expanded="false"
-     props="[object Object]"
-     slots="[object Object]"
 >
   <div class="v-treeview-node__root">
-    <div class="v-treeview-node__level">
-    </div>
+    <button class="v-icon--link v-icon notranslate theme--light mdi mdi-menu-down v-treeview-node__toggle"
+            aria-hidden="false"
+            type="button"
+    >
+    </button>
     <div class="v-treeview-node__content">
       <div class="v-treeview-node__label">
+        <div>
+          ROOT
+        </div>
       </div>
     </div>
   </div>
@@ -101,15 +119,28 @@ exports[`VTreeViewNode.ts should use label slot 1`] = `
 `;
 
 exports[`VTreeViewNode.ts should use scoped slots 1`] = `
-<div class="v-treeview-node v-treeview-node--leaf"
+<div class="v-treeview-node"
      aria-expanded="false"
-     slots="[object Object]"
 >
   <div class="v-treeview-node__root">
-    <div class="v-treeview-node__level">
-    </div>
+    <button class="v-icon--link v-icon notranslate theme--light mdi mdi-menu-down v-treeview-node__toggle"
+            aria-hidden="false"
+            type="button"
+    >
+    </button>
     <div class="v-treeview-node__content">
+      <div class="v-treeview-node__prepend">
+        <div>
+          foobar
+        </div>
+      </div>
       <div class="v-treeview-node__label">
+        Root
+      </div>
+      <div class="v-treeview-node__append">
+        <div>
+          foobar
+        </div>
       </div>
     </div>
   </div>
