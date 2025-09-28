@@ -1,4 +1,4 @@
-import {h, withDirectives} from 'vue'
+import { h, withDirectives } from 'vue'
 // Styles
 import './VSlideGroup.sass'
 
@@ -20,7 +20,7 @@ import Touch from '../../directives/touch'
 import mixins, { ExtractVue } from '../../util/mixins'
 
 // Types
-import Vue, { VNode, defineComponent } from 'vue'
+import { VNode, defineComponent } from 'vue'
 import { composedPath, getSlot } from '../../util/helpers'
 
 interface TouchEvent {
@@ -36,7 +36,7 @@ interface Widths {
   wrapper: number
 }
 
-interface options extends Vue {
+interface options {
   $refs: {
     content: HTMLElement
     wrapper: HTMLElement
@@ -106,7 +106,6 @@ export const BaseSlideGroup = mixins<options &
   /* @vue/component */
 ).extend({
   name: 'base-slide-group',
-
 
   props: {
     activeClass: {
@@ -257,7 +256,10 @@ export const BaseSlideGroup = mixins<options &
 
   methods: {
     onScroll () {
-      this.$refs.wrapper.scrollLeft = 0
+      const wrapper = this.$refs.wrapper as HTMLElement
+      if (wrapper) {
+        wrapper.scrollLeft = 0
+      }
     },
     onFocusin (e: FocusEvent) {
       if (!this.isOverflowing) return
@@ -301,7 +303,7 @@ export const BaseSlideGroup = mixins<options &
     },
     genData (): object {
       return {
-        class: this.classes
+        class: this.classes,
       }
     },
     genIcon (location: 'prev' | 'next'): VNode | null {
@@ -321,9 +323,9 @@ export const BaseSlideGroup = mixins<options &
         !hasAffix
       ) return null
 
-      return h(VIcon, () => ({
+      return h(VIcon, {
         disabled: !hasAffix,
-      }, (this as any)[`${icon}Icon`]))
+      }, (this as any)[`${icon}Icon`])
     },
     // Always generate prev for scrollable hint
     genPrev (): VNode | null {
@@ -340,7 +342,7 @@ export const BaseSlideGroup = mixins<options &
       }, [slot])
     },
     genTransition (location: 'prev' | 'next') {
-      return h(VFadeTransition, () => [this.genIcon(location)])
+      return h(VFadeTransition, {}, [this.genIcon(location)])
     },
     genWrapper (): VNode {
       return withDirectives(h('div', {
@@ -354,8 +356,8 @@ export const BaseSlideGroup = mixins<options &
             start: (e: TouchEvent) => this.overflowCheck(e, this.onTouchStart),
             move: (e: TouchEvent) => this.overflowCheck(e, this.onTouchMove),
             end: (e: TouchEvent) => this.overflowCheck(e, this.onTouchEnd),
-          }
-        ]
+          },
+        ],
 
       ])
     },
@@ -377,7 +379,9 @@ export const BaseSlideGroup = mixins<options &
       this.setWidths()
     },
     onTouchStart (e: TouchEvent) {
-      const { content } = this.$refs
+      const content = this.$refs.content as HTMLElement
+
+      if (!content) return
 
       this.startX = this.scrollOffset + e.touchstartX as number
 
@@ -406,7 +410,11 @@ export const BaseSlideGroup = mixins<options &
     onTouchEnd () {
       if (!this.canTouch) return
 
-      const { content, wrapper } = this.$refs
+      const content = this.$refs.content as HTMLElement
+      const wrapper = this.$refs.wrapper as HTMLElement
+
+      if (!content || !wrapper) return
+
       const maxScrollOffset = content.clientWidth - wrapper.clientWidth
 
       content.style.setProperty('transition', null)
@@ -439,7 +447,10 @@ export const BaseSlideGroup = mixins<options &
     scrollIntoView /* istanbul ignore next */ () {
       if (!this.selectedItem && this.items.length) {
         const lastItemPosition = this.items[this.items.length - 1].$el.getBoundingClientRect()
-        const wrapperPosition = this.$refs.wrapper.getBoundingClientRect()
+        const wrapper = this.$refs.wrapper as HTMLElement
+
+        if (!wrapper) return
+        const wrapperPosition = wrapper.getBoundingClientRect()
 
         if (
           (this.$vuetify.rtl && wrapperPosition.right < lastItemPosition.right) ||
@@ -484,11 +495,14 @@ export const BaseSlideGroup = mixins<options &
       window.requestAnimationFrame(() => {
         if (this._isDestroyed) return
 
-        const { content, wrapper } = this.$refs
+        const content = this.$refs.content as HTMLElement
+        const wrapper = this.$refs.wrapper as HTMLElement
+
+        if (!content || !wrapper) return
 
         this.widths = {
-          content: content ? content.clientWidth : 0,
-          wrapper: wrapper ? wrapper.clientWidth : 0,
+          content: content.clientWidth,
+          wrapper: wrapper.clientWidth,
         }
 
         // https://github.com/vuetifyjs/vuetify/issues/13212
@@ -509,8 +523,8 @@ export const BaseSlideGroup = mixins<options &
     ]), [
       [
         Resize,
-        this.onResize
-      ]
+        this.onResize,
+      ],
     ])
   },
 })
