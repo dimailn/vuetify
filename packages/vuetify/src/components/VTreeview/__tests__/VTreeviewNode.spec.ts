@@ -67,7 +67,6 @@ describe('VTreeViewNode.ts', () => {
     expect(wrapper.vm.computedIcon).toBe('$checkboxOff')
 
     // В Vue 3 нужно использовать другой подход для изменения внутренних данных
-    // Используем setData для изменения внутреннего состояния
     await wrapper.setData({ isIndeterminate: true })
 
     expect(wrapper.vm.computedIcon).toBe('$checkboxIndeterminate')
