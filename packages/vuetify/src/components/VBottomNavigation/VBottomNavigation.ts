@@ -1,4 +1,4 @@
-import {h} from 'vue'
+import {h, withDirectives} from 'vue'
 // Styles
 import './VBottomNavigation.sass'
 
@@ -153,16 +153,16 @@ export default mixins(
       onChange: this.updateValue
     })
 
-    if (this.canScroll) {
-      data.directives = data.directives || []
+    const vnode = h(ButtonGroup, this.setTextColor(this.color, data), getSlot(this))
 
-      data.directives.push({
-        arg: this.scrollTarget,
-        name: 'scroll',
-        value: this.onScroll,
-      })
+    if (this.canScroll) {
+      return withDirectives(vnode, [[
+        'scroll',
+        this.onScroll,
+        this.scrollTarget
+      ]])
     }
 
-    return h(ButtonGroup, this.setTextColor(this.color, data), getSlot(this))
+    return vnode
   },
 })

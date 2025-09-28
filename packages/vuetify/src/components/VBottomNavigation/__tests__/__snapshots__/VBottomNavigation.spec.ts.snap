@@ -36,7 +36,6 @@ Object {
 exports[`VBottomNavigation.ts should be visible with a true value 4`] = `
 <div class="v-item-group theme--light v-bottom-navigation"
      style="height: 56px; transform: translateY(100%);"
-     directives="[object Object]"
 >
   <button class="v-btn v-btn--is-elevated v-btn--has-bg theme--light v-size--default"
           type="button"
