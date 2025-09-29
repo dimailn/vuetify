@@ -140,7 +140,7 @@ export default mixins<options &
       return scopeIdAttrs
     },
     initDetach () {
-      if (this._isDestroyed ||
+      if (this.$.isUnmounted ||
         !this.$refs.content ||
         this.hasDetached ||
         // Leave menu in place if attached

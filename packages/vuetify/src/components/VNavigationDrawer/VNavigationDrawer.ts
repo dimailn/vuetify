@@ -316,7 +316,7 @@ export default baseMixins.extend({
       }
     },
     closeConditional () {
-      return this.isActive && !this._isDestroyed && this.reactsToClick
+      return this.isActive && !this.$.isUnmounted && this.reactsToClick
     },
     genAppend () {
       return this.genPosition('append')

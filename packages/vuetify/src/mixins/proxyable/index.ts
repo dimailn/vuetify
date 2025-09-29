@@ -36,8 +36,8 @@ export function factory (
           this.internalLazyValue = val
 
           // Don't emit events if component is being destroyed
-          if (!(this as any)._isDestroyed) {
-            this.$emit(event, val)
+          if (!this.$.isUnmounted) {
+            this.$emit(event, val);
           }
         },
       },

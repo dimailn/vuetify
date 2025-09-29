@@ -149,7 +149,7 @@ export const BaseItemGroup = mixins(
       this.updateItem(item, index)
     },
     unregister (item: GroupableInstance) {
-      if (this._isDestroyed) return
+      if (this.$.isUnmounted) return
 
       const index = this.items.indexOf(item)
       const value = this.getValue(item, index)

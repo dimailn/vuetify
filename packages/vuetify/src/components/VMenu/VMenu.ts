@@ -300,7 +300,7 @@ export default baseMixins.extend({
       const target = e.target as HTMLElement
 
       return this.isActive &&
-        !this._isDestroyed &&
+        !this.$.isUnmounted &&
         this.closeOnClick &&
         this.$refs.content &&
         !this.$refs.content.contains(target)

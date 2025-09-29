@@ -276,7 +276,7 @@ export default baseMixins.extend({
       }, [slider])
     },
     onResize () {
-      if (this._isDestroyed) return
+      if (this.$.isUnmounted) return
 
       clearTimeout(this.resizeTimeout)
       this.resizeTimeout = window.setTimeout(this.callSlider, 0)

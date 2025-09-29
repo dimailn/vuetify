@@ -360,7 +360,7 @@ export default baseMixins.extend({
       if (!this.isMenuActive) return true
 
       return (
-        !this._isDestroyed &&
+        !this.$.isUnmounted &&
 
         // Click originates from outside the menu content
         // Multiple selects don't close when an item is clicked
