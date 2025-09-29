@@ -17,27 +17,9 @@ const defaultSlot = () => h('div', 'foobar')
 const Mock = defineComponent({
   name: 'test',
 
-  render() {
+  render () {
     return h(VTreeviewNode, {
-      slots: {
-        prepend: defaultSlot,
-        append: defaultSlot,
-      },
-    })
-  },
-})
-
-const MockScopedLabel = defineComponent({
-  name: 'test',
-
-  render() {
-    return h(VTreeviewNode, {
-      props: {
-        item: singleRootTwoChildren,
-      },
-      slots: {
-        label: (props: any) => h('div', [props.item.name.toUpperCase()]),
-      },
+      item: singleRootTwoChildren,
     })
   },
 })
@@ -85,14 +67,20 @@ describe('VTreeViewNode.ts', () => {
     expect(wrapper.vm.computedIcon).toBe('$checkboxOff')
 
     // В Vue 3 нужно использовать другой подход для изменения внутренних данных
-    wrapper.vm.isIndeterminate = true
-    await wrapper.vm.$nextTick()
+    await wrapper.setData({ isIndeterminate: true })
 
     expect(wrapper.vm.computedIcon).toBe('$checkboxIndeterminate')
   })
 
   it('should use scoped slots', () => {
-    const wrapper = mount(Mock, {
+    const wrapper = mount(VTreeviewNode, {
+      props: {
+        item: singleRootTwoChildren,
+      },
+      slots: {
+        prepend: defaultSlot,
+        append: defaultSlot,
+      },
       global: {
         provide: { treeview },
       },
@@ -110,7 +98,13 @@ describe('VTreeViewNode.ts', () => {
   })
 
   it('should use label slot', () => {
-    const wrapper = mount(MockScopedLabel, {
+    const wrapper = mount(VTreeviewNode, {
+      props: {
+        item: singleRootTwoChildren,
+      },
+      slots: {
+        label: (props: any) => h('div', [props.item.name.toUpperCase()]),
+      },
       global: {
         provide: { treeview },
       },
@@ -120,23 +114,14 @@ describe('VTreeViewNode.ts', () => {
   })
 
   it('should render disabled item', () => {
-    const TestComponent = defineComponent({
-      name: 'test',
-
-      render() {
-        return h(VTreeviewNode, {
-          slots: {
-            prepend: defaultSlot,
-            append: defaultSlot,
-          },
-          props: {
-            item: { ...singleRootTwoChildren, disabled: true },
-          },
-        })
+    const wrapper = mount(VTreeviewNode, {
+      props: {
+        item: { ...singleRootTwoChildren, disabled: true },
       },
-    })
-
-    const wrapper = mount(TestComponent, {
+      slots: {
+        prepend: defaultSlot,
+        append: defaultSlot,
+      },
       global: {
         provide: { treeview },
       },
@@ -146,7 +131,7 @@ describe('VTreeViewNode.ts', () => {
   })
 
   const singleRootWithEmptyChildrens = { id: 1, name: 'Child', children: [] }
-  it('should be able to have active children with empty array', () => {
+  it('should be able to have active children with empty array', async () => {
     const wrapper = mountFunction({
       props: {
         item: singleRootWithEmptyChildrens,
@@ -157,13 +142,13 @@ describe('VTreeViewNode.ts', () => {
 
     expect(wrapper.vm.isActive).toBe(false)
     const selectedLeaf = wrapper.find('.v-treeview-node__root')
-    selectedLeaf.trigger('click')
+    await selectedLeaf.trigger('click')
     expect(wrapper.vm.isActive).toBe(true)
 
     expect(wrapper.html()).toMatchSnapshot()
   })
 
-  it('should not be able to have active children with empty array when loadChildren is specified', () => {
+  it('should not be able to have active children with empty array when loadChildren is specified', async () => {
     const wrapper = mountFunction({
       props: {
         item: singleRootWithEmptyChildrens,
@@ -175,13 +160,13 @@ describe('VTreeViewNode.ts', () => {
 
     expect(wrapper.vm.isActive).toBe(false)
     const selectedLeaf = wrapper.find('.v-treeview-node__root')
-    selectedLeaf.trigger('click')
+    await selectedLeaf.trigger('click')
     expect(wrapper.vm.isActive).toBe(false)
 
     expect(wrapper.html()).toMatchSnapshot()
   })
 
-  it('should not be able to have active children with empty array when disabled', () => {
+  it('should not be able to have active children with empty array when disabled', async () => {
     const wrapper = mountFunction({
       props: {
         item: { ...singleRootWithEmptyChildrens, disabled: true },
@@ -192,7 +177,7 @@ describe('VTreeViewNode.ts', () => {
 
     expect(wrapper.vm.isActive).toBe(false)
     const selectedLeaf = wrapper.find('.v-treeview-node__root')
-    selectedLeaf.trigger('click')
+    await selectedLeaf.trigger('click')
     expect(wrapper.vm.isActive).toBe(false)
 
     expect(wrapper.html()).toMatchSnapshot()

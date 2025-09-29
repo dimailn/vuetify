@@ -95,7 +95,7 @@ export default baseMixins.extend({
       input.tag = 'textarea'
       input.type = 'textarea'
       delete input.props.type
-      input.rows = this.rows
+      input.props.rows = this.rows
 
       return input
     },

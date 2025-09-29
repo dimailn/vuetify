@@ -221,4 +221,55 @@ describe('VTextarea.ts', () => {
 
     expect(wrapper.vm.$refs.input.style.height).toBe('150px')
   })
+
+  it('should render with default rows attribute', () => {
+    const wrapper = mountFunction()
+    expect(wrapper.html()).toMatchSnapshot()
+  })
+
+  it('should render with custom rows attribute', () => {
+    const wrapper = mountFunction({
+      props: {
+        rows: 3,
+      },
+    })
+    expect(wrapper.html()).toMatchSnapshot()
+  })
+
+  it('should render with rows as string', () => {
+    const wrapper = mountFunction({
+      props: {
+        rows: '10',
+      },
+    })
+    expect(wrapper.html()).toMatchSnapshot()
+  })
+
+  it('should render with rows and autoGrow', () => {
+    const wrapper = mountFunction({
+      props: {
+        rows: 7,
+        autoGrow: true,
+      },
+    })
+    expect(wrapper.html()).toMatchSnapshot()
+  })
+
+  it('should have rows attribute in DOM', () => {
+    const wrapper = mountFunction({
+      props: {
+        rows: 8,
+      },
+    })
+
+    const textarea = wrapper.find('textarea')
+    expect(textarea.attributes('rows')).toBe('8')
+  })
+
+  it('should have default rows attribute in DOM', () => {
+    const wrapper = mountFunction()
+
+    const textarea = wrapper.find('textarea')
+    expect(textarea.attributes('rows')).toBe('5')
+  })
 })

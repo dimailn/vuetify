@@ -26,7 +26,7 @@ describe('VExpansionPanel', () => {
             VExpansionPanelHeader,
             {
               render: () => h(VExpansionPanelContent, {
-                props: { eager: true },
+                eager: true,
               }),
             },
           ],
@@ -113,7 +113,7 @@ describe('VExpansionPanel', () => {
         default: [
           {
             render: () => h(VExpansionPanelHeader, {
-              props: { hideActions: true },
+              hideActions: true,
             }),
           },
           VExpansionPanelContent,
