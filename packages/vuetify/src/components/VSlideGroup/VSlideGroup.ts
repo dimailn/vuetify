@@ -374,7 +374,7 @@ export const BaseSlideGroup = mixins<options &
     },
     onResize () {
       /* istanbul ignore next */
-      if (this._isDestroyed) return
+      if (this.$.isUnmounted) return
 
       this.setWidths()
     },
@@ -493,7 +493,7 @@ export const BaseSlideGroup = mixins<options &
     },
     setWidths () {
       window.requestAnimationFrame(() => {
-        if (this._isDestroyed) return
+        if (this.$.isUnmounted) return
 
         const content = this.$refs.content as HTMLElement
         const wrapper = this.$refs.wrapper as HTMLElement

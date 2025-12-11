@@ -171,7 +171,7 @@ export default baseMixins.extend({
       // if it was dragged onto the overlay (#6969),
       // or if this isn't the topmost dialog (#9907)
       return !(
-        this._isDestroyed ||
+        this.$.isUnmounted ||
         !this.isActive ||
         this.$refs.content.contains(target) ||
         (this.overlay && target && !this.overlay.$el.contains(target))

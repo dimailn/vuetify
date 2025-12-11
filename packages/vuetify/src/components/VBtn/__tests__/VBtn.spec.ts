@@ -77,7 +77,7 @@ describe('VBtn.ts', () => {
     expect(wrapper.html()).toMatchSnapshot()
   })
 
-  it('should register and unregister', () => {
+  it('should register and unregister', async () => {
     const register = jest.fn()
     const unregister = jest.fn()
 
@@ -94,6 +94,7 @@ describe('VBtn.ts', () => {
 
     expect(register).toHaveBeenCalled()
     wrapper.unmount()
+    await nextTick()
     expect(unregister).toHaveBeenCalled()
   })
   it('should use custom active-class', () => {

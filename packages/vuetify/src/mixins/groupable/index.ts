@@ -58,7 +58,9 @@ export function factory<T extends string, C extends Component | null = null> (
     },
 
     beforeUnmount () {
-      this[namespace] && (this[namespace] as any).unregister(this)
+      this.$nextTick(() => {
+        this[namespace] && (this[namespace] as any).unregister(this)
+      })
     },
 
     methods: {
