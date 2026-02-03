@@ -211,12 +211,23 @@ export default mixins(Colorable, Themeable).extend({
     hasItem (item: object) {
       return this.parsedItems.indexOf(this.getValue(item)) > -1
     },
+    checkSlotFragment (type: any) {
+      return typeof type === 'symbol' && String(type) === 'Symbol(v-fgt)'
+    },
     needsTile (slot: VNode[] | undefined): boolean {
-      const [vnode] = slot ?? []
-
       if (!slot?.length || slot.length !== 1) return true
 
-      const { type } = vnode ?? {}
+      let vnode = slot[0] as any
+
+      if (!vnode) return true
+
+      let type = vnode.type
+
+      if (this.checkSlotFragment(type) && Array.isArray(vnode.children)) {
+        if (vnode.children.length !== 1) return true
+        vnode = vnode.children[0] as VNode
+        type = vnode && (vnode.type as any)
+      }
 
       const isComponent = type && typeof type === 'object'
 
