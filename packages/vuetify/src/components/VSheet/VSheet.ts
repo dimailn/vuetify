@@ -12,6 +12,7 @@ import Themeable from '../../mixins/themeable'
 
 // Helpers
 import mixins from '../../util/mixins'
+import { getTagValue } from '../../util/helpers'
 
 // Types
 import { VNode, defineComponent } from 'vue'
@@ -61,7 +62,7 @@ export default defineComponent({
     }
 
     return h(
-      this.tag,
+      getTagValue(this.tag),
       this.setBackgroundColor(this.color, data),
       this.$slots.default?.()
     )

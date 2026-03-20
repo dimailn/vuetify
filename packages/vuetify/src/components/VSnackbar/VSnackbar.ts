@@ -180,7 +180,7 @@ export default mixins(
     genTransition () {
       return h(Transition, {
         name: this.transition,
-      }, [this.genWrapper()])
+      }, () => [this.genWrapper()])
     },
     setTimeout () {
       window.clearTimeout(this.activeTimeout)

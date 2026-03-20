@@ -333,7 +333,7 @@ export default baseMixins.extend({
 
       return h(Transition, {
         name: this.transition
-      }, [content])
+      }, () => [content])
     },
     genDirectives (): VNodeDirective[] {
       const directives = [[
@@ -528,7 +528,7 @@ export default baseMixins.extend({
           root: true,
           light: this.light,
           dark: this.dark,
-        }, [this.genTransition()]),
+        }, () => [this.genTransition()]),
       ]),
     ]), directives)
   },

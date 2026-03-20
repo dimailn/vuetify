@@ -5,7 +5,7 @@ import VListGroup from './VListGroup'
 
 // Components
 import VSheet from '../VSheet/VSheet'
-import { getSlot } from '../../util/helpers'
+import { getSlot, getTagValue } from '../../util/helpers'
 
 // Types
 import { VNode, defineComponent } from 'vue'
@@ -97,6 +97,6 @@ export default defineComponent({
       ...this.listeners$,
     }
 
-    return h(this.tag, this.setBackgroundColor(this.color, data), getSlot(this))
+    return h(getTagValue(this.tag), this.setBackgroundColor(this.color, data), getSlot(this))
   },
 })

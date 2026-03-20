@@ -5,7 +5,7 @@ import { VNode, defineComponent } from 'vue'
 // Extensions
 import VMain from '../VMain/VMain'
 import { deprecate } from '../../util/console'
-import { normalizeClasses } from '../../util/helpers'
+import { normalizeClasses, getTagValue } from '../../util/helpers'
 
 /* @vue/component */
 export default defineComponent({
@@ -31,6 +31,6 @@ export default defineComponent({
       node.children[0].data = { ...node.children[0].data, class: wrapClasses }
     }
 
-    return h(node.tag, node.data, node.children)
+    return h(getTagValue(this.tag), node.data, node.children)
   },
 })

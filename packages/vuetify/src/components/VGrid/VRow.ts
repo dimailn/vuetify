@@ -2,7 +2,7 @@ import './VGrid.sass'
 
 import { defineComponent, PropOptions } from 'vue'
 import mergeData from '../../util/mergeData'
-import { upperFirst } from '../../util/helpers'
+import { upperFirst, getTagValue } from '../../util/helpers'
 import {h} from 'vue'
 // no xs
 const breakpoints = ['sm', 'md', 'lg', 'xl']
@@ -128,7 +128,7 @@ export default defineComponent({
     }
 
     return h(
-      props.tag,
+      getTagValue(props.tag),
       mergeData(this.$attrs, {
         class: classList.concat('row'),
       }),

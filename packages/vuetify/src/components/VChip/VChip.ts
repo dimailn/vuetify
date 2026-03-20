@@ -17,7 +17,7 @@ import Sizeable from '../../mixins/sizeable'
 
 // Utilities
 import { breaking } from '../../util/console'
-import { getSlot } from '../../util/helpers'
+import { getSlot, getTagValue } from '../../util/helpers'
 
 // Types
 import { PropValidator, PropType } from 'vue/types/options'
@@ -197,7 +197,7 @@ export default mixins(
     const color = this.textColor || (this.outlined && this.color)
 
     return withDirectives(
-      h(tag, this.setTextColor(color, data), children),
+      h(getTagValue(tag), this.setTextColor(color, data), children),
       directives
     )
   },

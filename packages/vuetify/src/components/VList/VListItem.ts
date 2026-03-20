@@ -13,7 +13,7 @@ import { factory as ToggleableFactory } from '../../mixins/toggleable'
 import Ripple from '../../directives/ripple'
 
 // Utilities
-import { getSlot, keyCodes } from './../../util/helpers'
+import { getSlot, keyCodes, getTagValue } from './../../util/helpers'
 import mergeData, { mergeClasses } from './../../util/mergeData'
 import { ExtractVue } from './../../util/mixins'
 import { removed, breaking } from '../../util/console'
@@ -224,7 +224,7 @@ export default baseMixins.extend({
     }
 
     const node = typeof tag === 'string'
-      ? h(tag, nodeData, children)
+      ? h(getTagValue(tag), nodeData, children)
       : h(tag, nodeData, () => children)
 
     return withDirectives(node, directives)

@@ -11,7 +11,7 @@ import Themeable from '../../mixins/themeable'
 // Utilities
 import mixins from '../../util/mixins'
 import { consoleWarn } from '../../util/console'
-import { getSlot } from '../../util/helpers'
+import { getSlot, getTagValue } from '../../util/helpers'
 
 // Types
 import { VNode } from 'vue/types'
@@ -266,7 +266,7 @@ export const BaseItemGroup = mixins(
 
   render (): VNode {
     const data = this.genData()
-    return h(this.tag, {
+    return h(getTagValue(this.tag), {
       class: data.class,
       ...data.attrs,
     }, getSlot(this))

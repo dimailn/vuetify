@@ -6,6 +6,8 @@ import Grid from './grid'
 import mergeData from '../../util/mergeData'
 import { defineComponent, h } from 'vue'
 
+import { getTagValue } from '../../util/helpers'
+
 /* @vue/component */
 export default defineComponent({
   name: 'v-container',
@@ -60,7 +62,7 @@ export default defineComponent({
     }
 
     return h(
-      this.tag,
+      getTagValue(this.tag),
       data,
       this.$slots.default?.()
     )

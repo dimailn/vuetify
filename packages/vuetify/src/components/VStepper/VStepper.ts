@@ -16,7 +16,7 @@ import Proxyable from '../../mixins/proxyable'
 // Utilities
 import mixins from '../../util/mixins'
 import { breaking } from '../../util/console'
-import { getSlot } from '../../util/helpers'
+import { getSlot, getTagValue } from '../../util/helpers'
 
 // Types
 import { VNode } from 'vue'
@@ -135,7 +135,7 @@ export default baseMixins.extend({
   },
 
   render (): VNode {
-    return h(this.tag, {
+    return h(getTagValue(this.tag), {
       class: ['v-stepper', this.classes],
       style: this.styles,
     }, getSlot(this))

@@ -9,7 +9,7 @@ import Dependent from '../../mixins/dependent'
 import Menuable from '../../mixins/menuable'
 
 // Helpers
-import { convertToUnit, keyCodes, getSlotType } from '../../util/helpers'
+import { convertToUnit, keyCodes, getSlotType, getTagValue } from '../../util/helpers'
 import { consoleError } from '../../util/console'
 
 // Types
@@ -213,7 +213,7 @@ export default mixins(Colorable, Delayable, Dependent, Menuable).extend({
   },
 
   render (): VNode {
-    return h(this.tag, {
+    return h(getTagValue(this.tag), {
       class: ['v-tooltip', this.classes],
     }, [
       this.showLazyContent(() => [this.genTransition()]),

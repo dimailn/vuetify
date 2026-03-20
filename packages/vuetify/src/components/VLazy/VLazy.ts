@@ -8,7 +8,7 @@ import intersect from '../../directives/intersect'
 
 // Utilities
 import mixins from '../../util/mixins'
-import { getSlot } from '../../util/helpers'
+import { getSlot, getTagValue } from '../../util/helpers'
 
 // Types
 import { VNode } from 'vue'
@@ -74,7 +74,7 @@ export default mixins(
   },
 
   render (): VNode {
-    return withDirectives(h(this.tag, {
+    return withDirectives(h(getTagValue(this.tag), {
       class: 'v-lazy',
       ...this.$attrs,
       style: this.styles,

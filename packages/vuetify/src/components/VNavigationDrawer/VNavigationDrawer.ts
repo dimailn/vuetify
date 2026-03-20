@@ -20,7 +20,7 @@ import Resize from '../../directives/resize'
 import Touch from '../../directives/touch'
 
 // Utilities
-import { convertToUnit, getSlot } from '../../util/helpers'
+import { convertToUnit, getSlot, getTagValue } from '../../util/helpers'
 import { breaking } from '../../util/console'
 import mixins from '../../util/mixins'
 
@@ -466,7 +466,8 @@ export default baseMixins.extend({
 
     if (this.src || getSlot(this, 'img')) children.unshift(this.genBackground())
 
-    const node = h(this.$tag, this.setBackgroundColor(this.color, {
+    // this.$tag сейчас всегда равен nav|aside, но оборачиваем в getTagValue на случай возможных изменений
+    const node = h(getTagValue(this.$tag), this.setBackgroundColor(this.color, {
       class: this.classes,
       style: this.styles,
       ...this.genListeners(),
