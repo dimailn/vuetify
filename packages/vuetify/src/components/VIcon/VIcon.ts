@@ -13,7 +13,7 @@ import { convertToUnit, keys, remapInternalIcon } from '../../util/helpers'
 import { defineComponent, CreateElement, VNode, VNodeChildren, VNodeData, h } from 'vue'
 import mixins from '../../util/mixins'
 import { VuetifyIcon, VuetifyIconComponent } from 'vuetify/types/services/icons'
-import { normalizeAttrs, normalizeClasses } from '../../util/helpers'
+import { normalizeAttrs, normalizeClasses, getTagValue } from '../../util/helpers'
 
 enum SIZE_MAP {
   xSmall = '12px',
@@ -192,7 +192,7 @@ export const VIconInternal = mixins(
 
       this.applyColors(fontData)
 
-      return h(this.hasClickListener ? 'button' : this.tag, fontData, {default: () => newChildren})
+      return h(this.hasClickListener ? 'button' : getTagValue(this.tag), fontData, {default: () => newChildren})
     },
     renderSvgIcon (icon: string): VNode {
       const size = this.getSize()

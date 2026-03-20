@@ -1,7 +1,14 @@
-import { defineComponent, h } from 'vue'
+import { defineComponent, h, resolveComponent } from 'vue'
 import { VNode, VNodeDirective } from 'vue/types'
 import { VuetifyIcon } from 'vuetify/types/services/icons'
 import { DataTableCompareFunction, SelectItemKey, ItemGroup } from 'vuetify/types'
+
+/** Резолвит пропс tag как компонент, если это строка с составным именем (например v-card или VCard) */
+export const getTagValue = (tag: string) => (
+  tag.includes('-') || /^[A-Z]/.test(tag)
+    ? resolveComponent(tag)
+    : tag
+)
 
 export function createSimpleFunctional (
   c: string,
@@ -25,7 +32,7 @@ export function createSimpleFunctional (
 
       data.class = (`${c} ${data.class || ''}`).trim()
 
-      return h(this.tag, data, this.$slots.default?.())
+      return h(getTagValue(this.tag), data, this.$slots.default?.())
     },
   })
 }

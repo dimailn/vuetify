@@ -1,6 +1,8 @@
 // Types
 import { defineComponent, VNode, h } from 'vue'
 
+import { getTagValue } from '../../util/helpers'
+
 export default function VGrid (name: string) {
   /* @vue/component */
   return defineComponent({
@@ -49,7 +51,7 @@ export default function VGrid (name: string) {
         data.id = componentProps.id
       }
 
-      return h(componentProps?.tag || 'div', data, children)
+      return h(getTagValue(componentProps?.tag || 'div'), data, children)
     }
   })
 }

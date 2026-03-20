@@ -2,7 +2,7 @@ import './VGrid.sass'
 
 import { defineComponent, VNode, PropOptions, getCurrentInstance } from 'vue'
 import mergeData from '../../util/mergeData'
-import { upperFirst } from '../../util/helpers'
+import { upperFirst, getTagValue } from '../../util/helpers'
 import {h} from 'vue'
 // no xs
 const breakpoints = ['sm', 'md', 'lg', 'xl']
@@ -134,6 +134,6 @@ export default defineComponent({
       cache.set(cacheKey, classList)
     }
 
-    return h(props.tag, mergeData({ class: classList }, data), children)
+    return h(getTagValue(props.tag), mergeData({ class: classList }, data), children)
   },
 })

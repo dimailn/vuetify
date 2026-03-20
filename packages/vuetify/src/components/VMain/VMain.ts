@@ -3,7 +3,7 @@ import './VMain.sass'
 
 // Mixins
 import SSRBootable from '../../mixins/ssr-bootable'
-import { getSlot } from '../../util/helpers'
+import { getSlot, getTagValue } from '../../util/helpers'
 
 // Types
 import { VNode, defineComponent, h } from 'vue'
@@ -43,7 +43,7 @@ export default defineComponent({
       ref: 'main',
     }
 
-    return h(this.tag, data, [
+    return h(getTagValue(this.tag), data, [
       h(
         'div',
         { class: 'v-main__wrap' },

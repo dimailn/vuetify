@@ -9,7 +9,7 @@ import VSheet from '../VSheet/VSheet'
 import VImg, { srcObject } from '../VImg/VImg'
 
 // Utilities
-import { convertToUnit, getSlot } from '../../util/helpers'
+import { convertToUnit, getSlot, getTagValue } from '../../util/helpers'
 import { breaking } from '../../util/console'
 
 // Types
@@ -162,6 +162,6 @@ export default defineComponent({
     if (this.isExtended) children.push(this.genExtension())
     if (this.src || this.$slots.img) children.unshift(this.genBackground())
 
-    return h(this.tag, {...this.attrs$, ...data}, children)
+    return h(getTagValue(this.tag), {...this.attrs$, ...data}, children)
   }
 })
