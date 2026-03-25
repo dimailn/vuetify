@@ -90,9 +90,11 @@ export default defineComponent({
       ])
     },
     genDayHeader (day: CalendarTimestamp, index: number): VNode[] {
-      return getSlot(this, 'day-header', {
+      const slot = getSlot(this, 'day-header', {
         week: this.days, ...day, index,
-      }) || []
+      })
+      if (slot == null) return []
+      return (Array.isArray(slot) ? slot : [slot]) as VNode[]
     },
     genHeadWeekday (day: CalendarTimestamp): VNode {
       const color = day.present ? this.color : undefined
@@ -171,7 +173,9 @@ export default defineComponent({
       ])
     },
     genDayBody (day: CalendarTimestamp): VNode[] {
-      return getSlot(this, 'day-body', this.getSlotScope(day)) || []
+      const slot = getSlot(this, 'day-body', this.getSlotScope(day))
+      if (slot == null) return []
+      return (Array.isArray(slot) ? slot : [slot]) as VNode[]
     },
     genDayIntervals (index: number): VNode[] {
       return this.intervals[index].map(this.genDayInterval)

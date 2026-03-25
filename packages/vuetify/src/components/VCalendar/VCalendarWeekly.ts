@@ -175,7 +175,11 @@ export default defineComponent({
         }),
       }, [
         this.genDayLabel(day),
-        ...(getSlot(this, 'day', { outside, index, week, ...day }) || []),
+        ...(() => {
+          const slot = getSlot(this, 'day', { outside, index, week, ...day })
+          if (slot == null) return []
+          return (Array.isArray(slot) ? slot : [slot]) as VNode[]
+        })(),
       ])
     },
     genDayLabel (day: CalendarTimestamp): VNode {

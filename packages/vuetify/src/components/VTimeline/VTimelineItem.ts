@@ -21,7 +21,7 @@ const baseMixins = mixins(
 
 type VTimelineInstance = InstanceType<typeof VTimeline>
 
-interface options extends ExtractVue<typeof baseMixins> {
+type options = ExtractVue<typeof baseMixins> & {
   timeline: VTimelineInstance
 }
 
@@ -58,11 +58,13 @@ export default baseMixins.extend({
       }, getSlot(this))
     },
     genIcon (): VNode | VNode[] {
-      return getSlot(this, 'icon') || h(VIcon, {
+      const slot = getSlot(this, 'icon')
+      if (slot != null) return slot as VNode | VNode[]
+      return h(VIcon, {
         color: this.iconColor,
         dark: !this.theme.isDark,
         small: this.small
-      }, this.icon)
+      }, () => [this.icon])
     },
     genInnerDot () {
       const data: VNodeData = this.setBackgroundColor(this.color)

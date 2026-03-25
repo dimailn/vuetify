@@ -31,7 +31,7 @@ const baseMixins = mixins(
   Validatable,
 )
 
-interface options extends InstanceType<typeof baseMixins> {
+type options = {
   /* eslint-disable-next-line camelcase */
   $_modelEvent: string
 }
@@ -290,7 +290,7 @@ export default baseMixins.extend({
 
       const ref = `${type}-${location}`
 
-      slot = slot.map(child => child instanceof Function ? child() : child)
+      slot = slot.map(child => (typeof child === 'function' ? (child as () => VNode | VNode[])() : child))
 
       return h('div', {
         class: `v-input__${ref}`,

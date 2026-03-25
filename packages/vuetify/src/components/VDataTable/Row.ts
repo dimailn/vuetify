@@ -5,9 +5,14 @@ import { DataTableHeader } from 'vuetify/types'
 // Utils
 import { getObjectValueByPath, wrapInArray } from '../../util/helpers'
 
+function vnodeTag (vnode: VNode | undefined): string | undefined {
+  const t = vnode?.type
+  return typeof t === 'string' ? t : undefined
+}
+
 function needsTd (slot: VNode[] | undefined) {
   return slot!.length !== 1 ||
-    !['td', 'th'].includes(slot![0]?.tag!)
+    !['td', 'th'].includes(vnodeTag(slot![0])!)
 }
 
 export default defineComponent({

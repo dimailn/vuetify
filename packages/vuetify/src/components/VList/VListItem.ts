@@ -30,7 +30,7 @@ const baseMixins = mixins(
   ToggleableFactory('modelValue')
 )
 
-interface options extends ExtractVue<typeof baseMixins> {
+type options = ExtractVue<typeof baseMixins> & {
   $el: HTMLElement
   isInGroup: boolean
   isInList: boolean
@@ -225,8 +225,8 @@ export default baseMixins.extend({
     }
 
     const node = typeof tag === 'string'
-      ? h(getTagValue(tag), nodeData, children)
-      : h(tag, nodeData, () => children)
+      ? h(getTagValue(tag), nodeData, children as any)
+      : h(tag, nodeData, { default: () => children })
 
     return withDirectives(node, directives)
   },

@@ -1,9 +1,8 @@
 
 import { validateTimestamp, parseDate, DAYS_IN_WEEK, validateTime } from './timestamp'
-import { PropType } from 'vue'
+import type { PropType } from 'vue'
 import { CalendarEvent, CalendarFormatter, CalendarTimestamp, CalendarEventOverlapMode, CalendarEventNameFunction, CalendarEventColorFunction, CalendarEventCategoryFunction, CalendarEventTimedFunction, CalendarCategoryTextFunction, CalendarCategory } from 'vuetify/types'
 import { CalendarEventOverlapModes } from '../modes'
-import { PropType } from 'vue'
 
 export default {
   base: {
@@ -149,7 +148,7 @@ export default {
     events: {
       type: Array,
       default: () => [],
-    } as PropType<CalendarEvent[]>,
+    } as unknown as PropType<CalendarEvent[]>,
     eventStart: {
       type: String,
       default: 'start',
@@ -190,7 +189,7 @@ export default {
       type: [String, Function],
       default: 'stack',
       validate: (mode: any) => mode in CalendarEventOverlapModes || typeof mode === 'function',
-    } as PropType<'stack' | 'column' | CalendarEventOverlapMode>,
+    } as unknown as PropType<'stack' | 'column' | CalendarEventOverlapMode>,
     eventMore: {
       type: Boolean,
       default: true,

@@ -23,21 +23,21 @@ export default defineComponent({
     items: {
       type: Array,
       default: () => [],
-    } as PropType<any[]>,
+    } as unknown as PropType<any[]>,
     options: {
       type: Object,
       default: () => ({}),
-    } as PropType<Partial<DataOptions>>,
+    } as unknown as PropType<Partial<DataOptions>>,
     sortBy: {
       type: [String, Array],
-    } as PropType<string | string[] | undefined>,
+    } as unknown as PropType<string | string[] | undefined>,
     sortDesc: {
       type: [Boolean, Array],
-    } as PropType<boolean | boolean[] | undefined>,
+    } as unknown as PropType<boolean | boolean[] | undefined>,
     customSort: {
       type: Function,
       default: sortItems,
-    } as PropType<DataSortFunction>,
+    } as unknown as PropType<DataSortFunction>,
     mustSort: Boolean,
     multiSort: Boolean,
     page: {
@@ -51,15 +51,15 @@ export default defineComponent({
     groupBy: {
       type: [String, Array],
       default: () => [],
-    } as PropType<string | string[]>,
+    } as unknown as PropType<string | string[]>,
     groupDesc: {
       type: [Boolean, Array],
       default: () => [],
-    } as PropType<boolean | boolean[]>,
+    } as unknown as PropType<boolean | boolean[]>,
     customGroup: {
       type: Function,
       default: groupItems,
-    } as PropType<DataGroupFunction>,
+    } as unknown as PropType<DataGroupFunction>,
     locale: {
       type: String,
       default: 'en-US',
@@ -71,7 +71,7 @@ export default defineComponent({
     customFilter: {
       type: Function,
       default: searchItems,
-    } as PropType<DataSearchFunction>,
+    } as unknown as PropType<DataSearchFunction>,
     serverItemsLength: {
       type: Number,
       default: -1,

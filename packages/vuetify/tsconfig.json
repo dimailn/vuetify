@@ -5,6 +5,9 @@
   ],
   "compilerOptions": {
     "baseUrl": ".",
+    "strict": false,
+    "noUnusedLocals": false,
+    "noImplicitReturns": false,
     "lib": [
       "es2015",
       "es2016",

@@ -13,7 +13,7 @@ import { easeInOutCubic } from '../../services/goto/easing-patterns'
 
 const base = inject<'VAppBar', typeof VAppBar>('VAppBar', 'v-app-bar-title', 'v-app-bar')
 
-interface options extends ExtractVue<typeof base> {
+type options = ExtractVue<typeof base> & {
   $refs: {
     content: Element
     placeholder: Element

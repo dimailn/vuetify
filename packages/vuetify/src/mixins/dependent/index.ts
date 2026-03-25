@@ -14,9 +14,10 @@ interface options {
 interface DependentInstance extends Vue {
   isActive?: boolean
   isDependent?: boolean
+  children?: { default?: () => any[] }
 }
 
-function searchChildren (children: Vue[]): DependentInstance[] {
+function searchChildren (children: any[]): DependentInstance[] {
 
 
   const results = []
@@ -34,7 +35,7 @@ function searchChildren (children: Vue[]): DependentInstance[] {
 }
 
 /* @vue/component */
-export default mixins<Vue & options>().extend({
+export default mixins().extend({
   name: 'dependent',
 
   data () {

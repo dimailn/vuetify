@@ -1,8 +1,8 @@
-import { h, VNode, PropType } from 'vue'
+import type { PropType, VNode } from 'vue'
+import { h } from 'vue'
 import type { VNodeChildrenArrayContents } from '../../types/vue-internal'
 // Styles
 import './VTreeview.sass'
-import { PropType } from 'vue'
 import { TreeviewItemFunction } from 'vuetify/types'
 
 // Components
@@ -56,7 +56,7 @@ export default mixins(
     active: {
       type: Array,
       default: () => ([]),
-    } as PropType<NodeArray>,
+    } as unknown as PropType<NodeArray>,
     dense: Boolean,
     disabled: Boolean,
     filter: Function as PropType<TreeviewItemFunction>,
@@ -64,16 +64,16 @@ export default mixins(
     items: {
       type: Array,
       default: () => ([]),
-    } as PropType<any[]>,
+    } as unknown as PropType<any[]>,
     modelValue: {
       type: Array,
       default: () => ([]),
-    } as PropType<NodeArray>,
+    } as unknown as PropType<NodeArray>,
     multipleActive: Boolean,
     open: {
       type: Array,
       default: () => ([]),
-    } as PropType<NodeArray>,
+    } as unknown as PropType<NodeArray>,
     openAll: Boolean,
     returnObject: {
       type: Boolean,

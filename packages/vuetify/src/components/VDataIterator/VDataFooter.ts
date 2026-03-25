@@ -142,18 +142,18 @@ export default defineComponent({
 
         const pageTextSlot = getSlot(this, 'page-text', { pageStart, pageStop, itemsLength })
         children = pageTextSlot
-          ? [pageTextSlot]
+          ? [pageTextSlot as any]
           : [this.$vuetify.lang.t(this.pageText, pageStart, pageStop, itemsLength)]
       } else {
         const pageTextSlot = getSlot(this, 'page-text', { pageStart, pageStop, itemsLength })
         if (pageTextSlot) {
-          children = [pageTextSlot]
+          children = [pageTextSlot as any]
         }
       }
 
       return h('div', {
         class: 'v-data-footer__pagination',
-      }, children)
+      }, children as any)
     },
     genIcon (click: Function, disabled: boolean, label: string, icon: string): VNode {
       return h(VBtn, {

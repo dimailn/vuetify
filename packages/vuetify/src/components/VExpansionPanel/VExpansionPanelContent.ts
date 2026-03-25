@@ -18,7 +18,7 @@ const baseMixins = mixins(
   RegistrableInject<'expansionPanel', Component>('expansionPanel', 'v-expansion-panel-content', 'v-expansion-panel')
 )
 
-interface options extends ExtractVue<typeof baseMixins> {
+type options = ExtractVue<typeof baseMixins> & {
   expansionPanel: InstanceType<typeof VExpansionPanel>
 }
 

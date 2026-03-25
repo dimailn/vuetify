@@ -21,7 +21,7 @@ const baseMixins = mixins(
   GroupableFactory('windowGroup', 'v-window-item', 'v-window')
 )
 
-interface options extends ExtractVue<typeof baseMixins> {
+type options = ExtractVue<typeof baseMixins> & {
   $el: HTMLElement
   windowGroup: InstanceType<typeof VWindow>
 }

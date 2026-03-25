@@ -65,8 +65,7 @@ export default mixins(
 
   render (): VNode {
     const data = {
-      class: 'v-system-bar',
-      class: this.classes,
+      class: ['v-system-bar', this.classes],
       style: this.styles,
       on: this.$listeners,
     }

@@ -27,7 +27,9 @@ import { getSlot } from '../../util/helpers'
 import { breaking } from '../../util/console'
 
 // Types
-import { Route } from 'vue-router'
+import type { RouteLocationNormalizedLoaded } from 'vue-router'
+
+type Route = RouteLocationNormalizedLoaded
 
 const baseMixins = mixins(
   BindsAttrs,
@@ -39,7 +41,7 @@ const baseMixins = mixins(
 
 type VListInstance = InstanceType<typeof VList>
 
-interface options extends ExtractVue<typeof baseMixins> {
+type options = ExtractVue<typeof baseMixins> & {
   list: VListInstance
   $refs: {
     group: HTMLElement
@@ -176,7 +178,7 @@ export default baseMixins.extend({
       return this.showLazyContent(() => [
         withDirectives(h('div', {
           class: 'v-list-group__items',
-        }, getSlot(this)), directives),
+        }, getSlot(this)), directives as any),
       ])
     },
     genPrependIcon (): VNode | null {

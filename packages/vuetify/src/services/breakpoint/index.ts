@@ -76,7 +76,7 @@ export class Breakpoint extends Service implements IBreakpoint {
     this.scrollBarWidth = scrollBarWidth
     this.thresholds = thresholds
 
-    return reactive(this)
+    return reactive(this) as any
   }
 
   public init () {

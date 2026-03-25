@@ -141,7 +141,7 @@ export default mixins(
       }, [
         getSlot(this, 'action', {
           attrs: { class: 'v-snack__btn' },
-        }),
+        }) as any,
       ])
     },
     genContent () {
@@ -151,7 +151,7 @@ export default mixins(
         }],
         role: 'status',
         'aria-live': 'polite'
-      }, [getSlot(this)])
+      }, [getSlot(this) as any])
     },
     genWrapper () {
       const setColor = this.hasBackground
@@ -175,7 +175,7 @@ export default mixins(
       return withDirectives(h('div', data, [
         this.genContent(),
         this.genActions(),
-      ]), directives)
+      ]), directives as any)
     },
     genTransition () {
       return h(Transition, {

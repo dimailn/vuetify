@@ -16,7 +16,7 @@ const baseMixins = mixins(
   Routable
 )
 
-interface options extends ExtractVue<typeof baseMixins> {
+type options = ExtractVue<typeof baseMixins> & {
   parentTheme: {
     isDark: boolean
   }

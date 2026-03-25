@@ -21,7 +21,7 @@ const baseMixins = mixins(
   VInput,
 )
 
-interface options extends InstanceType<typeof baseMixins> {
+type options = {
   $refs: {
     input: HTMLInputElement[]
   }

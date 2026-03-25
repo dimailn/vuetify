@@ -30,7 +30,7 @@ interface dimensions {
   offsetLeft: number
 }
 
-interface options extends ExtractVue<typeof baseMixins> {
+type options = ExtractVue<typeof baseMixins> & {
   attach: boolean | string | Element
   offsetY: boolean
   offsetX: boolean

@@ -20,7 +20,7 @@ export default mixins().extend({
     headers: {
       type: Array,
       default: () => ([]),
-    } as PropType<DataTableHeader[]>,
+    } as unknown as PropType<DataTableHeader[]>,
     options: {
       type: Object,
       default: () => ({
@@ -33,7 +33,7 @@ export default mixins().extend({
         multiSort: false,
         mustSort: false,
       }),
-    } as PropType<DataOptions>,
+    } as unknown as PropType<DataOptions>,
     checkboxColor: String,
     sortIcon: {
       type: String,

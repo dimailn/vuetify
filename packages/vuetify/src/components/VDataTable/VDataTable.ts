@@ -107,7 +107,7 @@ export default mixins(
     headers: {
       type: Array,
       default: () => [],
-    } as PropType<DataTableHeader[]>,
+    } as unknown as PropType<DataTableHeader[]>,
     showSelect: Boolean,
     checkboxColor: String,
     color: String,
@@ -130,19 +130,19 @@ export default mixins(
     customFilter: {
       type: Function,
       default: defaultFilter,
-    } as PropType<typeof defaultFilter>,
+    } as unknown as PropType<typeof defaultFilter>,
     filterMode: {
       type: String,
       default: 'intersection',
-    } as PropType<DataTableFilterMode>,
+    } as unknown as PropType<DataTableFilterMode>,
     itemClass: {
       type: [String, Function],
       default: () => '',
-    } as PropType<RowClassFunction | string>,
+    } as unknown as PropType<RowClassFunction | string>,
     itemStyle: {
       type: [String, Function],
       default: () => '',
-    } as PropType<RowStyleFunction | string>,
+    } as unknown as PropType<RowStyleFunction | string>,
     loaderHeight: {
       type: [Number, String],
       default: 4,
@@ -183,10 +183,11 @@ export default mixins(
       }
     },
     columnSorters (): Record<string, DataTableCompareFunction> {
-      return this.computedHeaders.reduce<Record<string, DataTableCompareFunction>>((acc, header) => {
+      const headers = this.computedHeaders as DataTableHeader[]
+      return headers.reduce((acc, header) => {
         if (header.sort) acc[header.value] = header.sort
         return acc
-      }, {})
+      }, {} as Record<string, DataTableCompareFunction>)
     },
     headersWithCustomFilters (): DataTableHeader[] {
       return this.headers.filter(header => header.filter && (!header.hasOwnProperty('filterable') || header.filterable === true))
@@ -249,7 +250,7 @@ export default mixins(
 
   methods: {
     calcWidths () {
-      this.widths = Array.from(this.$el.querySelectorAll('th')).map(e => e.clientWidth)
+      this.widths = Array.from(this.$el.querySelectorAll('th')).map(e => (e as HTMLElement).clientWidth)
     },
     customFilterWithColumns (items: any[], search: string) {
       return searchTableItems(
@@ -329,7 +330,7 @@ export default mixins(
       const children: VNodeChildrenArrayContents = [getSlot(this, 'header', {
         ...data,
         isMobile: this.isMobile,
-      })]
+      }) as any]
 
       if (!this.hideDefaultHeader) {
         const scopedSlots = getPrefixedScopedSlots('header.', this.$slots)
@@ -389,7 +390,7 @@ export default mixins(
         children.unshift(h('template', { slot: 'column.header' }, [
           this.$slots['group.header']!({
             group,
-            groupBy: props.groupBy,
+            groupBy: props.options.groupBy,
             isMobile: this.isMobile,
             items,
             headers: this.computedHeaders,
@@ -425,7 +426,7 @@ export default mixins(
         children.push(h('template', { slot: 'column.summary' }, [
           this.$slots['group.summary']!({
             group,
-            groupBy: props.groupBy,
+            groupBy: props.options.groupBy,
             isMobile: this.isMobile,
             items,
             headers: this.computedHeaders,
@@ -571,12 +572,12 @@ export default mixins(
         'onUpdate:options': (value: any) => props.updateOptions(value),
       }
 
-      const children: VNodeChildren = [
+      const children: VNode[] = [
         getSlot(this, 'footer', {
           ...data,
           widths: this.widths,
           headers: this.computedHeaders
-        }, true),
+        }, true) as any,
       ]
 
       if (!this.hideDefaultFooter) {

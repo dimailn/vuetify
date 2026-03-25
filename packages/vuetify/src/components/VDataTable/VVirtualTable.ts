@@ -5,7 +5,7 @@ import './VVirtualTable.sass'
 import VSimpleTable from './VSimpleTable'
 
 // Types
-import { VNode, VNodeChildren } from 'vue'
+import type { VNode, VNodeChildren } from '../../types/vue-internal'
 import { PropType } from 'vue'
 import mixins from '../../util/mixins'
 
@@ -15,7 +15,7 @@ import { convertToUnit, debounce, getSlot } from '../../util/helpers'
 // Types
 const baseMixins = mixins(VSimpleTable)
 
-interface options extends InstanceType<typeof baseMixins> {
+type options = {
   $refs: {
     table: HTMLElement
   }
@@ -37,7 +37,7 @@ export default baseMixins.extend({
     items: {
       type: Array,
       default: () => ([]),
-    } as PropType<any[]>,
+    } as unknown as PropType<any[]>,
     rowHeight: {
       type: Number,
       default: 48,

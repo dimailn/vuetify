@@ -567,7 +567,7 @@ export function normalizeClasses (
   }
 
   if (Array.isArray(classes)) {
-    return classes.reduce((acc, cls) => {
+    return classes.reduce<Record<string, any>>((acc, cls) => {
       if (typeof cls === 'string') {
         const trimmed = cls.trim()
         if (trimmed) {
@@ -576,10 +576,10 @@ export function normalizeClasses (
           })
         }
       } else if (cls && typeof cls === 'object') {
-        Object.assign(acc, cls)
+        Object.assign(acc, cls as Record<string, any>)
       }
       return acc
-    }, {} as Record<string, any>)
+    }, {})
   }
 
   return {}

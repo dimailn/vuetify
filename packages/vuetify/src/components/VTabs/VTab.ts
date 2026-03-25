@@ -25,7 +25,7 @@ const baseMixins = mixins(
 
 type VTabBarInstance = InstanceType<typeof VTabsBar>
 
-interface options extends ExtractVue<typeof baseMixins> {
+type options = ExtractVue<typeof baseMixins> & {
   $el: HTMLElement
   tabsBar: VTabBarInstance
 }

@@ -7,8 +7,7 @@ import mixins, { ExtractVue } from '../../util/mixins'
 import { consoleWarn } from '../../util/console'
 
 // Types
-import { PropOptions } from 'vue'
-import type { VNode } from '../../types/vue-internal'
+import type { PropOptions, VNode } from '../../types/vue-internal'
 
 interface options {
   $el: HTMLElement
@@ -41,7 +40,7 @@ export default mixins(Bootable).extend({
     attach: {
       default: false,
       validator: validateAttachTarget,
-    } as PropOptions<boolean | string | Element>,
+    } as PropOptions,
     contentClass: {
       type: String,
       default: '',

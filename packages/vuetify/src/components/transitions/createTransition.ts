@@ -1,4 +1,5 @@
-import { FunctionalComponentOptions, VNode, Transition, TransitionGroup } from 'vue'
+import type { FunctionalComponentOptions, VNode } from '../../types/vue-internal'
+import { Transition, TransitionGroup } from 'vue'
 import type { VNodeData } from '../../types/vue-internal'
 import mergeData from '../../util/mergeData'
 import {h} from 'vue'
@@ -89,7 +90,7 @@ export function createSimpleTransition (
           el.style.setProperty('display', 'none', 'important')
         })
       }
-      return h(tag, mergeData(this.$attrs, data), () => this.$slots.default())
+      return h(tag as any, mergeData(this.$attrs, data) as any, () => this.$slots.default?.() ?? [])
     },
   }
 }

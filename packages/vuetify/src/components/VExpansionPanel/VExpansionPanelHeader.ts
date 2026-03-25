@@ -115,6 +115,6 @@ export default baseMixins.extend({
     }), [
       getSlot(this, 'default', { open: this.isActive }, true),
       this.hideActions || this.genIcon(),
-    ]), directives)
+    ]), directives as any)
   },
 })

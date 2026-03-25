@@ -23,9 +23,9 @@ import { breaking } from '../../util/console'
 
 // Types
 import mixins from '../../util/mixins'
-import { VNode, PropType, h } from 'vue'
+import type { PropType, VNode } from 'vue'
+import { h } from 'vue'
 import type { VNodeChildren } from '../../types/vue-internal'
-import { PropType } from 'vue'
 import { SelectItemKey } from 'vuetify/types'
 
 type ListTile = { item: any, disabled?: null | boolean, value?: boolean, index: number };
@@ -41,7 +41,7 @@ export default mixins(Colorable, Themeable).extend({
     items: {
       type: Array,
       default: () => [],
-    } as PropType<any[]>,
+    } as unknown as PropType<any[]>,
     itemDisabled: {
       type: [String, Array, Function] as PropType<SelectItemKey>,
       default: 'disabled',
@@ -60,7 +60,7 @@ export default mixins(Colorable, Themeable).extend({
     selectedItems: {
       type: Array,
       default: () => [],
-    } as PropType<any[]>,
+    } as unknown as PropType<any[]>,
   },
 
   computed: {

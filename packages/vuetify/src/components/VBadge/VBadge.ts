@@ -30,7 +30,7 @@ export default defineComponent({
     Themeable,
     Toggleable,
     Transitionable,
-  ],
+  ] as any,
 
   props: {
     avatar: Boolean,
@@ -201,6 +201,6 @@ export default defineComponent({
 
     return h('span', mergeData({
       class: ['v-badge', this.classes],
-    }, attrs), children)
+    }, attrs), children as any)
   },
 })

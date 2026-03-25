@@ -22,7 +22,7 @@ export default defineComponent({
     delimiters: {
       type: Array,
       default: () => ([]),
-    } as PropType<string[]>,
+    } as unknown as PropType<string[]>,
     returnObject: {
       type: Boolean,
       default: true,

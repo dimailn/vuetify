@@ -71,7 +71,10 @@ declare global {
   function parseFloat(string: string | number): number
 
   type Dictionary<T> = Record<string, T>
-}
 
-declare const __VUETIFY_VERSION__: string
-declare const __REQUIRED_VUE__: string
+  /** Историческое имя инстанса в миксинах/хелперах (Vue 3: ComponentPublicInstance) */
+  type Vue = import('vue').ComponentPublicInstance
+
+  const __VUETIFY_VERSION__: string
+  const __REQUIRED_VUE__: string
+}

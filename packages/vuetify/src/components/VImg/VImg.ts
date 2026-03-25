@@ -55,7 +55,7 @@ export default mixins(
         rootMargin: undefined,
         threshold: undefined,
       }),
-    } as PropType<IntersectionObserverInit>,
+    } as unknown as PropType<IntersectionObserverInit>,
     position: {
       type: String,
       default: 'center center',
@@ -64,7 +64,7 @@ export default mixins(
     src: {
       type: [String, Object],
       default: '',
-    } as PropType<string | srcObject>,
+    } as unknown as PropType<string | srcObject>,
     srcset: String,
     transition: {
       type: [Boolean, String],
@@ -245,9 +245,9 @@ export default mixins(
       let content: VNode = VResponsive.methods.genContent.call(this)
 
       if (this.naturalWidth) {
-        content = h(content.type, mergeProps(content.props, {
+        content = h(content.type as any, mergeProps(content.props ?? {}, {
           style: { width: `${this.naturalWidth}px` },
-        }), content.children)
+        }), content.children ?? [])
       }
 
       return content

@@ -29,3 +29,6 @@ export type VNodeChildrenArrayContents = VNodeArrayChildren
 
 /** Объекты переходов с `functional: true` до полного перевода на функциональный API Vue 3 */
 export type FunctionalComponentOptions = Component
+
+/** Аналог старых PropOptions для reduce-конфигов пропсов в VGrid */
+export type PropOptions = Record<string, any>

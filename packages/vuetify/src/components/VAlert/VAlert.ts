@@ -233,7 +233,7 @@ export default mixins(
         data = setColor(this.computedColor, data)
       }
 
-      return withDirectives(h('div', data, [this.genWrapper()]), directives)
+      return withDirectives(h('div', data, [this.genWrapper()]), directives as any)
     },
     /** @public */
     toggle () {

@@ -20,7 +20,6 @@ import { breaking } from '../../util/console'
 import { getSlot, getTagValue } from '../../util/helpers'
 
 // Types
-import { PropType } from 'vue'
 import type { PropType } from 'vue'
 
 /* @vue/component */

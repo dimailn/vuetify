@@ -1,6 +1,6 @@
 import { defineComponent, Component } from 'vue'
 
-export type Toggleable<T extends string = 'value'> = Component<Vue & { isActive: boolean } & Record<T, any>>
+export type Toggleable<T extends string = 'value'> = Component
 
 export function factory<T extends string = 'value'> (prop?: T, event?: string): Toggleable<T>
 export function factory (prop = 'modelValue', event = 'update:modelValue') {

@@ -273,7 +273,7 @@ export default defineComponent({
       }
     },
     genEmptyWrapper (content: VNodeChildren) {
-      return h('div', content)
+      return h('div', null, content as any)
     },
     genEmpty (originalItemsLength: number, filteredItemsLength: number) {
       if (originalItemsLength === 0 && this.loading) {

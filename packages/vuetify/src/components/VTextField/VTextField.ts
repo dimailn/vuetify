@@ -38,7 +38,7 @@ const baseMixins = mixins(
   }),
   Loadable,
 )
-interface options extends InstanceType<typeof baseMixins> {
+type options = {
   $refs: {
     label: HTMLElement
     input: HTMLInputElement

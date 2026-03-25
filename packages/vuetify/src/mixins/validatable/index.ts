@@ -15,9 +15,9 @@ import { InputMessage, InputValidationRules } from 'vuetify/types'
 export default defineComponent({
   name: 'validatable',
 
-  extends: RegistrableInject<'form', any>('form'),
+  extends: RegistrableInject<'form', any>('form') as any,
 
-  mixins: [Colorable, Themeable],
+  mixins: [Colorable, Themeable] as any,
 
   props: {
     disabled: {

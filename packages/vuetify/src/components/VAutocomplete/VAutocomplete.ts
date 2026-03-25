@@ -60,7 +60,7 @@ export default defineComponent({
       default: (item: any, queryText: string, itemText: string) => {
         return itemText.toLocaleLowerCase().indexOf(queryText.toLocaleLowerCase()) > -1
       },
-    } as PropType<(item: any, queryText: string, itemText: string) => boolean>,
+    } as unknown as PropType<(item: any, queryText: string, itemText: string) => boolean>,
     hideNoData: Boolean,
     menuProps: {
       type: VSelect.props.menuProps.type,

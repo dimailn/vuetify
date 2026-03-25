@@ -59,7 +59,7 @@ export default defineComponent({
           [1000, 1024].includes(v)
         )
       },
-    } as PropType<boolean | 1000 | 1024>,
+    } as unknown as PropType<boolean | 1000 | 1024>,
     smallChips: Boolean,
     truncateLength: {
       type: [Number, String],
@@ -74,7 +74,7 @@ export default defineComponent({
       validator: val => {
         return wrapInArray(val).every(v => v != null && typeof v === 'object')
       },
-    } as PropType<File | File[]>,
+    } as unknown as PropType<File | File[]>,
   },
 
   emits: ['change', 'keydown', 'click:prepend'],

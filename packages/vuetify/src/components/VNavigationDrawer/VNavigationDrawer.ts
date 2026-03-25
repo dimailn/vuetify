@@ -26,7 +26,6 @@ import mixins from '../../util/mixins'
 
 // Types
 import { VNode, PropType } from 'vue'
-import type { VNodeDirective } from '../../types/vue-internal'
 import { TouchWrapper } from 'vuetify/types'
 
 const baseMixins = mixins(
@@ -337,7 +336,7 @@ export default baseMixins.extend({
         class: 'v-navigation-drawer__image',
       }, [image])
     },
-    genDirectives (): VNodeDirective[] {
+    genDirectives (): any[] {
       return [
         [
           ClickOutside,

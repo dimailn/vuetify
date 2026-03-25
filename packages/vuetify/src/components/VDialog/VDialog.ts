@@ -314,7 +314,7 @@ export default baseMixins.extend({
 
       return withDirectives(
         h('div', data, this.getContentSlot()),
-        directives
+        directives as any
       )
     },
   },

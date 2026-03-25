@@ -43,7 +43,7 @@ export default mixins(
     types: {
       type: Object,
       default: () => ({}),
-    } as PropType<Record<string, string>>,
+    } as unknown as PropType<Record<string, string>>,
   },
 
   computed: {

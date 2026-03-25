@@ -21,7 +21,7 @@ const baseMixins = mixins(
   RegistrableInject('stepper', 'v-stepper-content', 'v-stepper')
 )
 
-interface options extends InstanceType<typeof baseMixins> {
+type options = {
   $refs: {
     wrapper: HTMLElement
   }

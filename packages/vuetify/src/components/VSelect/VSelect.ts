@@ -26,9 +26,9 @@ import { consoleError, breaking } from '../../util/console'
 
 // Types
 import mixins from '../../util/mixins'
-import { VNode, PropType, withDirectives, h } from 'vue'
-import type { VNodeDirective, VNodeData } from '../../types/vue-internal'
-import { PropType } from 'vue'
+import type { PropType, VNode } from 'vue'
+import { withDirectives, h } from 'vue'
+import type { VNodeData } from '../../types/vue-internal'
 import { SelectItemKey } from 'vuetify/types'
 
 export const defaultMenuProps = {
@@ -47,7 +47,7 @@ const baseMixins = mixins(
   Filterable
 )
 
-interface options extends InstanceType<typeof baseMixins> {
+type options = {
   $refs: {
     menu: InstanceType<typeof VMenu>
     content: HTMLElement
@@ -87,7 +87,7 @@ export default baseMixins.extend({
     items: {
       type: Array,
       default: () => [],
-    } as PropType<any[]>,
+    } as unknown as PropType<any[]>,
     itemColor: {
       type: String,
       default: 'primary',
@@ -170,7 +170,7 @@ export default baseMixins.extend({
 
       return value.length
     },
-    directives (): VNodeDirective[] | undefined {
+    directives (): any[] | undefined {
       return [
         [
           ClickOutside,

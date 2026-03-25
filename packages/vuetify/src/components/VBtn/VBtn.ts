@@ -21,9 +21,8 @@ import { breaking } from '../../util/console'
 import { getSlot } from '../../util/helpers'
 
 // Types
-import { VNode, withDirectives, h } from 'vue'
-import { PropType } from 'vue'
-import type { PropType } from 'vue'
+import type { PropType, VNode } from 'vue'
+import { withDirectives, h } from 'vue'
 import { RippleOptions } from '../../directives/ripple'
 
 const baseMixins = mixins(
@@ -35,7 +34,7 @@ const baseMixins = mixins(
   ToggleableFactory()
   /* @vue/component */
 )
-interface options extends ExtractVue<typeof baseMixins> {
+type options = ExtractVue<typeof baseMixins> & {
   $el: HTMLElement
 }
 

@@ -16,8 +16,8 @@ import { addOnceEventListener, deepEqual, keyCodes, createRange, convertToUnit, 
 import { consoleWarn, breaking } from '../../util/console'
 
 // Types
-import { defineComponent, VNode, PropType, h, getCurrentInstance, withDirectives, vShow } from 'vue'
-import { PropType } from 'vue'
+import type { PropType, VNode } from 'vue'
+import { defineComponent, h, getCurrentInstance, withDirectives, vShow } from 'vue'
 
 interface options {
   $refs: {
@@ -61,7 +61,7 @@ export default mixins(
     tickLabels: {
       type: Array,
       default: () => ([]),
-    } as PropType<string[]>,
+    } as unknown as PropType<string[]>,
     ticks: {
       type: [Boolean, String] as PropType<boolean | 'always'>,
       default: false,

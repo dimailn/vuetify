@@ -29,7 +29,7 @@ import goTo from '../../services/goto'
 
 // Types
 import { VNode, PropType } from 'vue'
-import type { VNodeDirective, VNodeData } from '../../types/vue-internal'
+import type { VNodeData } from '../../types/vue-internal'
 
 const baseMixins = mixins(
   Dependent,
@@ -336,8 +336,8 @@ export default baseMixins.extend({
         name: this.transition
       }, () => [content])
     },
-    genDirectives (): VNodeDirective[] {
-      const directives = [[
+    genDirectives (): any[] {
+      const directives: any[] = [[
         vShow,
         this.isContentActive
       ]]
@@ -394,7 +394,7 @@ export default baseMixins.extend({
 
       const directives = this.genDirectives()
 
-      return withDirectives(h('div', options, this.getContentSlot()), directives)
+      return withDirectives(h('div', options, this.getContentSlot()), directives as any)
     },
     getTiles () {
       if (!this.$refs.content) return
@@ -531,6 +531,6 @@ export default baseMixins.extend({
           dark: this.dark,
         }, () => [this.genTransition()]),
       ]),
-    ]), directives)
+    ]), directives as any)
   },
 })

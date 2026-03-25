@@ -16,6 +16,7 @@ import { factory as ToggleableFactory } from '../../mixins/toggleable'
 import mixins from '../../util/mixins'
 import { breaking } from '../../util/console'
 import { getSlot } from '../../util/helpers'
+import Scroll from '../../directives/scroll'
 
 // Types
 import { VNode } from 'vue'
@@ -157,9 +158,9 @@ export default mixins(
 
     if (this.canScroll) {
       return withDirectives(vnode, [[
-        'scroll',
+        Scroll,
         this.onScroll,
-        this.scrollTarget
+        this.scrollTarget,
       ]])
     }
 

@@ -14,7 +14,7 @@ import VBtn from '../VBtn'
 import VMenu from '../VMenu'
 
 // Types
-import { VNode, VNodeChildren } from 'vue'
+import type { VNode, VNodeChildren } from '../../types/vue-internal'
 import mixins from '../../util/mixins'
 
 /* @vue/component */

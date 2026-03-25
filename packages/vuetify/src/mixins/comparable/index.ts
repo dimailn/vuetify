@@ -8,6 +8,6 @@ export default defineComponent({
     valueComparator: {
       type: Function,
       default: deepEqual,
-    } as PropType<typeof deepEqual>,
+    } as unknown as PropType<typeof deepEqual>,
   },
 })

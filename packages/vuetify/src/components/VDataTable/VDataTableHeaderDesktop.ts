@@ -57,7 +57,7 @@ export default mixins(header).extend({
       return { ariaSort, ariaLabel: ariaLabel.join(' ') }
     },
     genHeader (header: DataTableHeader) {
-      const data: Required<Pick<VNodeData, 'attrs' | 'on' | 'class' | 'style'>> = {
+      const data: VNodeData = {
         role: 'columnheader',
         scope: 'col',
         'aria-label': header.text || '',

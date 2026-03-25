@@ -6,7 +6,8 @@ import mixins from '../../util/mixins'
 import { kebabCase } from '../../util/helpers'
 
 // Types
-import { VNodeChildren, h } from 'vue'
+import type { VNodeChildren } from '../../types/vue-internal'
+import { h } from 'vue'
 
 /* @vue/component */
 export default mixins(

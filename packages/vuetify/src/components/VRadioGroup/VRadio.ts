@@ -32,7 +32,7 @@ const baseMixins = mixins(
   Themeable
 )
 
-interface options extends InstanceType<typeof baseMixins> {
+type options = {
   radioGroup: InstanceType<typeof VRadioGroup>
 }
 

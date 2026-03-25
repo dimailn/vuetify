@@ -8,7 +8,8 @@ import colors from '../../util/colors'
 
 // Types
 import { VuetifyThemeVariant } from 'types/services/theme'
-import { VNode, VNodeDirective } from 'vue'
+import type { VNode } from 'vue'
+import type { VNodeDirective } from '../../types/vue-internal'
 
 interface BorderModifiers {
   top?: Boolean

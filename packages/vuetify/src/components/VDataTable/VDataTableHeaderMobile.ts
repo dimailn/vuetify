@@ -1,4 +1,5 @@
-import { h, VNode, VNodeChildrenArrayContents } from 'vue'
+import type { VNode, VNodeChildrenArrayContents } from '../../types/vue-internal'
+import { h } from 'vue'
 import mixins from '../../util/mixins'
 import VSelect from '../VSelect/VSelect'
 import VChip from '../VChip'

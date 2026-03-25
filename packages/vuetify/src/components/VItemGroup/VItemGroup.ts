@@ -17,11 +17,11 @@ import { getSlot, getTagValue } from '../../util/helpers'
 import type { VNode } from '../../types/vue-internal'
 import { defineComponent } from 'vue'
 
-export type GroupableInstance = InstanceType<typeof Groupable> & {
+export type GroupableInstance = any & {
   id?: string
   to?: any
   value?: any
- }
+}
 
 export const BaseItemGroup = mixins(
   Comparable,

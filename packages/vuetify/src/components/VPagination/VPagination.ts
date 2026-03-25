@@ -16,7 +16,7 @@ import mixins from '../../util/mixins'
 import { breaking } from '../../util/console'
 
 // Types
-import type { VNode, CreateElement, VNodeChildrenArrayContents } from 'vue'
+import type { VNode, CreateElement, VNodeChildrenArrayContents } from '../../types/vue-internal'
 
 /* @vue/component */
 export default mixins(

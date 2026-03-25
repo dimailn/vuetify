@@ -58,7 +58,7 @@ export default mixins(
         days.unshift(h('th'))
       }
 
-      return h('thead', this.genTR(days))
+      return h('thead', [this.genTR(days)])
     },
     // Returns number of the days from the firstDayOfWeek to the first day of the current month
     weekDaysBeforeFirstDayOfTheMonth () {
@@ -141,8 +141,8 @@ export default mixins(
 
       return h('tbody', children)
     },
-    genTR (children: VNodeChildren) {
-      return [h('tr', children)]
+    genTR (children: VNodeChildren): VNode {
+      return h('tr', children as any)
     },
   },
 

@@ -90,13 +90,13 @@ export default baseMixins.extend({
         on: this.genActivatorListeners()
       })) || []
 
-      node = Array.isArray(node) ? node : [node]
+      const normalized = (Array.isArray(node) ? node : [node]) as VNode[]
 
-      this.activatorNode = node.flatMap(node => {
-        return node.type === Symbol.for('v-fgt') ? node.children : node
+      this.activatorNode = normalized.flatMap(node => {
+        return node.type === Symbol.for('v-fgt') ? (node.children as VNode[]) : node
       })
 
-      return node
+      return normalized
     },
     genActivatorAttributes () {
       return {

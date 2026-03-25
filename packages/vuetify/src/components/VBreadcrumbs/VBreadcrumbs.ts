@@ -30,7 +30,7 @@ export default mixins(
     items: {
       type: Array,
       default: () => ([]),
-    } as PropType<any[]>,
+    } as unknown as PropType<any[]>,
     large: Boolean,
   },
 

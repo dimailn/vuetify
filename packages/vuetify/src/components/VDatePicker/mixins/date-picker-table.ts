@@ -46,11 +46,11 @@ export default mixins(
     events: {
       type: [Array, Function, Object],
       default: () => null,
-    } as PropType<DatePickerEvents | null>,
+    } as unknown as PropType<DatePickerEvents | null>,
     eventColor: {
       type: [Array, Function, Object, String],
       default: () => 'warning',
-    } as PropType<DatePickerEventColors>,
+    } as unknown as PropType<DatePickerEventColors>,
     min: String,
     max: String,
     range: Boolean,
@@ -226,7 +226,7 @@ export default mixins(
     genTable (staticClass: string, children: VNodeChildren, calculateTableDate: CalculateTableDateFunction) {
       const transition = h(Transition, {
         name: this.computedTransition,
-      }, () => [h('table', { key: this.tableDate }, children)])
+      }, () => [h('table', { key: this.tableDate }, children as any)])
 
       const touchDirective = [
         Touch,
@@ -250,7 +250,7 @@ export default mixins(
             if (this.isValidScroll(e.deltaY, calculateTableDate)) { this.wheelThrottle(e, calculateTableDate) }
           },
         } : {}),
-      }, [transition]), [touchDirective])
+      }, [transition]), [touchDirective] as any)
     },
     isSelected (value: string): boolean {
       if (Array.isArray(this.currentValue)) {

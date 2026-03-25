@@ -1,4 +1,4 @@
-import type { VNodeData } from '../types/vue-internal'
+import type { VNodeData } from '../../types/vue-internal'
 import type { PropType } from 'vue'
 import { defineComponent, resolveComponent } from 'vue'
 

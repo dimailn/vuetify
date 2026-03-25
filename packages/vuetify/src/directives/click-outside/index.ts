@@ -8,7 +8,7 @@ interface ClickOutsideBindingArgs {
   include?: () => HTMLElement[]
 }
 
-interface ClickOutsideDirective extends VNodeDirective {
+type ClickOutsideDirective = VNodeDirective & {
   value?: ((e: Event) => void) | ClickOutsideBindingArgs
 }
 

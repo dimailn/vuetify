@@ -13,7 +13,7 @@ import type { VNode, VNodeData } from '../../types/vue-internal'
 const baseMixins = mixins(
   Translatable
 )
-interface options extends InstanceType<typeof baseMixins> {
+type options = {
   $refs: {
     img: HTMLImageElement
   }

@@ -1,6 +1,7 @@
 import './VGrid.sass'
 
-import { defineComponent, PropOptions } from 'vue'
+import { defineComponent } from 'vue'
+import type { PropOptions } from '../../types/vue-internal'
 import mergeData from '../../util/mergeData'
 import { upperFirst, getTagValue } from '../../util/helpers'
 import {h} from 'vue'

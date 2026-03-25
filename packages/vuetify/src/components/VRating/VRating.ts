@@ -19,8 +19,7 @@ import mixins from '../../util/mixins'
 import { breaking } from '../../util/console'
 
 // Types
-import { VNode, VNodeChildren } from 'vue'
-import type { VNodeDirective } from '../../types/vue-internal'
+import type { VNode, VNodeChildren } from '../../types/vue-internal'
 
 type ItemSlotProps = {
   index: number
@@ -29,7 +28,7 @@ type ItemSlotProps = {
   isHalfFilled?: boolean | undefined
   isHovered: boolean
   isHalfHovered?: boolean | undefined
-  click: Function
+  onClick: Function
 }
 
 /* @vue/component */
@@ -93,7 +92,7 @@ export default mixins(
   },
 
   computed: {
-    directives (): VNodeDirective[] {
+    directives (): any[] {
       return [
         [
           Ripple,

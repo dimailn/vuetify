@@ -24,7 +24,7 @@ const baseMixins = mixins(
   RegistrableInject('stepper', 'v-stepper-step', 'v-stepper')
 )
 
-interface options extends InstanceType<typeof baseMixins> {
+type options = {
   stepClick: (step: number | string) => void
 }
 /* @vue/component */
@@ -56,7 +56,7 @@ export default baseMixins.extend({
     rules: {
       type: Array,
       default: () => [],
-    } as PropType<VuetifyStepperRuleValidator[]>,
+    } as unknown as PropType<VuetifyStepperRuleValidator[]>,
     step: [Number, String],
   },
 

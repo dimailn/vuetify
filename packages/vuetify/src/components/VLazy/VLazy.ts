@@ -33,7 +33,7 @@ export default mixins(
         rootMargin: undefined,
         threshold: undefined,
       }),
-    } as PropType<IntersectionObserverInit>,
+    } as unknown as PropType<IntersectionObserverInit>,
     tag: {
       type: String,
       default: 'div',

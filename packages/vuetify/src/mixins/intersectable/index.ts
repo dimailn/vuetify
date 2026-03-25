@@ -17,7 +17,7 @@ export default function intersectable (options: { onVisible: string[] }) {
 
     mounted () {
       const {vnode} = getCurrentInstance()
-      Intersect.mounted(this.$el as HTMLElement, {
+      ;(Intersect.mounted as any)(this.$el as HTMLElement, {
         name: 'intersect',
         value: this.onObserve,
       }, vnode)
@@ -26,7 +26,7 @@ export default function intersectable (options: { onVisible: string[] }) {
     unmounted () {
       const {vnode} = getCurrentInstance()
 
-      Intersect.unmounted(this.$el as HTMLElement, {
+      ;(Intersect.unmounted as any)(this.$el as HTMLElement, {
         name: 'intersect',
         value: this.onObserve,
       }, vnode)
