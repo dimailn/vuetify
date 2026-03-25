@@ -23,10 +23,8 @@ import {
 } from './util'
 
 // Types
-import {
-  PropType,
-  PropValidator,
-} from 'vue/types/options'
+import { PropType } from 'vue'
+import type { PropType } from 'vue'
 import { VNode, h } from 'vue'
 import {
   DatePickerFormatter,
@@ -61,11 +59,11 @@ export default mixins(
     events: {
       type: [Array, Function, Object],
       default: () => null,
-    } as PropValidator<DatePickerEvents | null>,
+    } as PropType<DatePickerEvents | null>,
     eventColor: {
       type: [Array, Function, Object, String],
       default: () => 'warning',
-    } as PropValidator<DatePickerEventColors>,
+    } as PropType<DatePickerEventColors>,
     firstDayOfWeek: {
       type: [String, Number],
       default: 0,
@@ -126,7 +124,7 @@ export default mixins(
       type: String,
       default: 'date',
       validator: (type: any) => ['date', 'month'].includes(type), // TODO: year
-    } as PropValidator<DatePickerType>,
+    } as PropType<DatePickerType>,
     modelValue: [Array, String] as PropType<DatePickerValue>,
     weekdayFormat: Function as PropType<DatePickerFormatter | undefined>,
     // Function formatting the year in table header and pickup title

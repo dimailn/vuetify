@@ -10,7 +10,8 @@ import Themeable from '../../mixins/themeable'
 import { convertToUnit, keys, remapInternalIcon } from '../../util/helpers'
 
 // Types
-import { defineComponent, CreateElement, VNode, VNodeChildren, VNodeData, h } from 'vue'
+import { defineComponent, VNode, h } from 'vue'
+import type { CreateElement, VNodeChildren, VNodeData } from '../../types/vue-internal'
 import mixins from '../../util/mixins'
 import { VuetifyIcon, VuetifyIconComponent } from 'vuetify/types/services/icons'
 import { normalizeAttrs, normalizeClasses, getTagValue } from '../../util/helpers'

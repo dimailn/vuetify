@@ -6,7 +6,7 @@ import Colorable from '../../mixins/colorable'
 import mixins from '../../util/mixins'
 
 // Types
-import { VNode } from 'vue/types'
+import type { VNode } from '../../types/vue-internal'
 
 /* @vue/component */
 export default mixins(Colorable).extend({

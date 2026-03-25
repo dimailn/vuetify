@@ -1,5 +1,6 @@
 // Helpers
-import { VNode, VNodeData, h } from 'vue'
+import { VNode, h } from 'vue'
+import type { VNodeData } from '../../types/vue-internal'
 import mixins from '../../util/mixins'
 import header from './mixins/header'
 import { wrapInArray, convertToUnit } from '../../util/helpers'

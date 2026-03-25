@@ -1,5 +1,5 @@
 /* eslint-disable no-new */
-import Vue from 'vue'
+import { createApp, h } from 'vue'
 import Vuetify, { colors } from 'vuetify/lib'
 import { VuetifyParsedTheme } from '../services/theme'
 
@@ -163,7 +163,8 @@ new Vuetify({
   },
 })
 
-new Vue({
+const app = createApp({
   vuetify: new Vuetify(),
-  render: h => h('div'),
+  render: () => h('div'),
 })
+app.use(Vuetify)

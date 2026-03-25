@@ -6,7 +6,8 @@ import { consoleWarn } from '../../util/console'
 import { keyCodes } from '../../util/helpers'
 import makeDirectiveActivatable from '../../util/make-directive-activatable'
 // Types
-import { VNode, VNodeDirective, nextTick } from 'vue'
+import { VNode, nextTick } from 'vue'
+import type { VNodeDirective } from '../../types/vue-internal'
 
 type VuetifyRippleEvent = (MouseEvent | TouchEvent | KeyboardEvent) & { rippleStop?: boolean }
 

@@ -20,7 +20,7 @@ import Selectable, { prevent } from '../../mixins/selectable'
 import { getSlot } from '../../util/helpers'
 
 // Types
-import { VNode, VNodeData } from 'vue'
+import type { VNode, VNodeData } from '../../types/vue-internal'
 import mixins from '../../util/mixins'
 import { mergeListeners } from '../../util/mergeData'
 

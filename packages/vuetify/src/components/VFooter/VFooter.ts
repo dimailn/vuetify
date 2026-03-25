@@ -14,7 +14,7 @@ import mixins from '../../util/mixins'
 import { convertToUnit, getSlot, getTagValue } from '../../util/helpers'
 
 // Types
-import { VNode } from 'vue/types/vnode'
+import type { VNode } from '../../types/vue-internal'
 
 /* @vue/component */
 export default mixins(

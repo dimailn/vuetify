@@ -20,7 +20,8 @@ import { breaking } from '../../util/console'
 import { getSlot, getTagValue } from '../../util/helpers'
 
 // Types
-import { PropValidator, PropType } from 'vue/types/options'
+import { PropType } from 'vue'
+import type { PropType } from 'vue'
 
 /* @vue/component */
 export default mixins(
@@ -42,7 +43,7 @@ export default mixins(
     },
     activeClass: {
       type: String,
-    } as any as PropValidator<string>,
+    } as any as PropType<string>,
     close: Boolean,
     onClick: Function as PropType<(e: MouseEvent) => void>,
     closeIcon: {

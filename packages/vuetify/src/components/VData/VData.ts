@@ -12,7 +12,7 @@ import {
   DataSearchFunction,
   ItemGroup,
 } from 'vuetify/types'
-import { PropValidator } from 'vue/types/options'
+import { PropType } from 'vue'
 
 export default defineComponent({
   name: 'v-data',
@@ -23,21 +23,21 @@ export default defineComponent({
     items: {
       type: Array,
       default: () => [],
-    } as PropValidator<any[]>,
+    } as PropType<any[]>,
     options: {
       type: Object,
       default: () => ({}),
-    } as PropValidator<Partial<DataOptions>>,
+    } as PropType<Partial<DataOptions>>,
     sortBy: {
       type: [String, Array],
-    } as PropValidator<string | string[] | undefined>,
+    } as PropType<string | string[] | undefined>,
     sortDesc: {
       type: [Boolean, Array],
-    } as PropValidator<boolean | boolean[] | undefined>,
+    } as PropType<boolean | boolean[] | undefined>,
     customSort: {
       type: Function,
       default: sortItems,
-    } as PropValidator<DataSortFunction>,
+    } as PropType<DataSortFunction>,
     mustSort: Boolean,
     multiSort: Boolean,
     page: {
@@ -51,15 +51,15 @@ export default defineComponent({
     groupBy: {
       type: [String, Array],
       default: () => [],
-    } as PropValidator<string | string[]>,
+    } as PropType<string | string[]>,
     groupDesc: {
       type: [Boolean, Array],
       default: () => [],
-    } as PropValidator<boolean | boolean[]>,
+    } as PropType<boolean | boolean[]>,
     customGroup: {
       type: Function,
       default: groupItems,
-    } as PropValidator<DataGroupFunction>,
+    } as PropType<DataGroupFunction>,
     locale: {
       type: String,
       default: 'en-US',
@@ -71,7 +71,7 @@ export default defineComponent({
     customFilter: {
       type: Function,
       default: searchItems,
-    } as PropValidator<DataSearchFunction>,
+    } as PropType<DataSearchFunction>,
     serverItemsLength: {
       type: Number,
       default: -1,

@@ -15,7 +15,7 @@ import { convertToUnit, getSlot } from '../../util/helpers'
 import mixins from '../../util/mixins'
 
 // Types
-import { VNode, FunctionalComponentOptions, VNodeData } from 'vue'
+import type { VNode, VNodeData, FunctionalComponentOptions } from '../../types/vue-internal'
 
 const baseMixins = mixins(
   RegistrableInject('stepper', 'v-stepper-content', 'v-stepper')

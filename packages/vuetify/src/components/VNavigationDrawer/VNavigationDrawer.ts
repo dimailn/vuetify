@@ -25,7 +25,8 @@ import { breaking } from '../../util/console'
 import mixins from '../../util/mixins'
 
 // Types
-import { VNode, VNodeDirective, PropType } from 'vue'
+import { VNode, PropType } from 'vue'
+import type { VNodeDirective } from '../../types/vue-internal'
 import { TouchWrapper } from 'vuetify/types'
 
 const baseMixins = mixins(

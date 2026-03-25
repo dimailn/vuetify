@@ -17,7 +17,7 @@ import { consoleWarn, breaking } from '../../util/console'
 
 // Types
 import { defineComponent, VNode, PropType, h, getCurrentInstance, withDirectives, vShow } from 'vue'
-import { PropValidator } from 'vue/types/options'
+import { PropType } from 'vue'
 
 interface options {
   $refs: {
@@ -25,14 +25,7 @@ interface options {
   }
 }
 
-export default mixins<options &
-/* eslint-disable indent */
-  ExtractVue<[
-    typeof VInput,
-    typeof Loadable
-  ]>
-/* eslint-enable indent */
->(
+export default mixins(
   VInput,
   Loadable
 /* @vue/component */
@@ -68,7 +61,7 @@ export default mixins<options &
     tickLabels: {
       type: Array,
       default: () => ([]),
-    } as PropValidator<string[]>,
+    } as PropType<string[]>,
     ticks: {
       type: [Boolean, String] as PropType<boolean | 'always'>,
       default: false,

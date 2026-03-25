@@ -1,7 +1,7 @@
 import {h} from 'vue'
 // Types
 import mixins, { ExtractVue } from '../../util/mixins'
-import { VNode, VNodeData } from 'vue'
+import type { VNode, VNodeData } from '../../types/vue-internal'
 
 // Components
 import VTimeline from './VTimeline'

@@ -8,7 +8,7 @@ import mixins from '../../util/mixins'
 import { getSlot } from '../../util/helpers'
 
 // Types
-import { VNode, VNodeData } from 'vue/types/vnode'
+import type { VNode, VNodeData } from '../../types/vue-internal'
 
 const baseMixins = mixins(
   Translatable

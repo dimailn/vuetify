@@ -15,7 +15,7 @@ import { getSlot, keyCodes } from '../../util/helpers'
 
 // Types
 import { VNode } from 'vue'
-import { PropValidator } from 'vue/types/options'
+import { PropType } from 'vue'
 
 type VuetifyStepperRuleValidator = () => string | boolean
 
@@ -56,7 +56,7 @@ export default baseMixins.extend({
     rules: {
       type: Array,
       default: () => [],
-    } as PropValidator<VuetifyStepperRuleValidator[]>,
+    } as PropType<VuetifyStepperRuleValidator[]>,
     step: [Number, String],
   },
 

@@ -28,7 +28,8 @@ import {
 import goTo from '../../services/goto'
 
 // Types
-import { VNode, VNodeDirective, VNodeData, PropType } from 'vue'
+import { VNode, PropType } from 'vue'
+import type { VNodeDirective, VNodeData } from '../../types/vue-internal'
 
 const baseMixins = mixins(
   Dependent,

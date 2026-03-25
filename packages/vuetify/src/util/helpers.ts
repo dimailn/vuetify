@@ -1,5 +1,5 @@
 import { defineComponent, h, resolveComponent } from 'vue'
-import { VNode, VNodeDirective } from 'vue/types'
+import type { VNode, VNodeDirective } from '../types/vue-internal'
 import { VuetifyIcon } from 'vuetify/types/services/icons'
 import { DataTableCompareFunction, SelectItemKey, ItemGroup } from 'vuetify/types'
 

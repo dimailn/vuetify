@@ -1,4 +1,5 @@
-import { h, withDirectives, VNode, PropType, PropValidator } from 'vue'
+import type { VNode } from '../../types/vue-internal'
+import { h, withDirectives, PropType } from 'vue'
 // Styles
 import './VListItem.sass'
 
@@ -61,7 +62,7 @@ export default baseMixins.extend({
   props: {
     activeClass: {
       type: String,
-    } as any as PropValidator<string>,
+    } as any as PropType<string>,
     dense: Boolean,
     inactive: Boolean,
     onClick: Function as PropType<(e: MouseEvent) => void>,

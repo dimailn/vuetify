@@ -14,7 +14,7 @@ import { consoleWarn } from '../../util/console'
 import { getSlot, getTagValue } from '../../util/helpers'
 
 // Types
-import { VNode } from 'vue/types'
+import type { VNode } from '../../types/vue-internal'
 import { defineComponent } from 'vue'
 
 export type GroupableInstance = InstanceType<typeof Groupable> & {

@@ -3,18 +3,18 @@
 
 export const legacyEventsMixin = {
   methods: {
-    $emitLegacy (eventName: string, args?: any) {
+    $emitLegacy (this: any, eventName: string, args?: any) {
       if (!this.eventsLegacy || !this.eventsLegacy[eventName]) return
 
       this.eventsLegacy[eventName].forEach((listener: Function) => listener(args))
     },
-    $on (eventName: string, listener: Function) {
+    $on (this: any, eventName: string, listener: Function) {
       this.eventsLegacy ||= {}
       this.eventsLegacy[eventName] ||= []
       this.eventsLegacy[eventName].push(listener)
       // console.warn("$on is not available")
     },
-    $off (eventName: string, listener: Function) {
+    $off (this: any, eventName: string, listener: Function) {
       if (this.eventsLegacy && this.eventsLegacy[eventName]) {
         this.eventsLegacy[eventName] = this.eventsLegacy[eventName].filter((_listener: Function) => _listener !== listener)
       }
@@ -22,10 +22,10 @@ export const legacyEventsMixin = {
     },
   },
   computed: {
-    $listeners () {
-      const names = Object.keys(this.$attrs).filter(name => name.startsWith('on'))
+    $listeners (this: any): Record<string, unknown> {
+      const names = Object.keys(this.$attrs).filter((name: string) => name.startsWith('on'))
 
-      return names.reduce((listeners, name) => {
+      return names.reduce((listeners: Record<string, unknown>, name: string) => {
         listeners[name] = this.$attrs[name]
         return listeners
       }, {})

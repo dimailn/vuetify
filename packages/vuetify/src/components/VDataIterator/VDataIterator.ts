@@ -12,7 +12,8 @@ import { deepEqual, getObjectValueByPath, getPrefixedScopedSlots, getSlot, camel
 import { breaking, removed } from '../../util/console'
 
 // Types
-import { h, VNode, VNodeChildren, PropType, defineComponent } from 'vue'
+import { h, VNode, PropType, defineComponent } from 'vue'
+import type { VNodeChildren } from '../../types/vue-internal'
 import { DataItemProps, DataScopeProps } from 'vuetify/types'
 
 /* @vue/component */

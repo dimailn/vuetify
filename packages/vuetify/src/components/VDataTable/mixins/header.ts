@@ -4,7 +4,7 @@ import VSimpleCheckbox from '../../VCheckbox/VSimpleCheckbox'
 import ripple from '../../../directives/ripple'
 
 import { defineComponent, h } from 'vue'
-import { PropValidator } from 'vue/types/options'
+import { PropType } from 'vue'
 import mixins from '../../../util/mixins'
 import { DataOptions, DataTableHeader } from 'vuetify/types'
 
@@ -14,13 +14,13 @@ interface HeaderOptions {
   dataTable: VDataTableInstance
 }
 
-export default mixins<HeaderOptions>().extend({
+export default mixins().extend({
 
   props: {
     headers: {
       type: Array,
       default: () => ([]),
-    } as PropValidator<DataTableHeader[]>,
+    } as PropType<DataTableHeader[]>,
     options: {
       type: Object,
       default: () => ({
@@ -33,7 +33,7 @@ export default mixins<HeaderOptions>().extend({
         multiSort: false,
         mustSort: false,
       }),
-    } as PropValidator<DataOptions>,
+    } as PropType<DataOptions>,
     checkboxColor: String,
     sortIcon: {
       type: String,

@@ -12,7 +12,7 @@ import { getSlot, getTagValue } from '../../util/helpers'
 
 // Types
 import { VNode } from 'vue'
-import { PropValidator } from 'vue/types/options'
+import { PropType } from 'vue'
 
 export default mixins(
   Measurable,
@@ -33,7 +33,7 @@ export default mixins(
         rootMargin: undefined,
         threshold: undefined,
       }),
-    } as PropValidator<IntersectionObserverInit>,
+    } as PropType<IntersectionObserverInit>,
     tag: {
       type: String,
       default: 'div',

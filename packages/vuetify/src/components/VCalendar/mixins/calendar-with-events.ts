@@ -2,7 +2,8 @@
 import './calendar-with-events.sass'
 
 // Types
-import { VNode, VNodeData, defineComponent, h, withDirectives } from 'vue'
+import { VNode, defineComponent, h, withDirectives } from 'vue'
+import type { VNodeData } from '../../../types/vue-internal'
 
 // Directives
 import ripple from '../../../directives/ripple'

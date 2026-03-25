@@ -17,14 +17,9 @@ import { throttle } from '../../../util/helpers'
 import { breaking } from '../../../util/console'
 
 // Types
-import {
-  PropType,
-  VNodeChildren,
-  Transition,
-  withDirectives,
-  h,
-} from 'vue'
-import { PropValidator } from 'vue/types/options'
+import type { PropType } from 'vue'
+import { Transition, withDirectives, h } from 'vue'
+import type { VNodeChildren } from '../../../types/vue-internal'
 import {
   DatePickerAllowedDatesFunction,
   DatePickerEventColors,
@@ -51,11 +46,11 @@ export default mixins(
     events: {
       type: [Array, Function, Object],
       default: () => null,
-    } as PropValidator<DatePickerEvents | null>,
+    } as PropType<DatePickerEvents | null>,
     eventColor: {
       type: [Array, Function, Object, String],
       default: () => 'warning',
-    } as PropValidator<DatePickerEventColors>,
+    } as PropType<DatePickerEventColors>,
     min: String,
     max: String,
     range: Boolean,

@@ -22,7 +22,8 @@ import { getSlot } from '../../util/helpers'
 
 // Types
 import { VNode, withDirectives, h } from 'vue'
-import { PropValidator, PropType } from 'vue/types/options'
+import { PropType } from 'vue'
+import type { PropType } from 'vue'
 import { RippleOptions } from '../../directives/ripple'
 
 const baseMixins = mixins(
@@ -43,7 +44,7 @@ export default baseMixins.extend({
   props: {
     activeClass: {
       type: String,
-    } as any as PropValidator<string>,
+    } as any as PropType<string>,
     block: Boolean,
     depressed: Boolean,
     fab: Boolean,

@@ -6,7 +6,8 @@ import VIcon from '../VIcon'
 import VBtn from '../VBtn'
 
 // Types
-import { defineComponent, VNode, VNodeChildrenArrayContents, PropType, h } from 'vue'
+import { defineComponent, VNode, PropType, h } from 'vue'
+import type { VNodeChildrenArrayContents } from '../../types/vue-internal'
 import { DataPagination, DataOptions, DataItemsPerPageOption } from 'vuetify/types'
 import { getSlot, normalizeAttrs } from '../../util/helpers'
 

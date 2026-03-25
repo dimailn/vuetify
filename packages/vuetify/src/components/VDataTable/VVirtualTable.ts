@@ -6,7 +6,7 @@ import VSimpleTable from './VSimpleTable'
 
 // Types
 import { VNode, VNodeChildren } from 'vue'
-import { PropValidator } from 'vue/types/options'
+import { PropType } from 'vue'
 import mixins from '../../util/mixins'
 
 // Utiltiies
@@ -37,7 +37,7 @@ export default baseMixins.extend({
     items: {
       type: Array,
       default: () => ([]),
-    } as PropValidator<any[]>,
+    } as PropType<any[]>,
     rowHeight: {
       type: Number,
       default: 48,

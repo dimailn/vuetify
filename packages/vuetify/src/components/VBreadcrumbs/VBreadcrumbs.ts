@@ -3,7 +3,7 @@ import { h, VNode } from 'vue'
 import './VBreadcrumbs.sass'
 
 // Types
-import { PropValidator } from 'vue/types/options'
+import { PropType } from 'vue'
 
 // Components
 import VBreadcrumbsItem from './VBreadcrumbsItem'
@@ -30,7 +30,7 @@ export default mixins(
     items: {
       type: Array,
       default: () => ([]),
-    } as PropValidator<any[]>,
+    } as PropType<any[]>,
     large: Boolean,
   },
 

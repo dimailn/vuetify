@@ -10,7 +10,7 @@ import mixins from '../../util/mixins'
 import { ExtractVue } from './../../util/mixins'
 
 // Types
-import { VNode } from 'vue/types'
+import type { VNode } from '../../types/vue-internal'
 
 // Components
 import VTabsBar from '../VTabs/VTabsBar'

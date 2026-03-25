@@ -24,7 +24,8 @@ import { breaking, consoleWarn } from '../../util/console'
 
 // Types
 import mixins from '../../util/mixins'
-import { VNode, PropType } from 'vue/types'
+import type { VNode } from '../../types/vue-internal'
+import type { PropType } from 'vue'
 import { withDirectives, h } from 'vue'
 
 const baseMixins = mixins(

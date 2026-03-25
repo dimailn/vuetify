@@ -7,20 +7,7 @@ import VTextField from '../VTextField/VTextField'
 // Utilities
 import mixins from '../../util/mixins'
 
-// Types
-import Vue from 'vue'
-
-interface options extends Vue {
-  $refs: {
-    input: HTMLTextAreaElement
-  }
-}
-
-const baseMixins = mixins<options &
-  InstanceType<typeof VTextField>
->(
-  VTextField
-)
+const baseMixins = mixins(VTextField)
 
 /* @vue/component */
 export default baseMixins.extend({

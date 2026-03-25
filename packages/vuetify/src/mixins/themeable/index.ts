@@ -1,5 +1,5 @@
-import {defineComponent, App} from 'vue'
-import { PropType, RenderContext } from 'vue/types/options'
+import { defineComponent, App } from 'vue'
+import type { PropType } from 'vue'
 
 interface options extends App {
   theme: {

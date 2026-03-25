@@ -1,4 +1,6 @@
-import { VNodeData, PropType, defineComponent, resolveComponent } from 'vue'
+import type { VNodeData } from '../types/vue-internal'
+import type { PropType } from 'vue'
+import { defineComponent, resolveComponent } from 'vue'
 
 // Directives
 import Ripple, { RippleOptions } from '../../directives/ripple'

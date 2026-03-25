@@ -1,4 +1,4 @@
-import {h, vShow, withDirectives} from 'vue'
+import { h, vShow, withDirectives, Transition } from 'vue'
 // Styles
 import './VAlert.sass'
 
@@ -20,8 +20,7 @@ import { breaking } from '../../util/console'
 import { getSlot } from '../../util/helpers'
 
 // Types
-import { VNodeData, Transition } from 'vue'
-import { VNode } from 'vue/types'
+import type { VNode, VNodeData } from '../../types/vue-internal'
 
 /* @vue/component */
 export default mixins(

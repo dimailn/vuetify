@@ -1,4 +1,5 @@
-import { FunctionalComponentOptions, VNode, VNodeData, Transition, TransitionGroup } from 'vue'
+import { FunctionalComponentOptions, VNode, Transition, TransitionGroup } from 'vue'
+import type { VNodeData } from '../../types/vue-internal'
 import mergeData from '../../util/mergeData'
 import {h} from 'vue'
 

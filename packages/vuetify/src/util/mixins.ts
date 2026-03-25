@@ -1,15 +1,17 @@
 /* eslint-disable max-len, import/export, no-use-before-define */
 import { Component, defineComponent } from 'vue'
 
-export default function mixins<T extends Component[]> (...args: T): ExtractVue<T> extends infer V ? V extends Component ? Component<V> : never : never
-export default function mixins<T extends Component> (...args: Component[]): Component<T>
-export default function mixins (...args: Component[]) {
+export interface MixinBuilder {
+  extend: (options: Record<string, any>) => ReturnType<typeof defineComponent>
+}
+
+export default function mixins (...args: Component[]): MixinBuilder {
   return {
-    extend (options) {
+    extend (options: Record<string, any>) {
       return defineComponent({
-        mixins: args,
+        mixins: args as any,
         ...options,
-      })
+      }) as ReturnType<typeof defineComponent>
     },
   }
 }

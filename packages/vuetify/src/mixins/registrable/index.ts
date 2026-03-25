@@ -1,17 +1,12 @@
-import {defineComponent} from 'vue'
-import { Component } from 'vue/types/vue'
+import { defineComponent } from 'vue'
+import type { Component } from 'vue'
 import { consoleWarn } from '../../util/console'
 
 function generateWarning (child: string, parent: string) {
   return () => consoleWarn(`The ${child} component must be used inside a ${parent}`)
 }
 
-export type Registrable<T extends string, C extends Component | null = null> = Component<Vue & {
-  [K in T]: C extends Component ? InstanceType<C> : {
-    register (...props: any[]): void
-    unregister (self: any): void
-  }
-}>
+export type Registrable<T extends string, C extends Component | null = null> = Component
 
 export function inject<
   T extends string, C extends Component | null = null

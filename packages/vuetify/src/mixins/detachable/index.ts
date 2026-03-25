@@ -8,7 +8,7 @@ import { consoleWarn } from '../../util/console'
 
 // Types
 import { PropOptions } from 'vue'
-import { VNode } from 'vue/types'
+import type { VNode } from '../../types/vue-internal'
 
 interface options {
   $el: HTMLElement
@@ -34,11 +34,7 @@ function removeActivator (activator: VNode[]) {
 }
 
 /* @vue/component */
-export default mixins<options &
-  /* eslint-disable indent */
-  ExtractVue<typeof Bootable>
-  /* eslint-enable indent */
->(Bootable).extend({
+export default mixins(Bootable).extend({
   name: 'detachable',
 
   props: {

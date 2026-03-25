@@ -93,14 +93,7 @@ export function calculateCenteredOffset (
   }
 }
 
-export const BaseSlideGroup = mixins<options &
-/* eslint-disable indent */
-  ExtractVue<[
-    typeof BaseItemGroup,
-    typeof Mobile,
-  ]>
-/* eslint-enable indent */
->(
+export const BaseSlideGroup = mixins(
   BaseItemGroup,
   Mobile,
   /* @vue/component */

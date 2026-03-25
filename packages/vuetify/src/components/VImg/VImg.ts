@@ -7,7 +7,7 @@ import intersect from '../../directives/intersect'
 
 // Types
 import { VNode } from 'vue'
-import { PropValidator } from 'vue/types/options'
+import { PropType } from 'vue'
 
 // Components
 import VResponsive from '../VResponsive'
@@ -55,7 +55,7 @@ export default mixins(
         rootMargin: undefined,
         threshold: undefined,
       }),
-    } as PropValidator<IntersectionObserverInit>,
+    } as PropType<IntersectionObserverInit>,
     position: {
       type: String,
       default: 'center center',
@@ -64,7 +64,7 @@ export default mixins(
     src: {
       type: [String, Object],
       default: '',
-    } as PropValidator<string | srcObject>,
+    } as PropType<string | srcObject>,
     srcset: String,
     transition: {
       type: [Boolean, String],

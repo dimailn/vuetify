@@ -12,7 +12,7 @@ import mixins from '../../util/mixins'
 import { convertToUnit, getSlot } from '../../util/helpers'
 
 // Types
-import { VNode } from 'vue/types'
+import type { VNode } from '../../types/vue-internal'
 
 export default mixins(
   Applicationable('bar', [

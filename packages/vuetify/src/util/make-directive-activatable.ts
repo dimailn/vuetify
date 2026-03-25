@@ -1,42 +1,42 @@
-export default (directive) => {
+export default (directive: Record<string, any>) => {
   const activeMap = new WeakMap()
 
-  const {mounted, unmounted, updated} = directive
+  const { mounted, unmounted, updated } = directive
 
-  const wrappedMounted = (...args) => {
+  const wrappedMounted = (...args: any[]) => {
     const binding = args[1]
 
     activeMap.set(args[0], binding.value.isDirActive)
 
-    if(binding.value.isDirActive === false) return
+    if (binding.value.isDirActive === false) return
 
     mounted(...args)
   }
 
-  const wrappedUnmounted = (...args) => {
+  const wrappedUnmounted = (...args: any[]) => {
     const binding = args[1]
 
     activeMap.set(args[0], binding.value.isDirActive)
 
-    if(binding.value.isDirActive === false) return
+    if (binding.value.isDirActive === false) return
 
     unmounted(...args)
   }
 
-  const wrappedUpdated = (...args) => {
+  const wrappedUpdated = (...args: any[]) => {
     const isDirActive = activeMap.get(args[0])
 
-    if(isDirActive === undefined) return updated(...args)
+    if (isDirActive === undefined) return updated(...args)
 
     const binding = args[1]
 
-    if(!isDirActive && binding.value.isDirActive) {
+    if (!isDirActive && binding.value.isDirActive) {
       mounted(...args)
       activeMap.set(args[0], binding.value.isDirActive)
       return
     }
 
-    if(isDirActive && !binding.value.isDirActive) {
+    if (isDirActive && !binding.value.isDirActive) {
       unmounted(...args)
       activeMap.set(args[0], binding.value.isDirActive)
       return
@@ -49,7 +49,7 @@ export default (directive) => {
     Object.entries({
       mounted: wrappedMounted,
       unmounted: wrappedUnmounted,
-      updated: wrappedUpdated
-    }).filter(([name, fn]) => directive[name])
+      updated: wrappedUpdated,
+    }).filter(([name, fn]) => directive[name] && fn)
   )
 }

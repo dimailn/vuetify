@@ -1,4 +1,5 @@
-import { TransitionGroup, h, VNode, VNodeData, withDirectives } from 'vue'
+import { TransitionGroup, h, VNode, withDirectives } from 'vue'
+import type { VNodeData } from '../../types/vue-internal'
 // Styles
 import './VSpeedDial.sass'
 
@@ -13,7 +14,7 @@ import ClickOutside from '../../directives/click-outside'
 // Types
 import mixins from '../../util/mixins'
 
-import { Prop } from 'vue/types/options'
+import { PropType } from 'vue'
 import { getSlot } from '../../util/helpers'
 
 /* @vue/component */

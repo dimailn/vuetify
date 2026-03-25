@@ -8,7 +8,8 @@ import { createRange } from '../../util/helpers'
 import mixins from '../../util/mixins'
 
 // Types
-import { VNode, VNodeChildren, PropType, h } from 'vue'
+import { VNode, PropType, h } from 'vue'
+import type { VNodeChildren } from '../../types/vue-internal'
 import { DatePickerFormatter } from 'vuetify/types'
 
 export default mixins(

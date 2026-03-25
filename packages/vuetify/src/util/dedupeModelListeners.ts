@@ -1,4 +1,4 @@
-import { VNodeData } from 'vue'
+import type { VNodeData } from '../types/vue-internal'
 
 /**
  * Removes duplicate `@input` listeners when

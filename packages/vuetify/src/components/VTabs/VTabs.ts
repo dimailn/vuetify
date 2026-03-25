@@ -22,7 +22,7 @@ import mixins from '../../util/mixins'
 import { breaking } from '../../util/console'
 
 // Types
-import { VNode } from 'vue/types'
+import type { VNode } from '../../types/vue-internal'
 
 const baseMixins = mixins(
   Colorable,

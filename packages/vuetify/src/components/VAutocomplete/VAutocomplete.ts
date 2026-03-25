@@ -14,8 +14,7 @@ import {
 } from '../../util/helpers'
 
 // Types
-import { PropType, VNode } from 'vue'
-import { PropValidator } from 'vue/types/options'
+import type { PropType, VNode } from 'vue'
 
 const defaultMenuProps = {
   ...VSelectMenuProps,
@@ -61,7 +60,7 @@ export default defineComponent({
       default: (item: any, queryText: string, itemText: string) => {
         return itemText.toLocaleLowerCase().indexOf(queryText.toLocaleLowerCase()) > -1
       },
-    } as PropValidator<(item: any, queryText: string, itemText: string) => boolean>,
+    } as PropType<(item: any, queryText: string, itemText: string) => boolean>,
     hideNoData: Boolean,
     menuProps: {
       type: VSelect.props.menuProps.type,

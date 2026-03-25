@@ -4,7 +4,7 @@
  * @see https://github.com/alexsasharegan/vue-functional-data-merge
  */
 /* eslint-disable max-statements */
-import { VNodeData } from 'vue'
+import type { VNodeData } from '../types/vue-internal'
 import { camelize, wrapInArray } from './helpers'
 
 const pattern = {

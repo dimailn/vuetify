@@ -8,7 +8,6 @@ import { consoleWarn } from '../../util/console'
 
 // Types
 import { VNode, mergeProps } from 'vue'
-import { ScopedSlotChildren } from 'vue/types/vnode'
 
 export default mixins(
   Delayable,

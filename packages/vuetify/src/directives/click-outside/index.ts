@@ -1,5 +1,5 @@
 import { attachedRoot } from '../../util/dom'
-import { VNodeDirective } from 'vue/types/vnode'
+import type { VNodeDirective } from '../../types/vue-internal'
 import { VNode } from 'vue'
 
 interface ClickOutsideBindingArgs {

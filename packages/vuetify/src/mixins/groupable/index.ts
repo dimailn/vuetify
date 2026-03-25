@@ -4,7 +4,7 @@ import { Registrable, inject as RegistrableInject } from '../registrable'
 // Utilities
 // import { ExtractVue } from '../../util/mixins'
 import { Component } from 'vue'
-import { PropValidator } from 'vue/types/options'
+import { PropType } from 'vue'
 
 export type Groupable<T extends string, C extends Component | null = null> = Component<Registrable<T, C> & {
   activeClass: string
@@ -26,7 +26,7 @@ export function factory<T extends string, C extends Component | null = null> (
     props: {
       activeClass: {
         type: String,
-      } as any as PropValidator<string>,
+      } as any as PropType<string>,
       disabled: Boolean,
     },
 

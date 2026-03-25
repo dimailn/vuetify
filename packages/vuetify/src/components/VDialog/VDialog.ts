@@ -25,7 +25,7 @@ import {
 } from '../../util/helpers'
 
 // Types
-import { VNode, VNodeData } from 'vue'
+import type { VNode, VNodeData } from '../../types/vue-internal'
 
 const baseMixins = mixins(
   Dependent,

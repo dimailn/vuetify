@@ -1,18 +1,7 @@
 /* eslint-disable max-len */
 
-import {
-  Component,
-  ComponentOptions,
-  FunctionalComponentOptions,
-  VNodeData,
-} from 'vue'
-import { CombinedVueInstance, Vue } from 'vue/types/vue'
-import {
-  RecordPropsDefinition,
-  ThisTypedComponentOptionsWithArrayProps,
-  ThisTypedComponentOptionsWithRecordProps,
-} from 'vue/types/options'
-import { TouchStoredHandlers } from './directives/touch'
+import type { Component } from 'vue'
+import type { TouchStoredHandlers } from './directives/touch'
 
 declare global {
   interface Window {
@@ -81,83 +70,8 @@ declare global {
   function parseInt(s: string | number, radix?: number): number
   function parseFloat(string: string | number): number
 
-  export type Dictionary<T> = Record<string, T>
-
-  export const __VUETIFY_VERSION__: string
-  export const __REQUIRED_VUE__: string
+  type Dictionary<T> = Record<string, T>
 }
 
-declare module 'vue/types/vnode' {
-  export interface VNodeData {
-    model?: {
-      callback: (v: any) => void
-      expression: string
-      value: any
-    }
-  }
-}
-
-declare module 'vue/types/options' {
-  interface ComponentOptions<V extends Vue> {
-    // Vue Meta 3 использует новый API, больше не используется метод head
-    // head?: MetaInfo | (() => MetaInfo)
-  }
-}
-
-declare module 'vue/types/vue' {
-  export type OptionsVue<Instance extends Vue, Data, Methods, Computed, Props, SetupBindings, Options = {}> = Component<
-    CombinedVueInstance<Instance, Data, Methods, Computed, Props, SetupBindings> & Vue,
-    Options
-  >
-
-  export interface Vue {
-    readonly _uid: number
-    readonly _isDestroyed: boolean
-
-    /** bindObjectProps */
-    _b (
-      data: VNodeData,
-      tag: string,
-      value: Dictionary<any> | Dictionary<any>[],
-      asProp?: boolean,
-      isSync?: boolean
-    ): VNodeData
-
-    /** bindObjectListeners */
-     _g (data: VNodeData, value: {}): VNodeData
-  }
-
-  export interface RawComponentOptions<
-    V extends Vue = Vue,
-    Data = {} | undefined,
-    Methods = {} | undefined,
-    Computed = {} | undefined,
-    Props = {} | undefined
-  > {
-    name?: string
-    data: Data
-    methods: Methods
-    computed: {
-      [C in keyof Computed]: (this: V) => Computed[C]
-    }
-    props: Props
-  }
-
-  interface VueConstructor<
-    V extends Vue = Vue,
-    Options = Record<string, any>
-  > {
-    version: string
-    /* eslint-disable-next-line camelcase */
-    $_vuetify_subcomponents?: Record<string, Component>
-    /* eslint-disable-next-line camelcase */
-    $_vuetify_installed?: true
-    options: Options
-
-    extend<Data, Methods, Computed, Options, SetupBindings, PropNames extends string = never> (options?: ThisTypedComponentOptionsWithArrayProps<V, Data, Methods, Computed, PropNames, SetupBindings> & Options): OptionsVue<V, Data, Methods, Computed, Record<PropNames, any>, SetupBindings, Options>
-    extend<Data, Methods, Computed, Props, Options, SetupBindings> (options?: ThisTypedComponentOptionsWithRecordProps<V, Data, Methods, Computed, Props, SetupBindings> & Options): OptionsVue<V, Data, Methods, Computed, Props, SetupBindings, Options>
-    extend<Options, SetupBindings, PropNames extends string = never> (definition: FunctionalComponentOptions<Record<PropNames, any>, PropNames[]> & Options): OptionsVue<V, {}, {}, {}, Record<PropNames, any>, SetupBindings, Options>
-    extend<Props, Options> (definition: FunctionalComponentOptions<Props, RecordPropsDefinition<Props>> & Options): OptionsVue<V, {}, {}, {}, Props, Options>
-    extend<V extends Vue = Vue> (options?: ComponentOptions<V> & Options): OptionsVue<V, {}, {}, {}, {}, {}, Options>
-  }
-}
+declare const __VUETIFY_VERSION__: string
+declare const __REQUIRED_VUE__: string

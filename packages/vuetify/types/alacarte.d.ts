@@ -1,7 +1,8 @@
 declare module 'vuetify/es5/install' {
-  import { Component } from 'vue'
+  import type { App } from 'vue'
+  import type { VuetifyUseOptions } from 'vuetify'
 
-  const install: (Vue: Component, args: {}) => void
+  const install: (app: App, args?: VuetifyUseOptions) => void
 
   export { install }
 }

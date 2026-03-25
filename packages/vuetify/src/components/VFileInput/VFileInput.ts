@@ -8,7 +8,7 @@ import VTextField from '../VTextField'
 import { VChip } from '../VChip'
 
 // Types
-import { PropValidator } from 'vue/types/options'
+import { PropType } from 'vue'
 
 // Utilities
 import { deepEqual, humanReadableFileSize, wrapInArray } from '../../util/helpers'
@@ -59,7 +59,7 @@ export default defineComponent({
           [1000, 1024].includes(v)
         )
       },
-    } as PropValidator<boolean | 1000 | 1024>,
+    } as PropType<boolean | 1000 | 1024>,
     smallChips: Boolean,
     truncateLength: {
       type: [Number, String],
@@ -74,7 +74,7 @@ export default defineComponent({
       validator: val => {
         return wrapInArray(val).every(v => v != null && typeof v === 'object')
       },
-    } as PropValidator<File | File[]>,
+    } as PropType<File | File[]>,
   },
 
   emits: ['change', 'keydown', 'click:prepend'],

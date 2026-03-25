@@ -1,4 +1,5 @@
-import { h, VNode, PropType, VNodeData } from 'vue'
+import { h, VNode, PropType } from 'vue'
+import type { VNodeData } from '../../types/vue-internal'
 import './VTimePickerClock.sass'
 
 // Mixins
@@ -20,14 +21,7 @@ interface options {
   }
 }
 
-export default mixins<options &
-/* eslint-disable indent */
-  ExtractVue<[
-    typeof Colorable,
-    typeof Themeable
-  ]>
-/* eslint-enable indent */
->(
+export default mixins(
   Colorable,
   Themeable
 /* @vue/component */

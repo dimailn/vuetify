@@ -14,7 +14,7 @@ import {
 import { breaking } from '../../util/console'
 
 // Types
-import { PropValidator } from 'vue/types/options'
+import { PropType } from 'vue'
 import { defineComponent, h } from 'vue'
 
 /* @vue/component */
@@ -26,7 +26,7 @@ export default defineComponent({
     modelValue: {
       type: Array,
       default: () => ([0, 0]),
-    } as unknown as PropValidator<[number, number]>,
+    } as unknown as PropType<[number, number]>,
   },
 
   emits: ['update:modelValue', 'focus', 'blur', 'start', 'change'],

@@ -26,8 +26,9 @@ import { consoleError, breaking } from '../../util/console'
 
 // Types
 import mixins from '../../util/mixins'
-import { VNode, VNodeDirective, PropType, VNodeData, withDirectives, h } from 'vue'
-import { PropValidator } from 'vue/types/options'
+import { VNode, PropType, withDirectives, h } from 'vue'
+import type { VNodeDirective, VNodeData } from '../../types/vue-internal'
+import { PropType } from 'vue'
 import { SelectItemKey } from 'vuetify/types'
 
 export const defaultMenuProps = {
@@ -86,7 +87,7 @@ export default baseMixins.extend({
     items: {
       type: Array,
       default: () => [],
-    } as PropValidator<any[]>,
+    } as PropType<any[]>,
     itemColor: {
       type: String,
       default: 'primary',

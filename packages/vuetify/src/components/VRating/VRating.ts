@@ -19,7 +19,8 @@ import mixins from '../../util/mixins'
 import { breaking } from '../../util/console'
 
 // Types
-import { VNode, VNodeDirective, VNodeChildren } from 'vue'
+import { VNode, VNodeChildren } from 'vue'
+import type { VNodeDirective } from '../../types/vue-internal'
 
 type ItemSlotProps = {
   index: number

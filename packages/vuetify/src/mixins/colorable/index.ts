@@ -1,5 +1,5 @@
 import {defineComponent} from 'vue'
-import { VNodeData } from 'vue/types/vnode'
+import type { VNodeData } from '../../types/vue-internal'
 import { consoleError } from '../../util/console'
 import { isCssColor } from '../../util/colorUtils'
 

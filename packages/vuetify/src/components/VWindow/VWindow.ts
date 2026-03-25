@@ -3,7 +3,7 @@ import {h, withDirectives} from 'vue'
 import './VWindow.sass'
 
 // Types
-import { VNode, VNodeDirective } from 'vue/types/vnode'
+import type { VNode, VNodeDirective } from '../../types/vue-internal'
 import { PropType, defineComponent } from 'vue'
 import { TouchHandlers } from 'vuetify/types'
 

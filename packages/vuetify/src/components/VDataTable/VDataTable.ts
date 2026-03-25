@@ -1,8 +1,9 @@
 import './VDataTable.sass'
 
 // Types
-import { VNode, VNodeChildrenArrayContents, VNodeChildren, h } from 'vue'
-import { PropValidator } from 'vue/types/options'
+import { VNode, h } from 'vue'
+import type { VNodeChildrenArrayContents, VNodeChildren } from '../../types/vue-internal'
+import { PropType } from 'vue'
 import {
   DataTableHeader,
   DataTableFilterFunction,
@@ -106,7 +107,7 @@ export default mixins(
     headers: {
       type: Array,
       default: () => [],
-    } as PropValidator<DataTableHeader[]>,
+    } as PropType<DataTableHeader[]>,
     showSelect: Boolean,
     checkboxColor: String,
     color: String,
@@ -129,19 +130,19 @@ export default mixins(
     customFilter: {
       type: Function,
       default: defaultFilter,
-    } as PropValidator<typeof defaultFilter>,
+    } as PropType<typeof defaultFilter>,
     filterMode: {
       type: String,
       default: 'intersection',
-    } as PropValidator<DataTableFilterMode>,
+    } as PropType<DataTableFilterMode>,
     itemClass: {
       type: [String, Function],
       default: () => '',
-    } as PropValidator<RowClassFunction | string>,
+    } as PropType<RowClassFunction | string>,
     itemStyle: {
       type: [String, Function],
       default: () => '',
-    } as PropValidator<RowStyleFunction | string>,
+    } as PropType<RowStyleFunction | string>,
     loaderHeight: {
       type: [Number, String],
       default: 4,

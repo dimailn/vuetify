@@ -21,7 +21,8 @@ import mergeData from '../../util/mergeData'
 import { breaking } from '../../util/console'
 
 // Types
-import { VNode, VNodeData, PropType, h, getCurrentInstance } from 'vue'
+import { VNode, PropType, h, getCurrentInstance } from 'vue'
+import type { VNodeData } from '../../types/vue-internal'
 import mixins from '../../util/mixins'
 import { InputValidationRule } from 'vuetify/types'
 

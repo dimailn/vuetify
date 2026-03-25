@@ -1,5 +1,5 @@
 import {defineComponent} from 'vue'
-import { PropValidator } from 'vue/types/options'
+import { PropType } from 'vue'
 import { deepEqual } from '../../util/helpers'
 
 export default defineComponent({
@@ -8,6 +8,6 @@ export default defineComponent({
     valueComparator: {
       type: Function,
       default: deepEqual,
-    } as PropValidator<typeof deepEqual>,
+    } as PropType<typeof deepEqual>,
   },
 })

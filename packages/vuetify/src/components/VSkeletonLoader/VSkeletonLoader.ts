@@ -13,7 +13,7 @@ import mixins from '../../util/mixins'
 // Types
 import { VNode } from 'vue'
 import { getSlot } from '../../util/helpers'
-import { PropValidator } from 'vue/types/options'
+import { PropType } from 'vue'
 
 export interface HTMLSkeletonLoaderElement extends HTMLElement {
   _initialStyle?: {
@@ -43,7 +43,7 @@ export default mixins(
     types: {
       type: Object,
       default: () => ({}),
-    } as PropValidator<Record<string, string>>,
+    } as PropType<Record<string, string>>,
   },
 
   computed: {

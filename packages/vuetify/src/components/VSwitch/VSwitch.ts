@@ -17,7 +17,8 @@ import VProgressCircular from '../VProgressCircular/VProgressCircular'
 import { getSlot, keyCodes } from '../../util/helpers'
 
 // Types
-import { defineComponent, VNode, VNodeData, h } from 'vue'
+import { defineComponent, VNode, h } from 'vue'
+import type { VNodeData } from '../../types/vue-internal'
 import mergeData from '../../util/mergeData'
 
 /* @vue/component */

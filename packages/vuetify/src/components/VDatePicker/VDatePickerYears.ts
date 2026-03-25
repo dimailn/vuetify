@@ -19,14 +19,7 @@ interface options {
   $el: HTMLElement
 }
 
-export default mixins<options &
-/* eslint-disable indent */
-  ExtractVue<[
-    typeof Colorable,
-    typeof Localable
-  ]>
-/* eslint-enable indent */
->(
+export default mixins(
   Colorable,
   Localable
 /* @vue/component */
