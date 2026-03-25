@@ -505,17 +505,20 @@ describe('AppBar.ts', () => {
   })
 
   it('should handle scroll target', () => {
-    const originalWarn = console.warn
-    jest.spyOn(console, 'warn').mockImplementation()
+    const target = document.createElement('div')
+    target.id = 'test-target'
+    document.body.appendChild(target)
 
-    const wrapper = mountFunction({
-      props: {
-        scrollTarget: '#test-target'
-      }
-    })
+    try {
+      const wrapper = mountFunction({
+        props: {
+          scrollTarget: '#test-target'
+        }
+      })
 
-    expect(wrapper.vm.scrollTarget).toBe('#test-target')
-
-    console.warn = originalWarn
+      expect(wrapper.vm.scrollTarget).toBe('#test-target')
+    } finally {
+      document.body.removeChild(target)
+    }
   })
 })
