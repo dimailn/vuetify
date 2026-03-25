@@ -10,13 +10,13 @@ import {
   mount,
   VueWrapper,
   MountingOptions,
-  enableAutoUnmount,
+  enableAutoUnmount
 } from '@vue/test-utils'
 
 function createBtn (val = null) {
   const options = {
     attrs: {},
-    props: { text: true },
+    props: { text: true }
   }
   if (val) options.attrs = { value: val }
 
@@ -24,7 +24,7 @@ function createBtn (val = null) {
     name: 'test',
     render () {
       return h(VBtn, options)
-    },
+    }
   }
 }
 
@@ -43,12 +43,12 @@ describe('VBottomNavigation.ts', () => {
               application: {
                 bottom: 0,
                 register: () => {},
-                unregister: () => {},
-              },
-            },
-          },
+                unregister: () => {}
+              }
+            }
+          }
         },
-        ...options,
+        ...options
       })
     }
   })
@@ -57,8 +57,8 @@ describe('VBottomNavigation.ts', () => {
     const wrapper = mountFunction({
       props: { modelValue: true },
       slots: {
-        default: [VBtn, VBtn],
-      },
+        default: [VBtn, VBtn]
+      }
     })
 
     await wrapper.vm.$nextTick()
@@ -75,11 +75,11 @@ describe('VBottomNavigation.ts', () => {
   it('should update application when height or modelValue changes', async () => {
     const wrapper = mountFunction({
       props: {
-        app: true,
+        app: true
       },
       slots: {
-        default: [VBtn, VBtn],
-      },
+        default: [VBtn, VBtn]
+      }
     })
 
     const updateApplication = wrapper.vm.updateApplication
@@ -97,7 +97,7 @@ describe('VBottomNavigation.ts', () => {
 
   it('should fire an event and activate/deactivate when reached threshold and using hideOnScroll', async () => {
     const wrapper = mountFunction({
-      props: { hideOnScroll: true },
+      props: { hideOnScroll: true }
     })
 
     expect(wrapper.emitted('update:modelValue')).toBeFalsy()
@@ -126,11 +126,11 @@ describe('VBottomNavigation.ts', () => {
   it('should fire change event when updated', async () => {
     const wrapper = mountFunction({
       props: {
-        app: true,
+        app: true
       },
       slots: {
-        default: () => [h(VBtn, { value: 1 }), h(VBtn, { value: 2 })],
-      },
+        default: () => [h(VBtn, { value: 1 }), h(VBtn, { value: 2 })]
+      }
     })
 
     expect(wrapper.emitted('change')).toBeFalsy()

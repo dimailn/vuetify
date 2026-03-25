@@ -1,4 +1,4 @@
-import {h, withDirectives} from 'vue'
+import { h, withDirectives, PropType } from 'vue'
 // Components
 import VIcon from '../VIcon'
 
@@ -15,7 +15,6 @@ import { getSlot, keyCodes } from '../../util/helpers'
 
 // Types
 import { VNode } from 'vue'
-import { PropType } from 'vue'
 
 type VuetifyStepperRuleValidator = () => string | boolean
 
@@ -31,39 +30,38 @@ type options = {
 export default baseMixins.extend({
   name: 'v-stepper-step',
 
-
   inject: ['stepClick'],
 
   props: {
     color: {
       type: String,
-      default: 'primary',
+      default: 'primary'
     },
     complete: Boolean,
     completeIcon: {
       type: String,
-      default: '$complete',
+      default: '$complete'
     },
     editable: Boolean,
     editIcon: {
       type: String,
-      default: '$edit',
+      default: '$edit'
     },
     errorIcon: {
       type: String,
-      default: '$error',
+      default: '$error'
     },
     rules: {
       type: Array,
-      default: () => [],
+      default: () => []
     } as unknown as PropType<VuetifyStepperRuleValidator[]>,
-    step: [Number, String],
+    step: [Number, String]
   },
 
   data () {
     return {
       isActive: false,
-      isInactive: true,
+      isInactive: true
     }
   },
 
@@ -75,12 +73,12 @@ export default baseMixins.extend({
         'v-stepper__step--editable': this.editable,
         'v-stepper__step--inactive': this.isInactive,
         'v-stepper__step--error error--text': this.hasError,
-        'v-stepper__step--complete': this.complete,
+        'v-stepper__step--complete': this.complete
       }
     },
     hasError (): boolean {
       return this.rules.some(validate => validate() !== true)
-    },
+    }
   },
 
   mounted () {
@@ -106,14 +104,14 @@ export default baseMixins.extend({
     },
     genLabel () {
       return h('div', {
-        class: 'v-stepper__label',
+        class: 'v-stepper__label'
       }, getSlot(this))
     },
     genStep () {
       const color = (!this.hasError && (this.complete || this.isActive)) ? this.color : false
 
       return h('span', this.setBackgroundColor(color, {
-        class: 'v-stepper__step__step',
+        class: 'v-stepper__step__step'
       }), this.genStepContent())
     },
     genStepContent () {
@@ -141,7 +139,7 @@ export default baseMixins.extend({
     toggle (step: number | string) {
       this.isActive = step.toString() === this.step.toString()
       this.isInactive = Number(step) < Number(this.step)
-    },
+    }
   },
 
   render (): VNode {
@@ -149,12 +147,12 @@ export default baseMixins.extend({
       tabindex: this.editable ? 0 : -1,
       class: this.classes,
       onClick: this.click,
-      onKeydown: this.keyboardClick,
+      onKeydown: this.keyboardClick
     }, [
       this.genStep(),
-      this.genLabel(),
+      this.genLabel()
     ]), [
       [ripple, this.editable]
     ])
-  },
+  }
 })

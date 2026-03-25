@@ -2,14 +2,14 @@ import Colorable from '../'
 import {
   mount,
   MountingOptions,
-  VueWrapper,
+  VueWrapper
 } from '@vue/test-utils'
 import { defineComponent } from 'vue'
 
 describe('colorable.ts', () => {
   const Mock = defineComponent({
     mixins: [Colorable],
-    render: () => null,
+    render: () => null
   })
 
   type Instance = InstanceType<typeof Mock>
@@ -26,13 +26,13 @@ describe('colorable.ts', () => {
 
     expect(wrapper.vm.setBackgroundColor('foo', {})).toEqual({
       class: {
-        foo: true,
-      },
+        foo: true
+      }
     })
     expect(wrapper.vm.setBackgroundColor('foo darken-5', {})).toEqual({
       class: {
-        'foo darken-5': true,
-      },
+        'foo darken-5': true
+      }
     })
   })
 
@@ -41,14 +41,14 @@ describe('colorable.ts', () => {
 
     expect(wrapper.vm.setTextColor('foo', {})).toEqual({
       class: {
-        'foo--text': true,
-      },
+        'foo--text': true
+      }
     })
     expect(wrapper.vm.setTextColor('foo darken-5', {})).toEqual({
       class: {
         'foo--text': true,
-        'text--darken-5': true,
-      },
+        'text--darken-5': true
+      }
     })
   })
 
@@ -58,14 +58,14 @@ describe('colorable.ts', () => {
     expect(wrapper.vm.setBackgroundColor('#01f', {})).toEqual({
       style: {
         'background-color': '#01f',
-        'border-color': '#01f',
-      },
+        'border-color': '#01f'
+      }
     })
     expect(wrapper.vm.setBackgroundColor('rgba(0, 1, 2, 0.5)', {})).toEqual({
       style: {
         'background-color': 'rgba(0, 1, 2, 0.5)',
-        'border-color': 'rgba(0, 1, 2, 0.5)',
-      },
+        'border-color': 'rgba(0, 1, 2, 0.5)'
+      }
     })
   })
 
@@ -75,14 +75,14 @@ describe('colorable.ts', () => {
     expect(wrapper.vm.setTextColor('#01f', {})).toEqual({
       style: {
         color: '#01f',
-        'caret-color': '#01f',
-      },
+        'caret-color': '#01f'
+      }
     })
     expect(wrapper.vm.setTextColor('rgba(0, 1, 2, 0.5)', {})).toEqual({
       style: {
         color: 'rgba(0, 1, 2, 0.5)',
-        'caret-color': 'rgba(0, 1, 2, 0.5)',
-      },
+        'caret-color': 'rgba(0, 1, 2, 0.5)'
+      }
     })
   })
 
@@ -93,8 +93,8 @@ describe('colorable.ts', () => {
     expect(wrapper.vm.setTextColor('var(--foo-color)', {})).toEqual({
       style: {
         color: 'var(--foo-color)',
-        'caret-color': 'var(--foo-color)',
-      },
+        'caret-color': 'var(--foo-color)'
+      }
     })
   })
 
@@ -105,8 +105,8 @@ describe('colorable.ts', () => {
     expect(wrapper.vm.setBackgroundColor('var(--foo-color)', {})).toEqual({
       style: {
         'background-color': 'var(--foo-color)',
-        'border-color': 'var(--foo-color)',
-      },
+        'border-color': 'var(--foo-color)'
+      }
     })
   })
 })

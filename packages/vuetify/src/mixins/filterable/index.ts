@@ -1,4 +1,4 @@
-import {defineComponent} from 'vue'
+import { defineComponent } from 'vue'
 
 /* @vue/component */
 export default defineComponent({
@@ -7,7 +7,7 @@ export default defineComponent({
   props: {
     noDataText: {
       type: String,
-      default: '$vuetify.noDataText',
-    },
-  },
+      default: '$vuetify.noDataText'
+    }
+  }
 })

@@ -1,4 +1,4 @@
-import {h} from 'vue'
+import { h } from 'vue'
 // Components
 import { VExpandTransition } from '../transitions'
 import { VIcon } from '../VIcon'
@@ -31,64 +31,64 @@ export const VTreeviewNodeProps = {
   activatable: Boolean,
   activeClass: {
     type: String,
-    default: 'v-treeview-node--active',
+    default: 'v-treeview-node--active'
   },
   color: {
     type: String,
-    default: 'primary',
+    default: 'primary'
   },
   disablePerNode: Boolean,
   expandIcon: {
     type: String,
-    default: '$subgroup',
+    default: '$subgroup'
   },
   indeterminateIcon: {
     type: String,
-    default: '$checkboxIndeterminate',
+    default: '$checkboxIndeterminate'
   },
   itemChildren: {
     type: String,
-    default: 'children',
+    default: 'children'
   },
   itemDisabled: {
     type: String,
-    default: 'disabled',
+    default: 'disabled'
   },
   itemKey: {
     type: String,
-    default: 'id',
+    default: 'id'
   },
   itemText: {
     type: String,
-    default: 'name',
+    default: 'name'
   },
   loadChildren: Function as PropType<(item: any) => Promise<void>>,
   loadingIcon: {
     type: String,
-    default: '$loading',
+    default: '$loading'
   },
   offIcon: {
     type: String,
-    default: '$checkboxOff',
+    default: '$checkboxOff'
   },
   onIcon: {
     type: String,
-    default: '$checkboxOn',
+    default: '$checkboxOn'
   },
   openOnClick: Boolean,
   rounded: Boolean,
   selectable: Boolean,
   selectedColor: {
     type: String,
-    default: 'accent',
+    default: 'accent'
   },
   shaped: Boolean,
   transition: Boolean,
   selectionType: {
     type: String as PropType<'leaf' | 'independent'>,
     default: 'leaf',
-    validator: (v: string) => ['leaf', 'independent'].includes(v),
-  },
+    validator: (v: string) => ['leaf', 'independent'].includes(v)
+  }
 }
 
 /* @vue/component */
@@ -97,18 +97,18 @@ const VTreeviewNode = baseMixins.extend({
 
   inject: {
     treeview: {
-      default: null,
-    },
+      default: null
+    }
   },
 
   props: {
     level: Number,
     item: {
       type: Object,
-      default: () => null,
+      default: () => null
     } as unknown as PropType<Record<string, unknown> | null>,
     parentIsDisabled: Boolean,
-    ...VTreeviewNodeProps,
+    ...VTreeviewNodeProps
   },
 
   data: () => ({
@@ -117,7 +117,7 @@ const VTreeviewNode = baseMixins.extend({
     isIndeterminate: false, // Node has at least one selected child
     isLoading: false,
     isOpen: false, // Node is open/expanded
-    isSelected: false, // Node is selected (checkbox)
+    isSelected: false // Node is selected (checkbox)
   }),
 
   computed: {
@@ -144,7 +144,7 @@ const VTreeviewNode = baseMixins.extend({
         selected: this.isSelected,
         indeterminate: this.isIndeterminate,
         active: this.isActive,
-        open: this.isOpen,
+        open: this.isOpen
       }
     },
     computedIcon (): string {
@@ -154,7 +154,7 @@ const VTreeviewNode = baseMixins.extend({
     },
     hasChildren (): boolean {
       return !!this.children && (!!this.children.length || !!this.loadChildren)
-    },
+    }
   },
 
   created () {
@@ -191,39 +191,39 @@ const VTreeviewNode = baseMixins.extend({
       else children.push(this.text)
 
       return h('div', {
-        class: 'v-treeview-node__label',
+        class: 'v-treeview-node__label'
       }, children)
     },
     genPrependSlot () {
       if (!this.$slots.prepend) return null
 
       return h('div', {
-        class: 'v-treeview-node__prepend',
+        class: 'v-treeview-node__prepend'
       }, this.$slots.prepend(this.scopedProps))
     },
     genAppendSlot () {
       if (!this.$slots.append) return null
 
       return h('div', {
-        class: 'v-treeview-node__append',
+        class: 'v-treeview-node__append'
       }, this.$slots.append(this.scopedProps))
     },
     genContent () {
       const children = [
         this.genPrependSlot(),
         this.genLabel(),
-        this.genAppendSlot(),
+        this.genAppendSlot()
       ]
 
       return h('div', {
-        class: 'v-treeview-node__content',
+        class: 'v-treeview-node__content'
       }, children)
     },
     genToggle () {
       return h(VIcon, {
         class: ['v-treeview-node__toggle', {
           'v-treeview-node__toggle--open': this.isOpen,
-          'v-treeview-node__toggle--loading': this.isLoading,
+          'v-treeview-node__toggle--loading': this.isLoading
         }],
         onClick: (e: MouseEvent) => {
           e.stopPropagation()
@@ -254,12 +254,12 @@ const VTreeviewNode = baseMixins.extend({
               this.treeview.emitSelected()
             })
           })
-        },
+        }
       }, () => [this.computedIcon])
     },
     genLevel (level: number) {
       return createRange(level).map(() => h('div', {
-        class: 'v-treeview-node__level',
+        class: 'v-treeview-node__level'
       }))
     },
     genNode () {
@@ -277,7 +277,7 @@ const VTreeviewNode = baseMixins.extend({
 
       return h('div', this.setTextColor(this.isActive && this.color, {
         class: ['v-treeview-node__root', {
-          [this.activeClass]: this.isActive,
+          [this.activeClass]: this.isActive
         }],
         onClick: () => {
           if (this.openOnClick && this.hasChildren) {
@@ -316,7 +316,7 @@ const VTreeviewNode = baseMixins.extend({
         shaped: this.shaped,
         level: this.level + 1,
         selectionType: this.selectionType,
-        parentIsDisabled,
+        parentIsDisabled
       }, this.$slots)
     },
     genChildrenWrapper () {
@@ -325,12 +325,12 @@ const VTreeviewNode = baseMixins.extend({
       const children = [this.children.map(c => this.genChild(c, this.disabled))]
 
       return h('div', {
-        class: 'v-treeview-node__children',
+        class: 'v-treeview-node__children'
       }, children)
     },
     genTransition () {
       return h(VExpandTransition, {}, () => [this.genChildrenWrapper()])
-    },
+    }
   },
 
   render (): VNode {
@@ -346,11 +346,11 @@ const VTreeviewNode = baseMixins.extend({
         'v-treeview-node--disabled': this.disabled,
         'v-treeview-node--rounded': this.rounded,
         'v-treeview-node--shaped': this.shaped,
-        'v-treeview-node--selected': this.isSelected,
+        'v-treeview-node--selected': this.isSelected
       }],
-      'aria-expanded': String(this.isOpen),
+      'aria-expanded': String(this.isOpen)
     }, children)
-  },
+  }
 })
 
 export default VTreeviewNode

@@ -3,7 +3,7 @@ export default {
   close: 'Zapri',
   dataIterator: {
     noResultsText: 'Ni iskanega zapisa',
-    loadingText: 'Nalaganje...',
+    loadingText: 'Nalaganje...'
   },
   dataTable: {
     itemsPerPageText: 'Vrstic na stran:',
@@ -13,9 +13,9 @@ export default {
       sortNone: 'Ni razvrščeno.',
       activateNone: 'Aktivirajte za odstranitev razvrščanja.',
       activateDescending: 'Aktivirajte za padajoče razvrščanje.',
-      activateAscending: 'Aktivirajte za naraščajoče razvrščanje.',
+      activateAscending: 'Aktivirajte za naraščajoče razvrščanje.'
     },
-    sortBy: 'Razvrsti po',
+    sortBy: 'Razvrsti po'
   },
   dataFooter: {
     itemsPerPageText: 'Predmetov na stran:',
@@ -24,38 +24,38 @@ export default {
     prevPage: 'Prejšnja stran',
     firstPage: 'Prva stran',
     lastPage: 'Zadnja stran',
-    pageText: '{0}-{1} od {2}',
+    pageText: '{0}-{1} od {2}'
   },
   datePicker: {
     itemsSelected: '{0} izbrano/-ih',
     nextMonthAriaLabel: 'Naslednji mesec',
     nextYearAriaLabel: 'Naslednje leto',
     prevMonthAriaLabel: 'Prejšnji mesec',
-    prevYearAriaLabel: 'Prejšnje leto',
+    prevYearAriaLabel: 'Prejšnje leto'
   },
   noDataText: 'Ni podatkov',
   carousel: {
     prev: 'Prejšnji prikaz',
     next: 'Naslednji prikaz',
     ariaLabel: {
-      delimiter: 'Carousel slide {0} of {1}',
-    },
+      delimiter: 'Carousel slide {0} of {1}'
+    }
   },
   calendar: {
-    moreEvents: 'Še {0}',
+    moreEvents: 'Še {0}'
   },
   input: {
     clear: 'Clear {0}',
     prependAction: '{0} prepended action',
-    appendAction: '{0} appended action',
+    appendAction: '{0} appended action'
   },
   fileInput: {
     counter: '{0} datotek',
-    counterSize: '{0} datotek ({1} skupno)',
+    counterSize: '{0} datotek ({1} skupno)'
   },
   timePicker: {
     am: 'AM',
-    pm: 'PM',
+    pm: 'PM'
   },
   pagination: {
     ariaLabel: {
@@ -63,13 +63,13 @@ export default {
       next: 'Naslednja stran',
       previous: 'Prejšnja stran',
       page: 'Pojdi na stran {0}',
-      currentPage: 'Trenutna stran, stran {0}',
-    },
+      currentPage: 'Trenutna stran, stran {0}'
+    }
   },
   rating: {
     ariaLabel: {
-      icon: 'Rating {0} of {1}',
-    },
+      icon: 'Rating {0} of {1}'
+    }
   },
-  loading: 'Loading...',
+  loading: 'Loading...'
 }

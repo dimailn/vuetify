@@ -1,4 +1,4 @@
-import {h} from 'vue'
+import { h } from 'vue'
 // Mixins
 import Colorable from '../../mixins/colorable'
 
@@ -14,7 +14,7 @@ export default mixins(Colorable).extend({
 
   render (): VNode {
     return h('div', this.setBackgroundColor(this.color, {
-      class: 'v-tabs-slider',
+      class: 'v-tabs-slider'
     }))
-  },
+  }
 })

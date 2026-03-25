@@ -6,7 +6,7 @@ import {
   mount,
   MountingOptions,
   VueWrapper,
-  enableAutoUnmount,
+  enableAutoUnmount
 } from '@vue/test-utils'
 import { touch } from '../../../../test'
 
@@ -26,8 +26,8 @@ describe('VSwitch.ts', () => {
     const wrapper = mountFunction({
       props: {
         modelValue: false,
-        ripple: false,
-      },
+        ripple: false
+      }
     })
 
     expect(wrapper.findAll('.v-input--selection-controls__ripple')).toHaveLength(0)
@@ -43,8 +43,8 @@ describe('VSwitch.ts', () => {
   it('should emit change event on swipe', async () => {
     const wrapper = mountFunction({
       props: {
-        modelValue: false,
-      },
+        modelValue: false
+      }
     })
 
     touch(wrapper.find('.v-input--selection-controls__ripple')).start(0, 0).end(20, 0)
@@ -59,8 +59,8 @@ describe('VSwitch.ts', () => {
   it('should emit change event on key events', async () => {
     const wrapper = mountFunction({
       props: {
-        modelValue: false,
-      },
+        modelValue: false
+      }
     })
 
     const input = wrapper.find('input')
@@ -82,8 +82,8 @@ describe('VSwitch.ts', () => {
   it('should not emit change event on swipe when not active', async () => {
     const wrapper = mountFunction({
       props: {
-        modelValue: false,
-      },
+        modelValue: false
+      }
     })
 
     touch(wrapper.find('.v-input--selection-controls__ripple')).start(0, 0).end(-20, 0)
@@ -97,8 +97,8 @@ describe('VSwitch.ts', () => {
   it('should render element with loader and match the snapshot', async () => {
     const wrapper = mountFunction({
       props: {
-        loading: true,
-      },
+        loading: true
+      }
     })
 
     expect(wrapper.html()).toMatchSnapshot()

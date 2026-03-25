@@ -9,7 +9,7 @@ import {
   humanReadableFileSize,
   sortItems,
   createSimpleFunctional,
-  normalizeClasses,
+  normalizeClasses
 } from '../helpers'
 import { mount } from '@vue/test-utils'
 import { defineComponent, createApp, h } from 'vue'
@@ -23,7 +23,7 @@ describe('createSimpleFunctional', () => {
   it('should render with a user-defined tag', () => {
     const component = createSimpleFunctional('v-test', 'pre')
     const wrapper = mount(component, {
-      props: { tag: 'h1' },
+      props: { tag: 'h1' }
     })
     expect(wrapper.html()).toMatchSnapshot()
   })
@@ -137,12 +137,12 @@ describe('helpers', () => {
       a: 'foo',
       'b.a': 'foobar',
       b: {
-        a: 1,
+        a: 1
       },
       'c.d': undefined,
       c: {
-        d: 'bar',
-      },
+        d: 'bar'
+      }
     }
 
     expect(getObjectValueByPath(obj, 'a')).toEqual('foo')
@@ -155,14 +155,14 @@ describe('helpers', () => {
       a: {
         b: {
           c: 1,
-          d: 2,
+          d: 2
         },
         e: [
           { f: 'f' },
-          'e1',
-        ],
+          'e1'
+        ]
       },
-      g: null,
+      g: null
     }
 
     expect(getNestedValue(obj, ['a', 'b', 'c'])).toEqual(1)
@@ -191,13 +191,13 @@ describe('helpers', () => {
   it('should get property from items', () => {
     const obj = {
       a: {
-        b: 1,
+        b: 1
       },
       c: [2, 3, { d: 'd' }],
       'x.y': 'comp',
       x: {
-        y: 'nested',
-      },
+        y: 'nested'
+      }
     }
     expect(getPropertyFromItem(obj, 'a.b')).toEqual(1)
     expect(getPropertyFromItem(obj, 'c.0')).toEqual(2)
@@ -238,7 +238,7 @@ describe('helpers', () => {
 
       const TestComponent = defineComponent({
         components: { foo: FooComponent },
-        template: `<foo ref="foo"><template slot="bar">hello</template></foo>`,
+        template: `<foo ref="foo"><template slot="bar">hello</template></foo>`
       })
 
       const wrapper = mount(TestComponent)
@@ -255,7 +255,7 @@ describe('helpers', () => {
 
       const TestComponent = defineComponent({
         components: { foo: FooComponent },
-        template: `<foo ref="foo"><template slot="bar" slot-scope="data">hello</template></foo>`,
+        template: `<foo ref="foo"><template slot="bar" slot-scope="data">hello</template></foo>`
       })
 
       const wrapper = mount(TestComponent)
@@ -271,7 +271,7 @@ describe('helpers', () => {
 
       const TestComponent = defineComponent({
         components: { foo: FooComponent },
-        template: `<foo ref="foo"><template #bar>hello</template></foo>`,
+        template: `<foo ref="foo"><template #bar>hello</template></foo>`
       })
 
       const wrapper = mount(TestComponent)
@@ -287,7 +287,7 @@ describe('helpers', () => {
 
       const TestComponent = defineComponent({
         components: { foo: FooComponent },
-        template: `<foo ref="foo"><template #bar="data">hello</template></foo>`,
+        template: `<foo ref="foo"><template #bar="data">hello</template></foo>`
       })
 
       const wrapper = mount(TestComponent)
@@ -304,7 +304,7 @@ describe('helpers', () => {
 
       const TestComponent = defineComponent({
         components: { foo: FooComponent },
-        template: `<foo ref="foo"><template #bar>hello</template></foo>`,
+        template: `<foo ref="foo"><template #bar>hello</template></foo>`
       })
 
       const wrapper = mount(TestComponent)

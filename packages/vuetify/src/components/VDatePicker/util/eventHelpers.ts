@@ -5,7 +5,7 @@ export function createItemTypeListeners (instance: any, itemTypeSuffix: string) 
 
   const eventAttrs = [
     `onClick${itemTypeSuffix}`,
-    `onDblclick${itemTypeSuffix}`,
+    `onDblclick${itemTypeSuffix}`
   ]
 
   eventAttrs.forEach(attrName => {
@@ -23,7 +23,7 @@ export function createItemTypeNativeListeners (instance: any, mouseEventType: st
 
   const eventAttrs = [
     `onClick${mouseEventType.charAt(0).toUpperCase() + mouseEventType.slice(1)}`,
-    `onDblclick${mouseEventType.charAt(0).toUpperCase() + mouseEventType.slice(1)}`,
+    `onDblclick${mouseEventType.charAt(0).toUpperCase() + mouseEventType.slice(1)}`
   ]
 
   eventAttrs.forEach(attrName => {

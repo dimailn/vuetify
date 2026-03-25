@@ -1,4 +1,4 @@
-import {h} from 'vue'
+import { h } from 'vue'
 // Styles
 import './VDivider.sass'
 
@@ -9,14 +9,13 @@ import { VNode, defineComponent } from 'vue'
 import Themeable from '../../mixins/themeable'
 import mergeData from '../../util/mergeData'
 
-
 export default defineComponent({
   name: 'v-divider',
   extends: Themeable,
 
   props: {
     inset: Boolean,
-    vertical: Boolean,
+    vertical: Boolean
   },
 
   render (): VNode {
@@ -30,11 +29,11 @@ export default defineComponent({
         'v-divider': true,
         'v-divider--inset': this.inset,
         'v-divider--vertical': this.vertical,
-        ...this.themeClasses,
+        ...this.themeClasses
       },
       role: 'separator',
       'aria-orientation': orientation,
       ...this.$listeners
     }, this.$attrs))
-  },
+  }
 })

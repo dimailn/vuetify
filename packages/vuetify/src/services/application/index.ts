@@ -28,7 +28,7 @@ export class Application extends Service implements IApplication {
     insetFooter: {},
     right: {},
     bottom: {},
-    footer: {},
+    footer: {}
   }
 
   register (

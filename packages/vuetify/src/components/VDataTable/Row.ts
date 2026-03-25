@@ -24,7 +24,7 @@ export default defineComponent({
     headers: Array as PropType<DataTableHeader[]>,
     index: Number,
     item: Object,
-    rtl: Boolean,
+    rtl: Boolean
   },
 
   render (): VNode {
@@ -44,10 +44,9 @@ export default defineComponent({
           isMobile: false,
           header,
           index: props.index,
-          value,
+          value
         })))
-      }
-      else {
+      } else {
         children.push(value == null ? value : String(value))
       }
 
@@ -59,13 +58,13 @@ export default defineComponent({
             textAlign,
             header.cellClass,
             {
-              'v-data-table__divider': header.divider,
-            },
-          ],
+              'v-data-table__divider': header.divider
+            }
+          ]
         }, children)
         : children
     })
 
     return h('tr', data, columns)
-  },
+  }
 })

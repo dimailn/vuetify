@@ -3,7 +3,7 @@ export default {
   close: 'Lukk',
   dataIterator: {
     noResultsText: 'Fant ingen matchende elementer.',
-    loadingText: 'Laster elementer...',
+    loadingText: 'Laster elementer...'
   },
   dataTable: {
     itemsPerPageText: 'Rader per side:',
@@ -13,9 +13,9 @@ export default {
       sortNone: 'Ikke sortert.',
       activateNone: 'Aktiver for å fjerne sortering.',
       activateDescending: 'Aktiver for å sortere synkende.',
-      activateAscending: 'Aktiver for å sortere stigende.',
+      activateAscending: 'Aktiver for å sortere stigende.'
     },
-    sortBy: 'Sorter etter',
+    sortBy: 'Sorter etter'
   },
   dataFooter: {
     itemsPerPageText: 'Elementer per side:',
@@ -24,38 +24,38 @@ export default {
     prevPage: 'Forrige side',
     firstPage: 'Første side',
     lastPage: 'Siste side',
-    pageText: '{0}-{1} av {2}',
+    pageText: '{0}-{1} av {2}'
   },
   datePicker: {
     itemsSelected: '{0} valgt',
     nextMonthAriaLabel: 'Neste måned',
     nextYearAriaLabel: 'Neste år',
     prevMonthAriaLabel: 'Forrige måned',
-    prevYearAriaLabel: 'Forrige år',
+    prevYearAriaLabel: 'Forrige år'
   },
   noDataText: 'Ingen data er tilgjengelig',
   carousel: {
     prev: 'Forrige bilde',
     next: 'Neste bilde',
     ariaLabel: {
-      delimiter: 'Karusellbilde {0} av {1}',
-    },
+      delimiter: 'Karusellbilde {0} av {1}'
+    }
   },
   calendar: {
-    moreEvents: '{0} flere',
+    moreEvents: '{0} flere'
   },
   input: {
     clear: 'Clear {0}',
     prependAction: '{0} prepended action',
-    appendAction: '{0} appended action',
+    appendAction: '{0} appended action'
   },
   fileInput: {
     counter: '{0} filer',
-    counterSize: '{0} filer ({1} totalt)',
+    counterSize: '{0} filer ({1} totalt)'
   },
   timePicker: {
     am: 'AM',
-    pm: 'PM',
+    pm: 'PM'
   },
   pagination: {
     ariaLabel: {
@@ -63,13 +63,13 @@ export default {
       next: 'Neste side',
       previous: 'Forrige side',
       page: 'Gå til side {0}',
-      currentPage: 'Gjeldende side, side {0}',
-    },
+      currentPage: 'Gjeldende side, side {0}'
+    }
   },
   rating: {
     ariaLabel: {
-      icon: 'Rating {0} of {1}',
-    },
+      icon: 'Rating {0} of {1}'
+    }
   },
-  loading: 'Loading...',
+  loading: 'Loading...'
 }

@@ -33,10 +33,10 @@ const baseMixins = mixins(
   Intersectable({
     onVisible: [
       'onResize',
-      'tryAutofocus',
-    ],
+      'tryAutofocus'
+    ]
   }),
-  Loadable,
+  Loadable
 )
 type options = {
   $refs: {
@@ -60,7 +60,7 @@ export default baseMixins.extend({
     clearable: Boolean,
     clearIcon: {
       type: String,
-      default: '$clear',
+      default: '$clear'
     },
     counter: [Boolean, Number, String],
     counterValue: Function as PropType<(value: any) => number>,
@@ -82,8 +82,8 @@ export default baseMixins.extend({
     suffix: String,
     type: {
       type: String,
-      default: 'text',
-    },
+      default: 'text'
+    }
   },
 
   emits: ['update:modelValue', 'blur', 'focus', 'keydown', 'click:clear', 'click'],
@@ -95,7 +95,7 @@ export default baseMixins.extend({
     prependWidth: 0,
     initialValue: null,
     isBooted: false,
-    isClearing: false,
+    isClearing: false
   }),
 
   computed: {
@@ -116,7 +116,7 @@ export default baseMixins.extend({
         'v-text-field--outlined': this.outlined,
         'v-text-field--placeholder': this.placeholder,
         'v-text-field--rounded': this.rounded,
-        'v-text-field--shaped': this.shaped,
+        'v-text-field--shaped': this.shaped
       }
     },
     computedColor (): string | undefined {
@@ -145,7 +145,7 @@ export default baseMixins.extend({
       set (val: any) {
         this.lazyValue = val
         this.$emit('update:modelValue', this.lazyValue)
-      },
+      }
     },
     isDirty (): boolean {
       return this.lazyValue?.toString().length > 0 || this.badInput
@@ -177,20 +177,22 @@ export default baseMixins.extend({
 
       if (this.labelValue && this.prependWidth) offset -= this.prependWidth
 
-      return (this.$vuetify.rtl === this.reverse) ? {
-        left: offset,
-        right: 'auto',
-      } : {
-        left: 'auto',
-        right: offset,
-      }
+      return (this.$vuetify.rtl === this.reverse)
+        ? {
+            left: offset,
+            right: 'auto'
+          }
+        : {
+            left: 'auto',
+            right: offset
+          }
     },
     showLabel (): boolean {
       return this.hasLabel && !(this.isSingle && this.labelValue)
     },
     labelValue (): boolean {
       return this.isFocused || this.isLabelActive || this.persistentPlaceholder
-    },
+    }
   },
 
   watch: {
@@ -205,13 +207,13 @@ export default baseMixins.extend({
     isFocused: 'updateValue',
     modelValue (val) {
       this.lazyValue = val
-    },
+    }
   },
 
   created () {
     const breakingProps = [
       ['value', 'modelValue'],
-      ['onInput', 'onUpdate:modelValue'],
+      ['onInput', 'onUpdate:modelValue']
     ]
 
     /* istanbul ignore next */
@@ -309,12 +311,12 @@ export default baseMixins.extend({
       // We add an empty div because other controls depend on a ref to append inner
       if (!this.isDirty) {
         return this.genSlot('append', 'inner', [
-          h('div'),
+          h('div')
         ])
       }
 
       return this.genSlot('append', 'inner', [
-        this.genIcon('clear', this.clearableCallback),
+        this.genIcon('clear', this.clearableCallback)
       ])
     },
     genCounter () {
@@ -326,7 +328,7 @@ export default baseMixins.extend({
         dark: this.dark,
         light: this.light,
         max,
-        value: this.computedCounterValue,
+        value: this.computedCounterValue
       }
 
       return this.$slots.counter?.({ props }) ?? h(VCounter, props)
@@ -340,14 +342,14 @@ export default baseMixins.extend({
         this.genTextFieldSlot(),
         this.genClearIcon(),
         this.genIconSlot(),
-        this.genProgress(),
+        this.genProgress()
       ]
     },
     genFieldset () {
       if (!this.outlined) return null
 
       return h('fieldset', {
-        'aria-hidden': true,
+        'aria-hidden': true
       }, [this.genLegend()])
     },
     genLabel () {
@@ -364,7 +366,7 @@ export default baseMixins.extend({
         left: this.labelPosition.left,
         light: this.light,
         right: this.labelPosition.right,
-        value: this.labelValue,
+        value: this.labelValue
       }
 
       return h(VLabel, data, () => getSlot(this, 'label') || this.label)
@@ -373,13 +375,13 @@ export default baseMixins.extend({
       const width = !this.singleLine && (this.labelValue || this.isDirty) ? this.labelWidth : 0
       const span = h('span', {
         innerHTML: '&#8203;',
-        class: 'notranslate',
+        class: 'notranslate'
       })
 
       return h('legend', {
         style: {
-          width: !this.isSingle ? convertToUnit(width) : undefined,
-        },
+          width: !this.isSingle ? convertToUnit(width) : undefined
+        }
       }, [span])
     },
     genInput () {
@@ -402,7 +404,7 @@ export default baseMixins.extend({
         onFocus: this.onFocus,
         onKeydown: this.onKeyDown,
         ...listeners,
-        ref: 'input',
+        ref: 'input'
       })
 
       return withDirectives(node, [
@@ -410,8 +412,8 @@ export default baseMixins.extend({
           resize,
           this.onResize,
           '',
-          { quiet: true },
-        ],
+          { quiet: true }
+        ]
       ])
     },
     genMessages () {
@@ -421,26 +423,26 @@ export default baseMixins.extend({
       const counterNode = this.genCounter()
 
       return h('div', {
-        class: 'v-text-field__details',
+        class: 'v-text-field__details'
       }, [
         messagesNode,
-        counterNode,
+        counterNode
       ])
     },
     genTextFieldSlot () {
       return h('div', {
-        class: 'v-text-field__slot',
+        class: 'v-text-field__slot'
       }, [
         this.genLabel(),
         this.prefix ? this.genAffix('prefix') : null,
         this.genInput(),
-        this.suffix ? this.genAffix('suffix') : null,
+        this.suffix ? this.genAffix('suffix') : null
       ])
     },
     genAffix (type: 'prefix' | 'suffix') {
       return h('div', {
         class: `v-text-field__${type}`,
-        ref: type,
+        ref: type
       }, this[type])
     },
     onBlur (e?: Event) {
@@ -542,6 +544,6 @@ export default baseMixins.extend({
       this.setLabelWidth()
       this.setPrefixWidth()
       this.setPrependWidth()
-    },
-  },
+    }
+  }
 })

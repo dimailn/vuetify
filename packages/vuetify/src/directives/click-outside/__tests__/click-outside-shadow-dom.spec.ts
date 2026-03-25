@@ -11,8 +11,8 @@ function bootstrap (args?: object) {
   const binding = {
     value: {
       handler: jest.fn(),
-      ...args,
-    },
+      ...args
+    }
   } as any
   const vnode = { ctx: { uid: 1 } } as any
 
@@ -50,7 +50,7 @@ function bootstrap (args?: object) {
     shadowClickHandler,
     outsideClickHandler,
     shadowMousedownHandler,
-    outsideMousedownHandler,
+    outsideMousedownHandler
   }
 }
 

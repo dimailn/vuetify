@@ -1,16 +1,16 @@
 import { defineComponent, h } from 'vue'
 import {
   mount,
-  enableAutoUnmount,
+  enableAutoUnmount
 } from '@vue/test-utils'
 import {
-  attachedRoot,
+  attachedRoot
 } from '../dom'
 
 const FooComponent = defineComponent({
   render () {
     return h('div', ['foo'])
-  },
+  }
 })
 
 describe('dom', () => {

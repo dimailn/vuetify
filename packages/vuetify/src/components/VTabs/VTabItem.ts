@@ -9,7 +9,7 @@ export default defineComponent({
   extends: VWindowItem,
 
   props: {
-    id: String,
+    id: String
   },
 
   methods: {
@@ -19,6 +19,6 @@ export default defineComponent({
       item.id = this.id || this.value
 
       return item
-    },
-  },
+    }
+  }
 })

@@ -143,7 +143,7 @@ const ripples = {
         if (animation.parentNode?.parentNode === el) el.removeChild(animation.parentNode)
       }, 300)
     }, delay)
-  },
+  }
 }
 
 function isRippleEnabled (value: any): value is true {
@@ -337,7 +337,7 @@ function update (el: HTMLElement, binding: VNodeDirective) {
 export const Ripple = {
   mounted: directive,
   unmounted: unbind,
-  updated: update,
+  updated: update
 }
 
 export default makeDirectiveActivatable(Ripple)

@@ -1,10 +1,9 @@
-import {h, withDirectives} from 'vue'
+import { h, withDirectives, PropType, defineComponent } from 'vue'
 // Styles
 import './VWindow.sass'
 
 // Types
 import type { VNode, VNodeDirective } from '../../types/vue-internal'
-import { PropType, defineComponent } from 'vue'
 import { TouchHandlers } from 'vuetify/types'
 
 // Directives
@@ -21,30 +20,29 @@ export default defineComponent({
   name: 'v-window',
   extends: BaseItemGroup,
 
-
   provide (): object {
     return {
-      windowGroup: this,
+      windowGroup: this
     }
   },
 
   props: {
     activeClass: {
       type: String,
-      default: 'v-window-item--active',
+      default: 'v-window-item--active'
     },
     continuous: Boolean,
     mandatory: {
       type: Boolean,
-      default: true,
+      default: true
     },
     nextIcon: {
       type: [Boolean, String],
-      default: '$next',
+      default: '$next'
     },
     prevIcon: {
       type: [Boolean, String],
-      default: '$prev',
+      default: '$prev'
     },
     reverse: Boolean,
     showArrows: Boolean,
@@ -52,9 +50,9 @@ export default defineComponent({
     touch: Object as PropType<TouchHandlers>,
     touchless: Boolean,
     modelValue: {
-      required: false,
+      required: false
     },
-    vertical: Boolean,
+    vertical: Boolean
   },
 
   data () {
@@ -64,7 +62,7 @@ export default defineComponent({
       transitionHeight: undefined as undefined | string, // Intermediate height during transition.
       transitionCount: 0, // Number of windows in transition state.
       isBooted: false,
-      isReverse: false,
+      isReverse: false
     }
   },
 
@@ -75,7 +73,7 @@ export default defineComponent({
     classes (): object {
       return {
         ...BaseItemGroup.computed.classes.call(this),
-        'v-window--show-arrows-on-hover': this.showArrowsOnHover,
+        'v-window--show-arrows-on-hover': this.showArrowsOnHover
       }
     },
     computedTransition (): string {
@@ -105,13 +103,13 @@ export default defineComponent({
     },
     internalReverse (): boolean {
       return this.$vuetify.rtl ? !this.reverse : this.reverse
-    },
+    }
   },
 
   watch: {
     internalIndex (val, oldVal) {
       this.isReverse = this.updateReverse(val, oldVal)
-    },
+    }
   },
 
   mounted () {
@@ -131,11 +129,11 @@ export default defineComponent({
 
       return h('div', {
         class: ['v-window__container', {
-          'v-window__container--is-active': this.isActive,
+          'v-window__container--is-active': this.isActive
         }],
         style: {
-          height: this.internalHeight || this.transitionHeight,
-        },
+          height: this.internalHeight || this.transitionHeight
+        }
       }, children)
     },
     genIcon (
@@ -143,7 +141,6 @@ export default defineComponent({
       icon: string,
       click: () => void
     ) {
-
       const attrs = {
         'aria-label': this.$vuetify.lang.t(`$vuetify.carousel.${direction}`),
         onClick: (e: Event) => {
@@ -153,22 +150,22 @@ export default defineComponent({
         }
       }
       const children = this.$slots[direction]?.({
-        attrs,
+        attrs
       }) ?? [h(VBtn, {
         icon: true,
-        ...attrs,
+        ...attrs
       }, {
         default: () => [
           h(VIcon, {
-            large: true,
+            large: true
           }, {
             default: () => icon
-          }),
+          })
         ]
       })]
 
       return h('div', {
-        class: `v-window__${direction}`,
+        class: `v-window__${direction}`
       }, children)
     },
     genControlIcons () {
@@ -251,7 +248,7 @@ export default defineComponent({
       } else {
         return val < oldVal
       }
-    },
+    }
   },
 
   render (): VNode {
@@ -274,7 +271,7 @@ export default defineComponent({
         },
         start: (e: TouchEvent) => {
           e.stopPropagation()
-        },
+        }
       }
 
       directives.push([
@@ -284,5 +281,5 @@ export default defineComponent({
     }
 
     return withDirectives(h('div', data, [this.genContainer()]), directives)
-  },
+  }
 })

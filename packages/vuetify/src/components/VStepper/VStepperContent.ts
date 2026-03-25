@@ -1,8 +1,8 @@
-import {h, vShow, withDirectives} from 'vue'
+import { h, vShow, withDirectives } from 'vue'
 // Components
 import {
   VTabTransition,
-  VTabReverseTransition,
+  VTabReverseTransition
 } from '../transitions'
 
 // Mixins
@@ -34,15 +34,15 @@ export default baseMixins.extend({
 
   inject: {
     isVerticalProvided: {
-      from: 'isVertical',
-    },
+      from: 'isVertical'
+    }
   },
 
   props: {
     step: {
       type: [Number, String],
-      required: true,
-    },
+      required: true
+    }
   },
 
   data () {
@@ -52,7 +52,7 @@ export default baseMixins.extend({
       // previous comparison
       isActive: null as boolean | null,
       isReverse: false,
-      isVertical: this.isVerticalProvided,
+      isVertical: this.isVerticalProvided
     }
   },
 
@@ -69,9 +69,9 @@ export default baseMixins.extend({
       if (!this.isVertical) return {}
 
       return {
-        height: convertToUnit(this.height),
+        height: convertToUnit(this.height)
       }
-    },
+    }
   },
 
   watch: {
@@ -87,7 +87,7 @@ export default baseMixins.extend({
 
       if (this.isActive) this.enter()
       else this.leave()
-    },
+    }
   },
 
   mounted () {
@@ -136,17 +136,17 @@ export default baseMixins.extend({
     toggle (step: string | number, reverse: boolean) {
       this.isActive = step.toString() === this.step.toString()
       this.isReverse = reverse
-    },
+    }
   },
 
   render (): VNode {
     const contentData = {
-      class: 'v-stepper__content',
+      class: 'v-stepper__content'
     } as VNodeData
     const wrapperData = {
       class: 'v-stepper__wrapper',
       style: this.styles,
-      ref: 'wrapper',
+      ref: 'wrapper'
     }
 
     const wrapper = h('div', wrapperData, getSlot(this))
@@ -161,7 +161,7 @@ export default baseMixins.extend({
     }
 
     return h(this.computedTransition, {
-      ...this.$listeners,
+      ...this.$listeners
     }, () => [content])
-  },
+  }
 })

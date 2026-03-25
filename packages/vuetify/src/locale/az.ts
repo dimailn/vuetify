@@ -3,7 +3,7 @@ export default {
   close: 'Bağla',
   dataIterator: {
     noResultsText: 'Uyğun məlumat tapılmadı',
-    loadingText: 'Yüklənir... Zəhmət olmasa, gözləyin.',
+    loadingText: 'Yüklənir... Zəhmət olmasa, gözləyin.'
   },
   dataTable: {
     itemsPerPageText: 'Səhifə başı sətir sayı:',
@@ -13,9 +13,9 @@ export default {
       sortNone: 'Sıralanmamışdır. ',
       activateNone: 'Sıralamanı yığışdır.',
       activateDescending: 'Azalan sıra ilə düz.',
-      activateAscending: 'Artan sıra ilə düz.',
+      activateAscending: 'Artan sıra ilə düz.'
     },
-    sortBy: 'Sırala',
+    sortBy: 'Sırala'
   },
   dataFooter: {
     itemsPerPageText: 'Səhifə başı sətir sayı:',
@@ -24,38 +24,38 @@ export default {
     prevPage: 'Əvvəlki səhifə',
     firstPage: 'İlk səhifə',
     lastPage: 'Son səhifə',
-    pageText: '{0} - {1} arası, Cəmi: {2} qeydiyyat',
+    pageText: '{0} - {1} arası, Cəmi: {2} qeydiyyat'
   },
   datePicker: {
     itemsSelected: '{0} element seçildi',
     nextMonthAriaLabel: 'Növbəti ay',
     nextYearAriaLabel: 'Növbəti yıl',
     prevMonthAriaLabel: 'Keçən ay',
-    prevYearAriaLabel: 'Keçən yıl',
+    prevYearAriaLabel: 'Keçən yıl'
   },
   noDataText: 'Bu görüntüdə məlumat yoxdur.',
   carousel: {
     prev: 'Əvvəlki görüntü',
     next: 'Növbəti görüntü',
     ariaLabel: {
-      delimiter: 'Galereya səhifə {0} / {1}',
-    },
+      delimiter: 'Galereya səhifə {0} / {1}'
+    }
   },
   calendar: {
-    moreEvents: '{0} ədad daha',
+    moreEvents: '{0} ədad daha'
   },
   input: {
     clear: 'Clear {0}',
     prependAction: '{0} prepended action',
-    appendAction: '{0} appended action',
+    appendAction: '{0} appended action'
   },
   fileInput: {
     counter: '{0} fayl',
-    counterSize: '{0} fayl (cəmi {1})',
+    counterSize: '{0} fayl (cəmi {1})'
   },
   timePicker: {
     am: 'AM',
-    pm: 'PM',
+    pm: 'PM'
   },
   pagination: {
     ariaLabel: {
@@ -63,13 +63,13 @@ export default {
       next: 'Növbəti səhifə',
       previous: 'Əvəvlki səhifə',
       page: 'Səhifəyə get {0}',
-      currentPage: 'Cari səhifə, Səhifə {0}',
-    },
+      currentPage: 'Cari səhifə, Səhifə {0}'
+    }
   },
   rating: {
     ariaLabel: {
-      icon: 'Rating {0} of {1}',
-    },
+      icon: 'Rating {0} of {1}'
+    }
   },
-  loading: 'Loading...',
+  loading: 'Loading...'
 }

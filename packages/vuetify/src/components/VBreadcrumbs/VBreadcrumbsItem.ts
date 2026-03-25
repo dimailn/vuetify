@@ -1,9 +1,8 @@
-import {h, withDirectives} from 'vue'
+import { h, withDirectives, VNode } from 'vue'
 import Routable from '../../mixins/routable'
 
 import mixins from '../../util/mixins'
 import { getSlot } from '../../util/helpers'
-import { VNode } from 'vue'
 
 /* @vue/component */
 export default mixins(Routable).extend({
@@ -14,25 +13,25 @@ export default mixins(Routable).extend({
     // active item should be dimmed
     activeClass: {
       type: String,
-      default: 'v-breadcrumbs__item--disabled',
+      default: 'v-breadcrumbs__item--disabled'
     },
     ripple: {
       type: [Boolean, Object],
-      default: false,
+      default: false
     },
     text: {
       type: String,
-      default: '',
-    },
+      default: ''
+    }
   },
 
   computed: {
     classes (): object {
       return {
         'v-breadcrumbs__item': true,
-        [this.activeClass]: this.disabled,
+        [this.activeClass]: this.disabled
       }
-    },
+    }
   },
 
   render (): VNode {
@@ -41,8 +40,8 @@ export default mixins(Routable).extend({
     return withDirectives(h('li', [
       h(tag, {
         ...data,
-        'aria-current': this.isActive && this.isLink ? 'page' : undefined,
-      }, getSlot(this)),
+        'aria-current': this.isActive && this.isLink ? 'page' : undefined
+      }, getSlot(this))
     ]), directives)
-  },
+  }
 })

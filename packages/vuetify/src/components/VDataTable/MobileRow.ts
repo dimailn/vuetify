@@ -12,7 +12,7 @@ export default defineComponent({
     hideDefaultHeader: Boolean,
     index: Number,
     item: Object,
-    rtl: Boolean,
+    rtl: Boolean
   },
 
   render (): VNode {
@@ -23,7 +23,7 @@ export default defineComponent({
 
     const columns: VNode[] = props.headers.map((header: DataTableHeader) => {
       const classes = {
-        'v-data-table__mobile-row': true,
+        'v-data-table__mobile-row': true
       }
 
       const children = []
@@ -38,7 +38,7 @@ export default defineComponent({
           isMobile: true,
           header,
           index: props.index,
-          value,
+          value
         }))
       } else {
         children.push(value == null ? value : String(value))
@@ -46,14 +46,14 @@ export default defineComponent({
 
       const mobileRowChildren = [
         h('div', {
-          class: 'v-data-table__mobile-row__cell',
-        }, children),
+          class: 'v-data-table__mobile-row__cell'
+        }, children)
       ]
 
       if (header.value !== 'dataTableSelect' && !props.hideDefaultHeader) {
         mobileRowChildren.unshift(
           h('div', {
-            class: 'v-data-table__mobile-row__header',
+            class: 'v-data-table__mobile-row__header'
           }, [header.text])
         )
       }
@@ -62,5 +62,5 @@ export default defineComponent({
     })
 
     return h('tr', { ...data, class: 'v-data-table__mobile-table-row' }, columns)
-  },
+  }
 })

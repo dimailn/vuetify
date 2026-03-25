@@ -1,4 +1,4 @@
-import {h} from 'vue'
+import { h } from 'vue'
 // Styles
 import './VRadio.sass'
 
@@ -42,35 +42,35 @@ export default baseMixins.extend({
 
   inheritAttrs: false,
 
-  emits: ['change', 'focus', 'blur'],
-
   props: {
     disabled: {
       type: Boolean,
-      default: null,
+      default: null
     },
     id: String,
     label: String,
     name: String,
     offIcon: {
       type: String,
-      default: '$radioOff',
+      default: '$radioOff'
     },
     onIcon: {
       type: String,
-      default: '$radioOn',
+      default: '$radioOn'
     },
     readonly: {
       type: Boolean,
-      default: null,
+      default: null
     },
     value: {
-      default: null,
-    },
+      default: null
+    }
   },
 
+  emits: ['change', 'focus', 'blur'],
+
   data: () => ({
-    isFocused: false,
+    isFocused: false
   }),
 
   computed: {
@@ -79,7 +79,7 @@ export default baseMixins.extend({
         'v-radio--is-disabled': this.isDisabled,
         'v-radio--is-focused': this.isFocused,
         ...this.themeClasses,
-        ...this.groupClasses,
+        ...this.groupClasses
       }
     },
     computedColor (): string | undefined {
@@ -122,7 +122,7 @@ export default baseMixins.extend({
     },
     validationState (): string | undefined {
       return (this.radioGroup || {}).validationState || this.computedColor
-    },
+    }
   },
 
   methods: {
@@ -140,24 +140,24 @@ export default baseMixins.extend({
         onClick: prevent,
         for: this.computedId,
         color: this.validationState,
-        focused: this.hasState,
+        focused: this.hasState
       }, () => getSlot(this, 'label') || this.label)
     },
     genRadio () {
       const { title, ...radioAttrs } = this.attrs$
 
       return h('div', {
-        class: 'v-input--selection-controls__input',
+        class: 'v-input--selection-controls__input'
       }, [
         h(VIcon, this.setTextColor(this.validationState, {
-          dense: this.radioGroup && this.radioGroup.dense,
+          dense: this.radioGroup && this.radioGroup.dense
         }), () => this.computedIcon),
         this.genInput({
           name: this.computedName,
           value: this.value,
-          ...radioAttrs,
+          ...radioAttrs
         }),
-        this.genRipple(this.setTextColor(this.rippleState)),
+        this.genRipple(this.setTextColor(this.rippleState))
       ])
     },
     onFocus (e: Event) {
@@ -173,21 +173,21 @@ export default baseMixins.extend({
 
       this.toggle()
     },
-    onKeydown: () => {}, // Override default with noop
+    onKeydown: () => {} // Override default with noop
   },
 
   render (): VNode {
     const data: VNodeData = {
       class: ['v-radio', this.classes],
       ...mergeListeners({
-        onClick: this.onChange,
+        onClick: this.onChange
       }, this.listeners$),
       title: this.attrs$.title
     }
 
     return h('div', data, [
       this.genRadio(),
-      this.genLabel(),
+      this.genLabel()
     ])
-  },
+  }
 })

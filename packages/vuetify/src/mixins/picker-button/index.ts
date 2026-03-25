@@ -30,10 +30,10 @@ export default mixins(
       return h('div', {
         class: [`v-picker__title__btn ${staticClass}`.trim(), {
           'v-picker__title__btn--active': active,
-          'v-picker__title__btn--readonly': readonly,
+          'v-picker__title__btn--readonly': readonly
         }],
-        ...((active || readonly) ? {} : { onClick }),
+        ...((active || readonly) ? {} : { onClick })
       }, Array.isArray(content) ? content : [content])
-    },
-  },
+    }
+  }
 })

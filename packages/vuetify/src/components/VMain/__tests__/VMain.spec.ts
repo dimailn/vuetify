@@ -21,11 +21,11 @@ describe('VMain.ts', () => {
                 right: 256,
                 footer: 48,
                 insetFooter: 32,
-                bottom: 56,
-              },
-            },
-          },
-        },
+                bottom: 56
+              }
+            }
+          }
+        }
       })
     }
   })

@@ -6,7 +6,7 @@ import {
   mount,
   VueWrapper,
   MountingOptions,
-  enableAutoUnmount,
+  enableAutoUnmount
 } from '@vue/test-utils'
 import { h, defineComponent, withDirectives } from 'vue'
 import { touch } from '../../../../test'
@@ -19,9 +19,9 @@ describe('touch.ts', () => {
   beforeEach(() => {
     mountFunction = (value = {}) => {
       return mount(defineComponent({
-        render() {
+        render () {
           return withDirectives(h('div'), [[Touch, value]])
-        },
+        }
       }))
     }
   })

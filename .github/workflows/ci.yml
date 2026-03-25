@@ -36,6 +36,7 @@ jobs:
       - run: yarn run build:lib
         working-directory: ./packages/vuetify
       - run: yarn run lint
+        working-directory: ./packages/vuetify
 
   test:
     runs-on: ubuntu-22.04

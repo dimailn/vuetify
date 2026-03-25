@@ -10,13 +10,13 @@ const VToolbarItems = createSimpleFunctional('v-toolbar__items')
 export {
   VToolbar,
   VToolbarItems,
-  VToolbarTitle,
+  VToolbarTitle
 }
 
 export default {
   $_vuetify_subcomponents: {
     VToolbar,
     VToolbarItems,
-    VToolbarTitle,
-  },
+    VToolbarTitle
+  }
 }

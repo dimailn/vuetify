@@ -1,4 +1,4 @@
-import {defineComponent} from 'vue'
+import { defineComponent } from 'vue'
 
 /**
  * Delayable
@@ -13,17 +13,17 @@ export default defineComponent({
   props: {
     openDelay: {
       type: [Number, String],
-      default: 0,
+      default: 0
     },
     closeDelay: {
       type: [Number, String],
-      default: 0,
-    },
+      default: 0
+    }
   },
 
   data: () => ({
     openTimeout: undefined as number | undefined,
-    closeTimeout: undefined as number | undefined,
+    closeTimeout: undefined as number | undefined
   }),
 
   methods: {
@@ -45,6 +45,6 @@ export default defineComponent({
       ;(this as any)[`${type}Timeout`] = setTimeout(cb || (() => {
         this.isActive = { open: true, close: false }[type]
       }), delay)
-    },
-  },
+    }
+  }
 })

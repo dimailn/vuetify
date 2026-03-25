@@ -1,7 +1,7 @@
 import {
   mount,
   VueWrapper,
-  MountingOptions,
+  MountingOptions
 } from '@vue/test-utils'
 import { ExtractVue } from '../../../util/mixins'
 import VCalendar from '../VCalendar'
@@ -16,12 +16,12 @@ describe('VCalendarCategory', () => {
           mocks: {
             $vuetify: {
               lang: {
-                current: 'en-US',
-              },
-            },
-          },
+                current: 'en-US'
+              }
+            }
+          }
         },
-        ...options,
+        ...options
       })
     }
   })
@@ -32,8 +32,8 @@ describe('VCalendarCategory', () => {
         type: 'category',
         events: [{ start: '2019-02-17', category: 'Nate' }],
         categories: [{ name: 'Nate' }],
-        categoryText: 'name',
-      },
+        categoryText: 'name'
+      }
     })
 
     expect(wrapper.find('.v-calendar-category__column-header').text()).toEqual('Nate')
@@ -47,8 +47,8 @@ describe('VCalendarCategory', () => {
         categories: [{ name: 'Nate', age: '20' }],
         categoryText (category) {
           return category.age
-        },
-      },
+        }
+      }
     })
 
     expect(wrapper.find('.v-calendar-category__column-header').text()).toEqual('20')
@@ -67,8 +67,8 @@ describe('VCalendarCategory', () => {
         events: [{ start: '2019-02-17', category: 'Nate' }],
         categories: [{ name: 'Nate', age: 20 }, { name: 'Bob', age: 30 }],
         categoryText: 'name',
-        intervalStyle,
-      },
+        intervalStyle
+      }
     })
   })
 
@@ -87,8 +87,8 @@ describe('VCalendarCategory', () => {
         events: [{ start: '2019-02-17', category: 'Nate' }],
         categories: [{ name: 'Nate', age: 20 }, { name: 'Bob', age: 30 }],
         categoryText: 'name',
-        intervalStyle,
-      },
+        intervalStyle
+      }
     })
   })
 
@@ -105,8 +105,8 @@ describe('VCalendarCategory', () => {
         type: 'category',
         events: [{ start: '2019-02-17', category: 'Nate' }, { start: '2019-02-18', category: 'Bob' }],
         categories: ['Nate', 'Bob'],
-        intervalStyle,
-      },
+        intervalStyle
+      }
     })
   })
 })

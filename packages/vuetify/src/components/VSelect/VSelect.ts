@@ -36,7 +36,7 @@ export const defaultMenuProps = {
   closeOnContentClick: false,
   disableKeys: true,
   openOnClick: false,
-  maxHeight: 304,
+  maxHeight: 304
 }
 
 // Types
@@ -70,11 +70,11 @@ export default baseMixins.extend({
   props: {
     appendIcon: {
       type: String,
-      default: '$dropdown',
+      default: '$dropdown'
     },
     attach: {
       type: null as unknown as PropType<string | boolean | Element | VNode>,
-      default: false,
+      default: false
     },
     auto: Boolean,
     cacheItems: Boolean,
@@ -86,33 +86,33 @@ export default baseMixins.extend({
     hideSelected: Boolean,
     items: {
       type: Array,
-      default: () => [],
+      default: () => []
     } as unknown as PropType<any[]>,
     itemColor: {
       type: String,
-      default: 'primary',
+      default: 'primary'
     },
     itemDisabled: {
       type: [String, Array, Function] as PropType<SelectItemKey>,
-      default: 'disabled',
+      default: 'disabled'
     },
     itemText: {
       type: [String, Array, Function] as PropType<SelectItemKey>,
-      default: 'text',
+      default: 'text'
     },
     itemValue: {
       type: [String, Array, Function] as PropType<SelectItemKey>,
-      default: 'value',
+      default: 'value'
     },
     menuProps: {
       type: [String, Array, Object],
-      default: () => defaultMenuProps,
+      default: () => defaultMenuProps
     },
     minWidth: [String, Number],
     multiple: Boolean,
     openOnClear: Boolean,
     returnObject: Boolean,
-    smallChips: Boolean,
+    smallChips: Boolean
   },
 
   emits: ['update:modelValue', 'change', 'focus', 'blur', 'keydown', 'click', 'update:list-index', 'click:clear'],
@@ -133,7 +133,7 @@ export default baseMixins.extend({
       selectedItems: [] as any[],
       keyboardLookupPrefix: '',
       keyboardLookupLastTime: 0,
-      detectedScopeId: null as string | null,
+      detectedScopeId: null as string | null
     }
   },
 
@@ -149,7 +149,7 @@ export default baseMixins.extend({
         'v-select--chips': this.hasChips,
         'v-select--chips--small': this.smallChips,
         'v-select--is-menu-active': this.isMenuActive,
-        'v-select--is-multi': this.multiple,
+        'v-select--is-multi': this.multiple
       }
     },
     /* Used by other components to overwrite */
@@ -177,9 +177,9 @@ export default baseMixins.extend({
           {
             handler: () => this.isFocused && this.blur(),
             closeConditional: this.closeConditional,
-            include: () => this.getOpenDependentElements(),
-          },
-        ],
+            include: () => this.getOpenDependentElements()
+          }
+        ]
       ]
     },
     dynamicHeight () {
@@ -207,7 +207,7 @@ export default baseMixins.extend({
         itemValue: this.itemValue,
         noDataText: this.$vuetify.lang.t(this.noDataText),
         selectedItems: this.selectedItems,
-        onSelect: this.selectItem,
+        onSelect: this.selectItem
       }
     },
     listAttrs (): object {
@@ -229,9 +229,9 @@ export default baseMixins.extend({
 
       return h(VSelectList, {
         ...this.listData,
-        ...this.listAttrs,
+        ...this.listAttrs
       }, {
-        item: this.$slots.item,
+        item: this.$slots.item
       })
     },
     virtualizedItems (): object[] {
@@ -259,9 +259,9 @@ export default baseMixins.extend({
         nudgeBottom: normalisedProps.offsetY ? 1 : 0, // convert to int
         auto: this.auto,
         minWidth: this.minWidth,
-        ...normalisedProps,
+        ...normalisedProps
       }
-    },
+    }
   },
 
   watch: {
@@ -281,7 +281,7 @@ export default baseMixins.extend({
           })
         }
       },
-      deep: true,
+      deep: true
     },
     isMenuActive (val) {
       window.setTimeout(() => this.onMenuActiveChange(val))
@@ -299,14 +299,14 @@ export default baseMixins.extend({
         }
 
         this.setSelectedItems()
-      },
-    },
+      }
+    }
   },
 
   created () {
     const breakingProps = [
       ['value', 'modelValue'],
-      ['onInput', 'onUpdate:modelValue'],
+      ['onInput', 'onUpdate:modelValue']
     ]
 
     /* istanbul ignore next */
@@ -426,7 +426,7 @@ export default baseMixins.extend({
           this.selectedIndex = index
         },
         'onClick:close': () => this.onChipInput(item),
-        key: JSON.stringify(this.getValue(item)),
+        key: JSON.stringify(this.getValue(item))
       }, () => this.getText(item))
     },
     genCommaSelection (item: object, index: number, last: boolean) {
@@ -438,9 +438,9 @@ export default baseMixins.extend({
 
       return h('div', this.setTextColor(color, {
         class: ['v-select__selection v-select__selection--comma', {
-          'v-select__selection--disabled': isDisabled,
+          'v-select__selection--disabled': isDisabled
         }],
-        key: JSON.stringify(this.getValue(item)),
+        key: JSON.stringify(this.getValue(item))
       }), `${this.getText(item)}${last ? '' : ', '}`)
     },
     genDefaultSlot (): (VNode | VNode[] | null)[] {
@@ -460,7 +460,7 @@ export default baseMixins.extend({
       return [
         this.genFieldset(),
         withDirectives(h('div', {
-          class: 'v-select__slot',
+          class: 'v-select__slot'
         }, [
           this.genLabel(),
           this.prefix ? this.genAffix('prefix') : null,
@@ -468,10 +468,10 @@ export default baseMixins.extend({
           this.suffix ? this.genAffix('suffix') : null,
           this.genClearIcon(),
           this.genIconSlot(),
-          this.genHiddenInput(),
+          this.genHiddenInput()
         ]), this.directives),
         this.genMenu(),
-        this.genProgress(),
+        this.genProgress()
       ]
     },
     genIcon (
@@ -488,7 +488,7 @@ export default baseMixins.extend({
         iconChild.props = mergeData(iconChild.props || {}, {
           tabindex: hasListeners ? '-1' : undefined,
           'aria-hidden': 'true',
-          'aria-label': undefined,
+          'aria-label': undefined
         })
       }
 
@@ -506,7 +506,7 @@ export default baseMixins.extend({
         'aria-activedescendant': getObjectValueByPath(this.$refs.menu, 'activeTile.id'),
         autocomplete: getObjectValueByPath(input.data!, 'attrs.autocomplete', 'off'),
         placeholder: (!this.isDirty && (this.persistentPlaceholder || this.isFocused || !this.hasLabel)) ? this.placeholder : undefined,
-        onKeypress: this.onKeyPress,
+        onKeypress: this.onKeyPress
       })
 
       input.props = { ...input.props, value: null }
@@ -531,7 +531,7 @@ export default baseMixins.extend({
       return h('input', {
         value,
         type: 'hidden',
-        name: this.$attrs.name,
+        name: this.$attrs.name
       })
     },
     genInputSlot (): VNode {
@@ -542,7 +542,7 @@ export default baseMixins.extend({
         'aria-haspopup': 'listbox',
         'aria-expanded': String(this.isMenuActive),
         'aria-owns': this.computedOwns,
-        ...render.props,
+        ...render.props
       }
 
       return render
@@ -560,7 +560,7 @@ export default baseMixins.extend({
         .filter(slotName => this.$slots[slotName])
         .map(slotName => [
           slotName,
-          this.$slots[slotName],
+          this.$slots[slotName]
         ]
         ))
       // Requires destructuring due to Vue
@@ -568,7 +568,7 @@ export default baseMixins.extend({
       // as a referenced object
       return h(VSelectList, {
         ...this.listData,
-        ...this.listAttrs,
+        ...this.listAttrs
       }, { ...slots, item: this.$slots.item })
     },
     genMenu (): VNode {
@@ -597,7 +597,7 @@ export default baseMixins.extend({
           this.isFocused = val
         },
         onScroll: this.onScroll,
-        ref: 'menu',
+        ref: 'menu'
       }, () => [this.genList()])
     },
     genSelections (): VNode {
@@ -623,7 +623,7 @@ export default baseMixins.extend({
       }
 
       return h('div', {
-        class: 'v-select__selections',
+        class: 'v-select__selections'
       }, children)
     },
     genSlotSelection (item: object, index: number): VNode[] | undefined {
@@ -637,7 +637,7 @@ export default baseMixins.extend({
           this.selectedIndex = index
         },
         selected: index === this.selectedIndex,
-        disabled: !this.isInteractive,
+        disabled: !this.isInteractive
       })
     },
     getMenuIndex () {
@@ -740,7 +740,7 @@ export default baseMixins.extend({
       // If enter, space, open menu
       if ([
         keyCodes.enter,
-        keyCodes.space,
+        keyCodes.space
       ].includes(keyCode)) this.activateMenu()
 
       // If menu is not active, up/down/home/end can do
@@ -947,6 +947,6 @@ export default baseMixins.extend({
       const appendInner = this.$refs['append-inner']
 
       return appendInner && (appendInner === target || appendInner.contains(target))
-    },
-  },
+    }
+  }
 })

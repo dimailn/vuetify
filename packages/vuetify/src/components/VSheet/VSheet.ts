@@ -1,4 +1,4 @@
-import {h} from 'vue'
+import { h } from 'vue'
 // Styles
 import './VSheet.sass'
 
@@ -34,8 +34,8 @@ export default defineComponent({
     shaped: Boolean,
     tag: {
       type: String,
-      default: 'div',
-    },
+      default: 'div'
+    }
   },
 
   computed: {
@@ -46,19 +46,19 @@ export default defineComponent({
         'v-sheet--shaped': this.shaped,
         ...this.themeClasses,
         ...this.elevationClasses,
-        ...this.roundedClasses,
+        ...this.roundedClasses
       }
     },
     styles (): object {
       return this.measurableStyles
-    },
+    }
   },
 
   render (): VNode {
     const data = {
       class: this.classes,
       style: this.styles,
-      ...this.listeners$,
+      ...this.listeners$
     }
 
     return h(
@@ -66,5 +66,5 @@ export default defineComponent({
       this.setBackgroundColor(this.color, data),
       this.$slots.default?.()
     )
-  },
+  }
 })

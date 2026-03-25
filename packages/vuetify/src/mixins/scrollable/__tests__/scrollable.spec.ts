@@ -16,9 +16,9 @@ describe('Scrollable.ts', () => {
       ...options,
       render () {
         return h('div', {
-          onScroll: this.onScroll,
+          onScroll: this.onScroll
         })
-      },
+      }
     })
   }
 
@@ -26,7 +26,7 @@ describe('Scrollable.ts', () => {
     const Mock = createMockComponent()
     mountFunction = (options = {}) => {
       return mount(Mock, {
-        ...options,
+        ...options
       })
     }
   })
@@ -50,8 +50,8 @@ describe('Scrollable.ts', () => {
   it('should set a custom target', async () => {
     const wrapper = mountFunction({
       props: {
-        scrollTarget: 'body',
-      },
+        scrollTarget: 'body'
+      }
     })
 
     wrapper.vm.onScroll()
@@ -63,14 +63,14 @@ describe('Scrollable.ts', () => {
       data () {
         return {
           currentScroll: 100,
-          previousScroll: 0,
+          previousScroll: 0
         }
       },
       computed: {
         canScroll () {
           return false
-        },
-      },
+        }
+      }
     })
 
     await scrollWindow(1000)
@@ -88,18 +88,18 @@ describe('Scrollable.ts', () => {
       props: {
         scrollThreshold: {
           type: Number,
-          default: 300,
-        },
+          default: 300
+        }
       },
       methods: {
-        thresholdMet,
-      },
+        thresholdMet
+      }
     })
 
     const wrapper = mount(MockWithThreshold, {
       props: {
-        scrollThreshold: 1000,
-      },
+        scrollThreshold: 1000
+      }
     })
 
     // Скроллим меньше порога
@@ -120,9 +120,9 @@ describe('Scrollable.ts', () => {
     const wrapper = mountFunction({
       data () {
         return {
-          savedScroll: 100,
+          savedScroll: 100
         }
-      },
+      }
     })
 
     // В Vue 3 используем прямое изменение данных
@@ -135,8 +135,8 @@ describe('Scrollable.ts', () => {
   it(`should warn if target isn't present`, async () => {
     mountFunction({
       props: {
-        scrollTarget: '#test',
-      },
+        scrollTarget: '#test'
+      }
     })
 
     expect('Unable to locate element with identifier #test').toHaveBeenTipped()

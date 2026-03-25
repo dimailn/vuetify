@@ -2,14 +2,14 @@
 import VStepperContent from '../VStepperContent'
 import {
   VTabTransition,
-  VTabReverseTransition,
+  VTabReverseTransition
 } from '../../transitions'
 
 // Utilities
 import {
   mount,
   Wrapper,
-  enableAutoUnmount,
+  enableAutoUnmount
 } from '@vue/test-utils'
 import { wait } from '../../../../test'
 
@@ -27,11 +27,11 @@ describe('VStepperContent.ts', () => {
         global: {
           mocks: {
             $vuetify: {
-              rtl: false,
-            },
-          },
+              rtl: false
+            }
+          }
         },
-        ...options,
+        ...options
       })
     }
   })
@@ -45,10 +45,10 @@ describe('VStepperContent.ts', () => {
           isVertical: false,
           stepper: {
             register: () => {},
-            unregister: () => {},
-          },
-        },
-      },
+            unregister: () => {}
+          }
+        }
+      }
     })
 
     expect(wrapper.vm.isActive).toBeNull()
@@ -69,10 +69,10 @@ describe('VStepperContent.ts', () => {
           isVertical: false,
           stepper: {
             register: () => {},
-            unregister: () => {},
-          },
-        },
-      },
+            unregister: () => {}
+          }
+        }
+      }
     })
     expect(wrapper.vm.computedTransition).toBe(VTabTransition)
 
@@ -86,18 +86,18 @@ describe('VStepperContent.ts', () => {
       global: {
         mocks: {
           $vuetify: {
-            rtl: true,
-          },
+            rtl: true
+          }
         },
         provide: {
           isVertical: false,
           stepper: {
             register: () => {},
-            unregister: () => {},
-          },
-        },
+            unregister: () => {}
+          }
+        }
       },
-      props: { step: 1 },
+      props: { step: 1 }
     })
     expect(wrapper.vm.computedTransition).toBe(VTabReverseTransition)
 
@@ -110,17 +110,17 @@ describe('VStepperContent.ts', () => {
     const wrapper = mountFunction({
       attachTo: document.body,
       props: {
-        step: 1,
+        step: 1
       },
       global: {
         provide: {
           isVertical: false,
           stepper: {
             register: () => {},
-            unregister: () => {},
-          },
-        },
-      },
+            unregister: () => {}
+          }
+        }
+      }
     })
 
     const enter = jest.fn()
@@ -130,7 +130,7 @@ describe('VStepperContent.ts', () => {
 
     await wrapper.setData({
       isActive: true,
-      isVertical: true,
+      isVertical: true
     })
     await wrapper.vm.$nextTick()
 
@@ -154,7 +154,7 @@ describe('VStepperContent.ts', () => {
     // setting vertical and isActive at the same time causes
     // isActive watcher to fire enter/leave methods
     await wrapper.setData({
-      isVertical: false,
+      isVertical: false
     })
     await wrapper.vm.$nextTick()
     await wrapper.setData({ isActive: false })
@@ -173,10 +173,10 @@ describe('VStepperContent.ts', () => {
           isVertical: false,
           stepper: {
             register: () => {},
-            unregister: () => {},
-          },
-        },
-      },
+            unregister: () => {}
+          }
+        }
+      }
     })
 
     wrapper.vm.toggle(1, false)
@@ -207,10 +207,10 @@ describe('VStepperContent.ts', () => {
           isVertical: false,
           stepper: {
             register: () => {},
-            unregister: () => {},
-          },
-        },
-      },
+            unregister: () => {}
+          }
+        }
+      }
     })
 
     await wrapper.setData({ isActive: false, isVertical: true })
@@ -239,10 +239,10 @@ describe('VStepperContent.ts', () => {
           isVertical: false,
           stepper: {
             register: () => {},
-            unregister: () => {},
-          },
-        },
-      },
+            unregister: () => {}
+          }
+        }
+      }
     })
 
     await wrapper.setData({ isActive: false, isVertical: true })
@@ -266,10 +266,10 @@ describe('VStepperContent.ts', () => {
           isVertical: false,
           stepper: {
             register: () => {},
-            unregister: () => {},
-          },
-        },
-      },
+            unregister: () => {}
+          }
+        }
+      }
     })
 
     const stepWrapper = wrapper.find('.v-stepper__wrapper')
@@ -298,9 +298,9 @@ describe('VStepperContent.ts', () => {
       props: { step: 1 },
       global: {
         provide: {
-          isVertical: false,
-        },
-      },
+          isVertical: false
+        }
+      }
     })
 
     expect(wrapper.vm).toBeDefined()

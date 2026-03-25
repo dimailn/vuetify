@@ -12,5 +12,5 @@ export default mixins(
 ).extend({
   name: 'v-slide-item',
 
-  emits: ['change'],
+  emits: ['change']
 })

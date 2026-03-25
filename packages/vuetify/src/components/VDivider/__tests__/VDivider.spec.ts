@@ -5,7 +5,7 @@ import VDivider from '../VDivider'
 import {
   mount,
   VueWrapper,
-  enableAutoUnmount,
+  enableAutoUnmount
 } from '@vue/test-utils'
 
 describe('VDivider', () => {
@@ -17,7 +17,7 @@ describe('VDivider', () => {
   beforeEach(() => {
     mountFunction = (options = {}) => {
       return mount(VDivider, {
-        ...options,
+        ...options
       })
     }
   })
@@ -30,7 +30,7 @@ describe('VDivider', () => {
 
   it('should render an inset component', () => {
     const wrapper = mountFunction({
-      props: { inset: true },
+      props: { inset: true }
     })
 
     expect(wrapper.classes('v-divider--inset')).toBe(true)
@@ -38,7 +38,7 @@ describe('VDivider', () => {
 
   it('should render a light component', () => {
     const wrapper = mountFunction({
-      props: { light: true },
+      props: { light: true }
     })
 
     expect(wrapper.classes('theme--light')).toBe(true)
@@ -46,7 +46,7 @@ describe('VDivider', () => {
 
   it('should render a dark component', () => {
     const wrapper = mountFunction({
-      props: { dark: true },
+      props: { dark: true }
     })
 
     expect(wrapper.classes('theme--dark')).toBe(true)
@@ -54,7 +54,7 @@ describe('VDivider', () => {
 
   it('should render a vertical component', () => {
     const wrapper = mountFunction({
-      props: { vertical: true },
+      props: { vertical: true }
     })
 
     expect(wrapper.classes('v-divider--vertical')).toBe(true)
@@ -74,7 +74,7 @@ describe('VDivider', () => {
 
   it('should have aria-orientation vertical if vertical prop is set', () => {
     const wrapper = mountFunction({
-      props: { vertical: true },
+      props: { vertical: true }
     })
 
     expect(wrapper.attributes('aria-orientation')).toBe('vertical')
@@ -82,7 +82,7 @@ describe('VDivider', () => {
 
   it('should have presentation role if set in attrs', () => {
     const wrapper = mountFunction({
-      attrs: { role: 'presentation' },
+      attrs: { role: 'presentation' }
     })
 
     expect(wrapper.attributes('role')).toBe('presentation')
@@ -90,7 +90,7 @@ describe('VDivider', () => {
 
   it('should have no aria-orientation if presentation role is set in attrs', () => {
     const wrapper = mountFunction({
-      attrs: { role: 'presentation' },
+      attrs: { role: 'presentation' }
     })
 
     expect(wrapper.attributes('aria-orientation')).toBeUndefined()

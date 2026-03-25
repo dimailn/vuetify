@@ -32,49 +32,48 @@ export default mixins(
 ).extend({
   name: 'v-slider',
 
-
   props: {
     disabled: Boolean,
     inverseLabel: Boolean,
     max: {
       type: [Number, String],
-      default: 100,
+      default: 100
     },
     min: {
       type: [Number, String],
-      default: 0,
+      default: 0
     },
     step: {
       type: [Number, String],
-      default: 1,
+      default: 1
     },
     thumbColor: String,
     thumbLabel: {
       type: [Boolean, String] as PropType<boolean | 'always' | undefined>,
       default: undefined,
-      validator: (v: any) => typeof v === 'boolean' || v === 'always' || v === undefined,
+      validator: (v: any) => typeof v === 'boolean' || v === 'always' || v === undefined
     },
     thumbSize: {
       type: [Number, String],
-      default: 32,
+      default: 32
     },
     tickLabels: {
       type: Array,
-      default: () => ([]),
+      default: () => ([])
     } as unknown as PropType<string[]>,
     ticks: {
       type: [Boolean, String] as PropType<boolean | 'always'>,
       default: false,
-      validator: (v: any) => typeof v === 'boolean' || v === 'always',
+      validator: (v: any) => typeof v === 'boolean' || v === 'always'
     },
     tickSize: {
       type: [Number, String],
-      default: 2,
+      default: 2
     },
     trackColor: String,
     trackFillColor: String,
     modelValue: [Number, String],
-    vertical: Boolean,
+    vertical: Boolean
   },
 
   emits: [
@@ -84,7 +83,7 @@ export default mixins(
     'mouseup',
     'change',
     'focus',
-    'blur',
+    'blur'
   ],
 
   data: () => ({
@@ -95,21 +94,8 @@ export default mixins(
     isFocused: false,
     isActive: false,
     noClick: false, // Prevent click event if dragging took place, hack for #7915
-    startOffset: 0,
+    startOffset: 0
   }),
-
-  created () {
-    const breakingProps = [
-      ['value', 'modelValue'],
-      ['onInput', 'onUpdate:modelValue'],
-      ['onChange', 'onUpdate:modelValue'],
-    ]
-
-    /* istanbul ignore next */
-    breakingProps.forEach(([original, replacement]) => {
-      if (this.$attrs.hasOwnProperty(original)) breaking(original, replacement, this)
-    })
-  },
 
   computed: {
     classes (): object {
@@ -117,7 +103,7 @@ export default mixins(
         ...VInput.computed.classes.call(this),
         'v-input__slider': true,
         'v-input__slider--vertical': this.vertical,
-        'v-input__slider--inverse-label': this.inverseLabel,
+        'v-input__slider--inverse-label': this.inverseLabel
       }
     },
     internalValue: {
@@ -139,7 +125,7 @@ export default mixins(
         this.lazyValue = value
 
         this.$emit('update:modelValue', value)
-      },
+      }
     },
     trackTransition (): string {
       return this.thumbPressed
@@ -176,7 +162,7 @@ export default mixins(
         transition: this.trackTransition,
         [startDir]: start,
         [endDir]: end,
-        [valueDir]: value,
+        [valueDir]: value
       }
     },
     trackStyles (): Partial<CSSStyleDeclaration> {
@@ -189,7 +175,7 @@ export default mixins(
       return {
         transition: this.trackTransition,
         [startDir]: start,
-        [endDir]: end,
+        [endDir]: end
       }
     },
     showTicks (): boolean {
@@ -219,7 +205,7 @@ export default mixins(
     computedThumbColor (): string | undefined {
       if (this.thumbColor) return this.thumbColor
       return this.validationState || this.computedColor
-    },
+    }
   },
 
   watch: {
@@ -240,10 +226,22 @@ export default mixins(
         // Use the setter to ensure proper rounding and validation
         this.internalValue = v
       },
-      immediate: true,
-    },
+      immediate: true
+    }
   },
 
+  created () {
+    const breakingProps = [
+      ['value', 'modelValue'],
+      ['onInput', 'onUpdate:modelValue'],
+      ['onChange', 'onUpdate:modelValue']
+    ]
+
+    /* istanbul ignore next */
+    breakingProps.forEach(([original, replacement]) => {
+      if (this.$attrs.hasOwnProperty(original)) breaking(original, replacement, this)
+    })
+  },
 
   mounted () {
     // Without a v-app, iOS does not work with body selectors
@@ -273,13 +271,13 @@ export default mixins(
           'v-slider--active': this.isActive,
           'v-slider--disabled': this.isDisabled,
           'v-slider--readonly': this.isReadonly,
-          ...this.themeClasses,
+          ...this.themeClasses
         },
         onClick: this.onSliderClick,
         onMousedown: this.onSliderMouseDown,
-        onTouchstart: this.onSliderMouseDown,
+        onTouchstart: this.onSliderMouseDown
       }, this.genChildren()), [
-        [ClickOutside, this.onBlur],
+        [ClickOutside, this.onBlur]
       ])
     },
     genChildren (): VNode[] {
@@ -293,8 +291,8 @@ export default mixins(
           this.isActive,
           this.isFocused,
           this.onFocus,
-          this.onBlur,
-        ),
+          this.onBlur
+        )
       ]
     },
     genInput (): VNode {
@@ -304,7 +302,7 @@ export default mixins(
         disabled: true,
         readonly: true,
         tabindex: -1,
-        ...this.$attrs,
+        ...this.$attrs
         // on: this.genListeners(), // TODO: do we need to attach the listeners to input?
       })
     },
@@ -312,17 +310,17 @@ export default mixins(
       const children = [
         h('div', this.setBackgroundColor(this.computedTrackColor, {
           class: 'v-slider__track-background',
-          style: this.trackStyles,
+          style: this.trackStyles
         })),
         h('div', this.setBackgroundColor(this.computedTrackFillColor, {
           class: 'v-slider__track-fill',
-          style: this.trackFillStyles,
-        })),
+          style: this.trackFillStyles
+        }))
       ]
 
       return h('div', {
         class: 'v-slider__track-container',
-        ref: 'track',
+        ref: 'track'
       }, children)
     },
     genSteps (): VNode | null {
@@ -340,7 +338,7 @@ export default mixins(
 
         if (this.tickLabels[index]) {
           children.push(h('div', {
-            class: 'v-slider__tick-label',
+            class: 'v-slider__tick-label'
           }, this.tickLabels[index]))
         }
 
@@ -350,21 +348,21 @@ export default mixins(
         return h('span', {
           key: index,
           class: ['v-slider__tick', {
-            'v-slider__tick--filled': filled,
+            'v-slider__tick--filled': filled
           }],
           style: {
             width: `${tickSize}px`,
             height: `${tickSize}px`,
             [direction]: `calc(${width}% - ${tickSize / 2}px)`,
-            [offsetDirection]: `calc(50% - ${tickSize / 2}px)`,
-          },
+            [offsetDirection]: `calc(50% - ${tickSize / 2}px)`
+          }
         }, children)
       })
 
       return h('div', {
         class: ['v-slider__ticks-container', {
-          'v-slider__ticks-container--always-show': this.ticks === 'always' || this.tickLabels.length > 0,
-        }],
+          'v-slider__ticks-container--always-show': this.ticks === 'always' || this.tickLabels.length > 0
+        }]
       }, ticks)
     },
     genThumbContainer (
@@ -387,7 +385,7 @@ export default mixins(
         class: ['v-slider__thumb-container', {
           'v-slider__thumb-container--active': isActive,
           'v-slider__thumb-container--focused': isFocused,
-          'v-slider__thumb-container--show-label': this.showThumbLabel,
+          'v-slider__thumb-container--show-label': this.showThumbLabel
         }],
         style: this.getThumbContainerStyles(valueWidth),
         role: 'slider',
@@ -400,7 +398,7 @@ export default mixins(
         'aria-orientation': this.vertical ? 'vertical' : 'horizontal',
         onFocus,
         onBlur,
-        onKeydown: this.onKeyDown,
+        onKeydown: this.onKeyDown
       }), children)
     },
     genThumbLabelContent (value: number | string): any {
@@ -416,27 +414,27 @@ export default mixins(
         : `translateY(-20%) translateY(-12px) translateX(-50%) rotate(45deg)`
 
       return h(VScaleTransition, {
-        origin: 'bottom center',
+        origin: 'bottom center'
       }, () => [
         withDirectives(h('div', {
-          class: 'v-slider__thumb-label-container',
+          class: 'v-slider__thumb-label-container'
         }, [
           h('div', this.setBackgroundColor(this.computedThumbColor, {
             class: 'v-slider__thumb-label',
             style: {
               height: size,
               width: size,
-              transform,
-            },
-          }), [h('div', content)]),
+              transform
+            }
+          }), [h('div', content)])
         ]), [
-          [vShow, this.isFocused || this.isActive || this.thumbLabel === 'always'],
-        ]),
+          [vShow, this.isFocused || this.isActive || this.thumbLabel === 'always']
+        ])
       ])
     },
     genThumb (): VNode {
       return h('div', this.setBackgroundColor(this.computedThumbColor, {
-        class: 'v-slider__thumb',
+        class: 'v-slider__thumb'
       }))
     },
     getThumbContainerStyles (width: number): object {
@@ -446,7 +444,7 @@ export default mixins(
 
       return {
         transition: this.trackTransition,
-        [direction]: `${value}%`,
+        [direction]: `${value}%`
       }
     },
     onSliderMouseDown (e: MouseEvent | TouchEvent) {
@@ -547,7 +545,7 @@ export default mixins(
 
       const {
         [start]: trackStart,
-        [length]: trackLength,
+        [length]: trackLength
       } = this.$refs.track.getBoundingClientRect()
       const clickOffset = 'touches' in e ? e.touches[0][click] : e[click]
 
@@ -599,6 +597,6 @@ export default mixins(
       const newValue = Math.round((value - offset) / this.stepNumeric) * this.stepNumeric + offset
 
       return parseFloat(Math.min(newValue, this.maxValue).toFixed(decimals))
-    },
-  },
+    }
+  }
 })

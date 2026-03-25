@@ -1,4 +1,4 @@
-import {h} from 'vue'
+import { h } from 'vue'
 // Components
 import VExpansionPanels from './VExpansionPanels'
 import VExpansionPanelHeader from './VExpansionPanelHeader'
@@ -25,21 +25,21 @@ export default mixins(
 ).extend({
   name: 'v-expansion-panel',
 
-  emits: [
-    'click',
-    'change',
-  ],
-
   props: {
     disabled: Boolean,
-    readonly: Boolean,
+    readonly: Boolean
   },
+
+  emits: [
+    'click',
+    'change'
+  ],
 
   data () {
     return {
       content: null as VExpansionPanelContentInstance | null,
       header: null as VExpansionPanelHeaderInstance | null,
-      nextIsActive: false,
+      nextIsActive: false
     }
   },
 
@@ -49,7 +49,7 @@ export default mixins(
         'v-expansion-panel--active': this.isActive,
         'v-expansion-panel--next-active': this.nextIsActive,
         'v-expansion-panel--disabled': this.isDisabled,
-        ...this.groupClasses,
+        ...this.groupClasses
       }
     },
     isDisabled (): boolean {
@@ -57,7 +57,7 @@ export default mixins(
     },
     isReadonly (): boolean {
       return this.expansionPanels.readonly || this.readonly
-    },
+    }
   },
 
   methods: {
@@ -86,13 +86,13 @@ export default mixins(
         this.$emit('change')
         this.$emitLegacy('change')
       })
-    },
+    }
   },
 
   render (): VNode {
     return h('div', {
       class: ['v-expansion-panel', this.classes],
-      'aria-expanded': String(this.isActive),
+      'aria-expanded': String(this.isActive)
     }, getSlot(this))
-  },
+  }
 })

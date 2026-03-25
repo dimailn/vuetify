@@ -22,31 +22,31 @@ export default mixins(Colorable, Delayable, Dependent, Menuable).extend({
   props: {
     closeDelay: {
       type: [Number, String],
-      default: 0,
+      default: 0
     },
     disabled: Boolean,
     openDelay: {
       type: [Number, String],
-      default: 0,
+      default: 0
     },
     openOnHover: {
       type: Boolean,
-      default: true,
+      default: true
     },
     openOnFocus: {
       type: Boolean,
-      default: true,
+      default: true
     },
     tag: {
       type: String,
-      default: 'span',
+      default: 'span'
     },
-    transition: String,
+    transition: String
   },
 
   data: () => ({
     calculatedMinWidth: 0,
-    closeDependents: false,
+    closeDependents: false
   }),
 
   computed: {
@@ -109,7 +109,7 @@ export default mixins(Colorable, Delayable, Dependent, Menuable).extend({
         'v-tooltip--attached':
           this.attach === '' ||
           this.attach === true ||
-          this.attach === 'attach',
+          this.attach === 'attach'
       }
     },
     computedTransition (): string {
@@ -129,9 +129,9 @@ export default mixins(Colorable, Delayable, Dependent, Menuable).extend({
         maxWidth: convertToUnit(this.maxWidth),
         minWidth: convertToUnit(this.minWidth),
         top: this.calculatedTop,
-        zIndex: this.zIndex || this.activeZIndex,
+        zIndex: this.zIndex || this.activeZIndex
       }
-    },
+    }
   },
 
   beforeMount () {
@@ -177,7 +177,7 @@ export default mixins(Colorable, Delayable, Dependent, Menuable).extend({
     genActivatorAttributes () {
       return {
         'aria-haspopup': true,
-        'aria-expanded': String(this.isActive),
+        'aria-expanded': String(this.isActive)
       }
     },
     genTransition () {
@@ -186,7 +186,7 @@ export default mixins(Colorable, Delayable, Dependent, Menuable).extend({
       if (!this.computedTransition) return content
 
       return h(Transition, {
-        name: this.computedTransition,
+        name: this.computedTransition
       }, () => [content])
     },
     genContent () {
@@ -198,10 +198,10 @@ export default mixins(Colorable, Delayable, Dependent, Menuable).extend({
             class: ['v-tooltip__content', {
               [this.contentClass]: true,
               menuable__content__active: this.isActive,
-              'v-tooltip__content--fixed': this.activatorFixed,
+              'v-tooltip__content--fixed': this.activatorFixed
             }],
             style: this.styles,
-            ref: 'content',
+            ref: 'content'
           }),
           this.getContentSlot()
         ),
@@ -209,15 +209,15 @@ export default mixins(Colorable, Delayable, Dependent, Menuable).extend({
           [vShow, this.isContentActive]
         ]
       )
-    },
+    }
   },
 
   render (): VNode {
     return h(getTagValue(this.tag), {
-      class: ['v-tooltip', this.classes],
+      class: ['v-tooltip', this.classes]
     }, [
       this.showLazyContent(() => [this.genTransition()]),
-      this.genActivator(),
+      this.genActivator()
     ])
-  },
+  }
 })

@@ -3,7 +3,7 @@ export default {
   close: 'Stäng',
   dataIterator: {
     noResultsText: 'Inga poster funna',
-    loadingText: 'Laddar data...',
+    loadingText: 'Laddar data...'
   },
   dataTable: {
     itemsPerPageText: 'Rader per sida:',
@@ -13,9 +13,9 @@ export default {
       sortNone: 'Osorterat.',
       activateNone: 'Aktivera för att ta bort sortering.',
       activateDescending: 'Aktivera för sortering fallande.',
-      activateAscending: 'Aktivera för sortering stigande.',
+      activateAscending: 'Aktivera för sortering stigande.'
     },
-    sortBy: 'Sortera efter',
+    sortBy: 'Sortera efter'
   },
   dataFooter: {
     itemsPerPageText: 'Objekt per sida:',
@@ -24,38 +24,38 @@ export default {
     prevPage: 'Föregående sida',
     firstPage: 'Första sidan',
     lastPage: 'Sista sidan',
-    pageText: '{0}-{1} av {2}',
+    pageText: '{0}-{1} av {2}'
   },
   datePicker: {
     itemsSelected: '{0} markerade',
     nextMonthAriaLabel: 'Nästa månad',
     nextYearAriaLabel: 'Nästa år',
     prevMonthAriaLabel: 'Förra månaden',
-    prevYearAriaLabel: 'Förra året',
+    prevYearAriaLabel: 'Förra året'
   },
   noDataText: 'Ingen data tillgänglig',
   carousel: {
     prev: 'Föregående vy',
     next: 'Nästa vy',
     ariaLabel: {
-      delimiter: 'Carousel slide {0} of {1}',
-    },
+      delimiter: 'Carousel slide {0} of {1}'
+    }
   },
   calendar: {
-    moreEvents: '{0} fler',
+    moreEvents: '{0} fler'
   },
   input: {
     clear: 'Clear {0}',
     prependAction: '{0} prepended action',
-    appendAction: '{0} appended action',
+    appendAction: '{0} appended action'
   },
   fileInput: {
     counter: '{0} filer',
-    counterSize: '{0} filer (av {1} totalt)',
+    counterSize: '{0} filer (av {1} totalt)'
   },
   timePicker: {
     am: 'AM',
-    pm: 'PM',
+    pm: 'PM'
   },
   pagination: {
     ariaLabel: {
@@ -63,13 +63,13 @@ export default {
       next: 'Nästa sida',
       previous: 'Föregående sida',
       page: 'Gå till sidan {0}',
-      currentPage: 'Aktuell sida, sida {0}',
-    },
+      currentPage: 'Aktuell sida, sida {0}'
+    }
   },
   rating: {
     ariaLabel: {
-      icon: 'Rating {0} of {1}',
-    },
+      icon: 'Rating {0} of {1}'
+    }
   },
-  loading: 'Loading...',
+  loading: 'Loading...'
 }

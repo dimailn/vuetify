@@ -1,4 +1,4 @@
-import {defineComponent} from 'vue'
+import { defineComponent } from 'vue'
 
 export default defineComponent({
   name: 'transitionable',
@@ -6,6 +6,6 @@ export default defineComponent({
   props: {
     mode: String,
     origin: String,
-    transition: String,
-  },
+    transition: String
+  }
 })

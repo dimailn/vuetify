@@ -7,7 +7,7 @@ import {
   mount,
   MountingOptions,
   VueWrapper,
-  enableAutoUnmount,
+  enableAutoUnmount
 } from '@vue/test-utils'
 import { h, nextTick } from 'vue'
 import { touch } from '../../../../test'
@@ -26,21 +26,21 @@ describe('VWindow.ts', () => {
         ...options,
         global: {
           config: {
-            warnHandler: () => {}, // Подавляем предупреждения Vue
+            warnHandler: () => {} // Подавляем предупреждения Vue
           },
           mocks: {
             $vuetify: {
               lang: {
-                t: (str: string) => str,
+                t: (str: string) => str
               },
               rtl: false,
               icons: {
-                component: false,
-              },
-            },
+                component: false
+              }
+            }
           },
-          ...options.global,
-        },
+          ...options.global
+        }
       })
     }
   })
@@ -70,11 +70,11 @@ describe('VWindow.ts', () => {
   it('should set reverse', async () => {
     const wrapper = mountFunction({
       props: {
-        modelValue: 0,
+        modelValue: 0
       },
       slots: {
-        default: () => [h(VWindowItem), h(VWindowItem), h(VWindowItem)],
-      },
+        default: () => [h(VWindowItem), h(VWindowItem), h(VWindowItem)]
+      }
     })
 
     const vm = wrapper.vm as any
@@ -107,8 +107,8 @@ describe('VWindow.ts', () => {
   it('should increment and decrement current value', async () => {
     const wrapper = mountFunction({
       slots: {
-        default: () => [h(VWindowItem), h(VWindowItem), h(VWindowItem)],
-      },
+        default: () => [h(VWindowItem), h(VWindowItem), h(VWindowItem)]
+      }
     })
 
     await nextTick()
@@ -140,11 +140,11 @@ describe('VWindow.ts', () => {
   it('should update model when internal index is greater than item count', async () => {
     const wrapper = mountFunction({
       props: {
-        modelValue: 2,
+        modelValue: 2
       },
       slots: {
-        default: () => [h(VWindowItem), h(VWindowItem), h(VWindowItem)],
-      },
+        default: () => [h(VWindowItem), h(VWindowItem), h(VWindowItem)]
+      }
     })
 
     await nextTick()
@@ -154,11 +154,11 @@ describe('VWindow.ts', () => {
 
     const wrapper2 = mountFunction({
       props: {
-        modelValue: 2,
+        modelValue: 2
       },
       slots: {
-        default: () => [h(VWindowItem), h(VWindowItem)],
-      },
+        default: () => [h(VWindowItem), h(VWindowItem)]
+      }
     })
     await nextTick()
     // modelValue = 2, но элементов только 2 (индексы 0,1), поэтому internalIndex должен быть -1
@@ -166,11 +166,11 @@ describe('VWindow.ts', () => {
 
     const wrapper3 = mountFunction({
       props: {
-        modelValue: 1,
+        modelValue: 1
       },
       slots: {
-        default: () => [h(VWindowItem)],
-      },
+        default: () => [h(VWindowItem)]
+      }
     })
     await nextTick()
     // modelValue = 1, но элементов только 1 (индекс 0), поэтому internalIndex должен быть -1
@@ -178,11 +178,11 @@ describe('VWindow.ts', () => {
 
     const wrapper4 = mountFunction({
       props: {
-        modelValue: 0,
+        modelValue: 0
       },
       slots: {
-        default: () => [],
-      },
+        default: () => []
+      }
     })
     await nextTick()
     // modelValue = 0, но элементов нет, поэтому internalIndex должен быть -1
@@ -198,9 +198,9 @@ describe('VWindow.ts', () => {
           h(VWindowItem),
           h(VWindowItem),
           h(VWindowItem),
-          h(VWindowItem),
-        ],
-      },
+          h(VWindowItem)
+        ]
+      }
     })
 
     await nextTick()
@@ -244,7 +244,7 @@ describe('VWindow.ts', () => {
     const wrapper = mountFunction({
       props: {
         touch: fns,
-        modelValue: 1,
+        modelValue: 1
       },
       slots: {
         default: () => [
@@ -252,9 +252,9 @@ describe('VWindow.ts', () => {
           h(VWindowItem),
           h(VWindowItem),
           h(VWindowItem),
-          h(VWindowItem),
-        ],
-      },
+          h(VWindowItem)
+        ]
+      }
     })
 
     await nextTick()
@@ -276,9 +276,9 @@ describe('VWindow.ts', () => {
         default: () => [
           h(VWindowItem, { disabled: true }),
           h(VWindowItem),
-          h(VWindowItem),
-        ],
-      },
+          h(VWindowItem)
+        ]
+      }
     })
 
     const vm = wrapper.vm as any
@@ -296,16 +296,16 @@ describe('VWindow.ts', () => {
   it('should generate and show arrows', async () => {
     const wrapper = mountFunction({
       props: {
-        showArrows: true,
+        showArrows: true
       },
       slots: {
         default: () => [
           h(VWindowItem),
           h(VWindowItem),
           h(VWindowItem),
-          h(VWindowItem),
-        ],
-      },
+          h(VWindowItem)
+        ]
+      }
     })
 
     await nextTick()
@@ -341,9 +341,9 @@ describe('VWindow.ts', () => {
           h(VWindowItem),
           h(VWindowItem, { disabled: true }),
           h(VWindowItem, { disabled: true }),
-          h(VWindowItem),
-        ],
-      },
+          h(VWindowItem)
+        ]
+      }
     })
 
     const vm = wrapper.vm as any
@@ -358,8 +358,8 @@ describe('VWindow.ts', () => {
     const wrapper = mountFunction({
       props: { touchless: true },
       slots: {
-        default: () => [h(VWindowItem), h(VWindowItem)],
-      },
+        default: () => [h(VWindowItem), h(VWindowItem)]
+      }
     })
 
     const vm = wrapper.vm as any
@@ -376,11 +376,11 @@ describe('VWindow.ts', () => {
   it('should not "wrap around" when continuous === false', () => {
     const wrapper = mountFunction({
       props: {
-        continuous: false,
+        continuous: false
       },
       slots: {
-        default: () => [h(VWindowItem), h(VWindowItem), h(VWindowItem)],
-      },
+        default: () => [h(VWindowItem), h(VWindowItem), h(VWindowItem)]
+      }
     })
 
     const vm = wrapper.vm as any
@@ -402,8 +402,8 @@ describe('VWindow.ts', () => {
   it('should render with correct structure and classes', () => {
     const wrapper = mountFunction({
       slots: {
-        default: () => [h(VWindowItem), h(VWindowItem)],
-      },
+        default: () => [h(VWindowItem), h(VWindowItem)]
+      }
     })
 
     expect(wrapper.html()).toMatchSnapshot()
@@ -412,11 +412,11 @@ describe('VWindow.ts', () => {
   it('should render with arrows when showArrows is true', () => {
     const wrapper = mountFunction({
       props: {
-        showArrows: true,
+        showArrows: true
       },
       slots: {
-        default: () => [h(VWindowItem), h(VWindowItem)],
-      },
+        default: () => [h(VWindowItem), h(VWindowItem)]
+      }
     })
 
     expect(wrapper.html()).toMatchSnapshot()
@@ -425,8 +425,8 @@ describe('VWindow.ts', () => {
   it('should render with custom height style', async () => {
     const wrapper = mountFunction({
       slots: {
-        default: () => [h(VWindowItem), h(VWindowItem)],
-      },
+        default: () => [h(VWindowItem), h(VWindowItem)]
+      }
     })
 
     const vm = wrapper.vm as any
@@ -439,8 +439,8 @@ describe('VWindow.ts', () => {
   it('should render with transition height style', async () => {
     const wrapper = mountFunction({
       slots: {
-        default: () => [h(VWindowItem), h(VWindowItem)],
-      },
+        default: () => [h(VWindowItem), h(VWindowItem)]
+      }
     })
 
     const vm = wrapper.vm as any
@@ -453,11 +453,11 @@ describe('VWindow.ts', () => {
   it('should render with vertical prop', () => {
     const wrapper = mountFunction({
       props: {
-        vertical: true,
+        vertical: true
       },
       slots: {
-        default: () => [h(VWindowItem), h(VWindowItem)],
-      },
+        default: () => [h(VWindowItem), h(VWindowItem)]
+      }
     })
 
     expect(wrapper.html()).toMatchSnapshot()
@@ -467,11 +467,11 @@ describe('VWindow.ts', () => {
     const wrapper = mountFunction({
       props: {
         showArrows: true,
-        showArrowsOnHover: true,
+        showArrowsOnHover: true
       },
       slots: {
-        default: () => [h(VWindowItem), h(VWindowItem)],
-      },
+        default: () => [h(VWindowItem), h(VWindowItem)]
+      }
     })
 
     expect(wrapper.html()).toMatchSnapshot()

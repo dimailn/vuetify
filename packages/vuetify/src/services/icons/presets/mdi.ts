@@ -33,7 +33,7 @@ const icons: VuetifyIcons = {
   unfold: 'mdi-unfold-more-horizontal',
   file: 'mdi-paperclip',
   plus: 'mdi-plus',
-  minus: 'mdi-minus',
+  minus: 'mdi-minus'
 }
 
 export default icons

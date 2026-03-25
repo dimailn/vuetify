@@ -16,21 +16,21 @@ export default defineComponent({
   props: {
     color: {
       type: Object as PropType<VColorPickerColor>,
-      default: () => fromRGBA({ r: 255, g: 0, b: 0, a: 1 }),
+      default: () => fromRGBA({ r: 255, g: 0, b: 0, a: 1 })
     },
     disabled: Boolean,
     dotSize: {
       type: [Number, String],
-      default: 10,
+      default: 10
     },
     height: {
       type: [Number, String],
-      default: 150,
+      default: 150
     },
     width: {
       type: [Number, String],
-      default: 300,
-    },
+      default: 300
+    }
   },
 
   emits: ['update:color'],
@@ -41,8 +41,8 @@ export default defineComponent({
         width: 0,
         height: 0,
         left: 0,
-        top: 0,
-      } as ClientRect,
+        top: 0
+      } as ClientRect
     }
   },
 
@@ -52,15 +52,15 @@ export default defineComponent({
 
       return {
         x: this.color.hsva.s * parseInt(String(this.width), 10),
-        y: (1 - this.color.hsva.v) * parseInt(String(this.height), 10),
+        y: (1 - this.color.hsva.v) * parseInt(String(this.height), 10)
       }
-    },
+    }
   },
 
   watch: {
     'color.hue' () {
       this.updateCanvas()
-    },
+    }
   },
 
   mounted () {
@@ -97,7 +97,7 @@ export default defineComponent({
         h: this.color!.hue,
         s: clamp(x - left, 0, width) / width,
         v: 1 - clamp(y - top, 0, height) / height,
-        a: this.color!.alpha,
+        a: this.color!.alpha
       }))
     },
 
@@ -134,7 +134,7 @@ export default defineComponent({
       return h('canvas', {
         ref: 'canvas',
         width: this.width,
-        height: this.height,
+        height: this.height
       })
     },
 
@@ -145,15 +145,15 @@ export default defineComponent({
 
       return h('div', {
         class: ['v-color-picker__canvas-dot', {
-          'v-color-picker__canvas-dot--disabled': this.disabled,
+          'v-color-picker__canvas-dot--disabled': this.disabled
         }],
         style: {
           width: convertToUnit(this.dotSize),
           height: convertToUnit(this.dotSize),
-          transform: `translate(${x}, ${y})`,
-        },
+          transform: `translate(${x}, ${y})`
+        }
       })
-    },
+    }
   },
 
   render (): VNode {
@@ -161,13 +161,13 @@ export default defineComponent({
       class: 'v-color-picker__canvas',
       style: {
         width: convertToUnit(this.width),
-        height: convertToUnit(this.height),
+        height: convertToUnit(this.height)
       },
       onClick: this.handleClick,
-      onMousedown: this.handleMouseDown,
+      onMousedown: this.handleMouseDown
     }, [
       this.genCanvas(),
-      this.genDot(),
+      this.genDot()
     ])
-  },
+  }
 })

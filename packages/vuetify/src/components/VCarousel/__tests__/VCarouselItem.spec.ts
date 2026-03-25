@@ -2,7 +2,7 @@ import {
   mount,
   MountingOptions,
   VueWrapper,
-  enableAutoUnmount,
+  enableAutoUnmount
 } from '@vue/test-utils'
 import VCarouselItem from '../VCarouselItem'
 
@@ -24,8 +24,8 @@ describe('VCarouselItem.ts', () => {
   it('should throw warning when not used inside v-carousel', () => {
     const wrapper = mountFunction({
       props: {
-        src: imageSrc,
-      },
+        src: imageSrc
+      }
     })
 
     expect(warning).toHaveBeenTipped()

@@ -1,4 +1,4 @@
-import {h} from 'vue'
+import { h } from 'vue'
 // Types
 import { VNode, defineComponent } from 'vue'
 
@@ -32,5 +32,5 @@ export default defineComponent({
     }
 
     return h(getTagValue(this.tag), node.data, node.children)
-  },
+  }
 })

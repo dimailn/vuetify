@@ -5,7 +5,7 @@ import { Scroll } from '../../directives'
 import { consoleWarn } from '../../util/console'
 
 // Types
-import {defineComponent} from 'vue'
+import { defineComponent } from 'vue'
 
 /**
  * Scrollable
@@ -23,7 +23,7 @@ export default defineComponent({
 
   props: {
     scrollTarget: String,
-    scrollThreshold: [String, Number],
+    scrollThreshold: [String, Number]
   },
 
   data: () => ({
@@ -33,7 +33,7 @@ export default defineComponent({
     isScrollingUp: false,
     previousScroll: 0,
     savedScroll: 0,
-    target: null as Element | null,
+    target: null as Element | null
   }),
 
   computed: {
@@ -53,7 +53,7 @@ export default defineComponent({
       return this.scrollThreshold
         ? Number(this.scrollThreshold)
         : 300
-    },
+    }
   },
 
   watch: {
@@ -62,7 +62,7 @@ export default defineComponent({
     },
     isActive () {
       this.savedScroll = 0
-    },
+    }
   },
 
   mounted () {
@@ -99,6 +99,6 @@ export default defineComponent({
      * scrolling in any direction
      * has exceeded the threshold
      */
-    thresholdMet () { /* noop */ },
-  },
+    thresholdMet () { /* noop */ }
+  }
 })

@@ -9,7 +9,7 @@ import VItemGroup from '../VItemGroup'
 import {
   mount,
   VueWrapper,
-  enableAutoUnmount,
+  enableAutoUnmount
 } from '@vue/test-utils'
 import { ExtractVue } from './../../../util/mixins'
 
@@ -21,8 +21,8 @@ const Mock = {
   name: 'test',
 
   render: () => h(VItem, {}, {
-    default: defaultSlot,
-  }),
+    default: defaultSlot
+  })
 }
 
 describe('VItemGroup', () => {
@@ -32,7 +32,7 @@ describe('VItemGroup', () => {
   beforeEach(() => {
     mountFunction = (options = {}) => {
       return mount(VItemGroup, {
-        ...options,
+        ...options
       })
     }
   })
@@ -51,8 +51,8 @@ describe('VItemGroup', () => {
   it('should register elements', () => {
     const wrapper = mountFunction({
       slots: {
-        default: [Mock],
-      },
+        default: [Mock]
+      }
     })
 
     expect(wrapper.vm.items).toHaveLength(1)
@@ -65,7 +65,7 @@ describe('VItemGroup', () => {
   it('should register and activate elements', () => {
     const wrapper = mountFunction({
       props: { modelValue: 0 },
-      slots: { default: [Mock] },
+      slots: { default: [Mock] }
     })
 
     expect(wrapper.vm.items).toHaveLength(1)
@@ -81,9 +81,9 @@ describe('VItemGroup', () => {
       slots: {
         default: [
           Mock,
-          Mock,
-        ],
-      },
+          Mock
+        ]
+      }
     })
 
     expect(wrapper.vm.items).toHaveLength(2)
@@ -104,7 +104,7 @@ describe('VItemGroup', () => {
 
     await wrapper.setProps({
       modelValue: [],
-      multiple: true,
+      multiple: true
     })
     await wrapper.vm.$nextTick()
 
@@ -133,7 +133,7 @@ describe('VItemGroup', () => {
 
     await wrapper.setProps({
       multiple: true,
-      modelValue: [],
+      modelValue: []
     })
     await wrapper.vm.$nextTick()
 
@@ -173,8 +173,8 @@ describe('VItemGroup', () => {
     const wrapper = mountFunction({
       props: { mandatory: true },
       slots: {
-        default: [Mock],
-      },
+        default: [Mock]
+      }
     })
 
     await wrapper.vm.$nextTick()
@@ -227,7 +227,7 @@ describe('VItemGroup', () => {
 
   it('should update a multiple item group', async () => {
     const wrapper = mountFunction({
-      props: { multiple: true },
+      props: { multiple: true }
     })
 
     // Toggling on and off
@@ -265,7 +265,7 @@ describe('VItemGroup', () => {
 
   it('should update a multiple item group with a custom comparator', async () => {
     const wrapper = mountFunction({
-      props: { multiple: true },
+      props: { multiple: true }
     })
 
     await wrapper.setProps({ valueComparator: (a: any, b: any) => a?.startsWith(b?.[0]), modelValue: ['foo'] })
@@ -280,15 +280,15 @@ describe('VItemGroup', () => {
     const wrapper = mountFunction({
       props: {
         multiple: true,
-        modelValue: [2],
+        modelValue: [2]
       },
       slots: {
         default: [
           Mock,
           Mock,
-          Mock,
-        ],
-      },
+          Mock
+        ]
+      }
     })
 
     expect(wrapper.vm.items).toHaveLength(3)
@@ -305,11 +305,11 @@ describe('VItemGroup', () => {
   it('should not unregister children when is destroyed', () => {
     const wrapper = mountFunction({
       props: {
-        modelValue: 0,
+        modelValue: 0
       },
       slots: {
-        default: [Mock],
-      },
+        default: [Mock]
+      }
     })
 
     const eventsBefore = wrapper.emitted('update:modelValue')?.length || 0
@@ -328,24 +328,24 @@ describe('VItemGroup', () => {
 
       render () {
         return h(VItem, {
-          disabled: true,
+          disabled: true
         }, {
-          default: defaultSlot,
+          default: defaultSlot
         })
-      },
+      }
     }
 
     const wrapper = mountFunction({
       props: {
-        mandatory: true,
+        mandatory: true
       },
       slots: {
         default: [
           Mock2,
           Mock,
-          Mock,
-        ],
-      },
+          Mock
+        ]
+      }
     })
 
     expect(wrapper.vm.internalValue).toBe(1)
@@ -359,9 +359,9 @@ describe('VItemGroup', () => {
         default: [
           Mock,
           Mock,
-          Mock,
-        ],
-      },
+          Mock
+        ]
+      }
     })
 
     const items = wrapper.findAllComponents({ name: 'v-item' })
@@ -377,8 +377,8 @@ describe('VItemGroup', () => {
   it('should have the correct selected index, item and items', async () => {
     const wrapper = mountFunction({
       slots: {
-        default: [Mock, Mock, Mock],
-      },
+        default: [Mock, Mock, Mock]
+      }
     })
 
     expect(wrapper.vm.items).toHaveLength(3)
@@ -399,8 +399,8 @@ describe('VItemGroup', () => {
   it('should render with a specified tag when the tag prop is provided with a value', () => {
     const wrapper = mountFunction({
       props: {
-        tag: 'button',
-      },
+        tag: 'button'
+      }
     })
 
     expect(wrapper.element.tagName.toLowerCase()).toBe('button')

@@ -2,14 +2,14 @@ import Times from '../times'
 import {
   mount,
   VueWrapper,
-  MountingOptions,
+  MountingOptions
 } from '@vue/test-utils'
 import { CalendarTimestamp } from 'vuetify/types'
 import { defineComponent, h } from 'vue'
 
 const Mock = defineComponent({
   ...Times,
-  render: () => h('div'),
+  render: () => h('div')
 })
 
 describe('times.ts', () => {
@@ -24,8 +24,8 @@ describe('times.ts', () => {
   it('should parse timestamp', async () => {
     const wrapper = mountFunction({
       props: {
-        now: '2019-02-08',
-      },
+        now: '2019-02-08'
+      }
     })
 
     expect(wrapper.vm.parsedNow).toBeDefined()
@@ -42,7 +42,7 @@ describe('times.ts', () => {
       year: '2019',
       month: '2',
       day: '8',
-      weekday: '4',
+      weekday: '4'
     }
     wrapper.vm.updateDay(now as unknown as CalendarTimestamp, target as unknown as CalendarTimestamp)
     expect(target).toEqual(now)
@@ -58,7 +58,7 @@ describe('times.ts', () => {
       year: '2019',
       month: '2',
       day: '8',
-      weekday: '4',
+      weekday: '4'
     }
     wrapper.vm.updateDay(now as unknown as CalendarTimestamp, target as unknown as CalendarTimestamp)
     expect(target).not.toEqual(now)
@@ -72,7 +72,7 @@ describe('times.ts', () => {
     const now = {
       time: '08:30',
       hour: '8',
-      minute: '30',
+      minute: '30'
     }
     wrapper.vm.updateTime(now as unknown as CalendarTimestamp, target as unknown as CalendarTimestamp)
     expect(target).not.toEqual(now)

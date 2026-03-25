@@ -1,5 +1,5 @@
 // Libraries
-import {h} from 'vue'
+import { h } from 'vue'
 
 // Components
 import VRating from '../VRating'
@@ -8,11 +8,10 @@ import VRating from '../VRating'
 import {
   mount,
   VueWrapper,
-  MountingOptions,
+  MountingOptions
 } from '@vue/test-utils'
 import { mergeDeep } from '../../../util/helpers'
 import { nextTick } from 'vue'
-
 
 const $vuetify = {
   rtl: false,
@@ -23,8 +22,8 @@ const $vuetify = {
     }
   },
   lang: {
-    t: str => str,
-  },
+    t: str => str
+  }
 }
 
 describe('VRating.ts', () => {
@@ -41,7 +40,7 @@ describe('VRating.ts', () => {
               $createElement: h
             }
           }
-        },
+        }
       }, options))
     }
   })
@@ -49,8 +48,8 @@ describe('VRating.ts', () => {
   it('should not register directives if readonly or !ripple', async () => {
     const wrapper = mountFunction({
       props: {
-        readonly: true,
-      },
+        readonly: true
+      }
     })
 
     expect(wrapper.vm.directives[0][1].isDirActive).toBe(false)
@@ -122,8 +121,8 @@ describe('VRating.ts', () => {
   it('should not react to events when readonly', async () => {
     const wrapper = mountFunction({
       props: {
-        readonly: true,
-      },
+        readonly: true
+      }
     })
 
     const icon = wrapper.find('.v-icon')
@@ -151,8 +150,8 @@ describe('VRating.ts', () => {
 
     const wrapper = mountFunction({
       props: {
-        hover: true,
-      },
+        hover: true
+      }
     })
 
     const icons = wrapper.findAll('.v-icon')
@@ -187,15 +186,15 @@ describe('VRating.ts', () => {
     expect(wrapper.vm.genHoverIndex({
       pageX: 0,
       target: {
-        getBoundingClientRect: () => ({ width: 10, left: 0 }),
-      },
+        getBoundingClientRect: () => ({ width: 10, left: 0 })
+      }
     }, 1)).toBe(1.5)
 
     expect(wrapper.vm.genHoverIndex({
       pageX: 6,
       target: {
-        getBoundingClientRect: () => ({ width: 10, left: 0 }),
-      },
+        getBoundingClientRect: () => ({ width: 10, left: 0 })
+      }
     }, 1)).toBe(2)
   })
 
@@ -206,7 +205,7 @@ describe('VRating.ts', () => {
         config: {
           globalProperties: {
             $vuetify: {
-              rtl: true,
+              rtl: true
             }
           }
         }
@@ -219,15 +218,15 @@ describe('VRating.ts', () => {
     expect(wrapper.vm.genHoverIndex({
       pageX: 0,
       target: {
-        getBoundingClientRect: () => ({ width: 10, left: 0 }),
-      },
+        getBoundingClientRect: () => ({ width: 10, left: 0 })
+      }
     }, 1)).toBe(1.5)
 
     expect(wrapper.vm.genHoverIndex({
       pageX: 6,
       target: {
-        getBoundingClientRect: () => ({ width: 10, left: 0 }),
-      },
+        getBoundingClientRect: () => ({ width: 10, left: 0 })
+      }
     }, 1)).toBe(2)
   })
 
@@ -235,7 +234,7 @@ describe('VRating.ts', () => {
     const itemSlot = () => [h('span', 'foobar')]
 
     const component = {
-      render: () => h(VRating, {}, {item: itemSlot})
+      render: () => h(VRating, {}, { item: itemSlot })
     }
 
     const wrapper = mount(component)
@@ -247,7 +246,7 @@ describe('VRating.ts', () => {
     const wrapper = mountFunction({
       props: {
         halfIncrements: true,
-        hover: true,
+        hover: true
       }
     })
     const onMouseEnter = jest.fn()
@@ -264,7 +263,7 @@ describe('VRating.ts', () => {
   it('should reset hoverIndex on mouse leave', () => {
     jest.useFakeTimers()
     const wrapper = mountFunction({
-      props: { hover: true },
+      props: { hover: true }
     })
 
     const icon = wrapper.find('.v-icon')

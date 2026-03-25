@@ -107,7 +107,7 @@ export const Intersect: ObjectDirective<
 > = {
   mounted,
   updated,
-  unmounted,
+  unmounted
 }
 
 export default Intersect

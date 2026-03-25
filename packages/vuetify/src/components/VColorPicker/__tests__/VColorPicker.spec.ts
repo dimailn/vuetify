@@ -2,7 +2,7 @@ import VColorPicker from '../VColorPicker'
 import {
   mount,
   VueWrapper,
-  enableAutoUnmount,
+  enableAutoUnmount
 } from '@vue/test-utils'
 import { nextTick } from 'vue'
 
@@ -26,12 +26,12 @@ describe('VColorPicker.ts', () => {
             $vuetify: {
               rtl: false,
               icons: {
-                component: null,
-              },
-            },
+                component: null
+              }
+            }
           },
-          ...options.global,
-        },
+          ...options.global
+        }
       })
     }
   })
@@ -51,8 +51,8 @@ describe('VColorPicker.ts', () => {
   it('should change canvas height', () => {
     const wrapper = mountFunction({
       props: {
-        canvasHeight: 200,
-      },
+        canvasHeight: 200
+      }
     })
 
     expect(wrapper.html()).toMatchSnapshot()
@@ -62,8 +62,8 @@ describe('VColorPicker.ts', () => {
   it('should show swatches', () => {
     const wrapper = mountFunction({
       props: {
-        showSwatches: true,
-      },
+        showSwatches: true
+      }
     })
 
     expect(wrapper.html()).toMatchSnapshot()
@@ -73,8 +73,8 @@ describe('VColorPicker.ts', () => {
   it('should hide canvas', () => {
     const wrapper = mountFunction({
       props: {
-        hideCanvas: true,
-      },
+        hideCanvas: true
+      }
     })
 
     expect(wrapper.html()).toMatchSnapshot()
@@ -84,8 +84,8 @@ describe('VColorPicker.ts', () => {
   it('should hide sliders', () => {
     const wrapper = mountFunction({
       props: {
-        hideSliders: true,
-      },
+        hideSliders: true
+      }
     })
 
     expect(wrapper.html()).toMatchSnapshot()
@@ -95,8 +95,8 @@ describe('VColorPicker.ts', () => {
   it('should hide inputs', () => {
     const wrapper = mountFunction({
       props: {
-        hideInputs: true,
-      },
+        hideInputs: true
+      }
     })
 
     expect(wrapper.html()).toMatchSnapshot()
@@ -107,8 +107,8 @@ describe('VColorPicker.ts', () => {
     const wrapper = mountFunction({
       props: {
         hideInputs: true,
-        hideSliders: true,
-      },
+        hideSliders: true
+      }
     })
 
     expect(wrapper.html()).toMatchSnapshot()
@@ -121,11 +121,11 @@ describe('VColorPicker.ts', () => {
     const fn = jest.fn()
     const wrapper = mountFunction({
       props: {
-        modelValue: '#00FF00',
+        modelValue: '#00FF00'
       },
       attrs: {
-        'onUpdate:modelValue': fn,
-      },
+        'onUpdate:modelValue': fn
+      }
     })
 
     // В Vue 3 мы должны напрямую эмитировать событие
@@ -139,11 +139,11 @@ describe('VColorPicker.ts', () => {
     const fn = jest.fn()
     const wrapper = mountFunction({
       props: {
-        modelValue: { r: 0, g: 0, b: 255 },
+        modelValue: { r: 0, g: 0, b: 255 }
       },
       attrs: {
-        'onUpdate:modelValue': fn,
-      },
+        'onUpdate:modelValue': fn
+      }
     })
 
     // В Vue 3 мы должны напрямую эмитировать событие
@@ -156,8 +156,8 @@ describe('VColorPicker.ts', () => {
   it('should not show alpha controls if given hex value without alpha', async () => {
     const wrapper = mountFunction({
       props: {
-        modelValue: '#00FF00',
-      },
+        modelValue: '#00FF00'
+      }
     })
 
     expect(wrapper.html()).toMatchSnapshot()
@@ -169,8 +169,8 @@ describe('VColorPicker.ts', () => {
   it('should work correctly when initial value is null', () => {
     const wrapper = mountFunction({
       props: {
-        modelValue: null,
-      },
+        modelValue: null
+      }
     })
 
     expect(wrapper.html()).toMatchSnapshot()
@@ -179,8 +179,8 @@ describe('VColorPicker.ts', () => {
   it('should render flat picker', () => {
     const wrapper = mountFunction({
       props: {
-        flat: true,
-      },
+        flat: true
+      }
     })
 
     expect(wrapper.html()).toMatchSnapshot()
@@ -189,8 +189,8 @@ describe('VColorPicker.ts', () => {
   it('should render picker with elevation', () => {
     const wrapper = mountFunction({
       props: {
-        elevation: 15,
-      },
+        elevation: 15
+      }
     })
 
     expect(wrapper.html()).toMatchSnapshot()

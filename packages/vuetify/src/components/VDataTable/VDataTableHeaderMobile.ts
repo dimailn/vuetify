@@ -12,9 +12,9 @@ export default mixins(header).extend({
   props: {
     sortByText: {
       type: String,
-      default: '$vuetify.dataTable.sortBy',
+      default: '$vuetify.dataTable.sortBy'
     },
-    mobile: Boolean,
+    mobile: Boolean
   },
 
   emits: ['sort'],
@@ -33,8 +33,8 @@ export default mixins(header).extend({
           sortable: true,
           active: beingSorted,
           asc: beingSorted && !isDesc,
-          desc: beingSorted && isDesc,
-        },
+          desc: beingSorted && isDesc
+        }
       }, [this.genSortIcon()]))
 
       return h(VChip, {
@@ -42,7 +42,7 @@ export default mixins(header).extend({
         onClick: (e: MouseEvent) => {
           e.stopPropagation()
           this.$emit('sort', props.item.value)
-        },
+        }
       }, children)
     },
     genSortSelect (items: any[]) {
@@ -53,11 +53,11 @@ export default mixins(header).extend({
         multiple: this.options.multiSort,
         modelValue: this.options.multiSort ? this.options.sortBy : this.options.sortBy[0],
         menuProps: { closeOnContentClick: true },
-        'onUpdate:modelValue': (v: string | string[]) => this.$emit('sort', v),
+        'onUpdate:modelValue': (v: string | string[]) => this.$emit('sort', v)
       }, {
-        selection: (props: any) => this.genSortChip(props),
+        selection: (props: any) => this.genSortChip(props)
       })
-    },
+    }
   },
 
   render (): VNode {
@@ -68,9 +68,9 @@ export default mixins(header).extend({
       children.push(h('div', {
         class: [
           'v-data-table-header-mobile__select',
-          ...wrapInArray(header.class),
+          ...wrapInArray(header.class)
         ],
-        width: header.width,
+        width: header.width
       }, [this.genSelectAll()]))
     }
 
@@ -78,7 +78,7 @@ export default mixins(header).extend({
       .filter(h => h.sortable !== false && h.value !== 'data-table-select')
       .map(h => ({
         text: h.text,
-        value: h.value,
+        value: h.value
       }))
 
     if (!this.disableSort && sortHeaders.length) {
@@ -92,7 +92,7 @@ export default mixins(header).extend({
     const tr = h('tr', [th])
 
     return h('thead', {
-      class: 'v-data-table-header v-data-table-header-mobile',
+      class: 'v-data-table-header v-data-table-header-mobile'
     }, [tr])
-  },
+  }
 })

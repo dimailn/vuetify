@@ -5,7 +5,7 @@ import VTabsBar from '../VTabsBar'
 // Utilities
 import {
   mount,
-  VueWrapper,
+  VueWrapper
 } from '@vue/test-utils'
 import { Vue3RouterLinkStub } from '../../../../test/util/stubs'
 import { h, nextTick } from 'vue'
@@ -18,37 +18,37 @@ describe('VTabsBar.ts', () => {
       return mount(VTabsBar, {
         global: {
           config: {
-            warnHandler: () => {}, // Подавляем предупреждения Vue
+            warnHandler: () => {} // Подавляем предупреждения Vue
           },
           stubs: {
-            RouterLink: Vue3RouterLinkStub,
+            RouterLink: Vue3RouterLinkStub
           },
           mocks: {
             $vuetify: {
               breakpoint: {},
               application: { left: 0, right: 0 },
-              theme: { dark: false },
+              theme: { dark: false }
             },
             $route: { path: '/' },
             $router: {
-              resolve: () => ({ href: '/' }),
-            },
-          },
+              resolve: () => ({ href: '/' })
+            }
+          }
         },
         slots: {
           default: () => [
             h(VTab, { to: '/foo' }, () => 'Tab 1'),
-            h(VTab, { to: '/bar' }, () => 'Tab 2'),
-          ],
+            h(VTab, { to: '/bar' }, () => 'Tab 2')
+          ]
         },
-        ...options,
+        ...options
       })
     }
   })
 
   it('should handle route changes correctly', async () => {
     const wrapper = mountFunction({
-      props: { mandatory: false },
+      props: { mandatory: false }
     })
 
     // Ждем инициализации компонента
@@ -80,7 +80,7 @@ describe('VTabsBar.ts', () => {
 
   it('should not change value when mandatory is true', async () => {
     const wrapper = mountFunction({
-      props: { mandatory: true },
+      props: { mandatory: true }
     })
 
     await nextTick()

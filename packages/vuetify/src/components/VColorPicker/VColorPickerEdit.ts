@@ -27,22 +27,22 @@ export const modes = {
       ['r', 255, 'int'],
       ['g', 255, 'int'],
       ['b', 255, 'int'],
-      ['a', 1, 'float'],
+      ['a', 1, 'float']
     ],
-    from: fromRGBA,
+    from: fromRGBA
   },
   hsla: {
     inputs: [
       ['h', 360, 'int'],
       ['s', 1, 'float'],
       ['l', 1, 'float'],
-      ['a', 1, 'float'],
+      ['a', 1, 'float']
     ],
-    from: fromHSLA,
+    from: fromHSLA
   },
   hexa: {
-    from: fromHexa,
-  },
+    from: fromHexa
+  }
 } as { [key: string]: Mode }
 
 export default defineComponent({
@@ -51,7 +51,7 @@ export default defineComponent({
   props: {
     color: {
       type: Object as PropType<VColorPickerColor>,
-      required: true,
+      required: true
     },
     disabled: Boolean,
     hideAlpha: Boolean,
@@ -59,28 +59,28 @@ export default defineComponent({
     mode: {
       type: String,
       default: 'rgba',
-      validator: (v: string) => Object.keys(modes).includes(v),
-    },
+      validator: (v: string) => Object.keys(modes).includes(v)
+    }
   },
 
   emits: ['update:color', 'update:mode'],
 
   data () {
     return {
-      internalMode: this.mode,
+      internalMode: this.mode
     }
   },
 
   computed: {
     currentMode (): Mode {
       return modes[this.internalMode]
-    },
+    }
   },
 
   watch: {
     mode (mode: string) {
       this.internalMode = mode
-    },
+    }
   },
 
   methods: {
@@ -106,15 +106,15 @@ export default defineComponent({
 
     genInput (target: string, attrs: any, value: any, onChange: any): VNode {
       return h('div', {
-        class: 'v-color-picker__input',
+        class: 'v-color-picker__input'
       }, [
         h('input', {
           key: target,
           ...attrs,
           value,
-          onChange,
+          onChange
         }),
-        h('span', target.toUpperCase()),
+        h('span', target.toUpperCase())
       ])
     },
 
@@ -126,7 +126,7 @@ export default defineComponent({
           'hex',
           {
             maxlength: this.hideAlpha ? 7 : 9,
-            disabled: this.disabled,
+            disabled: this.disabled
           },
           value,
           (e: Event) => {
@@ -145,7 +145,7 @@ export default defineComponent({
               min: 0,
               max,
               step: type === 'float' ? '0.01' : type === 'int' ? '1' : undefined,
-              disabled: this.disabled,
+              disabled: this.disabled
             },
             this.getValue(value[target], type),
             (e: Event) => {
@@ -167,19 +167,19 @@ export default defineComponent({
         small: true,
         icon: true,
         disabled: this.disabled,
-        onClick: this.changeMode,
+        onClick: this.changeMode
       }, {
         default: () => [h(VIcon, {}, '$unfold')]
       })
-    },
+    }
   },
 
   render (): VNode {
     return h('div', {
-      class: 'v-color-picker__edit',
+      class: 'v-color-picker__edit'
     }, [
       this.genInputs(),
-      !this.hideModeSwitch && this.genSwitch(),
+      !this.hideModeSwitch && this.genSwitch()
     ])
-  },
+  }
 })

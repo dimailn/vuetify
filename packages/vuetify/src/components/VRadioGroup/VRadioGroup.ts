@@ -16,7 +16,7 @@ import type { PropType } from 'vue'
 
 const baseMixins = mixins(
   VInput,
-  BaseItemGroup,
+  BaseItemGroup
 )
 
 /* @vue/component */
@@ -25,25 +25,25 @@ export default baseMixins.extend({
 
   provide () {
     return {
-      radioGroup: this,
+      radioGroup: this
     }
   },
 
   props: {
     column: {
       type: Boolean,
-      default: true,
+      default: true
     },
     height: {
       type: [Number, String],
-      default: 'auto',
+      default: 'auto'
     },
     name: String,
     row: Boolean,
     // If no value set on VRadio
     // will match valueComparator
     // force default to null
-    modelValue: null as unknown as PropType<any>,
+    modelValue: null as unknown as PropType<any>
   },
 
   computed: {
@@ -52,16 +52,16 @@ export default baseMixins.extend({
         ...VInput.computed.classes.call(this),
         'v-input--selection-controls v-input--radio-group': true,
         'v-input--radio-group--column': this.column && !this.row,
-        'v-input--radio-group--row': this.row,
+        'v-input--radio-group--row': this.row
       }
-    },
+    }
   },
 
   created () {
     const breakingProps = [
       ['value', 'modelValue'],
       ['onInput', 'onUpdate:modelValue'],
-      ['onChange', 'onUpdate:modelValue'],
+      ['onChange', 'onUpdate:modelValue']
     ]
 
     /* istanbul ignore next */
@@ -76,7 +76,7 @@ export default baseMixins.extend({
         class: 'v-input--radio-group__input',
         id: this.id,
         role: 'radiogroup',
-        'aria-labelledby': this.computedId,
+        'aria-labelledby': this.computedId
       }, VInput.methods.genDefaultSlot.call(this))
     },
     genInputSlot () {
@@ -98,14 +98,14 @@ export default baseMixins.extend({
 
       return label
     },
-    onClick: BaseItemGroup.methods.onClick,
+    onClick: BaseItemGroup.methods.onClick
   },
 
   render () {
     const vnode = VInput.render.call(this)
 
-    vnode.props = mergeProps(vnode.props, this.attrs$);
+    vnode.props = mergeProps(vnode.props, this.attrs$)
 
     return vnode
-  },
+  }
 })

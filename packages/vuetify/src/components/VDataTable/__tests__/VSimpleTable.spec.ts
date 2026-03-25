@@ -2,7 +2,7 @@ import VSimpleTable from '../VSimpleTable'
 import {
   mount,
   VueWrapper,
-  enableAutoUnmount,
+  enableAutoUnmount
 } from '@vue/test-utils'
 import { h } from 'vue'
 
@@ -17,24 +17,24 @@ describe('VSimpleTable.ts', () => {
       return mount(VSimpleTable, {
         global: {
           config: {
-            warnHandler: () => {}, // Подавляем предупреждения Vue
-          },
+            warnHandler: () => {} // Подавляем предупреждения Vue
+          }
         },
-        ...options,
+        ...options
       })
     }
   })
 
   const createDefaultSlots = () => [
     h('tr', [h('th', 'Foo'), h('th', 'Bar')]),
-    h('tr', [h('td', 'baz'), h('td', 'qux')]),
+    h('tr', [h('td', 'baz'), h('td', 'qux')])
   ]
 
   it('should render', () => {
     const wrapper = mountFunction({
       slots: {
-        default: createDefaultSlots,
-      },
+        default: createDefaultSlots
+      }
     })
 
     expect(wrapper.findAll('.v-data-table')).toHaveLength(1)
@@ -48,14 +48,14 @@ describe('VSimpleTable.ts', () => {
         default: createDefaultSlots,
         wrapper: () => h('div', {
           class: 'custom-wrapper',
-          'data-test': 'custom-wrapper',
+          'data-test': 'custom-wrapper'
         }, [
           h('table', { class: 'custom-table' }, [
             h('tr', [h('th', 'Custom Header 1'), h('th', 'Custom Header 2')]),
-            h('tr', [h('td', 'Custom Data 1'), h('td', 'Custom Data 2')]),
-          ]),
-        ]),
-      },
+            h('tr', [h('td', 'Custom Data 1'), h('td', 'Custom Data 2')])
+          ])
+        ])
+      }
     })
 
     // Проверяем, что дефолтный wrapper не используется
@@ -77,8 +77,8 @@ describe('VSimpleTable.ts', () => {
     const wrapper = mountFunction({
       slots: {
         top: () => h('div', { class: 'top' }, 'Header'),
-        bottom: () => h('div', { class: 'bottom' }, 'Footer'),
-      },
+        bottom: () => h('div', { class: 'bottom' }, 'Footer')
+      }
     })
 
     expect(wrapper.findAll('.top')).toHaveLength(1)
@@ -89,11 +89,11 @@ describe('VSimpleTable.ts', () => {
   it('should render with custom height', () => {
     const wrapper = mountFunction({
       slots: {
-        default: createDefaultSlots,
+        default: createDefaultSlots
       },
       props: {
-        height: 1000,
-      },
+        height: 1000
+      }
     })
 
     expect(wrapper.html()).toMatchSnapshot()
@@ -103,30 +103,30 @@ describe('VSimpleTable.ts', () => {
     const wrapper = mountFunction()
 
     await wrapper.setProps({
-      dense: true,
+      dense: true
     })
     expect(wrapper.vm.classes).toMatchObject({
-      'v-data-table--dense': true,
+      'v-data-table--dense': true
     })
     await wrapper.setProps({
-      dark: true,
+      dark: true
     })
     expect(wrapper.vm.classes).toMatchObject({
       'theme--dark': true,
-      'theme--light': false,
+      'theme--light': false
     })
     await wrapper.setProps({
-      fixedHeader: true,
+      fixedHeader: true
     })
     expect(wrapper.vm.classes).toMatchObject({
-      'v-data-table--fixed-header': true,
+      'v-data-table--fixed-header': true
     })
     await wrapper.setProps({
       fixedHeader: false,
-      height: 1000,
+      height: 1000
     })
     expect(wrapper.vm.classes).toMatchObject({
-      'v-data-table--fixed-height': true,
+      'v-data-table--fixed-height': true
     })
   })
 
@@ -134,13 +134,13 @@ describe('VSimpleTable.ts', () => {
     const wrapper = mountFunction({
       slots: {
         top: () => h('div', { class: 'top' }, 'Header'),
-        bottom: () => h('div', { class: 'bottom' }, 'Footer'),
-      },
+        bottom: () => h('div', { class: 'bottom' }, 'Footer')
+      }
     })
 
     expect(wrapper.vm.classes).toMatchObject({
       'v-data-table--has-top': true,
-      'v-data-table--has-bottom': true,
+      'v-data-table--has-bottom': true
     })
   })
 })

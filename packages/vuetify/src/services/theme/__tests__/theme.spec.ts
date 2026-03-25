@@ -12,7 +12,7 @@ import { createApp, nextTick } from 'vue'
 import {
   VuetifyParsedTheme,
   VuetifyThemeVariant,
-  ThemeOptions,
+  ThemeOptions
 } from 'vuetify/types/services/theme'
 
 // Test Utils
@@ -27,7 +27,7 @@ const FillVariant = (variant: Partial<VuetifyThemeVariant> = {}) => {
     info: '#2196F3',
     success: '#4CAF50',
     warning: '#FFC107',
-    ...variant,
+    ...variant
   }
 }
 
@@ -38,9 +38,9 @@ describe('Theme.ts', () => {
         default: 'light',
         themes: {
           dark: FillVariant(),
-          light: FillVariant(),
-        },
-      },
+          light: FillVariant()
+        }
+      }
     })
   }
 
@@ -83,9 +83,9 @@ describe('Theme.ts', () => {
         light: FillVariant({
           primary: '#000001',
           secondary: '#000002',
-          accent: '#000003',
-        }),
-      },
+          accent: '#000003'
+        })
+      }
     })
 
     // Принудительно создаем стиль элемент для тестов
@@ -110,9 +110,9 @@ describe('Theme.ts', () => {
       themes: {
         light: FillVariant(),
         dark: FillVariant({
-          primary: '#FFFFFF',
-        }),
-      },
+          primary: '#FFFFFF'
+        })
+      }
     })
 
     // Принудительно создаем стиль элемент для тестов
@@ -152,11 +152,11 @@ describe('Theme.ts', () => {
       get: jest.fn(theme => cache.get(theme)),
       set: jest.fn((theme: VuetifyParsedTheme, css: string) => {
         cache.set(theme, css)
-      }),
+      })
     }
 
     const theme = mockTheme({
-      options: { themeCache },
+      options: { themeCache }
     })
 
     expect(theme.generatedStyles).toMatchSnapshot()
@@ -174,7 +174,7 @@ describe('Theme.ts', () => {
     const minifyTheme = jest.fn((css: string) => css + 'foobar')
 
     const theme = mockTheme({
-      options: { minifyTheme },
+      options: { minifyTheme }
     })
 
     // Принудительно создаем стиль элемент для тестов
@@ -192,7 +192,7 @@ describe('Theme.ts', () => {
 
   it('should add nonce to stylesheet', () => {
     const theme = mockTheme({
-      options: { cspNonce: 'foobar' },
+      options: { cspNonce: 'foobar' }
     })
 
     // Принудительно создаем стиль элемент для тестов

@@ -1,4 +1,4 @@
-import {h} from 'vue'
+import { h } from 'vue'
 // Style
 import './VParallax.sass'
 
@@ -26,18 +26,18 @@ export default baseMixins.extend({
   props: {
     alt: {
       type: String,
-      default: '',
+      default: ''
     },
     height: {
       type: [String, Number],
-      default: 500,
+      default: 500
     },
     src: String,
-    srcset: String,
+    srcset: String
   },
 
   data: () => ({
-    isBooted: false,
+    isBooted: false
   }),
 
   computed: {
@@ -45,9 +45,9 @@ export default baseMixins.extend({
       return {
         display: 'block',
         opacity: this.isBooted ? 1 : 0,
-        transform: `translate(-50%, ${this.parallax}px)`,
+        transform: `translate(-50%, ${this.parallax}px)`
       }
-    },
+    }
   },
 
   mounted () {
@@ -74,7 +74,7 @@ export default baseMixins.extend({
     },
     objHeight () {
       return this.$refs.img.naturalHeight
-    },
+    }
   },
 
   render (): VNode {
@@ -84,25 +84,25 @@ export default baseMixins.extend({
       src: this.src,
       srcset: this.srcset,
       alt: this.alt,
-      ref: 'img',
+      ref: 'img'
     }
 
     const container = h('div', {
-      class: 'v-parallax__image-container',
+      class: 'v-parallax__image-container'
     }, [
-      h('img', imgData),
+      h('img', imgData)
     ])
 
     const content = h('div', {
-      class: 'v-parallax__content',
+      class: 'v-parallax__content'
     }, getSlot(this))
 
     return h('div', {
       class: 'v-parallax',
       style: {
-        height: `${this.height}px`,
+        height: `${this.height}px`
       },
-      ...this.$listeners,
+      ...this.$listeners
     }, [container, content])
-  },
+  }
 })

@@ -1,4 +1,4 @@
-import {h} from 'vue'
+import { h } from 'vue'
 // Styles
 import './VTimeline.sass'
 
@@ -23,7 +23,7 @@ export default mixins(
   props: {
     alignTop: Boolean,
     dense: Boolean,
-    reverse: Boolean,
+    reverse: Boolean
   },
 
   computed: {
@@ -32,14 +32,14 @@ export default mixins(
         'v-timeline--align-top': this.alignTop,
         'v-timeline--dense': this.dense,
         'v-timeline--reverse': this.reverse,
-        ...this.themeClasses,
+        ...this.themeClasses
       }
-    },
+    }
   },
 
   render (): VNode {
     return h('div', {
-      class: ['v-timeline', this.classes],
+      class: ['v-timeline', this.classes]
     }, getSlot(this))
-  },
+  }
 })

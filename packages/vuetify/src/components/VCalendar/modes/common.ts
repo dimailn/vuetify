@@ -11,7 +11,7 @@ export function getVisuals (events: CalendarEventParsed[], minStart = 0): Calend
     columnCount: 0,
     column: 0,
     left: 0,
-    width: 100,
+    width: 100
   }))
 
   visuals.sort((a, b) => {
@@ -133,7 +133,7 @@ export function getOverlapGroupHandler (firstWeekday: number) {
       }
 
       return visuals
-    },
+    }
   }
 
   return handler

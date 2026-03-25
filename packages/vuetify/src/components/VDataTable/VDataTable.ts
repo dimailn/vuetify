@@ -16,7 +16,7 @@ import {
   RowClassFunction,
   RowStyleFunction,
   DataTableItemProps,
-  DataTableFilterMode,
+  DataTableFilterMode
 } from 'vuetify/types'
 
 // Components
@@ -58,7 +58,7 @@ function searchTableItems (
   headersWithCustomFilters: DataTableHeader[],
   headersWithoutCustomFilters: DataTableHeader[],
   customFilter: DataTableFilterFunction,
-  filterMode: DataTableFilterMode,
+  filterMode: DataTableFilterMode
 ) {
   search = typeof search === 'string' ? search.trim() : null
 
@@ -96,17 +96,16 @@ function searchTableItems (
 export default mixins(
   VDataIterator,
   Loadable,
-  Mouse,
+  Mouse
 ).extend({
   name: 'v-data-table',
 
   emits: ['click:row', 'update:options', 'update:page', 'update:items-per-page', 'update:sort-by', 'update:sort-desc', 'update:group-by', 'update:group-desc', 'pagination', 'current-items', 'page-count', 'click', 'mousedown', 'mouseup', 'touchstart', 'touchend'],
 
-
   props: {
     headers: {
       type: Array,
-      default: () => [],
+      default: () => []
     } as unknown as PropType<DataTableHeader[]>,
     showSelect: Boolean,
     checkboxColor: String,
@@ -125,35 +124,35 @@ export default mixins(
     headersLength: Number,
     expandIcon: {
       type: String,
-      default: '$expand',
+      default: '$expand'
     },
     customFilter: {
       type: Function,
-      default: defaultFilter,
+      default: defaultFilter
     } as unknown as PropType<typeof defaultFilter>,
     filterMode: {
       type: String,
-      default: 'intersection',
+      default: 'intersection'
     } as unknown as PropType<DataTableFilterMode>,
     itemClass: {
       type: [String, Function],
-      default: () => '',
+      default: () => ''
     } as unknown as PropType<RowClassFunction | string>,
     itemStyle: {
       type: [String, Function],
-      default: () => '',
+      default: () => ''
     } as unknown as PropType<RowStyleFunction | string>,
     loaderHeight: {
       type: [Number, String],
-      default: 4,
-    },
+      default: 4
+    }
   },
 
   data () {
     return {
       internalGroupBy: [] as string[],
       openCache: {} as { [key: string]: boolean },
-      widths: [] as number[],
+      widths: [] as number[]
     }
   },
 
@@ -178,9 +177,11 @@ export default mixins(
       return headers
     },
     colspanAttrs (): object | undefined {
-      return this.isMobile ? undefined : {
-        colspan: this.headersLength || this.computedHeaders.length,
-      }
+      return this.isMobile
+        ? undefined
+        : {
+            colspan: this.headersLength || this.computedHeaders.length
+          }
     },
     columnSorters (): Record<string, DataTableCompareFunction> {
       const headers = this.computedHeaders as DataTableHeader[]
@@ -214,14 +215,14 @@ export default mixins(
     },
     groupByText (): string {
       return this.headers?.find(header => header.value === this.internalGroupBy?.[0])?.text ?? ''
-    },
+    }
   },
 
   created () {
     const breakingProps = [
       ['sort-icon', 'header-props.sort-icon'],
       ['hide-headers', 'hide-default-header'],
-      ['select-all', 'show-select'],
+      ['select-all', 'show-select']
     ]
 
     /* istanbul ignore next */
@@ -268,13 +269,13 @@ export default mixins(
     createItemProps (item: any, index: number): DataTableItemProps {
       const data = {
         ...VDataIterator.methods.createItemProps.call(this, item, index),
-        headers: this.computedHeaders,
+        headers: this.computedHeaders
       }
 
       return {
         ...data,
         class: {
-          'v-data-table__selected': data.isSelected,
+          'v-data-table__selected': data.isSelected
         },
         ...this.getDefaultMouseEventHandlers(':row', () => data, true),
         // TODO: the first argument should be the event, and the second argument should be data,
@@ -291,19 +292,19 @@ export default mixins(
       return h('colgroup', this.computedHeaders.map(header => {
         return h('col', {
           class: {
-            divider: header.divider,
-          },
+            divider: header.divider
+          }
         })
       }))
     },
     genLoading () {
       const th = h('th', {
         class: 'column',
-        ...this.colspanAttrs,
+        ...this.colspanAttrs
       }, [this.genProgress()])
 
       const tr = h('tr', {
-        class: 'v-data-table__progress',
+        class: 'v-data-table__progress'
       }, [th])
 
       return h('thead', [tr])
@@ -325,17 +326,16 @@ export default mixins(
         'onToggle-select-all': this.toggleSelectAll
       }
 
-
       // TODO: rename to 'head'? (thead, tbody, tfoot)
       const children: VNodeChildrenArrayContents = [getSlot(this, 'header', {
         ...data,
-        isMobile: this.isMobile,
+        isMobile: this.isMobile
       }) as any]
 
       if (!this.hideDefaultHeader) {
         const scopedSlots = getPrefixedScopedSlots('header.', this.$slots)
         children.push(h(VDataTableHeader, {
-          ...data,
+          ...data
 
         }, scopedSlots))
       }
@@ -346,11 +346,11 @@ export default mixins(
     },
     genEmptyWrapper (content: VNodeChildrenArrayContents) {
       return h('tr', {
-        class: 'v-data-table__empty-wrapper',
+        class: 'v-data-table__empty-wrapper'
       }, [
         h('td', {
-          ...this.colspanAttrs,
-        }, content),
+          ...this.colspanAttrs
+        }, content)
       ])
     },
     genItems (items: any[], props: DataScopeProps) {
@@ -371,7 +371,7 @@ export default mixins(
             options: props.options,
             isMobile: this.isMobile,
             items: group.items,
-            headers: this.computedHeaders,
+            headers: this.computedHeaders
           })
         } else {
           return this.genDefaultGroupedRow(group.name, group.items, props)
@@ -381,7 +381,7 @@ export default mixins(
     genDefaultGroupedRow (group: string, items: any[], props: DataScopeProps) {
       const isOpen = !!this.openCache[group]
       const children: VNodeChildren = [
-        h('template', { slot: 'row.content' }, this.genRows(items, props)),
+        h('template', { slot: 'row.content' }, this.genRows(items, props))
       ]
       const toggleFn = () => this.openCache[group] = !this.openCache[group]
       const removeFn = () => props.updateOptions({ groupBy: [], groupDesc: [] })
@@ -396,8 +396,8 @@ export default mixins(
             headers: this.computedHeaders,
             isOpen,
             toggle: toggleFn,
-            remove: removeFn,
-          }),
+            remove: removeFn
+          })
         ]))
       } else {
         const toggle = h(VBtn, {
@@ -411,12 +411,12 @@ export default mixins(
           class: 'ma-0',
           icon: true,
           small: true,
-          onClick: removeFn,
+          onClick: removeFn
         }, () => [h(VIcon, {}, () => ['$close'])])
 
         const column = h('td', {
           class: 'text-start',
-          ...this.colspanAttrs,
+          ...this.colspanAttrs
         }, [toggle, `${this.groupByText}: ${group}`, remove])
 
         children.unshift(h('template', { slot: 'column.header' }, [column]))
@@ -431,14 +431,14 @@ export default mixins(
             items,
             headers: this.computedHeaders,
             isOpen,
-            toggle: toggleFn,
-          }),
+            toggle: toggleFn
+          })
         ]))
       }
 
       return h(RowGroup, {
         key: group,
-        modelValue: isOpen,
+        modelValue: isOpen
       }, children)
     },
     genRows (items: any[], props: DataScopeProps) {
@@ -451,7 +451,7 @@ export default mixins(
         const item = items[i]
         rows.push(this.$slots.item!({
           ...this.createItemProps(item, i),
-          isMobile: this.isMobile,
+          isMobile: this.isMobile
         }))
 
         if (this.isExpanded(item)) {
@@ -459,7 +459,7 @@ export default mixins(
             headers: this.computedHeaders,
             isMobile: this.isMobile,
             index: i,
-            item,
+            item
           }))
         }
       }
@@ -474,22 +474,22 @@ export default mixins(
     genDefaultExpandedRow (item: any, index: number): VNode {
       const isExpanded = this.isExpanded(item)
       const classes = {
-        'v-data-table__expanded v-data-table__expanded__row': isExpanded,
+        'v-data-table__expanded v-data-table__expanded__row': isExpanded
       }
       const headerRow = this.genDefaultSimpleRow(item, index, classes)
       const expandedRow = h('tr', {
-        class: 'v-data-table__expanded v-data-table__expanded__content',
+        class: 'v-data-table__expanded v-data-table__expanded__content'
       }, [this.$slots['expanded-item']!({
         headers: this.computedHeaders,
         isMobile: this.isMobile,
-        item,
+        item
       })])
 
       return h(RowGroup, {
-        modelValue: isExpanded,
+        modelValue: isExpanded
       }, [
         h('template', { slot: 'row.header' }, [headerRow]),
-        h('template', { slot: 'row.content' }, [expandedRow]),
+        h('template', { slot: 'row.content' }, [expandedRow])
       ])
     },
     genDefaultSimpleRow (item: any, index: number, classes: Record<string, boolean> = {}): VNode {
@@ -499,29 +499,33 @@ export default mixins(
 
       if (this.showSelect) {
         const slot = scopedSlots['data-table-select']
-        scopedSlots['data-table-select'] = slot ? () => slot({
-          ...data,
-          isMobile: this.isMobile,
-        }) : () => h(VSimpleCheckbox, {
-          class: 'v-data-table__checkbox',
-          modelValue: data.isSelected,
-          disabled: !this.isSelectable(item),
-          color: this.checkboxColor ?? '',
-          'onUpdate:modelValue': (val: boolean) => data.select(val),
-        })
+        scopedSlots['data-table-select'] = slot
+          ? () => slot({
+              ...data,
+              isMobile: this.isMobile
+            })
+          : () => h(VSimpleCheckbox, {
+              class: 'v-data-table__checkbox',
+              modelValue: data.isSelected,
+              disabled: !this.isSelectable(item),
+              color: this.checkboxColor ?? '',
+              'onUpdate:modelValue': (val: boolean) => data.select(val)
+            })
       }
 
       if (this.showExpand) {
         const slot = scopedSlots['data-table-expand']
-        scopedSlots['data-table-expand'] = slot ? () => slot(data) : () => h(VIcon, {
-          class: ['v-data-table__expand-icon', {
-            'v-data-table__expand-icon--active': data.isExpanded,
-          }],
-          onClick: (e: MouseEvent) => {
-            e.stopPropagation()
-            data.expand(!data.isExpanded)
-          }
-        }, () => [this.expandIcon])
+        scopedSlots['data-table-expand'] = slot
+          ? () => slot(data)
+          : () => h(VIcon, {
+              class: ['v-data-table__expand-icon', {
+                'v-data-table__expand-icon--active': data.isExpanded
+              }],
+              onClick: (e: MouseEvent) => {
+                e.stopPropagation()
+                data.expand(!data.isExpanded)
+              }
+            }, () => [this.expandIcon])
       }
 
       return h(this.isMobile ? MobileRow : Row, {
@@ -536,7 +540,7 @@ export default mixins(
         index,
         item,
         rtl: this.$vuetify.rtl,
-        ...data.on,
+        ...data.on
       }, scopedSlots)
     },
     genBody (props: DataScopeProps): VNode | string | VNodeChildren {
@@ -547,7 +551,7 @@ export default mixins(
         isExpanded: this.isExpanded,
         isMobile: this.isMobile,
         isSelected: this.isSelected,
-        select: this.select,
+        select: this.select
       }
 
       if (this.$slots.body) {
@@ -557,7 +561,7 @@ export default mixins(
       return h('tbody', [
         getSlot(this, 'body.prepend', data, true),
         this.genItems(props.items, props),
-        getSlot(this, 'body.append', data, true),
+        getSlot(this, 'body.append', data, true)
       ])
     },
     genFoot (props: DataScopeProps): VNode[] | undefined {
@@ -569,7 +573,7 @@ export default mixins(
         pagination: props.pagination,
         itemsPerPageText: '$vuetify.dataTable.itemsPerPageText',
         ...this.sanitizedFooterProps,
-        'onUpdate:options': (value: any) => props.updateOptions(value),
+        'onUpdate:options': (value: any) => props.updateOptions(value)
       }
 
       const children: VNode[] = [
@@ -577,7 +581,7 @@ export default mixins(
           ...data,
           widths: this.widths,
           headers: this.computedHeaders
-        }, true) as any,
+        }, true) as any
       ]
 
       if (!this.hideDefaultFooter) {
@@ -592,7 +596,7 @@ export default mixins(
       const simpleProps = {
         height: this.height,
         fixedHeader: this.fixedHeader,
-        dense: this.dense,
+        dense: this.dense
       }
 
       // if (this.virtualRows) {
@@ -617,19 +621,19 @@ export default mixins(
         ...simpleProps,
         class: {
           'v-data-table--mobile': this.isMobile,
-          'v-data-table--selectable': this.showSelect,
-        },
+          'v-data-table--selectable': this.showSelect
+        }
       }, {
         default: () => [
           this.genCaption(props),
           this.genColgroup(props),
           this.genHeaders(props),
           this.genBody(props),
-          this.genFoot(props),
+          this.genFoot(props)
         ],
         top: () => getSlot(this, 'top', {
           ...props,
-          isMobile: this.isMobile,
+          isMobile: this.isMobile
         }, true),
         bottom: () => this.genFooters(props)
       })
@@ -657,7 +661,7 @@ export default mixins(
         this.internalCurrentItems = v
         this.$emit('current-items', v)
       },
-      'onPage-count': (v: number) => this.$emit('page-count', v),
+      'onPage-count': (v: number) => this.$emit('page-count', v)
     }, this.genDefaultScopedSlot)
-  },
+  }
 })

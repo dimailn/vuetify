@@ -5,7 +5,7 @@ import { preset } from '../../../presets/default'
 import {
   mount,
   VueWrapper,
-  MountingOptions,
+  MountingOptions
 } from '@vue/test-utils'
 
 describe('VTimePickerTitle.ts', () => {
@@ -42,8 +42,8 @@ describe('VTimePickerTitle.ts', () => {
           second: 25,
           period: 'pm',
           ampm: false,
-          useSeconds: useSecondsValue,
-        },
+          useSeconds: useSecondsValue
+        }
       })
 
       expect(wrapper.html()).toMatchSnapshot()
@@ -57,8 +57,8 @@ describe('VTimePickerTitle.ts', () => {
           minute: 13,
           period: 'pm',
           ampm: true,
-          useSeconds: useSecondsValue,
-        },
+          useSeconds: useSecondsValue
+        }
       })
 
       expect(wrapper.html()).toMatchSnapshot()
@@ -72,8 +72,8 @@ describe('VTimePickerTitle.ts', () => {
           second: 25,
           period: 'pm',
           ampm: true,
-          useSeconds: useSecondsValue,
-        },
+          useSeconds: useSecondsValue
+        }
       })
 
       expect(wrapper.html()).toMatchSnapshot()
@@ -87,8 +87,8 @@ describe('VTimePickerTitle.ts', () => {
           second: 25,
           period: 'pm',
           selecting: SelectingTimes.Hour,
-          useSeconds: useSecondsValue,
-        },
+          useSeconds: useSecondsValue
+        }
       })
 
       expect(wrapper.html()).toMatchSnapshot()
@@ -102,8 +102,8 @@ describe('VTimePickerTitle.ts', () => {
           second: 25,
           period: 'pm',
           ampm: true,
-          useSeconds: useSecondsValue,
-        },
+          useSeconds: useSecondsValue
+        }
       })
 
       wrapper.find('.v-time-picker-title__ampm .v-picker__title__btn--active').trigger('click')
@@ -116,7 +116,7 @@ describe('VTimePickerTitle.ts', () => {
         hour: 2,
         minute: 13,
         second: 35,
-        period: 'am',
+        period: 'am'
       })
       await wrapper.vm.$nextTick()
       wrapper.find('.v-time-picker-title__ampm .v-picker__title__btn:not(.v-picker__title__btn--active)').trigger('click')
@@ -133,8 +133,8 @@ describe('VTimePickerTitle.ts', () => {
           period: 'pm',
           ampm: true,
           readonly: true,
-          useSeconds: useSecondsValue,
-        },
+          useSeconds: useSecondsValue
+        }
       })
 
       wrapper.find('.v-time-picker-title__ampm .v-picker__title__btn:not(.v-picker__title__btn--active)').trigger('click')
@@ -148,8 +148,8 @@ describe('VTimePickerTitle.ts', () => {
           minute: 13,
           second: 25,
           period: 'pm',
-          useSeconds: useSecondsValue,
-        },
+          useSeconds: useSecondsValue
+        }
       })
 
       wrapper.findAll('.v-time-picker-title__time .v-picker__title__btn')[1].trigger('click')
@@ -177,8 +177,8 @@ describe('VTimePickerTitle.ts', () => {
           minute: 13,
           period: 'pm',
           readonly: true,
-          useSeconds: useSecondsValue,
-        },
+          useSeconds: useSecondsValue
+        }
       })
 
       wrapper.find('.v-time-picker-title__time .v-picker__title__btn').trigger('click')

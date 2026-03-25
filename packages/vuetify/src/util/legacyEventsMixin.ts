@@ -19,7 +19,7 @@ export const legacyEventsMixin = {
         this.eventsLegacy[eventName] = this.eventsLegacy[eventName].filter((_listener: Function) => _listener !== listener)
       }
       // console.warn('$off is not available')
-    },
+    }
   },
   computed: {
     $listeners (this: any): Record<string, unknown> {
@@ -29,6 +29,6 @@ export const legacyEventsMixin = {
         listeners[name] = this.$attrs[name]
         return listeners
       }, {})
-    },
-  },
+    }
+  }
 }

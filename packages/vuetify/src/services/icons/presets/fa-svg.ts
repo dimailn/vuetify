@@ -4,7 +4,7 @@ import icons from './fa'
 
 export function convertToComponentDeclarations (
   component: Component | string,
-  iconSet: VuetifyIcons,
+  iconSet: VuetifyIcons
 ) {
   const result: Partial<VuetifyIcons> = {}
 
@@ -12,8 +12,8 @@ export function convertToComponentDeclarations (
     result[key] = {
       component,
       props: {
-        icon: (iconSet[key] as string).split(' fa-'),
-      },
+        icon: (iconSet[key] as string).split(' fa-')
+      }
     }
   }
 

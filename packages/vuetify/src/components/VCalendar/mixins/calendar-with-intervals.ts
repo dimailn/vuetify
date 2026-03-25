@@ -13,7 +13,7 @@ import {
   createIntervalList,
   createNativeLocaleFormatter,
   VTime,
-  MINUTES_IN_DAY,
+  MINUTES_IN_DAY
 } from '../util/timestamp'
 import { CalendarTimestamp, CalendarFormatter, CalendarDayBodySlotScope } from 'vuetify/types'
 
@@ -81,7 +81,7 @@ export default defineComponent({
         this.currentLocale,
         (tms, short) => short ? (tms.minute === 0 ? shortHourOptions : shortOptions) : longOptions
       )
-    },
+    }
   },
 
   methods: {
@@ -159,6 +159,6 @@ export default defineComponent({
       const gap: number = this.parsedIntervalCount * this.parsedIntervalMinutes
 
       return (minutes - min) / gap
-    },
-  },
+    }
+  }
 })

@@ -15,7 +15,7 @@ import {
   convertToUnit,
   getSlot,
   kebabCase,
-  normalizeClasses,
+  normalizeClasses
 } from '../../util/helpers'
 import mergeData from '../../util/mergeData'
 import { breaking } from '../../util/console'
@@ -28,7 +28,7 @@ import { InputValidationRule } from 'vuetify/types'
 
 const baseMixins = mixins(
   BindsAttrs,
-  Validatable,
+  Validatable
 )
 
 type options = {
@@ -46,7 +46,7 @@ export default baseMixins.extend({
     appendIcon: String,
     backgroundColor: {
       type: String,
-      default: '',
+      default: ''
     },
     dense: Boolean,
     height: [Number, String],
@@ -58,7 +58,7 @@ export default baseMixins.extend({
     loading: Boolean,
     persistentHint: Boolean,
     prependIcon: String,
-    modelValue: null as any as PropType<any>,
+    modelValue: null as any as PropType<any>
   },
 
   emits: ['click', 'mousedown', 'mouseup', 'touchstart', 'touchend', 'update:error'],
@@ -66,7 +66,7 @@ export default baseMixins.extend({
   data () {
     return {
       lazyValue: this.modelValue,
-      hasMouseDown: false,
+      hasMouseDown: false
     }
   },
 
@@ -84,7 +84,7 @@ export default baseMixins.extend({
         'v-input--is-readonly': this.isReadonly,
         'v-input--dense': this.dense,
         'v-input--hide-spin-buttons': this.hideSpinButtons,
-        ...this.themeClasses,
+        ...this.themeClasses
       }
     },
     computedId (): string {
@@ -116,7 +116,7 @@ export default baseMixins.extend({
         if ('$_emitChangeEvent' in this) {
           this.$emit('change', val)
         }
-      },
+      }
     },
     isDirty (): boolean {
       return !!this.lazyValue
@@ -139,19 +139,19 @@ export default baseMixins.extend({
     },
     showDetails (): boolean {
       return this.hideDetails === false || (this.hideDetails === 'auto' && this.hasDetails)
-    },
+    }
   },
 
   watch: {
     modelValue (val) {
       this.lazyValue = val
-    },
+    }
   },
 
   created () {
     const breakingProps = [
       ['value', 'modelValue'],
-      ['onInput', 'onUpdate:modelValue'],
+      ['onInput', 'onUpdate:modelValue']
     ]
 
     /* istanbul ignore next */
@@ -163,7 +163,7 @@ export default baseMixins.extend({
   beforeCreate () {
     // v-radio-group needs to emit a different event
     // https://github.com/vuetifyjs/vuetify/issues/4752
-    this.$_modelEvent = /*(this.$options.model && this.$options.model.event) ||*/ 'update:modelValue'
+    this.$_modelEvent = /* (this.$options.model && this.$options.model.event) || */ 'update:modelValue'
   },
 
   methods: {
@@ -171,22 +171,22 @@ export default baseMixins.extend({
       return [
         this.genPrependSlot(),
         this.genControl(),
-        this.genAppendSlot(),
+        this.genAppendSlot()
       ]
     },
     genControl () {
       return h('div', {
         class: 'v-input__control',
-        title: this.attrs$.title,
+        title: this.attrs$.title
       }, [
         this.genInputSlot(),
-        this.genMessages(),
+        this.genMessages()
       ])
     },
     genDefaultSlot () {
       return [
         this.genLabel(),
-        getSlot(this),
+        getSlot(this)
       ]
     },
     genIcon (
@@ -203,7 +203,7 @@ export default baseMixins.extend({
         prependInner: 'prependAction',
         append: 'appendAction',
         appendOuter: 'appendAction',
-        clear: 'clear',
+        clear: 'clear'
       }[type]
       const label = hasListener && localeKey
         ? this.$vuetify.lang.t(`$vuetify.input.${localeKey}`, this.label ?? '')
@@ -219,33 +219,33 @@ export default baseMixins.extend({
         ...(!hasListener
           ? {}
           : {
-            onClick: (e: Event) => {
-              e.preventDefault()
-              e.stopPropagation()
+              onClick: (e: Event) => {
+                e.preventDefault()
+                e.stopPropagation()
 
-              this.$emit(eventName, e)
-              cb && cb(e)
-            },
-            // Container has g event that will
-            // trigger menu open if enclosed
-            onMouseup: (e: Event) => {
-              e.preventDefault()
-              e.stopPropagation()
-            },
-          }),
+                this.$emit(eventName, e)
+                cb && cb(e)
+              },
+              // Container has g event that will
+              // trigger menu open if enclosed
+              onMouseup: (e: Event) => {
+                e.preventDefault()
+                e.stopPropagation()
+              }
+            })
       }, extraData)
 
       return h('div', {
         class: {
           'v-input__icon': true,
           [`v-input__icon--${kebabCase(type)}`]: type
-        },
+        }
       }, [
         h(
           VIcon,
           data,
           () => icon
-        ),
+        )
       ])
     },
     genInputSlot () {
@@ -255,7 +255,7 @@ export default baseMixins.extend({
         onClick: this.onClick,
         onMousedown: this.onMouseDown,
         onMouseup: this.onMouseUp,
-        ref: 'input-slot',
+        ref: 'input-slot'
       }), [this.genDefaultSlot()])
     },
     genLabel () {
@@ -267,7 +267,7 @@ export default baseMixins.extend({
         disabled: this.isDisabled,
         focused: this.hasState,
         for: this.computedId,
-        light: this.light,
+        light: this.light
       }, () => getSlot(this, 'label') || this.label)
     },
     genMessages () {
@@ -278,7 +278,7 @@ export default baseMixins.extend({
         dark: this.dark,
         light: this.light,
         modelValue: this.messagesToDisplay,
-        role: this.hasMessages ? 'alert' : null,
+        role: this.hasMessages ? 'alert' : null
       }, { default: getSlot(this, 'message') })
     },
     genSlot (
@@ -294,7 +294,7 @@ export default baseMixins.extend({
 
       return h('div', {
         class: `v-input__${ref}`,
-        ref,
+        ref
       }, slot)
     },
     genPrependSlot () {
@@ -333,7 +333,7 @@ export default baseMixins.extend({
     onMouseUp (e: Event) {
       this.hasMouseDown = false
       this.$emit('mouseup', e)
-    },
+    }
   },
 
   render (): VNode {
@@ -341,9 +341,9 @@ export default baseMixins.extend({
 
     return h('div', this.setTextColor(this.validationState, {
       class: { 'v-input': true, ...this.classes, ...normalizeClasses(additionalClasses) },
-      ...restAttrs,
+      ...restAttrs
     }), {
-      default: () => this.genContent(),
+      default: () => this.genContent()
     })
-  },
+  }
 })

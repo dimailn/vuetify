@@ -3,7 +3,7 @@ import {
   mount,
   MountOptions,
   Wrapper,
-  enableAutoUnmount,
+  enableAutoUnmount
 } from '@vue/test-utils'
 
 describe('proxyable.ts', () => {
@@ -11,7 +11,7 @@ describe('proxyable.ts', () => {
 
   const Mock = {
     mixins: [Proxyable],
-    template: '<div></div>',
+    template: '<div></div>'
   }
 
   type Instance = InstanceType<typeof Mock>
@@ -25,7 +25,7 @@ describe('proxyable.ts', () => {
 
   it('should watch prop and emit event', async () => {
     const wrapper = mountFunction({
-      props: { modelValue: 'foo' },
+      props: { modelValue: 'foo' }
     })
 
     expect(wrapper.vm.internalValue).toBe('foo')
@@ -48,11 +48,11 @@ describe('proxyable.ts', () => {
   it('should use provided prop and event arguments', async () => {
     const wrapper = mount({
       mixins: [Proxy('input', 'update:input-value')],
-      template: '<div></div>',
+      template: '<div></div>'
     }, {
       props: {
-        input: 'foo',
-      },
+        input: 'foo'
+      }
     })
 
     expect(wrapper.vm.input).toBe('foo')

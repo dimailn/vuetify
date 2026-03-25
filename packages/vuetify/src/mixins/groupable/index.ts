@@ -25,14 +25,14 @@ export function factory<T extends string, C extends Component | null = null> (
     extends: RegistrableInject<T, C>(namespace, child, parent),
     props: {
       activeClass: {
-        type: String,
+        type: String
       } as any as PropType<string>,
-      disabled: Boolean,
+      disabled: Boolean
     },
 
     data () {
       return {
-        isActive: false,
+        isActive: false
       }
     },
 
@@ -48,9 +48,9 @@ export function factory<T extends string, C extends Component | null = null> (
         if (!this.$activeClass) return {}
 
         return {
-          [this.$activeClass]: this.isActive,
+          [this.$activeClass]: this.isActive
         }
-      },
+      }
     },
 
     created () {
@@ -74,8 +74,8 @@ export function factory<T extends string, C extends Component | null = null> (
         }
         this.$emit('change')
         this.$emitLegacy('change')
-      },
-    },
+      }
+    }
   }
 }
 

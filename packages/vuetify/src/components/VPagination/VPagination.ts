@@ -34,41 +34,41 @@ export default mixins(
     length: {
       type: Number,
       default: 0,
-      validator: (val: number) => val % 1 === 0,
+      validator: (val: number) => val % 1 === 0
     },
     nextIcon: {
       type: String,
-      default: '$next',
+      default: '$next'
     },
     prevIcon: {
       type: String,
-      default: '$prev',
+      default: '$prev'
     },
     totalVisible: [Number, String],
     modelValue: {
       type: Number,
-      default: 0,
+      default: 0
     },
     pageAriaLabel: {
       type: String,
-      default: '$vuetify.pagination.ariaLabel.page',
+      default: '$vuetify.pagination.ariaLabel.page'
     },
     currentPageAriaLabel: {
       type: String,
-      default: '$vuetify.pagination.ariaLabel.currentPage',
+      default: '$vuetify.pagination.ariaLabel.currentPage'
     },
     previousAriaLabel: {
       type: String,
-      default: '$vuetify.pagination.ariaLabel.previous',
+      default: '$vuetify.pagination.ariaLabel.previous'
     },
     nextAriaLabel: {
       type: String,
-      default: '$vuetify.pagination.ariaLabel.next',
+      default: '$vuetify.pagination.ariaLabel.next'
     },
     wrapperAriaLabel: {
       type: String,
-      default: '$vuetify.pagination.ariaLabel.wrapper',
-    },
+      default: '$vuetify.pagination.ariaLabel.wrapper'
+    }
   },
 
   emits: ['update:modelValue', 'next', 'previous'],
@@ -76,7 +76,7 @@ export default mixins(
   data () {
     return {
       maxButtons: 0,
-      selected: null as number | null,
+      selected: null as number | null
     }
   },
 
@@ -86,7 +86,7 @@ export default mixins(
         'v-pagination': true,
         'v-pagination--circle': this.circle,
         'v-pagination--disabled': this.disabled,
-        ...this.themeClasses,
+        ...this.themeClasses
       }
     },
 
@@ -130,16 +130,16 @@ export default mixins(
         return [
           ...this.range(1, left),
           '...',
-          ...this.range(right, this.length),
+          ...this.range(right, this.length)
         ]
       }
-    },
+    }
   },
 
   created () {
     const breakingProps = [
       ['value', 'modelValue'],
-      ['onInput', 'onUpdate:modelValue'],
+      ['onInput', 'onUpdate:modelValue']
     ]
 
     /* istanbul ignore next */
@@ -151,7 +151,7 @@ export default mixins(
   watch: {
     modelValue () {
       this.init()
-    },
+    }
   },
 
   beforeMount () {
@@ -200,15 +200,15 @@ export default mixins(
         h('button',
           this.setBackgroundColor(this.navigationColor, {
             class: ['v-pagination__navigation', {
-              'v-pagination__navigation--disabled': disabled,
+              'v-pagination__navigation--disabled': disabled
             }],
             disabled,
             type: 'button',
             'aria-label': label,
-            ...(disabled ? {} : { onClick: fn }),
+            ...(disabled ? {} : { onClick: fn })
           }),
           [h(VIcon, { color: this.navigationTextColor }, () => [icon])]
-        ),
+        )
       ])
     },
     genItem (h: CreateElement, i: string | number): VNode {
@@ -218,33 +218,33 @@ export default mixins(
 
       return h('button', this.setBackgroundColor(color, {
         class: ['v-pagination__item', {
-          'v-pagination__item--active': i === this.modelValue,
+          'v-pagination__item--active': i === this.modelValue
         }],
         type: 'button',
         'aria-current': isCurrentPage,
         'aria-label': this.$vuetify.lang.t(ariaLabel, i),
-        onClick: () => this.$emit('update:modelValue', i),
+        onClick: () => this.$emit('update:modelValue', i)
       }), [i.toString()])
     },
     genItems (h: CreateElement): VNode[] {
       return this.items.map((i, index) => {
         return h('li', { key: index }, [
-          isNaN(Number(i)) ? h('span', { class: 'v-pagination__more' }, [i.toString()]) : this.genItem(h, i),
+          isNaN(Number(i)) ? h('span', { class: 'v-pagination__more' }, [i.toString()]) : this.genItem(h, i)
         ])
       })
     },
     genList (h: CreateElement, children: VNodeChildrenArrayContents): VNode {
       return withDirectives(h('ul', {
-        class: this.classes,
+        class: this.classes
       }, children), [
         [
           Resize,
           this.onResize,
           '',
-          { quiet: true },
-        ],
+          { quiet: true }
+        ]
       ])
-    },
+    }
   },
 
   render (): VNode {
@@ -253,20 +253,20 @@ export default mixins(
         this.$vuetify.rtl ? this.nextIcon : this.prevIcon,
         this.modelValue <= 1,
         this.previous,
-        this.$vuetify.lang.t(this.previousAriaLabel),
+        this.$vuetify.lang.t(this.previousAriaLabel)
       ),
       this.genItems(h),
       this.genIcon(h,
         this.$vuetify.rtl ? this.prevIcon : this.nextIcon,
         this.modelValue >= this.length,
         this.next,
-        this.$vuetify.lang.t(this.nextAriaLabel),
-      ),
+        this.$vuetify.lang.t(this.nextAriaLabel)
+      )
     ]
 
     return h('nav', {
       role: 'navigation',
-      'aria-label': this.$vuetify.lang.t(this.wrapperAriaLabel),
+      'aria-label': this.$vuetify.lang.t(this.wrapperAriaLabel)
     }, [this.genList(h, children)])
-  },
+  }
 })

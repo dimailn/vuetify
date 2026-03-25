@@ -27,13 +27,13 @@ export default baseMixins.extend({
   name: 'v-expansion-panel-content',
 
   data: () => ({
-    isActive: false,
+    isActive: false
   }),
 
   computed: {
     parentIsActive (): boolean {
       return this.expansionPanel.isActive
-    },
+    }
   },
 
   watch: {
@@ -44,8 +44,8 @@ export default baseMixins.extend({
 
         if (oldVal == null) this.isActive = val
         else this.$nextTick(() => this.isActive = val)
-      },
-    },
+      }
+    }
   },
 
   created () {
@@ -59,15 +59,15 @@ export default baseMixins.extend({
   render (): VNode {
     return h(VExpandTransition, {}, () => this.showLazyContent(() => [
       withDirectives(h('div', this.setBackgroundColor(this.color, {
-        class: 'v-expansion-panel-content',
+        class: 'v-expansion-panel-content'
       }), [
-        h('div', { class: 'v-expansion-panel-content__wrap' }, getSlot(this, 'default', { open: this.isActive })),
+        h('div', { class: 'v-expansion-panel-content__wrap' }, getSlot(this, 'default', { open: this.isActive }))
       ]), [
         [
           vShow,
-          this.isActive,
-        ],
-      ]),
+          this.isActive
+        ]
+      ])
     ]))
-  },
+  }
 })

@@ -3,7 +3,7 @@ import {
   mount,
   MountingOptions,
   VueWrapper,
-  enableAutoUnmount,
+  enableAutoUnmount
 } from '@vue/test-utils'
 
 enableAutoUnmount(afterEach)
@@ -20,11 +20,11 @@ describe('VDatePickerYears.ts', () => {
             $vuetify: {
               rtl: false,
               lang: {
-                t: () => {},
-              },
-            },
-          },
-        },
+                t: () => {}
+              }
+            }
+          }
+        }
       })
     }
   })
@@ -32,8 +32,8 @@ describe('VDatePickerYears.ts', () => {
   it('should render component and match snapshot', () => {
     const wrapper = mountFunction({
       props: {
-        modelValue: '2000',
-      },
+        modelValue: '2000'
+      }
     })
 
     expect(wrapper.html()).toMatchSnapshot()
@@ -43,8 +43,8 @@ describe('VDatePickerYears.ts', () => {
     const wrapper = mountFunction({
       props: {
         min: 1234,
-        max: 1238,
-      },
+        max: 1238
+      }
     })
 
     expect(wrapper.findAll('li:first-child')[0].element.textContent).toBe('1238')
@@ -55,8 +55,8 @@ describe('VDatePickerYears.ts', () => {
     const wrapper = mountFunction({
       props: {
         min: 1238,
-        max: 1234,
-      },
+        max: 1234
+      }
     })
     expect(wrapper.findAll('li')).toHaveLength(1)
     expect(wrapper.findAll('li')[0].element.textContent).toBe('1234')
@@ -66,8 +66,8 @@ describe('VDatePickerYears.ts', () => {
   it('should emit event on year click', async () => {
     const wrapper = mountFunction({
       props: {
-        modelValue: 1999,
-      },
+        modelValue: 1999
+      }
     })
 
     await wrapper.findAll('li.active + li')[0].trigger('click')
@@ -80,8 +80,8 @@ describe('VDatePickerYears.ts', () => {
       props: {
         format: year => `(${year})`,
         min: 1001,
-        max: 1001,
-      },
+        max: 1001
+      }
     })
 
     expect(wrapper.findAll('li')[0].element.textContent).toBe('(1001)')

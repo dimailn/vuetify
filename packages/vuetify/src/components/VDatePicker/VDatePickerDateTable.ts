@@ -21,15 +21,15 @@ export default mixins(
   props: {
     firstDayOfWeek: {
       type: [String, Number],
-      default: 0,
+      default: 0
     },
     localeFirstDayOfYear: {
       type: [String, Number],
-      default: 0,
+      default: 0
     },
     showAdjacentMonths: Boolean,
     showWeek: Boolean,
-    weekdayFormat: Function as PropType<DatePickerFormatter | undefined>,
+    weekdayFormat: Function as PropType<DatePickerFormatter | undefined>
   },
 
   computed: {
@@ -45,7 +45,7 @@ export default mixins(
       return this.weekdayFormatter
         ? createRange(7).map(i => this.weekdayFormatter!(`2017-01-${first + i + 15}`)) // 2017-01-15 is Sunday
         : createRange(7).map(i => ['S', 'M', 'T', 'W', 'T', 'F', 'S'][(i + first) % 7])
-    },
+    }
   },
 
   methods: {
@@ -79,8 +79,8 @@ export default mixins(
     genWeekNumber (weekNumber: number) {
       return h('td', [
         h('small', {
-          class: 'v-date-picker-table--date__week',
-        }, String(weekNumber).padStart(2, '0')),
+          class: 'v-date-picker-table--date__week'
+        }, String(weekNumber).padStart(2, '0'))
       ])
     },
     // eslint-disable-next-line max-statements
@@ -102,16 +102,18 @@ export default mixins(
       while (day--) {
         const date = `${prevMonthYear}-${pad(prevMonth + 1)}-${pad(firstDayFromPreviousMonth - day)}`
 
-        rows.push(h('td', this.showAdjacentMonths ? [
-          this.genButton(date, true, 'date', this.formatter, true),
-        ] : []))
+        rows.push(h('td', this.showAdjacentMonths
+          ? [
+              this.genButton(date, true, 'date', this.formatter, true)
+            ]
+          : []))
       }
 
       for (day = 1; day <= daysInMonth; day++) {
         const date = `${this.displayedYear}-${pad(this.displayedMonth + 1)}-${pad(day)}`
 
         rows.push(h('td', [
-          this.genButton(date, true, 'date', this.formatter),
+          this.genButton(date, true, 'date', this.formatter)
         ]))
 
         if (rows.length % cellsInRow === 0) {
@@ -130,9 +132,11 @@ export default mixins(
       while (rows.length < cellsInRow) {
         const date = `${nextMonthYear}-${pad(nextMonth + 1)}-${pad(nextMonthDay++)}`
 
-        rows.push(h('td', this.showAdjacentMonths ? [
-          this.genButton(date, true, 'date', this.formatter, true),
-        ] : []))
+        rows.push(h('td', this.showAdjacentMonths
+          ? [
+              this.genButton(date, true, 'date', this.formatter, true)
+            ]
+          : []))
       }
 
       if (rows.length) {
@@ -143,13 +147,13 @@ export default mixins(
     },
     genTR (children: VNodeChildren): VNode {
       return h('tr', children as any)
-    },
+    }
   },
 
   render (): VNode {
     return this.genTable('v-date-picker-table v-date-picker-table--date', [
       this.genTHead(),
-      this.genTBody(),
+      this.genTBody()
     ], this.calculateTableDate)
-  },
+  }
 })

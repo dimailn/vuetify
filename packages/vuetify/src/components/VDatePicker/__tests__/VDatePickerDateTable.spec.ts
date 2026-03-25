@@ -5,7 +5,7 @@ import {
   mount,
   MountOptions,
   Wrapper,
-  enableAutoUnmount,
+  enableAutoUnmount
 } from '@vue/test-utils'
 
 enableAutoUnmount(afterEach)
@@ -21,10 +21,10 @@ describe('VDatePickerDateTable.ts', () => {
           mocks: {
             $vuetify: {
               rtl: false,
-              lang: new Lang(preset),
-            },
-          },
-        },
+              lang: new Lang(preset)
+            }
+          }
+        }
       })
     }
   })
@@ -34,8 +34,8 @@ describe('VDatePickerDateTable.ts', () => {
       props: {
         tableDate: '2005-05',
         current: '2005-07',
-        modelValue: '2005-11-03',
-      },
+        modelValue: '2005-11-03'
+      }
     })
 
     expect(wrapper.html()).toMatchSnapshot()
@@ -47,8 +47,8 @@ describe('VDatePickerDateTable.ts', () => {
         tableDate: '2005-05',
         current: '2005-07',
         modelValue: '2005-11-03',
-        readonly: true,
-      },
+        readonly: true
+      }
     })
 
     expect(wrapper.html()).toMatchSnapshot()
@@ -60,8 +60,8 @@ describe('VDatePickerDateTable.ts', () => {
         tableDate: '2005-05',
         current: '2005-07',
         modelValue: '2005-11-03',
-        disabled: true,
-      },
+        disabled: true
+      }
     })
 
     expect(wrapper.html()).toMatchSnapshot()
@@ -74,8 +74,8 @@ describe('VDatePickerDateTable.ts', () => {
         current: '2005-07',
         modelValue: null,
         firstDayOfWeek: 2,
-        showWeek: true,
-      },
+        showWeek: true
+      }
     })
     expect(wrapper.html()).toMatchSnapshot()
   })
@@ -87,8 +87,8 @@ describe('VDatePickerDateTable.ts', () => {
         current: '2005-07',
         multiple: true,
         selectedDates: ['2005-11-03', '2005-11-05', '2005-11-08'],
-        modelValue: '2005-11-03',
-      },
+        modelValue: '2005-11-03'
+      }
     })
 
     expect(wrapper.html()).toMatchSnapshot()
@@ -101,8 +101,8 @@ describe('VDatePickerDateTable.ts', () => {
         current: '2005-07',
         modelValue: '2005-11-03',
         events: ['2005-05-03'],
-        eventColor: 'red',
-      },
+        eventColor: 'red'
+      }
     })
 
     expect(wrapper.html()).toMatchSnapshot()
@@ -115,8 +115,8 @@ describe('VDatePickerDateTable.ts', () => {
         current: '2005-07',
         modelValue: '2005-11-03',
         events: date => date === '2005-05-03',
-        eventColor: 'red',
-      },
+        eventColor: 'red'
+      }
     })
 
     expect(wrapper.html()).toMatchSnapshot()
@@ -129,8 +129,8 @@ describe('VDatePickerDateTable.ts', () => {
         current: '2005-07',
         modelValue: '2005-11-03',
         events: ['2005-05-03', '2005-05-04'],
-        eventColor: { '2005-05-03': 'red', '2005-05-04': 'blue lighten-1' },
-      },
+        eventColor: { '2005-05-03': 'red', '2005-05-04': 'blue lighten-1' }
+      }
     })
 
     expect(wrapper.html()).toMatchSnapshot()
@@ -143,8 +143,8 @@ describe('VDatePickerDateTable.ts', () => {
         current: '2005-07',
         modelValue: '2005-11-03',
         events: ['2005-05-03', '2005-05-04'],
-        eventColor: date => ({ '2005-05-03': 'red' }[date]),
-      },
+        eventColor: date => ({ '2005-05-03': 'red' }[date])
+      }
     })
 
     expect(wrapper.html()).toMatchSnapshot()
@@ -156,8 +156,8 @@ describe('VDatePickerDateTable.ts', () => {
         tableDate: '2005-05',
         current: '2005-07',
         modelValue: '2005-11-03',
-        firstDayOfWeek: 2,
-      },
+        firstDayOfWeek: 2
+      }
     })
 
     expect(wrapper.html()).toMatchSnapshot()
@@ -168,12 +168,12 @@ describe('VDatePickerDateTable.ts', () => {
       props: {
         tableDate: '2005-05',
         current: '2005-07',
-        modelValue: '2005-11-03',
-      },
+        modelValue: '2005-11-03'
+      }
     })
 
     await wrapper.setProps({
-      tableDate: '2005-06',
+      tableDate: '2005-06'
     })
     await wrapper.vm.$nextTick()
     expect(wrapper.findAll('table')[0].element.className).toBe('tab-transition-enter tab-transition-enter-active')
@@ -184,12 +184,12 @@ describe('VDatePickerDateTable.ts', () => {
       props: {
         tableDate: '2005-05',
         current: '2005-07',
-        modelValue: '2005-11-03',
-      },
+        modelValue: '2005-11-03'
+      }
     })
 
     await wrapper.setProps({
-      tableDate: '2005-04',
+      tableDate: '2005-04'
     })
     await wrapper.vm.$nextTick()
     expect(wrapper.findAll('table')[0].element.className).toBe('tab-reverse-transition-enter tab-reverse-transition-enter-active')
@@ -200,8 +200,8 @@ describe('VDatePickerDateTable.ts', () => {
       props: {
         tableDate: '2005-05',
         current: '2005-07',
-        modelValue: '2005-11-03',
-      },
+        modelValue: '2005-11-03'
+      }
     })
 
     await wrapper.findAll('tbody button')[0].trigger('click')
@@ -215,8 +215,8 @@ describe('VDatePickerDateTable.ts', () => {
         tableDate: '2005-05',
         current: '2005-07',
         modelValue: '2005-11-03',
-        allowedDates: () => false,
-      },
+        allowedDates: () => false
+      }
     })
 
     await wrapper.findAll('tbody button')[0].trigger('click')
@@ -227,8 +227,8 @@ describe('VDatePickerDateTable.ts', () => {
     const wrapper = mountFunction({
       props: {
         tableDate: '2005-05',
-        scrollable: true,
-      },
+        scrollable: true
+      }
     })
 
     await wrapper.trigger('wheel', { deltaY: 1 })
@@ -239,8 +239,8 @@ describe('VDatePickerDateTable.ts', () => {
   it('should not emit tableDate event when scrolled and not scrollable', async () => {
     const wrapper = mountFunction({
       props: {
-        tableDate: '2005-05',
-      },
+        tableDate: '2005-05'
+      }
     })
 
     await wrapper.trigger('wheel', { deltaY: 1 })
@@ -252,8 +252,8 @@ describe('VDatePickerDateTable.ts', () => {
       props: {
         tableDate: '2005-05',
         scrollable: true,
-        min: '2005-05',
-      },
+        min: '2005-05'
+      }
     })
 
     await wrapper.trigger('wheel', { deltaY: -50 })
@@ -265,8 +265,8 @@ describe('VDatePickerDateTable.ts', () => {
       props: {
         tableDate: '2005-05',
         scrollable: true,
-        min: '2005-03',
-      },
+        min: '2005-03'
+      }
     })
 
     await wrapper.trigger('wheel', { deltaY: -50 })
@@ -278,8 +278,8 @@ describe('VDatePickerDateTable.ts', () => {
   it.skip('should emit tableDate event when swiped', async () => {
     const wrapper = mountFunction({
       props: {
-        tableDate: '2005-05',
-      },
+        tableDate: '2005-05'
+      }
     })
 
     await wrapper.trigger('touchstart')
@@ -291,8 +291,8 @@ describe('VDatePickerDateTable.ts', () => {
   it('should change tableDate when touch is called', () => {
     const wrapper = mountFunction({
       props: {
-        tableDate: '2005-05',
-      },
+        tableDate: '2005-05'
+      }
     })
 
     wrapper.vm.touch(1, wrapper.vm.calculateTableDate)

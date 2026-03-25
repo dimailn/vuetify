@@ -10,19 +10,19 @@ describe('$vuetify.presets', () => {
     const vuetify = new Framework({
       rtl: true,
       breakpoint: {
-        thresholds: { xs: 200 },
+        thresholds: { xs: 200 }
       },
       icons: {
         iconfont: 'md',
-        values: { complete: 'bar' },
+        values: { complete: 'bar' }
       },
       lang: {
         locales: {
           en: {
             badge: 'Foobar',
-            dataIterator: { noResultsText: 'Fizzbuzz' },
-          },
-        },
+            dataIterator: { noResultsText: 'Fizzbuzz' }
+          }
+        }
       },
       theme: {
         dark: true,
@@ -30,10 +30,10 @@ describe('$vuetify.presets', () => {
           light: {
             primary: 'blue',
             // https://github.com/vuetifyjs/vuetify/issues/10100
-            secondary: { darken4: 'red' },
-          },
-        },
-      },
+            secondary: { darken4: 'red' }
+          }
+        }
+      }
     })
 
     expect(JSON.stringify(vuetify.preset)).toMatchSnapshot()

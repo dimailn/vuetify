@@ -1,4 +1,4 @@
-import {h} from 'vue'
+import { h } from 'vue'
 // Styles
 import './VOverlay.sass'
 
@@ -29,32 +29,32 @@ export default mixins(
     absolute: Boolean,
     color: {
       type: String,
-      default: '#212121',
+      default: '#212121'
     },
     dark: {
       type: Boolean,
-      default: true,
+      default: true
     },
     opacity: {
       type: [Number, String],
-      default: 0.46,
+      default: 0.46
     },
     modelValue: {
-      default: true,
+      default: true
     },
     zIndex: {
       type: [Number, String],
-      default: 5,
-    },
+      default: 5
+    }
   },
 
   computed: {
     __scrim (): VNode {
       const data = this.setBackgroundColor(this.color, {
-        class: {'v-overlay__scrim': true},
+        class: { 'v-overlay__scrim': true },
         style: {
-          opacity: this.computedOpacity,
-        },
+          opacity: this.computedOpacity
+        }
       })
 
       return h('div', data)
@@ -63,7 +63,7 @@ export default mixins(
       return {
         'v-overlay--absolute': this.absolute,
         'v-overlay--active': this.isActive,
-        ...this.themeClasses,
+        ...this.themeClasses
       }
     },
     computedOpacity (): number {
@@ -71,14 +71,14 @@ export default mixins(
     },
     styles (): object {
       return {
-        zIndex: this.zIndex,
+        zIndex: this.zIndex
       }
-    },
+    }
   },
 
   created () {
     const breakingProps = [
-      ['value', 'modelValue'],
+      ['value', 'modelValue']
     ]
 
     /* istanbul ignore next */
@@ -90,7 +90,7 @@ export default mixins(
   methods: {
     genContent () {
       return h('div', {
-        class: 'v-overlay__content',
+        class: 'v-overlay__content'
       }, getSlot(this))
     }
   },
@@ -103,7 +103,7 @@ export default mixins(
     return h('div', {
       ...this.$attrs,
       class: ['v-overlay', this.classes],
-      style: this.styles,
+      style: this.styles
     }, children)
-  },
+  }
 })

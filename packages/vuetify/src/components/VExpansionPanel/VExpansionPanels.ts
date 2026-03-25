@@ -19,7 +19,7 @@ export default defineComponent({
 
   provide (): object {
     return {
-      expansionPanels: this,
+      expansionPanels: this
     }
   },
 
@@ -32,7 +32,7 @@ export default defineComponent({
     inset: Boolean,
     popout: Boolean,
     readonly: Boolean,
-    tile: Boolean,
+    tile: Boolean
   },
 
   computed: {
@@ -46,9 +46,9 @@ export default defineComponent({
         'v-expansion-panels--focusable': this.focusable,
         'v-expansion-panels--inset': this.inset,
         'v-expansion-panels--popout': this.popout,
-        'v-expansion-panels--tile': this.tile,
+        'v-expansion-panels--tile': this.tile
       }
-    },
+    }
   },
 
   created () {
@@ -74,6 +74,6 @@ export default defineComponent({
 
       item.isActive = this.toggleMethod(value)
       item.nextIsActive = this.toggleMethod(nextValue)
-    },
-  },
+    }
+  }
 })

@@ -1,4 +1,4 @@
-import {defineComponent} from 'vue'
+import { defineComponent } from 'vue'
 
 export default defineComponent({
   name: 'sizeable',
@@ -7,7 +7,7 @@ export default defineComponent({
     large: Boolean,
     small: Boolean,
     xLarge: Boolean,
-    xSmall: Boolean,
+    xSmall: Boolean
   },
 
   computed: {
@@ -25,8 +25,8 @@ export default defineComponent({
         'v-size--small': this.small,
         'v-size--default': this.medium,
         'v-size--large': this.large,
-        'v-size--x-large': this.xLarge,
+        'v-size--x-large': this.xLarge
       }
-    },
-  },
+    }
+  }
 })

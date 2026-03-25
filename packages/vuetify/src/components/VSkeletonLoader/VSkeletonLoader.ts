@@ -1,4 +1,4 @@
-import {Transition, h} from 'vue'
+import { Transition, h, PropType } from 'vue'
 // Styles
 import './VSkeletonLoader.sass'
 
@@ -13,7 +13,6 @@ import mixins from '../../util/mixins'
 // Types
 import { VNode } from 'vue'
 import { getSlot } from '../../util/helpers'
-import { PropType } from 'vue'
 
 export interface HTMLSkeletonLoaderElement extends HTMLElement {
   _initialStyle?: {
@@ -26,7 +25,7 @@ export interface HTMLSkeletonLoaderElement extends HTMLElement {
 export default mixins(
   Elevatable,
   Measurable,
-  Themeable,
+  Themeable
 ).extend({
   name: 'VSkeletonLoader',
 
@@ -35,15 +34,15 @@ export default mixins(
     loading: Boolean,
     loadingText: {
       type: String,
-      default: '$vuetify.loading',
+      default: '$vuetify.loading'
     },
     tile: Boolean,
     transition: String,
     type: String,
     types: {
       type: Object,
-      default: () => ({}),
-    } as unknown as PropType<Record<string, string>>,
+      default: () => ({})
+    } as unknown as PropType<Record<string, string>>
   },
 
   computed: {
@@ -63,7 +62,7 @@ export default mixins(
         'v-skeleton-loader--is-loading': this.isLoading,
         'v-skeleton-loader--tile': this.tile,
         ...this.themeClasses,
-        ...this.elevationClasses,
+        ...this.elevationClasses
       }
     },
     isLoading (): boolean {
@@ -101,15 +100,15 @@ export default mixins(
         'table-cell': 'text',
         'table-tfoot': 'text@2, avatar@2',
         text: 'text',
-        ...this.types,
+        ...this.types
       }
-    },
+    }
   },
 
   methods: {
     genBone (text: string, children: VNode[]) {
       return h('div', {
-        class: `v-skeleton-loader__${text} v-skeleton-loader__bone`,
+        class: `v-skeleton-loader__${text} v-skeleton-loader__bone`
       }, children)
     },
     genBones (bone: string): VNode[] {
@@ -175,7 +174,7 @@ export default mixins(
 
       el._initialStyle = {
         display: el.style.display,
-        transition: el.style.transition,
+        transition: el.style.transition
       }
 
       el.style.setProperty('transition', 'none', 'important')
@@ -190,7 +189,7 @@ export default mixins(
       el.style.transition = el._initialStyle.transition
 
       delete el._initialStyle
-    },
+    }
   },
 
   render (): VNode {
@@ -198,7 +197,7 @@ export default mixins(
       class: ['v-skeleton-loader', this.classes],
       ...this.attrs,
       ...this.$listeners,
-      style: this.isLoading ? this.measurableStyles : undefined,
+      style: this.isLoading ? this.measurableStyles : undefined
     }, [this.genSkeleton()])
-  },
+  }
 })

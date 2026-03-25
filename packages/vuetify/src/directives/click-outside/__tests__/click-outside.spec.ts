@@ -8,8 +8,8 @@ function bootstrap (args?: object) {
   const binding = {
     value: {
       handler: jest.fn(),
-      ...args,
-    },
+      ...args
+    }
   } as any
   const vnode = { ctx: { uid: 1 } } as any
 
@@ -29,7 +29,7 @@ function bootstrap (args?: object) {
     callback: binding.value.handler,
     el: el as HTMLElement,
     clickHandler,
-    mousedownHandler,
+    mousedownHandler
   }
 }
 
@@ -78,7 +78,7 @@ describe('click-outside', () => {
   it('should not call the callback when clicked in elements', async () => {
     const { clickHandler, callback, el } = bootstrap({
       closeConditional: () => true,
-      include: () => [el],
+      include: () => [el]
     })
 
     clickHandler({ target: document.createElement('div') })

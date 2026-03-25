@@ -39,17 +39,17 @@ export default mixins(Bootable).extend({
   props: {
     attach: {
       default: false,
-      validator: validateAttachTarget,
+      validator: validateAttachTarget
     } as PropOptions,
     contentClass: {
       type: String,
-      default: '',
-    },
+      default: ''
+    }
   },
 
   data: () => ({
     activatorNode: null as null | VNode | VNode[],
-    hasDetached: false,
+    hasDetached: false
   }),
 
   watch: {
@@ -59,7 +59,7 @@ export default mixins(Bootable).extend({
     },
     hasContent () {
       this.$nextTick(this.initDetach)
-    },
+    }
   },
 
   beforeMount () {
@@ -165,6 +165,6 @@ export default mixins(Bootable).extend({
       target.appendChild(this.$refs.content)
 
       this.hasDetached = true
-    },
-  },
+    }
+  }
 })

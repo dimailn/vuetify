@@ -17,39 +17,39 @@ export default defineComponent({
   props: {
     options: {
       type: Object as PropType<DataOptions>,
-      required: true,
+      required: true
     },
     pagination: {
       type: Object as PropType<DataPagination>,
-      required: true,
+      required: true
     },
     itemsPerPageOptions: {
       type: Array as PropType<DataItemsPerPageOption[]>,
-      default: () => ([5, 10, 15, -1]),
+      default: () => ([5, 10, 15, -1])
     },
     prevIcon: {
       type: String,
-      default: '$prev',
+      default: '$prev'
     },
     nextIcon: {
       type: String,
-      default: '$next',
+      default: '$next'
     },
     firstIcon: {
       type: String,
-      default: '$first',
+      default: '$first'
     },
     lastIcon: {
       type: String,
-      default: '$last',
+      default: '$last'
     },
     itemsPerPageText: {
       type: String,
-      default: '$vuetify.dataFooter.itemsPerPageText',
+      default: '$vuetify.dataFooter.itemsPerPageText'
     },
     itemsPerPageAllText: {
       type: String,
-      default: '$vuetify.dataFooter.itemsPerPageAll',
+      default: '$vuetify.dataFooter.itemsPerPageAll'
     },
     showFirstLastPage: Boolean,
     showCurrentPage: Boolean,
@@ -57,12 +57,12 @@ export default defineComponent({
     disableItemsPerPage: Boolean,
     pageText: {
       type: String,
-      default: '$vuetify.dataFooter.pageText',
-    },
+      default: '$vuetify.dataFooter.pageText'
+    }
   },
 
   emits: {
-    'update:options': (options: DataOptions) => true,
+    'update:options': (options: DataOptions) => true
   },
 
   computed: {
@@ -76,7 +76,7 @@ export default defineComponent({
         if (typeof option === 'object') return option
         else return this.genDataItemsPerPageOption(option)
       })
-    },
+    }
   },
 
   methods: {
@@ -101,7 +101,7 @@ export default defineComponent({
     genDataItemsPerPageOption (option: number) {
       return {
         text: option === -1 ? this.$vuetify.lang.t(this.itemsPerPageAllText) : String(option),
-        value: option,
+        value: option
       }
     },
     genItemsPerPageSelect () {
@@ -113,7 +113,7 @@ export default defineComponent({
       if (!computedIPPO.find(ippo => ippo.value === value)) value = computedIPPO[0]
 
       return h('div', {
-        class: 'v-data-footer__select',
+        class: 'v-data-footer__select'
       }, [
         this.$vuetify.lang.t(this.itemsPerPageText),
         h(VSelect, normalizeAttrs({
@@ -124,8 +124,8 @@ export default defineComponent({
           hideDetails: true,
           auto: true,
           minWidth: '75px',
-          'onUpdate:modelValue': this.onChangeItemsPerPage,
-        })),
+          'onUpdate:modelValue': this.onChangeItemsPerPage
+        }))
       ])
     },
     genPaginationInfo () {
@@ -152,7 +152,7 @@ export default defineComponent({
       }
 
       return h('div', {
-        class: 'v-data-footer__pagination',
+        class: 'v-data-footer__pagination'
       }, children as any)
     },
     genIcon (click: Function, disabled: boolean, label: string, icon: string): VNode {
@@ -163,7 +163,7 @@ export default defineComponent({
         // dark: this.dark, // TODO: add mixin
         // light: this.light // TODO: add mixin
         onClick: click,
-        'aria-label': label, // TODO: Localization
+        'aria-label': label // TODO: Localization
       }, () => [h(VIcon, {}, () => icon)])
     },
     genIcons () {
@@ -202,24 +202,24 @@ export default defineComponent({
 
       return [
         h('div', {
-          class: 'v-data-footer__icons-before',
+          class: 'v-data-footer__icons-before'
         }, before),
         this.showCurrentPage && h('span', [this.options.page.toString()]),
         h('div', {
-          class: 'v-data-footer__icons-after',
-        }, after),
+          class: 'v-data-footer__icons-after'
+        }, after)
       ]
-    },
+    }
   },
 
   render (): VNode {
     return h('div', {
-      class: 'v-data-footer',
+      class: 'v-data-footer'
     }, [
       getSlot(this, 'prepend'),
       this.genItemsPerPageSelect(),
       this.genPaginationInfo(),
-      this.genIcons(),
+      this.genIcons()
     ])
-  },
+  }
 })

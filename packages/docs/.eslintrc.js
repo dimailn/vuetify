@@ -19,9 +19,9 @@ module.exports = {
           default: 'longform',
           named: 'longform',
         }],
-        'vuetify/no-deprecated-classes': 'error',
-        'vuetify/grid-unknown-attributes': 'error',
-        'vuetify/no-legacy-grid': 'error',
+        'vuetify-custom/no-deprecated-classes': 'error',
+        'vuetify-custom/grid-unknown-attributes': 'error',
+        'vuetify-custom/no-legacy-grid': 'error',
       },
     },
     {

@@ -90,13 +90,13 @@ export const ClickOutside = {
 
     if (!el._clickOutside) {
       el._clickOutside = {
-        lastMousedownWasOutside: true,
+        lastMousedownWasOutside: true
       }
     }
 
     el._clickOutside[vnode.ctx.uid] = {
       onClick,
-      onMousedown,
+      onMousedown
     }
   },
 
@@ -113,7 +113,7 @@ export const ClickOutside = {
     })
 
     delete el._clickOutside[vnode.ctx.uid]
-  },
+  }
 }
 
 export default ClickOutside

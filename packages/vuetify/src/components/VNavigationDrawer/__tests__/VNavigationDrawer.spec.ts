@@ -9,13 +9,13 @@ import { preset } from '../../../presets/default'
 // Utilities
 import {
   resizeWindow,
-  touch,
+  touch
 } from '../../../../test'
 import {
   mount,
   MountingOptions,
   VueWrapper,
-  enableAutoUnmount,
+  enableAutoUnmount
 } from '@vue/test-utils'
 
 beforeEach(() => resizeWindow(1920, 1080))
@@ -37,20 +37,20 @@ describe('VNavigationDrawer', () => { // eslint-disable-line max-statements
             $vuetify: {
               rtl: false,
               theme: {
-                dark: false,
+                dark: false
               },
               breakpoint,
-              application: new Application(),
-            },
-          },
-        },
+              application: new Application()
+            }
+          }
+        }
       })
     }
   })
 
   it('should become temporary when the window resizes', async () => {
     const wrapper = mountFunction({
-      props: { app: true },
+      props: { app: true }
     })
 
     expect(wrapper.vm.isActive).toBe(true)
@@ -65,8 +65,8 @@ describe('VNavigationDrawer', () => { // eslint-disable-line max-statements
       props: {
         app: true,
         temporary: true,
-        modelValue: true,
-      },
+        modelValue: true
+      }
     })
 
     await wrapper.vm.$nextTick()
@@ -79,8 +79,8 @@ describe('VNavigationDrawer', () => { // eslint-disable-line max-statements
       props: {
         app: true,
         permanent: true,
-        stateless: true,
-      },
+        stateless: true
+      }
     })
 
     await wrapper.vm.$nextTick()
@@ -96,8 +96,8 @@ describe('VNavigationDrawer', () => { // eslint-disable-line max-statements
       props: {
         app: true,
         permanent: true,
-        disableResizeWatcher: true,
-      },
+        disableResizeWatcher: true
+      }
     })
 
     await wrapper.vm.$nextTick()
@@ -113,8 +113,8 @@ describe('VNavigationDrawer', () => { // eslint-disable-line max-statements
       props: {
         app: true,
         temporary: true,
-        modelValue: true,
-      },
+        modelValue: true
+      }
     })
 
     await wrapper.vm.$nextTick()
@@ -131,8 +131,8 @@ describe('VNavigationDrawer', () => { // eslint-disable-line max-statements
   it('should open when changed to permanent', async () => {
     const wrapper = mountFunction({
       props: {
-        modelValue: null,
-      },
+        modelValue: null
+      }
     })
 
     wrapper.setProps({ permanent: true })
@@ -146,8 +146,8 @@ describe('VNavigationDrawer', () => { // eslint-disable-line max-statements
     const wrapper = mountFunction({
       props: {
         permanent: true,
-        modelValue: true,
-      },
+        modelValue: true
+      }
     })
 
     wrapper.setProps({ modelValue: false })
@@ -160,8 +160,8 @@ describe('VNavigationDrawer', () => { // eslint-disable-line max-statements
   it('should update content padding when temporary state is changed', async () => {
     const wrapper = mountFunction({
       props: {
-        app: true,
-      },
+        app: true
+      }
     })
     await wrapper.vm.$nextTick()
 
@@ -178,8 +178,8 @@ describe('VNavigationDrawer', () => { // eslint-disable-line max-statements
   it('should update content padding when permanent state is changed', async () => {
     const wrapper = mountFunction({
       props: {
-        app: true,
-      },
+        app: true
+      }
     })
     await resizeWindow(800)
     wrapper.vm.$vuetify.breakpoint.width = 800
@@ -198,8 +198,8 @@ describe('VNavigationDrawer', () => { // eslint-disable-line max-statements
   it('should update content padding when miniVariant is changed', async () => {
     const wrapper = mountFunction({
       props: {
-        app: true,
-      },
+        app: true
+      }
     })
     await wrapper.vm.$nextTick()
 
@@ -217,8 +217,8 @@ describe('VNavigationDrawer', () => { // eslint-disable-line max-statements
     await resizeWindow(800)
     const wrapper = mountFunction({
       props: {
-        temporary: true,
-      },
+        temporary: true
+      }
     })
 
     await resizeWindow(1920)
@@ -227,7 +227,7 @@ describe('VNavigationDrawer', () => { // eslint-disable-line max-statements
 
   it('should stay closed when mobile and temporary is enabled', async () => {
     const wrapper = mountFunction({
-      props: { app: true },
+      props: { app: true }
     })
     await resizeWindow(800)
     wrapper.vm.$vuetify.breakpoint.width = 800
@@ -246,8 +246,8 @@ describe('VNavigationDrawer', () => { // eslint-disable-line max-statements
       props: {
         app: true,
         fixed: true,
-        modelValue: true,
-      },
+        modelValue: true
+      }
     })
     await wrapper.vm.$nextTick()
 
@@ -274,8 +274,8 @@ describe('VNavigationDrawer', () => { // eslint-disable-line max-statements
   it('should not have marginTop when temporary / isMobile', async () => {
     const wrapper = mountFunction({
       props: {
-        app: true,
-      },
+        app: true
+      }
     })
     wrapper.vm.$vuetify.application.bar = 0
 
@@ -320,11 +320,11 @@ describe('VNavigationDrawer', () => { // eslint-disable-line max-statements
     const update = jest.fn()
     const wrapper = mountFunction({
       props: {
-        miniVariant: true,
+        miniVariant: true
       },
       attrs: {
-        'onUpdate:mini-variant': update,
-      },
+        'onUpdate:mini-variant': update
+      }
     })
 
     wrapper.trigger('click')
@@ -337,11 +337,11 @@ describe('VNavigationDrawer', () => { // eslint-disable-line max-statements
     const wrapper = mountFunction({
       props: {
         miniVariant: true,
-        expandOnHover: true,
+        expandOnHover: true
       },
       attrs: {
-        'onUpdate:mini-variant': update,
-      },
+        'onUpdate:mini-variant': update
+      }
     })
 
     wrapper.trigger('mouseenter')
@@ -358,14 +358,14 @@ describe('VNavigationDrawer', () => { // eslint-disable-line max-statements
     const wrapper = mountFunction({
       props: {
         miniVariant: true,
-        expandOnHover: true,
+        expandOnHover: true
       },
       attrs: {
         'onUpdate:mini-variant': (value: boolean) => {
           wrapper.setProps({ miniVariant: value })
           update(value)
-        },
-      },
+        }
+      }
     })
 
     wrapper.trigger('mouseenter')
@@ -383,14 +383,14 @@ describe('VNavigationDrawer', () => { // eslint-disable-line max-statements
     const wrapper = mountFunction({
       props: {
         miniVariant: false,
-        expandOnHover: false,
+        expandOnHover: false
       },
       attrs: {
         'onUpdate:mini-variant': (value: boolean) => {
           wrapper.setProps({ miniVariant: value })
           update(value)
-        },
-      },
+        }
+      }
     })
 
     wrapper.setProps({ expandOnHover: true })
@@ -405,7 +405,7 @@ describe('VNavigationDrawer', () => { // eslint-disable-line max-statements
   it('should react to open / close from touch events', async () => {
     const wrapper = mountFunction({
       attachTo: document.body,
-      props: { modelValue: false },
+      props: { modelValue: false }
     })
     const element = wrapper.vm.$el.parentElement
 
@@ -451,8 +451,8 @@ describe('VNavigationDrawer', () => { // eslint-disable-line max-statements
   it('should activate and expand on hover', () => {
     const wrapper = mountFunction({
       props: {
-        expandOnHover: true,
-      },
+        expandOnHover: true
+      }
     })
 
     expect(wrapper.vm.isMouseover).toBe(false)
@@ -471,8 +471,8 @@ describe('VNavigationDrawer', () => { // eslint-disable-line max-statements
     const wrapper = mountFunction({
       props: {
         app: true,
-        clipped: true,
-      },
+        clipped: true
+      }
     })
 
     wrapper.vm.$vuetify.application.bottom = 20
@@ -486,8 +486,8 @@ describe('VNavigationDrawer', () => { // eslint-disable-line max-statements
     const wrapper = mountFunction({
       props: {
         app: true,
-        disableRouteWatcher: true,
-      },
+        disableRouteWatcher: true
+      }
     })
 
     expect(wrapper.vm.isActive).toBe(true)
@@ -497,7 +497,7 @@ describe('VNavigationDrawer', () => { // eslint-disable-line max-statements
 
     wrapper.setProps({
       disableRouteWatcher: false,
-      stateless: true,
+      stateless: true
     })
 
     wrapper.vm.onRouteChange()
@@ -505,7 +505,7 @@ describe('VNavigationDrawer', () => { // eslint-disable-line max-statements
 
     wrapper.setProps({
       stateless: false,
-      temporary: true,
+      temporary: true
     })
 
     wrapper.vm.onRouteChange()
@@ -514,7 +514,7 @@ describe('VNavigationDrawer', () => { // eslint-disable-line max-statements
 
     wrapper.setProps({
       temporary: false,
-      modelValue: true,
+      modelValue: true
     })
     await wrapper.vm.$nextTick() // Wait for value watcher to fire
 
@@ -537,13 +537,13 @@ describe('VNavigationDrawer', () => { // eslint-disable-line max-statements
     expect(wrapper.vm.$tag).toBe('aside')
 
     const wrapper2 = mountFunction({
-      props: { app: true },
+      props: { app: true }
     })
 
     expect(wrapper2.vm.$tag).toBe('nav')
 
     const wrapper3 = mountFunction({
-      props: { tag: 'div' },
+      props: { tag: 'div' }
     })
 
     // app по умолчанию false, поэтому $tag должен быть 'aside', но tag переопределяет это

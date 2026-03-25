@@ -1,4 +1,4 @@
-import {Transition, h, vShow, withDirectives} from 'vue'
+import { Transition, h, vShow, withDirectives } from 'vue'
 // Styles
 import './VSnackbar.sass'
 
@@ -28,7 +28,7 @@ export default mixins(
     'bottom',
     'left',
     'right',
-    'top',
+    'top'
   ])
 /* @vue/component */
 ).extend({
@@ -39,24 +39,24 @@ export default mixins(
     centered: Boolean,
     contentClass: {
       type: String,
-      default: '',
+      default: ''
     },
     multiLine: Boolean,
     text: Boolean,
     timeout: {
       type: [Number, String],
-      default: 5000,
+      default: 5000
     },
     transition: {
       type: [Boolean, String] as PropType<false | string>,
       default: 'v-snack-transition',
-      validator: v => typeof v === 'string' || v === false,
+      validator: v => typeof v === 'string' || v === false
     },
-    vertical: Boolean,
+    vertical: Boolean
   },
   emits: ['update:modelValue'],
   data: () => ({
-    activeTimeout: -1,
+    activeTimeout: -1
   }),
 
   computed: {
@@ -72,7 +72,7 @@ export default mixins(
         'v-snack--right': this.right,
         'v-snack--text': this.text,
         'v-snack--top': this.top,
-        'v-snack--vertical': this.vertical,
+        'v-snack--vertical': this.vertical
       }
     },
     // Text and outlined styles both
@@ -100,21 +100,21 @@ export default mixins(
         insetFooter,
         left,
         right,
-        top,
+        top
       } = this.$vuetify.application
 
       return {
         paddingBottom: convertToUnit(bottom + footer + insetFooter),
         paddingLeft: convertToUnit(left),
         paddingRight: convertToUnit(right),
-        paddingTop: convertToUnit(bar + top),
+        paddingTop: convertToUnit(bar + top)
       }
-    },
+    }
   },
 
   watch: {
     isActive: 'setTimeout',
-    timeout: 'setTimeout',
+    timeout: 'setTimeout'
   },
 
   mounted () {
@@ -137,17 +137,17 @@ export default mixins(
   methods: {
     genActions () {
       return h('div', {
-        class: 'v-snack__action ',
+        class: 'v-snack__action '
       }, [
         getSlot(this, 'action', {
-          attrs: { class: 'v-snack__btn' },
-        }) as any,
+          attrs: { class: 'v-snack__btn' }
+        }) as any
       ])
     },
     genContent () {
       return h('div', {
         class: ['v-snack__content', {
-          [this.contentClass]: true,
+          [this.contentClass]: true
         }],
         role: 'status',
         'aria-live': 'polite'
@@ -174,12 +174,12 @@ export default mixins(
 
       return withDirectives(h('div', data, [
         this.genContent(),
-        this.genActions(),
+        this.genActions()
       ]), directives as any)
     },
     genTransition () {
       return h(Transition, {
-        name: this.transition,
+        name: this.transition
       }, () => [this.genWrapper()])
     },
     setTimeout () {
@@ -198,17 +198,17 @@ export default mixins(
       this.activeTimeout = window.setTimeout(() => {
         this.isActive = false
       }, timeout)
-    },
+    }
   },
 
   render (): VNode {
     return h('div', {
       class: ['v-snack', this.classes],
-      style: this.styles,
+      style: this.styles
     }, [
       this.transition !== false
         ? this.genTransition()
-        : this.genWrapper(),
+        : this.genWrapper()
     ])
-  },
+  }
 })

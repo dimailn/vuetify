@@ -23,8 +23,8 @@ describe('VBtn.ts', () => {
         { path: '/', component: { template: '<div>Home</div>' } },
         { path: '/foobar', component: { template: '<div>Foobar</div>' } },
         { path: '/fizzbuzz', component: { template: '<div>Fizzbuzz</div>' } },
-        { path: '/foo', component: { template: '<div>Foo</div>' } },
-      ],
+        { path: '/foo', component: { template: '<div>Foo</div>' } }
+      ]
     })
 
     mountFunction = (options = {}) => {
@@ -32,11 +32,11 @@ describe('VBtn.ts', () => {
         global: {
           plugins: [router],
           components: {
-            'router-link': Vue3RouterLinkStub,
+            'router-link': Vue3RouterLinkStub
           },
-          ...options.global,
+          ...options.global
         },
-        ...options,
+        ...options
       })
     }
   })
@@ -49,8 +49,8 @@ describe('VBtn.ts', () => {
     expect(
       mountFunction({
         props: {
-          color: 'green darken-1',
-        },
+          color: 'green darken-1'
+        }
       }).html()
     ).toMatchSnapshot()
 
@@ -58,8 +58,8 @@ describe('VBtn.ts', () => {
       mountFunction({
         props: {
           color: 'green darken-1',
-          text: true,
-        },
+          text: true
+        }
       }).html()
     ).toMatchSnapshot()
   })
@@ -67,11 +67,11 @@ describe('VBtn.ts', () => {
   it('should render component with loader slot and match snapshot', () => {
     const wrapper = mountFunction({
       props: {
-        loading: true,
+        loading: true
       },
       slots: {
-        loader: '<span>loader</span>',
-      },
+        loader: '<span>loader</span>'
+      }
     })
 
     expect(wrapper.html()).toMatchSnapshot()
@@ -86,10 +86,10 @@ describe('VBtn.ts', () => {
         provide: {
           btnToggle: {
             register,
-            unregister,
-          },
-        },
-      },
+            unregister
+          }
+        }
+      }
     })
 
     expect(register).toHaveBeenCalled()
@@ -101,8 +101,8 @@ describe('VBtn.ts', () => {
     const wrapper = mountFunction({
       props: {
         modelValue: true,
-        activeClass: 'foo',
-      },
+        activeClass: 'foo'
+      }
     })
 
     expect(wrapper.classes('foo')).toBe(true)
@@ -111,8 +111,8 @@ describe('VBtn.ts', () => {
   it('should have v-btn--plain class when plain prop is set to true', () => {
     const wrapper = mountFunction({
       props: {
-        plain: true,
-      },
+        plain: true
+      }
     })
 
     expect(wrapper.classes('v-btn--plain')).toBe(true)
@@ -121,8 +121,8 @@ describe('VBtn.ts', () => {
   it('should have the correct icon classes', async () => {
     const wrapper = mountFunction({
       props: {
-        icon: true,
-      },
+        icon: true
+      }
     })
     expect(wrapper.classes('v-btn--icon')).toBe(true)
 
@@ -149,8 +149,8 @@ describe('VBtn.ts', () => {
   it('should stringify non string|number values', async () => {
     const wrapper = mountFunction({
       props: {
-        value: 'foo',
-      },
+        value: 'foo'
+      }
     })
 
     expect(wrapper.attributes('value')).toBe('foo')
@@ -165,14 +165,14 @@ describe('VBtn.ts', () => {
   it('should not add color classes if disabled', async () => {
     const wrapper = mountFunction({
       props: {
-        color: 'primary darken-2',
-      },
+        color: 'primary darken-2'
+      }
     })
 
     expect(wrapper.html()).toMatchSnapshot()
 
     await wrapper.setProps({
-      disabled: true,
+      disabled: true
     })
     expect(wrapper.html()).toMatchSnapshot()
   })
@@ -180,8 +180,8 @@ describe('VBtn.ts', () => {
   it.skip('should retain focus when clicked', async () => {
     const wrapper = mountFunction({
       props: {
-        retainFocusOnClick: true,
-      },
+        retainFocusOnClick: true
+      }
     })
     const blur = jest.fn()
 
@@ -205,17 +205,17 @@ describe('VBtn.ts', () => {
   it('should handle attributes inheritance correctly', () => {
     const wrapper = mount(VBtn, {
       global: {
-        plugins: [router],
+        plugins: [router]
       },
       attrs: {
         'data-test': 'my-button',
         'aria-label': 'Test button',
         id: 'custom-id',
-        class: 'custom-class another-class',
+        class: 'custom-class another-class'
       },
       props: {
-        color: 'primary',
-      },
+        color: 'primary'
+      }
     })
 
     // Check that component receives attrs
@@ -232,8 +232,8 @@ describe('VBtn.ts', () => {
   it('should render loader when loading prop is true', () => {
     const wrapper = mountFunction({
       props: {
-        loading: true,
-      },
+        loading: true
+      }
     })
 
     expect(wrapper.classes('v-btn--loading')).toBe(true)
@@ -250,7 +250,7 @@ describe('VBtn.ts', () => {
       { props: { fab: true }, classes: ['v-btn--fab'], hasBg: true, isElevated: true, isRound: true },
       { props: { block: true }, classes: ['v-btn--block'], hasBg: true, isElevated: true, isRound: false },
       { props: { rounded: true }, classes: ['v-btn--rounded'], hasBg: true, isElevated: true, isRound: false },
-      { props: { disabled: true }, classes: ['v-btn--disabled'], hasBg: true, isElevated: false, isRound: false },
+      { props: { disabled: true }, classes: ['v-btn--disabled'], hasBg: true, isElevated: false, isRound: false }
     ]
 
     variants.forEach(({ props, classes, hasBg, isElevated, isRound }) => {
@@ -275,30 +275,30 @@ describe('VBtn.ts', () => {
 
     // Should not have ripple when disabled
     wrapper = mountFunction({
-      props: { disabled: true },
+      props: { disabled: true }
     })
     expect(wrapper.vm.computedRipple).toBe(false)
 
     // Should have circle ripple for icon buttons
     wrapper = mountFunction({
-      props: { icon: true },
+      props: { icon: true }
     })
     expect(wrapper.vm.computedRipple).toEqual({ circle: true })
 
     // Should have circle ripple for fab buttons
     wrapper = mountFunction({
-      props: { fab: true },
+      props: { fab: true }
     })
     expect(wrapper.vm.computedRipple).toEqual({ circle: true })
   })
   it('should add router class when to prop is provided', () => {
     const wrapper = mountFunction({
       props: {
-        to: '/test-route',
+        to: '/test-route'
       },
       slots: {
-        default: () => 'Router Button',
-      },
+        default: () => 'Router Button'
+      }
     })
 
     expect(wrapper.classes('v-btn--router')).toBe(true)

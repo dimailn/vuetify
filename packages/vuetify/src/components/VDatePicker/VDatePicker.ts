@@ -19,7 +19,7 @@ import {
   createItemTypeListeners,
   createNativeLocaleFormatter,
   pad,
-  sanitizeDateString,
+  sanitizeDateString
 } from './util'
 
 // Types
@@ -31,7 +31,7 @@ import {
   DatePickerAllowedDatesFunction,
   DatePickerEventColors,
   DatePickerEvents,
-  DatePickerType,
+  DatePickerType
 } from 'vuetify/types'
 
 type DatePickerValue = string | string[] | undefined
@@ -44,7 +44,7 @@ type ActivePicker = 'DATE' | 'MONTH' | 'YEAR';
 
 export default mixins(
   Localable,
-  Picker,
+  Picker
 /* @vue/component */
 ).extend({
   name: 'v-date-picker',
@@ -57,21 +57,21 @@ export default mixins(
     disabled: Boolean,
     events: {
       type: [Array, Function, Object],
-      default: () => null,
+      default: () => null
     } as unknown as PropType<DatePickerEvents | null>,
     eventColor: {
       type: [Array, Function, Object, String],
-      default: () => 'warning',
+      default: () => 'warning'
     } as unknown as PropType<DatePickerEventColors>,
     firstDayOfWeek: {
       type: [String, Number],
-      default: 0,
+      default: 0
     },
     // Function formatting the tableDate in the day/month table header
     headerDateFormat: Function as PropType<DatePickerFormatter | undefined>,
     localeFirstDayOfYear: {
       type: [String, Number],
-      default: 0,
+      default: 0
     },
     max: String,
     min: String,
@@ -80,28 +80,28 @@ export default mixins(
     multiple: Boolean,
     nextIcon: {
       type: String,
-      default: '$next',
+      default: '$next'
     },
     nextMonthAriaLabel: {
       type: String,
-      default: '$vuetify.datePicker.nextMonthAriaLabel',
+      default: '$vuetify.datePicker.nextMonthAriaLabel'
     },
     nextYearAriaLabel: {
       type: String,
-      default: '$vuetify.datePicker.nextYearAriaLabel',
+      default: '$vuetify.datePicker.nextYearAriaLabel'
     },
     pickerDate: String,
     prevIcon: {
       type: String,
-      default: '$prev',
+      default: '$prev'
     },
     prevMonthAriaLabel: {
       type: String,
-      default: '$vuetify.datePicker.prevMonthAriaLabel',
+      default: '$vuetify.datePicker.prevMonthAriaLabel'
     },
     prevYearAriaLabel: {
       type: String,
-      default: '$vuetify.datePicker.prevYearAriaLabel',
+      default: '$vuetify.datePicker.prevYearAriaLabel'
     },
     range: Boolean,
     reactive: Boolean,
@@ -109,11 +109,11 @@ export default mixins(
     scrollable: Boolean,
     showCurrent: {
       type: [Boolean, String],
-      default: true,
+      default: true
     },
     selectedItemsText: {
       type: String,
-      default: '$vuetify.datePicker.itemsSelected',
+      default: '$vuetify.datePicker.itemsSelected'
     },
     showAdjacentMonths: Boolean,
     showWeek: Boolean,
@@ -122,20 +122,20 @@ export default mixins(
     type: {
       type: String,
       default: 'date',
-      validator: (type: any) => ['date', 'month'].includes(type), // TODO: year
+      validator: (type: any) => ['date', 'month'].includes(type) // TODO: year
     } as unknown as PropType<DatePickerType>,
     modelValue: [Array, String] as PropType<DatePickerValue>,
     weekdayFormat: Function as PropType<DatePickerFormatter | undefined>,
     // Function formatting the year in table header and pickup title
     yearFormat: Function as PropType<DatePickerFormatter | undefined>,
-    yearIcon: String,
+    yearIcon: String
   },
 
   emits: [
     'update:modelValue',
     'change',
     'update:active-picker',
-    'update:picker-date',
+    'update:picker-date'
   ],
 
   data () {
@@ -157,7 +157,7 @@ export default mixins(
         const date = multipleValue[multipleValue.length - 1] ||
           (typeof this.showCurrent === 'string' ? this.showCurrent : `${now.getFullYear()}-${now.getMonth() + 1}`)
         return sanitizeDateString(date as string, this.type === 'date' ? 'month' : 'year')
-      })(),
+      })()
     }
   },
 
@@ -214,7 +214,7 @@ export default mixins(
       return {
         year: this.yearFormat || createNativeLocaleFormatter(this.currentLocale, { year: 'numeric', timeZone: 'UTC' }, { length: 4 }),
         titleDate: this.titleDateFormat ||
-          (this.isMultiple ? this.defaultTitleMultipleDateFormatter : this.defaultTitleDateFormatter),
+          (this.isMultiple ? this.defaultTitleMultipleDateFormatter : this.defaultTitleDateFormatter)
       }
     },
     defaultTitleMultipleDateFormatter (): DatePickerMultipleFormatter {
@@ -234,12 +234,12 @@ export default mixins(
       const titleFormats = {
         year: { year: 'numeric', timeZone: 'UTC' },
         month: { month: 'long', timeZone: 'UTC' },
-        date: { weekday: 'short', month: 'short', day: 'numeric', timeZone: 'UTC' },
+        date: { weekday: 'short', month: 'short', day: 'numeric', timeZone: 'UTC' }
       } as const
 
       const titleDateFormatter = createNativeLocaleFormatter(this.currentLocale, titleFormats[this.type], {
         start: 0,
-        length: { date: 10, month: 7, year: 4 }[this.type],
+        length: { date: 10, month: 7, year: 4 }[this.type]
       })
 
       const landscapeFormatter = (date: string) => titleDateFormatter(date)
@@ -247,7 +247,7 @@ export default mixins(
         .replace(', ', ',<br>')
 
       return this.landscape ? landscapeFormatter : titleDateFormatter
-    },
+    }
   },
 
   watch: {
@@ -255,7 +255,7 @@ export default mixins(
       immediate: true,
       handler (val: ActivePicker) {
         this.$emit('update:active-picker', val)
-      },
+      }
     },
     activePicker (val: ActivePicker) {
       this.internalActivePicker = val
@@ -296,13 +296,13 @@ export default mixins(
           .filter(this.isDateAllowed)
         this.$emit('update:modelValue', this.isMultiple ? output : output[0])
       }
-    },
+    }
   },
 
   created () {
     const breakingProps = [
       ['value', 'modelValue'],
-      ['onInput', 'onUpdate:modelValue'],
+      ['onInput', 'onUpdate:modelValue']
     ]
 
     /* istanbul ignore next */
@@ -341,10 +341,10 @@ export default mixins(
 
       const output = this.multiple
         ? (
-          this.multipleValue.indexOf(newInput) === -1
-            ? this.multipleValue.concat([newInput])
-            : this.multipleValue.filter(x => x !== newInput)
-        )
+            this.multipleValue.indexOf(newInput) === -1
+              ? this.multipleValue.concat([newInput])
+              : this.multipleValue.filter(x => x !== newInput)
+          )
         : newInput
 
       this.$emit('update:modelValue', output)
@@ -412,7 +412,7 @@ export default mixins(
         year: this.formatters.year(this.multipleValue.length ? `${this.inputYear}` : this.tableDate),
         yearIcon: this.yearIcon,
         modelValue: this.multipleValue.length ? this.multipleValue[0] : undefined,
-        'onUpdate:selecting-year': (value: boolean) => this.internalActivePicker = value ? 'YEAR' : this.type.toUpperCase(),
+        'onUpdate:selecting-year': (value: boolean) => this.internalActivePicker = value ? 'YEAR' : this.type.toUpperCase()
       })
     },
     genTableHeader (): VNode {
@@ -432,7 +432,7 @@ export default mixins(
         readonly: this.readonly,
         modelValue: this.internalActivePicker === 'DATE' ? `${pad(this.tableYear, 4)}-${pad(this.tableMonth + 1)}` : `${pad(this.tableYear, 4)}`,
         onToggle: () => this.internalActivePicker = (this.internalActivePicker === 'DATE' ? 'MONTH' : 'YEAR'),
-        'onUpdate:modelValue': (value: string) => this.tableDate = value,
+        'onUpdate:modelValue': (value: string) => this.tableDate = value
       })
     },
     genDateTable (): VNode {
@@ -462,7 +462,7 @@ export default mixins(
         ref: 'table',
         'onUpdate:modelValue': this.dateClick,
         'onUpdate:table-date': (value: string) => this.tableDate = value,
-        ...createItemTypeListeners(this, 'Date'),
+        ...createItemTypeListeners(this, 'Date')
       })
     },
     genMonthTable (): VNode {
@@ -487,7 +487,7 @@ export default mixins(
         ref: 'table',
         'onUpdate:modelValue': this.monthClick,
         'onUpdate:table-date': (value: string) => this.tableDate = value,
-        ...createItemTypeListeners(this, 'Month'),
+        ...createItemTypeListeners(this, 'Month')
       })
     },
     genYears (): VNode {
@@ -499,19 +499,21 @@ export default mixins(
         max: this.maxYear,
         modelValue: this.tableYear,
         'onUpdate:modelValue': this.yearClick,
-        ...createItemTypeListeners(this, 'Year'),
+        ...createItemTypeListeners(this, 'Year')
       })
     },
     genPickerBody (): VNode {
-      const children = this.internalActivePicker === 'YEAR' ? [
-        this.genYears(),
-      ] : [
-        this.genTableHeader(),
-        this.internalActivePicker === 'DATE' ? this.genDateTable() : this.genMonthTable(),
-      ]
+      const children = this.internalActivePicker === 'YEAR'
+        ? [
+            this.genYears()
+          ]
+        : [
+            this.genTableHeader(),
+            this.internalActivePicker === 'DATE' ? this.genDateTable() : this.genMonthTable()
+          ]
 
       return h('div', {
-        key: this.internalActivePicker,
+        key: this.internalActivePicker
       }, children)
     },
     setInputDate () {
@@ -527,10 +529,10 @@ export default mixins(
         this.inputMonth = this.inputMonth == null ? this.inputMonth : this.now.getMonth()
         this.inputDay = this.inputDay || this.now.getDate()
       }
-    },
+    }
   },
 
   render (): VNode {
     return this.genPicker('v-picker--date')
-  },
+  }
 })

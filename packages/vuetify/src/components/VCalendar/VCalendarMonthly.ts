@@ -24,7 +24,7 @@ export default defineComponent({
     },
     parsedEnd (): CalendarTimestamp {
       return getEndOfMonth(parseTimestamp(this.end, true))
-    },
-  },
+    }
+  }
 
 })

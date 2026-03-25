@@ -2,7 +2,7 @@ import VCalendarDaily from '../VCalendarDaily'
 import {
   mount,
   VueWrapper,
-  MountingOptions,
+  MountingOptions
 } from '@vue/test-utils'
 
 describe('VCalendarDaily', () => {
@@ -15,12 +15,12 @@ describe('VCalendarDaily', () => {
           mocks: {
             $vuetify: {
               lang: {
-                current: 'en-US',
-              },
-            },
-          },
+                current: 'en-US'
+              }
+            }
+          }
         },
-        ...options,
+        ...options
       })
     }
   })
@@ -29,8 +29,8 @@ describe('VCalendarDaily', () => {
     const wrapper = mountFunction({
       props: {
         start: '2019-01-29',
-        end: '2019-02-04',
-      },
+        end: '2019-02-04'
+      }
     })
 
     expect(wrapper.classes('v-calendar-daily')).toBeTruthy()
@@ -41,8 +41,8 @@ describe('VCalendarDaily', () => {
     const wrapper = mountFunction({
       props: {
         start: '2019-01-29',
-        end: '2019-02-04',
-      },
+        end: '2019-02-04'
+      }
     })
 
     // jest.spyOn не работает с Vue 3 компонентами
@@ -59,8 +59,8 @@ describe('VCalendarDaily', () => {
     const wrapper = mountFunction({
       props: {
         start: '2019-01-29',
-        end: '2019-02-04',
-      },
+        end: '2019-02-04'
+      }
     })
 
     expect(wrapper.vm.getScrollPush()).toBe(0)
@@ -76,8 +76,8 @@ describe('VCalendarDaily', () => {
       props: {
         start: '2019-01-29',
         end: '2019-02-04',
-        intervalMinutes: 40,
-      },
+        intervalMinutes: 40
+      }
     })
 
     expect(wrapper.html()).toMatchSnapshot()
@@ -88,8 +88,8 @@ describe('VCalendarDaily', () => {
       props: {
         start: '2019-01-29',
         end: '2019-02-04',
-        maxDays: 5,
-      },
+        maxDays: 5
+      }
     })
 
     expect(wrapper.html()).toMatchSnapshot()
@@ -101,8 +101,8 @@ describe('VCalendarDaily', () => {
       props: {
         start: '2019-01-29',
         end: '2019-02-04',
-        shortIntervals: false,
-      },
+        shortIntervals: false
+      }
     })
 
     expect(wrapper.html()).toMatchSnapshot()
@@ -113,8 +113,8 @@ describe('VCalendarDaily', () => {
       props: {
         start: '2019-01-29',
         end: '2019-02-04',
-        intervalHeight: 70,
-      },
+        intervalHeight: 70
+      }
     })
 
     expect(wrapper.html()).toMatchSnapshot()
@@ -125,8 +125,8 @@ describe('VCalendarDaily', () => {
       props: {
         start: '2019-01-29',
         end: '2019-02-04',
-        firstInterval: 2,
-      },
+        firstInterval: 2
+      }
     })
 
     expect(wrapper.html()).toMatchSnapshot()
@@ -137,8 +137,8 @@ describe('VCalendarDaily', () => {
       props: {
         start: '2019-01-29',
         end: '2019-02-04',
-        intervalCount: 12,
-      },
+        intervalCount: 12
+      }
     })
 
     expect(wrapper.html()).toMatchSnapshot()
@@ -149,8 +149,8 @@ describe('VCalendarDaily', () => {
       props: {
         start: '2019-01-29',
         end: '2019-02-04',
-        intervalFormat: jest.fn(x => `test: ${x.date} ${x.time}`),
-      },
+        intervalFormat: jest.fn(x => `test: ${x.date} ${x.time}`)
+      }
     })
 
     expect(wrapper.html()).toMatchSnapshot()
@@ -163,9 +163,9 @@ describe('VCalendarDaily', () => {
         start: '2019-01-29',
         end: '2019-02-04',
         intervalStyle: jest.fn(x => ({
-          opacity: x.hour / 24,
-        })),
-      },
+          opacity: x.hour / 24
+        }))
+      }
     })
 
     expect(wrapper.html()).toMatchSnapshot()
@@ -177,8 +177,8 @@ describe('VCalendarDaily', () => {
       props: {
         start: '2019-01-29',
         end: '2019-02-04',
-        showIntervalLabel: jest.fn(x => (x.hour % 2 === 0)),
-      },
+        showIntervalLabel: jest.fn(x => (x.hour % 2 === 0))
+      }
     })
 
     expect(wrapper.html()).toMatchSnapshot()

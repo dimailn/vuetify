@@ -9,7 +9,7 @@ import { keyCodes } from '../../../util/helpers'
 import {
   mount,
   VueWrapper,
-  enableAutoUnmount,
+  enableAutoUnmount
 } from '@vue/test-utils'
 import { waitAnimationFrame } from '../../../../test'
 
@@ -19,11 +19,11 @@ const createMountFunction = () => (options = {}) => mount(VSelect, {
       $vuetify: {
         lang: { t: (val: string) => val },
         theme: { dark: false },
-        icons: { component: 'mdi' },
-      },
-    },
+        icons: { component: 'mdi' }
+      }
+    }
   },
-  ...options,
+  ...options
 })
 
 // eslint-disable-next-line max-statements
@@ -50,11 +50,11 @@ describe('VSelect.ts', () => {
       props: {
         eager: true,
         attach: false,
-        items: ['foo'],
+        items: ['foo']
       },
       slots: {
-        'prepend-item': () => h('div', 'foo'),
-      },
+        'prepend-item': () => h('div', 'foo')
+      }
     })
 
     // Активируем меню через клик на слот
@@ -74,11 +74,11 @@ describe('VSelect.ts', () => {
     const wrapper = mountFunction({
       props: {
         eager: true,
-        items: ['foo'],
+        items: ['foo']
       },
       slots: {
-        'append-item': () => h('div', 'foo'),
-      },
+        'append-item': () => h('div', 'foo')
+      }
     })
 
     // Активируем меню через клик на слот
@@ -98,13 +98,13 @@ describe('VSelect.ts', () => {
       render () {
         return h(VSelect, {
           items: ['foo', 'bar'],
-          modelValue: 'foo',
+          modelValue: 'foo'
         }, {
           selection: ({ item }) => {
             return h('div', item + ' - from slot')
-          },
+          }
         })
-      },
+      }
     })
 
     expect(wrapper.html()).toMatchSnapshot()
@@ -115,9 +115,9 @@ describe('VSelect.ts', () => {
       props: {
         items: ['foo', 'bar'],
         'menu-props': {
-          offsetY: true,
-        },
-      },
+          offsetY: true
+        }
+      }
     })
 
     const icon = wrapper.find('.v-icon')
@@ -149,8 +149,8 @@ describe('VSelect.ts', () => {
     const wrapper = mountFunction({
       props: {
         items: ['foo'],
-        modelValue: 'foo',
-      },
+        modelValue: 'foo'
+      }
     })
 
     expect(wrapper.vm.computedCounterValue).toBe(3)
@@ -158,8 +158,8 @@ describe('VSelect.ts', () => {
     wrapper.setProps({
       items: [{
         text: 'foobarbaz',
-        value: 'foo',
-      }],
+        value: 'foo'
+      }]
     })
     await wrapper.vm.$nextTick()
     expect(wrapper.vm.computedCounterValue).toBe(9)
@@ -167,7 +167,7 @@ describe('VSelect.ts', () => {
     wrapper.setProps({
       items: ['foo', 'bar', 'baz'],
       multiple: true,
-      modelValue: ['foo', 'bar'],
+      modelValue: ['foo', 'bar']
     })
     await wrapper.vm.$nextTick()
     expect(wrapper.vm.computedCounterValue).toBe(2)
@@ -177,15 +177,15 @@ describe('VSelect.ts', () => {
     const wrapper = mountFunction({
       props: {
         items: ['foo', 'bar'],
-        modelValue: 'foo',
-      },
+        modelValue: 'foo'
+      }
     })
 
     expect(wrapper.vm.computedCounterValue).toBe(3)
 
     await wrapper.setProps({
       multiple: true,
-      modelValue: ['foo'],
+      modelValue: ['foo']
     })
 
     expect(wrapper.vm.computedCounterValue).toBe(1)
@@ -193,7 +193,7 @@ describe('VSelect.ts', () => {
     await wrapper.setProps({
       counterValue: (value?: string): number => 2,
       multiple: false,
-      modelValue: undefined,
+      modelValue: undefined
     })
 
     expect(wrapper.vm.computedCounterValue).toBe(2)
@@ -204,8 +204,8 @@ describe('VSelect.ts', () => {
       attachTo: el,
       props: {
         attach: true,
-        items: ['foo', 'bar'],
-      },
+        items: ['foo', 'bar']
+      }
     })
 
     const menu = wrapper.find('.v-input__slot')
@@ -227,8 +227,8 @@ describe('VSelect.ts', () => {
   it('should not emit update:modelValue event when clicked on the selected item', async () => {
     const wrapper = mountFunction({
       props: {
-        items: ['foo', 'bar'],
-      },
+        items: ['foo', 'bar']
+      }
     })
 
     wrapper.vm.selectItem('foo')
@@ -249,8 +249,8 @@ describe('VSelect.ts', () => {
     const wrapper = mountFunction({
       props: {
         items: [itemA, itemB],
-        modelValue: { foo: null },
-      },
+        modelValue: { foo: null }
+      }
     })
     // События теперь тестируются через emitted
 
@@ -270,8 +270,8 @@ describe('VSelect.ts', () => {
     const wrapper = mountFunction({
       attachTo: el,
       props: {
-        items: ['foo', 'bar'],
-      },
+        items: ['foo', 'bar']
+      }
     })
 
     const input = wrapper.find('input')
@@ -294,8 +294,8 @@ describe('VSelect.ts', () => {
       props: {
         items: ['foo', 'bar'],
         readonly: true,
-        menuProps: 'eager',
-      },
+        menuProps: 'eager'
+      }
     })
 
     const input = wrapper.find('input')
@@ -317,8 +317,8 @@ describe('VSelect.ts', () => {
       props: {
         clearable: true,
         items: ['foo', 'bar'],
-        modelValue: 'foo',
-      },
+        modelValue: 'foo'
+      }
     })
 
     const clear = wrapper.find('.v-icon')
@@ -341,8 +341,8 @@ describe('VSelect.ts', () => {
       props: {
         clearable: true,
         items: [1, 2],
-        modelValue: 1,
-      },
+        modelValue: 1
+      }
     })
 
     const clear = wrapper.find('.v-icon')
@@ -364,8 +364,8 @@ describe('VSelect.ts', () => {
         clearable: true,
         items: [1, 2],
         multiple: true,
-        modelValue: [1],
-      },
+        modelValue: [1]
+      }
     })
 
     const clear = wrapper.find('.v-icon')
@@ -388,23 +388,23 @@ describe('VSelect.ts', () => {
     const wrapper = mountFunction({
       props: {
         items,
-        modelValue: 'foo',
-      },
+        modelValue: 'foo'
+      }
     })
 
     const wrapper2 = mountFunction({
       props: {
         items,
         multiple: true,
-        modelValue: ['foo', 'bar'],
-      },
+        modelValue: ['foo', 'bar']
+      }
     })
 
     const wrapper3 = mountFunction({
       props: {
         items,
-        modelValue: null,
-      },
+        modelValue: null
+      }
     })
 
     expect(wrapper.vm.selectedItems).toHaveLength(1)
@@ -419,11 +419,11 @@ describe('VSelect.ts', () => {
       props: {
         items: [
           { text: 'foo', value: { id: 1 } },
-          { text: 'foo', value: { id: 2 } },
+          { text: 'foo', value: { id: 2 } }
         ],
         multiple: true,
-        modelValue: [{ id: 1 }],
-      },
+        modelValue: [{ id: 1 }]
+      }
     })
 
     await wrapper.vm.$nextTick()
@@ -441,11 +441,11 @@ describe('VSelect.ts', () => {
         eager: true,
         items: [
           { text: 'bar', value: { id: 1 } },
-          { text: 'foo', value: { id: 2 } },
+          { text: 'foo', value: { id: 2 } }
         ],
         multiple: true,
-        modelValue: [{ id: 1 }],
-      },
+        modelValue: [{ id: 1 }]
+      }
     })
 
     expect(wrapper.vm.selectedItems).toHaveLength(1)
@@ -471,8 +471,8 @@ describe('VSelect.ts', () => {
         clearable: true,
         openOnClear: true,
         items: [1],
-        modelValue: 1,
-      },
+        modelValue: 1
+      }
     })
 
     const clear = wrapper.find('.v-input__icon--clear .v-icon')
@@ -488,8 +488,8 @@ describe('VSelect.ts', () => {
   it('should react to different key down', async () => {
     const wrapper = mountFunction({
       props: {
-        items: [1, 2, 3, 4],
-      },
+        items: [1, 2, 3, 4]
+      }
     })
     const event = new Event('keydown')
     event.keyCode = keyCodes.tab

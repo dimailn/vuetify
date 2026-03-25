@@ -5,14 +5,14 @@ import VHover from '../VHover'
 import {
   mount,
   VueWrapper,
-  enableAutoUnmount,
+  enableAutoUnmount
 } from '@vue/test-utils'
 import { h } from 'vue'
 import { wait } from '../../../../test'
 import { config } from '@vue/test-utils'
 
 const item = (props: any) => h('div', {
-  class: ['foobar', { fizzbuzz: props.hover }],
+  class: ['foobar', { fizzbuzz: props.hover }]
 })
 
 describe('VHover.ts', () => {
@@ -32,10 +32,10 @@ describe('VHover.ts', () => {
             constructor: {},
             appContext: {},
             props: {},
-            setupState: {},
+            setupState: {}
           },
-          ...options.global,
-        },
+          ...options.global
+        }
       })
     }
   })
@@ -43,8 +43,8 @@ describe('VHover.ts', () => {
   it('should change class when hovered', async () => {
     const wrapper = mountFunction({
       slots: {
-        default: item,
-      },
+        default: item
+      }
     })
 
     const div = wrapper.find('.foobar')
@@ -67,11 +67,11 @@ describe('VHover.ts', () => {
     const wrapper = mountFunction({
       props: {
         disabled: true,
-        modelValue: true,
+        modelValue: true
       },
       slots: {
-        default: item,
-      },
+        default: item
+      }
     })
 
     const div = wrapper.find('.foobar')
@@ -104,14 +104,14 @@ describe('VHover.ts', () => {
   it('should warn when using multiple root elements', () => {
     mountFunction({
       props: {
-        modelValue: false,
+        modelValue: false
       },
       slots: {
         default: () => [
           h('div'),
-          h('div'),
-        ],
-      },
+          h('div')
+        ]
+      }
     })
 
     expect('v-hover should only contain a single element').toHaveBeenTipped()

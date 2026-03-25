@@ -8,7 +8,7 @@ import Color from '../'
 import {
   mount,
   VueWrapper,
-  enableAutoUnmount,
+  enableAutoUnmount
 } from '@vue/test-utils'
 
 describe('color.ts', () => {
@@ -21,9 +21,13 @@ describe('color.ts', () => {
       const TestComponent = defineComponent({
         directives: { Color },
         data: () => ({
-          color: '',
+          color: ''
         }),
-        template: `<div v-color${directive.arg ? `:${directive.arg}` : ''}${Object.keys(directive.modifiers || {}).length ? '.' + Object.keys(directive.modifiers).join('.') : ''}="color"></div>`,
+        template:
+          '<div v-color' +
+          (directive.arg ? ':' + directive.arg : '') +
+          (Object.keys(directive.modifiers || {}).length ? '.' + Object.keys(directive.modifiers).join('.') : '') +
+          '="color"></div>'
       })
 
       return mount(TestComponent, {
@@ -33,38 +37,38 @@ describe('color.ts', () => {
               $vuetify: {
                 theme: {
                   currentTheme: {
-                    primary: '#1976d2',
-                  },
-                },
-              },
-            },
+                    primary: '#1976d2'
+                  }
+                }
+              }
+            }
           },
           mocks: {
             $vuetify: {
               theme: {
                 currentTheme: {
-                  primary: '#1976d2',
-                },
-              },
-            },
+                  primary: '#1976d2'
+                }
+              }
+            }
           },
           provide: {
             $vuetify: {
               theme: {
                 currentTheme: {
-                  primary: '#1976d2',
-                },
-              },
-            },
-          },
-        },
+                  primary: '#1976d2'
+                }
+              }
+            }
+          }
+        }
       })
     }
   })
 
   it('should set background color', async () => {
     const wrapper = mountFunction({
-      name: 'color',
+      name: 'color'
     })
 
     await wrapper.setData({ color: '#01f' })
@@ -91,7 +95,7 @@ describe('color.ts', () => {
   it('should set text color', async () => {
     const wrapper = mountFunction({
       name: 'color',
-      arg: 'text',
+      arg: 'text'
     })
 
     await wrapper.setData({ color: '#01f' })
@@ -118,7 +122,7 @@ describe('color.ts', () => {
   it('should set border color', async () => {
     const wrapper = mountFunction({
       name: 'color',
-      arg: 'border',
+      arg: 'border'
     })
 
     await wrapper.setData({ color: '#01f' })
@@ -141,7 +145,7 @@ describe('color.ts', () => {
     const wrapper = mountFunction({
       name: 'color',
       arg: 'border',
-      modifiers: { top: true, right: true, left: true },
+      modifiers: { top: true, right: true, left: true }
     })
 
     await wrapper.setData({ color: '#fff' })

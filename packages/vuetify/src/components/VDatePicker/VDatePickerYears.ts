@@ -6,7 +6,7 @@ import Localable from '../../mixins/localable'
 
 // Utils
 import {
-  createNativeLocaleFormatter,
+  createNativeLocaleFormatter
 } from './util'
 import mixins, { ExtractVue } from '../../util/mixins'
 import { breaking } from '../../util/console'
@@ -31,25 +31,25 @@ export default mixins(
     min: [Number, String],
     max: [Number, String],
     readonly: Boolean,
-    modelValue: [Number, String],
+    modelValue: [Number, String]
   },
 
   data () {
     return {
-      defaultColor: 'primary',
+      defaultColor: 'primary'
     }
   },
 
   computed: {
     formatter (): DatePickerFormatter {
       return this.format || createNativeLocaleFormatter(this.currentLocale, { year: 'numeric', timeZone: 'UTC' }, { length: 4 })
-    },
+    }
   },
 
   created () {
     const breakingProps = [
       ['value', 'modelValue'],
-      ['onInput', 'onUpdate:modelValue'],
+      ['onInput', 'onUpdate:modelValue']
     ]
 
     /* istanbul ignore next */
@@ -82,7 +82,7 @@ export default mixins(
       return h('li', this.setTextColor(color, {
         key: year,
         class: { active },
-        onClick: () => this.$emit('update:modelValue', year),
+        onClick: () => this.$emit('update:modelValue', year)
       }), formatted)
     },
 
@@ -97,13 +97,13 @@ export default mixins(
       }
 
       return children
-    },
+    }
   },
 
   render (): VNode {
     return h('ul', {
       class: 'v-date-picker-years',
-      ref: 'years',
+      ref: 'years'
     }, this.genYearItems())
-  },
+  }
 })

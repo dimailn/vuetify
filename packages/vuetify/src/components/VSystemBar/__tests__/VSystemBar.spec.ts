@@ -6,7 +6,7 @@ import {
   mount,
   VueWrapper,
   MountingOptions,
-  enableAutoUnmount,
+  enableAutoUnmount
 } from '@vue/test-utils'
 
 describe('VSystemBar.ts', () => {
@@ -23,12 +23,12 @@ describe('VSystemBar.ts', () => {
             $vuetify: {
               application: {
                 register: () => {},
-                unregister: () => {},
-              },
-            },
-          },
+                unregister: () => {}
+              }
+            }
+          }
         },
-        ...options,
+        ...options
       })
     }
   })
@@ -37,8 +37,8 @@ describe('VSystemBar.ts', () => {
     const wrapper = mountFunction({
       props: {
         app: true,
-        height: 56,
-      },
+        height: 56
+      }
     })
 
     expect(wrapper.vm.computedHeight).toBe(56)
@@ -48,8 +48,8 @@ describe('VSystemBar.ts', () => {
     const wrapper = mountFunction({
       props: {
         app: true,
-        height: '48',
-      },
+        height: '48'
+      }
     })
 
     expect(wrapper.vm.computedHeight).toBe(48)
@@ -59,8 +59,8 @@ describe('VSystemBar.ts', () => {
     const wrapper = mountFunction({
       props: {
         app: true,
-        height: 'auto',
-      },
+        height: 'auto'
+      }
     })
 
     expect(wrapper.vm.computedHeight).toBe('auto')
@@ -70,8 +70,8 @@ describe('VSystemBar.ts', () => {
     const wrapper = mountFunction({
       props: {
         app: true,
-        height: undefined,
-      },
+        height: undefined
+      }
     })
 
     expect(wrapper.vm.computedHeight).toBe(24)
@@ -81,8 +81,8 @@ describe('VSystemBar.ts', () => {
     const wrapper = mountFunction({
       props: {
         app: true,
-        window: true,
-      },
+        window: true
+      }
     })
 
     expect(wrapper.vm.computedHeight).toBe(32)
@@ -93,8 +93,8 @@ describe('VSystemBar.ts', () => {
       props: {
         app: true,
         lightsOut: true,
-        window: true,
-      },
+        window: true
+      }
     })
 
     expect(wrapper.classes()).toContain('v-system-bar--lights-out')
@@ -106,8 +106,8 @@ describe('VSystemBar.ts', () => {
     const wrapper = mountFunction({
       props: {
         app: true,
-        height: 48,
-      },
+        height: 48
+      }
     })
 
     expect(wrapper.attributes('style')).toContain('height: 48px')
@@ -116,11 +116,11 @@ describe('VSystemBar.ts', () => {
   it('should render with slot content', () => {
     const wrapper = mountFunction({
       props: {
-        app: true,
+        app: true
       },
       slots: {
-        default: 'System Bar Content',
-      },
+        default: 'System Bar Content'
+      }
     })
 
     expect(wrapper.text()).toBe('System Bar Content')

@@ -3,7 +3,7 @@ import {
   colorToInt,
   intToHex,
   isCssColor,
-  parseGradient,
+  parseGradient
 } from '../colorUtils'
 import * as transformSRGB from '../color/transformSRGB'
 import * as transformCIELAB from '../color/transformCIELAB'
@@ -11,8 +11,8 @@ import * as transformCIELAB from '../color/transformCIELAB'
 const colors = {
   red: {
     base: '#ff0000',
-    lighten1: '#ff6666',
-  },
+    lighten1: '#ff6666'
+  }
 }
 const currentTheme = { primary: '#1976d2' }
 
@@ -158,5 +158,5 @@ expect.extend({
     expect(round(received)).toEqual(expected)
 
     return { pass: true }
-  },
+  }
 })

@@ -20,10 +20,10 @@ describe('VAlert.ts', () => {
         ...options,
         global: {
           mocks: {
-            ...config.global.mocks,
+            ...config.global.mocks
           },
-          ...options.global,
-        },
+          ...options.global
+        }
       })
     }
   })
@@ -45,7 +45,7 @@ describe('VAlert.ts', () => {
 
   it('should have a close icon', () => {
     const wrapper = mountFunction({
-      props: { dismissible: true },
+      props: { dismissible: true }
     })
 
     expect(wrapper.html()).toMatchSnapshot()
@@ -54,8 +54,8 @@ describe('VAlert.ts', () => {
   it('should be dismissible', async () => {
     const wrapper = mountFunction({
       props: {
-        dismissible: true,
-      },
+        dismissible: true
+      }
     })
 
     const icon = wrapper.find('.v-alert__dismissible')
@@ -70,8 +70,8 @@ describe('VAlert.ts', () => {
   it('should have a custom icon', () => {
     const wrapper = mountFunction({
       props: {
-        icon: 'mdi-list',
-      },
+        icon: 'mdi-list'
+      }
     })
 
     const icon = wrapper.find('.v-alert__icon')
@@ -90,7 +90,7 @@ describe('VAlert.ts', () => {
 
   it('should display contextual colors by type', async () => {
     const wrapper = mountFunction({
-      props: { type: 'error' },
+      props: { type: 'error' }
     })
 
     expect(wrapper.classes('error')).toBe(true)
@@ -109,8 +109,8 @@ describe('VAlert.ts', () => {
     const wrapper = mountFunction({
       props: {
         type: 'error',
-        color: 'primary',
-      },
+        color: 'primary'
+      }
     })
 
     expect(wrapper.classes('primary')).toBe(true)
@@ -120,8 +120,8 @@ describe('VAlert.ts', () => {
     const wrapper = mountFunction({
       props: {
         type: 'error',
-        icon: 'mdi-block',
-      },
+        icon: 'mdi-block'
+      }
     })
 
     const icon = wrapper.find('.v-alert__icon')
@@ -136,8 +136,8 @@ describe('VAlert.ts', () => {
     const wrapper = mountFunction({
       props: {
         dismissible: true,
-        closeIcon: 'mdi-close',
-      },
+        closeIcon: 'mdi-close'
+      }
     })
 
     const icon = wrapper.find('.v-alert__content + .v-btn .v-icon')
@@ -165,8 +165,8 @@ describe('VAlert.ts', () => {
     const wrapper = mountFunction({
       props: {
         color: 'pink',
-        border: 'left',
-      },
+        border: 'left'
+      }
     })
     const border = wrapper.find('.v-alert__border')
 
@@ -193,8 +193,8 @@ describe('VAlert.ts', () => {
     const wrapper = mountFunction({
       props: {
         type: 'error',
-        icon: 'mdi-alert',
-      },
+        icon: 'mdi-alert'
+      }
     })
 
     const icon = wrapper.find('.v-alert__icon')
@@ -210,7 +210,7 @@ describe('VAlert.ts', () => {
 
   it('should translate aria-label correctly', () => {
     const wrapper = mountFunction({
-      props: { dismissible: true },
+      props: { dismissible: true }
     })
 
     const button = wrapper.find('.v-alert__dismissible')

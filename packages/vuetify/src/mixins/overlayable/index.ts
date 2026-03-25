@@ -7,7 +7,7 @@ import {
   addOnceEventListener,
   addPassiveEventListener,
   getZIndex,
-  composedPath,
+  composedPath
 } from '../../util/helpers'
 
 // Types
@@ -36,13 +36,13 @@ export default defineComponent({
   props: {
     hideOverlay: Boolean,
     overlayColor: String,
-    overlayOpacity: [Number, String],
+    overlayOpacity: [Number, String]
   },
 
   data () {
     return {
       animationFrame: 0,
-      overlay: null as InstanceType<typeof VOverlay> | null,
+      overlay: null as InstanceType<typeof VOverlay> | null
     }
   },
 
@@ -52,7 +52,7 @@ export default defineComponent({
 
       if (value) this.removeOverlay()
       else this.genOverlay()
-    },
+    }
   },
 
   beforeUnmount () {
@@ -62,7 +62,7 @@ export default defineComponent({
   methods: {
     createOverlay () {
       // Create a container element
-      const container = document.createElement('div');
+      const container = document.createElement('div')
 
       const props = {
         absolute: this.absolute,
@@ -70,10 +70,10 @@ export default defineComponent({
         opacity: this.overlayOpacity
       }
       const wrapper = {
-        data() {
+        data () {
           return { value: false, zIndex: undefined }
         },
-        render() {
+        render () {
           return h(VOverlay, {
             modelValue: this.value,
             zIndex: this.zIndex,
@@ -92,18 +92,18 @@ export default defineComponent({
       const overlayApp = createApp(wrapper)
 
       // Mount the app to the container
-      const overlayInstance = overlayApp.mount(container);
+      const overlayInstance = overlayApp.mount(container)
 
       // Determine the parent element
       const parent = this.absolute
         ? this.$el.parentNode
-        : document.querySelector('[data-app]');
+        : document.querySelector('[data-app]')
 
       if (parent) {
-        parent.insertBefore(container, parent.firstChild);
+        parent.insertBefore(container, parent.firstChild)
       }
 
-      this.overlay = overlayInstance;
+      this.overlay = overlayInstance
       this.overlayApp = overlayApp
     },
     genOverlay () {
@@ -259,6 +259,6 @@ export default defineComponent({
       document.documentElement!.classList.remove('overflow-y-hidden')
       window.removeEventListener('wheel', this.scrollListener)
       window.removeEventListener('keydown', this.scrollListener)
-    },
-  },
+    }
+  }
 })

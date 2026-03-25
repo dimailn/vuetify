@@ -15,8 +15,8 @@ describe('Breakpoint.ts', () => {
         'xsOnly',
         'smAndDown',
         'mdAndDown',
-        'lgAndDown',
-      ],
+        'lgAndDown'
+      ]
     },
     {
       description: 'Galaxy S5 (portrait)',
@@ -28,8 +28,8 @@ describe('Breakpoint.ts', () => {
         'xsOnly',
         'smAndDown',
         'mdAndDown',
-        'lgAndDown',
-      ],
+        'lgAndDown'
+      ]
     },
     {
       description: 'Galaxy S5 (landscape)',
@@ -42,8 +42,8 @@ describe('Breakpoint.ts', () => {
         'smAndDown',
         'smAndUp',
         'mdAndDown',
-        'lgAndDown',
-      ],
+        'lgAndDown'
+      ]
     },
     {
       description: 'iPhone 6 (portrait)',
@@ -55,8 +55,8 @@ describe('Breakpoint.ts', () => {
         'xsOnly',
         'smAndDown',
         'mdAndDown',
-        'lgAndDown',
-      ],
+        'lgAndDown'
+      ]
     },
     {
       description: 'iPhone 6 (landscape)',
@@ -69,8 +69,8 @@ describe('Breakpoint.ts', () => {
         'smAndDown',
         'smAndUp',
         'mdAndDown',
-        'lgAndDown',
-      ],
+        'lgAndDown'
+      ]
     },
     {
       description: 'iPad (portrait)',
@@ -83,8 +83,8 @@ describe('Breakpoint.ts', () => {
         'smAndDown',
         'smAndUp',
         'mdAndDown',
-        'lgAndDown',
-      ],
+        'lgAndDown'
+      ]
     },
     {
       description: 'iPad (landscape)',
@@ -97,8 +97,8 @@ describe('Breakpoint.ts', () => {
         'smAndUp',
         'mdAndDown',
         'mdAndUp',
-        'lgAndDown',
-      ],
+        'lgAndDown'
+      ]
     },
     {
       description: 'iPad Pro (portrait)',
@@ -111,8 +111,8 @@ describe('Breakpoint.ts', () => {
         'smAndUp',
         'mdAndDown',
         'mdAndUp',
-        'lgAndDown',
-      ],
+        'lgAndDown'
+      ]
     },
     {
       description: 'iPad Pro (landscape)',
@@ -125,8 +125,8 @@ describe('Breakpoint.ts', () => {
         'smAndUp',
         'mdAndUp',
         'lgAndDown',
-        'lgAndUp',
-      ],
+        'lgAndUp'
+      ]
     },
     {
       description: 'WSXGA+ (portrait)',
@@ -139,8 +139,8 @@ describe('Breakpoint.ts', () => {
         'smAndUp',
         'mdAndDown',
         'mdAndUp',
-        'lgAndDown',
-      ],
+        'lgAndDown'
+      ]
     },
     {
       description: 'WSXGA+ (landscape)',
@@ -153,8 +153,8 @@ describe('Breakpoint.ts', () => {
         'smAndUp',
         'mdAndUp',
         'lgAndDown',
-        'lgAndUp',
-      ],
+        'lgAndUp'
+      ]
     },
     {
       description: 'FHD (portrait)',
@@ -167,8 +167,8 @@ describe('Breakpoint.ts', () => {
         'smAndUp',
         'mdAndDown',
         'mdAndUp',
-        'lgAndDown',
-      ],
+        'lgAndDown'
+      ]
     },
     {
       description: 'FHD (landscape)',
@@ -180,8 +180,8 @@ describe('Breakpoint.ts', () => {
         'xlOnly',
         'smAndUp',
         'mdAndUp',
-        'lgAndUp',
-      ],
+        'lgAndUp'
+      ]
     },
     {
       description: 'WQHD (portrait)',
@@ -194,8 +194,8 @@ describe('Breakpoint.ts', () => {
         'smAndUp',
         'mdAndUp',
         'lgAndDown',
-        'lgAndUp',
-      ],
+        'lgAndUp'
+      ]
     },
     {
       description: 'WQHD (landscape)',
@@ -207,9 +207,9 @@ describe('Breakpoint.ts', () => {
         'xlOnly',
         'smAndUp',
         'mdAndUp',
-        'lgAndUp',
-      ],
-    },
+        'lgAndUp'
+      ]
+    }
   ]
   const allFlags = [
     'xs',
@@ -227,7 +227,7 @@ describe('Breakpoint.ts', () => {
     'lgOnly',
     'lgAndDown',
     'lgAndUp',
-    'xlOnly',
+    'xlOnly'
   ]
 
   beforeEach(() => {
@@ -275,8 +275,8 @@ describe('Breakpoint.ts', () => {
     breakpoint = new Breakpoint({
       ...preset,
       breakpoint: {
-        thresholds: { xs: 400 },
-      } as any,
+        thresholds: { xs: 400 }
+      } as any
     })
     breakpoint.init()
 

@@ -26,7 +26,7 @@ export class Icons extends Service implements IIcons {
     const {
       iconfont,
       values,
-      component,
+      component
     } = preset[Icons.property]
 
     this.component = component

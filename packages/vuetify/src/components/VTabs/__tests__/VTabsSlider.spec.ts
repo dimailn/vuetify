@@ -4,7 +4,7 @@ import VTabsSlider from '../VTabsSlider'
 // Utilities
 import {
   mount,
-  VueWrapper,
+  VueWrapper
 } from '@vue/test-utils'
 
 describe('VTabsSlider.ts', () => {
@@ -14,7 +14,7 @@ describe('VTabsSlider.ts', () => {
   beforeEach(() => {
     mountFunction = (options = {}) => {
       return mount(VTabsSlider, {
-        ...options,
+        ...options
       })
     }
   })
@@ -22,8 +22,8 @@ describe('VTabsSlider.ts', () => {
   it('should render a tabs slider', () => {
     const wrapper = mountFunction({
       props: {
-        color: 'blue lighten-1',
-      },
+        color: 'blue lighten-1'
+      }
     })
 
     expect(wrapper.element.classList).toContain('blue')

@@ -3,8 +3,7 @@ import VIcon from '../../VIcon'
 import VSimpleCheckbox from '../../VCheckbox/VSimpleCheckbox'
 import ripple from '../../../directives/ripple'
 
-import { defineComponent, h } from 'vue'
-import { PropType } from 'vue'
+import { defineComponent, h, PropType } from 'vue'
 import mixins from '../../../util/mixins'
 import { DataOptions, DataTableHeader } from 'vuetify/types'
 
@@ -19,7 +18,7 @@ export default mixins().extend({
   props: {
     headers: {
       type: Array,
-      default: () => ([]),
+      default: () => ([])
     } as unknown as PropType<DataTableHeader[]>,
     options: {
       type: Object,
@@ -31,19 +30,19 @@ export default mixins().extend({
         groupBy: [],
         groupDesc: [],
         multiSort: false,
-        mustSort: false,
-      }),
+        mustSort: false
+      })
     } as unknown as PropType<DataOptions>,
     checkboxColor: String,
     sortIcon: {
       type: String,
-      default: '$sort',
+      default: '$sort'
     },
     everyItem: Boolean,
     someItems: Boolean,
     showGroupBy: Boolean,
     singleSelect: Boolean,
-    disableSort: Boolean,
+    disableSort: Boolean
   },
 
   methods: {
@@ -61,14 +60,14 @@ export default mixins().extend({
 
       return h(VSimpleCheckbox, {
         class: 'v-data-table__checkbox',
-        ...data,
+        ...data
       })
     },
     genSortIcon () {
       return h(VIcon, {
         class: 'v-data-table-header__icon',
-        size: 18,
+        size: 18
       }, () => [this.sortIcon])
-    },
-  },
+    }
+  }
 })

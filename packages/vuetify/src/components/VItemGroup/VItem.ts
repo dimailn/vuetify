@@ -7,7 +7,7 @@ import { factory as GroupableFactory } from '../../mixins/groupable'
 // Utilities
 import mixins from '../../util/mixins'
 import { consoleWarn } from '../../util/console'
-import { defineComponent, mergeProps } from "vue"
+import { defineComponent, mergeProps } from 'vue'
 
 import type { VNode } from 'vue'
 
@@ -16,19 +16,19 @@ export const BaseItem = defineComponent({
   props: {
     activeClass: String,
     value: {
-      required: false,
+      required: false
     },
-    disabled: Boolean,
+    disabled: Boolean
   },
 
   data: () => ({
-    isActive: false,
+    isActive: false
   }),
 
   methods: {
     toggle () {
       this.isActive = !this.isActive
-    },
+    }
   },
 
   render (): VNode | null {
@@ -39,7 +39,7 @@ export const BaseItem = defineComponent({
 
     const slotContent = this.$slots.default({
       active: this.isActive,
-      toggle: this.toggle,
+      toggle: this.toggle
     })
 
     if (!slotContent || slotContent.length === 0) {
@@ -47,7 +47,7 @@ export const BaseItem = defineComponent({
       return null
     }
 
-    let element = slotContent[0]
+    const element = slotContent[0]
 
     if (!element) {
       consoleWarn('v-item should contain at least one element', this)
@@ -62,7 +62,7 @@ export const BaseItem = defineComponent({
     element.props = mergeProps(element.props || {}, {
       class: {
         ...(this.$activeClass && { [this.$activeClass]: this.isActive }),
-        "v-item--disabled": this.disabled
+        'v-item--disabled': this.disabled
       }
     })
 
@@ -73,7 +73,7 @@ export const BaseItem = defineComponent({
     }
 
     return element
-  },
+  }
 })
 
 export default mixins(
@@ -83,6 +83,6 @@ export default mixins(
   name: 'v-item',
 
   emits: [
-    'change',
-  ],
+    'change'
+  ]
 })

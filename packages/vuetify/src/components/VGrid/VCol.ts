@@ -1,10 +1,9 @@
 import './VGrid.sass'
 
-import { defineComponent, VNode, getCurrentInstance } from 'vue'
+import { defineComponent, VNode, getCurrentInstance, h } from 'vue'
 import type { PropOptions } from '../../types/vue-internal'
 import mergeData from '../../util/mergeData'
 import { upperFirst, getTagValue } from '../../util/helpers'
-import {h} from 'vue'
 // no xs
 const breakpoints = ['sm', 'md', 'lg', 'xl']
 
@@ -12,7 +11,7 @@ const breakpointProps = (() => {
   return breakpoints.reduce((props, val) => {
     props[val] = {
       type: [Boolean, String, Number],
-      default: false,
+      default: false
     }
     return props
   }, {} as Dictionary<PropOptions>)
@@ -22,7 +21,7 @@ const offsetProps = (() => {
   return breakpoints.reduce((props, val) => {
     props['offset' + upperFirst(val)] = {
       type: [String, Number],
-      default: null,
+      default: null
     }
     return props
   }, {} as Dictionary<PropOptions>)
@@ -32,7 +31,7 @@ const orderProps = (() => {
   return breakpoints.reduce((props, val) => {
     props['order' + upperFirst(val)] = {
       type: [String, Number],
-      default: null,
+      default: null
     }
     return props
   }, {} as Dictionary<PropOptions>)
@@ -41,7 +40,7 @@ const orderProps = (() => {
 const propMap = {
   col: Object.keys(breakpointProps),
   offset: Object.keys(offsetProps),
-  order: Object.keys(orderProps),
+  order: Object.keys(orderProps)
 }
 
 function breakpointClass (type: keyof typeof propMap, prop: string, val: boolean | string | number) {
@@ -73,28 +72,28 @@ export default defineComponent({
   props: {
     cols: {
       type: [Boolean, String, Number],
-      default: false,
+      default: false
     },
     ...breakpointProps,
     offset: {
       type: [String, Number],
-      default: null,
+      default: null
     },
     ...offsetProps,
     order: {
       type: [String, Number],
-      default: null,
+      default: null
     },
     ...orderProps,
     alignSelf: {
       type: String,
       default: null,
-      validator: (str: any) => ['auto', 'start', 'end', 'center', 'baseline', 'stretch'].includes(str),
+      validator: (str: any) => ['auto', 'start', 'end', 'center', 'baseline', 'stretch'].includes(str)
     },
     tag: {
       type: String,
-      default: 'div',
-    },
+      default: 'div'
+    }
   },
   render (): VNode {
     const props = this.$props
@@ -129,12 +128,12 @@ export default defineComponent({
         [`col-${props.cols}`]: props.cols,
         [`offset-${props.offset}`]: props.offset,
         [`order-${props.order}`]: props.order,
-        [`align-self-${props.alignSelf}`]: props.alignSelf,
+        [`align-self-${props.alignSelf}`]: props.alignSelf
       })
 
       cache.set(cacheKey, classList)
     }
 
     return h(getTagValue(props.tag), mergeData({ class: classList }, data), children)
-  },
+  }
 })

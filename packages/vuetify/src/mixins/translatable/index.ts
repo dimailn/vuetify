@@ -1,10 +1,10 @@
-import {defineComponent} from 'vue'
+import { defineComponent } from 'vue'
 
 export default defineComponent({
   name: 'translatable',
 
   props: {
-    height: Number,
+    height: Number
   },
 
   data: () => ({
@@ -14,13 +14,13 @@ export default defineComponent({
     percentScrolled: 0,
     scrollTop: 0,
     windowHeight: 0,
-    windowBottom: 0,
+    windowBottom: 0
   }),
 
   computed: {
     imgHeight (): number {
       return this.objHeight()
-    },
+    }
   },
 
   beforeUnmount () {
@@ -55,6 +55,6 @@ export default defineComponent({
       )
 
       this.parallax = Math.round(this.parallaxDist * this.percentScrolled)
-    },
-  },
+    }
+  }
 })

@@ -49,7 +49,7 @@ export default (directive: Record<string, any>) => {
     Object.entries({
       mounted: wrappedMounted,
       unmounted: wrappedUnmounted,
-      updated: wrappedUpdated,
+      updated: wrappedUpdated
     }).filter(([name, fn]) => directive[name] && fn)
   )
 }

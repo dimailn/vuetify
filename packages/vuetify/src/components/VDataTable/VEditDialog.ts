@@ -23,18 +23,18 @@ export default mixins(Returnable, Themeable).extend({
 
   props: {
     cancelText: {
-      default: 'Cancel',
+      default: 'Cancel'
     },
     large: Boolean,
     eager: Boolean,
     persistent: Boolean,
     saveText: {
-      default: 'Save',
+      default: 'Save'
     },
     transition: {
       type: String,
-      default: 'slide-x-reverse-transition',
-    },
+      default: 'slide-x-reverse-transition'
+    }
   },
 
   emits: ['update:return-value', 'open', 'close', 'cancel', 'save'],
@@ -53,7 +53,7 @@ export default mixins(Returnable, Themeable).extend({
       } else {
         this.$emit('close')
       }
-    },
+    }
   },
 
   methods: {
@@ -70,18 +70,18 @@ export default mixins(Returnable, Themeable).extend({
         text: true,
         color: 'primary',
         light: true,
-        onClick: fn,
+        onClick: fn
       }, () => text)
     },
     genActions (): VNode {
       return h('div', {
-        class: 'v-small-dialog__actions',
+        class: 'v-small-dialog__actions'
       }, [
         this.genButton(this.cancel, this.cancelText),
         this.genButton(() => {
           this.save(this.returnValue)
           this.$emit('save')
-        }, this.saveText),
+        }, this.saveText)
       ])
     },
     genContent (): VNode {
@@ -94,9 +94,9 @@ export default mixins(Returnable, Themeable).extend({
             this.$emit('save')
           }
         },
-        ref: 'content',
+        ref: 'content'
       }, getSlot(this, 'input'))
-    },
+    }
   },
 
   render (): VNode {
@@ -112,22 +112,22 @@ export default mixins(Returnable, Themeable).extend({
       eager: this.eager,
       light: this.light,
       dark: this.dark,
-      'onUpdate:modelValue': (val: boolean) => (this.isActive = val),
+      'onUpdate:modelValue': (val: boolean) => (this.isActive = val)
     }, {
       activator: ({ on }: { on: any }) => {
         return h('div', {
           class: 'v-small-dialog__activator',
-          ...on,
+          ...on
         }, [
           h('span', {
-            class: 'v-small-dialog__activator__content',
-          }, getSlot(this)),
+            class: 'v-small-dialog__activator__content'
+          }, getSlot(this))
         ])
       },
       default: () => [
         this.genContent(),
-        this.large ? this.genActions() : null,
-      ],
+        this.large ? this.genActions() : null
+      ]
     })
-  },
+  }
 })

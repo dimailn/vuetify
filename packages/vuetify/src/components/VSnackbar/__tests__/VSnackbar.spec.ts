@@ -6,7 +6,7 @@ import {
   mount,
   MountingOptions,
   VueWrapper,
-  enableAutoUnmount,
+  enableAutoUnmount
 } from '@vue/test-utils'
 
 describe('VSnackbar.ts', () => {
@@ -28,12 +28,12 @@ describe('VSnackbar.ts', () => {
                 insetFooter: 32,
                 left: 256,
                 right: 256,
-                top: 64,
-              },
-            },
-          },
+                top: 64
+              }
+            }
+          }
         },
-        ...options,
+        ...options
       })
     }
   })
@@ -42,7 +42,7 @@ describe('VSnackbar.ts', () => {
     [{}, true],
     [{ text: true }, false],
     [{ outlined: true }, false],
-    [{ light: true }, false],
+    [{ light: true }, false]
   ])('should be dark when using %s', (props, expected: boolean) => {
     const wrapper = mountFunction({ props })
 
@@ -52,10 +52,10 @@ describe('VSnackbar.ts', () => {
   it.each([
     [undefined, undefined, undefined],
     [false, undefined, undefined],
-    [true, '256px', '256px'],
+    [true, '256px', '256px']
   ])('should have app padding on the x-axis using %s', (app, left, right) => {
     const wrapper = mountFunction({
-      props: { app },
+      props: { app }
     })
 
     expect(wrapper.vm.styles).toHaveProperty('paddingLeft', left)
@@ -65,13 +65,13 @@ describe('VSnackbar.ts', () => {
   it.each([
     [undefined, true],
     [false, true],
-    [true, false],
+    [true, false]
   ])('should have app padding on the x-axis using %s', (absolute, expected: boolean) => {
     const wrapper = mountFunction({
       props: {
         app: true,
-        absolute,
-      },
+        absolute
+      }
     })
 
     expect(Object.keys(wrapper.vm.styles).length > 0).toBe(expected)
@@ -80,10 +80,10 @@ describe('VSnackbar.ts', () => {
   it.each([
     [undefined, false],
     [false, false],
-    [true, true],
+    [true, true]
   ])('should conditionally invoke setTimeout method using %s', (modelValue, expected: boolean) => {
     const wrapper = mountFunction({
-      props: { modelValue },
+      props: { modelValue }
     })
 
     // Проверяем, что setTimeout вызывается через проверку activeTimeout
@@ -96,13 +96,13 @@ describe('VSnackbar.ts', () => {
 
   it.each([
     [undefined, false],
-    [false, true],
+    [false, true]
   ])('should conditionally render transition content using %s', (transition, expected: boolean) => {
     const wrapper = mountFunction({
       props: {
         transition,
-        modelValue: true, // Активируем компонент, чтобы увидеть transition
-      },
+        modelValue: true // Активируем компонент, чтобы увидеть transition
+      }
     })
 
     // Проверяем, что transition используется через проверку computed свойства
@@ -116,7 +116,7 @@ describe('VSnackbar.ts', () => {
     [undefined, true],
     [100, true],
     [0, false],
-    [-1, false],
+    [-1, false]
   ])('should condtionally remove the snackbar when using a timeout value of %s', (timeout, expected) => {
     jest.useFakeTimers()
     const spy = jest.spyOn(window, 'setTimeout')
@@ -124,8 +124,8 @@ describe('VSnackbar.ts', () => {
     mountFunction({
       props: {
         timeout,
-        modelValue: true,
-      },
+        modelValue: true
+      }
     })
 
     jest.runAllTimers()

@@ -1,10 +1,9 @@
 import './VGrid.sass'
 
-import { defineComponent } from 'vue'
+import { defineComponent, h } from 'vue'
 import type { PropOptions } from '../../types/vue-internal'
 import mergeData from '../../util/mergeData'
 import { upperFirst, getTagValue } from '../../util/helpers'
-import {h} from 'vue'
 // no xs
 const breakpoints = ['sm', 'md', 'lg', 'xl']
 
@@ -21,33 +20,33 @@ const alignValidator = (str: any) => [...ALIGNMENT, 'baseline', 'stretch'].inclu
 const alignProps = makeProps('align', () => ({
   type: String,
   default: null,
-  validator: alignValidator,
+  validator: alignValidator
 }))
 
 const justifyValidator = (str: any) => [...ALIGNMENT, 'space-between', 'space-around'].includes(str)
 const justifyProps = makeProps('justify', () => ({
   type: String,
   default: null,
-  validator: justifyValidator,
+  validator: justifyValidator
 }))
 
 const alignContentValidator = (str: any) => [...ALIGNMENT, 'space-between', 'space-around', 'stretch'].includes(str)
 const alignContentProps = makeProps('alignContent', () => ({
   type: String,
   default: null,
-  validator: alignContentValidator,
+  validator: alignContentValidator
 }))
 
 const propMap = {
   align: Object.keys(alignProps),
   justify: Object.keys(justifyProps),
-  alignContent: Object.keys(alignContentProps),
+  alignContent: Object.keys(alignContentProps)
 }
 
 const classMap = {
   align: 'align',
   justify: 'justify',
-  alignContent: 'align-content',
+  alignContent: 'align-content'
 }
 
 function breakpointClass (type: keyof typeof propMap, prop: string, val: string) {
@@ -73,28 +72,28 @@ export default defineComponent({
   props: {
     tag: {
       type: String,
-      default: 'div',
+      default: 'div'
     },
     dense: Boolean,
     noGutters: Boolean,
     align: {
       type: String,
       default: null,
-      validator: alignValidator,
+      validator: alignValidator
     },
     ...alignProps,
     justify: {
       type: String,
       default: null,
-      validator: justifyValidator,
+      validator: justifyValidator
     },
     ...justifyProps,
     alignContent: {
       type: String,
       default: null,
-      validator: alignContentValidator,
+      validator: alignContentValidator
     },
-    ...alignContentProps,
+    ...alignContentProps
   },
   render () {
     // Super-fast memoization based on props, 5x faster than JSON.stringify
@@ -122,7 +121,7 @@ export default defineComponent({
         'row--dense': props.dense,
         [`align-${props.align}`]: props.align,
         [`justify-${props.justify}`]: props.justify,
-        [`align-content-${props.alignContent}`]: props.alignContent,
+        [`align-content-${props.alignContent}`]: props.alignContent
       })
 
       cache.set(cacheKey, classList)
@@ -131,9 +130,9 @@ export default defineComponent({
     return h(
       getTagValue(props.tag),
       mergeData(this.$attrs, {
-        class: classList.concat('row'),
+        class: classList.concat('row')
       }),
       this.$slots.default()
     )
-  },
+  }
 })

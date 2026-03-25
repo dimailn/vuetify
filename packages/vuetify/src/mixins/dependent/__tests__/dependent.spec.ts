@@ -9,17 +9,17 @@ function genDependentMixin () {
     mixins: [dependent, toggleable],
 
     props: {
-      modelValue: Boolean,
+      modelValue: Boolean
     },
 
     render () {
       return h('div', [
         h('div', {
-          ref: 'content',
+          ref: 'content'
         }, 'foobar'),
-        this.$slots.default?.(),
+        this.$slots.default?.()
       ])
-    },
+    }
   }
 }
 
@@ -39,8 +39,8 @@ describe('dependent.ts', () => {
       ...genDependentMixin(),
       methods: {
         ...genDependentMixin().methods,
-        getOpenDependents,
-      },
+        getOpenDependents
+      }
     }
 
     const wrapper = mount(TestComponent)
@@ -63,14 +63,14 @@ describe('dependent.ts', () => {
     const ChildComponent = {
       ...genDependentMixin(),
       data: () => ({
-        isActive: true,
-      }),
+        isActive: true
+      })
     }
 
     const wrapper = mount(genDependentMixin(), {
       slots: {
-        default: () => [h(ChildComponent)],
-      },
+        default: () => [h(ChildComponent)]
+      }
     })
 
     // В Vue 3 нужно проверить, что дочерние компоненты действительно созданы
@@ -92,24 +92,24 @@ describe('dependent.ts', () => {
     const ChildComponent1 = {
       ...genDependentMixin(),
       data: () => ({
-        isActive: true,
-      }),
+        isActive: true
+      })
     }
 
     const ChildComponent2 = {
       ...genDependentMixin(),
       data: () => ({
-        isActive: true,
+        isActive: true
       }),
       render () {
         return h('div', 'fizzbuzz')
-      },
+      }
     }
 
     const ChildComponent3 = {
       render () {
         return h('div')
-      },
+      }
     }
 
     const wrapper = mount(genDependentMixin(), {
@@ -117,9 +117,9 @@ describe('dependent.ts', () => {
         default: () => [
           h(ChildComponent1),
           h(ChildComponent2),
-          h(ChildComponent3),
-        ],
-      },
+          h(ChildComponent3)
+        ]
+      }
     })
 
     await wrapper.vm.$nextTick()

@@ -7,7 +7,7 @@ import {
   MountingOptions,
   VueWrapper,
   config,
-  enableAutoUnmount,
+  enableAutoUnmount
 } from '@vue/test-utils'
 import { nextTick } from 'vue'
 
@@ -23,10 +23,10 @@ describe('VThemeProvider.ts', () => {
         ...options,
         global: {
           mocks: {
-            ...config.global.mocks,
+            ...config.global.mocks
           },
-          ...options.global,
-        },
+          ...options.global
+        }
       })
     }
   })
@@ -35,14 +35,14 @@ describe('VThemeProvider.ts', () => {
     const wrapper = mountFunction({
       global: {
         provide: {
-          theme: { isDark: true },
+          theme: { isDark: true }
         },
         mocks: {
           $vuetify: {
-            theme: { dark: false },
-          },
-        },
-      },
+            theme: { dark: false }
+          }
+        }
+      }
     })
 
     expect(wrapper.vm.isDark).toBe(true)
@@ -56,18 +56,18 @@ describe('VThemeProvider.ts', () => {
   it('should use $vuetify.theme.dark when root is true', async () => {
     const wrapper = mountFunction({
       props: {
-        root: true,
+        root: true
       },
       global: {
         provide: {
-          theme: { isDark: false },
+          theme: { isDark: false }
         },
         mocks: {
           $vuetify: {
-            theme: { dark: true },
-          },
-        },
-      },
+            theme: { dark: true }
+          }
+        }
+      }
     })
 
     expect(wrapper.vm.isDark).toBe(true)

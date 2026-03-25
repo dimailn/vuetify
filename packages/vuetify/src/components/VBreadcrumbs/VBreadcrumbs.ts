@@ -25,22 +25,22 @@ export default mixins(
   props: {
     divider: {
       type: String,
-      default: '/',
+      default: '/'
     },
     items: {
       type: Array,
-      default: () => ([]),
+      default: () => ([])
     } as unknown as PropType<any[]>,
-    large: Boolean,
+    large: Boolean
   },
 
   computed: {
     classes (): object {
       return {
         'v-breadcrumbs--large': this.large,
-        ...this.themeClasses,
+        ...this.themeClasses
       }
-    },
+    }
   },
 
   methods: {
@@ -69,14 +69,14 @@ export default mixins(
       }
 
       return items
-    },
+    }
   },
 
   render (): VNode {
     const children = getSlot(this) || this.genItems()
 
     return h('ul', {
-      class: ['v-breadcrumbs', this.classes],
+      class: ['v-breadcrumbs', this.classes]
     }, children)
-  },
+  }
 })

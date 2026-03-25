@@ -1,4 +1,4 @@
-import { Transition, h, withDirectives, defineComponent } from 'vue'
+import { Transition, h, withDirectives, defineComponent, PropType } from 'vue'
 // Mixins
 import Measurable from '../../mixins/measurable'
 import Toggleable from '../../mixins/toggleable'
@@ -12,7 +12,6 @@ import { getSlot, getTagValue } from '../../util/helpers'
 
 // Types
 import { VNode } from 'vue'
-import { PropType } from 'vue'
 
 export default mixins(
   Measurable,
@@ -22,7 +21,6 @@ export default mixins(
 
   emits: ['update:modelValue'],
 
-
   props: {
     options: {
       type: Object,
@@ -31,25 +29,25 @@ export default mixins(
       default: () => ({
         root: undefined,
         rootMargin: undefined,
-        threshold: undefined,
-      }),
+        threshold: undefined
+      })
     } as unknown as PropType<IntersectionObserverInit>,
     tag: {
       type: String,
-      default: 'div',
+      default: 'div'
     },
     transition: {
       type: String,
-      default: 'fade-transition',
-    },
+      default: 'fade-transition'
+    }
   },
 
   computed: {
     styles (): object {
       return {
-        ...this.measurableStyles,
+        ...this.measurableStyles
       }
-    },
+    }
   },
 
   methods: {
@@ -58,31 +56,31 @@ export default mixins(
 
       return this.transition
         ? h(Transition, {
-          name: this.transition,
+          name: this.transition
         }, children)
         : children
     },
     onObserve (
       entries: IntersectionObserverEntry[],
       observer: IntersectionObserver,
-      isIntersecting: boolean,
+      isIntersecting: boolean
     ) {
       if (this.isActive) return
 
       this.isActive = isIntersecting
-    },
+    }
   },
 
   render (): VNode {
     return withDirectives(h(getTagValue(this.tag), {
       class: 'v-lazy',
       ...this.$attrs,
-      style: this.styles,
+      style: this.styles
     }, [this.genContent()]), [
       [intersect, {
         handler: this.onObserve,
-        options: this.options,
+        options: this.options
       }]
     ])
-  },
+  }
 })

@@ -1,4 +1,4 @@
-import {h, withDirectives} from 'vue'
+import { h, withDirectives } from 'vue'
 // Mixins
 import { factory as GroupableFactory } from '../../mixins/groupable'
 import Routable from '../../mixins/routable'
@@ -38,15 +38,15 @@ export default baseMixins.extend({
   props: {
     ripple: {
       type: [Boolean, Object],
-      default: true,
+      default: true
     },
     tabValue: {
-      required: false,
-    },
+      required: false
+    }
   },
 
   data: () => ({
-    proxyClass: 'v-tab--active',
+    proxyClass: 'v-tab--active'
   }),
 
   computed: {
@@ -55,7 +55,7 @@ export default baseMixins.extend({
         'v-tab': true,
         ...Routable.computed.classes.call(this),
         'v-tab--disabled': this.disabled,
-        ...this.groupClasses,
+        ...this.groupClasses
       }
     },
     value (): any {
@@ -78,7 +78,7 @@ export default baseMixins.extend({
       }
 
       return to.replace('#', '')
-    },
+    }
   },
 
   methods: {
@@ -110,7 +110,7 @@ export default baseMixins.extend({
         this.$emit('change')
         this.$emitLegacy('change')
       }
-    },
+    }
   },
 
   render (): VNode {
@@ -132,5 +132,5 @@ export default baseMixins.extend({
       h(tag, data, getSlot(this)),
       directives
     )
-  },
+  }
 })

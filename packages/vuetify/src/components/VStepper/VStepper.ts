@@ -24,7 +24,7 @@ import { VNode } from 'vue'
 const baseMixins = mixins(
   VSheet,
   RegistrableProvide('stepper'),
-  Proxyable,
+  Proxyable
 )
 
 type VStepperStepInstance = InstanceType<typeof VStepperStep>
@@ -37,7 +37,7 @@ export default baseMixins.extend({
   provide (): object {
     return {
       stepClick: this.stepClick,
-      isVertical: this.vertical,
+      isVertical: this.vertical
     }
   },
 
@@ -45,7 +45,7 @@ export default baseMixins.extend({
     altLabels: Boolean,
     nonLinear: Boolean,
     flat: Boolean,
-    vertical: Boolean,
+    vertical: Boolean
   },
 
   emits: ['change'],
@@ -55,7 +55,7 @@ export default baseMixins.extend({
       isBooted: false,
       steps: [] as VStepperStepInstance[],
       content: [] as VStepperContentInstance[],
-      isReverse: false,
+      isReverse: false
     }
 
     data.internalLazyValue = this.modelValue != null
@@ -73,14 +73,14 @@ export default baseMixins.extend({
         'v-stepper--vertical': this.vertical,
         'v-stepper--alt-labels': this.altLabels,
         'v-stepper--non-linear': this.nonLinear,
-        ...VSheet.computed.classes.call(this),
+        ...VSheet.computed.classes.call(this)
       }
     },
     styles (): object {
       return {
-        ...VSheet.computed.styles.call(this),
+        ...VSheet.computed.styles.call(this)
       }
-    },
+    }
   },
 
   watch: {
@@ -90,7 +90,7 @@ export default baseMixins.extend({
       oldVal && (this.isBooted = true)
 
       this.updateView()
-    },
+    }
   },
 
   created () {
@@ -131,13 +131,13 @@ export default baseMixins.extend({
       for (let index = this.content.length; --index >= 0;) {
         this.content[index].toggle(this.internalValue as any, this.isReverse)
       }
-    },
+    }
   },
 
   render (): VNode {
     return h(getTagValue(this.tag), {
       class: ['v-stepper', this.classes],
-      style: this.styles,
+      style: this.styles
     }, getSlot(this))
-  },
+  }
 })

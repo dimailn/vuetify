@@ -6,7 +6,7 @@ import {
   mount,
   MountOptions,
   Wrapper,
-  enableAutoUnmount,
+  enableAutoUnmount
 } from '@vue/test-utils'
 
 describe('VLazy.ts', () => {
@@ -18,7 +18,7 @@ describe('VLazy.ts', () => {
   beforeEach(() => {
     mountFunction = (options = {}) => {
       return mount(VLazy, {
-        ...options,
+        ...options
       })
     }
   })
@@ -26,8 +26,8 @@ describe('VLazy.ts', () => {
   it('should conditionally render content', async () => {
     const wrapper = mountFunction({
       slots: {
-        default: '<div>foobar</div>',
-      },
+        default: '<div>foobar</div>'
+      }
     })
 
     expect(wrapper.html()).toMatchSnapshot()
@@ -40,8 +40,8 @@ describe('VLazy.ts', () => {
   it('should set a minimum height', () => {
     const wrapper = mountFunction({
       props: {
-        minHeight: 200,
-      },
+        minHeight: 200
+      }
     })
 
     expect(wrapper.element.style.minHeight).toBe('200px')

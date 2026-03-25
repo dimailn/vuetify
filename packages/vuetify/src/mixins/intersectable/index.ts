@@ -5,30 +5,30 @@ import Intersect from '../../directives/intersect'
 import { consoleWarn } from '../../util/console'
 
 // Types
-import {defineComponent, getCurrentInstance} from 'vue'
+import { defineComponent, getCurrentInstance } from 'vue'
 
 export default function intersectable (options: { onVisible: string[] }) {
   return defineComponent({
     name: 'intersectable',
 
     data: () => ({
-      isIntersecting: false,
+      isIntersecting: false
     }),
 
     mounted () {
-      const {vnode} = getCurrentInstance()
+      const { vnode } = getCurrentInstance()
       ;(Intersect.mounted as any)(this.$el as HTMLElement, {
         name: 'intersect',
-        value: this.onObserve,
+        value: this.onObserve
       }, vnode)
     },
 
     unmounted () {
-      const {vnode} = getCurrentInstance()
+      const { vnode } = getCurrentInstance()
 
       ;(Intersect.unmounted as any)(this.$el as HTMLElement, {
         name: 'intersect',
-        value: this.onObserve,
+        value: this.onObserve
       }, vnode)
     },
 
@@ -48,7 +48,7 @@ export default function intersectable (options: { onVisible: string[] }) {
 
           consoleWarn(options.onVisible[i] + ' method is not available on the instance but referenced in intersectable mixin options')
         }
-      },
-    },
+      }
+    }
   })
 }

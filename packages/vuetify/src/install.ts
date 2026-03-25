@@ -44,7 +44,7 @@ export function install (Vue: ReturnType<typeof createApp>, args: VuetifyUseOpti
 
   Vue.mixin({
     computed: {
-      ...legacyEventsMixin.computed,
+      ...legacyEventsMixin.computed
     },
     beforeCreate () {
       const options = this.$options as any
@@ -73,7 +73,7 @@ export function install (Vue: ReturnType<typeof createApp>, args: VuetifyUseOpti
       }
     },
     methods: {
-      ...legacyEventsMixin.methods,
-    },
+      ...legacyEventsMixin.methods
+    }
   })
 }

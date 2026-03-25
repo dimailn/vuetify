@@ -3,7 +3,7 @@ import {
   mount,
   VueWrapper,
   MountingOptions,
-  enableAutoUnmount,
+  enableAutoUnmount
 } from '@vue/test-utils'
 import { h, nextTick } from 'vue'
 
@@ -23,12 +23,12 @@ describe('VRangeSlider', () => {
             $vuetify: {
               rtl: false,
               theme: {
-                dark: false,
-              },
-            },
-          },
+                dark: false
+              }
+            }
+          }
         },
-        ...options,
+        ...options
       })
     }
   })
@@ -42,8 +42,8 @@ describe('VRangeSlider', () => {
   it('should round values and swap order if needed', () => {
     const wrapper = mountFunction({
       props: {
-        modelValue: [0, 0],
-      },
+        modelValue: [0, 0]
+      }
     })
 
     expect(wrapper.vm.lazyValue).toEqual([0, 0])
@@ -153,8 +153,8 @@ describe('VRangeSlider', () => {
   it('should render a vertical slider', async () => {
     const wrapper = mountFunction({
       props: {
-        vertical: true,
-      },
+        vertical: true
+      }
     })
 
     expect(wrapper.html()).toMatchSnapshot()
@@ -163,8 +163,8 @@ describe('VRangeSlider', () => {
   it('should render disabled slider', async () => {
     const wrapper = mountFunction({
       props: {
-        disabled: true,
-      },
+        disabled: true
+      }
     })
 
     expect(wrapper.html()).toMatchSnapshot()
@@ -175,10 +175,10 @@ describe('VRangeSlider', () => {
     [
       [undefined, undefined],
       [null, null],
-      [false, false],
+      [false, false]
     ].forEach(value => {
       const wrapper = mountFunction({
-        props: { modelValue: value },
+        props: { modelValue: value }
       })
 
       // Для falsy значений должен использоваться default value
@@ -198,8 +198,8 @@ describe('VRangeSlider', () => {
   it('should fill track color', () => {
     const wrapper = mountFunction({
       props: {
-        trackFillColor: 'red',
-      },
+        trackFillColor: 'red'
+      }
     })
     expect(wrapper.find('.v-slider__track-fill.red').exists()).toBe(true)
   })
@@ -207,8 +207,8 @@ describe('VRangeSlider', () => {
   it('should fill track color with rgba string', () => {
     const wrapper = mountFunction({
       props: {
-        trackFillColor: 'rgba(255, 0, 0, 0.5)',
-      },
+        trackFillColor: 'rgba(255, 0, 0, 0.5)'
+      }
     })
     const trackFill = wrapper.find('.v-slider__track-fill')
     expect(trackFill.attributes('style')).toBe('background-color: rgba(255, 0, 0, 0.5);')

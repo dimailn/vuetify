@@ -19,13 +19,12 @@ import {
   createNativeLocaleFormatter,
   getStartOfWeek,
   getEndOfWeek,
-  getTimestampIdentifier,
+  getTimestampIdentifier
 } from '../util/timestamp'
 import { CalendarTimestamp, CalendarFormatter } from 'vuetify/types'
 
 export default defineComponent({
   name: 'calendar-base',
-
 
   extends: Times,
 
@@ -90,7 +89,7 @@ export default defineComponent({
         this.currentLocale,
         (_tms, short) => short ? shortOptions : longOptions
       )
-    },
+    }
   },
 
   methods: {
@@ -99,7 +98,7 @@ export default defineComponent({
         'v-present': timestamp.present,
         'v-past': timestamp.past,
         'v-future': timestamp.future,
-        'v-outside': outside,
+        'v-outside': outside
       }
     },
     getStartOfWeek (timestamp: CalendarTimestamp): CalendarTimestamp {
@@ -113,6 +112,6 @@ export default defineComponent({
         this.locale,
         (_tms, _short) => options
       )
-    },
-  },
+    }
+  }
 })

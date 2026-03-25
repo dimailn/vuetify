@@ -9,7 +9,7 @@ import {
   addOnceEventListener,
   createRange,
   deepEqual,
-  passiveSupported,
+  passiveSupported
 } from '../../util/helpers'
 import { breaking } from '../../util/console'
 
@@ -25,8 +25,8 @@ export default defineComponent({
   props: {
     modelValue: {
       type: Array,
-      default: () => ([0, 0]),
-    } as unknown as PropType<[number, number]>,
+      default: () => ([0, 0])
+    } as unknown as PropType<[number, number]>
   },
 
   emits: ['update:modelValue', 'focus', 'blur', 'start', 'change'],
@@ -34,7 +34,7 @@ export default defineComponent({
   data () {
     return {
       activeThumb: null as null | number,
-      lazyValue: this.modelValue,
+      lazyValue: this.modelValue
     }
   },
 
@@ -42,7 +42,7 @@ export default defineComponent({
     classes (): object {
       return {
         ...VSlider.computed.classes.call(this),
-        'v-input--range-slider': true,
+        'v-input--range-slider': true
       }
     },
     internalValue: {
@@ -69,19 +69,19 @@ export default defineComponent({
         if (!deepEqual(value, this.modelValue)) this.$emit('update:modelValue', value)
 
         this.validate()
-      },
+      }
     },
     inputWidth (): number[] {
       return this.internalValue.map((v: number) => (
         this.roundValue(v) - this.minValue) / (this.maxValue - this.minValue) * 100
       )
-    },
+    }
   },
 
   created () {
     const breakingProps = [
       ['value', 'modelValue'],
-      ['onInput', 'onUpdate:modelValue'],
+      ['onInput', 'onUpdate:modelValue']
     ]
 
     /* istanbul ignore next */
@@ -101,7 +101,7 @@ export default defineComponent({
       return {
         transition: this.trackTransition,
         [startDir]: start,
-        [endDir]: end,
+        [endDir]: end
       }
     },
     getIndexOfClosestValue (arr: number[], v: number) {
@@ -128,30 +128,30 @@ export default defineComponent({
         {
           class: 'v-slider__track-background',
           color: this.computedTrackColor,
-          styles: [0, this.inputWidth[0], 0, -padding],
+          styles: [0, this.inputWidth[0], 0, -padding]
         },
         {
           class: this.isDisabled ? 'v-slider__track-background' : 'v-slider__track-fill',
           color: this.isDisabled ? this.computedTrackColor : this.computedTrackFillColor,
-          styles: [this.inputWidth[0], Math.abs(this.inputWidth[1] - this.inputWidth[0]), padding, padding * -2],
+          styles: [this.inputWidth[0], Math.abs(this.inputWidth[1] - this.inputWidth[0]), padding, padding * -2]
         },
         {
           class: 'v-slider__track-background',
           color: this.computedTrackColor,
-          styles: [this.inputWidth[1], Math.abs(100 - this.inputWidth[1]), padding, -padding],
-        },
+          styles: [this.inputWidth[1], Math.abs(100 - this.inputWidth[1]), padding, -padding]
+        }
       ]
 
       if (this.$vuetify.rtl) sections.reverse()
 
       children.push(...sections.map(section => h('div', this.setBackgroundColor(section.color, {
         class: section.class,
-        style: this.getTrackStyle(...section.styles),
+        style: this.getTrackStyle(...section.styles)
       }))))
 
       return h('div', {
         class: 'v-slider__track-container',
-        ref: 'track',
+        ref: 'track'
       }, children)
     },
     genChildren () {
@@ -180,7 +180,7 @@ export default defineComponent({
           const isFocused = this.isFocused && this.activeThumb === index
 
           return this.genThumbContainer(value, valueWidth, isActive, isFocused, onFocus, onBlur, `thumb_${index}`)
-        }),
+        })
       ]
     },
     reevaluateSelected (value: number) {
@@ -267,6 +267,6 @@ export default defineComponent({
         if (i === this.activeThumb) return value
         else return Number(v)
       })
-    },
-  },
+    }
+  }
 })

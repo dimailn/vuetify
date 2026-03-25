@@ -18,7 +18,7 @@ import mixins from '../../util/mixins'
 import type { VNode } from 'vue'
 
 const baseMixins = mixins(
-  VInput,
+  VInput
 )
 
 type options = {
@@ -36,17 +36,17 @@ export default baseMixins.extend({
   props: {
     length: {
       type: [Number, String],
-      default: 6,
+      default: 6
     },
     type: {
       type: String,
-      default: 'text',
+      default: 'text'
     },
     plain: Boolean,
     modelValue: {
       type: String,
-      default: '',
-    },
+      default: ''
+    }
   },
 
   emits: ['blur', 'focus', 'change', 'keydown', 'finish', 'update:modelValue'],
@@ -56,7 +56,7 @@ export default baseMixins.extend({
     isBooted: false,
     otp: [] as string[],
     lazyValue: '',
-    inputRefs: [] as HTMLInputElement[],
+    inputRefs: [] as HTMLInputElement[]
   }),
 
   computed: {
@@ -103,18 +103,18 @@ export default baseMixins.extend({
       set (val: string) {
         this.lazyValue = val
         this.$emit('update:modelValue', val)
-      },
+      }
     },
     classes (): object {
       return {
         ...VInput.computed.classes.call(this),
         ...VTextField.computed.classes.call(this),
-        'v-otp-input--plain': this.plain,
+        'v-otp-input--plain': this.plain
       }
     },
     isEnclosed (): boolean {
       return false
-    },
+    }
   },
 
   watch: {
@@ -122,7 +122,7 @@ export default baseMixins.extend({
     modelValue (val) {
       this.lazyValue = val
       this.otp = val?.split('') || []
-    },
+    }
   },
 
   created () {
@@ -150,43 +150,43 @@ export default baseMixins.extend({
         style: { height: convertToUnit(this.height) },
         onClick: () => this.onClick(otpIdx),
         onMousedown: (e: Event) => this.onMouseDown(e, otpIdx),
-        onMouseup: (e: Event) => this.onMouseUp(e, otpIdx),
+        onMouseup: (e: Event) => this.onMouseUp(e, otpIdx)
       }), [this.genDefaultSlot(otpIdx)])
     },
     genControl (otpIdx: number) {
       return h('div', {
-        class: 'v-input__control',
+        class: 'v-input__control'
       }, [
-        this.genInputSlot(otpIdx),
+        this.genInputSlot(otpIdx)
       ])
     },
     genDefaultSlot (otpIdx: number) {
       return [
         this.genFieldset(),
-        this.genTextFieldSlot(otpIdx),
+        this.genTextFieldSlot(otpIdx)
       ]
     },
     genContent () {
       return Array.from({ length: +this.length }, (_, i) => {
         return h('div', this.setTextColor(this.validationState, {
-          class: ['v-input', this.classes],
+          class: ['v-input', this.classes]
         }), [this.genControl(i)])
       })
     },
     genFieldset () {
       return h('fieldset', {
-        'aria-hidden': 'true',
+        'aria-hidden': 'true'
       }, [this.genLegend()])
     },
     genLegend () {
       const span = h('span', {
-        innerHTML: '&#8203;',
+        innerHTML: '&#8203;'
       })
 
       return h('legend', {
         style: {
-          width: '0px',
-        },
+          width: '0px'
+        }
       }, [span])
     },
     genInput (otpIdx: number) {
@@ -208,13 +208,13 @@ export default baseMixins.extend({
           onInput: (e: Event) => this.onInput(e, otpIdx),
           onFocus: (e: Event) => this.onFocus(e, otpIdx),
           onKeydown: this.onKeyDown,
-          onKeyup: (e: KeyboardEvent) => this.onKeyUp(e, otpIdx),
+          onKeyup: (e: KeyboardEvent) => this.onKeyUp(e, otpIdx)
         }),
         ref: (el: HTMLInputElement) => {
           if (el) {
             this.inputRefs[otpIdx] = el
           }
-        },
+        }
       }
 
       if (this.type === 'number') {
@@ -225,9 +225,9 @@ export default baseMixins.extend({
     },
     genTextFieldSlot (otpIdx: number): VNode {
       return h('div', {
-        class: 'v-text-field__slot',
+        class: 'v-text-field__slot'
       }, [
-        this.genInput(otpIdx),
+        this.genInput(otpIdx)
       ])
     },
     onBlur (e?: Event) {
@@ -347,11 +347,11 @@ export default baseMixins.extend({
       if (rsp.length === +this.length) {
         this.$emit('finish', rsp)
       }
-    },
+    }
   },
   render (): VNode {
     return h('div', {
-      class: ['v-otp-input', this.themeClasses],
+      class: ['v-otp-input', this.themeClasses]
     }, this.genContent())
-  },
+  }
 })

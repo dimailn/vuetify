@@ -4,5 +4,5 @@ import { column } from './column'
 
 export const CalendarEventOverlapModes: Record<string, CalendarEventOverlapMode> = {
   stack,
-  column,
+  column
 }

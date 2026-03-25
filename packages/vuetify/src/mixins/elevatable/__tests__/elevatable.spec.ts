@@ -9,7 +9,7 @@ const Component = defineComponent({
   mixins: [Elevatable],
   render () {
     return h('div')
-  },
+  }
 })
 
 describe('elevatable.ts', () => {
@@ -19,7 +19,7 @@ describe('elevatable.ts', () => {
   beforeEach(() => {
     mountFunction = (options = {}) => {
       return mount(Component, {
-        ...options,
+        ...options
       })
     }
   })
@@ -33,19 +33,19 @@ describe('elevatable.ts', () => {
     await wrapper.setProps({ elevation: 1 })
     expect(wrapper.vm.computedElevation).toBe(1)
     expect(wrapper.vm.elevationClasses).toEqual({
-      'elevation-1': true,
+      'elevation-1': true
     })
 
     await wrapper.setProps({ elevation: '12' })
     expect(wrapper.vm.computedElevation).toBe('12')
     expect(wrapper.vm.elevationClasses).toEqual({
-      'elevation-12': true,
+      'elevation-12': true
     })
 
     await wrapper.setProps({ elevation: 0 })
     expect(wrapper.vm.computedElevation).toBe(0)
     expect(wrapper.vm.elevationClasses).toEqual({
-      'elevation-0': true,
+      'elevation-0': true
     })
   })
 })

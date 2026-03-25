@@ -37,7 +37,7 @@ const baseMixins = mixins(
     'permanent',
     'right',
     'temporary',
-    'width',
+    'width'
   ]),
   Colorable,
   Dependent,
@@ -53,7 +53,7 @@ export default baseMixins.extend({
 
   provide (): object {
     return {
-      isInNav: this.$tag === 'nav',
+      isInNav: this.$tag === 'nav'
     }
   },
 
@@ -65,30 +65,30 @@ export default baseMixins.extend({
     expandOnHover: Boolean,
     floating: Boolean,
     height: {
-      type: [Number, String],
+      type: [Number, String]
     },
     miniVariant: Boolean,
     miniVariantWidth: {
       type: [Number, String],
-      default: 56,
+      default: 56
     },
     permanent: Boolean,
     right: Boolean,
     src: {
       type: [String, Object] as PropType<string | srcObject>,
-      default: '',
+      default: ''
     },
     stateless: Boolean,
     tag: {
-      type: String,
+      type: String
     },
     temporary: Boolean,
     touchless: Boolean,
     width: {
       type: [Number, String],
-      default: 256,
+      default: 256
     },
-    modelValue: null as unknown as PropType<any>,
+    modelValue: null as unknown as PropType<any>
   },
 
   emits: ['update:modelValue', 'transitionend', 'update:mini-variant'],
@@ -97,9 +97,9 @@ export default baseMixins.extend({
     isMouseover: false,
     touchArea: {
       left: 0,
-      right: 0,
+      right: 0
     },
-    stackMinZIndex: 6,
+    stackMinZIndex: 6
   }),
 
   computed: {
@@ -133,7 +133,7 @@ export default baseMixins.extend({
         'v-navigation-drawer--open-on-hover': this.expandOnHover,
         'v-navigation-drawer--right': this.right,
         'v-navigation-drawer--temporary': this.temporary,
-        ...this.themeClasses,
+        ...this.themeClasses
       }
     },
     computedMaxHeight (): number | null {
@@ -235,9 +235,9 @@ export default baseMixins.extend({
           ? `calc(100% - ${convertToUnit(this.computedMaxHeight)})`
           : undefined,
         transform: `${translate}(${convertToUnit(this.computedTransform, '%')})`,
-        width: convertToUnit(this.computedWidth),
+        width: convertToUnit(this.computedWidth)
       }
-    },
+    }
   },
 
   watch: {
@@ -283,13 +283,13 @@ export default baseMixins.extend({
     expandOnHover: 'updateMiniVariant',
     isMouseover (val) {
       this.updateMiniVariant(!val)
-    },
+    }
   },
 
   created () {
     const breakingProps = [
       ['value', 'modelValue'],
-      ['onInput', 'onUpdate:modelValue'],
+      ['onInput', 'onUpdate:modelValue']
     ]
 
     /* istanbul ignore next */
@@ -312,7 +312,7 @@ export default baseMixins.extend({
 
       this.touchArea = {
         left: parentRect.left + 50,
-        right: parentRect.right - 50,
+        right: parentRect.right - 50
       }
     },
     closeConditional () {
@@ -325,7 +325,7 @@ export default baseMixins.extend({
       const props = {
         height: '100%',
         width: '100%',
-        src: this.src,
+        src: this.src
       }
 
       const image = this.$slots.img
@@ -333,7 +333,7 @@ export default baseMixins.extend({
         : h(VImg, { props })
 
       return h('div', {
-        class: 'v-navigation-drawer__image',
+        class: 'v-navigation-drawer__image'
       }, [image])
     },
     genDirectives (): any[] {
@@ -343,8 +343,8 @@ export default baseMixins.extend({
           {
             handler: () => { this.isActive = false },
             closeConditional: this.closeConditional,
-            include: this.getOpenDependentElements,
-          },
+            include: this.getOpenDependentElements
+          }
         ],
         [
           Touch,
@@ -352,9 +352,9 @@ export default baseMixins.extend({
             parent: true,
             left: this.swipeLeft,
             right: this.swipeRight,
-            isDirActive: !this.touchless && !this.stateless,
-          },
-        ],
+            isDirActive: !this.touchless && !this.stateless
+          }
+        ]
       ]
     },
     genListeners () {
@@ -369,7 +369,7 @@ export default baseMixins.extend({
           const resizeEvent = document.createEvent('UIEvents')
           resizeEvent.initUIEvent('resize', true, false, window, 0)
           window.dispatchEvent(resizeEvent)
-        },
+        }
       }
 
       if (this.miniVariant) {
@@ -384,7 +384,7 @@ export default baseMixins.extend({
       if (!slot) return slot
 
       return h('div', {
-        class: `v-navigation-drawer__${name}`,
+        class: `v-navigation-drawer__${name}`
       }, slot)
     },
     genPrepend () {
@@ -392,12 +392,12 @@ export default baseMixins.extend({
     },
     genContent () {
       return h('div', {
-        class: 'v-navigation-drawer__content',
+        class: 'v-navigation-drawer__content'
       }, getSlot(this))
     },
     genBorder () {
       return h('div', {
-        class: 'v-navigation-drawer__border',
+        class: 'v-navigation-drawer__border'
       })
     },
     init () {
@@ -453,7 +453,7 @@ export default baseMixins.extend({
     },
     updateMiniVariant (val: boolean) {
       if (this.expandOnHover && this.miniVariant !== val) this.$emit('update:mini-variant', val)
-    },
+    }
   },
 
   render (): VNode {
@@ -461,7 +461,7 @@ export default baseMixins.extend({
       this.genPrepend(),
       this.genContent(),
       this.genAppend(),
-      this.genBorder(),
+      this.genBorder()
     ]
 
     if (this.src || getSlot(this, 'img')) children.unshift(this.genBackground())
@@ -470,9 +470,9 @@ export default baseMixins.extend({
     const node = h(getTagValue(this.$tag), this.setBackgroundColor(this.color, {
       class: this.classes,
       style: this.styles,
-      ...this.genListeners(),
+      ...this.genListeners()
     }), children)
 
     return withDirectives(node, this.genDirectives())
-  },
+  }
 })

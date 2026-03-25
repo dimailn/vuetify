@@ -56,7 +56,7 @@
     "test:win32": "cross-env NODE_ENV=test jest -i",
     "test:coverage": "yarn test --coverage",
     "test:types": "tsc -p ./types/test/tsconfig.json",
-    "lint": "concurrently -n \"tsc,eslint,types\" --kill-others-on-fail \"tsc --noEmit --pretty\" \"eslint --ext .js,.ts src -f codeframe --max-warnings 0\" \"yarn test:types\"",
+    "lint": "concurrently -n \"tsc,eslint,types\" --kill-others-on-fail \"tsc --noEmit --pretty\" \"eslint --ext .js,.ts src -f eslint-formatter-codeframe --max-warnings 0\" \"yarn test:types\"",
     "lint:fix": "concurrently -n \"tsc,eslint,types\" \"tsc --noEmit --pretty\" \"eslint --fix --ext .js,.ts src\" \"yarn test:types\""
   },
   "devDependencies": {
@@ -76,7 +76,7 @@
     "concurrently": "^4.1.1",
     "cssnano": "^4.1.10",
     "dotenv": "^8.0.0",
-    "eslint-plugin-jest": "^24.1.0",
+    "eslint-plugin-jest": "^27.6.0",
     "file-loader": "^4.1.0",
     "fork-ts-checker-webpack-plugin": "^1.6.0",
     "friendly-errors-webpack-plugin": "^1.7.0",

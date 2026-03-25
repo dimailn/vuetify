@@ -5,7 +5,7 @@ import VProgressCircular from '../VProgressCircular'
 import {
   mount,
   VueWrapper,
-  enableAutoUnmount,
+  enableAutoUnmount
 } from '@vue/test-utils'
 
 describe('VProgressCircular.ts', () => {
@@ -23,14 +23,14 @@ describe('VProgressCircular.ts', () => {
   it('should render component and match snapshot', async () => {
     const wrapper = mountFunction({
       data: () => ({
-        isVisible: false,
+        isVisible: false
       }),
       props: {
-        value: 33,
+        value: 33
       },
       slots: {
-        default: '<span>content</span>',
-      },
+        default: '<span>content</span>'
+      }
     })
 
     expect(wrapper.html()).toMatchSnapshot()
@@ -72,8 +72,8 @@ describe('VProgressCircular.ts', () => {
     const wrapper = mountFunction({
       props: {
         value: 33,
-        color: 'orange lighten-1',
-      },
+        color: 'orange lighten-1'
+      }
     })
 
     expect(wrapper.html()).toMatchSnapshot()
@@ -83,8 +83,8 @@ describe('VProgressCircular.ts', () => {
     const wrapper = mountFunction({
       props: {
         value: 33,
-        button: true,
-      },
+        button: true
+      }
     })
 
     expect(wrapper.html()).toMatchSnapshot()
@@ -94,8 +94,8 @@ describe('VProgressCircular.ts', () => {
     const wrapper = mountFunction({
       props: {
         value: 33,
-        rotate: 29,
-      },
+        rotate: 29
+      }
     })
 
     expect(wrapper.html()).toMatchSnapshot()
@@ -105,8 +105,8 @@ describe('VProgressCircular.ts', () => {
     const wrapper = mountFunction({
       props: {
         value: 33,
-        size: 17,
-      },
+        size: 17
+      }
     })
 
     expect(wrapper.html()).toMatchSnapshot()
@@ -115,8 +115,8 @@ describe('VProgressCircular.ts', () => {
   it('should render component with indeterminate prop and match snapshot', () => {
     const wrapper = mountFunction({
       props: {
-        indeterminate: true,
-      },
+        indeterminate: true
+      }
     })
 
     expect(wrapper.html()).toMatchSnapshot()
@@ -126,8 +126,8 @@ describe('VProgressCircular.ts', () => {
     const wrapper = mountFunction({
       props: {
         value: 33,
-        width: 13,
-      },
+        width: 13
+      }
     })
 
     expect(wrapper.html()).toMatchSnapshot()
@@ -137,8 +137,8 @@ describe('VProgressCircular.ts', () => {
     const wrapper = mountFunction({
       props: {
         value: 33,
-        fill: 'green lighten-1',
-      },
+        fill: 'green lighten-1'
+      }
     })
 
     expect(wrapper.html()).toMatchSnapshot()
@@ -147,11 +147,11 @@ describe('VProgressCircular.ts', () => {
   it('should set isVisible with onObserve', () => {
     const wrapper = mountFunction()
     expect(wrapper.vm.isVisible).toEqual(false)
-    
+
     // Создаем мок-объекты для IntersectionObserverEntry
     const mockEntries = [] as IntersectionObserverEntry[]
     const mockObserver = {} as IntersectionObserver
-    
+
     wrapper.vm.onObserve(mockEntries, mockObserver, true)
     expect(wrapper.vm.isVisible).toEqual(true)
   })

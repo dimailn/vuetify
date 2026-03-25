@@ -47,7 +47,7 @@ export default mixins(
     disabled: Boolean,
     lazyValidation: Boolean,
     readonly: Boolean,
-    value: Boolean,
+    value: Boolean
   },
 
   emits: ['input', 'update:modelValue', 'submit'],
@@ -55,7 +55,7 @@ export default mixins(
   data: () => ({
     inputs: [] as VInputInstance[],
     watchers: [] as Watchers[],
-    errorBag: {} as ErrorBag,
+    errorBag: {} as ErrorBag
   }),
 
   watch: {
@@ -67,8 +67,8 @@ export default mixins(
         this.$emit('update:modelValue', !errors)
       },
       deep: true,
-      immediate: true,
-    },
+      immediate: true
+    }
   },
 
   methods: {
@@ -93,7 +93,7 @@ export default mixins(
       const watchers: Watchers = {
         _uid: inputId,
         valid: () => {},
-        shouldValidate: () => {},
+        shouldValidate: () => {}
       }
 
       if (this.lazyValidation) {
@@ -156,7 +156,7 @@ export default mixins(
       this.inputs = this.inputs.filter((inputComponent: VInputInstance) => this.getInputUid(inputComponent) !== inputId)
 
       delete this.errorBag[inputId]
-    },
+    }
   },
 
   render (): VNode {
@@ -164,7 +164,7 @@ export default mixins(
       class: 'v-form',
       novalidate: true,
       ...this.attrs$,
-      onSubmit: (e: Event) => this.$emit('submit', e),
+      onSubmit: (e: Event) => this.$emit('submit', e)
     }, getSlot(this))
-  },
+  }
 })

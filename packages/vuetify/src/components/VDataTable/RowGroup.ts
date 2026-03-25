@@ -8,22 +8,22 @@ export default defineComponent({
   props: {
     modelValue: {
       type: Boolean,
-      default: true,
+      default: true
     },
     headerClass: {
       type: String,
-      default: 'v-row-group__header',
+      default: 'v-row-group__header'
     },
     contentClass: String,
     summaryClass: {
       type: String,
-      default: 'v-row-group__summary',
-    },
+      default: 'v-row-group__summary'
+    }
   },
 
   created () {
     const breakingProps = [
-      ['value', 'modelValue'],
+      ['value', 'modelValue']
     ]
 
     /* istanbul ignore next */
@@ -44,7 +44,7 @@ export default defineComponent({
 
     if (columnHeaderSlot) {
       children.push(h('tr', {
-        class: props.headerClass,
+        class: props.headerClass
       }, columnHeaderSlot))
     } else if (rowHeaderSlot) {
       children.push(...(Array.isArray(rowHeaderSlot) ? rowHeaderSlot : [rowHeaderSlot]))
@@ -56,12 +56,12 @@ export default defineComponent({
 
     if (columnSummarySlot) {
       children.push(h('tr', {
-        class: props.summaryClass,
+        class: props.summaryClass
       }, columnSummarySlot))
     } else if (rowSummarySlot) {
       children.push(...(Array.isArray(rowSummarySlot) ? rowSummarySlot : [rowSummarySlot]))
     }
 
     return h(Fragment, children)
-  },
+  }
 })

@@ -3,7 +3,7 @@ import {
   mount,
   MountingOptions,
   VueWrapper,
-  enableAutoUnmount,
+  enableAutoUnmount
 } from '@vue/test-utils'
 import { h } from 'vue'
 
@@ -18,7 +18,7 @@ describe('VOtpInput.ts', () => {
       return mount(VOtpInput, {
         // https://github.com/vuejs/vue-test-utils/issues/1130
         sync: false,
-        ...options,
+        ...options
       })
     }
   })
@@ -26,8 +26,8 @@ describe('VOtpInput.ts', () => {
   it('should update lazyValue when value is updated', async () => {
     const wrapper = mountFunction({
       props: {
-        modelValue: 'foo',
-      },
+        modelValue: 'foo'
+      }
     })
 
     expect(wrapper.vm.lazyValue).toBe('foo')
@@ -43,8 +43,8 @@ describe('VOtpInput.ts', () => {
     const wrapper = mountFunction(
       {
         props: {
-          type: 'number',
-        },
+          type: 'number'
+        }
       }
     )
 
@@ -137,7 +137,7 @@ describe('VOtpInput.ts', () => {
     const component = {
       render () {
         return h(VOtpInput, { onKeyup: keyup, props: { }, attrs: {} })
-      },
+      }
     }
     const wrapper = mount(component)
 
@@ -191,8 +191,8 @@ describe('VOtpInput.ts', () => {
     const wrapper = mountFunction({
       props: {
         modelValue: '',
-        length: 2,
-      },
+        length: 2
+      }
     })
 
     await wrapper.vm.$nextTick()
@@ -225,8 +225,8 @@ describe('VOtpInput.ts', () => {
     const wrapper = mountFunction({
       props: {
         modelValue: '',
-        length: 2,
-      },
+        length: 2
+      }
     })
 
     await wrapper.vm.$nextTick()
@@ -258,7 +258,7 @@ describe('VOtpInput.ts', () => {
     input.trigger('focus')
     await wrapper.vm.$nextTick()
     input.trigger('keyup', {
-      key: 'ArrowLeft',
+      key: 'ArrowLeft'
     })
     await wrapper.vm.$nextTick()
 

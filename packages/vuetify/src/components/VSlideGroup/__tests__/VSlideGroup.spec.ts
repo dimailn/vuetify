@@ -10,7 +10,7 @@ import { ExtractVue } from '../../../util/mixins'
 import {
   shallowMount,
   VueWrapper,
-  enableAutoUnmount,
+  enableAutoUnmount
 } from '@vue/test-utils'
 import { h } from 'vue'
 
@@ -27,11 +27,11 @@ describe('VSlideGroup.ts', () => {
           mocks: {
             $vuetify: {
               rtl: false,
-              breakpoint: new Breakpoint(preset),
-            },
-          },
+              breakpoint: new Breakpoint(preset)
+            }
+          }
         },
-        ...options,
+        ...options
       })
     }
   })
@@ -39,11 +39,11 @@ describe('VSlideGroup.ts', () => {
   it('should conditionally have affixes, prev and next', () => {
     const wrapper = mountFunction({
       data: () => ({
-        isOverflowing: true,
+        isOverflowing: true
       }),
       props: {
-        showArrows: true,
-      },
+        showArrows: true
+      }
     })
 
     expect(wrapper.vm.hasAffixes).toBe(true)
@@ -53,7 +53,7 @@ describe('VSlideGroup.ts', () => {
     wrapper.vm.scrollOffset = 100
     wrapper.vm.widths = {
       content: 1000,
-      wrapper: 500,
+      wrapper: 500
     }
 
     expect(wrapper.vm.hasPrev).toBe(true)
@@ -61,7 +61,7 @@ describe('VSlideGroup.ts', () => {
     wrapper.vm.scrollOffset = -100
     wrapper.vm.widths = {
       content: 1000,
-      wrapper: 500,
+      wrapper: 500
     }
 
     expect(wrapper.vm.hasNext).toBe(true)
@@ -73,7 +73,7 @@ describe('VSlideGroup.ts', () => {
     const testOffsetAndUpdate = (direction: 'prev' | 'next', rtl: boolean, expectedOffset: number) => {
       currentOffset = calculateNewOffset(direction, {
         content: 1000,
-        wrapper: 400,
+        wrapper: 400
       }, rtl, currentOffset)
 
       expect(currentOffset).toBe(expectedOffset)
@@ -99,10 +99,10 @@ describe('VSlideGroup.ts', () => {
     const testOffset = (offsetLeft: number, rtl: boolean, expectedOffset: number) => {
       const offset = calculateUpdatedOffset({
         offsetLeft,
-        clientWidth: 20,
+        clientWidth: 20
       } as HTMLElement, {
         content: 1000,
-        wrapper: 500,
+        wrapper: 500
       }, rtl, 0)
 
       expect(offset).toBe(expectedOffset)
@@ -123,10 +123,10 @@ describe('VSlideGroup.ts', () => {
     const testOffset = (offsetLeft: number, rtl: boolean, expectedOffset: number) => {
       const offset = calculateCenteredOffset({
         offsetLeft,
-        clientWidth: 20,
+        clientWidth: 20
       } as HTMLElement, {
         content: 1000,
-        wrapper: 500,
+        wrapper: 500
       }, rtl)
 
       expect(offset).toBe(expectedOffset)
@@ -147,15 +147,15 @@ describe('VSlideGroup.ts', () => {
   it.skip('should call on touch methods', async () => {
     const wrapper = mountFunction({
       data: () => ({
-        isOverflowing: true,
-      }),
+        isOverflowing: true
+      })
     })
 
     expect(wrapper.vm.scrollOffset).toBe(0)
 
     const touchstartEvent = {
       touchstartX: 10,
-      touchmoveX: 0,
+      touchmoveX: 0
     }
 
     wrapper.vm.onTouchStart(touchstartEvent)
@@ -166,7 +166,7 @@ describe('VSlideGroup.ts', () => {
 
     const touchmoveEvent = {
       touchstartX: 10,
-      touchmoveX: 100,
+      touchmoveX: 100
     }
     wrapper.vm.onTouchMove(touchmoveEvent)
 
@@ -196,7 +196,7 @@ describe('VSlideGroup.ts', () => {
     const event = {
       touchstartX: 0,
       touchmoveX: 0,
-      stopPropagation: () => {},
+      stopPropagation: () => {}
     }
 
     wrapper.vm.overflowCheck(event, fn)
@@ -216,17 +216,17 @@ describe('VSlideGroup.ts', () => {
         mocks: {
           $vuetify: {
             rtl: false,
-            breakpoint: new Breakpoint(preset),
-          },
-        },
+            breakpoint: new Breakpoint(preset)
+          }
+        }
       },
       props: {
-        showArrows: true,
+        showArrows: true
       },
       attrs: {
         'onClick:prev': onClick,
-        'onClick:next': onClick,
-      },
+        'onClick:next': onClick
+      }
     })
 
     // Mock the methods
@@ -237,7 +237,7 @@ describe('VSlideGroup.ts', () => {
     wrapper.vm.scrollOffset = 200
     wrapper.vm.widths = {
       content: 1000,
-      wrapper: 500,
+      wrapper: 500
     }
 
     await wrapper.vm.$nextTick()
@@ -256,23 +256,23 @@ describe('VSlideGroup.ts', () => {
       computed: {
         hasAffixes: () => true,
         hasNext: () => true,
-        hasPrev: () => true,
+        hasPrev: () => true
       },
       props: {
-        showArrows: true,
+        showArrows: true
       },
       slots: {
         prev () {
           return h('div', {
-            class: 'fizz',
+            class: 'fizz'
           }, 'foo')
         },
         next () {
           return h('div', {
-            class: 'fizz',
+            class: 'fizz'
           }, 'bar')
-        },
-      },
+        }
+      }
     })
 
     wrapper.vm.isOverflowing = true
@@ -283,16 +283,16 @@ describe('VSlideGroup.ts', () => {
   it('should match snapshot in rtl', async () => {
     const wrapper = mountFunction({
       props: {
-        showArrows: true,
+        showArrows: true
       },
       global: {
         mocks: {
           $vuetify: {
             rtl: true,
-            breakpoint: { mobileBreakpoint: 1264 },
-          },
-        },
-      },
+            breakpoint: { mobileBreakpoint: 1264 }
+          }
+        }
+      }
     })
 
     // Set up data to show affixes
@@ -300,7 +300,7 @@ describe('VSlideGroup.ts', () => {
     wrapper.vm.scrollOffset = 200
     wrapper.vm.widths = {
       content: 1000,
-      wrapper: 500,
+      wrapper: 500
     }
 
     const html1 = wrapper.html()
@@ -320,19 +320,19 @@ describe('VSlideGroup.ts', () => {
     ['desktop', false, true, false],
     ['always', true, true, true],
     ['always', true, false, true],
-    ['always', false, false, true],
+    ['always', false, false, true]
   ])('should conditionally show arrows with %s %s %s %s', (...opts) => {
     const [
       showArrows,
       isOverflowing,
       isMobile,
-      hasAffixes,
+      hasAffixes
     ] = opts
 
     const wrapper = mountFunction({
       data: () => ({ isOverflowing }),
       computed: { isMobile: () => isMobile },
-      props: { showArrows },
+      props: { showArrows }
     })
 
     expect(wrapper.vm.hasAffixes).toBe(hasAffixes)
@@ -341,9 +341,9 @@ describe('VSlideGroup.ts', () => {
   it('should has affixes on desktop when scrollOffset greater than 0', async () => {
     const wrapper = mountFunction({
       data: () => ({
-        scrollOffset: 200,
+        scrollOffset: 200
       }),
-      computed: { isMobile: () => false },
+      computed: { isMobile: () => false }
     })
 
     expect(wrapper.vm.hasAffixes).toBe(true)
@@ -360,8 +360,8 @@ describe('VSlideGroup.ts', () => {
 
     const wrapper = mountFunction({
       data: () => ({
-        items: [{ $el: {} }],
-      }),
+        items: [{ $el: {} }]
+      })
     })
 
     // Mock the method

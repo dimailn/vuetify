@@ -19,7 +19,7 @@ import {
   createDayList,
   getDayIdentifier,
   createNativeLocaleFormatter,
-  validateTimestamp,
+  validateTimestamp
 } from './util/timestamp'
 import { CalendarTimestamp, CalendarFormatter } from 'vuetify/types'
 
@@ -32,8 +32,8 @@ export default defineComponent({
     ...props.weeks,
     now: {
       type: String,
-      validator: validateTimestamp,
-    },
+      validator: validateTimestamp
+    }
   },
 
   computed: {
@@ -86,7 +86,7 @@ export default defineComponent({
         this.currentLocale,
         (_tms, short) => short ? shortOptions : longOptions
       )
-    },
+    }
   },
 
   methods: {
@@ -99,7 +99,7 @@ export default defineComponent({
     genHead (): VNode {
       return h('div', {
         class: 'v-calendar-weekly__head',
-        role: 'row',
+        role: 'row'
       }, this.genHeadDays())
     },
     genHeadDays (): VNode[] {
@@ -107,7 +107,7 @@ export default defineComponent({
 
       if (this.showWeek) {
         header.unshift(h('div', {
-          class: 'v-calendar-weekly__head-weeknumber',
+          class: 'v-calendar-weekly__head-weeknumber'
         }))
       }
 
@@ -120,7 +120,7 @@ export default defineComponent({
       return h('div', this.setTextColor(color, {
         key: day.date,
         class: ['v-calendar-weekly__head-weekday', this.getRelativeClasses(day, outside)],
-        role: 'columnheader',
+        role: 'columnheader'
       }), this.weekdayFormatter(day, this.shortWeekdays))
     },
     genWeeks (): VNode[] {
@@ -144,7 +144,7 @@ export default defineComponent({
       return h('div', {
         key: week[0].date,
         class: 'v-calendar-weekly__week',
-        role: 'row',
+        role: 'row'
       }, weekNodes)
     },
     getWeekNumber (determineDay: CalendarTimestamp) {
@@ -158,9 +158,9 @@ export default defineComponent({
     },
     genWeekNumber (weekNumber: number) {
       return h('div', {
-        class: 'v-calendar-weekly__weeknumber',
+        class: 'v-calendar-weekly__weeknumber'
       }, [
-        h('small', String(weekNumber)),
+        h('small', String(weekNumber))
       ])
     },
     genDay (day: CalendarTimestamp, index: number, week: CalendarTimestamp[]): VNode {
@@ -172,19 +172,19 @@ export default defineComponent({
         role: 'cell',
         ...this.getDefaultMouseEventHandlers(':day', nativeEvent => {
           return { nativeEvent, ...day }
-        }),
+        })
       }, [
         this.genDayLabel(day),
         ...(() => {
           const slot = getSlot(this, 'day', { outside, index, week, ...day })
           if (slot == null) return []
           return (Array.isArray(slot) ? slot : [slot]) as VNode[]
-        })(),
+        })()
       ])
     },
     genDayLabel (day: CalendarTimestamp): VNode {
       return h('div', {
-        class: 'v-calendar-weekly__day-label',
+        class: 'v-calendar-weekly__day-label'
       }, getSlot(this, 'day-label', day) || [this.genDayLabelButton(day)])
     },
     genDayLabelButton (day: CalendarTimestamp): VNode {
@@ -198,8 +198,8 @@ export default defineComponent({
         small: true,
         ...this.getMouseEventHandlers({
           'click:date': { event: 'click', stop: true },
-          'contextmenu:date': { event: 'contextmenu', stop: true, prevent: true, result: false },
-        }, nativeEvent => ({ nativeEvent, ...day })),
+          'contextmenu:date': { event: 'contextmenu', stop: true, prevent: true, result: false }
+        }, nativeEvent => ({ nativeEvent, ...day }))
       }, {
         default: () => hasMonth
           ? this.monthFormatter(day, this.shortMonths) + ' ' + this.dayFormatter(day, false)
@@ -210,9 +210,9 @@ export default defineComponent({
       const color = day.present ? this.color : undefined
 
       return h('div', this.setTextColor(color, {
-        class: 'v-calendar-weekly__day-month',
+        class: 'v-calendar-weekly__day-month'
       }), getSlot(this, 'day-month', day) || this.monthFormatter(day, this.shortMonths))
-    },
+    }
   },
 
   render (): VNode {
@@ -220,10 +220,10 @@ export default defineComponent({
       class: [this.staticClass, this.classes],
       onDragstart: (e: MouseEvent) => {
         e.preventDefault()
-      },
+      }
     }, [
       !this.hideHeader ? this.genHead() : '',
-      ...this.genWeeks(),
+      ...this.genWeeks()
     ])
-  },
+  }
 })

@@ -1,4 +1,4 @@
-import {h} from 'vue'
+import { h, PropType } from 'vue'
 import './VVirtualTable.sass'
 
 // Components
@@ -6,7 +6,6 @@ import VSimpleTable from './VSimpleTable'
 
 // Types
 import type { VNode, VNodeChildren } from '../../types/vue-internal'
-import { PropType } from 'vue'
 import mixins from '../../util/mixins'
 
 // Utiltiies
@@ -28,27 +27,27 @@ export default baseMixins.extend({
   props: {
     chunkSize: {
       type: Number,
-      default: 25,
+      default: 25
     },
     headerHeight: {
       type: Number,
-      default: 48,
+      default: 48
     },
     items: {
       type: Array,
-      default: () => ([]),
+      default: () => ([])
     } as unknown as PropType<any[]>,
     rowHeight: {
       type: Number,
-      default: 48,
-    },
+      default: 48
+    }
   },
 
   data: () => ({
     scrollTop: 0,
     oldChunk: 0,
     scrollDebounce: null as any,
-    invalidateCache: false,
+    invalidateCache: false
   }),
 
   computed: {
@@ -75,7 +74,7 @@ export default baseMixins.extend({
     },
     offsetBottom (): number {
       return Math.max(0, (this.itemsLength - this.stopIndex - this.startIndex) * this.rowHeight)
-    },
+    }
   },
 
   watch: {
@@ -85,7 +84,7 @@ export default baseMixins.extend({
     items () {
       this.cachedItems = null
       this.$refs.table.scrollTop = 0
-    },
+    }
   },
 
   created () {
@@ -105,7 +104,7 @@ export default baseMixins.extend({
   methods: {
     createStyleHeight (height: number) {
       return {
-        height: `${height}px`,
+        height: `${height}px`
       }
     },
     genBody () {
@@ -117,7 +116,7 @@ export default baseMixins.extend({
       return h('tbody', [
         h('tr', { style: this.createStyleHeight(this.offsetTop) }),
         this.cachedItems,
-        h('tr', { style: this.createStyleHeight(this.offsetBottom) }),
+        h('tr', { style: this.createStyleHeight(this.offsetBottom) })
       ])
     },
     genItems () {
@@ -130,34 +129,34 @@ export default baseMixins.extend({
     genTable () {
       return h('div', {
         ref: 'table',
-        class: 'v-virtual-table__table',
+        class: 'v-virtual-table__table'
       }, [
         h('table', [
           this.$slots['body.before'],
           this.genBody(),
-          this.$slots['body.after'],
-        ]),
+          this.$slots['body.after']
+        ])
       ])
     },
     genWrapper () {
       return h('div', {
         class: 'v-virtual-table__wrapper',
         style: {
-          height: convertToUnit(this.height),
-        },
+          height: convertToUnit(this.height)
+        }
       }, [
-        this.genTable(),
+        this.genTable()
       ])
-    },
+    }
   },
 
   render (): VNode {
     return h('div', {
-      class: ['v-data-table', 'v-virtual-table', this.classes],
+      class: ['v-data-table', 'v-virtual-table', this.classes]
     }, [
       getSlot(this, 'top'),
       this.genWrapper(),
-      getSlot(this, 'bottom'),
+      getSlot(this, 'bottom')
     ])
-  },
+  }
 })

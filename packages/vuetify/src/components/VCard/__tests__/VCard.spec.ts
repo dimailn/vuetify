@@ -1,7 +1,7 @@
 import {
   mount,
   VueWrapper,
-  MountingOptions,
+  MountingOptions
 } from '@vue/test-utils'
 import VCard from '../VCard'
 
@@ -17,16 +17,16 @@ describe('VCard.vue', () => {
             $vuetify: {
               rtl: false,
               lang: {
-                t: (val: string) => val,
+                t: (val: string) => val
               },
               icons: {
-                component: 'mdi',
-              },
+                component: 'mdi'
+              }
             },
-            $activeClass: 'v-card--active',
-          },
+            $activeClass: 'v-card--active'
+          }
         },
-        slots: {},
+        slots: {}
       }
 
       // Объединяем опции правильно
@@ -35,12 +35,12 @@ describe('VCard.vue', () => {
         ...options,
         slots: {
           ...defaultOptions.slots,
-          ...options?.slots,
+          ...options?.slots
         },
         global: {
           ...defaultOptions.global,
-          ...options?.global,
-        },
+          ...options?.global
+        }
       }
 
       return mount(VCard, mergedOptions)
@@ -56,8 +56,8 @@ describe('VCard.vue', () => {
   it('should render loading card', () => {
     const wrapper = mountFunction({
       props: {
-        loading: true,
-      },
+        loading: true
+      }
     })
 
     expect(wrapper.html()).toMatchSnapshot()
@@ -66,8 +66,8 @@ describe('VCard.vue', () => {
   it('should render card, which is link', () => {
     const wrapper = mountFunction({
       attrs: {
-        onClick: () => {},
-      },
+        onClick: () => {}
+      }
     })
 
     expect(wrapper.html()).toMatchSnapshot()
@@ -76,8 +76,8 @@ describe('VCard.vue', () => {
   it('should render card with img', () => {
     const wrapper = mountFunction({
       props: {
-        img: 'image.jpg',
-      },
+        img: 'image.jpg'
+      }
     })
 
     expect(wrapper.html()).toMatchSnapshot()
@@ -86,8 +86,8 @@ describe('VCard.vue', () => {
   it('should render a flat card', () => {
     const wrapper = mountFunction({
       props: {
-        flat: true,
-      },
+        flat: true
+      }
     })
 
     expect(wrapper.html()).toMatchSnapshot()
@@ -96,8 +96,8 @@ describe('VCard.vue', () => {
   it('should render a raised card', () => {
     const wrapper = mountFunction({
       props: {
-        raised: true,
-      },
+        raised: true
+      }
     })
 
     expect(wrapper.html()).toMatchSnapshot()
@@ -107,15 +107,15 @@ describe('VCard.vue', () => {
     const heightpx = '400px'
     const wrapper = mountFunction({
       props: {
-        height: heightpx,
-      },
+        height: heightpx
+      }
     })
 
     expect(wrapper.element.style.height).toBe(heightpx)
     expect(wrapper.html()).toMatchSnapshot()
 
     await wrapper.setProps({
-      height: 401,
+      height: 401
     })
     expect(wrapper.element.style.height).toBe('401px')
   })

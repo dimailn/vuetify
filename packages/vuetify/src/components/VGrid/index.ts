@@ -11,7 +11,7 @@ export {
   VRow,
   VSpacer,
   VLayout,
-  VFlex,
+  VFlex
 }
 
 export default {
@@ -21,6 +21,6 @@ export default {
     VRow,
     VSpacer,
     VLayout,
-    VFlex,
-  },
+    VFlex
+  }
 }

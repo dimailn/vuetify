@@ -7,14 +7,14 @@ import VDialog from '../../VDialog/VDialog'
 import {
   VListItem,
   VListItemTitle,
-  VListItemContent,
+  VListItemContent
 } from '../../VList'
 
 // Utilities
 import {
   mount,
   VueWrapper,
-  enableAutoUnmount,
+  enableAutoUnmount
 } from '@vue/test-utils'
 import { keyCodes } from '../../../util/helpers'
 import { waitAnimationFrame } from '../../../../test'
@@ -35,18 +35,18 @@ describe('VSelect.ts', () => {
           mocks: {
             $vuetify: {
               lang: {
-                t: (val: string) => val,
+                t: (val: string) => val
               },
               theme: {
-                dark: false,
+                dark: false
               },
               icons: {
-                component: 'mdi',
-              },
-            },
-          },
+                component: 'mdi'
+              }
+            }
+          }
         },
-        ...options,
+        ...options
       })
     }
   })
@@ -63,8 +63,8 @@ describe('VSelect.ts', () => {
       props: {
         modelValue: null,
         items: [item],
-        multiple: true,
-      },
+        multiple: true
+      }
     })
 
     wrapper.vm.selectItem(item)
@@ -84,9 +84,9 @@ describe('VSelect.ts', () => {
         eager: true,
         items: [{
           text: 'item',
-          disabled: true,
-        }],
-      },
+          disabled: true
+        }]
+      }
     })
 
     // Открываем меню, чтобы элементы отрендерились
@@ -108,21 +108,21 @@ describe('VSelect.ts', () => {
     const itemSlot = ({ item, attrs, on }) => h(VListItem, {
       ...on,
       ...attrs,
-      class: item.value % 2 === 0 ? '' : 'red lighten-1',
+      class: item.value % 2 === 0 ? '' : 'red lighten-1'
     }, () => [
-      item.text,
+      item.text
     ])
     const selectionSlot = ({ item }) => h(VListItem, () => item.value)
     const component = defineComponent({
       render () {
         return h(VSelect, {
           items,
-          modelValue: 1,
+          modelValue: 1
         }, {
           item: itemSlot,
-          selection: selectionSlot,
+          selection: selectionSlot
         })
-      },
+      }
     })
     const wrapper = mountFunction(component)
 
@@ -139,18 +139,18 @@ describe('VSelect.ts', () => {
     const items = Array.from({ length: 2 }, (x, i) => ({ value: i, text: `Text ${i}` }))
 
     const itemSlot = ({ item }) => h(VListItemContent, {
-      class: item.value % 2 === 0 ? '' : 'red lighten-1',
+      class: item.value % 2 === 0 ? '' : 'red lighten-1'
     }, () => [
-      h(VListItemTitle, () => [item.value]),
+      h(VListItemTitle, () => [item.value])
     ])
     const component = defineComponent({
       render () {
         return h(VSelect, {
-          items,
+          items
         }, {
-          item: itemSlot,
+          item: itemSlot
         })
-      },
+      }
     })
 
     const wrapper = mountFunction(component)
@@ -170,9 +170,9 @@ describe('VSelect.ts', () => {
     const component = defineComponent({
       render () {
         return h(VSelect, {
-          items,
+          items
         })
-      },
+      }
     })
 
     const wrapper = mountFunction(component)
@@ -191,8 +191,8 @@ describe('VSelect.ts', () => {
       attachTo: el,
       props: {
         items: [1, 2, 3, 4],
-        multiple: true,
-      },
+        multiple: true
+      }
     })
 
     // blur event will be tested via emitted()
@@ -227,8 +227,8 @@ describe('VSelect.ts', () => {
     const wrapper = mountFunction({
       props: {
         value: 'foo',
-        items: ['foo'],
-      },
+        items: ['foo']
+      }
     })
 
     await wrapper.vm.$nextTick()
@@ -271,8 +271,8 @@ describe('VSelect.ts', () => {
     const wrapper = mountFunction({
       props: {
         value: 1,
-        items: [],
-      },
+        items: []
+      }
     })
 
     await wrapper.setProps({ items: [{ text: 'foo', value: 1 }] })
@@ -289,8 +289,8 @@ describe('VSelect.ts', () => {
       attachTo: el,
       props: {
         menuProps: { contentClass: 'v-menu-class', eager: true },
-        items,
-      },
+        items
+      }
     })
 
     wrapper.vm.isMenuActive = true
@@ -310,8 +310,8 @@ describe('VSelect.ts', () => {
         chips: true,
         deletableChips: true,
         items: ['foo', 'bar'],
-        modelValue: 'foo',
-      },
+        modelValue: 'foo'
+      }
     })
 
     await wrapper.vm.$nextTick()
@@ -325,8 +325,8 @@ describe('VSelect.ts', () => {
       attachTo: el,
       props: {
         eager: true,
-        items: ['<strong>foo</strong>'],
-      },
+        items: ['<strong>foo</strong>']
+      }
     })
 
     wrapper.vm.isMenuActive = true
@@ -347,13 +347,13 @@ describe('VSelect.ts', () => {
         items: [
           { text: 'one', value: 1 },
           { text: 'two', value: 2 },
-          { text: 'three', value: 3 },
+          { text: 'three', value: 3 }
         ],
         itemText: 'text',
         itemValue: 'value',
         valueComparator: (a, b) => Math.round(a) === Math.round(b),
-        modelValue: [3.1],
-      },
+        modelValue: [3.1]
+      }
     })
 
     expect(wrapper.vm.selectedItems).toHaveLength(1)
@@ -364,8 +364,8 @@ describe('VSelect.ts', () => {
     const wrapper = mountFunction({
       props: {
         readonly: true,
-        items: ['foo', 'bar'],
-      },
+        items: ['foo', 'bar']
+      }
     })
 
     wrapper.trigger('click')
@@ -385,12 +385,12 @@ describe('VSelect.ts', () => {
         items: [
           { text: 'one', v1: 'prop v1' },
           { text: 'two', v2: 'prop v2' },
-          { text: 'three', v1: 'also prop v1' },
+          { text: 'three', v1: 'also prop v1' }
         ],
         itemText: 'text',
         itemValue: item => item.hasOwnProperty('v1') ? item.v1 : item.v2,
-        modelValue: ['prop v1', 'prop v2'],
-      },
+        modelValue: ['prop v1', 'prop v2']
+      }
     })
 
     expect(wrapper.vm.selectedItems).toHaveLength(2)
@@ -407,12 +407,12 @@ describe('VSelect.ts', () => {
         items: [
           { text: 'one', value: { x: [1, 2], y: ['a', 'b'] } },
           { text: 'two', value: { x: [3, 4], y: ['a', 'b'] } },
-          { text: 'three', value: { x: [1, 2], y: ['a', 'c'] } },
+          { text: 'three', value: { x: [1, 2], y: ['a', 'c'] } }
         ],
         itemText: 'text',
         itemValue: 'value',
-        modelValue: { text: 'two', value: { x: [3, 4], y: ['a', 'b'] } },
-      },
+        modelValue: { text: 'two', value: { x: [3, 4], y: ['a', 'b'] } }
+      }
     })
 
     expect(wrapper.vm.selectedItems).toHaveLength(1)
@@ -428,15 +428,15 @@ describe('VSelect.ts', () => {
         items: [
           { text: 'one', value: { x: [1, 2], y: ['a', 'b'] } },
           { text: 'two', value: { x: [3, 4], y: ['a', 'b'] } },
-          { text: 'three', value: { x: [1, 2], y: ['a', 'c'] } },
+          { text: 'three', value: { x: [1, 2], y: ['a', 'c'] } }
         ],
         itemText: 'text',
         itemValue: 'value',
         modelValue: [
           { text: 'two', value: { x: [3, 4], y: ['a', 'b'] } },
-          { text: 'one', value: { x: [1, 2], y: ['a', 'b'] } },
-        ],
-      },
+          { text: 'one', value: { x: [1, 2], y: ['a', 'b'] } }
+        ]
+      }
     })
 
     expect(wrapper.vm.selectedItems).toHaveLength(2)
@@ -450,7 +450,7 @@ describe('VSelect.ts', () => {
     expect(wrapper.vm.internalValue).toBeUndefined()
 
     const wrapper2 = mountFunction({
-      props: { multiple: true },
+      props: { multiple: true }
     })
 
     expect(wrapper2.vm.internalValue).toEqual([])
@@ -461,11 +461,11 @@ describe('VSelect.ts', () => {
       attachTo: el,
       props: {
         eager: true,
-        items: [], // Убираем элементы, чтобы показать no-data слот
+        items: [] // Убираем элементы, чтобы показать no-data слот
       },
       slots: {
-        'no-data': () => h('div', 'foo'),
-      },
+        'no-data': () => h('div', 'foo')
+      }
     })
 
     // Открываем меню
@@ -485,8 +485,8 @@ describe('VSelect.ts', () => {
   it('should change autocomplete attribute', () => {
     const wrapper = mountFunction({
       attrs: {
-        autocomplete: 'on',
-      },
+        autocomplete: 'on'
+      }
     })
 
     expect(wrapper.vm.$attrs.autocomplete).toBe('on')
@@ -501,29 +501,29 @@ describe('VSelect.ts', () => {
     const dialogWrapper = mount(VDialog, {
       slots: {
         default: () => h(VSelect, {
-          items,
-        }),
+          items
+        })
       },
       props: {
         modelValue: false,
-        fullscreen: true,
+        fullscreen: true
       },
       global: {
         mocks: {
           $vuetify: {
             lang: {
-              t: (val: string) => val,
+              t: (val: string) => val
             },
             theme: {
-              dark: false,
+              dark: false
             },
             icons: {
-              component: 'mdi',
+              component: 'mdi'
             },
-            breakpoint: {},
-          },
-        },
-      },
+            breakpoint: {}
+          }
+        }
+      }
     }) as VueWrapper<InstanceType<typeof VDialog>>
 
     // click:outside event will be tested via emitted()

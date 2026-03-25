@@ -1,4 +1,4 @@
-import {h} from 'vue'
+import { h } from 'vue'
 // Components
 import VAvatar from '../VAvatar'
 
@@ -14,8 +14,8 @@ export default defineComponent({
     horizontal: Boolean,
     size: {
       type: [Number, String],
-      default: 40,
-    },
+      default: 40
+    }
   },
 
   computed: {
@@ -26,10 +26,10 @@ export default defineComponent({
         'v-avatar--tile': this.tile || this.horizontal,
         'v-list-item__avatar': true
       }
-    },
+    }
   },
 
   render (): VNode {
     return VAvatar.render.call(this)
-  },
+  }
 })

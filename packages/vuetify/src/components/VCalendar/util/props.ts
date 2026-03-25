@@ -1,4 +1,3 @@
-
 import { validateTimestamp, parseDate, DAYS_IN_WEEK, validateTime } from './timestamp'
 import type { PropType } from 'vue'
 import { CalendarEvent, CalendarFormatter, CalendarTimestamp, CalendarEventOverlapMode, CalendarEventNameFunction, CalendarEventColorFunction, CalendarEventCategoryFunction, CalendarEventTimedFunction, CalendarCategoryTextFunction, CalendarCategory } from 'vuetify/types'
@@ -9,204 +8,204 @@ export default {
     start: {
       type: [String, Number, Date],
       validate: validateTimestamp,
-      default: () => parseDate(new Date()).date,
+      default: () => parseDate(new Date()).date
     },
     end: {
       type: [String, Number, Date],
-      validate: validateTimestamp,
+      validate: validateTimestamp
     },
     weekdays: {
       type: [Array, String] as PropType<number[] | string>,
       default: () => [0, 1, 2, 3, 4, 5, 6],
-      validate: validateWeekdays,
+      validate: validateWeekdays
     },
     hideHeader: {
-      type: Boolean,
+      type: Boolean
     },
     shortWeekdays: {
       type: Boolean,
-      default: true,
+      default: true
     },
     weekdayFormat: {
       type: Function as PropType<CalendarFormatter>,
-      default: null,
+      default: null
     },
     dayFormat: {
       type: Function as PropType<CalendarFormatter>,
-      default: null,
-    },
+      default: null
+    }
   },
   intervals: {
     maxDays: {
       type: Number,
-      default: 7,
+      default: 7
     },
     shortIntervals: {
       type: Boolean,
-      default: true,
+      default: true
     },
     intervalHeight: {
       type: [Number, String],
       default: 48,
-      validate: validateNumber,
+      validate: validateNumber
     },
     intervalWidth: {
       type: [Number, String],
       default: 60,
-      validate: validateNumber,
+      validate: validateNumber
     },
     intervalMinutes: {
       type: [Number, String],
       default: 60,
-      validate: validateNumber,
+      validate: validateNumber
     },
     firstInterval: {
       type: [Number, String],
       default: 0,
-      validate: validateNumber,
+      validate: validateNumber
     },
     firstTime: {
       type: [Number, String, Object],
-      validate: validateTime,
+      validate: validateTime
     },
     intervalCount: {
       type: [Number, String],
       default: 24,
-      validate: validateNumber,
+      validate: validateNumber
     },
     intervalFormat: {
       type: Function as PropType<CalendarFormatter>,
-      default: null,
+      default: null
     },
     intervalStyle: {
       type: Function as PropType<(interval: CalendarTimestamp) => object>,
-      default: null,
+      default: null
     },
     showIntervalLabel: {
       type: Function as PropType<(interval: CalendarTimestamp) => boolean>,
-      default: null,
-    },
+      default: null
+    }
   },
   weeks: {
     localeFirstDayOfYear: {
       type: [String, Number],
-      default: 0,
+      default: 0
     },
     minWeeks: {
       validate: validateNumber,
-      default: 1,
+      default: 1
     },
     shortMonths: {
       type: Boolean,
-      default: true,
+      default: true
     },
     showMonthOnFirst: {
       type: Boolean,
-      default: true,
+      default: true
     },
     showWeek: Boolean,
     monthFormat: {
       type: Function as PropType<CalendarFormatter>,
-      default: null,
-    },
+      default: null
+    }
   },
   calendar: {
     type: {
       type: String,
-      default: 'month',
+      default: 'month'
     },
     value: {
       type: [String, Number, Date] as PropType<string | number | Date>,
-      validate: validateTimestamp,
-    },
+      validate: validateTimestamp
+    }
   },
   category: {
     categories: {
       type: [Array, String] as PropType<CalendarCategory[] | string>,
-      default: '',
+      default: ''
     },
     categoryText: {
-      type: [String, Function] as PropType<string | CalendarCategoryTextFunction>,
+      type: [String, Function] as PropType<string | CalendarCategoryTextFunction>
     },
     categoryHideDynamic: {
-      type: Boolean,
+      type: Boolean
     },
     categoryShowAll: {
-      type: Boolean,
+      type: Boolean
     },
     categoryForInvalid: {
       type: String,
-      default: '',
+      default: ''
     },
     categoryDays: {
       type: [Number, String],
       default: 1,
-      validate: (x: any) => isFinite(parseInt(x)) && parseInt(x) > 0,
-    },
+      validate: (x: any) => isFinite(parseInt(x)) && parseInt(x) > 0
+    }
   },
   events: {
     events: {
       type: Array,
-      default: () => [],
+      default: () => []
     } as unknown as PropType<CalendarEvent[]>,
     eventStart: {
       type: String,
-      default: 'start',
+      default: 'start'
     },
     eventEnd: {
       type: String,
-      default: 'end',
+      default: 'end'
     },
     eventTimed: {
       type: [String, Function] as PropType<string | CalendarEventTimedFunction>,
-      default: 'timed',
+      default: 'timed'
     },
     eventCategory: {
       type: [String, Function] as PropType<string | CalendarEventCategoryFunction>,
-      default: 'category',
+      default: 'category'
     },
     eventHeight: {
       type: Number,
-      default: 20,
+      default: 20
     },
     eventColor: {
       type: [String, Function] as PropType<string | CalendarEventColorFunction>,
-      default: 'primary',
+      default: 'primary'
     },
     eventTextColor: {
       type: [String, Function] as PropType<string | CalendarEventColorFunction>,
-      default: 'white',
+      default: 'white'
     },
     eventName: {
       type: [String, Function] as PropType<string | CalendarEventNameFunction>,
-      default: 'name',
+      default: 'name'
     },
     eventOverlapThreshold: {
       type: [String, Number],
-      default: 60,
+      default: 60
     },
     eventOverlapMode: {
       type: [String, Function],
       default: 'stack',
-      validate: (mode: any) => mode in CalendarEventOverlapModes || typeof mode === 'function',
+      validate: (mode: any) => mode in CalendarEventOverlapModes || typeof mode === 'function'
     } as unknown as PropType<'stack' | 'column' | CalendarEventOverlapMode>,
     eventMore: {
       type: Boolean,
-      default: true,
+      default: true
     },
     eventMoreText: {
       type: String,
-      default: '$vuetify.calendar.moreEvents',
+      default: '$vuetify.calendar.moreEvents'
     },
     eventRipple: {
       type: [Boolean, Object],
-      default: null,
+      default: null
     },
     eventMarginBottom: {
       type: Number,
-      default: 1,
-    },
-  },
+      default: 1
+    }
+  }
 }
 
 export function validateNumber (input: any): boolean {

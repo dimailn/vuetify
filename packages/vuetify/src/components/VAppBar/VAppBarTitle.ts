@@ -1,4 +1,4 @@
-import {h} from 'vue'
+import { h } from 'vue'
 // Mixins
 import { inject } from '../../mixins/registrable'
 
@@ -27,11 +27,11 @@ export default {
   data: () => ({
     contentWidth: 0,
     left: 0,
-    width: 0,
+    width: 0
   }),
 
   watch: {
-    '$vuetify.breakpoint.width': 'updateDimensions',
+    '$vuetify.breakpoint.width': 'updateDimensions'
   },
 
   computed: {
@@ -43,9 +43,9 @@ export default {
       const ratio = easeInOutCubic(Math.min(1, this.VAppBar.scrollRatio * 1.5))
       return {
         width: convertToUnit(min + (max - min) * ratio),
-        visibility: this.VAppBar.scrollRatio ? 'visible' : 'hidden',
+        visibility: this.VAppBar.scrollRatio ? 'visible' : 'hidden'
       }
-    },
+    }
   },
 
   mounted () {
@@ -58,25 +58,25 @@ export default {
       this.width = dimensions.width
       this.left = dimensions.left
       this.contentWidth = this.$refs.content.scrollWidth
-    },
+    }
   },
 
   render (): VNode {
     return h('div', {
-      class: 'v-toolbar__title v-app-bar-title',
+      class: 'v-toolbar__title v-app-bar-title'
     }, [
       h('div', {
         class: 'v-app-bar-title__content',
         style: this.styles,
-        ref: 'content',
+        ref: 'content'
       }, getSlot(this)),
       h('div', {
         class: 'v-app-bar-title__placeholder',
         style: {
-          visibility: this.VAppBar.scrollRatio ? 'hidden' : 'visible',
+          visibility: this.VAppBar.scrollRatio ? 'hidden' : 'visible'
         },
-        ref: 'placeholder',
-      }, getSlot(this)),
+        ref: 'placeholder'
+      }, getSlot(this))
     ])
-  },
+  }
 }

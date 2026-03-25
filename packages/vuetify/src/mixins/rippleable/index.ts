@@ -13,8 +13,8 @@ export default defineComponent({
   props: {
     ripple: {
       type: [Boolean, Object],
-      default: true,
-    },
+      default: true
+    }
   },
 
   methods: {
@@ -37,6 +37,6 @@ export default defineComponent({
           {}
         ]
       ])
-    },
-  },
+    }
+  }
 })

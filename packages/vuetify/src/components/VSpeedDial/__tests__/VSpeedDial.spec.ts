@@ -7,7 +7,7 @@ import VTooltip from '../../VTooltip/VTooltip'
 import {
   mount,
   Wrapper,
-  enableAutoUnmount,
+  enableAutoUnmount
 } from '@vue/test-utils'
 import { h } from 'vue'
 
@@ -20,7 +20,7 @@ describe('VSpeedDial.ts', () => {
   beforeEach(() => {
     mountFunction = (options = {}) => {
       return mount(VSpeedDial, {
-        ...options,
+        ...options
       })
     }
   })
@@ -34,9 +34,9 @@ describe('VSpeedDial.ts', () => {
   it('should render active component and match snapshot', () => {
     const wrapper = mountFunction({
       slots: {
-        default: () => h('span', 'test'),
+        default: () => h('span', 'test')
       },
-      data: () => ({ isActive: true }),
+      data: () => ({ isActive: true })
     })
 
     expect(wrapper.html()).toMatchSnapshot()
@@ -45,8 +45,8 @@ describe('VSpeedDial.ts', () => {
   it('should render component with custom direction and match snapshot', () => {
     const wrapper = mountFunction({
       props: {
-        direction: 'right',
-      },
+        direction: 'right'
+      }
     })
 
     expect(wrapper.html()).toMatchSnapshot()
@@ -63,8 +63,8 @@ describe('VSpeedDial.ts', () => {
   it('should activate on hover', async () => {
     const wrapper = mountFunction({
       props: {
-        openOnHover: true,
-      },
+        openOnHover: true
+      }
     })
 
     expect(wrapper.vm.isActive).toBe(false)
@@ -77,9 +77,9 @@ describe('VSpeedDial.ts', () => {
   it('should render v-btn and v-tooltip components when active', () => {
     const wrapper = mount(VSpeedDial, {
       slots: {
-        default: () => [h(VBtn, { key: 'btn' }), h(VTooltip, { key: 'tooltip' })],
+        default: () => [h(VBtn, { key: 'btn' }), h(VTooltip, { key: 'tooltip' })]
       },
-      data: () => ({ isActive: true }),
+      data: () => ({ isActive: true })
     })
 
     expect(wrapper.findComponent(VBtn).exists()).toBe(true)

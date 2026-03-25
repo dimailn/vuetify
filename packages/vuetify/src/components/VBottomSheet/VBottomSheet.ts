@@ -14,8 +14,8 @@ export default defineComponent({
     maxWidth: [String, Number],
     transition: {
       type: String,
-      default: 'bottom-sheet-transition',
-    },
+      default: 'bottom-sheet-transition'
+    }
   },
 
   computed: {
@@ -23,8 +23,8 @@ export default defineComponent({
       return {
         ...VDialog.computed.classes.call(this),
         'v-bottom-sheet': true,
-        'v-bottom-sheet--inset': this.inset,
+        'v-bottom-sheet--inset': this.inset
       }
-    },
-  },
+    }
+  }
 })

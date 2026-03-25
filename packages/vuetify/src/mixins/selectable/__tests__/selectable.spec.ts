@@ -6,14 +6,14 @@ import {
   mount,
   VueWrapper,
   MountingOptions,
-  enableAutoUnmount,
+  enableAutoUnmount
 } from '@vue/test-utils'
 import { ComponentPublicInstance, h, defineComponent } from 'vue'
 
 describe('Selectable.ts', () => {
   const Mock = defineComponent({
     mixins: [Selectable],
-    render: () => h('div'),
+    render: () => h('div')
   })
 
   type Instance = ComponentPublicInstance & InstanceType<typeof Mock>
@@ -24,7 +24,7 @@ describe('Selectable.ts', () => {
   beforeEach(() => {
     mountFunction = (options = {}) => {
       return mount(Mock, {
-        ...options,
+        ...options
       })
     }
   })
@@ -44,8 +44,8 @@ describe('Selectable.ts', () => {
   it('should handle disabled state', async () => {
     const wrapper = mountFunction({
       props: {
-        disabled: true,
-      },
+        disabled: true
+      }
     })
 
     expect(wrapper.vm.rippleState).toBeUndefined()

@@ -52,19 +52,18 @@ type options = ExtractVue<typeof baseMixins> & {
 export default baseMixins.extend({
   name: 'v-list-group',
 
-
   props: {
     activeClass: {
       type: String,
-      default: '',
+      default: ''
     },
     appendIcon: {
       type: String,
-      default: '$expand',
+      default: '$expand'
     },
     color: {
       type: String,
-      default: 'primary',
+      default: 'primary'
     },
     disabled: Boolean,
     group: [String, RegExp],
@@ -72,9 +71,9 @@ export default baseMixins.extend({
     prependIcon: String,
     ripple: {
       type: [Boolean, Object],
-      default: true,
+      default: true
     },
-    subGroup: Boolean,
+    subGroup: Boolean
   },
 
   computed: {
@@ -83,16 +82,16 @@ export default baseMixins.extend({
         'v-list-group--active': this.isActive,
         'v-list-group--disabled': this.disabled,
         'v-list-group--no-action': this.noAction,
-        'v-list-group--sub-group': this.subGroup,
+        'v-list-group--sub-group': this.subGroup
       }
-    },
+    }
   },
 
   created () {
     const breakingProps = [
       ['value', 'modelValue'],
       ['inputValue', 'modelValue'],
-      ['onInput', 'onUpdate:modelValue'],
+      ['onInput', 'onUpdate:modelValue']
     ]
 
     /* istanbul ignore next */
@@ -117,7 +116,7 @@ export default baseMixins.extend({
         this.list && this.list.listClick(this.$.uid)
       }
     },
-    $route: 'onRouteChange',
+    $route: 'onRouteChange'
   },
 
   beforeUnmount () {
@@ -143,9 +142,9 @@ export default baseMixins.extend({
       if (!icon && !slot) return null
 
       return h(VListItemIcon, {
-        class: 'v-list-group__header__append-icon',
+        class: 'v-list-group__header__append-icon'
       }, () => [
-        slot || this.genIcon(icon),
+        slot || this.genIcon(icon)
       ])
     },
     genHeader (): VNode {
@@ -154,7 +153,7 @@ export default baseMixins.extend({
         role: 'button',
         class: {
           'v-list-group__header': true,
-          [this.activeClass]: this.isActive,
+          [this.activeClass]: this.isActive
         },
         link: true,
         modelValue: this.isActive,
@@ -163,22 +162,22 @@ export default baseMixins.extend({
       }, () => [
         this.genPrependIcon(),
         getSlot(this, 'activator'),
-        this.genAppendIcon(),
+        this.genAppendIcon()
       ]),
       [
-        [Ripple, this.ripple],
+        [Ripple, this.ripple]
       ])
     },
     genItems (): VNode[] {
       const directives = [[
         vShow,
-        this.isActive,
+        this.isActive
       ]]
 
       return this.showLazyContent(() => [
         withDirectives(h('div', {
-          class: 'v-list-group__items',
-        }, getSlot(this)), directives as any),
+          class: 'v-list-group__items'
+        }, getSlot(this)), directives as any)
       ])
     },
     genPrependIcon (): VNode | null {
@@ -190,9 +189,9 @@ export default baseMixins.extend({
       if (!icon && !slot) return null
 
       return h(VListItemIcon, {
-        class: 'v-list-group__header__prepend-icon',
+        class: 'v-list-group__header__prepend-icon'
       }, () => [
-        slot || this.genIcon(icon),
+        slot || this.genIcon(icon)
       ])
     },
     onRouteChange (to: Route) {
@@ -216,15 +215,15 @@ export default baseMixins.extend({
     },
     matchRoute (to: string) {
       return to.match(this.group) !== null
-    },
+    }
   },
 
   render (): VNode {
     return h('div', this.setTextColor(this.isActive && this.color, {
-      class: ['v-list-group', this.classes],
+      class: ['v-list-group', this.classes]
     }), [
       this.genHeader(),
-      h(VExpandTransition, {}, () => this.genItems()),
+      h(VExpandTransition, {}, () => this.genItems())
     ])
-  },
+  }
 })

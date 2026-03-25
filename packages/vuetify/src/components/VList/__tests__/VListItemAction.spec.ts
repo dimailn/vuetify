@@ -6,7 +6,7 @@ import {
   mount,
   VueWrapper,
   MountingOptions,
-  enableAutoUnmount,
+  enableAutoUnmount
 } from '@vue/test-utils'
 import { functionalContext } from '../../../../test'
 import { defineComponent, h, ComponentPublicInstance } from 'vue'
@@ -20,7 +20,7 @@ describe('VListItemAction.ts', () => {
   beforeEach(() => {
     mountFunction = (options = {}) => {
       return mount(VListItemAction, {
-        ...options,
+        ...options
       })
     }
   })
@@ -34,8 +34,8 @@ describe('VListItemAction.ts', () => {
   it('should render component with static class and match snapshot', () => {
     const wrapper = mountFunction({
       attrs: {
-        class: 'static-class',
-      },
+        class: 'static-class'
+      }
     })
 
     expect(wrapper.html()).toMatchSnapshot()
@@ -46,8 +46,8 @@ describe('VListItemAction.ts', () => {
     const content2 = h('span', 'content2')
     const wrapper = mountFunction({
       slots: {
-        default: () => [content1, content2],
-      },
+        default: () => [content1, content2]
+      }
     })
 
     expect(wrapper.html()).toMatchSnapshot()
@@ -59,8 +59,8 @@ describe('VListItemAction.ts', () => {
 
     const wrapper = mountFunction({
       slots: {
-        default: () => [visible, notVisible],
-      },
+        default: () => [visible, notVisible]
+      }
     })
 
     expect(wrapper.html()).toMatchSnapshot()
@@ -70,9 +70,9 @@ describe('VListItemAction.ts', () => {
     const wrapper = mountFunction({
       slots: {
         default: () => h('div', {
-          innerHTML: '<b>something</b>',
-        }),
-      },
+          innerHTML: '<b>something</b>'
+        })
+      }
     })
 
     expect(wrapper.html()).toMatchSnapshot()

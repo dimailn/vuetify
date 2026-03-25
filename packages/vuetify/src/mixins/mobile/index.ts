@@ -13,22 +13,22 @@ export default defineComponent({
       validator: v => (
         !isNaN(Number(v)) ||
         ['xs', 'sm', 'md', 'lg', 'xl'].includes(String(v))
-      ),
-    },
+      )
+    }
   },
 
   computed: {
-    $mobileBreakpoint() {
+    $mobileBreakpoint () {
       return this.mobileBreakpoint || (this.$vuetify
-      ? this.$vuetify.breakpoint.mobileBreakpoint
-      : undefined)
+        ? this.$vuetify.breakpoint.mobileBreakpoint
+        : undefined)
     },
     isMobile (): boolean {
       const {
         mobile,
         width,
         name,
-        mobileBreakpoint,
+        mobileBreakpoint
       } = this.$vuetify.breakpoint
 
       // Check if local mobileBreakpoint matches
@@ -41,7 +41,7 @@ export default defineComponent({
       return isNumber
         ? width < mobileWidth
         : name === this.$mobileBreakpoint
-    },
+    }
   },
 
   created () {
@@ -49,5 +49,5 @@ export default defineComponent({
     if (this.$attrs.hasOwnProperty('mobile-break-point')) {
       deprecate('mobile-break-point', 'mobile-breakpoint', this)
     }
-  },
+  }
 })

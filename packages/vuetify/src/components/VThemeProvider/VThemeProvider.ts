@@ -16,7 +16,7 @@ export default {
       return this.root
         ? this.rootIsDark
         : Themeable.computed.isDark.call(this)
-    },
+    }
   },
 
   render (): VNode {
@@ -25,5 +25,5 @@ export default {
       this.$slots.default! &&
       this.$slots.default!().find(node => !node.isComment && node.text !== ' ')!
     )
-  },
+  }
 }

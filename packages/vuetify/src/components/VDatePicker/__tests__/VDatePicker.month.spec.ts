@@ -24,19 +24,19 @@ describe('VDatePicker.ts', () => {
             $vuetify: {
               rtl: false,
               lang: new Lang({
-                ...preset,
+                ...preset
               }),
               icons: {
                 values: {
                   next: 'mdi-chevron-right',
-                  prev: 'mdi-chevron-left',
+                  prev: 'mdi-chevron-left'
                 },
-                component: 'mdi',
-              },
-            },
+                component: 'mdi'
+              }
+            }
           },
-          ...options.global,
-        },
+          ...options.global
+        }
       })
     }
   })
@@ -46,11 +46,11 @@ describe('VDatePicker.ts', () => {
       props: {
         modelValue: '2013-05',
         type: 'month',
-        reactive: true,
+        reactive: true
       },
       data: () => ({
-        internalActivePicker: 'YEAR',
-      }),
+        internalActivePicker: 'YEAR'
+      })
     })
 
     const yearElements = wrapper.findAll('.v-date-picker-years li.active + li')
@@ -67,8 +67,8 @@ describe('VDatePicker.ts', () => {
       props: {
         modelValue: '2013-05',
         flat: true,
-        type: 'month',
-      },
+        type: 'month'
+      }
     })
 
     expect(wrapper.html()).toMatchSnapshot()
@@ -79,8 +79,8 @@ describe('VDatePicker.ts', () => {
       props: {
         modelValue: '2013-05',
         elevation: 15,
-        type: 'month',
-      },
+        type: 'month'
+      }
     })
 
     expect(wrapper.html()).toMatchSnapshot()
@@ -91,11 +91,11 @@ describe('VDatePicker.ts', () => {
       props: {
         modelValue: '2013-05',
         type: 'month',
-        allowedDates: () => false,
+        allowedDates: () => false
       },
       data: () => ({
-        internalActivePicker: 'YEAR',
-      }),
+        internalActivePicker: 'YEAR'
+      })
     })
 
     const yearElements = wrapper.findAll('.v-date-picker-years li.active + li')
@@ -109,8 +109,8 @@ describe('VDatePicker.ts', () => {
     const wrapper = mountFunction({
       props: {
         modelValue: '2013-05',
-        type: 'month',
-      },
+        type: 'month'
+      }
     })
 
     const monthButtons = wrapper.findAll('.v-date-picker-table--month button')
@@ -126,8 +126,8 @@ describe('VDatePicker.ts', () => {
       props: {
         modelValue: '2013-05',
         type: 'month',
-        scrollable: true,
-      },
+        scrollable: true
+      }
     })
 
     await wrapper.findAll('.v-date-picker-table--month')[0].trigger('wheel', { deltaY: 1 })
@@ -139,8 +139,8 @@ describe('VDatePicker.ts', () => {
     const wrapper = mountFunction({
       props: {
         modelValue: '2013-05-07',
-        type: 'month',
-      },
+        type: 'month'
+      }
     })
 
     expect(wrapper.html()).toMatchSnapshot()
@@ -151,8 +151,8 @@ describe('VDatePicker.ts', () => {
       props: {
         modelValue: '2013-05',
         type: 'month',
-        allowedDates: value => ['2013-01', '2013-03', '2013-05', '2013-07'].includes(value),
-      },
+        allowedDates: value => ['2013-01', '2013-03', '2013-05', '2013-07'].includes(value)
+      }
     })
 
     expect(wrapper.findAll('.v-date-picker-table--month tbody')[0].html()).toMatchSnapshot()
@@ -163,8 +163,8 @@ describe('VDatePicker.ts', () => {
       props: {
         modelValue: '2005-11-01',
         type: 'month',
-        monthFormat: date => `(${date.split('-')[1]})`,
-      },
+        monthFormat: date => `(${date.split('-')[1]})`
+      }
     })
 
     expect(wrapper.findAll('.v-date-picker-table--month tbody')[0].html()).toMatchSnapshot()
@@ -176,8 +176,8 @@ describe('VDatePicker.ts', () => {
         type: 'month',
         modelValue: '2005-11-01',
         color: 'primary',
-        headerColor: 'orange darken-1',
-      },
+        headerColor: 'orange darken-1'
+      }
     })
 
     expect(wrapper.html()).toMatchSnapshot()
@@ -188,8 +188,8 @@ describe('VDatePicker.ts', () => {
       props: {
         type: 'month',
         modelValue: '2005-11-01',
-        color: 'orange darken-1',
-      },
+        color: 'orange darken-1'
+      }
     })
 
     expect(wrapper.html()).toMatchSnapshot()
@@ -199,8 +199,8 @@ describe('VDatePicker.ts', () => {
     const wrapper = mountFunction({
       props: {
         modelValue: '2005-11',
-        type: 'month',
-      },
+        type: 'month'
+      }
     })
 
     const [leftButton, rightButton] = wrapper.findAll('.v-date-picker-header button.v-btn')
@@ -216,8 +216,8 @@ describe('VDatePicker.ts', () => {
     const wrapper = mountFunction({
       props: {
         modelValue: '2005-11-01',
-        type: 'month',
-      },
+        type: 'month'
+      }
     })
 
     const button = wrapper.findAll('.v-date-picker-header__value button')[0]
@@ -230,11 +230,11 @@ describe('VDatePicker.ts', () => {
     const wrapper = mountFunction({
       props: {
         type: 'month',
-        modelValue: '2005-11',
+        modelValue: '2005-11'
       },
       data: () => ({
-        internalActivePicker: 'YEAR',
-      }),
+        internalActivePicker: 'YEAR'
+      })
     })
 
     const yearElements = wrapper.findAll('.v-date-picker-years li.active + li')
@@ -249,8 +249,8 @@ describe('VDatePicker.ts', () => {
     const wrapper = mountFunction({
       props: {
         modelValue: null,
-        type: 'month',
-      },
+        type: 'month'
+      }
     })
 
     await wrapper.setProps({ modelValue: '2005-11' })
@@ -264,8 +264,8 @@ describe('VDatePicker.ts', () => {
       props: {
         type: 'month',
         prevIcon: 'block',
-        nextIcon: 'check',
-      },
+        nextIcon: 'check'
+      }
     })
 
     const icons = wrapper.findAll('.v-date-picker-header .v-icon')
@@ -282,21 +282,21 @@ describe('VDatePicker.ts', () => {
       props: {
         multiple: true,
         type: 'month',
-        modelValue: ['2013-05'],
-      },
+        modelValue: ['2013-05']
+      }
     })
 
     expect(wrapper.find('.v-date-picker-title__date').text()).toBe('May')
 
     await wrapper.setProps({
-      modelValue: [],
+      modelValue: []
     })
     // В некоторых локализациях может возвращать дополнительные символы, проверяем что содержит '-'
     const titleText = wrapper.find('.v-date-picker-title__date').text()
     expect(titleText).toContain('-')
 
     await wrapper.setProps({
-      modelValue: ['2013-05', '2013-06', '2013-07'],
+      modelValue: ['2013-05', '2013-06', '2013-07']
     })
     // В некоторых локализациях может добавляться дополнительные символы
     const selectedText = wrapper.find('.v-date-picker-title__date').text()
@@ -309,12 +309,12 @@ describe('VDatePicker.ts', () => {
     const wrapper = mountFunction({
       props: {
         modelValue: '2013-05',
-        type: 'month',
+        type: 'month'
       },
       attrs: {
-        'onClickMonth': (value: any, event: any) => click(value, event instanceof Event),
-        'onDblclickMonth': (value: any, event: any) => dblclick(value, event instanceof Event),
-      },
+        onClickMonth: (value: any, event: any) => click(value, event instanceof Event),
+        onDblclickMonth: (value: any, event: any) => dblclick(value, event instanceof Event)
+      }
     })
 
     const monthButtons = wrapper.findAll('.v-date-picker-table--month tbody tr+tr td:first-child button')
@@ -332,8 +332,8 @@ describe('VDatePicker.ts', () => {
       props: {
         range: true,
         type: 'month',
-        modelValue: [],
-      },
+        modelValue: []
+      }
     })
     const year = new Date().getFullYear()
     const toDate = `${year}-08`
@@ -365,8 +365,8 @@ describe('VDatePicker.ts', () => {
         range: true,
         showCurrent: '2019',
         type: 'month',
-        modelValue: ['2019-01', '2019-02'],
-      },
+        modelValue: ['2019-01', '2019-02']
+      }
     })
 
     expect(wrapper.findAll('.v-date-picker-table--month tbody button.v-date-picker--first-in-range')

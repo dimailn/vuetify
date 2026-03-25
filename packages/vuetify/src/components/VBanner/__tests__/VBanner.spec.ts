@@ -8,7 +8,7 @@ import { preset } from '../../../presets/default'
 // Utilities
 import {
   mount,
-  Wrapper,
+  Wrapper
 } from '@vue/test-utils'
 import { h } from 'vue'
 
@@ -28,19 +28,19 @@ describe('VBanner.ts', () => {
             $vuetify: {
               application: {
                 top: 0,
-                bar: 0,
+                bar: 0
               },
               breakpoint: {
                 mobile: true,
                 mobileBreakpoint: 1264,
-                width: 1000,
+                width: 1000
               },
               icons: {
-                component: null,
-              },
-            },
-          },
-        },
+                component: null
+              }
+            }
+          }
+        }
       })
     }
   })
@@ -48,8 +48,8 @@ describe('VBanner.ts', () => {
   it('should render component with content', () => {
     const wrapper = mountFunction({
       slots: {
-        default: 'Hello, World!',
-      },
+        default: 'Hello, World!'
+      }
     })
 
     expect(wrapper.html()).toMatchSnapshot()
@@ -58,11 +58,11 @@ describe('VBanner.ts', () => {
   it('should render sinle-line component with content', () => {
     const wrapper = mountFunction({
       props: {
-        singleLine: true,
+        singleLine: true
       },
       slots: {
-        default: 'Hello, World!',
-      },
+        default: 'Hello, World!'
+      }
     })
 
     expect(wrapper.html()).toMatchSnapshot()
@@ -71,11 +71,11 @@ describe('VBanner.ts', () => {
   it('should render component with icon', () => {
     const wrapper = mountFunction({
       slots: {
-        default: 'Hello, World!',
+        default: 'Hello, World!'
       },
       props: {
-        icon: 'mdi-plus',
-      },
+        icon: 'mdi-plus'
+      }
     })
 
     expect(wrapper.html()).toMatchSnapshot()
@@ -85,8 +85,8 @@ describe('VBanner.ts', () => {
     const wrapper = mountFunction({
       slots: {
         default: 'Hello, World!',
-        icon: () => h('span', ['icon']),
-      },
+        icon: () => h('span', ['icon'])
+      }
     })
 
     expect(wrapper.html()).toMatchSnapshot()
@@ -96,8 +96,8 @@ describe('VBanner.ts', () => {
     const wrapper = mountFunction({
       slots: {
         default: 'Hello, World!',
-        actions: () => h('div', [h('button', ['OK']), h('button', ['Cancel'])]),
-      },
+        actions: () => h('div', [h('button', ['OK']), h('button', ['Cancel'])])
+      }
     })
 
     expect(wrapper.html()).toMatchSnapshot()
@@ -106,11 +106,11 @@ describe('VBanner.ts', () => {
   it('should emit click:icon event', () => {
     const wrapper = mountFunction({
       slots: {
-        default: 'Hello, World!',
+        default: 'Hello, World!'
       },
       props: {
-        icon: 'mdi-plus',
-      },
+        icon: 'mdi-plus'
+      }
     })
 
     const icon = wrapper.find('.v-banner__icon')
@@ -123,8 +123,8 @@ describe('VBanner.ts', () => {
   it(`should not render icon container if icon property and slot aren't passed`, () => {
     const wrapper = mountFunction({
       slots: {
-        default: 'Hello, World!',
-      },
+        default: 'Hello, World!'
+      }
     })
 
     expect(wrapper.findAll('.v-banner__icon')).toHaveLength(0)
@@ -133,8 +133,8 @@ describe('VBanner.ts', () => {
   it(`should not render actions container if slot isn't passed`, () => {
     const wrapper = mountFunction({
       slots: {
-        default: 'Hello, World!',
-      },
+        default: 'Hello, World!'
+      }
     })
 
     expect(wrapper.findAll('.v-banner__actions')).toHaveLength(0)
@@ -145,8 +145,8 @@ describe('VBanner.ts', () => {
       slots: {
         default: 'Hello, World!',
         icon: 'Hello, World!',
-        actions: 'Hello, World!',
-      },
+        actions: 'Hello, World!'
+      }
     })
 
     expect(wrapper.findAll('.v-banner__content')).toHaveLength(1)
@@ -157,8 +157,8 @@ describe('VBanner.ts', () => {
   it('should toggle', () => {
     const wrapper = mountFunction({
       slots: {
-        default: 'Hello, World!',
-      },
+        default: 'Hello, World!'
+      }
     })
 
     expect(wrapper.vm.isActive).toBeTruthy()
@@ -172,9 +172,9 @@ describe('VBanner.ts', () => {
         default: 'Hello, World!',
         actions: ({ dismiss }) => h('div', {
           onClick: dismiss,
-          class: 'test',
-        }),
-      },
+          class: 'test'
+        })
+      }
     })
 
     const test = wrapper.find('.test')
@@ -186,15 +186,15 @@ describe('VBanner.ts', () => {
   it('should be responsive', () => {
     const wrapper = mount(VBanner, {
       slots: {
-        default: 'Hello, World!',
+        default: 'Hello, World!'
       },
       global: {
         mocks: {
           $vuetify: {
-            breakpoint: new Breakpoint(preset),
-          },
-        },
-      },
+            breakpoint: new Breakpoint(preset)
+          }
+        }
+      }
     })
 
     expect(wrapper.classes('v-banner--is-mobile')).toBeTruthy()
@@ -202,7 +202,7 @@ describe('VBanner.ts', () => {
 
   it('should apply sticky when using the app prop', async () => {
     const wrapper = mountFunction({
-      props: { app: true },
+      props: { app: true }
     })
 
     expect(wrapper.vm.isSticky).toBe(true)
@@ -211,7 +211,7 @@ describe('VBanner.ts', () => {
 
     await wrapper.setProps({
       app: false,
-      sticky: true,
+      sticky: true
     })
 
     expect(wrapper.vm.isSticky).toBe(true)

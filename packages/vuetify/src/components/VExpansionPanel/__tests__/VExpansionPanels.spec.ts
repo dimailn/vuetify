@@ -6,7 +6,7 @@ import {
   mount,
   VueWrapper,
   MountingOptions,
-  enableAutoUnmount,
+  enableAutoUnmount
 } from '@vue/test-utils'
 
 describe('VExpansionPanels.ts', () => {
@@ -18,20 +18,20 @@ describe('VExpansionPanels.ts', () => {
   beforeEach(() => {
     mountFunction = (options = {}) => {
       return mount(VExpansionPanels, {
-        ...options,
+        ...options
       })
     }
   })
 
   it('should work', async () => {
     const wrapper = mountFunction({
-      props: { modelValue: 0 },
+      props: { modelValue: 0 }
     })
 
     const item = {
       isActive: false,
       nextIsActive: false,
-      value: undefined,
+      value: undefined
     } as any
 
     wrapper.vm.updateItem(item, 0)

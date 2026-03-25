@@ -8,7 +8,7 @@ import { preset } from '../../../presets/default'
 import {
   mount,
   MountingOptions,
-  VueWrapper,
+  VueWrapper
 } from '@vue/test-utils'
 import { nextTick } from 'vue'
 
@@ -17,13 +17,13 @@ const testHeaders = [
     text: 'Dessert (100g serving)',
     align: 'left',
     sortable: false,
-    value: 'name',
+    value: 'name'
   },
   { text: 'Calories', width: 50, value: 'calories' },
   { text: 'Fat (g)', width: '50em', value: 'fat' },
   { text: 'Carbs (g)', value: 'carbs' },
   { text: 'Protein (g)', value: 'protein' },
-  { text: 'Iron (%)', value: 'iron' },
+  { text: 'Iron (%)', value: 'iron' }
 ]
 
 describe('VDataTableHeader.ts', () => {
@@ -41,7 +41,7 @@ describe('VDataTableHeader.ts', () => {
             props: {
               headers: testHeaders,
               mobile: isMobile,
-              ...(options || {}).props,
+              ...(options || {}).props
             },
             global: {
               mocks: {
@@ -50,14 +50,14 @@ describe('VDataTableHeader.ts', () => {
                   rtl: false,
                   lang: new Lang(preset),
                   theme: {
-                    dark: false,
-                  },
-                },
+                    dark: false
+                  }
+                }
               },
               directives: {
-                ripple,
-              },
-            },
+                ripple
+              }
+            }
           })
         }
       })
@@ -70,8 +70,8 @@ describe('VDataTableHeader.ts', () => {
       it('should work with showGroupBy', () => {
         const wrapper = mountFunction({
           props: {
-            showGroupBy: true,
-          },
+            showGroupBy: true
+          }
         })
 
         expect(wrapper.html()).toMatchSnapshot()
@@ -83,9 +83,9 @@ describe('VDataTableHeader.ts', () => {
             options: {
               multiSort: true,
               sortBy: ['iron'],
-              sortDesc: [true],
-            },
-          },
+              sortDesc: [true]
+            }
+          }
         })
 
         expect(wrapper.html()).toMatchSnapshot()
@@ -96,9 +96,9 @@ describe('VDataTableHeader.ts', () => {
           props: {
             options: {
               sortBy: ['iron'],
-              sortDesc: [true],
-            },
-          },
+              sortDesc: [true]
+            }
+          }
         })
 
         expect(wrapper.html()).toMatchSnapshot()
@@ -109,9 +109,9 @@ describe('VDataTableHeader.ts', () => {
           props: {
             options: {
               sortBy: ['iron', 'carbs'],
-              sortDesc: [false, true],
-            },
-          },
+              sortDesc: [false, true]
+            }
+          }
         })
 
         expect(wrapper.html()).toMatchSnapshot()
@@ -121,8 +121,8 @@ describe('VDataTableHeader.ts', () => {
         it('should render with data-table-select header', () => {
           const wrapper = mountFunction({
             props: {
-              headers: [...testHeaders, { text: 'test', value: 'data-table-select' }],
-            },
+              headers: [...testHeaders, { text: 'test', value: 'data-table-select' }]
+            }
           })
 
           expect(wrapper.html()).toMatchSnapshot()
@@ -151,10 +151,10 @@ describe('VDataTableHeader.ts', () => {
                 {
                   value: 'data-table-select',
                   width: '100px',
-                  class: 'foo',
-                },
-              ],
-            },
+                  class: 'foo'
+                }
+              ]
+            }
           })
 
           const foo = wrapper.find('.foo')

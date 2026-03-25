@@ -7,7 +7,7 @@ import {
   VListItem,
   VListItemAction,
   VListItemContent,
-  VListItemTitle,
+  VListItemTitle
 } from '../VList'
 
 // Directives
@@ -40,27 +40,27 @@ export default mixins(Colorable, Themeable).extend({
     hideSelected: Boolean,
     items: {
       type: Array,
-      default: () => [],
+      default: () => []
     } as unknown as PropType<any[]>,
     itemDisabled: {
       type: [String, Array, Function] as PropType<SelectItemKey>,
-      default: 'disabled',
+      default: 'disabled'
     },
     itemText: {
       type: [String, Array, Function] as PropType<SelectItemKey>,
-      default: 'text',
+      default: 'text'
     },
     itemValue: {
       type: [String, Array, Function] as PropType<SelectItemKey>,
-      default: 'value',
+      default: 'value'
     },
     noDataText: String,
     noFilter: Boolean,
     searchInput: null as unknown as PropType<any>,
     selectedItems: {
       type: Array,
-      default: () => [],
-    } as unknown as PropType<any[]>,
+      default: () => []
+    } as unknown as PropType<any[]>
   },
 
   computed: {
@@ -73,19 +73,19 @@ export default mixins(Colorable, Themeable).extend({
     staticNoDataTile (): VNode {
       const tile = {
         role: undefined,
-        onMousedown: (e: Event) => e.preventDefault(), // Prevent onBlur from being called
+        onMousedown: (e: Event) => e.preventDefault() // Prevent onBlur from being called
       }
 
       return h(VListItem, tile, [
-        this.genTileContent(this.noDataText),
+        this.genTileContent(this.noDataText)
       ])
-    },
+    }
   },
 
   created () {
     const breakingProps = [
       ['value', 'modelValue'],
-      ['onInput', 'onUpdate:modelValue'],
+      ['onInput', 'onUpdate:modelValue']
     ]
 
     /* istanbul ignore next */
@@ -101,8 +101,8 @@ export default mixins(Colorable, Themeable).extend({
           color: this.color,
           modelValue: inputValue,
           ripple: false,
-          'onUpdate:modelValue': () => this.$emit('select', item),
-        }),
+          'onUpdate:modelValue': () => this.$emit('select', item)
+        })
       ])
     },
     genDivider (props: { [key: string]: any }) {
@@ -142,7 +142,7 @@ export default mixins(Colorable, Themeable).extend({
       item,
       index,
       disabled = null,
-      value = false,
+      value = false
     }: ListTile): VNode | VNode[] | undefined {
       if (!value) value = this.hasItem(item)
 
@@ -173,7 +173,7 @@ export default mixins(Colorable, Themeable).extend({
             acc[key] = this.$attrs[key]
           }
           return acc
-        }, {} as Record<string, any>),
+        }, {} as Record<string, any>)
       }
 
       if (!this.$slots.item) {
@@ -181,7 +181,7 @@ export default mixins(Colorable, Themeable).extend({
           this.action && !this.hideSelected && this.items.length > 0
             ? this.genAction(item, value)
             : null,
-          this.genTileContent(item, index),
+          this.genTileContent(item, index)
         ])
       }
 
@@ -194,8 +194,8 @@ export default mixins(Colorable, Themeable).extend({
         attrs: tile,
         on: {
           onMousedown,
-          onClick,
-        },
+          onClick
+        }
       })
 
       return this.needsTile(scopedSlot)
@@ -205,8 +205,8 @@ export default mixins(Colorable, Themeable).extend({
     genTileContent (item: any, index = 0): VNode {
       return h(VListItemContent, {}, () => [
         h(VListItemTitle, {}, () => [
-          this.genFilteredText(this.getText(item)),
-        ]),
+          this.genFilteredText(this.getText(item))
+        ])
       ])
     },
     hasItem (item: object) {
@@ -244,7 +244,7 @@ export default mixins(Colorable, Themeable).extend({
     },
     getValue (item: object) {
       return getPropertyFromItem(item, this.itemValue, this.getText(item))
-    },
+    }
   },
 
   render (): VNode {
@@ -277,7 +277,7 @@ export default mixins(Colorable, Themeable).extend({
       onMousedown: (e: Event) => {
         e.preventDefault()
       },
-      dense: this.dense,
+      dense: this.dense
     }, children)
-  },
+  }
 })

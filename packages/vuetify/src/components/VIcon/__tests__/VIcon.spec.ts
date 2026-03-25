@@ -8,7 +8,7 @@ import VIcon from '../VIcon'
 import {
   mount,
   VueWrapper,
-  enableAutoUnmount,
+  enableAutoUnmount
 } from '@vue/test-utils'
 
 // Импортируем внутренний компонент для прямого тестирования
@@ -29,13 +29,13 @@ describe('VIcon', () => {
     mountFunction = (ctx: MountContext = {}, name = 'add') => {
       return mount(VIcon, {
         props: {
-          ...ctx.props,
+          ...ctx.props
         },
         attrs: {
-          ...ctx.attrs,
+          ...ctx.attrs
         },
         slots: {
-          default: () => name,
+          default: () => name
         }
       })
     }
@@ -76,7 +76,7 @@ describe('VIcon', () => {
       xSmall: '12px',
       small: '16px',
       large: '36px',
-      xLarge: '40px',
+      xLarge: '40px'
     }
 
     Object.keys(SIZE_MAP).forEach(size => {
@@ -134,7 +134,7 @@ describe('VIcon', () => {
 
   it('should allow the use of v-text', () => {
     const wrapper = mountFunction({
-      attrs: { textContent: 'fa-home' },
+      attrs: { textContent: 'fa-home' }
     })
 
     expect(wrapper.find('.v-icon').exists()).toBe(true)
@@ -144,7 +144,7 @@ describe('VIcon', () => {
 
   it('should allow the use of v-html', () => {
     const wrapper = mountFunction({
-      attrs: { innerHTML: 'fa-home' },
+      attrs: { innerHTML: 'fa-home' }
     })
 
     expect(wrapper.find('.v-icon').exists()).toBe(true)
@@ -154,7 +154,7 @@ describe('VIcon', () => {
 
   it('set font size from helper prop', async () => {
     const iconFactory = size => mountFunction({
-      props: { [size]: true },
+      props: { [size]: true }
     })
 
     const small = iconFactory('small')
@@ -173,11 +173,11 @@ describe('VIcon', () => {
   it('should have proper classname', () => {
     const wrapper = mountFunction({
       props: {
-        color: 'primary',
+        color: 'primary'
       },
       attrs: {
-        innerHTML: 'fa-lock',
-      },
+        innerHTML: 'fa-lock'
+      }
     })
 
     expect(wrapper.element.classList).toContain('primary--text')
@@ -220,22 +220,22 @@ describe('VIcon', () => {
       props: ['name'],
       render () {
         return h('div', {
-          class: 'test-component',
+          class: 'test-component'
         }, this.name)
-      },
+      }
     })
 
     it('should render component', () => {
       const wrapper = mount(VIcon, {
         slots: {
-          default: () => '$testIcon',
+          default: () => '$testIcon'
         },
         global: {
           mocks: {
             $vuetify: {
               theme: {
                 current: 'light',
-                dark: false,
+                dark: false
               },
               icons: {
                 component: null,
@@ -243,13 +243,13 @@ describe('VIcon', () => {
                   testIcon: {
                     component: getTestComponent(),
                     props: {
-                      name: 'test icon',
-                    },
-                  },
-                },
-              },
-            },
-          },
+                      name: 'test icon'
+                    }
+                  }
+                }
+              }
+            }
+          }
         }
       })
 
@@ -265,11 +265,11 @@ describe('VIcon', () => {
 
     it('should render an svg icon', async () => {
       const svgPath = 'M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z'
-      
+
       // Тестируем напрямую внутренний компонент VIconInternal
       const directWrapper = mount(VIconInternal, {
         slots: {
-          default: () => svgPath,
+          default: () => svgPath
         },
         global: {
           mocks: {
@@ -279,34 +279,34 @@ describe('VIcon', () => {
                 dark: false,
                 themes: {
                   light: {},
-                  dark: {},
-                },
+                  dark: {}
+                }
               },
               rtl: false,
               icons: {
                 component: null,
-                values: {},
-              },
-            },
-          },
+                values: {}
+              }
+            }
+          }
         }
       })
-      
+
       expect(directWrapper.html()).toMatchSnapshot()
 
       await directWrapper.setProps({ large: true })
-      
+
       expect(directWrapper.html()).toMatchSnapshot()
     })
 
     it('should detect svg path correctly', () => {
       const svgPath = 'M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z'
-      
+
       // Проверяем функцию определения SVG пути
       const isSvgPath = (icon: string): boolean => {
         return (/^[mzlhvcsqta]\s*[-+.0-9][^mlhvzcsqta]+/i.test(icon) && /[\dz]$/i.test(icon) && icon.length > 4)
       }
-      
+
       expect(isSvgPath(svgPath)).toBe(true)
       expect(isSvgPath('mdi-home')).toBe(false)
       expect(isSvgPath('material-icons')).toBe(false)

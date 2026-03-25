@@ -3,7 +3,7 @@ import { h } from 'vue'
 import {
   mount,
   MountingOptions,
-  VueWrapper,
+  VueWrapper
 } from '@vue/test-utils'
 
 describe('VData.ts', () => {
@@ -12,7 +12,7 @@ describe('VData.ts', () => {
   beforeEach(() => {
     mountFunction = (options?: any) => {
       return mount(VData, {
-        ...options,
+        ...options
       })
     }
   })
@@ -22,12 +22,12 @@ describe('VData.ts', () => {
       props: {
         items: [
           { id: 1, text: 'foo' },
-          { id: 2, text: 'bar' },
-        ],
+          { id: 2, text: 'bar' }
+        ]
       },
       slots: {
-        default: (data: any) => h('div', data.items.map((item: any) => h('div', [item.text]))),
-      },
+        default: (data: any) => h('div', data.items.map((item: any) => h('div', [item.text])))
+      }
     })
 
     await wrapper.vm.$nextTick()
@@ -41,30 +41,30 @@ describe('VData.ts', () => {
       props: {
         items: [
           { id: 1, text: 'foo' },
-          { id: 2, text: 'bar' },
-        ],
+          { id: 2, text: 'bar' }
+        ]
       },
       slots: {
-        default: render,
-      },
+        default: render
+      }
     })
 
     await wrapper.vm.$nextTick()
     expect(render).toHaveBeenCalledWith(expect.objectContaining({
       pagination: expect.objectContaining({
-        itemsLength: 2,
-      }),
+        itemsLength: 2
+      })
     }))
 
     await wrapper.setProps({
-      serverItemsLength: 10,
+      serverItemsLength: 10
     })
 
     await wrapper.vm.$nextTick()
     expect(render).toHaveBeenCalledWith(expect.objectContaining({
       pagination: expect.objectContaining({
-        itemsLength: 10,
-      }),
+        itemsLength: 10
+      })
     }))
   })
 
@@ -73,30 +73,30 @@ describe('VData.ts', () => {
     const items = [
       { id: 1, text: 'foo', baz: 'one' },
       { id: 2, text: 'bar', baz: 'two' },
-      { id: 3, text: 'baz', baz: 'one' },
+      { id: 3, text: 'baz', baz: 'one' }
     ]
 
     const wrapper = mountFunction({
       props: {
         items,
-        groupBy: ['baz'],
+        groupBy: ['baz']
       },
       slots: {
-        default: render,
-      },
+        default: render
+      }
     })
 
     expect(render).toHaveBeenCalledWith(expect.objectContaining({
       groupedItems: [
         {
           name: 'one',
-          items: [items[0], items[2]],
+          items: [items[0], items[2]]
         },
         {
           name: 'two',
-          items: [items[1]],
-        },
-      ],
+          items: [items[1]]
+        }
+      ]
     }))
   })
 
@@ -105,30 +105,30 @@ describe('VData.ts', () => {
     const items = [
       { id: 1, text: 'foo', baz: null },
       { id: 2, text: 'bar', baz: 'one' },
-      { id: 3, text: 'baz' },
+      { id: 3, text: 'baz' }
     ]
 
     const wrapper = mountFunction({
       props: {
         items,
-        groupBy: ['baz'],
+        groupBy: ['baz']
       },
       slots: {
-        default: render,
-      },
+        default: render
+      }
     })
 
     expect(render).toHaveBeenCalledWith(expect.objectContaining({
       groupedItems: [
         {
           name: '',
-          items: [items[0], items[2]],
+          items: [items[0], items[2]]
         },
         {
           name: 'one',
-          items: [items[1]],
-        },
-      ],
+          items: [items[1]]
+        }
+      ]
     }))
   })
 
@@ -137,30 +137,30 @@ describe('VData.ts', () => {
     const items = [
       { id: 1, text: 'foo', foo: { bar: 'one' } },
       { id: 2, text: 'bar', foo: { bar: 'two' } },
-      { id: 3, text: 'baz', foo: { bar: 'one' } },
+      { id: 3, text: 'baz', foo: { bar: 'one' } }
     ]
 
     const wrapper = mountFunction({
       props: {
         items,
-        groupBy: ['foo.bar'],
+        groupBy: ['foo.bar']
       },
       slots: {
-        default: render,
-      },
+        default: render
+      }
     })
 
     expect(render).toHaveBeenCalledWith(expect.objectContaining({
       groupedItems: [
         {
           name: 'one',
-          items: [items[0], items[2]],
+          items: [items[0], items[2]]
         },
         {
           name: 'two',
-          items: [items[1]],
-        },
-      ],
+          items: [items[1]]
+        }
+      ]
     }))
   })
 
@@ -169,7 +169,7 @@ describe('VData.ts', () => {
     const items = [
       { id: 1, text: 'foo', value: 1 },
       { id: 2, text: 'bar', value: 4 },
-      { id: 3, text: 'baz', value: 3 },
+      { id: 3, text: 'baz', value: 3 }
     ]
 
     const wrapper = mountFunction({
@@ -183,18 +183,18 @@ describe('VData.ts', () => {
             (rv[group] = rv[group] || []).push(x)
             return rv
           }, {})
-        },
+        }
       },
       slots: {
-        default: render,
-      },
+        default: render
+      }
     })
 
     expect(render).toHaveBeenCalledWith(expect.objectContaining({
       groupedItems: {
         even: [items[1]],
-        odd: [items[0], items[2]],
-      },
+        odd: [items[0], items[2]]
+      }
     }))
   })
 
@@ -205,28 +205,28 @@ describe('VData.ts', () => {
       { id: 1, text: 'c' },
       { id: 2, text: 'a' },
       { id: 3, text: 'd' },
-      { id: 4, text: 'b' },
+      { id: 4, text: 'b' }
     ]
 
     const sorted = [
       { id: 2, text: 'a' },
       { id: 4, text: 'b' },
       { id: 1, text: 'c' },
-      { id: 3, text: 'd' },
+      { id: 3, text: 'd' }
     ]
 
     const wrapper = mountFunction({
       props: {
         items: unsorted,
-        sortBy: ['text'],
+        sortBy: ['text']
       },
       slots: {
-        default: render,
-      },
+        default: render
+      }
     })
 
     expect(render).toHaveBeenCalledWith(expect.objectContaining({
-      items: sorted,
+      items: sorted
     }))
   })
 
@@ -237,35 +237,35 @@ describe('VData.ts', () => {
       { id: 1, foo: 'a', bar: 'b' },
       { id: 2, foo: 'b', bar: 'b' },
       { id: 3, foo: 'b', bar: 'a' },
-      { id: 4, foo: 'a', bar: 'a' },
+      { id: 4, foo: 'a', bar: 'a' }
     ]
 
     const sorted = [
       { id: 4, foo: 'a', bar: 'a' },
       { id: 1, foo: 'a', bar: 'b' },
       { id: 3, foo: 'b', bar: 'a' },
-      { id: 2, foo: 'b', bar: 'b' },
+      { id: 2, foo: 'b', bar: 'b' }
     ]
 
     const wrapper = mountFunction({
       props: {
         items: unsorted,
-        sortBy: ['foo'],
+        sortBy: ['foo']
       },
       slots: {
-        default: render,
-      },
+        default: render
+      }
     })
 
     await wrapper.vm.$nextTick()
 
     await wrapper.setProps({
-      sortBy: ['foo', 'bar'],
+      sortBy: ['foo', 'bar']
     })
     await wrapper.vm.$nextTick()
 
     expect(render).toHaveBeenCalledWith(expect.objectContaining({
-      items: sorted,
+      items: sorted
     }))
   })
 
@@ -282,22 +282,22 @@ describe('VData.ts', () => {
       { id: 7, foo: 'g' },
       { id: 8, foo: 'h' },
       { id: 9, foo: 'i' },
-      { id: 10, foo: 'j' },
+      { id: 10, foo: 'j' }
     ]
 
     const wrapper = mountFunction({
       props: {
         items,
         itemsPerPage: 5,
-        page: 2,
+        page: 2
       },
       slots: {
-        default: render,
-      },
+        default: render
+      }
     })
 
     expect(render).toHaveBeenCalledWith(expect.objectContaining({
-      items: items.slice(5),
+      items: items.slice(5)
     }))
   })
 
@@ -309,22 +309,22 @@ describe('VData.ts', () => {
       { text: 'Bar', id: 2 },
       { text: 'Fizz', id: 3 },
       { text: 'Buzz', id: 4 },
-      { text: 'Fizzbuzz', id: 5 },
+      { text: 'Fizzbuzz', id: 5 }
     ]
 
     const wrapper = mountFunction({
       props: {
         items,
         sortBy: ['text'],
-        disableSort: true,
+        disableSort: true
       },
       slots: {
-        default: render,
-      },
+        default: render
+      }
     })
 
     expect(render).toHaveBeenCalledWith(expect.objectContaining({
-      items,
+      items
     }))
   })
 
@@ -335,32 +335,32 @@ describe('VData.ts', () => {
       { text: 'Bar', id: 2 },
       { text: 'Fizz', id: 3 },
       { text: 'Buzz', id: 4 },
-      { text: 'Fizzbuzz', id: 5 },
+      { text: 'Fizzbuzz', id: 5 }
     ]
 
     const wrapper = mountFunction({
       props: { items },
       slots: {
-        default: render,
-      },
+        default: render
+      }
     })
 
     expect(render).toHaveBeenCalledWith(expect.objectContaining({
-      items,
+      items
     }))
 
     await wrapper.setProps({ itemsPerPage: 2 })
     await wrapper.vm.$nextTick()
 
     expect(render).toHaveBeenCalledWith(expect.objectContaining({
-      items: items.slice(0, 2),
+      items: items.slice(0, 2)
     }))
 
     await wrapper.setProps({ disablePagination: true })
     await wrapper.vm.$nextTick()
 
     expect(render).toHaveBeenCalledWith(expect.objectContaining({
-      items,
+      items
     }))
   })
 
@@ -369,22 +369,22 @@ describe('VData.ts', () => {
       { id: 1, text: 'c' },
       { id: 2, text: 'a' },
       { id: 3, text: 'd' },
-      { id: 4, text: 'b' },
+      { id: 4, text: 'b' }
     ]
 
     const wrapper = mountFunction({
       props: {
-        items: unsorted,
+        items: unsorted
       },
       slots: {
         default: (props: any) => {
           const items = props.items.map((item: any) => h('div', [item.text]))
           return h('div', {
             id: 'wrapper',
-            onClick: () => props.sort('text'),
+            onClick: () => props.sort('text')
           }, items)
-        },
-      },
+        }
+      }
     })
 
     expect(wrapper.html()).toMatchSnapshot()
@@ -404,22 +404,22 @@ describe('VData.ts', () => {
       { id: 1, text: 'c', group: 'foo' },
       { id: 2, text: 'a', group: 'bar' },
       { id: 3, text: 'd', group: 'foo' },
-      { id: 4, text: 'b', group: 'bar' },
+      { id: 4, text: 'b', group: 'bar' }
     ]
 
     const wrapper = mountFunction({
       props: {
-        items: unsorted,
+        items: unsorted
       },
       slots: {
         default: (props: any) => {
           const items = props.items.map((item: any) => h('div', [`${item.group}-${item.text}`]))
           return h('div', {
             id: 'wrapper',
-            onClick: () => props.sort(['group', 'text']),
+            onClick: () => props.sort(['group', 'text'])
           }, items)
-        },
-      },
+        }
+      }
     })
 
     expect(wrapper.html()).toMatchSnapshot()
@@ -435,12 +435,12 @@ describe('VData.ts', () => {
       { id: 1, text: 'c', group: 'foo' },
       { id: 4, text: 'a', group: 'bar' },
       { id: 3, text: 'd', group: 'foo' },
-      { id: 2, text: 'b', group: 'bar' },
+      { id: 2, text: 'b', group: 'bar' }
     ]
 
     const wrapper = mountFunction({
       props: {
-        items: unsorted,
+        items: unsorted
       },
       slots: {
         default: (props: any) => {
@@ -450,10 +450,10 @@ describe('VData.ts', () => {
 
           return h('div', {
             id: 'wrapper',
-            onClick: () => props.group('group'),
+            onClick: () => props.group('group')
           }, items.map((item: any) => h('div', [item])))
-        },
-      },
+        }
+      }
     })
 
     expect(wrapper.html()).toMatchSnapshot()
@@ -471,13 +471,13 @@ describe('VData.ts', () => {
       props: {
         items: [
           { id: 1, text: 'foo' },
-          { id: 2, text: 'bar' },
+          { id: 2, text: 'bar' }
         ],
-        itemsPerPage: 0,
+        itemsPerPage: 0
       },
       slots: {
-        default: render,
-      },
+        default: render
+      }
     })
 
     await wrapper.vm.$nextTick()
@@ -487,12 +487,12 @@ describe('VData.ts', () => {
         page: 1,
         pageCount: 1,
         pageStart: 0,
-        pageStop: 0,
-      }),
+        pageStop: 0
+      })
     }))
 
     await wrapper.setProps({
-      itemsPerPage: 1,
+      itemsPerPage: 1
     })
 
     await wrapper.vm.$nextTick()
@@ -502,8 +502,8 @@ describe('VData.ts', () => {
         page: 1,
         pageCount: 2,
         pageStart: 0,
-        pageStop: 1,
-      }),
+        pageStop: 1
+      })
     }))
   })
 
@@ -513,22 +513,22 @@ describe('VData.ts', () => {
       { id: 1, text: 'c', group: 'foo' },
       { id: 4, text: 'a', group: 'bar' },
       { id: 3, text: 'd', group: 'foo' },
-      { id: 2, text: 'b', group: 'bar' },
+      { id: 2, text: 'b', group: 'bar' }
     ]
 
     const wrapper = mountFunction({
       props: {
         items: unsorted,
-        groupBy: ['text'],
+        groupBy: ['text']
       },
       slots: {
         default: (props: any) => {
           return h('div', {
             id: 'wrapper',
-            onClick: () => props.group('group'),
+            onClick: () => props.group('group')
           }, props.groupedItems.map((group: any) => h('div', [group.name])))
-        },
-      },
+        }
+      }
     })
 
     await wrapper.setProps({ groupDesc: [false] })
@@ -548,31 +548,31 @@ describe('VData.ts', () => {
     const items = [
       { id: 1, text: 'foo', baz: 'one' },
       { id: 2, text: 'bar', baz: 'two' },
-      { id: 3, text: 'baz', baz: 'one' },
+      { id: 3, text: 'baz', baz: 'one' }
     ]
 
     const wrapper = mountFunction({
       props: {
         items,
         groupBy: ['baz'],
-        disableSort: true,
+        disableSort: true
       },
       slots: {
-        default: render,
-      },
+        default: render
+      }
     })
 
     expect(render).toHaveBeenCalledWith(expect.objectContaining({
       groupedItems: [
         {
           name: 'one',
-          items: [items[0], items[2]],
+          items: [items[0], items[2]]
         },
         {
           name: 'two',
-          items: [items[1]],
-        },
-      ],
+          items: [items[1]]
+        }
+      ]
     }))
   })
 })

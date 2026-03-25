@@ -6,7 +6,7 @@ import VRadioGroup from '../VRadioGroup'
 import {
   mount,
   MountingOptions,
-  VueWrapper,
+  VueWrapper
 } from '@vue/test-utils'
 
 describe('VRadioGroup.ts', () => {
@@ -28,11 +28,11 @@ describe('VRadioGroup.ts', () => {
   it('should match dense snapshot', async () => {
     const wrapper = mountFunction({
       props: {
-        dense: true,
+        dense: true
       },
       slots: {
-        default: [VRadio],
-      },
+        default: [VRadio]
+      }
     })
 
     expect(wrapper.html()).toMatchSnapshot()

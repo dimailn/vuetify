@@ -3,7 +3,7 @@ import VIcon from '../VIcon'
 import VBtn from '../VBtn/VBtn'
 
 // Types
-import {defineComponent, h} from 'vue'
+import { defineComponent, h } from 'vue'
 
 /* @vue/component */
 export default defineComponent({
@@ -16,11 +16,11 @@ export default defineComponent({
 
     const d = Object.assign({}, data, {
       class: (`v-app-bar__nav-icon ${data.class || ''}`).trim(),
-      icon: true,
+      icon: true
     })
 
     const defaultSlot = this.$slots.default?.()
 
     return h(VBtn, d, defaultSlot || (() => [h(VIcon, {}, () => '$menu')]))
-  },
+  }
 })

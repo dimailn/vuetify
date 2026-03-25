@@ -12,11 +12,11 @@ export default function VGrid (name: string) {
       id: String,
       tag: {
         type: String,
-        default: 'div',
-      },
+        default: 'div'
+      }
     },
 
-    render() {
+    render () {
       const data: any = { ...this.$attrs }
       const children = this.$slots?.default?.() || []
       const componentProps = this.$props

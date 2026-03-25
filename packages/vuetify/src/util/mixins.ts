@@ -10,9 +10,9 @@ export default function mixins (...args: Component[]): MixinBuilder {
     extend (options: Record<string, any>) {
       return defineComponent({
         mixins: args as any,
-        ...options,
+        ...options
       }) as ReturnType<typeof defineComponent>
-    },
+    }
   }
 }
 

@@ -22,23 +22,23 @@ export default defineComponent({
   name: 'bootable',
 
   props: {
-    eager: Boolean,
+    eager: Boolean
   },
 
   data: () => ({
-    isBooted: false,
+    isBooted: false
   }),
 
   computed: {
     hasContent (): boolean | undefined {
       return this.isBooted || this.eager || this.isActive
-    },
+    }
   },
 
   watch: {
     isActive () {
       this.isBooted = true
-    },
+    }
   },
 
   created () {
@@ -51,6 +51,6 @@ export default defineComponent({
   methods: {
     showLazyContent (content?: () => VNode[]): VNode[] {
       return (this.hasContent && content) ? content() : [h(Comment)]
-    },
-  },
+    }
+  }
 })

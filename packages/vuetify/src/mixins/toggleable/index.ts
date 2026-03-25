@@ -7,12 +7,12 @@ export function factory (prop = 'modelValue', event = 'update:modelValue') {
   return defineComponent({
     name: 'toggleable',
     props: {
-      [prop]: { required: false },
+      [prop]: { required: false }
     },
 
     data () {
       return {
-        isActive: !!this[prop],
+        isActive: !!this[prop]
       }
     },
 
@@ -22,8 +22,8 @@ export function factory (prop = 'modelValue', event = 'update:modelValue') {
       },
       isActive (val) {
         !!val !== this[prop] && this.$emit(event, val)
-      },
-    },
+      }
+    }
   })
 }
 

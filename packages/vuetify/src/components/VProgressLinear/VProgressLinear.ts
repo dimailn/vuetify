@@ -4,7 +4,7 @@ import './VProgressLinear.sass'
 // Components
 import {
   VFadeTransition,
-  VSlideXTransition,
+  VSlideXTransition
 } from '../transitions'
 
 // Directives
@@ -37,32 +37,32 @@ export default baseMixins.extend({
   props: {
     active: {
       type: Boolean,
-      default: true,
+      default: true
     },
     backgroundColor: {
       type: String,
-      default: null,
+      default: null
     },
     backgroundOpacity: {
       type: [Number, String],
-      default: null,
+      default: null
     },
     bufferValue: {
       type: [Number, String],
-      default: 100,
+      default: 100
     },
     color: {
       type: String,
-      default: 'primary',
+      default: 'primary'
     },
     height: {
       type: [Number, String],
-      default: 4,
+      default: 4
     },
     indeterminate: Boolean,
     modelValue: {
       type: [Number, String],
-      default: 0,
+      default: 0
     },
     query: Boolean,
     reverse: Boolean,
@@ -72,11 +72,11 @@ export default baseMixins.extend({
     // Оставляем value для обратной совместимости
     value: {
       type: [Number, String],
-      default: 0,
+      default: 0
     },
     // События как пропсы для определения реактивности
     onChange: Function,
-    onUpdateModelValue: Function,
+    onUpdateModelValue: Function
   },
 
   emits: ['update:modelValue', 'change', 'click'],
@@ -84,7 +84,7 @@ export default baseMixins.extend({
   data () {
     return {
       internalLazyValue: this.modelValue || this.value || 0,
-      isVisible: true,
+      isVisible: true
     }
   },
 
@@ -92,12 +92,12 @@ export default baseMixins.extend({
     __cachedBackground (): VNode {
       return h('div', this.setBackgroundColor(this.backgroundColor || this.color, {
         class: 'v-progress-linear__background',
-        style: this.backgroundStyle,
+        style: this.backgroundStyle
       }))
     },
     __cachedBar (): VNode {
       return h(this.computedTransition, {}, {
-        default: () => [this.__cachedBarType],
+        default: () => [this.__cachedBarType]
       })
     },
     __cachedBarType (): VNode {
@@ -106,27 +106,27 @@ export default baseMixins.extend({
     __cachedBuffer (): VNode {
       return h('div', {
         class: 'v-progress-linear__buffer',
-        style: this.styles,
+        style: this.styles
       })
     },
     __cachedDeterminate (): VNode {
       return h('div', this.setBackgroundColor(this.color, {
         class: `v-progress-linear__determinate`,
         style: {
-          width: convertToUnit(this.normalizedValue, '%'),
-        },
+          width: convertToUnit(this.normalizedValue, '%')
+        }
       }))
     },
     __cachedIndeterminate (): VNode {
       return h('div', {
         class: ['v-progress-linear__indeterminate',
           {
-            'v-progress-linear__indeterminate--active': this.active,
-          },
-        ],
+            'v-progress-linear__indeterminate--active': this.active
+          }
+        ]
       }, [
         this.genProgressBar('long'),
-        this.genProgressBar('short'),
+        this.genProgressBar('short')
       ])
     },
     __cachedStream (): VNode | null {
@@ -135,8 +135,8 @@ export default baseMixins.extend({
       return h('div', this.setTextColor(this.color, {
         class: 'v-progress-linear__stream',
         style: {
-          width: convertToUnit(100 - this.normalizedBuffer, '%'),
-        },
+          width: convertToUnit(100 - this.normalizedBuffer, '%')
+        }
       }))
     },
     backgroundStyle (): object {
@@ -147,7 +147,7 @@ export default baseMixins.extend({
       return {
         opacity: backgroundOpacity,
         [this.isReversed ? 'right' : 'left']: convertToUnit(this.normalizedValue, '%'),
-        width: convertToUnit(Math.max(0, this.normalizedBuffer - this.normalizedValue), '%'),
+        width: convertToUnit(Math.max(0, this.normalizedBuffer - this.normalizedValue), '%')
       }
     },
     classes (): object {
@@ -160,7 +160,7 @@ export default baseMixins.extend({
         'v-progress-linear--rounded': this.rounded,
         'v-progress-linear--striped': this.striped,
         'v-progress-linear--visible': this.isVisible,
-        ...this.themeClasses,
+        ...this.themeClasses
       }
     },
     computedTransition (): any {
@@ -191,7 +191,7 @@ export default baseMixins.extend({
       }
 
       return styles
-    },
+    }
   },
 
   watch: {
@@ -200,7 +200,7 @@ export default baseMixins.extend({
     },
     value (val) {
       this.internalLazyValue = val
-    },
+    }
   },
 
   methods: {
@@ -212,10 +212,10 @@ export default baseMixins.extend({
       return h(
         'div',
         {
-          class: 'v-progress-linear__content',
+          class: 'v-progress-linear__content'
         },
         {
-          default: () => slot,
+          default: () => slot
         }
       )
     },
@@ -232,9 +232,9 @@ export default baseMixins.extend({
       return h('div', this.setBackgroundColor(this.color, {
         class: ['v-progress-linear__indeterminate',
           {
-            [name]: true,
-          },
-        ],
+            [name]: true
+          }
+        ]
       }))
     },
     onClick (e: MouseEvent) {
@@ -257,7 +257,7 @@ export default baseMixins.extend({
       if (numValue < 0) return 0
       if (numValue > 100) return 100
       return numValue
-    },
+    }
   },
 
   render (): VNode {
@@ -270,9 +270,9 @@ export default baseMixins.extend({
       style: {
         bottom: this.bottom ? 0 : undefined,
         height: this.active ? convertToUnit(this.height) : 0,
-        top: this.top ? 0 : undefined,
+        top: this.top ? 0 : undefined
       },
-      ...this.genListeners(),
+      ...this.genListeners()
     }
 
     return withDirectives(h('div', data, [
@@ -280,12 +280,12 @@ export default baseMixins.extend({
       this.__cachedBackground,
       this.__cachedBuffer,
       this.__cachedBar,
-      this.genContent(),
+      this.genContent()
     ]), [
       [
         Intersect,
-        this.onObserve,
-      ],
+        this.onObserve
+      ]
     ])
-  },
+  }
 })

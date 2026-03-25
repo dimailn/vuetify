@@ -12,8 +12,8 @@ describe('routable.ts', () => {
       history: createWebHistory(),
       routes: [
         { path: '/', component: { template: '<div>Home</div>' } },
-        { path: '/foo', component: { template: '<div>Foo</div>' } },
-      ],
+        { path: '/foo', component: { template: '<div>Foo</div>' } }
+      ]
     })
 
     mountFunction = (options = {}) => {
@@ -21,18 +21,18 @@ describe('routable.ts', () => {
         mixins: [Routable],
         props: {
           activeClass: {
-            default: 'active',
+            default: 'active'
           },
           exactActiveClass: {
-            default: 'exact-active',
-          },
+            default: 'exact-active'
+          }
         },
-        template: '<div ref="link" :class="classes"></div>',
+        template: '<div ref="link" :class="classes"></div>'
       }, {
         global: {
-          plugins: [router],
+          plugins: [router]
         },
-        ...options,
+        ...options
       })
     }
   })
@@ -40,8 +40,8 @@ describe('routable.ts', () => {
   it('should have correct computed properties', async () => {
     const wrapper = mountFunction({
       props: {
-        to: '/',
-      },
+        to: '/'
+      }
     })
 
     expect(wrapper.vm.isLink).toBeTruthy() // isLink returns the 'to' value, which is truthy
@@ -52,8 +52,8 @@ describe('routable.ts', () => {
     const wrapper = mountFunction({
       props: {
         to: '/',
-        activeClass: 'custom-active',
-      },
+        activeClass: 'custom-active'
+      }
     })
 
     expect(wrapper.vm.classes).toBeDefined()
@@ -63,8 +63,8 @@ describe('routable.ts', () => {
     const wrapper = mountFunction({
       props: {
         to: '/',
-        disabled: true,
-      },
+        disabled: true
+      }
     })
 
     expect(wrapper.vm.isClickable).toBe(false)
@@ -74,8 +74,8 @@ describe('routable.ts', () => {
     const wrapper = mountFunction({
       props: {
         to: '/',
-        notALink: true,
-      },
+        notALink: true
+      }
     })
 
     expect(wrapper.vm.isClickable).toBe(false)
@@ -84,8 +84,8 @@ describe('routable.ts', () => {
   it('should handle href prop', async () => {
     const wrapper = mountFunction({
       props: {
-        href: 'https://example.com',
-      },
+        href: 'https://example.com'
+      }
     })
 
     expect(wrapper.vm.isLink).toBe('https://example.com')
@@ -95,8 +95,8 @@ describe('routable.ts', () => {
   it('should handle link prop', async () => {
     const wrapper = mountFunction({
       props: {
-        link: true,
-      },
+        link: true
+      }
     })
 
     expect(wrapper.vm.isLink).toBe(true)

@@ -19,13 +19,13 @@ export default baseMixins.extend({
     rowHeight: {
       type: [Number, String],
       default: 24,
-      validator: (v: any) => !isNaN(parseFloat(v)),
+      validator: (v: any) => !isNaN(parseFloat(v))
     },
     rows: {
       type: [Number, String],
       default: 5,
-      validator: (v: any) => !isNaN(parseInt(v, 10)),
-    },
+      validator: (v: any) => !isNaN(parseInt(v, 10))
+    }
   },
 
   computed: {
@@ -34,12 +34,12 @@ export default baseMixins.extend({
         'v-textarea': true,
         'v-textarea--auto-grow': this.autoGrow,
         'v-textarea--no-resize': this.noResizeHandle,
-        ...VTextField.computed.classes.call(this),
+        ...VTextField.computed.classes.call(this)
       }
     },
     noResizeHandle (): boolean {
       return this.noResize || this.autoGrow
-    },
+    }
   },
 
   watch: {
@@ -55,7 +55,7 @@ export default baseMixins.extend({
     },
     rowHeight () {
       this.autoGrow && this.$nextTick(this.calculateInputHeight)
-    },
+    }
   },
 
   mounted () {
@@ -99,6 +99,6 @@ export default baseMixins.extend({
       }
 
       this.$emit('keydown', e)
-    },
-  },
+    }
+  }
 })

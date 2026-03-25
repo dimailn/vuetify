@@ -21,7 +21,7 @@ export default defineComponent({
 
   props: {
     editable: Boolean,
-    segmented: Boolean,
+    segmented: Boolean
   },
 
   emits: ['change'],
@@ -32,7 +32,7 @@ export default defineComponent({
         ...VAutocomplete.computed.classes.call(this),
         'v-overflow-btn': true,
         'v-overflow-btn--segmented': this.segmented,
-        'v-overflow-btn--editable': this.editable,
+        'v-overflow-btn--editable': this.editable
       }
     },
     isAnyValueAllowed (): boolean {
@@ -47,7 +47,7 @@ export default defineComponent({
     },
     labelValue (): boolean {
       return (this.isFocused && !this.persistentPlaceholder) || this.isLabelActive
-    },
+    }
   },
 
   methods: {
@@ -103,7 +103,7 @@ export default defineComponent({
         onClick: (e: Event) => {
           e.stopPropagation()
           itemObj.callback(e)
-        },
+        }
       }, () => [itemObj.text])
     },
     updateValue (val: boolean) {
@@ -112,6 +112,6 @@ export default defineComponent({
       } else if (this.initialValue !== this.lazyValue) {
         this.$emit('change', this.lazyValue)
       }
-    },
-  },
+    }
+  }
 })

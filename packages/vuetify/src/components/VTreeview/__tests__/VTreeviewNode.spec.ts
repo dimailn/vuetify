@@ -3,7 +3,7 @@ import {
   mount,
   VueWrapper,
   MountingOptions,
-  enableAutoUnmount,
+  enableAutoUnmount
 } from '@vue/test-utils'
 import { h, defineComponent } from 'vue'
 
@@ -19,9 +19,9 @@ const Mock = defineComponent({
 
   render () {
     return h(VTreeviewNode, {
-      item: singleRootTwoChildren,
+      item: singleRootTwoChildren
     })
-  },
+  }
 })
 
 describe('VTreeViewNode.ts', () => {
@@ -39,7 +39,7 @@ describe('VTreeViewNode.ts', () => {
       updateActive: () => {},
       emitActive: () => {},
       updateOpen: () => {},
-      emitOpen: () => {},
+      emitOpen: () => {}
     }
 
     mountFunction = (options = {}) => {
@@ -49,14 +49,14 @@ describe('VTreeViewNode.ts', () => {
             $vuetify: {
               icons: {
                 values: {
-                  subgroup: 'arrow_drop_down',
-                },
-              },
-            },
+                  subgroup: 'arrow_drop_down'
+                }
+              }
+            }
           },
-          provide: { treeview },
+          provide: { treeview }
         },
-        ...options,
+        ...options
       })
     }
   })
@@ -75,15 +75,15 @@ describe('VTreeViewNode.ts', () => {
   it('should use scoped slots', () => {
     const wrapper = mount(VTreeviewNode, {
       props: {
-        item: singleRootTwoChildren,
+        item: singleRootTwoChildren
       },
       slots: {
         prepend: defaultSlot,
-        append: defaultSlot,
+        append: defaultSlot
       },
       global: {
-        provide: { treeview },
-      },
+        provide: { treeview }
+      }
     })
 
     expect(wrapper.html()).toMatchSnapshot()
@@ -91,7 +91,7 @@ describe('VTreeViewNode.ts', () => {
 
   it('should generate a transition element', () => {
     const wrapper = mountFunction({
-      props: { transition: true },
+      props: { transition: true }
     })
 
     expect(wrapper.html()).toMatchSnapshot()
@@ -100,14 +100,14 @@ describe('VTreeViewNode.ts', () => {
   it('should use label slot', () => {
     const wrapper = mount(VTreeviewNode, {
       props: {
-        item: singleRootTwoChildren,
+        item: singleRootTwoChildren
       },
       slots: {
-        label: (props: any) => h('div', [props.item.name.toUpperCase()]),
+        label: (props: any) => h('div', [props.item.name.toUpperCase()])
       },
       global: {
-        provide: { treeview },
-      },
+        provide: { treeview }
+      }
     })
 
     expect(wrapper.html()).toMatchSnapshot()
@@ -116,15 +116,15 @@ describe('VTreeViewNode.ts', () => {
   it('should render disabled item', () => {
     const wrapper = mount(VTreeviewNode, {
       props: {
-        item: { ...singleRootTwoChildren, disabled: true },
+        item: { ...singleRootTwoChildren, disabled: true }
       },
       slots: {
         prepend: defaultSlot,
-        append: defaultSlot,
+        append: defaultSlot
       },
       global: {
-        provide: { treeview },
-      },
+        provide: { treeview }
+      }
     })
 
     expect(wrapper.html()).toMatchSnapshot()
@@ -136,8 +136,8 @@ describe('VTreeViewNode.ts', () => {
       props: {
         item: singleRootWithEmptyChildrens,
         activatable: true,
-        openOnClick: true,
-      },
+        openOnClick: true
+      }
     })
 
     expect(wrapper.vm.isActive).toBe(false)
@@ -154,8 +154,8 @@ describe('VTreeViewNode.ts', () => {
         item: singleRootWithEmptyChildrens,
         activatable: true,
         openOnClick: true,
-        loadChildren: () => {},
-      },
+        loadChildren: () => {}
+      }
     })
 
     expect(wrapper.vm.isActive).toBe(false)
@@ -171,8 +171,8 @@ describe('VTreeViewNode.ts', () => {
       props: {
         item: { ...singleRootWithEmptyChildrens, disabled: true },
         activatable: true,
-        openOnClick: true,
-      },
+        openOnClick: true
+      }
     })
 
     expect(wrapper.vm.isActive).toBe(false)

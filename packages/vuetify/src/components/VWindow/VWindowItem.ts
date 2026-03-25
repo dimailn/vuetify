@@ -1,4 +1,4 @@
-import {h, vShow, withDirectives} from 'vue'
+import { h, vShow, withDirectives } from 'vue'
 // Components
 import VWindow from './VWindow'
 
@@ -31,26 +31,25 @@ export default baseMixins.extend({
 
   emits: ['change'],
 
-
   props: {
     disabled: Boolean,
     reverseTransition: {
       type: [Boolean, String],
-      default: undefined,
+      default: undefined
     },
     transition: {
       type: [Boolean, String],
-      default: undefined,
+      default: undefined
     },
     value: {
-      required: false,
-    },
+      required: false
+    }
   },
 
   data () {
     return {
       isActive: false,
-      inTransition: false,
+      inTransition: false
     }
   },
 
@@ -68,7 +67,7 @@ export default baseMixins.extend({
       return typeof this.reverseTransition !== 'undefined'
         ? this.reverseTransition || ''
         : this.windowGroup.computedTransition
-    },
+    }
   },
 
   methods: {
@@ -78,7 +77,7 @@ export default baseMixins.extend({
     genWindowItem () {
       return withDirectives(h('div', {
         class: ['v-window-item', this.classes],
-        ...this.$listeners,
+        ...this.$listeners
       }, this.genDefaultSlot()), [
         [
           vShow,
@@ -132,7 +131,7 @@ export default baseMixins.extend({
         // Set transition target height.
         this.windowGroup.transitionHeight = convertToUnit(el.clientHeight)
       })
-    },
+    }
   },
 
   render (): VNode {
@@ -149,9 +148,9 @@ export default baseMixins.extend({
       onLeaveCancelled: this.onTransitionCancelled,
 
       // Enter handler for height transition.
-      onEnter: this.onEnter,
+      onEnter: this.onEnter
     }, {
       default: () => this.showLazyContent(() => [this.genWindowItem()])
     })
-  },
+  }
 })

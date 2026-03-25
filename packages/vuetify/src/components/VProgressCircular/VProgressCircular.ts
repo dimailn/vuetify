@@ -1,4 +1,4 @@
-import {h, withDirectives} from 'vue'
+import { h, withDirectives } from 'vue'
 // Styles
 import './VProgressCircular.sass'
 
@@ -20,31 +20,30 @@ export default defineComponent({
 
   extends: Colorable,
 
-
   props: {
     button: Boolean,
     indeterminate: Boolean,
     rotate: {
       type: [Number, String],
-      default: 0,
+      default: 0
     },
     size: {
       type: [Number, String],
-      default: 32,
+      default: 32
     },
     width: {
       type: [Number, String],
-      default: 4,
+      default: 4
     },
     value: {
       type: [Number, String],
-      default: 0,
-    },
+      default: 0
+    }
   },
 
   data: () => ({
     radius: 20,
-    isVisible: true,
+    isVisible: true
   }),
 
   computed: {
@@ -60,7 +59,7 @@ export default defineComponent({
       return {
         'v-progress-circular--visible': this.isVisible,
         'v-progress-circular--indeterminate': this.indeterminate,
-        'v-progress-circular--button': this.button,
+        'v-progress-circular--button': this.button
       }
     },
 
@@ -92,19 +91,19 @@ export default defineComponent({
     styles (): object {
       return {
         height: convertToUnit(this.calculatedSize),
-        width: convertToUnit(this.calculatedSize),
+        width: convertToUnit(this.calculatedSize)
       }
     },
 
     svgStyles (): object {
       return {
-        transform: `rotate(${Number(this.rotate)}deg)`,
+        transform: `rotate(${Number(this.rotate)}deg)`
       }
     },
 
     viewBoxSize (): number {
       return this.radius / (1 - Number(this.width) / +this.size)
-    },
+    }
   },
 
   methods: {
@@ -117,29 +116,29 @@ export default defineComponent({
         r: this.radius,
         'stroke-width': this.strokeWidth,
         'stroke-dasharray': this.strokeDashArray,
-        'stroke-dashoffset': offset,
+        'stroke-dashoffset': offset
       })
     },
     genSvg (): VNode {
       const children = [
         this.indeterminate || this.genCircle('underlay', 0),
-        this.genCircle('overlay', this.strokeDashOffset),
+        this.genCircle('overlay', this.strokeDashOffset)
       ] as VNodeChild[]
 
       return h('svg', {
         style: this.svgStyles,
         xmlns: 'http://www.w3.org/2000/svg',
-        viewBox: `${this.viewBoxSize} ${this.viewBoxSize} ${2 * this.viewBoxSize} ${2 * this.viewBoxSize}`,
+        viewBox: `${this.viewBoxSize} ${this.viewBoxSize} ${2 * this.viewBoxSize} ${2 * this.viewBoxSize}`
       }, children)
     },
     genInfo (): VNode {
       return h('div', {
-        class: 'v-progress-circular__info',
+        class: 'v-progress-circular__info'
       }, getSlot(this))
     },
     onObserve (entries: IntersectionObserverEntry[], observer: IntersectionObserver, isIntersecting: boolean) {
       this.isVisible = isIntersecting
-    },
+    }
   },
 
   render (): VNode {
@@ -150,15 +149,15 @@ export default defineComponent({
       'aria-valuemax': 100,
       'aria-valuenow': this.indeterminate ? undefined : this.normalizedValue,
       style: this.styles,
-      ...this.$listeners,
+      ...this.$listeners
     }), [
       this.genSvg(),
-      this.genInfo(),
+      this.genInfo()
     ]), [
       [
         Intersect,
         this.onObserve
       ]
     ])
-  },
+  }
 })

@@ -27,20 +27,20 @@ export default defineComponent({
       return {
         'v-calendar-daily': true,
         'v-calendar-category': true,
-        ...this.themeClasses,
+        ...this.themeClasses
       }
     },
     parsedCategories (): CalendarCategory[] {
       return getParsedCategories(this.categories, this.categoryText)
-    },
+    }
   },
   methods: {
     genDayHeader (day: CalendarTimestamp, index: number): VNode[] {
       const data = {
-        class: 'v-calendar-category__columns',
+        class: 'v-calendar-category__columns'
       }
       const scope = {
-        week: this.days, ...day, index,
+        week: this.days, ...day, index
       }
 
       const children = this.parsedCategories.map(category => {
@@ -51,10 +51,12 @@ export default defineComponent({
     },
     getCategoryScope (scope: any, category: CalendarCategory) {
       const cat = typeof category === 'object' && category &&
-          category.categoryName === this.categoryForInvalid ? null : category
+          category.categoryName === this.categoryForInvalid
+        ? null
+        : category
       return {
         ...scope,
-        category: cat,
+        category: cat
       }
     },
     genDayHeaderCategory (day: CalendarTimestamp, scope: any): VNode {
@@ -63,15 +65,15 @@ export default defineComponent({
         class: 'v-calendar-category__column-header',
         ...this.getDefaultMouseEventHandlers(':day-category', e => {
           return this.getCategoryScope(this.getSlotScope(day), scope.category)
-        }),
+        })
       }, [
         getSlot(this, 'category', scope) || this.genDayHeaderCategoryTitle(headerTitle),
-        getSlot(this, 'day-header', scope),
+        getSlot(this, 'day-header', scope)
       ])
     },
     genDayHeaderCategoryTitle (categoryName: string | null) {
       return h('div', {
-        class: 'v-calendar-category__category',
+        class: 'v-calendar-category__category'
       }, categoryName === null ? this.categoryForInvalid : categoryName)
     },
     genDays (): VNode[] {
@@ -90,10 +92,10 @@ export default defineComponent({
         class: ['v-calendar-daily__day', this.getRelativeClasses(day)],
         ...this.getDefaultMouseEventHandlers(':time', e => {
           return this.getSlotScope(this.getTimestampAtEvent(e, day))
-        }),
+        })
       }, [
         ...this.genDayIntervals(index, category),
-        ...this.genDayBody(day, category),
+        ...this.genDayBody(day, category)
       ])
     },
     genDayIntervals (index: number, category: CalendarCategory): VNode[] {
@@ -108,8 +110,8 @@ export default defineComponent({
         class: 'v-calendar-daily__day-interval',
         style: {
           height,
-          ...styler({ ...interval, category }),
-        },
+          ...styler({ ...interval, category })
+        }
       }
 
       const children = getSlot(this, 'interval',
@@ -120,7 +122,7 @@ export default defineComponent({
     },
     genDayBody (day: CalendarTimestamp, category: CalendarCategory): VNode[] {
       const data = {
-        class: 'v-calendar-category__columns',
+        class: 'v-calendar-category__columns'
       }
 
       const children = [this.genDayBodyCategory(day, category)]
@@ -132,12 +134,12 @@ export default defineComponent({
         class: 'v-calendar-category__column',
         ...this.getDefaultMouseEventHandlers(':time-category', e => {
           return this.getCategoryScope(this.getSlotScope(this.getTimestampAtEvent(e, day)), category)
-        }),
+        })
       }
 
       const children = getSlot(this, 'day-body', this.getCategoryScope(this.getSlotScope(day), category))
 
       return h('div', data, children)
-    },
-  },
+    }
+  }
 })

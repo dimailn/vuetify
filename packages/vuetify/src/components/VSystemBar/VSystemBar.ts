@@ -1,4 +1,4 @@
-import {h} from 'vue'
+import { h } from 'vue'
 // Styles
 import './VSystemBar.sass'
 
@@ -17,7 +17,7 @@ import type { VNode } from '../../types/vue-internal'
 export default mixins(
   Applicationable('bar', [
     'height',
-    'window',
+    'window'
   ]),
   Colorable,
   Themeable
@@ -28,7 +28,7 @@ export default mixins(
   props: {
     height: [Number, String],
     lightsOut: Boolean,
-    window: Boolean,
+    window: Boolean
   },
 
   computed: {
@@ -38,7 +38,7 @@ export default mixins(
         'v-system-bar--absolute': this.absolute,
         'v-system-bar--fixed': !this.absolute && (this.app || this.fixed),
         'v-system-bar--window': this.window,
-        ...this.themeClasses,
+        ...this.themeClasses
       }
     },
     computedHeight (): number | string {
@@ -50,9 +50,9 @@ export default mixins(
     },
     styles (): object {
       return {
-        height: convertToUnit(this.computedHeight),
+        height: convertToUnit(this.computedHeight)
       }
-    },
+    }
   },
 
   methods: {
@@ -60,16 +60,16 @@ export default mixins(
       return this.$el
         ? this.$el.clientHeight
         : this.computedHeight
-    },
+    }
   },
 
   render (): VNode {
     const data = {
       class: ['v-system-bar', this.classes],
       style: this.styles,
-      on: this.$listeners,
+      on: this.$listeners
     }
 
     return h('div', this.setBackgroundColor(this.color, data), getSlot(this))
-  },
+  }
 })

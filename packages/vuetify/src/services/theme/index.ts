@@ -14,7 +14,7 @@ import {
   VuetifyParsedTheme,
   VuetifyThemes,
   VuetifyThemeVariant,
-  Theme as ITheme,
+  Theme as ITheme
 } from 'vuetify/types/services/theme'
 
 // Vue Meta 3
@@ -46,7 +46,7 @@ export class Theme extends Service {
       dark,
       disable,
       options,
-      themes,
+      themes
     } = preset[Theme.property]
 
     this.dark = Boolean(dark)
@@ -61,7 +61,7 @@ export class Theme extends Service {
 
     this.themes = {
       dark: this.fillVariant(themes.dark, true),
-      light: this.fillVariant(themes.light, false),
+      light: this.fillVariant(themes.light, false)
     }
   }
 
@@ -209,7 +209,6 @@ export class Theme extends Service {
     //   const obs = reactive({ themes: this.themes })
     //   this.unwatch = root.$watch(() => obs.themes, () => this.applyTheme(), { deep: true })
     // })
-
 
     this.applyTheme()
   }

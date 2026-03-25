@@ -2,7 +2,7 @@ import VColorPickerPreview from '../VColorPickerPreview'
 import {
   mount,
   VueWrapper,
-  enableAutoUnmount,
+  enableAutoUnmount
 } from '@vue/test-utils'
 import { fromRGBA } from '../util'
 import { nextTick } from 'vue'
@@ -19,12 +19,12 @@ describe('VColorPickerPreview.ts', () => {
         ...options,
         global: {
           config: {
-            warnHandler: () => {}, // Подавляем предупреждения Vue
+            warnHandler: () => {} // Подавляем предупреждения Vue
           },
           mocks: {
             $vuetify: {
-              rtl: false,
-            },
+              rtl: false
+            }
           },
           stubs: {
             VSlider: {
@@ -36,7 +36,7 @@ describe('VColorPickerPreview.ts', () => {
               props: ['modelValue', 'min', 'max', 'step', 'disabled'],
               emits: ['update:modelValue'],
               methods: {
-                handleKeydown(e: KeyboardEvent) {
+                handleKeydown (e: KeyboardEvent) {
                   e.preventDefault()
                   if (e.key === 'ArrowRight') {
                     const newValue = Number(this.modelValue) + 1
@@ -44,10 +44,10 @@ describe('VColorPickerPreview.ts', () => {
                   }
                 }
               }
-            },
+            }
           },
-          ...options.global,
-        },
+          ...options.global
+        }
       })
     }
   })
@@ -56,11 +56,11 @@ describe('VColorPickerPreview.ts', () => {
     const update = jest.fn()
     const wrapper = mountFunction({
       props: {
-        color: fromRGBA({ r: 0, g: 0, b: 0, a: 0 }),
+        color: fromRGBA({ r: 0, g: 0, b: 0, a: 0 })
       },
       attrs: {
-        'onUpdate:color': update,
-      },
+        'onUpdate:color': update
+      }
     })
 
     // Тестируем напрямую методы компонента
@@ -81,11 +81,11 @@ describe('VColorPickerPreview.ts', () => {
     const update = jest.fn()
     const wrapper = mountFunction({
       props: {
-        color: fromRGBA({ r: 0, g: 0, b: 0, a: 0 }),
+        color: fromRGBA({ r: 0, g: 0, b: 0, a: 0 })
       },
       attrs: {
-        'onUpdate:color': update,
-      },
+        'onUpdate:color': update
+      }
     })
 
     // Создаем новый цвет с измененным alpha
@@ -103,8 +103,8 @@ describe('VColorPickerPreview.ts', () => {
     const testColor = fromRGBA({ r: 255, g: 100, b: 50, a: 0.8 })
     const wrapper = mountFunction({
       props: {
-        color: testColor,
-      },
+        color: testColor
+      }
     })
 
     const dot = wrapper.find('.v-color-picker__dot')
@@ -123,8 +123,8 @@ describe('VColorPickerPreview.ts', () => {
     const testColor = fromRGBA({ r: 128, g: 64, b: 192, a: 1 })
     const wrapper = mountFunction({
       props: {
-        color: testColor,
-      },
+        color: testColor
+      }
     })
 
     const dot = wrapper.find('.v-color-picker__dot')
@@ -133,7 +133,7 @@ describe('VColorPickerPreview.ts', () => {
 
     // Проверяем что внутри есть один вложенный div
     const innerDivs = dot.findAll('div')
-    expect(innerDivs.length).toBe(1)
+    expect(innerDivs).toHaveLength(1)
 
     // Проверяем что внутренний div имеет стиль с фоном
     const innerDiv = innerDivs[0]

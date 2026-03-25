@@ -10,17 +10,17 @@ describe('applicationable.js', () => {
     mountFunction = (options = {}) => {
       const component = defineComponent({
         render: () => h('div'),
-        ...options,
+        ...options
       })
 
       return mount(component, {
         global: {
           mocks: {
             $vuetify: {
-              application: new Application(),
-            },
-          },
-        },
+              application: new Application()
+            }
+          }
+        }
       })
     }
   })
@@ -30,9 +30,9 @@ describe('applicationable.js', () => {
     const wrapper = mountFunction({
       mixins: [Applicationable('left')],
       computed: {
-        applicationProperty: () => 'left',
+        applicationProperty: () => 'left'
       },
-      methods: { updateApplication },
+      methods: { updateApplication }
     })
 
     await wrapper.setProps({ app: true })
@@ -46,9 +46,9 @@ describe('applicationable.js', () => {
     const wrapper = mountFunction({
       mixins: [Applicationable('left')],
       computed: {
-        applicationProperty: () => 'left',
+        applicationProperty: () => 'left'
       },
-      methods: { updateApplication, removeApplication },
+      methods: { updateApplication, removeApplication }
     })
 
     await wrapper.setProps({ app: true })
@@ -66,9 +66,9 @@ describe('applicationable.js', () => {
     const wrapper = mountFunction({
       data: () => ({
         foo: 1,
-        bar: 2,
+        bar: 2
       }),
-      mixins: [Applicationable(null, ['foo', 'bar'])],
+      mixins: [Applicationable(null, ['foo', 'bar'])]
     })
 
     // В Vue 3 структура реактивности изменилась
@@ -80,9 +80,9 @@ describe('applicationable.js', () => {
     const wrapper = mountFunction({
       mixins: [Applicationable('left')],
       computed: {
-        applicationProperty: () => 'left',
+        applicationProperty: () => 'left'
       },
-      methods: { removeApplication },
+      methods: { removeApplication }
     })
 
     await wrapper.setProps({ app: true })
@@ -97,13 +97,13 @@ describe('applicationable.js', () => {
       computed: {
         applicationProperty () {
           return 'top'
-        },
+        }
       },
       methods: {
         updateApplication () {
           return 30
-        },
-      },
+        }
+      }
     })
 
     await wrapper.setProps({ app: true })
@@ -117,8 +117,8 @@ describe('applicationable.js', () => {
       methods: {
         updateApplication () {
           return 30
-        },
-      },
+        }
+      }
     })
 
     await wrapper.setProps({ app: true })

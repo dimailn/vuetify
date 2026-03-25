@@ -4,7 +4,7 @@ import VPicker from '../VPicker'
 // Utilities
 import {
   mount,
-  VueWrapper,
+  VueWrapper
 } from '@vue/test-utils'
 
 describe('VPicker.ts', () => {
@@ -14,7 +14,7 @@ describe('VPicker.ts', () => {
   beforeEach(() => {
     mountFunction = (options = {}) => {
       return mount(VPicker, {
-        ...options,
+        ...options
       })
     }
   })
@@ -22,8 +22,8 @@ describe('VPicker.ts', () => {
   it('should render component without title and match snapshot', () => {
     const wrapper = mountFunction({
       slots: {
-        default: '<span>default</span>',
-      },
+        default: '<span>default</span>'
+      }
     })
 
     expect(wrapper.html()).toMatchSnapshot()
@@ -33,8 +33,8 @@ describe('VPicker.ts', () => {
     const wrapper = mountFunction({
       slots: {
         default: '<span>default</span>',
-        title: '<span>title</span>',
-      },
+        title: '<span>title</span>'
+      }
     })
 
     expect(wrapper.html()).toMatchSnapshot()
@@ -44,11 +44,11 @@ describe('VPicker.ts', () => {
     const wrapper = mountFunction({
       slots: {
         default: '<span>default</span>',
-        title: '<span>title</span>',
+        title: '<span>title</span>'
       },
       props: {
-        flat: true,
-      },
+        flat: true
+      }
     })
 
     expect(wrapper.html()).toMatchSnapshot()
@@ -58,11 +58,11 @@ describe('VPicker.ts', () => {
     const wrapper = mountFunction({
       slots: {
         default: '<span>default</span>',
-        title: '<span>title</span>',
+        title: '<span>title</span>'
       },
       props: {
-        elevation: 15,
-      },
+        elevation: 15
+      }
     })
 
     expect(wrapper.html()).toMatchSnapshot()
@@ -71,12 +71,12 @@ describe('VPicker.ts', () => {
   it('should render dark component and match snapshot', () => {
     const wrapper = mountFunction({
       props: {
-        dark: true,
+        dark: true
       },
       slots: {
         default: '<span>default</span>',
-        title: '<span>title</span>',
-      },
+        title: '<span>title</span>'
+      }
     })
 
     expect(wrapper.html()).toMatchSnapshot()
@@ -85,11 +85,11 @@ describe('VPicker.ts', () => {
   it('should render colored component', () => {
     const wrapper = mountFunction({
       props: {
-        color: 'orange lighten-1',
+        color: 'orange lighten-1'
       },
       slots: {
-        title: '<span>title</span>',
-      },
+        title: '<span>title</span>'
+      }
     })
 
     const title = wrapper.find('.v-picker__title')

@@ -7,7 +7,7 @@ import VListItem from '../../VList/VListItem'
 import {
   mount,
   enableAutoUnmount,
-  VueWrapper,
+  VueWrapper
 } from '@vue/test-utils'
 import { h } from 'vue'
 import { keyCodes } from '../../../util/helpers'
@@ -29,11 +29,11 @@ describe('VMenu.ts', () => {
         global: {
           mocks: {
             $vuetify: {
-              theme: {},
-            },
+              theme: {}
+            }
           },
-          ...options.global,
-        },
+          ...options.global
+        }
       })
     }
   })
@@ -42,12 +42,12 @@ describe('VMenu.ts', () => {
     const wrapper = mountFunction({
       props: {
         modelValue: false,
-        eager: true,
+        eager: true
       },
       slots: {
         activator: ({ on }) => h('button', { onClick: on.click }),
-        default: () => h(VCard),
-      },
+        default: () => h(VCard)
+      }
     })
 
     const activator = wrapper.find('button')
@@ -68,12 +68,12 @@ describe('VMenu.ts', () => {
   it('should render multiple content nodes', async () => {
     const wrapper = mountFunction({
       props: {
-        eager: true,
+        eager: true
       },
       slots: {
         activator: ({ on }) => h('button', { onClick: on.click }),
-        default: () => [h('span', 'foo'), h('span', 'bar')],
-      },
+        default: () => [h('span', 'foo'), h('span', 'bar')]
+      }
     })
 
     expect(wrapper.html()).toMatchSnapshot()
@@ -84,12 +84,12 @@ describe('VMenu.ts', () => {
     const wrapper = mountFunction({
       props: {
         modelValue: false,
-        eager: true,
+        eager: true
       },
       slots: {
         activator: ({ on }) => h('button', { onClick: on.click }),
-        default: () => h('span', { class: 'content' }),
-      },
+        default: () => h('span', { class: 'content' })
+      }
     })
 
     const content = wrapper.find('.v-menu__content')
@@ -103,7 +103,7 @@ describe('VMenu.ts', () => {
         right: 75.987,
         bottom: 4,
         x: 0,
-        y: 0,
+        y: 0
       }
     }
 
@@ -121,11 +121,11 @@ describe('VMenu.ts', () => {
   it('should not attach event handlers to the activator container if disabled', async () => {
     const wrapper = mountFunction({
       props: {
-        disabled: true,
+        disabled: true
       },
       slots: {
-        activator: ({ on }) => h('button', { onClick: on.click }),
-      },
+        activator: ({ on }) => h('button', { onClick: on.click })
+      }
     })
 
     const activator = wrapper.find('button')
@@ -140,7 +140,7 @@ describe('VMenu.ts', () => {
     expect(wrapper1.vm.isActive).toBe(false)
 
     const wrapper2 = mountFunction({
-      props: { modelValue: true },
+      props: { modelValue: true }
     })
     expect(wrapper2.vm.isActive).toBe(true)
     expect('Unable to locate target [data-app]').toHaveBeenTipped()
@@ -152,8 +152,8 @@ describe('VMenu.ts', () => {
         absolute: true,
         modelValue: true,
         positionX: 100,
-        positionY: 200,
-      },
+        positionY: 200
+      }
     })
 
     const content = wrapper.findAll('.v-menu__content').at(0)
@@ -164,7 +164,7 @@ describe('VMenu.ts', () => {
 
     await wrapper.setProps({
       positionX: 110,
-      positionY: 220,
+      positionY: 220
     })
     expect(content.attributes('style')).toMatchSnapshot()
     expect('Unable to locate target [data-app]').toHaveBeenTipped()
@@ -179,10 +179,10 @@ describe('VMenu.ts', () => {
             h(VListItem, { link: true }),
             h(VListItem, { link: true }),
             h(VListItem),
-            h(VListItem, { link: true }),
+            h(VListItem, { link: true })
           ])
-        },
-      },
+        }
+      }
     })
 
     wrapper.vm.getTiles()
@@ -215,11 +215,11 @@ describe('VMenu.ts', () => {
 
   it('should accept a custom role or use default', () => {
     expect(mountFunction({
-      props: { eager: true },
+      props: { eager: true }
     }).vm.$refs.content.getAttribute('role')).toBe('menu')
     expect(mountFunction({
       props: { eager: true },
-      attrs: { role: 'listbox' },
+      attrs: { role: 'listbox' }
     }).vm.$refs.content.getAttribute('role')).toBe('listbox')
 
     expect('Unable to locate target [data-app]').toHaveBeenTipped()
@@ -235,10 +235,10 @@ describe('VMenu.ts', () => {
             h(VListItem, { link: true }),
             h(VListItem, { link: true }),
             h(VListItem, { link: true }),
-            h(VListItem, { link: true }),
+            h(VListItem, { link: true })
           ])
-        },
-      },
+        }
+      }
     })
 
     wrapper.vm.onKeyDown(event(keyCodes.up))
@@ -268,10 +268,10 @@ describe('VMenu.ts', () => {
         default () {
           return h('div', [
             h(VListItem, { link: true }),
-            h(VListItem, { link: true }),
+            h(VListItem, { link: true })
           ])
-        },
-      },
+        }
+      }
     })
 
     wrapper.setData({ isActive: true })
@@ -301,10 +301,10 @@ describe('VMenu.ts', () => {
             h(VListItem),
             h(VListItem, { link: true }),
             h(VListItem, { link: true }),
-            h(VListItem, { link: true }),
+            h(VListItem, { link: true })
           ])
-        },
-      },
+        }
+      }
     })
 
     wrapper.setData({ isActive: true })
@@ -328,7 +328,7 @@ describe('VMenu.ts', () => {
     jest.useFakeTimers()
     const event = (keyCode: number) => new KeyboardEvent('keydown', { keyCode })
     const wrapper = mountFunction({
-      props: { eager: true },
+      props: { eager: true }
     })
 
     wrapper.setData({ isActive: true })
@@ -349,8 +349,8 @@ describe('VMenu.ts', () => {
     const wrapper = mountFunction({
       props: {
         eager: true,
-        disableKeys: true,
-      },
+        disableKeys: true
+      }
     })
 
     wrapper.setData({ isActive: true })
@@ -369,15 +369,15 @@ describe('VMenu.ts', () => {
     const wrapper = mountFunction({
       props: {
         eager: true,
-        disableKeys: true,
+        disableKeys: true
       },
       slots: {
         default () {
           return h('div', [
-            h(VListItem, { link: true }),
+            h(VListItem, { link: true })
           ])
-        },
-      },
+        }
+      }
     })
 
     wrapper.setData({ isActive: true })
@@ -406,8 +406,8 @@ describe('VMenu.ts', () => {
     const wrapper = mountFunction({
       props: {
         eager: true,
-        disableKeys: true,
-      },
+        disableKeys: true
+      }
     })
 
     wrapper.vm.onKeyDown(event(keyCodes.up))
@@ -428,12 +428,12 @@ describe('VMenu.ts', () => {
     const wrapper = mountFunction({
       props: {
         onScroll: onScrollSpy,
-        eager: true,
+        eager: true
       },
       slots: {
         activator: ({ on }) => h('button', { onClick: on.click }),
-        default: () => h(VCard),
-      },
+        default: () => h(VCard)
+      }
     })
 
     const content = wrapper.find('.v-menu__content')

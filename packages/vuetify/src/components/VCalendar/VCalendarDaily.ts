@@ -19,20 +19,19 @@ import { CalendarTimestamp } from 'vuetify/types'
 export default defineComponent({
   name: 'v-calendar-daily',
 
-
   extends: CalendarWithIntervals,
 
   data: () => ({
-    scrollPush: 0,
+    scrollPush: 0
   }),
 
   computed: {
     classes (): object {
       return {
         'v-calendar-daily': true,
-        ...this.themeClasses,
+        ...this.themeClasses
       }
-    },
+    }
   },
 
   mounted () {
@@ -56,11 +55,11 @@ export default defineComponent({
       return h('div', {
         class: 'v-calendar-daily__head',
         style: {
-          marginRight: this.scrollPush + 'px',
-        },
+          marginRight: this.scrollPush + 'px'
+        }
       }, [
         this.genHeadIntervals(),
-        ...this.genHeadDays(),
+        ...this.genHeadDays()
       ])
     },
     genHeadIntervals (): VNode {
@@ -69,8 +68,8 @@ export default defineComponent({
       return h('div', {
         class: 'v-calendar-daily__intervals-head',
         style: {
-          width,
-        },
+          width
+        }
       }, getSlot(this, 'interval-header'))
     },
     genHeadDays (): VNode[] {
@@ -82,16 +81,16 @@ export default defineComponent({
         class: ['v-calendar-daily_head-day', this.getRelativeClasses(day)],
         ...this.getDefaultMouseEventHandlers(':day', nativeEvent => {
           return { nativeEvent, ...this.getSlotScope(day) }
-        }),
+        })
       }, [
         this.genHeadWeekday(day),
         this.genHeadDayLabel(day),
-        ...this.genDayHeader(day, index),
+        ...this.genDayHeader(day, index)
       ])
     },
     genDayHeader (day: CalendarTimestamp, index: number): VNode[] {
       const slot = getSlot(this, 'day-header', {
-        week: this.days, ...day, index,
+        week: this.days, ...day, index
       })
       if (slot == null) return []
       return (Array.isArray(slot) ? slot : [slot]) as VNode[]
@@ -100,12 +99,12 @@ export default defineComponent({
       const color = day.present ? this.color : undefined
 
       return h('div', this.setTextColor(color, {
-        class: 'v-calendar-daily_head-weekday',
+        class: 'v-calendar-daily_head-weekday'
       }), this.weekdayFormatter(day, this.shortWeekdays))
     },
     genHeadDayLabel (day: CalendarTimestamp): VNode {
       return h('div', {
-        class: 'v-calendar-daily_head-day-label',
+        class: 'v-calendar-daily_head-day-label'
       }, getSlot(this, 'day-label-header', day) || [this.genHeadDayButton(day)])
     },
     genHeadDayButton (day: CalendarTimestamp): VNode {
@@ -117,25 +116,25 @@ export default defineComponent({
         depressed: true,
         ...this.getMouseEventHandlers({
           'click:date': { event: 'click', stop: true },
-          'contextmenu:date': { event: 'contextmenu', stop: true, prevent: true, result: false },
+          'contextmenu:date': { event: 'contextmenu', stop: true, prevent: true, result: false }
         }, nativeEvent => {
           return { nativeEvent, ...day }
-        }),
+        })
       }, { default: () => this.dayFormatter(day, false) })
     },
     genBody (): VNode {
       return h('div', {
-        class: 'v-calendar-daily__body',
+        class: 'v-calendar-daily__body'
       }, [
-        this.genScrollArea(),
+        this.genScrollArea()
       ])
     },
     genScrollArea (): VNode {
       return h('div', {
         ref: 'scrollArea',
-        class: 'v-calendar-daily__scroll-area',
+        class: 'v-calendar-daily__scroll-area'
       }, [
-        this.genPane(),
+        this.genPane()
       ])
     },
     genPane (): VNode {
@@ -143,18 +142,18 @@ export default defineComponent({
         ref: 'pane',
         class: 'v-calendar-daily__pane',
         style: {
-          height: convertToUnit(this.bodyHeight),
-        },
+          height: convertToUnit(this.bodyHeight)
+        }
       }, [
-        this.genDayContainer(),
+        this.genDayContainer()
       ])
     },
     genDayContainer (): VNode {
       return h('div', {
-        class: 'v-calendar-daily__day-container',
+        class: 'v-calendar-daily__day-container'
       }, [
         this.genBodyIntervals(),
-        ...this.genDays(),
+        ...this.genDays()
       ])
     },
     genDays (): VNode[] {
@@ -166,10 +165,10 @@ export default defineComponent({
         class: ['v-calendar-daily__day', this.getRelativeClasses(day)],
         ...this.getDefaultMouseEventHandlers(':time', nativeEvent => {
           return { nativeEvent, ...this.getSlotScope(this.getTimestampAtEvent(nativeEvent, day)) }
-        }),
+        })
       }, [
         ...this.genDayIntervals(index),
-        ...this.genDayBody(day),
+        ...this.genDayBody(day)
       ])
     },
     genDayBody (day: CalendarTimestamp): VNode[] {
@@ -189,8 +188,8 @@ export default defineComponent({
         class: 'v-calendar-daily__day-interval',
         style: {
           height,
-          ...styler(interval),
-        },
+          ...styler(interval)
+        }
 
       }
 
@@ -203,11 +202,11 @@ export default defineComponent({
       const data = {
         class: 'v-calendar-daily__intervals-body',
         style: {
-          width,
+          width
         },
         ...this.getDefaultMouseEventHandlers(':interval', nativeEvent => {
           return { nativeEvent, ...this.getTimestampAtEvent(nativeEvent, this.parsedStart) }
-        }),
+        })
       }
 
       return h('div', data, this.genIntervalLabels())
@@ -228,14 +227,14 @@ export default defineComponent({
         key: interval.time,
         class: 'v-calendar-daily__interval',
         style: {
-          height,
-        },
+          height
+        }
       }, [
         h('div', {
-          class: 'v-calendar-daily__interval-text',
-        }, label),
+          class: 'v-calendar-daily__interval-text'
+        }, label)
       ])
-    },
+    }
   },
 
   render (): VNode {
@@ -243,12 +242,12 @@ export default defineComponent({
       class: this.classes,
       onDragstart: (e: MouseEvent) => {
         e.preventDefault()
-      },
+      }
     }, [
       !this.hideHeader ? this.genHead() : '',
-      this.genBody(),
+      this.genBody()
     ]), [
-      [Resize, this.onResize, '', { quiet: true }],
+      [Resize, this.onResize, '', { quiet: true }]
     ])
-  },
+  }
 })

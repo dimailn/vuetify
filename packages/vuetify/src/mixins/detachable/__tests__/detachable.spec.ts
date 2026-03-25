@@ -10,13 +10,13 @@ const Mock = defineComponent({
   render () {
     const content = h('div', {
       class: 'content',
-      ref: 'content',
+      ref: 'content'
     })
 
     return h('div', {
-      class: 'mock',
+      class: 'mock'
     }, [this.$slots.default?.(), content])
-  },
+  }
 })
 
 describe('detachable.ts', () => {
@@ -25,18 +25,18 @@ describe('detachable.ts', () => {
     const wrapper = mount(VApp, {
       attachTo: document.body,
       slots: {
-        default: () => h(localMock),
+        default: () => h(localMock)
       },
       global: {
         mocks: {
           $vuetify: {
             rtl: false,
             theme: {
-              dark: false,
-            },
-          },
-        },
-      },
+              dark: false
+            }
+          }
+        }
+      }
     })
 
     const detach = wrapper.findComponent(localMock)
@@ -63,11 +63,11 @@ describe('detachable.ts', () => {
     const wrapper = mount(localMock, {
       attachTo: document.body,
       props: {
-        attach: '',
+        attach: ''
       },
       slots: {
-        default: () => h('div', { class: 'foo' }),
-      },
+        default: () => h('div', { class: 'foo' })
+      }
     })
 
     expect(wrapper.vm.initDetach()).toBeUndefined()

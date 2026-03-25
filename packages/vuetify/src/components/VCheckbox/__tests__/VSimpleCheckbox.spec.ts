@@ -1,6 +1,6 @@
 import {
   mount,
-  VueWrapper,
+  VueWrapper
 } from '@vue/test-utils'
 import VSimpleCheckbox from '../VSimpleCheckbox'
 
@@ -14,18 +14,18 @@ describe('VSimpleCheckbox.ts', () => {
         global: {
           stubs: {
             VIcon: {
-              template: '<span class="v-icon"></span>',
-            },
-          },
+              template: '<span class="v-icon"></span>'
+            }
+          }
         },
-        ...options,
+        ...options
       })
     }
   })
 
   it('should render simple checkbox', () => {
     const wrapper = mountFunction({
-      props: { modelValue: false },
+      props: { modelValue: false }
     })
 
     expect(wrapper.find('.v-simple-checkbox').exists()).toBe(true)
@@ -34,7 +34,7 @@ describe('VSimpleCheckbox.ts', () => {
 
   it('should emit update:modelValue event on click', async () => {
     const wrapper = mountFunction({
-      props: { modelValue: false },
+      props: { modelValue: false }
     })
 
     const element = wrapper.find('.v-simple-checkbox')
@@ -46,7 +46,7 @@ describe('VSimpleCheckbox.ts', () => {
 
   it('should not emit update:modelValue when disabled', async () => {
     const wrapper = mountFunction({
-      props: { modelValue: false, disabled: true },
+      props: { modelValue: false, disabled: true }
     })
 
     const element = wrapper.find('.v-simple-checkbox')
@@ -57,7 +57,7 @@ describe('VSimpleCheckbox.ts', () => {
 
   it('should apply disabled class when disabled', () => {
     const wrapper = mountFunction({
-      props: { disabled: true },
+      props: { disabled: true }
     })
 
     expect(wrapper.find('.v-simple-checkbox--disabled').exists()).toBe(true)

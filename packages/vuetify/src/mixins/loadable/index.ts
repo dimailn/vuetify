@@ -22,12 +22,12 @@ export default defineComponent({
   props: {
     loading: {
       type: [Boolean, String],
-      default: false,
+      default: false
     },
     loaderHeight: {
       type: [Number, String],
-      default: 2,
-    },
+      default: 2
+    }
   },
 
   methods: {
@@ -42,8 +42,8 @@ export default defineComponent({
           ? (this.color || 'primary')
           : this.loading,
         height: this.loaderHeight,
-        indeterminate: true,
+        indeterminate: true
       })
-    },
-  },
+    }
+  }
 })

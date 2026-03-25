@@ -28,7 +28,7 @@ describe('mutate.ts', () => {
     document.body.appendChild(el)
 
     Mutate.mounted(el, {
-      value: callback,
+      value: callback
     } as any, { ctx: { uid: 1 } } as any)
 
     expect(el._mutate).toBeTruthy()
@@ -37,7 +37,7 @@ describe('mutate.ts', () => {
     document.body.removeChild(el)
 
     Mutate.unmounted(el, {
-      value: callback,
+      value: callback
     } as any, { ctx: { uid: 1 } } as any)
 
     const uid = Object.keys(el._mutate)[0]
@@ -50,7 +50,7 @@ describe('mutate.ts', () => {
     document.body.appendChild(el)
 
     Mutate.mounted(el, {
-      value: callback,
+      value: callback
     } as any, { ctx: { uid: 1 } } as any)
 
     const uid = Object.keys(el._mutate)[0]
@@ -61,7 +61,7 @@ describe('mutate.ts', () => {
     document.body.removeChild(el)
 
     Mutate.unmounted(el, {
-      value: callback,
+      value: callback
     } as any, { ctx: { uid: 1 } } as any)
   })
 
@@ -73,8 +73,8 @@ describe('mutate.ts', () => {
     Mutate.mounted(el, {
       value: callback,
       modifiers: {
-        once: true,
-      },
+        once: true
+      }
     } as any, { ctx: { uid: 1 } } as any)
 
     const uid = Object.keys(el._mutate)[0]
@@ -96,10 +96,10 @@ describe('mutate.ts', () => {
       value: {
         options: {
           attributes: false,
-          subtree: true,
+          subtree: true
         },
-        handler: callback,
-      },
+        handler: callback
+      }
     } as any, { ctx: { uid: 1 } } as any)
 
     const uid = Object.keys(el._mutate)[0]
@@ -114,10 +114,10 @@ describe('mutate.ts', () => {
       value: {
         options: {
           attributes: false,
-          subtree: true,
+          subtree: true
         },
-        handler: callback,
-      },
+        handler: callback
+      }
     } as any, { ctx: { uid: 1 } } as any)
   })
 
@@ -131,8 +131,8 @@ describe('mutate.ts', () => {
       modifiers: {
         attr: true,
         child: true,
-        sub: true,
-      },
+        sub: true
+      }
     } as any, { ctx: { uid: 1 } } as any)
 
     const uid = Object.keys(el._mutate)[0]
@@ -148,8 +148,8 @@ describe('mutate.ts', () => {
       modifiers: {
         attr: true,
         child: true,
-        sub: true,
-      },
+        sub: true
+      }
     } as any, { ctx: { uid: 1 } } as any)
   })
 })

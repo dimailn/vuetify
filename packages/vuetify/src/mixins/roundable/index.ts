@@ -1,4 +1,4 @@
-import {defineComponent} from 'vue'
+import { defineComponent } from 'vue'
 
 /* @vue/component */
 export default defineComponent({
@@ -6,7 +6,7 @@ export default defineComponent({
 
   props: {
     rounded: [Boolean, String],
-    tile: Boolean,
+    tile: Boolean
   },
 
   computed: {
@@ -28,9 +28,11 @@ export default defineComponent({
         composite.push('rounded')
       }
 
-      return composite.length > 0 ? {
-        [composite.join(' ')]: true,
-      } : {}
-    },
-  },
+      return composite.length > 0
+        ? {
+            [composite.join(' ')]: true
+          }
+        : {}
+    }
+  }
 })

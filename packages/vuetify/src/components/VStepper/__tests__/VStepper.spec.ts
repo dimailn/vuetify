@@ -6,7 +6,7 @@ import {
   mount,
   MountingOptions,
   VueWrapper,
-  enableAutoUnmount,
+  enableAutoUnmount
 } from '@vue/test-utils'
 
 describe('VStepper.ts', () => {
@@ -18,7 +18,7 @@ describe('VStepper.ts', () => {
   beforeEach(() => {
     mountFunction = (options = {}) => {
       return mount(VStepper, {
-        ...options,
+        ...options
       })
     }
   })
@@ -26,7 +26,7 @@ describe('VStepper.ts', () => {
   // https://github.com/vuetifyjs/vuetify/issues/10096
   it('should accept 0 as a step value', () => {
     const wrapper = mountFunction({
-      props: { modelValue: 0 },
+      props: { modelValue: 0 }
     })
 
     expect(wrapper.vm.internalValue).toBe(0)

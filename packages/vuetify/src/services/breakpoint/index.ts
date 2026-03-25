@@ -1,6 +1,5 @@
 import { reactive } from 'vue'
 
-
 // Extensions
 import { Service } from '../service'
 
@@ -69,7 +68,7 @@ export class Breakpoint extends Service implements IBreakpoint {
     const {
       mobileBreakpoint,
       scrollBarWidth,
-      thresholds,
+      thresholds
     } = preset[Breakpoint.property]
 
     this.mobileBreakpoint = mobileBreakpoint
@@ -153,7 +152,7 @@ export class Breakpoint extends Service implements IBreakpoint {
       sm: 1,
       md: 2,
       lg: 3,
-      xl: 4,
+      xl: 4
     } as const
 
     const current = breakpoints[this.name]

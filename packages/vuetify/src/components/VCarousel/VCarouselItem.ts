@@ -29,15 +29,15 @@ export default baseMixins.extend({
   inject: {
     parentTheme: {
       default: {
-        isDark: false,
-      },
-    },
+        isDark: false
+      }
+    }
   },
 
   // pass down the parent's theme
   provide (): object {
     return {
-      theme: this.parentTheme,
+      theme: this.parentTheme
     }
   },
 
@@ -50,8 +50,8 @@ export default baseMixins.extend({
           class: 'v-carousel__item',
           ...this.$attrs,
           height: this.windowGroup.internalHeight,
-          ...this.$listeners,
-        }, { default: () => getSlot(this), placeholder: this.$slots.placeholder }),
+          ...this.$listeners
+        }, { default: () => getSlot(this), placeholder: this.$slots.placeholder })
       ]
     },
     genWindowItem () {
@@ -61,13 +61,13 @@ export default baseMixins.extend({
 
       directives!.push([
         vShow,
-        this.isActive,
+        this.isActive
       ])
 
       return withDirectives(
         h(tag, data, this.genDefaultSlot()),
         directives
       )
-    },
-  },
+    }
+  }
 })

@@ -12,6 +12,6 @@ export default {
     VCalendarCategory,
     VCalendarDaily,
     VCalendarWeekly,
-    VCalendarMonthly,
-  },
+    VCalendarMonthly
+  }
 }

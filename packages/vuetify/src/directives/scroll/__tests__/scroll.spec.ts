@@ -17,11 +17,11 @@ describe('scroll.ts', () => {
     binding = {
       value: jest.fn(),
       modifiers: {},
-      arg: null,
+      arg: null
     } as DirectiveBinding
     el = {
       addEventListener: jest.fn(),
-      removeEventListener: jest.fn(),
+      removeEventListener: jest.fn()
     }
   })
 
@@ -35,7 +35,7 @@ describe('scroll.ts', () => {
     expect(el._onScroll[1]).toEqual({
       handler: binding.value,
       options,
-      target: window,
+      target: window
     })
 
     unmounted(el, binding, vnode)
@@ -69,7 +69,7 @@ describe('scroll.ts', () => {
     expect(el._onScroll[1]).toEqual({
       handler: binding.value,
       options,
-      target,
+      target
     })
 
     unmounted(el, binding, vnode)
@@ -89,7 +89,7 @@ describe('scroll.ts', () => {
     expect(el._onScroll[1]).toEqual({
       handler: binding.value,
       options,
-      target: undefined,
+      target: undefined
     })
 
     unmounted(el, binding, vnode)
@@ -114,7 +114,7 @@ describe('scroll.ts', () => {
     expect(el._onScroll[1]).toEqual({
       handler,
       target: window,
-      options: { passive: true },
+      options: { passive: true }
     })
 
     binding.value = { handler, options: { passive: false } }
@@ -124,7 +124,7 @@ describe('scroll.ts', () => {
     expect(el._onScroll[1]).toEqual({
       handler,
       target: window,
-      options: { passive: false },
+      options: { passive: false }
     })
   })
 })

@@ -23,8 +23,8 @@ export function createSimpleFunctional (
     props: {
       tag: {
         type: String,
-        default: el,
-      },
+        default: el
+      }
     },
 
     render (): VNode {
@@ -33,7 +33,7 @@ export function createSimpleFunctional (
       data.class = (`${c} ${data.class || ''}`).trim()
 
       return h(getTagValue(this.tag), data, this.$slots.default?.())
-    },
+    }
   })
 }
 
@@ -43,7 +43,7 @@ export function directiveConfig (binding: BindingConfig, defaults = {}): VNodeDi
     ...defaults,
     ...binding.modifiers,
     value: binding.arg,
-    ...(binding.value || {}),
+    ...(binding.value || {})
   }
 }
 
@@ -67,7 +67,7 @@ try {
     const testListenerOpts = Object.defineProperty({}, 'passive', {
       get: () => {
         passiveSupported = true
-      },
+      }
     }) as EventListener & EventListenerOptions
 
     window.addEventListener('testListener', testListenerOpts, testListenerOpts)
@@ -222,7 +222,7 @@ export const keyCodes = Object.freeze({
   insert: 45,
   pageup: 33,
   pagedown: 34,
-  shift: 16,
+  shift: 16
 })
 
 /**
@@ -254,8 +254,8 @@ export function remapInternalIcon (vm: Vue, iconName: string): VuetifyIcon {
   return {
     component,
     props: {
-      icon: iconName,
-    },
+      icon: iconName
+    }
   }
 }
 
@@ -304,7 +304,7 @@ export function groupItems<T extends any = any> (
       current = val
       groups.push({
         name: val ?? '',
-        items: [],
+        items: []
       })
     }
     groups[groups.length - 1].items.push(item)
@@ -387,13 +387,11 @@ export function searchItems<T extends any = any> (items: T[], search: string): T
  *  - 'v-slot' for unbound v-slot (`#default`) - only if the third param is true, otherwise counts as scoped
  */
 export function getSlotType<T extends boolean = false> (vm: Vue, name: string, split?: T): (T extends true ? 'v-slot' : never) | 'normal' | 'scoped' | void {
-  return 'scoped'
-
-  if (vm.$slots.hasOwnProperty(name) && vm.$slots.hasOwnProperty(name) && (vm.$slots[name] as any).name) {
+  if (vm.$slots.hasOwnProperty(name) && (vm.$slots[name] as any).name) {
     return split ? 'v-slot' as any : 'scoped'
   }
   if (vm.$slots.hasOwnProperty(name)) return 'normal'
-  if (vm.$slots.hasOwnProperty(name)) return 'scoped'
+  if (vm.$slots.hasOwnProperty(kebabCase(name))) return 'scoped'
 }
 
 export function debounce (fn: Function, delay: number) {
@@ -429,10 +427,6 @@ export function getSlot (vm: Vue, name = 'default', data?: object | (() => objec
     return vm.$slots[name]!(data instanceof Function ? data() : data)
   } else if (vm.$slots.hasOwnProperty(kebabName)) {
     return vm.$slots[kebabName]!(data instanceof Function ? data() : data)
-  } else if (vm.$slots.hasOwnProperty(name) && (!data || optional)) {
-    return vm.$slots[name]
-  } else if (vm.$slots.hasOwnProperty(kebabName) && (!data || optional)) {
-    return vm.$slots[kebabName]
   }
   return undefined
 }

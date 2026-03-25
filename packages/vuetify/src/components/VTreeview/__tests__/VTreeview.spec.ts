@@ -2,7 +2,7 @@ import {
   mount,
   VueWrapper,
   enableAutoUnmount,
-  MountingOptions,
+  MountingOptions
 } from '@vue/test-utils'
 import VTreeview from '../VTreeview'
 import { wait } from '../../../../test'
@@ -12,11 +12,11 @@ import { h, nextTick } from 'vue'
 import type { ComponentPublicInstance } from 'vue'
 
 const singleRootTwoChildren = [
-  { id: 0, name: 'Root', children: [{ id: 1, name: 'Child' }, { id: 2, name: 'Child 2' }] },
+  { id: 0, name: 'Root', children: [{ id: 1, name: 'Child' }, { id: 2, name: 'Child 2' }] }
 ]
 
 const threeLevels = [
-  { id: 0, name: 'Root', children: [{ id: 1, name: 'Child', children: [{ id: 2, name: 'Grandchild' }] }, { id: 3, name: 'Child' }] },
+  { id: 0, name: 'Root', children: [{ id: 1, name: 'Child', children: [{ id: 2, name: 'Grandchild' }] }, { id: 3, name: 'Child' }] }
 ]
 
 describe('VTreeView.ts', () => { // eslint-disable-line max-statements
@@ -34,13 +34,13 @@ describe('VTreeView.ts', () => { // eslint-disable-line max-statements
               rtl: false,
               icons: {
                 values: {
-                  subgroup: 'arrow_drop_down',
-                },
-              },
-            },
-          },
+                  subgroup: 'arrow_drop_down'
+                }
+              }
+            }
+          }
         },
-        ...options,
+        ...options
       })
     }
   })
@@ -48,8 +48,8 @@ describe('VTreeView.ts', () => { // eslint-disable-line max-statements
   it('should render items', async () => {
     const wrapper = mountFunction({
       props: {
-        items: singleRootTwoChildren,
-      },
+        items: singleRootTwoChildren
+      }
     })
 
     expect(wrapper.html()).toMatchSnapshot()
@@ -59,8 +59,8 @@ describe('VTreeView.ts', () => { // eslint-disable-line max-statements
     const wrapper = mountFunction({
       props: {
         items: singleRootTwoChildren,
-        dense: true,
-      },
+        dense: true
+      }
     })
 
     expect(wrapper.html()).toMatchSnapshot()
@@ -72,8 +72,8 @@ describe('VTreeView.ts', () => { // eslint-disable-line max-statements
     const wrapper = mountFunction({
       props: {
         items: threeLevels,
-        selectable: true,
-      },
+        selectable: true
+      }
     })
 
     wrapper.find('.v-treeview-node__checkbox').trigger('click')
@@ -90,8 +90,8 @@ describe('VTreeView.ts', () => { // eslint-disable-line max-statements
     const wrapper = mountFunction({
       props: {
         items: threeLevels,
-        selectable: true,
-      },
+        selectable: true
+      }
     })
 
     wrapper.find('.v-treeview-node__toggle').trigger('click')
@@ -112,8 +112,8 @@ describe('VTreeView.ts', () => { // eslint-disable-line max-statements
       props: {
         items: threeLevels,
         selectable: true,
-        selectionType: 'independent',
-      },
+        selectionType: 'independent'
+      }
     })
 
     wrapper.find('.v-treeview-node__checkbox').trigger('click')
@@ -133,8 +133,8 @@ describe('VTreeView.ts', () => { // eslint-disable-line max-statements
     const wrapper = mountFunction({
       props: {
         items: [{ id: 0, name: 'Root', children: [] }],
-        loadChildren,
-      },
+        loadChildren
+      }
     })
 
     expect(wrapper.html()).toMatchSnapshot()
@@ -156,8 +156,8 @@ describe('VTreeView.ts', () => { // eslint-disable-line max-statements
       props: {
         items: [{ id: 0, name: 'Root', children: [] }],
         selectable: true,
-        loadChildren,
-      },
+        loadChildren
+      }
     })
 
     expect(wrapper.html()).toMatchSnapshot()
@@ -174,8 +174,8 @@ describe('VTreeView.ts', () => { // eslint-disable-line max-statements
     const wrapper = mountFunction({
       props: {
         items: [{ id: 0, name: 'Root' }, { id: 1, name: 'Root' }],
-        activatable: true,
-      },
+        activatable: true
+      }
     })
 
     wrapper.find('.v-treeview-node__root').trigger('click')
@@ -196,8 +196,8 @@ describe('VTreeView.ts', () => { // eslint-disable-line max-statements
       props: {
         items: [{ id: 0, name: 'Root' }, { id: 1, name: 'Root' }],
         multipleActive: true,
-        activatable: true,
-      },
+        activatable: true
+      }
     })
 
     wrapper.findAll('.v-treeview-node__root').forEach(vm => vm.trigger('click'))
@@ -213,8 +213,8 @@ describe('VTreeView.ts', () => { // eslint-disable-line max-statements
       props: {
         items: [{ id: 0, name: 'Root', children: [{ id: 1, name: 'Child' }] }],
         modelValue: [],
-        selectable: true,
-      },
+        selectable: true
+      }
     })
 
     expect(wrapper.html()).toMatchSnapshot()
@@ -236,8 +236,8 @@ describe('VTreeView.ts', () => { // eslint-disable-line max-statements
     const wrapper = mountFunction({
       props: {
         items: threeLevels,
-        openAll: true,
-      },
+        openAll: true
+      }
     })
 
     await nextTick()
@@ -249,11 +249,11 @@ describe('VTreeView.ts', () => { // eslint-disable-line max-statements
     const updateOpen = jest.fn()
     const wrapper = mountFunction({
       props: {
-        items: threeLevels,
+        items: threeLevels
       },
       attrs: {
-        'onUpdate:open': updateOpen,
-      },
+        'onUpdate:open': updateOpen
+      }
     })
 
     wrapper.vm.updateAll(true)
@@ -270,11 +270,11 @@ describe('VTreeView.ts', () => { // eslint-disable-line max-statements
     const wrapper = mountFunction({
       props: {
         items: threeLevels,
-        open: [1],
+        open: [1]
       },
       attrs: {
-        'onUpdate:open': fn,
-      },
+        'onUpdate:open': fn
+      }
     })
 
     wrapper.setProps({ open: [0, 1] })
@@ -311,8 +311,8 @@ describe('VTreeView.ts', () => { // eslint-disable-line max-statements
       props: {
         items: threeLevels,
         active: [2],
-        modelValue: [1],
-      },
+        modelValue: [1]
+      }
     })
 
     // TODO: I can not find away in avoriaz
@@ -328,11 +328,11 @@ describe('VTreeView.ts', () => { // eslint-disable-line max-statements
     const wrapper = mountFunction({
       props: {
         items: threeLevels,
-        active: [2],
+        active: [2]
       },
       attrs: {
-        'onUpdate:active': active,
-      },
+        'onUpdate:active': active
+      }
     })
 
     wrapper.setProps({ active: [] })
@@ -363,11 +363,11 @@ describe('VTreeView.ts', () => { // eslint-disable-line max-statements
     const wrapper = mountFunction({
       props: {
         items: threeLevels,
-        modelValue: [2],
+        modelValue: [2]
       },
       attrs: {
-        'onUpdate:modelValue': value,
-      },
+        'onUpdate:modelValue': value
+      }
     })
 
     wrapper.setProps({ modelValue: [] })
@@ -390,7 +390,7 @@ describe('VTreeView.ts', () => { // eslint-disable-line max-statements
 
   it('should accept string value for id', async () => {
     const wrapper = mountFunction({
-      props: { itemKey: 'name' },
+      props: { itemKey: 'name' }
     })
 
     wrapper.setProps({ items: [{ name: 'Foobar' }] })
@@ -410,10 +410,10 @@ describe('VTreeView.ts', () => { // eslint-disable-line max-statements
         items: [
           {
             text: 'root',
-            children: [],
-          },
-        ],
-      },
+            children: []
+          }
+        ]
+      }
     })
 
     expect(wrapper.html()).toMatchSnapshot()
@@ -427,10 +427,10 @@ describe('VTreeView.ts', () => { // eslint-disable-line max-statements
         items: [
           {
             text: 'root',
-            children: [],
-          },
-        ],
-      },
+            children: []
+          }
+        ]
+      }
     })
 
     expect(wrapper.html()).toMatchSnapshot()
@@ -442,8 +442,8 @@ describe('VTreeView.ts', () => { // eslint-disable-line max-statements
       {
         id: 1,
         name: 'One',
-        __children: [],
-      },
+        __children: []
+      }
     ]
 
     const wrapper = mountFunction({
@@ -454,10 +454,10 @@ describe('VTreeView.ts', () => { // eslint-disable-line max-statements
           const newItems = [...items]
           items[0].__children.push({ id: 2, name: 'Two' })
           wrapper.setProps({
-            items: newItems,
+            items: newItems
           })
-        },
-      },
+        }
+      }
     })
 
     wrapper.find('.v-treeview-node__toggle').trigger('click')
@@ -472,14 +472,14 @@ describe('VTreeView.ts', () => { // eslint-disable-line max-statements
         items: [
           {
             id: 1,
-            name: 'one',
+            name: 'one'
           },
           {
             id: 2,
-            name: 'two',
-          },
-        ],
-      },
+            name: 'two'
+          }
+        ]
+      }
     })
 
     expect(wrapper.html()).toMatchSnapshot()
@@ -488,9 +488,9 @@ describe('VTreeView.ts', () => { // eslint-disable-line max-statements
       items: [
         {
           id: 1,
-          name: 'one',
-        },
-      ],
+          name: 'one'
+        }
+      ]
     })
 
     await nextTick()
@@ -500,13 +500,13 @@ describe('VTreeView.ts', () => { // eslint-disable-line max-statements
       items: [
         {
           id: 1,
-          name: 'one',
+          name: 'one'
         },
         {
           id: 3,
-          name: 'three',
-        },
-      ],
+          name: 'three'
+        }
+      ]
     })
 
     await nextTick()
@@ -521,20 +521,20 @@ describe('VTreeView.ts', () => { // eslint-disable-line max-statements
         items: [
           {
             id: 1,
-            name: 'one',
+            name: 'one'
           },
           {
             id: 2,
-            name: 'two',
-          },
-        ],
-      },
+            name: 'two'
+          }
+        ]
+      }
     })
 
     expect(wrapper.html()).toMatchSnapshot()
 
     wrapper.setProps({
-      search: 'two',
+      search: 'two'
     })
 
     await nextTick()
@@ -550,22 +550,22 @@ describe('VTreeView.ts', () => { // eslint-disable-line max-statements
           {
             id: 1,
             name: 'one',
-            special: 'yes',
+            special: 'yes'
           },
           {
             id: 2,
             name: 'two',
-            special: 'no',
-          },
+            special: 'no'
+          }
         ],
-        search: 'NO',
-      },
+        search: 'NO'
+      }
     })
 
     expect(wrapper.html()).toMatchSnapshot()
 
     wrapper.setProps({
-      search: 'yes',
+      search: 'yes'
     })
 
     await nextTick()
@@ -586,13 +586,13 @@ describe('VTreeView.ts', () => { // eslint-disable-line max-statements
         items,
         activatable: true,
         selectable: true,
-        returnObject: true,
+        returnObject: true
       },
       attrs: {
         'onUpdate:active': active,
         'onUpdate:modelValue': selected,
-        'onUpdate:open': open,
-      },
+        'onUpdate:open': open
+      }
     })
 
     wrapper.find('.v-treeview-node__root').trigger('click')
@@ -620,14 +620,14 @@ describe('VTreeView.ts', () => { // eslint-disable-line max-statements
         items: [
           {
             id: 1,
-            name: 'one',
+            name: 'one'
           },
           {
             id: 2,
-            name: 'two',
-          },
-        ],
-      },
+            name: 'two'
+          }
+        ]
+      }
     })
 
     expect(wrapper.html()).toMatchSnapshot()
@@ -636,13 +636,13 @@ describe('VTreeView.ts', () => { // eslint-disable-line max-statements
       items: [
         {
           id: 1,
-          name: 'one',
+          name: 'one'
         },
         {
           id: 3,
-          name: 'three',
-        },
-      ],
+          name: 'three'
+        }
+      ]
     })
 
     await nextTick()
@@ -664,8 +664,8 @@ describe('VTreeView.ts', () => { // eslint-disable-line max-statements
         items: [one, two],
         modelValue: [one],
         open: [two],
-        active: [three],
-      },
+        active: [three]
+      }
     })
 
     await nextTick()
@@ -677,17 +677,17 @@ describe('VTreeView.ts', () => { // eslint-disable-line max-statements
     const children = [
       { id: 2, name: 'Bar' },
       { id: 3, name: 'Fizz' },
-      { id: 4, name: 'Buzz' },
+      { id: 4, name: 'Buzz' }
     ]
     const item = {
       id: 1,
-      name: 'Foo',
+      name: 'Foo'
     }
     const wrapper = mountFunction({
       props: {
         items: [{ ...item, children }],
-        modelValue: [4],
-      },
+        modelValue: [4]
+      }
     })
 
     wrapper.setProps({
@@ -695,9 +695,9 @@ describe('VTreeView.ts', () => { // eslint-disable-line max-statements
         ...item,
         children: [
           ...children,
-          { id: 5, name: 'FizzBuzz' },
-        ],
-      }],
+          { id: 5, name: 'FizzBuzz' }
+        ]
+      }]
     })
 
     await nextTick()
@@ -713,8 +713,8 @@ describe('VTreeView.ts', () => { // eslint-disable-line max-statements
       children: [
         { id: 2, name: 'Bar' },
         { id: 3, name: 'Fizz' },
-        { id: 4, name: 'Buzz' },
-      ],
+        { id: 4, name: 'Buzz' }
+      ]
     }]
 
     const input = jest.fn()
@@ -724,11 +724,11 @@ describe('VTreeView.ts', () => { // eslint-disable-line max-statements
         items,
         modelValue: [2, 3, 4],
         selectionType: 'leaf',
-        selectable: true,
+        selectable: true
       },
       attrs: {
-        'onUpdate:modelValue': input,
-      },
+        'onUpdate:modelValue': input
+      }
     })
 
     wrapper.setProps({
@@ -738,9 +738,9 @@ describe('VTreeView.ts', () => { // eslint-disable-line max-statements
         children: [
           { id: 2, name: 'Bar' },
           { id: 3, name: 'Fizz' },
-          { id: 4, name: 'Buzz' },
-        ],
-      }],
+          { id: 4, name: 'Buzz' }
+        ]
+      }]
     })
 
     await nextTick()
@@ -757,8 +757,8 @@ describe('VTreeView.ts', () => { // eslint-disable-line max-statements
       children: [
         { id: 2, name: 'Bar', disabled: true },
         { id: 3, name: 'Fizz' },
-        { id: 4, name: 'Buzz' },
-      ],
+        { id: 4, name: 'Buzz' }
+      ]
     }]
 
     const input = jest.fn()
@@ -768,11 +768,11 @@ describe('VTreeView.ts', () => { // eslint-disable-line max-statements
         items,
         modelValue: [],
         selectionType: 'leaf',
-        selectable: true,
+        selectable: true
       },
       attrs: {
-        'onUpdate:modelValue': input,
-      },
+        'onUpdate:modelValue': input
+      }
     })
 
     wrapper.find('.v-treeview-node__checkbox').trigger('click')
@@ -788,9 +788,9 @@ describe('VTreeView.ts', () => { // eslint-disable-line max-statements
         children: [
           { id: 2, name: 'Bar', disabled: true },
           { id: 3, name: 'Fizz' },
-          { id: 4, name: 'Buzz' },
-        ],
-      }],
+          { id: 4, name: 'Buzz' }
+        ]
+      }]
     })
     await nextTick()
 
@@ -811,8 +811,8 @@ describe('VTreeView.ts', () => { // eslint-disable-line max-statements
       children: [
         { id: 2, name: 'Bar' },
         { id: 3, name: 'Fizz', disabled: true },
-        { id: 4, name: 'Buzz' },
-      ],
+        { id: 4, name: 'Buzz' }
+      ]
     }]
 
     const input = jest.fn()
@@ -823,11 +823,11 @@ describe('VTreeView.ts', () => { // eslint-disable-line max-statements
         modelValue: [],
         open: [1],
         selectionType: 'independent',
-        selectable: true,
+        selectable: true
       },
       attrs: {
-        'onUpdate:modelValue': input,
-      },
+        'onUpdate:modelValue': input
+      }
     })
 
     await nextTick()
@@ -852,13 +852,13 @@ describe('VTreeView.ts', () => { // eslint-disable-line max-statements
       props: {
         items: [{ id: 0, name: 'Root', children: [] }],
         loadChildren: () => wrapper.setProps({
-          items: [{ id: 0, name: 'Root', children: [{ id: 1, name: 'Child' }] }],
+          items: [{ id: 0, name: 'Root', children: [{ id: 1, name: 'Child' }] }]
         }),
-        openOnClick: true,
+        openOnClick: true
       },
       attrs: {
-        'onUpdate:open': open,
-      },
+        'onUpdate:open': open
+      }
     })
 
     expect(wrapper.html()).toMatchSnapshot()

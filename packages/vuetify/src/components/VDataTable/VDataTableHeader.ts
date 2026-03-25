@@ -22,14 +22,14 @@ export default defineComponent({
 
   props: {
     ...header.props,
-    mobile: Boolean,
+    mobile: Boolean
   },
 
   render () {
     const props = this.$props
     const data = {
       ...this.$attrs,
-      ...props,
+      ...props
     }
 
     // dedupeModelListeners(data)
@@ -38,5 +38,5 @@ export default defineComponent({
     } else {
       return h(VDataTableHeaderDesktop, data, this.$slots)
     }
-  },
+  }
 })

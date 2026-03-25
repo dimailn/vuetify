@@ -3,7 +3,7 @@ import VCalendar from '../VCalendar'
 import {
   mount,
   VueWrapper,
-  MountingOptions,
+  MountingOptions
 } from '@vue/test-utils'
 
 describe('VCalendar', () => {
@@ -16,12 +16,12 @@ describe('VCalendar', () => {
           mocks: {
             $vuetify: {
               lang: {
-                current: 'en-US',
-              },
-            },
-          },
+                current: 'en-US'
+              }
+            }
+          }
         },
-        ...options,
+        ...options
       })
     }
   })
@@ -32,8 +32,8 @@ describe('VCalendar', () => {
         type: 'day',
         start: '2018-01-29',
         end: '2018-02-04',
-        now: '2019-02-17',
-      },
+        now: '2019-02-17'
+      }
     })
 
     expect(wrapper.classes('v-calendar-daily')).toBeTruthy()
@@ -46,8 +46,8 @@ describe('VCalendar', () => {
         type: '4day',
         start: '2018-01-29',
         end: '2018-02-04',
-        now: '2019-02-17',
-      },
+        now: '2019-02-17'
+      }
     })
 
     expect(wrapper.classes('v-calendar-daily')).toBeTruthy()
@@ -60,8 +60,8 @@ describe('VCalendar', () => {
         type: 'week',
         start: '2018-01-29',
         end: '2018-02-04',
-        now: '2019-02-17',
-      },
+        now: '2019-02-17'
+      }
     })
 
     expect(wrapper.classes('v-calendar-daily')).toBeTruthy()
@@ -74,8 +74,8 @@ describe('VCalendar', () => {
         type: 'month',
         start: '2018-01-29',
         end: '2018-02-04',
-        now: '2019-02-17',
-      },
+        now: '2019-02-17'
+      }
     })
 
     expect(wrapper.classes('v-calendar-monthly')).toBeTruthy()
@@ -87,8 +87,8 @@ describe('VCalendar', () => {
       props: {
         value: '2019-02-02',
         start: '2019-01-29',
-        end: '2019-02-04',
-      },
+        end: '2019-02-04'
+      }
     })
 
     expect(wrapper.vm.parsedValue.date).toBe('2019-02-02')
@@ -98,8 +98,8 @@ describe('VCalendar', () => {
     const wrapper = mountFunction({
       props: {
         start: '2019-01-29',
-        end: '2019-02-04',
-      },
+        end: '2019-02-04'
+      }
     })
 
     expect(wrapper.vm.parsedValue.date).toBe('2019-01-29')
@@ -110,8 +110,8 @@ describe('VCalendar', () => {
       props: {
         value: '2019-01-11',
         type: 'day',
-        weekdays: [1, 2, 3, 4, 5],
-      },
+        weekdays: [1, 2, 3, 4, 5]
+      }
     })
 
     expect(wrapper.html()).toMatchSnapshot()

@@ -1,4 +1,4 @@
-import {h} from 'vue'
+import { h, defineComponent } from 'vue'
 // Styles
 import './VItemGroup.sass'
 
@@ -15,7 +15,6 @@ import { getSlot, getTagValue } from '../../util/helpers'
 
 // Types
 import type { VNode } from '../../types/vue-internal'
-import { defineComponent } from 'vue'
 
 export type GroupableInstance = any & {
   id?: string
@@ -35,22 +34,22 @@ export const BaseItemGroup = mixins(
   props: {
     activeClass: {
       type: String,
-      default: 'v-item--active',
+      default: 'v-item--active'
     },
     allowDeselect: {
       type: Boolean,
-      default: true,
+      default: true
     },
     mandatory: Boolean,
     max: {
       type: [Number, String],
-      default: null,
+      default: null
     },
     multiple: Boolean,
     tag: {
       type: String,
-      default: 'div',
-    },
+      default: 'div'
+    }
   },
 
   data () {
@@ -61,7 +60,7 @@ export const BaseItemGroup = mixins(
       internalLazyValue: this.modelValue !== undefined
         ? this.modelValue
         : this.multiple ? [] : undefined,
-      items: [] as GroupableInstance[],
+      items: [] as GroupableInstance[]
     }
   },
 
@@ -69,7 +68,7 @@ export const BaseItemGroup = mixins(
     classes (): Record<string, boolean> {
       return {
         'v-item-group': true,
-        ...this.themeClasses,
+        ...this.themeClasses
       }
     },
     selectedIndex (): number {
@@ -103,7 +102,7 @@ export const BaseItemGroup = mixins(
       }
 
       return () => false
-    },
+    }
   },
 
   watch: {
@@ -121,7 +120,7 @@ export const BaseItemGroup = mixins(
 
     genData (): object {
       return {
-        class: this.classes,
+        class: this.classes
       }
     },
     getValue (item: GroupableInstance, i: number): unknown {
@@ -261,16 +260,16 @@ export const BaseItemGroup = mixins(
       if (!this.allowDeselect && isSame) return
 
       this.internalValue = isSame ? undefined : value
-    },
+    }
   },
 
   render (): VNode {
     const data = this.genData()
     return h(getTagValue(this.tag), {
       class: data.class,
-      ...data.attrs,
+      ...data.attrs
     }, getSlot(this))
-  },
+  }
 })
 
 export default defineComponent({
@@ -279,7 +278,7 @@ export default defineComponent({
 
   provide (): object {
     return {
-      itemGroup: this,
+      itemGroup: this
     }
-  },
+  }
 })

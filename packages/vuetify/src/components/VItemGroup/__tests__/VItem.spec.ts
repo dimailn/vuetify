@@ -4,10 +4,9 @@ import VItem from '../VItem'
 // Utilities
 import {
   mount,
-  enableAutoUnmount,
+  enableAutoUnmount
 } from '@vue/test-utils'
 import { h, nextTick } from 'vue'
-
 
 describe('VItem', () => {
   let mountFunction: (options?: object) => any
@@ -17,7 +16,7 @@ describe('VItem', () => {
   beforeEach(() => {
     mountFunction = (options = {}) => {
       return mount(VItem, {
-        ...options,
+        ...options
       })
     }
   })
@@ -51,11 +50,11 @@ describe('VItem', () => {
   it('should match snapshot activeClass', async () => {
     const wrapper = mount(VItem, {
       props: {
-        activeClass: 'foo',
+        activeClass: 'foo'
       },
       slots: {
-        default: '<div>test content</div>',
-      },
+        default: '<div>test content</div>'
+      }
     })
 
     expect(wrapper.html()).toMatchSnapshot()
