@@ -6,7 +6,7 @@ import {
   mount,
   Wrapper,
   MountOptions,
-  enableAutoUnmount,
+  enableAutoUnmount
 } from '@vue/test-utils'
 
 const tip = '[Vuetify] The v-stepper-step component must be used inside a v-stepper'
@@ -26,20 +26,20 @@ describe('VStepperStep.ts', () => {
             $vuetify: {
               icons: {
                 values: {
-                  complete: 'mdi-check',
-                },
-              },
-            },
+                  complete: 'mdi-check'
+                }
+              }
+            }
           },
           provide: {
             stepClick: jest.fn(),
             stepper: {
               register: jest.fn(),
-              unregister: jest.fn(),
-            },
-          },
+              unregister: jest.fn()
+            }
+          }
         },
-        ...options,
+        ...options
       })
     }
   })
@@ -49,8 +49,8 @@ describe('VStepperStep.ts', () => {
       attachTo: document.body,
       props: {
         color: 'pink',
-        complete: true,
-      },
+        complete: true
+      }
     })
 
     expect(wrapper.html()).toMatchSnapshot()
@@ -61,8 +61,8 @@ describe('VStepperStep.ts', () => {
       attachTo: document.body,
       props: {
         color: '#aabbcc',
-        complete: true,
-      },
+        complete: true
+      }
     })
 
     expect(wrapper.html()).toMatchSnapshot()
@@ -72,17 +72,17 @@ describe('VStepperStep.ts', () => {
     const stepClick = jest.fn()
     const wrapper = mountFunction({
       props: {
-        editable: true,
+        editable: true
       },
       global: {
         provide: {
           stepClick,
           stepper: {
             register: jest.fn(),
-            unregister: jest.fn(),
-          },
-        },
-      },
+            unregister: jest.fn()
+          }
+        }
+      }
     })
 
     await wrapper.find('.v-stepper__step--editable').trigger('click')
@@ -93,8 +93,8 @@ describe('VStepperStep.ts', () => {
   it('should render', async () => {
     const wrapper = mountFunction({
       props: {
-        step: 1,
-      },
+        step: 1
+      }
     })
 
     expect(wrapper.html()).toMatchSnapshot()
@@ -103,8 +103,8 @@ describe('VStepperStep.ts', () => {
   it('should render complete step', async () => {
     const wrapper = mountFunction({
       props: {
-        complete: true,
-      },
+        complete: true
+      }
     })
 
     expect(wrapper.html()).toMatchSnapshot()
@@ -113,17 +113,17 @@ describe('VStepperStep.ts', () => {
   it('should render step with error', async () => {
     const wrapper = mountFunction({
       props: {
-        rules: [() => 'Error message'],
+        rules: [() => 'Error message']
       },
       global: {
         provide: {
           stepClick: jest.fn(),
           stepper: {
             register: jest.fn(),
-            unregister: jest.fn(),
-          },
-        },
-      },
+            unregister: jest.fn()
+          }
+        }
+      }
     })
 
     expect(wrapper.html()).toMatchSnapshot()
@@ -133,8 +133,8 @@ describe('VStepperStep.ts', () => {
     const wrapper = mountFunction({
       props: {
         editable: true,
-        complete: true,
-      },
+        complete: true
+      }
     })
 
     expect(wrapper.html()).toMatchSnapshot()
@@ -143,8 +143,8 @@ describe('VStepperStep.ts', () => {
   it('should toggle', async () => {
     const wrapper = mountFunction({
       props: {
-        step: 3,
-      },
+        step: 3
+      }
     })
 
     wrapper.vm.toggle(1)

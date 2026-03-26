@@ -1,4 +1,4 @@
-import Vue from 'vue'
+import { createApp, defineComponent, h } from 'vue'
 
 import Vuetify, {
   VBtn,
@@ -8,11 +8,16 @@ import Vuetify, {
 
 import * as directives from 'vuetify/lib/directives'
 
-Vuetify.install(Vue)
+const vuetify = new Vuetify()
 
-Vuetify.install(Vue, {})
+const app = createApp({
+  vuetify,
+  render: () => h('div'),
+})
 
-Vuetify.install(Vue, {
+app.use(Vuetify)
+app.use(Vuetify, {})
+app.use(Vuetify, {
   components: {
     VBtn,
     VCard,
@@ -21,13 +26,6 @@ Vuetify.install(Vue, {
   directives,
 })
 
-/* eslint-disable-next-line no-new */
-new Vue({
-  vuetify: new Vuetify(),
-})
-
-VBtn.extend()
-
-Vue.extend({
-  extends: VBtn,
+defineComponent({
+  extends: VBtn as any,
 })

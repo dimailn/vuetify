@@ -1,4 +1,4 @@
-import {h, withDirectives} from 'vue'
+import { h, withDirectives } from 'vue'
 // Styles
 import './VVirtualScroll.sass'
 
@@ -11,7 +11,7 @@ import Scroll from '../../directives/scroll'
 // Utilities
 import {
   convertToUnit,
-  getSlot,
+  getSlot
 } from '../../util/helpers'
 
 // Types
@@ -25,22 +25,22 @@ export default defineComponent({
   props: {
     bench: {
       type: [Number, String],
-      default: 0,
+      default: 0
     },
     itemHeight: {
       type: [Number, String],
-      required: true,
+      required: true
     },
     items: {
       type: Array,
-      default: () => [],
-    },
+      default: () => []
+    }
   },
 
   data: () => ({
     first: 0,
     last: 0,
-    scrollTop: 0,
+    scrollTop: 0
   }),
 
   computed: {
@@ -55,12 +55,12 @@ export default defineComponent({
     },
     lastToRender (): number {
       return Math.min(this.items.length, this.last + this.__bench)
-    },
+    }
   },
 
   watch: {
     height: 'onScroll',
-    itemHeight: 'onScroll',
+    itemHeight: 'onScroll'
   },
 
   mounted () {
@@ -71,7 +71,7 @@ export default defineComponent({
     getChildren (): VNode[] {
       return this.items.slice(
         this.firstToRender,
-        this.lastToRender,
+        this.lastToRender
       ).map(this.genChild)
     },
     genChild (item: any, index: number) {
@@ -82,7 +82,7 @@ export default defineComponent({
       return h('div', {
         class: 'v-virtual-scroll__item',
         style: { top },
-        key: index,
+        key: index
       }, getSlot(this, 'default', { index, item }))
     },
     getFirst (): number {
@@ -97,22 +97,22 @@ export default defineComponent({
       this.scrollTop = this.$el.scrollTop
       this.first = this.getFirst()
       this.last = this.getLast(this.first)
-    },
+    }
   },
 
   render (): VNode {
     const content = h('div', {
       class: 'v-virtual-scroll__container',
       style: {
-        height: convertToUnit((this.items.length * this.__itemHeight)),
-      },
+        height: convertToUnit((this.items.length * this.__itemHeight))
+      }
     }, this.getChildren())
 
     return withDirectives(
       h('div', {
         class: 'v-virtual-scroll',
         style: this.measurableStyles,
-        ...(this as any).$listeners,
+        ...(this as any).$listeners
       }, {
         default: () => [content]
       }),
@@ -120,5 +120,5 @@ export default defineComponent({
         [Scroll, this.onScroll, '', { self: true }]
       ]
     )
-  },
+  }
 })

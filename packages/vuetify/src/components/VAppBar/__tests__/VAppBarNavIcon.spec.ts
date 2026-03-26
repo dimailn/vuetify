@@ -5,7 +5,7 @@ import VAppBarNavIcon from '../VAppBarNavIcon'
 // Utilities
 import {
   mount,
-  VueWrapper,
+  VueWrapper
 } from '@vue/test-utils'
 
 describe('AppBarNavIcon.ts', () => {
@@ -14,7 +14,7 @@ describe('AppBarNavIcon.ts', () => {
   beforeEach(() => {
     mountFunction = (options = {}) => {
       return mount(VAppBarNavIcon, {
-        ...options,
+        ...options
       })
     }
   })

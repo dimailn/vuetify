@@ -6,7 +6,7 @@ import {
   mount,
   VueWrapper,
   MountingOptions,
-  enableAutoUnmount,
+  enableAutoUnmount
 } from '@vue/test-utils'
 import { h } from 'vue'
 
@@ -19,14 +19,14 @@ describe('VResponsive.ts', () => {
   beforeEach(() => {
     mountFunction = (options = {}) => {
       return mount(VResponsive, {
-        ...options,
+        ...options
       })
     }
   })
 
   it('should force aspect ratio', () => {
     const wrapper = mountFunction({
-      props: { aspectRatio: 16 / 9 },
+      props: { aspectRatio: 16 / 9 }
     })
 
     expect(wrapper.html()).toMatchSnapshot()
@@ -35,8 +35,8 @@ describe('VResponsive.ts', () => {
   it('should render content', () => {
     const wrapper = mountFunction({
       slots: {
-        default: () => h('div', ['content']),
-      },
+        default: () => h('div', ['content'])
+      }
     })
 
     expect(wrapper.html()).toMatchSnapshot()
@@ -44,7 +44,7 @@ describe('VResponsive.ts', () => {
 
   it('should set height', () => {
     const wrapper = mountFunction({
-      props: { height: 100, maxHeight: 200 },
+      props: { height: 100, maxHeight: 200 }
     })
 
     expect(wrapper.html()).toMatchSnapshot()

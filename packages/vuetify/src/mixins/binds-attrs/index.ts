@@ -1,4 +1,4 @@
-import {defineComponent} from 'vue'
+import { defineComponent } from 'vue'
 
 /**
  * This mixin provides `attrs$` and `listeners$` to work around
@@ -21,7 +21,7 @@ function makeWatcher (property: string): ThisType<Vue> & ((val: any, oldVal: any
 export default defineComponent({
   data: () => ({
     attrs$: {} as Dictionary<string>,
-    listeners$: {} as Dictionary<Function | Function[]>,
+    listeners$: {} as Dictionary<Function | Function[]>
   }),
 
   created () {
@@ -29,5 +29,5 @@ export default defineComponent({
     // Make sure to use `attrs$` instead of `$attrs` (confusing right?)
     this.$watch('$attrs', makeWatcher('attrs$'), { immediate: true })
     this.$watch('$listeners', makeWatcher('listeners$'), { immediate: true })
-  },
+  }
 })

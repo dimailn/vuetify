@@ -3,15 +3,16 @@ import {
   getNestedValue,
   getPropertyFromItem,
   convertToUnit,
+  getSlot,
   getSlotType,
   arrayDiff,
   getObjectValueByPath,
   humanReadableFileSize,
   sortItems,
   createSimpleFunctional,
-  normalizeClasses,
+  normalizeClasses
 } from '../helpers'
-import { mount } from '@vue/test-utils'
+import { mount, enableAutoUnmount } from '@vue/test-utils'
 import { defineComponent, createApp, h } from 'vue'
 
 describe('createSimpleFunctional', () => {
@@ -23,7 +24,7 @@ describe('createSimpleFunctional', () => {
   it('should render with a user-defined tag', () => {
     const component = createSimpleFunctional('v-test', 'pre')
     const wrapper = mount(component, {
-      props: { tag: 'h1' },
+      props: { tag: 'h1' }
     })
     expect(wrapper.html()).toMatchSnapshot()
   })
@@ -137,12 +138,12 @@ describe('helpers', () => {
       a: 'foo',
       'b.a': 'foobar',
       b: {
-        a: 1,
+        a: 1
       },
       'c.d': undefined,
       c: {
-        d: 'bar',
-      },
+        d: 'bar'
+      }
     }
 
     expect(getObjectValueByPath(obj, 'a')).toEqual('foo')
@@ -155,14 +156,14 @@ describe('helpers', () => {
       a: {
         b: {
           c: 1,
-          d: 2,
+          d: 2
         },
         e: [
           { f: 'f' },
-          'e1',
-        ],
+          'e1'
+        ]
       },
-      g: null,
+      g: null
     }
 
     expect(getNestedValue(obj, ['a', 'b', 'c'])).toEqual(1)
@@ -191,13 +192,13 @@ describe('helpers', () => {
   it('should get property from items', () => {
     const obj = {
       a: {
-        b: 1,
+        b: 1
       },
       c: [2, 3, { d: 'd' }],
       'x.y': 'comp',
       x: {
-        y: 'nested',
-      },
+        y: 'nested'
+      }
     }
     expect(getPropertyFromItem(obj, 'a.b')).toEqual(1)
     expect(getPropertyFromItem(obj, 'c.0')).toEqual(2)
@@ -238,7 +239,7 @@ describe('helpers', () => {
 
       const TestComponent = defineComponent({
         components: { foo: FooComponent },
-        template: `<foo ref="foo"><template slot="bar">hello</template></foo>`,
+        template: `<foo ref="foo"><template slot="bar">hello</template></foo>`
       })
 
       const wrapper = mount(TestComponent)
@@ -255,7 +256,7 @@ describe('helpers', () => {
 
       const TestComponent = defineComponent({
         components: { foo: FooComponent },
-        template: `<foo ref="foo"><template slot="bar" slot-scope="data">hello</template></foo>`,
+        template: `<foo ref="foo"><template slot="bar" slot-scope="data">hello</template></foo>`
       })
 
       const wrapper = mount(TestComponent)
@@ -271,7 +272,7 @@ describe('helpers', () => {
 
       const TestComponent = defineComponent({
         components: { foo: FooComponent },
-        template: `<foo ref="foo"><template #bar>hello</template></foo>`,
+        template: `<foo ref="foo"><template #bar>hello</template></foo>`
       })
 
       const wrapper = mount(TestComponent)
@@ -287,7 +288,7 @@ describe('helpers', () => {
 
       const TestComponent = defineComponent({
         components: { foo: FooComponent },
-        template: `<foo ref="foo"><template #bar="data">hello</template></foo>`,
+        template: `<foo ref="foo"><template #bar="data">hello</template></foo>`
       })
 
       const wrapper = mount(TestComponent)
@@ -304,7 +305,7 @@ describe('helpers', () => {
 
       const TestComponent = defineComponent({
         components: { foo: FooComponent },
-        template: `<foo ref="foo"><template #bar>hello</template></foo>`,
+        template: `<foo ref="foo"><template #bar>hello</template></foo>`
       })
 
       const wrapper = mount(TestComponent)
@@ -466,5 +467,117 @@ describe('normalizeClasses', () => {
 
   it('should handle string with only spaces', () => {
     expect(normalizeClasses('   ')).toEqual({})
+  })
+})
+
+describe('getSlot', () => {
+  enableAutoUnmount(afterEach)
+
+  it('возвращает контент default-слота и рендерит его', () => {
+    const Cmp = defineComponent({
+      render () {
+        return h('div', { class: 'root' }, getSlot(this as any) as any)
+      }
+    })
+    const w = mount(Cmp, { slots: { default: () => 'hello' } })
+    expect(w.text()).toBe('hello')
+  })
+
+  it('возвращает undefined, если default-слота нет', () => {
+    const Cmp = defineComponent({
+      render () {
+        const v = getSlot(this as any)
+        return h('div', { 'data-empty': v === undefined ? '1' : '0' })
+      }
+    })
+    const w = mount(Cmp)
+    expect(w.attributes('data-empty')).toBe('1')
+  })
+
+  it('достаёт именованный слот по имени', () => {
+    const Cmp = defineComponent({
+      render () {
+        return h('div', getSlot(this as any, 'title') as any)
+      }
+    })
+    const w = mount(Cmp, { slots: { title: () => 'T' } })
+    expect(w.text()).toBe('T')
+  })
+
+  it('поддерживает kebab-имя для camelCase (mySlot → my-slot)', () => {
+    const Cmp = defineComponent({
+      render () {
+        return h('div', getSlot(this as any, 'mySlot') as any)
+      }
+    })
+    const w = mount(Cmp, { slots: { 'my-slot': () => 'kebab' } })
+    expect(w.text()).toBe('kebab')
+  })
+
+  it('предпочитает точное имя слота перед kebab-вариантом', () => {
+    const Cmp = defineComponent({
+      render () {
+        return h('div', getSlot(this as any, 'mySlot') as any)
+      }
+    })
+    const w = mount(Cmp, {
+      slots: {
+        mySlot: () => 'camel',
+        'my-slot': () => 'kebab'
+      }
+    })
+    expect(w.text()).toBe('camel')
+  })
+
+  it('передаёт в слот объект props', () => {
+    const Cmp = defineComponent({
+      render () {
+        return h('div', getSlot(this as any, 'default', { n: 7 }) as any)
+      }
+    })
+    const w = mount(Cmp, {
+      slots: {
+        default: (props: { n?: number }) => String(props?.n ?? '')
+      }
+    })
+    expect(w.text()).toBe('7')
+  })
+
+  it('передаёт в слот результат фабрики props', () => {
+    const Cmp = defineComponent({
+      render () {
+        return h('div', getSlot(this as any, 'default', () => ({ n: 2 })) as any)
+      }
+    })
+    const w = mount(Cmp, {
+      slots: {
+        default: (props: { n?: number }) => String(props?.n ?? '')
+      }
+    })
+    expect(w.text()).toBe('2')
+  })
+
+  it('вызывает default-слот с undefined, если data не передан', () => {
+    const spy = jest.fn(() => 'ok')
+    const Cmp = defineComponent({
+      render () {
+        return h('div', getSlot(this as any) as any)
+      }
+    })
+    mount(Cmp, { slots: { default: spy } })
+    expect(spy).toHaveBeenCalled()
+    expect(spy.mock.calls[0][0]).toBeUndefined()
+  })
+
+  /**
+   * Регрессия: старый код использовал vm.$slots.hasOwnProperty(name).
+   * У объекта без прототипа нет унаследованного hasOwnProperty — обращение ломалось.
+   * Реальный Vue 3 в dev отдаёт shallowReadonly(slots); доступ по ключу остаётся валидным.
+   */
+  it('читает слот по ключу, если у $slots нет hasOwnProperty (null-prototype)', () => {
+    const rawSlots = Object.create(null) as Record<string, any>
+    rawSlots.default = () => 'plain'
+    const vm = { $slots: rawSlots } as any
+    expect(getSlot(vm)).toBe('plain')
   })
 })

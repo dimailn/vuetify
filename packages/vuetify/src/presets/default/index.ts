@@ -20,19 +20,19 @@ export const preset: VuetifyPreset = {
       xs: 600,
       sm: 960,
       md: 1280,
-      lg: 1920,
-    },
+      lg: 1920
+    }
   },
   icons: {
     // TODO: remove v3
     iconfont: 'mdi',
-    values: {},
+    values: {}
   },
   lang: {
     current: 'en',
     locales: { en },
     // Default translator exists in lang service
-    t: undefined as any,
+    t: undefined as any
   },
   rtl: false,
   theme: {
@@ -44,7 +44,7 @@ export const preset: VuetifyPreset = {
       customProperties: undefined,
       minifyTheme: undefined,
       themeCache: undefined,
-      variations: true,
+      variations: true
     },
     themes: {
       light: {
@@ -54,7 +54,7 @@ export const preset: VuetifyPreset = {
         error: '#FF5252',
         info: '#2196F3',
         success: '#4CAF50',
-        warning: '#FB8C00',
+        warning: '#FB8C00'
       },
       dark: {
         primary: '#2196F3',
@@ -63,8 +63,8 @@ export const preset: VuetifyPreset = {
         error: '#FF5252',
         info: '#2196F3',
         success: '#4CAF50',
-        warning: '#FB8C00',
-      },
-    },
-  },
+        warning: '#FB8C00'
+      }
+    }
+  }
 }

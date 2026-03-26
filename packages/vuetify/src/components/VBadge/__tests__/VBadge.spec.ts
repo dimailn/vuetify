@@ -20,11 +20,11 @@ describe('VBadge.ts', () => {
           mocks: {
             $vuetify: {
               lang: { t: (text = '') => text },
-              rtl: false,
-            },
-          },
+              rtl: false
+            }
+          }
         },
-        ...options,
+        ...options
       })
     }
   })
@@ -33,8 +33,8 @@ describe('VBadge.ts', () => {
     const wrapper = mountFunction({
       slots: {
         badge: '<span>content</span>',
-        default: '<span>element</span>',
-      },
+        default: '<span>element</span>'
+      }
     })
 
     expect(wrapper.html()).toMatchSnapshot()
@@ -43,12 +43,12 @@ describe('VBadge.ts', () => {
   it('should render component with with modelValue=false and match snapshot', async () => {
     const wrapper = mountFunction({
       props: {
-        modelValue: false,
+        modelValue: false
       },
       slots: {
         badge: '<span>content</span>',
-        default: '<span>element</span>',
-      },
+        default: '<span>element</span>'
+      }
     })
 
     expect(wrapper.html()).toMatchSnapshot()
@@ -57,8 +57,8 @@ describe('VBadge.ts', () => {
   it('should render component with bottom prop', () => {
     const wrapper = mountFunction({
       props: {
-        bottom: true,
-      },
+        bottom: true
+      }
     })
 
     expect(wrapper.classes('v-badge--bottom')).toBeTruthy()
@@ -67,8 +67,8 @@ describe('VBadge.ts', () => {
   it('should render component with left prop', () => {
     const wrapper = mountFunction({
       props: {
-        left: true,
-      },
+        left: true
+      }
     })
 
     expect(wrapper.classes('v-badge--left')).toBeTruthy()
@@ -77,8 +77,8 @@ describe('VBadge.ts', () => {
   it('should render component with overlap prop', () => {
     const wrapper = mountFunction({
       props: {
-        overlap: true,
-      },
+        overlap: true
+      }
     })
 
     expect(wrapper.classes('v-badge--overlap')).toBeTruthy()
@@ -87,11 +87,11 @@ describe('VBadge.ts', () => {
   it('should render component with color prop', () => {
     const wrapper = mountFunction({
       props: {
-        color: 'green lighten-1',
+        color: 'green lighten-1'
       },
       slots: {
-        badge: '<span>content</span>',
-      },
+        badge: '<span>content</span>'
+      }
     })
 
     const badge = wrapper.find('.v-badge__badge')
@@ -102,7 +102,7 @@ describe('VBadge.ts', () => {
   it('should render component with transition element', () => {
     const transitionStub = {
       name: 'transition',
-      render: jest.fn(),
+      render: jest.fn()
     }
 
     const wrapper = mount(VBadge, {
@@ -110,13 +110,13 @@ describe('VBadge.ts', () => {
         mocks: {
           $vuetify: {
             lang: { t: (text = '') => text },
-            rtl: false,
-          },
+            rtl: false
+          }
         },
         stubs: {
-          transition: transitionStub,
-        },
-      },
+          transition: transitionStub
+        }
+      }
     })
 
     expect(transitionStub.render).toHaveBeenCalled()
@@ -125,24 +125,24 @@ describe('VBadge.ts', () => {
   it('should render component without transition element', () => {
     const transitionStub = {
       name: 'transition',
-      render: jest.fn(),
+      render: jest.fn()
     }
 
     const wrapper = mount(VBadge, {
       props: {
-        transition: '',
+        transition: ''
       },
       global: {
         mocks: {
           $vuetify: {
             lang: { t: (text = '') => text },
-            rtl: false,
-          },
+            rtl: false
+          }
         },
         stubs: {
-          transition: transitionStub,
-        },
-      },
+          transition: transitionStub
+        }
+      }
     })
 
     expect(transitionStub.render).not.toHaveBeenCalled()

@@ -6,7 +6,7 @@ import {
   mount,
   VueWrapper,
   MountingOptions,
-  enableAutoUnmount,
+  enableAutoUnmount
 } from '@vue/test-utils'
 import { h, defineComponent, withDirectives } from 'vue'
 
@@ -22,16 +22,16 @@ describe('ripple.ts', () => {
       const testComponent = defineComponent({
         render () {
           return withDirectives(h('div'), [[Ripple, true]])
-        },
+        }
       })
 
       return mount(testComponent, {
         global: {
           directives: {
-            ripple: Ripple,
-          },
+            ripple: Ripple
+          }
         },
-        ...options,
+        ...options
       })
     }
   })
@@ -50,23 +50,23 @@ describe('ripple.ts', () => {
   it('should update element property reactively', async () => {
     const testComponent = defineComponent({
       directives: {
-        Ripple,
+        Ripple
       },
       props: {
         ripple: {
           type: Boolean,
-          default: false,
-        },
+          default: false
+        }
       },
       render () {
         return withDirectives(h('div'), [[Ripple, this.ripple]])
-      },
+      }
     })
 
     const wrapper = mount(testComponent, {
       props: {
-        ripple: true,
-      },
+        ripple: true
+      }
     })
 
     const div = wrapper.find('div')
@@ -127,7 +127,7 @@ describe('ripple.ts', () => {
   it('should only ripple on one element', () => {
     const wrapper = mount({
       directives: { Ripple },
-      template: '<div v-ripple><div class="child" v-ripple></div></div>',
+      template: '<div v-ripple><div class="child" v-ripple></div></div>'
     })
 
     const child = wrapper.find('.child').element

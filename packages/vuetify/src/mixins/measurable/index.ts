@@ -15,7 +15,7 @@ export default defineComponent({
     maxWidth: [Number, String] as NumberOrNumberString,
     minHeight: [Number, String] as NumberOrNumberString,
     minWidth: [Number, String] as NumberOrNumberString,
-    width: [Number, String] as NumberOrNumberString,
+    width: [Number, String] as NumberOrNumberString
   },
 
   computed: {
@@ -37,6 +37,6 @@ export default defineComponent({
       if (width) styles.width = width
 
       return styles
-    },
-  },
+    }
+  }
 })

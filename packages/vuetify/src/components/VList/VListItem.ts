@@ -1,4 +1,5 @@
-import { h, withDirectives, VNode, PropType, PropValidator } from 'vue'
+import type { VNode } from '../../types/vue-internal'
+import { h, withDirectives, PropType } from 'vue'
 // Styles
 import './VListItem.sass'
 
@@ -29,7 +30,7 @@ const baseMixins = mixins(
   ToggleableFactory('modelValue')
 )
 
-interface options extends ExtractVue<typeof baseMixins> {
+type options = ExtractVue<typeof baseMixins> & {
   $el: HTMLElement
   isInGroup: boolean
   isInList: boolean
@@ -43,50 +44,50 @@ export default baseMixins.extend({
 
   inject: {
     isInGroup: {
-      default: false,
+      default: false
     },
     isInList: {
-      default: false,
+      default: false
     },
     isInMenu: {
-      default: false,
+      default: false
     },
     isInNav: {
-      default: false,
-    },
+      default: false
+    }
   },
 
   inheritAttrs: false,
 
   props: {
     activeClass: {
-      type: String,
-    } as any as PropValidator<string>,
+      type: String
+    } as any as PropType<string>,
     dense: Boolean,
     inactive: Boolean,
     onClick: Function as PropType<(e: MouseEvent) => void>,
     link: Boolean,
     selectable: {
-      type: Boolean,
+      type: Boolean
     },
     tag: {
       type: String,
-      default: 'div',
+      default: 'div'
     },
     threeLine: Boolean,
     twoLine: Boolean,
-    modelValue: null as any as PropType<any>,
+    modelValue: null as any as PropType<any>
   },
 
   emits: [
     'click',
     'keydown',
     'change',
-    'update:modelValue',
+    'update:modelValue'
   ],
 
   data: () => ({
-    proxyClass: 'v-list-item--active',
+    proxyClass: 'v-list-item--active'
   }),
 
   computed: {
@@ -106,7 +107,7 @@ export default baseMixins.extend({
         'v-list-item--selectable': this.selectable,
         'v-list-item--three-line': this.threeLine,
         'v-list-item--two-line': this.twoLine,
-        ...this.themeClasses,
+        ...this.themeClasses
       }
     },
     isClickable (): boolean {
@@ -114,12 +115,12 @@ export default baseMixins.extend({
         Routable.computed.isClickable.call(this) ||
         this.listItemGroup
       )
-    },
+    }
   },
 
   created () {
     const breakingProps = [
-      ['value', 'modelValue'],
+      ['value', 'modelValue']
     ]
 
     /* istanbul ignore next */
@@ -146,7 +147,7 @@ export default baseMixins.extend({
       const attrs: Record<string, any> = {
         ...otherAttrs,
         'aria-disabled': this.disabled ? true : undefined,
-        tabindex: this.isClickable && !this.disabled ? 0 : -1,
+        tabindex: this.isClickable && !this.disabled ? 0 : -1
       }
 
       if (this.$attrs.hasOwnProperty('role')) {
@@ -171,7 +172,7 @@ export default baseMixins.extend({
       }
       this.$emit('change')
       this.$emitLegacy('change')
-    },
+    }
   },
 
   render (): VNode {
@@ -194,7 +195,7 @@ export default baseMixins.extend({
         }
       },
       // Ensure our attrs take precedence over routable
-      ...attrs,
+      ...attrs
     }
 
     if (this.inactive) tag = 'div'
@@ -205,13 +206,13 @@ export default baseMixins.extend({
 
     const slotProps = {
       active: this.isActive,
-      toggle: this.toggle,
+      toggle: this.toggle
     }
 
     const children = [
       getSlot(this, 'prepend', slotProps),
       getSlot(this, 'default', slotProps),
-      getSlot(this, 'append', slotProps),
+      getSlot(this, 'append', slotProps)
     ].filter(Boolean)
 
     const nodeData = this.isActive ? this.setTextColor(this.color, data) : data
@@ -224,9 +225,9 @@ export default baseMixins.extend({
     }
 
     const node = typeof tag === 'string'
-      ? h(getTagValue(tag), nodeData, children)
-      : h(tag, nodeData, () => children)
+      ? h(getTagValue(tag), nodeData, children as any)
+      : h(tag, nodeData, { default: () => children })
 
     return withDirectives(node, directives)
-  },
+  }
 })

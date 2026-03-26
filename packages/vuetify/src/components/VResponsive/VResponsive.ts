@@ -1,4 +1,4 @@
-import {h, mergeProps} from 'vue'
+import { h, mergeProps } from 'vue'
 import './VResponsive.sass'
 
 // Mixins
@@ -17,7 +17,7 @@ export default mixins(Measurable).extend({
 
   props: {
     aspectRatio: [String, Number] as NumberOrNumberString,
-    contentClass: String,
+    contentClass: String
   },
 
   computed: {
@@ -34,27 +34,27 @@ export default mixins(Measurable).extend({
 
       return h('div', {
         style: this.aspectStyle,
-        class: 'v-responsive__sizer',
+        class: 'v-responsive__sizer'
       })
-    },
+    }
   },
 
   methods: {
     genContent (): VNode {
       return h('div', {
-        class: ['v-responsive__content', this.contentClass],
+        class: ['v-responsive__content', this.contentClass]
       }, getSlot(this))
-    },
+    }
   },
 
   render (): VNode {
     return h('div', mergeProps({
       class: 'v-responsive',
-      style: this.measurableStyles,
+      style: this.measurableStyles
     }, this.$attrs)
     , [
       this.__cachedSizer,
-      this.genContent(),
+      this.genContent()
     ])
-  },
+  }
 })

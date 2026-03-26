@@ -5,7 +5,7 @@ import VContainer from '../VContainer'
 import {
   mount,
   MountingOptions,
-  VueWrapper,
+  VueWrapper
 } from '@vue/test-utils'
 
 describe('VContainer.ts', () => {
@@ -15,7 +15,7 @@ describe('VContainer.ts', () => {
   beforeEach(() => {
     mountFunction = (options = {}) => {
       return mount(VContainer, {
-        ...options,
+        ...options
       })
     }
   })
@@ -29,8 +29,8 @@ describe('VContainer.ts', () => {
   it('should render with fluid prop', () => {
     const wrapper = mountFunction({
       props: {
-        fluid: true,
-      },
+        fluid: true
+      }
     })
 
     expect(wrapper.classes()).toContain('container--fluid')
@@ -40,8 +40,8 @@ describe('VContainer.ts', () => {
   it('should render with custom tag', () => {
     const wrapper = mountFunction({
       props: {
-        tag: 'section',
-      },
+        tag: 'section'
+      }
     })
 
     expect(wrapper.element.tagName).toBe('SECTION')
@@ -50,8 +50,8 @@ describe('VContainer.ts', () => {
   it('should render with id prop', () => {
     const wrapper = mountFunction({
       props: {
-        id: 'test-id',
-      },
+        id: 'test-id'
+      }
     })
 
     expect(wrapper.attributes('id')).toBe('test-id')
@@ -62,8 +62,8 @@ describe('VContainer.ts', () => {
       attrs: {
         'pa-3': true,
         'ma-2': '',
-        'data-test': 'test-value',
-      },
+        'data-test': 'test-value'
+      }
     })
 
     expect(wrapper.classes()).toContain('pa-3')
@@ -74,8 +74,8 @@ describe('VContainer.ts', () => {
   it('should render default slot content', () => {
     const wrapper = mountFunction({
       slots: {
-        default: '<div>Test content</div>',
-      },
+        default: '<div>Test content</div>'
+      }
     })
 
     expect(wrapper.html()).toContain('<div>Test content</div>')

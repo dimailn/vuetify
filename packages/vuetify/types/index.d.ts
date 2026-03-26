@@ -1,4 +1,4 @@
-import Vue, { Component, PluginFunction, Directive, VNode } from 'vue'
+import type { App, Component, Directive, VNode } from 'vue'
 import './lib'
 import './alacarte'
 import './colors'
@@ -21,7 +21,7 @@ import { GoToOptions, VuetifyGoToTarget } from './services/goto'
 export default class Vuetify {
   constructor (preset?: Partial<UserVuetifyPreset>)
 
-  static install: PluginFunction<VuetifyUseOptions>
+  static install: (app: App, options?: VuetifyUseOptions) => void
   static version: string
   static config: Config
 
@@ -57,20 +57,12 @@ export interface Framework {
   rtl: boolean
 }
 
-declare module 'vue/types/vue' {
-  export interface Vue {
+declare module '@vue/runtime-core' {
+  interface ComponentCustomProperties {
     $vuetify: Framework
   }
-}
 
-declare module 'vue/types/options' {
-  export interface ComponentOptions<
-    V extends Vue,
-    Data=any,
-    Methods=any,
-    Computed=any,
-    PropsDef=any,
-    Props=any> {
+  interface ComponentCustomOptions {
     vuetify?: Vuetify
   }
 }

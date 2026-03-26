@@ -16,7 +16,7 @@ export function genPoints (
     return {
       x: minX + index * gridX,
       y: maxY - (value - minValue) * gridY,
-      value,
+      value
     }
   })
 }
@@ -45,7 +45,7 @@ export function genBars (
       y: horizonY - height +
         +(value < 0) * height,
       height,
-      value,
+      value
     }
   })
 }

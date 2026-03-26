@@ -27,56 +27,56 @@ export default defineComponent({
   // pass down the parent's theme
   provide (): object {
     return {
-      parentTheme: this.theme,
+      parentTheme: this.theme
     }
   },
 
   props: {
     continuous: {
       type: Boolean,
-      default: true,
+      default: true
     },
     cycle: Boolean,
     delimiterIcon: {
       type: String,
-      default: '$delimiter',
+      default: '$delimiter'
     },
     height: {
       type: [Number, String],
-      default: 500,
+      default: 500
     },
     hideDelimiters: Boolean,
     hideDelimiterBackground: Boolean,
     interval: {
       type: [Number, String],
       default: 6000,
-      validator: (value: string | number) => value > 0,
+      validator: (value: string | number) => value > 0
     },
     mandatory: {
       type: Boolean,
-      default: true,
+      default: true
     },
     progress: Boolean,
     progressColor: String,
     showArrows: {
       type: Boolean,
-      default: true,
+      default: true
     },
     verticalDelimiters: {
       type: String as PropType<'' | 'left' | 'right'>,
-      default: undefined,
-    },
+      default: undefined
+    }
   },
 
   emits: [
     'update:modelValue',
-    'change',
+    'change'
   ],
 
   data () {
     return {
       internalHeight: this.height,
-      slideTimeout: undefined as number | undefined,
+      slideTimeout: undefined as number | undefined
     }
   },
 
@@ -86,7 +86,7 @@ export default defineComponent({
         ...VWindow.computed.classes.call(this),
         'v-carousel': true,
         'v-carousel--hide-delimiter-background': this.hideDelimiterBackground,
-        'v-carousel--vertical-delimiters': this.isVertical,
+        'v-carousel--vertical-delimiters': this.isVertical
       }
     },
     isDark (): boolean {
@@ -94,7 +94,7 @@ export default defineComponent({
     },
     isVertical (): boolean {
       return this.verticalDelimiters != null
-    },
+    }
   },
 
   watch: {
@@ -111,14 +111,14 @@ export default defineComponent({
         clearTimeout(this.slideTimeout)
         this.slideTimeout = undefined
       }
-    },
+    }
   },
 
   created () {
     const breakingProps = [
       ['value', 'modelValue'],
       ['onInput', 'onUpdate:modelValue'],
-      ['onChange', 'onUpdate:modelValue'],
+      ['onChange', 'onUpdate:modelValue']
     ]
 
     /* istanbul ignore next */
@@ -147,8 +147,8 @@ export default defineComponent({
         class: 'v-carousel__controls',
         style: {
           left: this.verticalDelimiters === 'left' && this.isVertical ? 0 : 'auto',
-          right: this.verticalDelimiters === 'right' ? 0 : 'auto',
-        },
+          right: this.verticalDelimiters === 'right' ? 0 : 'auto'
+        }
       }, [this.genItems()])
     },
     genItems (): VNode {
@@ -162,11 +162,11 @@ export default defineComponent({
           icon: true,
           small: true,
           value: this.getValue(this.items[i], i),
-          key: i,
+          key: i
         }, () => [
           h(VIcon, {
-            size: 18,
-          }, () => this.delimiterIcon),
+            size: 18
+          }, () => this.delimiterIcon)
         ])
 
         children.push(child)
@@ -177,14 +177,14 @@ export default defineComponent({
         mandatory: this.mandatory,
         onChange: (val: unknown) => {
           this.internalValue = val
-        },
+        }
       }, () => children)
     },
     genProgress () {
       return h(VProgressLinear, {
         class: 'v-carousel__progress',
         color: this.progressColor,
-        value: (this.internalIndex + 1) / this.items.length * 100,
+        value: (this.internalIndex + 1) / this.items.length * 100
       })
     },
     restartTimeout () {
@@ -197,7 +197,7 @@ export default defineComponent({
       if (!this.cycle) return
 
       this.slideTimeout = window.setTimeout(this.next, +this.interval > 0 ? +this.interval : 6000)
-    },
+    }
   },
 
   render (): VNode {
@@ -207,13 +207,13 @@ export default defineComponent({
     if (render.props) {
       render.props.style = {
         ...render.props.style,
-        height: convertToUnit(this.height),
+        height: convertToUnit(this.height)
       }
     } else {
       render.props = {
         style: {
-          height: convertToUnit(this.height),
-        },
+          height: convertToUnit(this.height)
+        }
       }
     }
 
@@ -228,5 +228,5 @@ export default defineComponent({
     }
 
     return render
-  },
+  }
 })

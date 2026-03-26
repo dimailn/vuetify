@@ -5,7 +5,7 @@ import {
   mount,
   MountingOptions,
   VueWrapper,
-  enableAutoUnmount,
+  enableAutoUnmount
 } from '@vue/test-utils'
 
 enableAutoUnmount(afterEach)
@@ -35,11 +35,11 @@ describe('VDatePickerHeader.ts', () => {
               rtl: false,
               lang: new Lang(preset),
               icons: {
-                component: 'mdi',
-              },
-            },
-          },
-        },
+                component: 'mdi'
+              }
+            }
+          }
+        }
       })
     }
   })
@@ -47,8 +47,8 @@ describe('VDatePickerHeader.ts', () => {
   it('should render component and match snapshot', () => {
     const wrapper = mountFunction({
       props: {
-        modelValue: '2005-11',
-      },
+        modelValue: '2005-11'
+      }
     })
 
     expect(wrapper.html()).toMatchSnapshot()
@@ -58,8 +58,8 @@ describe('VDatePickerHeader.ts', () => {
     const wrapper = mountFunction({
       props: {
         modelValue: '2005-11',
-        disabled: true,
-      },
+        disabled: true
+      }
     })
 
     expect(wrapper.html()).toMatchSnapshot()
@@ -69,8 +69,8 @@ describe('VDatePickerHeader.ts', () => {
     const wrapper = mountFunction({
       props: {
         modelValue: '2005-11',
-        readonly: true,
-      },
+        readonly: true
+      }
     })
 
     expect(wrapper.html()).toMatchSnapshot()
@@ -79,8 +79,8 @@ describe('VDatePickerHeader.ts', () => {
   it('should render component in RTL mode and match snapshot', async () => {
     const wrapper = mountFunction({
       props: {
-        modelValue: '2005-11',
-      },
+        modelValue: '2005-11'
+      }
     })
     wrapper.vm.$vuetify.rtl = true
     await wrapper.vm.$nextTick()
@@ -92,8 +92,8 @@ describe('VDatePickerHeader.ts', () => {
   it('should render component with year value and match snapshot', () => {
     const wrapper = mountFunction({
       props: {
-        modelValue: '2005',
-      },
+        modelValue: '2005'
+      }
     })
 
     expect(wrapper.findAll('.v-date-picker-header__value div')[0].element.textContent).toBe('2005')
@@ -104,8 +104,8 @@ describe('VDatePickerHeader.ts', () => {
       props: {
         modelValue: '2005',
         prevIcon: 'foo',
-        nextIcon: 'bar',
-      },
+        nextIcon: 'bar'
+      }
     })
 
     const icons = wrapper.findAll('.v-icon')
@@ -121,8 +121,8 @@ describe('VDatePickerHeader.ts', () => {
     const wrapper = mountFunction({
       props: {
         modelValue: '2005-11',
-        format: value => `(${value})`,
-      },
+        format: value => `(${value})`
+      }
     })
 
     expect(wrapper.findAll('.v-date-picker-header__value div')[0].element.textContent).toBe('(2005-11)')
@@ -132,8 +132,8 @@ describe('VDatePickerHeader.ts', () => {
     const wrapper = mountFunction({
       props: {
         modelValue: '2005-11',
-        color: 'green lighten-1',
-      },
+        color: 'green lighten-1'
+      }
     })
 
     const div = wrapper.findAll('.v-date-picker-header__value div')[0]
@@ -144,11 +144,11 @@ describe('VDatePickerHeader.ts', () => {
   it('should render component with default slot and match snapshot', () => {
     const wrapper = mountFunction({
       props: {
-        modelValue: '2005-11',
+        modelValue: '2005-11'
       },
       slots: {
-        default: '<span>foo</span>',
-      },
+        default: '<span>foo</span>'
+      }
     })
 
     expect(wrapper.html()).toMatchSnapshot()
@@ -157,8 +157,8 @@ describe('VDatePickerHeader.ts', () => {
   it('should trigger event on selector click', async () => {
     const wrapper = mountFunction({
       props: {
-        modelValue: '2005-11',
-      },
+        modelValue: '2005-11'
+      }
     })
 
     await wrapper.findAll('.v-date-picker-header__value button')[0].trigger('click')
@@ -168,8 +168,8 @@ describe('VDatePickerHeader.ts', () => {
   it('should trigger event on arrows click', async () => {
     const wrapper = mountFunction({
       props: {
-        modelValue: '2005-12',
-      },
+        modelValue: '2005-12'
+      }
     })
 
     await wrapper.findAll('button.v-btn')[0].trigger('click')
@@ -183,14 +183,14 @@ describe('VDatePickerHeader.ts', () => {
   it('should calculate prev/next value', async () => {
     const wrapper = mountFunction({
       props: {
-        modelValue: '2005-12',
-      },
+        modelValue: '2005-12'
+      }
     })
     expect(wrapper.vm.calculateChange(-1)).toBe('2005-11')
     expect(wrapper.vm.calculateChange(+1)).toBe('2006-01')
 
     await wrapper.setProps({
-      modelValue: '2005',
+      modelValue: '2005'
     })
     expect(wrapper.vm.calculateChange(-1)).toBe('2004')
     expect(wrapper.vm.calculateChange(+1)).toBe('2006')
@@ -199,12 +199,12 @@ describe('VDatePickerHeader.ts', () => {
   it.skip('should watch value and run transition', async () => {
     const wrapper = mountFunction({
       props: {
-        modelValue: 2005,
-      },
+        modelValue: 2005
+      }
     })
 
     await wrapper.setProps({
-      modelValue: 2006,
+      modelValue: 2006
     })
     await wrapper.vm.$nextTick()
     expect(wrapper.findAll('.v-date-picker-header__value div')[0].classes('tab-transition-enter')).toBe(true)
@@ -214,12 +214,12 @@ describe('VDatePickerHeader.ts', () => {
   it.skip('should watch value and run reverse transition', async () => {
     const wrapper = mountFunction({
       props: {
-        modelValue: 2005,
-      },
+        modelValue: 2005
+      }
     })
 
     await wrapper.setProps({
-      modelValue: 2004,
+      modelValue: 2004
     })
     await wrapper.vm.$nextTick()
     expect(wrapper.findAll('.v-date-picker-header__value div')[0].classes('tab-reverse-transition-enter')).toBe(true)

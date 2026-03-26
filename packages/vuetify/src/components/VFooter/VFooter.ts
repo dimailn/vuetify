@@ -1,4 +1,4 @@
-import {h} from 'vue'
+import { h } from 'vue'
 // Styles
 import './VFooter.sass'
 
@@ -14,14 +14,14 @@ import mixins from '../../util/mixins'
 import { convertToUnit, getSlot, getTagValue } from '../../util/helpers'
 
 // Types
-import { VNode } from 'vue/types/vnode'
+import type { VNode } from '../../types/vue-internal'
 
 /* @vue/component */
 export default mixins(
   VSheet,
   Applicationable('footer', [
     'height',
-    'inset',
+    'inset'
   ]),
   SSRBootable
 ).extend({
@@ -30,14 +30,14 @@ export default mixins(
   props: {
     height: {
       default: 'auto',
-      type: [Number, String],
+      type: [Number, String]
     },
     inset: Boolean,
     padless: Boolean,
     tag: {
       type: String,
-      default: 'footer',
-    },
+      default: 'footer'
+    }
   },
 
   computed: {
@@ -50,7 +50,7 @@ export default mixins(
         'v-footer--absolute': this.absolute,
         'v-footer--fixed': !this.absolute && (this.app || this.fixed),
         'v-footer--padless': this.padless,
-        'v-footer--inset': this.inset,
+        'v-footer--inset': this.inset
       }
     },
     computedBottom (): number | undefined {
@@ -89,9 +89,9 @@ export default mixins(
         height: isNaN(height) ? height : convertToUnit(height),
         left: convertToUnit(this.computedLeft),
         right: convertToUnit(this.computedRight),
-        bottom: convertToUnit(this.computedBottom),
+        bottom: convertToUnit(this.computedBottom)
       }
-    },
+    }
   },
 
   methods: {
@@ -101,16 +101,15 @@ export default mixins(
       return isNaN(height)
         ? this.$el ? this.$el.clientHeight : 0
         : height
-    },
+    }
   },
 
   render (): VNode {
     const data = this.setBackgroundColor(this.color, {
-      class: 'v-footer',
-      class: this.classes,
-      style: this.styles,
+      class: { 'v-footer': true, ...(this.classes as Record<string, boolean>) },
+      style: this.styles
     })
 
     return h(getTagValue(this.tag), data, getSlot(this))
-  },
+  }
 })

@@ -3,7 +3,7 @@ import {
   mount,
   VueWrapper,
   MountingOptions,
-  enableAutoUnmount,
+  enableAutoUnmount
 } from '@vue/test-utils'
 import { h } from 'vue'
 import { Lang } from '../../../services/lang'
@@ -24,24 +24,24 @@ describe('VPagination.ts', () => {
         icons: {
           values: {
             next: 'mdi-chevron-right',
-            prev: 'mdi-chevron-left',
-          },
+            prev: 'mdi-chevron-left'
+          }
         },
-        lang: new Lang(preset),
+        lang: new Lang(preset)
       }
 
       return mount(VPagination, {
         global: {
           config: {
             globalProperties: {
-              $vuetify: vuetifyInstance,
-            },
+              $vuetify: vuetifyInstance
+            }
           },
           mocks: {
-            $vuetify: vuetifyInstance,
-          },
+            $vuetify: vuetifyInstance
+          }
         },
-        ...options,
+        ...options
       })
     }
   })
@@ -50,8 +50,8 @@ describe('VPagination.ts', () => {
     const wrapper = mountFunction({
       props: {
         length: 5,
-        modelValue: 2,
-      },
+        modelValue: 2
+      }
     })
     jest.runAllTimers()
 
@@ -70,8 +70,8 @@ describe('VPagination.ts', () => {
     const wrapper = mountFunction({
       props: {
         length: 5,
-        modelValue: 2,
-      },
+        modelValue: 2
+      }
     })
     wrapper.vm.$vuetify.rtl = true
     await wrapper.vm.$nextTick()
@@ -84,8 +84,8 @@ describe('VPagination.ts', () => {
     const wrapper = mountFunction({
       props: {
         length: 5,
-        modelValue: 2,
-      },
+        modelValue: 2
+      }
     })
     jest.runAllTimers()
 
@@ -102,8 +102,8 @@ describe('VPagination.ts', () => {
     const wrapper = mountFunction({
       props: {
         length: 0,
-        modelValue: 1,
-      },
+        modelValue: 1
+      }
     })
     jest.runAllTimers()
 
@@ -114,8 +114,8 @@ describe('VPagination.ts', () => {
     const wrapper = mountFunction({
       props: {
         length: 5,
-        modelValue: 1,
-      },
+        modelValue: 1
+      }
     })
 
     jest.runAllTimers()
@@ -132,8 +132,8 @@ describe('VPagination.ts', () => {
     const wrapper = mountFunction({
       props: {
         length: 100,
-        modelValue: 1,
-      },
+        modelValue: 1
+      }
     })
     jest.runAllTimers()
 
@@ -153,8 +153,8 @@ describe('VPagination.ts', () => {
     const wrapper = mountFunction({
       props: {
         length: 100,
-        modelValue: 50,
-      },
+        modelValue: 50
+      }
     })
     jest.runAllTimers()
 
@@ -174,8 +174,8 @@ describe('VPagination.ts', () => {
     const wrapper = mountFunction({
       props: {
         length: 100,
-        totalVisible: 5,
-      },
+        totalVisible: 5
+      }
     })
     const maxLength = Number(wrapper.vm.totalVisible)
     const left = Math.ceil(maxLength / 2)
@@ -192,8 +192,8 @@ describe('VPagination.ts', () => {
     const wrapper = mountFunction({
       props: {
         length: 100,
-        totalVisible: 5,
-      },
+        totalVisible: 5
+      }
     })
     const maxLength = Number(wrapper.vm.totalVisible)
     const even = maxLength % 2 === 0 ? 1 : 0
@@ -213,8 +213,8 @@ describe('VPagination.ts', () => {
       props: {
         length: 100,
         modelValue: 50,
-        totalVisible: 10,
-      },
+        totalVisible: 10
+      }
     })
     jest.runAllTimers()
 
@@ -236,7 +236,7 @@ describe('VPagination.ts', () => {
   // even if it's not real world, so that we can detect changes
   it('should use parents width for on resize calculation', () => {
     const wrapper = mount({
-      render: () => h('div', [h(VPagination)]),
+      render: () => h('div', [h(VPagination)])
     })
 
     const pagination = wrapper.findComponent(VPagination)
@@ -252,13 +252,13 @@ describe('VPagination.ts', () => {
   it('should never show more than the max number of allowed buttons', () => {
     const wrapper = mountFunction({
       data: () => ({
-        maxButtons: 4,
+        maxButtons: 4
       }),
 
       props: {
         length: 40,
-        totalVisible: 10,
-      },
+        totalVisible: 10
+      }
     })
 
     wrapper.setData({ maxButtons: 4 })
@@ -273,13 +273,13 @@ describe('VPagination.ts', () => {
   it('should never show more than the number of total visible buttons', async () => {
     const wrapper = mountFunction({
       data: () => ({
-        maxButtons: 0,
+        maxButtons: 0
       }),
 
       props: {
         length: 5,
-        totalVisible: undefined,
-      },
+        totalVisible: undefined
+      }
     })
 
     expect(wrapper.vm.items).toHaveLength(5)
@@ -304,7 +304,7 @@ describe('VPagination.ts', () => {
   it('should return length when maxButtons is less than 1', () => {
     const wrapper = mountFunction({
       data: () => ({ maxButtons: -3 }),
-      props: { length: 4 },
+      props: { length: 4 }
     })
 
     expect(wrapper.vm.items).toEqual([1, 2, 3, 4])

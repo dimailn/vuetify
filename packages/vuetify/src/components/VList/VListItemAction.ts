@@ -19,5 +19,5 @@ export default defineComponent({
       ...otherAttrs,
       class: className
     }, children)
-  },
+  }
 })

@@ -17,38 +17,38 @@ export default defineComponent({
   props: {
     tag: {
       type: String,
-      default: 'main',
-    },
+      default: 'main'
+    }
   },
 
   computed: {
     styles (): object {
       const {
-        bar, top, right, footer, insetFooter, bottom, left,
+        bar, top, right, footer, insetFooter, bottom, left
       } = this.$vuetify.application
 
       return {
         paddingTop: `${top + bar}px`,
         paddingRight: `${right}px`,
         paddingBottom: `${footer + insetFooter + bottom}px`,
-        paddingLeft: `${left}px`,
+        paddingLeft: `${left}px`
       }
-    },
+    }
   },
 
   render (): VNode {
     const data = {
       class: 'v-main',
       style: this.styles,
-      ref: 'main',
+      ref: 'main'
     }
 
     return h(getTagValue(this.tag), data, [
       h(
         'div',
         { class: 'v-main__wrap' },
-        getSlot(this),
-      ),
+        getSlot(this)
+      )
     ])
-  },
+  }
 })

@@ -2,7 +2,7 @@ import VColorPickerEdit from '../VColorPickerEdit'
 import {
   mount,
   VueWrapper,
-  enableAutoUnmount,
+  enableAutoUnmount
 } from '@vue/test-utils'
 import { fromRGBA } from '../util'
 import { nextTick } from 'vue'
@@ -21,12 +21,12 @@ describe('VColorPickerEdit.ts', () => {
             $vuetify: {
               rtl: false,
               icons: {
-                component: null,
-              },
-            },
+                component: null
+              }
+            }
           },
-          ...options.global,
-        },
+          ...options.global
+        }
       })
     }
   })
@@ -36,11 +36,11 @@ describe('VColorPickerEdit.ts', () => {
     const wrapper = mountFunction({
       props: {
         color: fromRGBA({ r: 0, g: 0, b: 0, a: 0 }),
-        mode: 'hexa',
+        mode: 'hexa'
       },
       attrs: {
-        'onUpdate:color': update,
-      },
+        'onUpdate:color': update
+      }
     })
 
     const input = wrapper.find('input')
@@ -56,11 +56,11 @@ describe('VColorPickerEdit.ts', () => {
     const wrapper = mountFunction({
       props: {
         color: fromRGBA({ r: 0, g: 0, b: 0, a: 0 }),
-        mode: 'rgba',
+        mode: 'rgba'
       },
       attrs: {
-        'onUpdate:color': update,
-      },
+        'onUpdate:color': update
+      }
     })
 
     // В Vue 3 мы должны напрямую эмитировать событие
@@ -76,11 +76,11 @@ describe('VColorPickerEdit.ts', () => {
     const wrapper = mountFunction({
       props: {
         color: fromRGBA({ r: 0, g: 0, b: 0, a: 0 }),
-        mode: 'hsla',
+        mode: 'hsla'
       },
       attrs: {
-        'onUpdate:color': update,
-      },
+        'onUpdate:color': update
+      }
     })
 
     // В Vue 3 мы должны напрямую эмитировать событие
@@ -96,8 +96,8 @@ describe('VColorPickerEdit.ts', () => {
       props: {
         color: fromRGBA({ r: 0, g: 0, b: 0, a: 0 }),
         mode: 'rgba',
-        disabled: true,
-      },
+        disabled: true
+      }
     })
 
     expect(wrapper.html()).toMatchSnapshot()
@@ -107,8 +107,8 @@ describe('VColorPickerEdit.ts', () => {
     const wrapper = mountFunction({
       props: {
         color: fromRGBA({ r: 0, g: 0, b: 0, a: 0 }),
-        mode: 'hexa',
-      },
+        mode: 'hexa'
+      }
     })
 
     const changeMode = wrapper.find('.v-btn')
@@ -126,7 +126,7 @@ describe('VColorPickerEdit.ts', () => {
     expect(wrapper.html()).toMatchSnapshot()
 
     await wrapper.setProps({
-      mode: 'hsla',
+      mode: 'hsla'
     })
     await nextTick()
     expect(wrapper.html()).toMatchSnapshot()
@@ -137,8 +137,8 @@ describe('VColorPickerEdit.ts', () => {
       props: {
         color: fromRGBA({ r: 0, g: 0, b: 0, a: 0 }),
         mode: 'rgba',
-        hideModeSwitch: true,
-      },
+        hideModeSwitch: true
+      }
     })
 
     expect(wrapper.html()).toMatchSnapshot()

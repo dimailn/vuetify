@@ -1,5 +1,5 @@
 import { attachedRoot } from '../../util/dom'
-import { VNodeDirective } from 'vue/types/vnode'
+import type { VNodeDirective } from '../../types/vue-internal'
 import { VNode } from 'vue'
 
 interface ClickOutsideBindingArgs {
@@ -8,7 +8,7 @@ interface ClickOutsideBindingArgs {
   include?: () => HTMLElement[]
 }
 
-interface ClickOutsideDirective extends VNodeDirective {
+type ClickOutsideDirective = VNodeDirective & {
   value?: ((e: Event) => void) | ClickOutsideBindingArgs
 }
 
@@ -90,13 +90,13 @@ export const ClickOutside = {
 
     if (!el._clickOutside) {
       el._clickOutside = {
-        lastMousedownWasOutside: true,
+        lastMousedownWasOutside: true
       }
     }
 
     el._clickOutside[vnode.ctx.uid] = {
       onClick,
-      onMousedown,
+      onMousedown
     }
   },
 
@@ -113,7 +113,7 @@ export const ClickOutside = {
     })
 
     delete el._clickOutside[vnode.ctx.uid]
-  },
+  }
 }
 
 export default ClickOutside

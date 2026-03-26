@@ -3,7 +3,7 @@ import {
   getDayIdentifier,
   getTimestampIdentifier,
   isTimedless,
-  updateHasTime,
+  updateHasTime
 } from './timestamp'
 import { CalendarTimestamp, CalendarEvent, CalendarEventParsed } from 'vuetify/types'
 
@@ -13,7 +13,7 @@ export function parseEvent (
   startProperty: string,
   endProperty: string,
   timed = false,
-  category: string | false = false,
+  category: string | false = false
 ): CalendarEventParsed {
   const startInput = input[startProperty]
   const endInput = input[endProperty]

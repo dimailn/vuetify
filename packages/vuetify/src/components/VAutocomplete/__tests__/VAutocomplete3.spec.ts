@@ -6,7 +6,7 @@ import {
   mount,
   VueWrapper,
   MountingOptions,
-  enableAutoUnmount,
+  enableAutoUnmount
 } from '@vue/test-utils'
 import { h, nextTick } from 'vue'
 
@@ -37,7 +37,7 @@ describe('VAutocomplete.ts', () => {
             }
           }
         }
-      });
+      })
     }
   })
 
@@ -55,8 +55,8 @@ describe('VAutocomplete.ts', () => {
       attachTo: document.body,
       props: {
         items: ['foo'],
-        modelValue: 'foo',
-      },
+        modelValue: 'foo'
+      }
     })
 
     await nextTick()
@@ -92,8 +92,8 @@ describe('VAutocomplete.ts', () => {
         items: ['aaa', 'bbb', 'ccc'],
         modelValue: ['aaa', 'bbb'],
         chips: true,
-        multiple: true,
-      },
+        multiple: true
+      }
     })
 
     const input = wrapper.find('input')
@@ -101,9 +101,9 @@ describe('VAutocomplete.ts', () => {
     const setData = jest.fn()
     const event = {
       clipboardData: {
-        setData,
+        setData
       },
-      preventDefault: jest.fn(),
+      preventDefault: jest.fn()
     }
 
     input.trigger('focus')
@@ -121,17 +121,17 @@ describe('VAutocomplete.ts', () => {
         items: ['aaa', 'bbb', 'ccc'],
         modelValue: ['aaa', 'bbb'],
         chips: true,
-        multiple: true,
-      },
+        multiple: true
+      }
     })
 
     const input = wrapper.find('input')
     const setData = jest.fn()
     const event = {
       clipboardData: {
-        setData,
+        setData
       },
-      preventDefault: jest.fn(),
+      preventDefault: jest.fn()
     }
 
     input.trigger('focus')
@@ -147,8 +147,8 @@ describe('VAutocomplete.ts', () => {
       props: {
         chips: true,
         items: ['foo', 'bar', 'fizz', 'buzz'],
-        modelValue: 'foo',
-      },
+        modelValue: 'foo'
+      }
     })
 
     const input = wrapper.find('input')
@@ -161,7 +161,7 @@ describe('VAutocomplete.ts', () => {
 
     wrapper.setProps({
       multiple: true,
-      modelValue: ['foo', 'bar'],
+      modelValue: ['foo', 'bar']
     })
 
     await nextTick()
@@ -176,8 +176,8 @@ describe('VAutocomplete.ts', () => {
     const wrapper = mountFunction({
       props: {
         items: ['f', 'b'],
-        modelValue: 'f',
-      },
+        modelValue: 'f'
+      }
     })
 
     const input = wrapper.find('input')
@@ -191,8 +191,8 @@ describe('VAutocomplete.ts', () => {
   it('should close menu when append icon is clicked', async () => {
     const wrapper = mountFunction({
       props: {
-        items: ['foo', 'bar'],
-      },
+        items: ['foo', 'bar']
+      }
     })
 
     const append = wrapper.find('.v-input__append-inner')
@@ -209,8 +209,8 @@ describe('VAutocomplete.ts', () => {
   it('should open menu when append icon is clicked', async () => {
     const wrapper = mountFunction({
       props: {
-        items: ['foo', 'bar'],
-      },
+        items: ['foo', 'bar']
+      }
     })
 
     const append = wrapper.find('.v-input__append-inner')
@@ -227,8 +227,8 @@ describe('VAutocomplete.ts', () => {
     const wrapper = mountFunction({
       props: {
         items: ['foo', 'bar'],
-        modelValue: 'foo',
-      },
+        modelValue: 'foo'
+      }
     })
 
     expect(wrapper.emitted('update:search-input')).toBeFalsy()
@@ -256,8 +256,8 @@ describe('VAutocomplete.ts', () => {
     const wrapper = mountFunction({
       props: {
         items: ['foo', 'bar'],
-        modelValue: 'foo',
-      },
+        modelValue: 'foo'
+      }
     })
 
     const input = wrapper.find('input')
@@ -274,14 +274,14 @@ describe('VAutocomplete.ts', () => {
         items: [
           { name: 'Sandra Adams', group: 'Group 1', avatar: 'avatar1.jpg' },
           { name: 'Ali Connors', group: 'Group 1', avatar: 'avatar2.jpg' },
-          { name: 'Trevor Hansen', group: 'Group 1', avatar: 'avatar3.jpg' },
+          { name: 'Trevor Hansen', group: 'Group 1', avatar: 'avatar3.jpg' }
         ],
         modelValue: ['Sandra Adams', 'Ali Connors'],
         multiple: true,
         chips: true,
         itemText: 'name',
-        itemValue: 'name',
-      },
+        itemValue: 'name'
+      }
     })
 
     await nextTick()

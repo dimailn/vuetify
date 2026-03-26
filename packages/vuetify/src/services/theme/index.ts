@@ -7,13 +7,14 @@ import * as ThemeUtils from './utils'
 import { getNestedValue } from '../../util/helpers'
 
 // Types
-import {App, reactive} from 'vue'
+import { reactive } from 'vue'
+import type { ComponentPublicInstance } from 'vue'
 import { VuetifyPreset } from 'vuetify/types/services/presets'
 import {
   VuetifyParsedTheme,
   VuetifyThemes,
   VuetifyThemeVariant,
-  Theme as ITheme,
+  Theme as ITheme
 } from 'vuetify/types/services/theme'
 
 // Vue Meta 3
@@ -45,7 +46,7 @@ export class Theme extends Service {
       dark,
       disable,
       options,
-      themes,
+      themes
     } = preset[Theme.property]
 
     this.dark = Boolean(dark)
@@ -60,7 +61,7 @@ export class Theme extends Service {
 
     this.themes = {
       dark: this.fillVariant(themes.dark, true),
-      light: this.fillVariant(themes.light, false),
+      light: this.fillVariant(themes.light, false)
     }
   }
 
@@ -102,7 +103,7 @@ export class Theme extends Service {
   // Initialize theme for SSR and SPA
   // Attach to ssrContext head or
   // apply new theme to document
-  public init (root: App, ssrContext?: any): void {
+  public init (root: ComponentPublicInstance, ssrContext?: any): void {
     if (this.disabled) return
 
     // Инициализируем vue-meta 3
@@ -170,7 +171,7 @@ export class Theme extends Service {
     document.head.appendChild(this.styleEl)
   }
 
-  private initVueMeta3 (root: App) {
+  private initVueMeta3 (_root: ComponentPublicInstance) {
     // Vue Meta 3 теперь работает через плагин, а не через отдельный manager
     // Стили будут добавляться напрямую через useMeta API в компонентах
     // или через обычный DOM API
@@ -190,7 +191,7 @@ export class Theme extends Service {
     ssrContext.head += `<style type="text/css" id="vuetify-theme-stylesheet"${nonce}>${this.generatedStyles}</style>`
   }
 
-  private initTheme (root: App) {
+  private initTheme (_root: ComponentPublicInstance) {
     // Only watch for reactivity on client side
     if (typeof document === 'undefined') return
 
@@ -208,7 +209,6 @@ export class Theme extends Service {
     //   const obs = reactive({ themes: this.themes })
     //   this.unwatch = root.$watch(() => obs.themes, () => this.applyTheme(), { deep: true })
     // })
-
 
     this.applyTheme()
   }

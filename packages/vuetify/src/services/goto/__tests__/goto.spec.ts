@@ -23,7 +23,7 @@ describe('$vuetify.goTo', () => {
 
   beforeEach(() => {
     framework = {
-      application: new Application(),
+      application: new Application()
     }
 
     goTo.framework = framework
@@ -71,7 +71,7 @@ describe('$vuetify.goTo', () => {
 
   it('should work with Vue 3 component wrapper from Vue Test Utils', async () => {
     const TestComponent = defineComponent({
-      template: '<div>Test Component</div>',
+      template: '<div>Test Component</div>'
     })
     const wrapper = mount(TestComponent)
 
@@ -103,7 +103,7 @@ describe('$vuetify.goTo', () => {
 
   it('should use VueComponent as container', async () => {
     const TestComponent = defineComponent({
-      template: '<div style="height: 1000px; overflow: auto"><div style="height: 2000px;">Content</div></div>',
+      template: '<div style="height: 1000px; overflow: auto"><div style="height: 2000px;">Content</div></div>'
     })
     const wrapper = mount(TestComponent)
 
@@ -120,7 +120,7 @@ describe('goto utilities', () => {
 
   beforeEach(() => {
     utilsFramework = {
-      application: new Application(),
+      application: new Application()
     }
     goTo.framework = utilsFramework
   })
@@ -143,7 +143,7 @@ describe('goto utilities', () => {
 
     it('should return offset for Vue 3 component', () => {
       const TestComponent = defineComponent({
-        template: '<div>Test</div>',
+        template: '<div>Test</div>'
       })
       const wrapper = mount(TestComponent)
 
@@ -183,7 +183,7 @@ describe('goto utilities', () => {
 
     it('should return HTMLElement for Vue 3 component container', () => {
       const TestComponent = defineComponent({
-        template: '<div>Test Container</div>',
+        template: '<div>Test Container</div>'
       })
       const wrapper = mount(TestComponent)
 

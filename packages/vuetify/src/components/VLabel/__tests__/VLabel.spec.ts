@@ -4,7 +4,7 @@ import VLabel from '../VLabel'
 // Utilities
 import {
   mount,
-  VueWrapper,
+  VueWrapper
 } from '@vue/test-utils'
 
 describe('VLabel', () => {
@@ -14,7 +14,7 @@ describe('VLabel', () => {
   beforeEach(() => {
     mountFunction = (options = {}) => {
       return mount(VLabel, {
-        ...options,
+        ...options
       })
     }
   })
@@ -23,8 +23,8 @@ describe('VLabel', () => {
     const wrapper = mountFunction({
       props: {
         color: 'pink',
-        focused: true,
-      },
+        focused: true
+      }
     })
 
     expect(wrapper.classes('pink--text')).toBe(true)
@@ -33,8 +33,8 @@ describe('VLabel', () => {
   it('should position itself absolutely', () => {
     const wrapper = mountFunction({
       props: {
-        absolute: true,
-      },
+        absolute: true
+      }
     })
 
     expect(wrapper.element.style.position).toBe('absolute')
@@ -43,8 +43,8 @@ describe('VLabel', () => {
   it('should render default slot content', () => {
     const wrapper = mountFunction({
       slots: {
-        default: 'Custom Label Text',
-      },
+        default: 'Custom Label Text'
+      }
     })
 
     expect(wrapper.text()).toBe('Custom Label Text')
@@ -53,8 +53,8 @@ describe('VLabel', () => {
   it('should render complex slot content with HTML', () => {
     const wrapper = mountFunction({
       slots: {
-        default: '<span class="custom-class">Label with <strong>bold</strong> text</span>',
-      },
+        default: '<span class="custom-class">Label with <strong>bold</strong> text</span>'
+      }
     })
 
     expect(wrapper.find('.custom-class').exists()).toBe(true)
@@ -64,13 +64,13 @@ describe('VLabel', () => {
 
   it('should render slot content with components', () => {
     const TestComponent = {
-      template: '<span class="test-component">Test Component</span>',
+      template: '<span class="test-component">Test Component</span>'
     }
 
     const wrapper = mountFunction({
       slots: {
-        default: TestComponent,
-      },
+        default: TestComponent
+      }
     })
 
     expect(wrapper.find('.test-component').exists()).toBe(true)
@@ -82,9 +82,9 @@ describe('VLabel', () => {
       slots: {
         default: [
           '<span class="first">First</span>',
-          '<span class="second">Second</span>',
-        ],
-      },
+          '<span class="second">Second</span>'
+        ]
+      }
     })
 
     expect(wrapper.find('.first').exists()).toBe(true)
@@ -102,12 +102,12 @@ describe('VLabel', () => {
   it('should apply proper classes when slot content is present', () => {
     const wrapper = mountFunction({
       slots: {
-        default: 'Test Label',
+        default: 'Test Label'
       },
       props: {
         value: true,
-        disabled: true,
-      },
+        disabled: true
+      }
     })
 
     expect(wrapper.classes('v-label--active')).toBe(true)
@@ -117,11 +117,11 @@ describe('VLabel', () => {
   it('should render slot content with proper for attribute', () => {
     const wrapper = mountFunction({
       props: {
-        for: 'test-input',
+        for: 'test-input'
       },
       slots: {
-        default: 'Label for input',
-      },
+        default: 'Label for input'
+      }
     })
 
     expect(wrapper.attributes('for')).toBe('test-input')
@@ -131,8 +131,8 @@ describe('VLabel', () => {
   it('should set aria-hidden when no for attribute provided', () => {
     const wrapper = mountFunction({
       slots: {
-        default: 'Label without for',
-      },
+        default: 'Label without for'
+      }
     })
 
     expect(wrapper.attributes('aria-hidden')).toBe('true')
@@ -142,11 +142,11 @@ describe('VLabel', () => {
     const wrapper = mountFunction({
       props: {
         left: 10,
-        right: 20,
+        right: 20
       },
       slots: {
-        default: 'Positioned label',
-      },
+        default: 'Positioned label'
+      }
     })
 
     expect(wrapper.element.style.left).toBe('10px')
@@ -156,11 +156,11 @@ describe('VLabel', () => {
   it('should render slot content with theme classes', () => {
     const wrapper = mountFunction({
       props: {
-        dark: true,
+        dark: true
       },
       slots: {
-        default: 'Dark theme label',
-      },
+        default: 'Dark theme label'
+      }
     })
 
     expect(wrapper.classes('theme--dark')).toBe(true)
@@ -170,11 +170,11 @@ describe('VLabel', () => {
     const wrapper = mountFunction({
       props: {
         focused: true,
-        color: 'error',
+        color: 'error'
       },
       slots: {
-        default: 'Focused error label',
-      },
+        default: 'Focused error label'
+      }
     })
 
     expect(wrapper.classes('error--text')).toBe(true)
@@ -183,11 +183,11 @@ describe('VLabel', () => {
   it('should handle disabled state', () => {
     const wrapper = mountFunction({
       props: {
-        disabled: true,
+        disabled: true
       },
       slots: {
-        default: 'Disabled label',
-      },
+        default: 'Disabled label'
+      }
     })
 
     expect(wrapper.classes('v-label--is-disabled')).toBe(true)
@@ -196,11 +196,11 @@ describe('VLabel', () => {
   it('should handle active state', () => {
     const wrapper = mountFunction({
       props: {
-        value: true,
+        value: true
       },
       slots: {
-        default: 'Active label',
-      },
+        default: 'Active label'
+      }
     })
 
     expect(wrapper.classes('v-label--active')).toBe(true)
@@ -210,11 +210,11 @@ describe('VLabel', () => {
     const wrapper = mountFunction({
       props: {
         left: '20%',
-        right: '30px',
+        right: '30px'
       },
       slots: {
-        default: 'Positioned label',
-      },
+        default: 'Positioned label'
+      }
     })
 
     expect(wrapper.element.style.left).toBe('20%')
@@ -224,11 +224,11 @@ describe('VLabel', () => {
   it('should handle light theme', () => {
     const wrapper = mountFunction({
       props: {
-        light: true,
+        light: true
       },
       slots: {
-        default: 'Light theme label',
-      },
+        default: 'Light theme label'
+      }
     })
 
     expect(wrapper.classes('theme--light')).toBe(true)
@@ -238,11 +238,11 @@ describe('VLabel', () => {
     const wrapper = mountFunction({
       props: {
         dark: true,
-        light: false,
+        light: false
       },
       slots: {
-        default: 'Theme label',
-      },
+        default: 'Theme label'
+      }
     })
 
     expect(wrapper.classes('theme--dark')).toBe(true)
@@ -252,8 +252,8 @@ describe('VLabel', () => {
   it('should render slot content with proper element tag', () => {
     const wrapper = mountFunction({
       slots: {
-        default: 'Label content',
-      },
+        default: 'Label content'
+      }
     })
 
     expect(wrapper.element.tagName.toLowerCase()).toBe('label')
@@ -264,11 +264,11 @@ describe('VLabel', () => {
 
     const wrapper = mountFunction({
       attrs: {
-        onClick,
+        onClick
       },
       slots: {
-        default: 'Clickable label',
-      },
+        default: 'Clickable label'
+      }
     })
 
     wrapper.trigger('click')

@@ -4,7 +4,7 @@ import VTab from '../VTab'
 // Utilities
 import {
   mount,
-  VueWrapper,
+  VueWrapper
 } from '@vue/test-utils'
 import { Vue3RouterLinkStub } from '../../../../test/util/stubs'
 
@@ -15,7 +15,7 @@ describe('VTab.ts', () => {
   beforeEach(() => {
     mountFunction = (options = {}) => {
       return mount(VTab, {
-        ...options,
+        ...options
       })
     }
   })
@@ -23,7 +23,7 @@ describe('VTab.ts', () => {
   it('should have the correct value', async () => {
     const wrapper = mountFunction({
       props: {
-        href: '#foo',
+        href: '#foo'
       },
       global: {
         mocks: {
@@ -34,13 +34,13 @@ describe('VTab.ts', () => {
               if (to.path) href = to.path
 
               return { href }
-            },
-          },
+            }
+          }
         },
         stubs: {
-          'router-link': Vue3RouterLinkStub,
-        },
-      },
+          'router-link': Vue3RouterLinkStub
+        }
+      }
     })
 
     expect(wrapper.vm.value).toBe('foo')
@@ -56,16 +56,16 @@ describe('VTab.ts', () => {
     const wrapper = mountFunction({
       props: {
         activeClass: 'bar',
-        to: 'foo',
+        to: 'foo'
       },
       global: {
         mocks: {
-          $route: { path: '/' },
+          $route: { path: '/' }
         },
         stubs: {
-          'router-link': Vue3RouterLinkStub,
-        },
-      },
+          'router-link': Vue3RouterLinkStub
+        }
+      }
     })
 
     // Mock the toggle method
@@ -80,13 +80,13 @@ describe('VTab.ts', () => {
     // explicitly mock class added
     // by vue router
     if (wrapper.vm.$refs.link) {
-      ;(wrapper.vm.$refs.link as any)._vnode = {
+      (wrapper.vm.$refs.link as any)._vnode = {
         data: {
-          class: { 'bar v-tab--active': true },
+          class: { 'bar v-tab--active': true }
         }
       }
     }
-    ;(wrapper.vm as any).$route.path = '/foo'
+    (wrapper.vm as any).$route.path = '/foo'
 
     wrapper.vm.onRouteChange()
     await wrapper.vm.$nextTick()

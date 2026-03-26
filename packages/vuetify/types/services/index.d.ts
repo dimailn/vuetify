@@ -1,11 +1,11 @@
 // Types
-import Vue from 'vue'
+import type { ComponentPublicInstance } from 'vue'
 import Framework from '../'
 import { VuetifyPreset } from 'vuetify/types/services/presets'
 
 export interface VuetifyServiceContract {
   framework: Record<string, VuetifyServiceContract>
-  init: (root: Vue, ssrContext?: object) => void
+  init: (root: ComponentPublicInstance, ssrContext?: object) => void
 }
 
 export interface VuetifyService {

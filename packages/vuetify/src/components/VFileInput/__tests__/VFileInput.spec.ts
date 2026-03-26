@@ -10,7 +10,7 @@ import {
   mount,
   config,
   MountingOptions,
-  enableAutoUnmount,
+  enableAutoUnmount
 } from '@vue/test-utils'
 
 const oneMBFile = new File([new ArrayBuffer(1048576)], 'test')
@@ -28,13 +28,13 @@ describe('VFileInput.ts', () => {
         ...options,
         props: {
           label: 'File input',
-          ...options?.props,
+          ...options?.props
         },
         global: {
           mocks: {
-            ...config.global.mocks,
-          },
-        },
+            ...config.global.mocks
+          }
+        }
       })
     }
   })
@@ -47,7 +47,7 @@ describe('VFileInput.ts', () => {
 
   it('should render multiple', () => {
     const wrapper = mountFunction({
-      props: { multiple: true },
+      props: { multiple: true }
     })
 
     expect(wrapper.html()).toMatchSnapshot()
@@ -57,8 +57,8 @@ describe('VFileInput.ts', () => {
     const wrapper = mountFunction({
       props: {
         counter: true,
-        modelValue: [oneMBFile],
-      },
+        modelValue: [oneMBFile]
+      }
     })
 
     expect(wrapper.html()).toMatchSnapshot()
@@ -68,14 +68,14 @@ describe('VFileInput.ts', () => {
     const wrapper = mountFunction({
       props: {
         showSize: true,
-        modelValue: [twoMBFile],
-      },
+        modelValue: [twoMBFile]
+      }
     })
 
     expect(wrapper.html()).toMatchSnapshot()
 
     await wrapper.setProps({
-      showSize: 1000,
+      showSize: 1000
     })
 
     expect(wrapper.html()).toMatchSnapshot()
@@ -86,14 +86,14 @@ describe('VFileInput.ts', () => {
       props: {
         showSize: true,
         counter: true,
-        modelValue: [oneMBFile, twoMBFile],
-      },
+        modelValue: [oneMBFile, twoMBFile]
+      }
     })
 
     expect(wrapper.html()).toMatchSnapshot()
 
     await wrapper.setProps({
-      showSize: 1000,
+      showSize: 1000
     })
 
     expect(wrapper.html()).toMatchSnapshot()
@@ -102,8 +102,8 @@ describe('VFileInput.ts', () => {
   it('should be unclearable', () => {
     const wrapper = mountFunction({
       props: {
-        clearable: false,
-      },
+        clearable: false
+      }
     })
 
     expect(wrapper.html()).toMatchSnapshot()
@@ -112,8 +112,8 @@ describe('VFileInput.ts', () => {
   it('should work with accept', () => {
     const wrapper = mountFunction({
       props: {
-        accept: 'image/*',
-      },
+        accept: 'image/*'
+      }
     })
 
     expect(wrapper.find('input').element.getAttribute('accept')).toBe('image/*')
@@ -122,8 +122,8 @@ describe('VFileInput.ts', () => {
   it('should disable file input', () => {
     const wrapper = mountFunction({
       props: {
-        disabled: true,
-      },
+        disabled: true
+      }
     })
 
     expect(wrapper.find('input').element.disabled).toBe(true)
@@ -147,7 +147,7 @@ describe('VFileInput.ts', () => {
 
   it('should clear', () => {
     const wrapper = mountFunction({
-      props: { modelValue: oneMBFile },
+      props: { modelValue: oneMBFile }
     })
 
     wrapper.vm.clearableCallback()
@@ -155,7 +155,7 @@ describe('VFileInput.ts', () => {
 
     const wrapper2 = mountFunction({
       attrs: { multiple: '' },
-      props: { modelValue: oneMBFile },
+      props: { modelValue: oneMBFile }
     })
 
     wrapper2.vm.clearableCallback()
@@ -166,7 +166,7 @@ describe('VFileInput.ts', () => {
     const wrapper = mountFunction()
 
     wrapper.setProps({
-      modelValue: [oneMBFile],
+      modelValue: [oneMBFile]
     })
 
     await wrapper.vm.$nextTick()
@@ -178,8 +178,8 @@ describe('VFileInput.ts', () => {
     const wrapper = mountFunction({
       props: {
         chips: true,
-        modelValue: [oneMBFile],
-      },
+        modelValue: [oneMBFile]
+      }
     })
 
     expect(wrapper.html()).toMatchSnapshot()
@@ -188,11 +188,11 @@ describe('VFileInput.ts', () => {
   it('should render small chips', () => {
     const wrapper = mountFunction({
       props: {
-        smallChips: true,
+        smallChips: true
       },
       data: () => ({
-        lazyValue: [oneMBFile],
-      }),
+        lazyValue: [oneMBFile]
+      })
     })
 
     expect(wrapper.html()).toMatchSnapshot()
@@ -202,8 +202,8 @@ describe('VFileInput.ts', () => {
   it('should render without icon', () => {
     const wrapper = mountFunction({
       props: {
-        prependIcon: '',
-      },
+        prependIcon: ''
+      }
     })
 
     expect(wrapper.html()).toMatchSnapshot()
@@ -243,14 +243,14 @@ describe('VFileInput.ts', () => {
     const wrapper = mountFunction({
       props: {
         truncateLength: 1,
-        modelValue: fifteenCharFile,
-      },
+        modelValue: fifteenCharFile
+      }
     })
 
     expect(wrapper.find('.v-file-input__text').text()).toBe('…')
 
     wrapper.setProps({
-      truncateLength: 2,
+      truncateLength: 2
     })
 
     await wrapper.vm.$nextTick()
@@ -258,7 +258,7 @@ describe('VFileInput.ts', () => {
     expect(wrapper.find('.v-file-input__text').text()).toBe('…')
 
     wrapper.setProps({
-      truncateLength: 3,
+      truncateLength: 3
     })
 
     await wrapper.vm.$nextTick()
@@ -266,7 +266,7 @@ describe('VFileInput.ts', () => {
     expect(wrapper.find('.v-file-input__text').text()).toBe('t…s')
 
     wrapper.setProps({
-      truncateLength: 10,
+      truncateLength: 10
     })
 
     await wrapper.vm.$nextTick()
@@ -288,7 +288,7 @@ describe('VFileInput.ts', () => {
 
   it('should set display none if hide-input prop is set', () => {
     const wrapper = mountFunction({
-      props: { hideInput: true },
+      props: { hideInput: true }
     })
 
     expect(wrapper.html()).toMatchSnapshot()
@@ -296,7 +296,7 @@ describe('VFileInput.ts', () => {
 
   it('should hide control element when hideInput is true', () => {
     const wrapper = mountFunction({
-      props: { hideInput: true },
+      props: { hideInput: true }
     })
 
     // Проверяем, что control элемент имеет display: none
@@ -306,7 +306,7 @@ describe('VFileInput.ts', () => {
 
   it('should not hide control element when hideInput is false', () => {
     const wrapper = mountFunction({
-      props: { hideInput: false },
+      props: { hideInput: false }
     })
 
     // Проверяем, что control элемент не скрыт
@@ -320,7 +320,7 @@ describe('VFileInput.ts', () => {
         hideInput: true,
         accept: 'image/*',
         label: 'File input'
-      },
+      }
     })
 
     // Проверяем, что control элемент скрыт

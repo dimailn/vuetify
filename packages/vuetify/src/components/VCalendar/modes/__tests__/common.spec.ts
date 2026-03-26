@@ -1,6 +1,6 @@
 import { parseEvent } from '../../util/events'
 import {
-  getVisuals, hasOverlap,
+  getVisuals, hasOverlap
 } from '../common'
 
 describe('common.ts', () => {
@@ -8,47 +8,47 @@ describe('common.ts', () => {
     expect(getVisuals([])).toEqual([])
     expect(parseEvent({
       start: '2019-02-13',
-      end: '2019-02-14',
+      end: '2019-02-14'
     }, 0, 'start', 'end')).toMatchSnapshot()
     expect(parseEvent({
       a: '2019-02-13',
-      b: '2019-02-14',
+      b: '2019-02-14'
     }, 0, 'a', 'b')).toMatchSnapshot()
     expect(parseEvent({
       start: '2019-02-13',
-      end: '2019-02-14',
+      end: '2019-02-14'
     }, 1, 'start', 'end')).toMatchSnapshot()
     expect(parseEvent({
       a: '2019-02-13',
-      b: '2019-02-14',
+      b: '2019-02-14'
     }, 1, 'a', 'b')).toMatchSnapshot()
   })
   it('should get visuals 2', () => {
     const p0 = parseEvent({
       start: '2019-02-13',
-      end: '2019-02-14',
+      end: '2019-02-14'
     }, 0, 'start', 'end')
     const p1 = parseEvent({
       start: '2019-02-13',
-      end: '2019-02-15',
+      end: '2019-02-15'
     }, 0, 'start', 'end')
     const p2 = parseEvent({
       start: '2019-02-13 08:00',
-      end: '2019-02-13 09:00',
+      end: '2019-02-13 09:00'
     }, 0, 'start', 'end')
     const p3 = parseEvent({
       start: '2019-02-13 07:30',
-      end: '2019-02-13 08:30',
+      end: '2019-02-13 08:30'
     }, 0, 'start', 'end')
     const p4 = parseEvent({
       start: '2019-02-13 08:00',
-      end: '2019-02-13 10:00',
+      end: '2019-02-13 10:00'
     }, 0, 'start', 'end')
     const visualDefaults = {
       columnCount: 0,
       column: 0,
       left: 0,
-      width: 100,
+      width: 100
     }
 
     expect(getVisuals([p0, p1, p2, p3, p4])).toEqual([
@@ -56,7 +56,7 @@ describe('common.ts', () => {
       { event: p0, ...visualDefaults },
       { event: p3, ...visualDefaults },
       { event: p4, ...visualDefaults },
-      { event: p2, ...visualDefaults },
+      { event: p2, ...visualDefaults }
     ])
   })
   it('should overlap', () => {

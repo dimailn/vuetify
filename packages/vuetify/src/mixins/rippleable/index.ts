@@ -2,7 +2,8 @@
 import ripple from '../../directives/ripple'
 
 // Types
-import Vue, { VNode, VNodeData, VNodeDirective, defineComponent, withDirectives, h } from 'vue'
+import { VNode, defineComponent, withDirectives, h } from 'vue'
+import type { VNodeData, VNodeDirective } from '../../types/vue-internal'
 
 export default defineComponent({
   name: 'rippleable',
@@ -12,8 +13,8 @@ export default defineComponent({
   props: {
     ripple: {
       type: [Boolean, Object],
-      default: true,
-    },
+      default: true
+    }
   },
 
   methods: {
@@ -36,6 +37,6 @@ export default defineComponent({
           {}
         ]
       ])
-    },
-  },
+    }
+  }
 })

@@ -3,13 +3,13 @@ import Mouse from '../index'
 import {
   mount,
   VueWrapper,
-  MountingOptions,
+  MountingOptions
 } from '@vue/test-utils'
 import { ComponentPublicInstance, h, defineComponent } from 'vue'
 
 const Mock = defineComponent({
   mixins: [Mouse],
-  render: () => h('div'),
+  render: () => h('div')
 })
 
 describe('mouse.ts', () => {
@@ -26,8 +26,8 @@ describe('mouse.ts', () => {
     const noop = (e: any) => e
     const wrapper = mount(Mock, {
       attrs: {
-        onClick: noop,
-      },
+        onClick: noop
+      }
     })
 
     const handlers = wrapper.vm.getMouseEventHandlers({ click: { event: 'click' } }, noop)
@@ -38,8 +38,8 @@ describe('mouse.ts', () => {
     const noop = (e: any) => e
     const wrapper = mount(Mock, {
       attrs: {
-        'onClick:foo': noop,
-      },
+        'onClick:foo': noop
+      }
     })
 
     const handlers = wrapper.vm.getDefaultMouseEventHandlers(':foo', noop)
@@ -54,8 +54,8 @@ describe('mouse.ts', () => {
         onMouseleave: noop,
         onMousedown: noop,
         onMouseup: noop,
-        onMousemove: noop,
-      },
+        onMousemove: noop
+      }
     })
     const emptySuffixHandlers = wrapper2.vm.getDefaultMouseEventHandlers('', noop)
     expect(Object.keys(emptySuffixHandlers)).toHaveLength(6)
@@ -64,8 +64,8 @@ describe('mouse.ts', () => {
   it('should emit events', async () => {
     const wrapper = mount(Mock, {
       attrs: {
-        onClick: () => {},
-      },
+        onClick: () => {}
+      }
     })
 
     const handlers = wrapper.vm.getMouseEventHandlers({ click: { event: 'click' } }, () => ({}))
@@ -77,8 +77,8 @@ describe('mouse.ts', () => {
   it('should handle prevent modifier', async () => {
     const wrapper = mount(Mock, {
       attrs: {
-        onClick: () => {},
-      },
+        onClick: () => {}
+      }
     })
     const event = { preventDefault: jest.fn() } as unknown as MouseEvent
 
@@ -91,8 +91,8 @@ describe('mouse.ts', () => {
   it('should handle stop modifier', async () => {
     const wrapper = mount(Mock, {
       attrs: {
-        onClick: () => {},
-      },
+        onClick: () => {}
+      }
     })
     const event = { stopPropagation: jest.fn() } as unknown as MouseEvent
 

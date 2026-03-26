@@ -4,7 +4,7 @@ import VOverlay from '../VOverlay'
 // Utilities
 import {
   mount,
-  VueWrapper,
+  VueWrapper
 } from '@vue/test-utils'
 
 describe('VOverlay.ts', () => {
@@ -14,14 +14,14 @@ describe('VOverlay.ts', () => {
   beforeEach(() => {
     mountFunction = (options = {}) => {
       return mount(VOverlay, {
-        ...options,
+        ...options
       })
     }
   })
 
   it('should have a conditional opacity', async () => {
     const wrapper = mountFunction({
-      props: { modelValue: false },
+      props: { modelValue: false }
     })
 
     expect(wrapper.vm.computedOpacity).toBe(0)

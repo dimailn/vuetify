@@ -5,7 +5,7 @@ import {
   mount,
   MountingOptions,
   VueWrapper,
-  enableAutoUnmount,
+  enableAutoUnmount
 } from '@vue/test-utils'
 import { Breakpoint } from '../../../services/breakpoint'
 import { preset } from '../../../presets/default'
@@ -28,15 +28,15 @@ describe('VDataIterator.ts', () => {
               breakpoint: new Breakpoint(preset),
               lang: new Lang(preset),
               theme: {
-                dark: false,
+                dark: false
               },
               icons: {
-                component: null,
-              },
-            },
-          },
+                component: null
+              }
+            }
+          }
         },
-        ...options,
+        ...options
       })
     }
   })
@@ -54,14 +54,14 @@ describe('VDataIterator.ts', () => {
           'foo',
           'bar',
           'baz',
-          'qux',
-        ],
+          'qux'
+        ]
       },
       slots: {
         item (props) {
           return h('div', [props.item])
-        },
-      },
+        }
+      }
     })
 
     expect(wrapper.html()).toMatchSnapshot()
@@ -71,8 +71,8 @@ describe('VDataIterator.ts', () => {
     const wrapper = mountFunction({
       props: {
         items: [],
-        serverItemsLength: 0,
-      },
+        serverItemsLength: 0
+      }
     })
 
     await wrapper.vm.$nextTick()
@@ -80,7 +80,7 @@ describe('VDataIterator.ts', () => {
 
     await wrapper.setProps({
       loading: true,
-      items: [],
+      items: []
     })
     await wrapper.vm.$nextTick()
 
@@ -89,7 +89,7 @@ describe('VDataIterator.ts', () => {
     await wrapper.setProps({
       loading: false,
       items: ['foo'],
-      search: 'something',
+      search: 'something'
     })
     await wrapper.vm.$nextTick()
 
@@ -102,15 +102,15 @@ describe('VDataIterator.ts', () => {
         itemKey: 'id',
         items: [
           { id: 1, text: 'foo' },
-          { id: 2, text: 'bar' },
-        ],
+          { id: 2, text: 'bar' }
+        ]
       },
       slots: {
         item: (props: any) => h('div', {
           id: props.item.text,
-          onClick: () => props.select(true),
-        }, [props.item.text]),
-      },
+          onClick: () => props.select(true)
+        }, [props.item.text])
+      }
     })
 
     await wrapper.vm.$nextTick()
@@ -131,15 +131,15 @@ describe('VDataIterator.ts', () => {
         itemKey: 'id',
         items: [
           { id: 1, text: 'foo' },
-          { id: 2, text: 'bar' },
-        ],
+          { id: 2, text: 'bar' }
+        ]
       },
       slots: {
         item: (props: any) => h('div', {
           id: props.item.text,
-          onClick: () => props.expand(true),
-        }, [props.item.text]),
-      },
+          onClick: () => props.expand(true)
+        }, [props.item.text])
+      }
     })
 
     await wrapper.vm.$nextTick()
@@ -157,19 +157,19 @@ describe('VDataIterator.ts', () => {
   it('should select all', async () => {
     const items = [
       { id: 'foo' },
-      { id: 'bar' },
+      { id: 'bar' }
     ]
 
     const wrapper = mountFunction({
       props: {
-        items,
+        items
       },
       slots: {
         header: (props: any) => h('div', {
           id: 'header',
-          onClick: () => props.toggleSelectAll(true),
-        }),
-      },
+          onClick: () => props.toggleSelectAll(true)
+        })
+      }
     })
 
     await wrapper.vm.$nextTick()
@@ -191,20 +191,20 @@ describe('VDataIterator.ts', () => {
       props: {
         items: [
           { id: 'foo' },
-          { id: 'bar' },
-        ],
-      },
+          { id: 'bar' }
+        ]
+      }
     })
 
     await wrapper.setProps({
-      expanded: [{ id: 'foo' }],
+      expanded: [{ id: 'foo' }]
     })
     await wrapper.vm.$nextTick()
     expect(wrapper.emitted('update:expanded')).toBeTruthy()
     expect(wrapper.emitted('update:expanded')?.slice(-1)[0]).toEqual([[{ id: 'foo' }]])
 
     await wrapper.setProps({
-      expanded: [{ id: 'bar' }],
+      expanded: [{ id: 'bar' }]
     })
     await wrapper.vm.$nextTick()
     expect(wrapper.emitted('update:expanded')?.slice(-1)[0]).toEqual([[{ id: 'bar' }]])
@@ -215,20 +215,20 @@ describe('VDataIterator.ts', () => {
       props: {
         items: [
           { id: 'foo' },
-          { id: 'bar' },
-        ],
-      },
+          { id: 'bar' }
+        ]
+      }
     })
 
     await wrapper.setProps({
-      modelValue: [{ id: 'foo' }],
+      modelValue: [{ id: 'foo' }]
     })
     await wrapper.vm.$nextTick()
     expect(wrapper.emitted('update:modelValue')).toBeTruthy()
     expect(wrapper.emitted('update:modelValue')?.slice(-1)[0]).toEqual([[{ id: 'foo' }]])
 
     await wrapper.setProps({
-      modelValue: [{ id: 'bar' }],
+      modelValue: [{ id: 'bar' }]
     })
     await wrapper.vm.$nextTick()
     expect(wrapper.emitted('update:modelValue')?.slice(-1)[0]).toEqual([[{ id: 'bar' }]])
@@ -237,60 +237,60 @@ describe('VDataIterator.ts', () => {
   it('should check if all items are selected', async () => {
     const render = jest.fn()
     const items = [
-      { id: 'foo' }, { id: 'bar' },
+      { id: 'foo' }, { id: 'bar' }
     ]
 
     const wrapper = mountFunction({
       props: {
-        items,
+        items
       },
       slots: {
-        header: render,
-      },
+        header: render
+      }
     })
 
     await wrapper.setProps({
-      modelValue: items,
+      modelValue: items
     })
     await wrapper.vm.$nextTick()
 
     expect(render).toHaveBeenLastCalledWith(expect.objectContaining({
       everyItem: true,
-      someItems: true,
+      someItems: true
     }))
   })
 
   it('should check if some items are selected', async () => {
     const render = jest.fn()
     const items = [
-      { id: 'foo' }, { id: 'bar' },
+      { id: 'foo' }, { id: 'bar' }
     ]
 
     const wrapper = mountFunction({
       props: {
-        items,
+        items
       },
       slots: {
-        header: render,
-      },
+        header: render
+      }
     })
 
     await wrapper.setProps({
-      modelValue: items.slice(1),
+      modelValue: items.slice(1)
     })
     await wrapper.vm.$nextTick()
 
     expect(render).toHaveBeenLastCalledWith(expect.objectContaining({
       everyItem: false,
-      someItems: true,
+      someItems: true
     }))
   })
 
   it('should hide footer', () => {
     const wrapper = mountFunction({
       props: {
-        hideDefaultFooter: true,
-      },
+        hideDefaultFooter: true
+      }
     })
 
     expect(wrapper.html()).toMatchSnapshot()
@@ -304,10 +304,10 @@ describe('VDataIterator.ts', () => {
           'foo',
           'bar',
           'baz',
-          'qux',
+          'qux'
         ],
-        itemsPerPage: 1,
-      },
+        itemsPerPage: 1
+      }
     })
 
     await wrapper.setProps({ itemsPerPage: 4 })

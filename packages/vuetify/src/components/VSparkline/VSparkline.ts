@@ -43,75 +43,75 @@ export default defineComponent({
     autoDraw: Boolean,
     autoDrawDuration: {
       type: Number,
-      default: 2000,
+      default: 2000
     },
     autoDrawEasing: {
       type: String,
-      default: 'ease',
+      default: 'ease'
     },
     autoLineWidth: {
       type: Boolean,
-      default: false,
+      default: false
     },
     color: {
       type: String,
-      default: 'primary',
+      default: 'primary'
     },
     fill: {
       type: Boolean,
-      default: false,
+      default: false
     },
     gradient: {
       type: Array as PropType<string[]>,
-      default: () => ([]),
+      default: () => ([])
     },
     gradientDirection: {
       type: String as PropType<'top' | 'bottom' | 'left' | 'right'>,
       validator: (val: string) => ['top', 'bottom', 'left', 'right'].includes(val),
-      default: 'top',
+      default: 'top'
     },
     height: {
       type: [String, Number],
-      default: 75,
+      default: 75
     },
     labels: {
       type: Array as PropType<SparklineItem[]>,
-      default: () => ([]),
+      default: () => ([])
     },
     labelSize: {
       type: [Number, String],
-      default: 7,
+      default: 7
     },
     lineWidth: {
       type: [String, Number],
-      default: 4,
+      default: 4
     },
     padding: {
       type: [String, Number],
-      default: 8,
+      default: 8
     },
     showLabels: Boolean,
     smooth: {
       type: [Boolean, Number, String],
-      default: false,
+      default: false
     },
     type: {
       type: String as PropType<'trend' | 'bar'>,
       default: 'trend',
-      validator: (val: string) => ['trend', 'bar'].includes(val),
+      validator: (val: string) => ['trend', 'bar'].includes(val)
     },
     value: {
       type: Array as PropType<SparklineItem[]>,
-      default: () => ([]),
+      default: () => ([])
     },
     width: {
       type: [Number, String],
-      default: 300,
-    },
+      default: 300
+    }
   },
 
   data: () => ({
-    lastLength: 0,
+    lastLength: 0
   }),
 
   computed: {
@@ -160,7 +160,7 @@ export default defineComponent({
         minX: padding,
         maxX: this.totalWidth - padding,
         minY: padding,
-        maxY: this.parsedHeight - padding,
+        maxY: this.parsedHeight - padding
       }
     },
     hasLabels (): boolean {
@@ -187,7 +187,7 @@ export default defineComponent({
 
         labels.push({
           x: item.x,
-          value: String(value),
+          value: String(value)
         })
       }
 
@@ -206,7 +206,7 @@ export default defineComponent({
     },
     _radius (): number {
       return this.smooth === true ? 8 : Number(this.smooth)
-    },
+    }
   },
 
   watch: {
@@ -240,8 +240,8 @@ export default defineComponent({
           }
           this.lastLength = length
         })
-      },
-    },
+      }
+    }
   },
 
   methods: {
@@ -257,7 +257,7 @@ export default defineComponent({
       const stops = gradient.reverse().map((color, index) =>
         h('stop', {
           offset: index / len,
-          'stop-color': color || 'currentColor',
+          'stop-color': color || 'currentColor'
         })
       )
 
@@ -269,8 +269,8 @@ export default defineComponent({
           x1: gradientDirection === 'left' ? '100%' : '0',
           y1: gradientDirection === 'top' ? '100%' : '0',
           x2: gradientDirection === 'right' ? '100%' : '0',
-          y2: gradientDirection === 'bottom' ? '100%' : '0',
-        }, stops),
+          y2: gradientDirection === 'bottom' ? '100%' : '0'
+        }, stops)
       ])
     },
     genG (children: VNode[]) {
@@ -279,8 +279,8 @@ export default defineComponent({
           fontSize: '8',
           textAnchor: 'middle',
           dominantBaseline: 'mathematical',
-          fill: 'currentColor',
-        },
+          fill: 'currentColor'
+        }
       }, children)
     },
     genPath () {
@@ -291,7 +291,7 @@ export default defineComponent({
         d: genPath(points, this._radius, this.fill, this.parsedHeight),
         fill: this.fill ? `url(#${instance?.uid})` : 'none',
         stroke: this.fill ? 'none' : `url(#${instance?.uid})`,
-        ref: 'path',
+        ref: 'path'
       })
     },
     genLabels (offsetX: number) {
@@ -299,7 +299,7 @@ export default defineComponent({
         h('text', {
           x: item.x + offsetX + this._lineWidth / 2,
           y: this.textY + (this.parsedLabelSize * 0.75),
-          'font-size': Number(this.labelSize) || 7,
+          'font-size': Number(this.labelSize) || 7
         }, [this.genLabel(item, i)])
       ))
 
@@ -318,22 +318,22 @@ export default defineComponent({
 
       return h('svg', {
         display: 'block',
-        viewBox: `0 0 ${this.totalWidth} ${this.totalHeight}`,
+        viewBox: `0 0 ${this.totalWidth} ${this.totalHeight}`
       }, [
         this.genGradient(),
         this.genClipPath(bars, offsetX, this._lineWidth, 'sparkline-bar-' + getCurrentInstance()?.uid),
         this.hasLabels ? this.genLabels(offsetX) : undefined as never,
         h('g', {
           'clip-path': `url(#sparkline-bar-${getCurrentInstance()?.uid}-clip)`,
-          fill: `url(#${getCurrentInstance()?.uid})`,
+          fill: `url(#${getCurrentInstance()?.uid})`
         }, [
           h('rect', {
             x: 0,
             y: 0,
             width: this.totalWidth,
-            height: this.height,
-          }),
-        ]),
+            height: this.height
+          })
+        ])
       ])
     },
     genClipPath (bars: Bar[], offsetX: number, lineWidth: number, id: string) {
@@ -342,7 +342,7 @@ export default defineComponent({
         : this.smooth ? 2 : 0
 
       return h('clipPath', {
-        id: `${id}-clip`,
+        id: `${id}-clip`
       }, bars.map(item => {
         return h('rect', {
           x: item.x + offsetX,
@@ -350,15 +350,17 @@ export default defineComponent({
           width: lineWidth,
           height: item.height,
           rx: rounding,
-          ry: rounding,
+          ry: rounding
         }, [
-          this.autoDraw ? h('animate', {
-            attributeName: 'height',
-            from: 0,
-            to: item.height,
-            dur: `${this.autoDrawDuration}ms`,
-            fill: 'freeze',
-          }) : undefined as never,
+          this.autoDraw
+            ? h('animate', {
+              attributeName: 'height',
+              from: 0,
+              to: item.height,
+              dur: `${this.autoDrawDuration}ms`,
+              fill: 'freeze'
+            })
+            : undefined as never
         ])
       }))
     },
@@ -367,18 +369,18 @@ export default defineComponent({
         ...this.$attrs,
         display: 'block',
         'stroke-width': this._lineWidth || 1,
-        viewBox: `0 0 ${this.width} ${this.totalHeight}`,
+        viewBox: `0 0 ${this.width} ${this.totalHeight}`
       }), [
         this.genGradient(),
         this.hasLabels && this.genLabels(-(this._lineWidth / 2)),
-        this.genPath(),
+        this.genPath()
       ])
-    },
+    }
   },
 
   render (): VNode {
     if (this.totalValues < 2) return undefined as never
 
     return this.type === 'trend' ? this.genTrend() : this.genBars()
-  },
+  }
 })

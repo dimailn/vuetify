@@ -6,7 +6,8 @@ import { consoleWarn } from '../../util/console'
 import { keyCodes } from '../../util/helpers'
 import makeDirectiveActivatable from '../../util/make-directive-activatable'
 // Types
-import { VNode, VNodeDirective, nextTick } from 'vue'
+import { VNode, nextTick } from 'vue'
+import type { VNodeDirective } from '../../types/vue-internal'
 
 type VuetifyRippleEvent = (MouseEvent | TouchEvent | KeyboardEvent) & { rippleStop?: boolean }
 
@@ -142,7 +143,7 @@ const ripples = {
         if (animation.parentNode?.parentNode === el) el.removeChild(animation.parentNode)
       }, 300)
     }, delay)
-  },
+  }
 }
 
 function isRippleEnabled (value: any): value is true {
@@ -336,7 +337,7 @@ function update (el: HTMLElement, binding: VNodeDirective) {
 export const Ripple = {
   mounted: directive,
   unmounted: unbind,
-  updated: update,
+  updated: update
 }
 
 export default makeDirectiveActivatable(Ripple)

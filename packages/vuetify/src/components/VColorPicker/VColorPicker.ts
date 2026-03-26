@@ -30,12 +30,12 @@ export default defineComponent({
   props: {
     canvasHeight: {
       type: [String, Number],
-      default: 150,
+      default: 150
     },
     disabled: Boolean,
     dotSize: {
       type: [Number, String],
-      default: 10,
+      default: 10
     },
     flat: Boolean,
     hideCanvas: Boolean,
@@ -45,28 +45,28 @@ export default defineComponent({
     mode: {
       type: String,
       default: 'rgba',
-      validator: (v: string) => Object.keys(modes).includes(v),
+      validator: (v: string) => Object.keys(modes).includes(v)
     },
     showSwatches: Boolean,
     swatches: Array as PropType<string[][]>,
     swatchesMaxHeight: {
       type: [Number, String],
-      default: 150,
+      default: 150
     },
     modelValue: {
-      type: [Object, String],
+      type: [Object, String]
     },
     width: {
       type: [Number, String],
-      default: 300,
-    },
+      default: 300
+    }
   },
 
   emits: ['update:modelValue', 'update:color', 'update:mode'],
 
   data () {
     return {
-      internalValue: fromRGBA({ r: 255, g: 0, b: 0, a: 1 }),
+      internalValue: fromRGBA({ r: 255, g: 0, b: 0, a: 1 })
     }
   },
 
@@ -74,19 +74,7 @@ export default defineComponent({
     hideAlpha (): boolean {
       if (!this.modelValue) return false
       return !hasAlpha(this.modelValue)
-    },
-  },
-
-  created () {
-    const breakingProps = [
-      ['value', 'modelValue'],
-      ['onInput', 'onUpdate:modelValue'],
-    ]
-
-    /* istanbul ignore next */
-    breakingProps.forEach(([original, replacement]) => {
-      if (this.$attrs.hasOwnProperty(original)) breaking(original, replacement, this)
-    })
+    }
   },
 
   watch: {
@@ -94,8 +82,20 @@ export default defineComponent({
       handler (color: any) {
         this.updateColor(parseColor(color, this.internalValue))
       },
-      immediate: true,
-    },
+      immediate: true
+    }
+  },
+
+  created () {
+    const breakingProps = [
+      ['value', 'modelValue'],
+      ['onInput', 'onUpdate:modelValue']
+    ]
+
+    /* istanbul ignore next */
+    breakingProps.forEach(([original, replacement]) => {
+      if (this.$attrs.hasOwnProperty(original)) breaking(original, replacement, this)
+    })
   },
 
   methods: {
@@ -122,10 +122,10 @@ export default defineComponent({
 
     genControls (): VNode {
       return h('div', {
-        class: 'v-color-picker__controls',
+        class: 'v-color-picker__controls'
       }, [
         !this.hideSliders && this.genPreview(),
-        !this.hideInputs && this.genEdit(),
+        !this.hideInputs && this.genEdit()
       ])
     },
 
@@ -137,7 +137,7 @@ export default defineComponent({
         hideModeSwitch: this.hideModeSwitch,
         mode: this.mode,
         'onUpdate:color': this.updateColor,
-        'onUpdate:mode': (v: string) => this.$emit('update:mode', v),
+        'onUpdate:mode': (v: string) => this.$emit('update:mode', v)
       })
     },
 
@@ -146,7 +146,7 @@ export default defineComponent({
         color: this.internalValue,
         disabled: this.disabled,
         hideAlpha: this.hideAlpha,
-        'onUpdate:color': this.updateColor,
+        'onUpdate:color': this.updateColor
       })
     },
 
@@ -156,9 +156,9 @@ export default defineComponent({
         swatches: this.swatches,
         color: this.internalValue,
         maxHeight: this.swatchesMaxHeight,
-        'onUpdate:color': this.updateColor,
+        'onUpdate:color': this.updateColor
       })
-    },
+    }
   },
 
   render (): VNode {
@@ -166,13 +166,13 @@ export default defineComponent({
       class: ['v-color-picker', {
         'v-color-picker--flat': this.flat,
         ...this.themeClasses,
-        ...this.elevationClasses,
+        ...this.elevationClasses
       }],
-      maxWidth: this.width,
-    }, [
+      maxWidth: this.width
+    }, () => [
       !this.hideCanvas && this.genCanvas(),
       (!this.hideSliders || !this.hideInputs) && this.genControls(),
-      this.showSwatches && this.genSwatches(),
+      this.showSwatches && this.genSwatches()
     ])
-  },
+  }
 })

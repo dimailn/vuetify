@@ -1,4 +1,4 @@
-import {h, withDirectives} from 'vue'
+import { h, withDirectives } from 'vue'
 // Styles
 import './VRating.sass'
 
@@ -19,7 +19,7 @@ import mixins from '../../util/mixins'
 import { breaking } from '../../util/console'
 
 // Types
-import { VNode, VNodeDirective, VNodeChildren } from 'vue'
+import type { VNode, VNodeChildren } from '../../types/vue-internal'
 
 type ItemSlotProps = {
   index: number
@@ -28,7 +28,7 @@ type ItemSlotProps = {
   isHalfFilled?: boolean | undefined
   isHovered: boolean
   isHalfHovered?: boolean | undefined
-  click: Function
+  onClick: Function
 }
 
 /* @vue/component */
@@ -44,42 +44,42 @@ export default mixins(
   props: {
     backgroundColor: {
       type: String,
-      default: 'accent',
+      default: 'accent'
     },
     color: {
       type: String,
-      default: 'primary',
+      default: 'primary'
     },
     clearable: Boolean,
     dense: Boolean,
     emptyIcon: {
       type: String,
-      default: '$ratingEmpty',
+      default: '$ratingEmpty'
     },
     fullIcon: {
       type: String,
-      default: '$ratingFull',
+      default: '$ratingFull'
     },
     halfIcon: {
       type: String,
-      default: '$ratingHalf',
+      default: '$ratingHalf'
     },
     halfIncrements: Boolean,
     hover: Boolean,
     length: {
       type: [Number, String],
-      default: 5,
+      default: 5
     },
     readonly: Boolean,
     size: [Number, String],
     modelValue: {
       type: Number,
-      default: 0,
+      default: 0
     },
     iconLabel: {
       type: String,
-      default: '$vuetify.rating.ariaLabel.icon',
-    },
+      default: '$vuetify.rating.ariaLabel.icon'
+    }
   },
 
   emits: ['update:modelValue'],
@@ -87,12 +87,12 @@ export default mixins(
   data () {
     return {
       hoverIndex: -1,
-      internalValue: this.modelValue,
+      internalValue: this.modelValue
     }
   },
 
   computed: {
-    directives (): VNodeDirective[] {
+    directives (): any[] {
       return [
         [
           Ripple,
@@ -109,7 +109,7 @@ export default mixins(
         small,
         size,
         xLarge,
-        xSmall,
+        xSmall
       } = this
 
       return {
@@ -120,18 +120,18 @@ export default mixins(
         size,
         small,
         xLarge,
-        xSmall,
+        xSmall
       }
     },
     isHovering (): boolean {
       return this.hover && this.hoverIndex >= 0
-    },
+    }
   },
 
   created () {
     const breakingProps = [
       ['value', 'modelValue'],
-      ['onInput', 'onUpdate:modelValue'],
+      ['onInput', 'onUpdate:modelValue']
     ]
 
     /* istanbul ignore next */
@@ -146,7 +146,7 @@ export default mixins(
     },
     modelValue (val) {
       this.internalValue = val
-    },
+    }
   },
 
   methods: {
@@ -168,7 +168,7 @@ export default mixins(
         value: this.internalValue,
         onClick: this.createClickFn(i),
         isFilled: Math.floor(this.internalValue) > i,
-        isHovered: Math.floor(this.hoverIndex) > i,
+        isHovered: Math.floor(this.hoverIndex) > i
       }
 
       if (this.halfIncrements) {
@@ -227,7 +227,7 @@ export default mixins(
       if (this.$slots.item) return this.$slots.item(props)
 
       const listeners: Record<string, Function> = {
-        onClick: props.onClick,
+        onClick: props.onClick
       }
 
       if (this.hover) {
@@ -242,9 +242,9 @@ export default mixins(
       return withDirectives(h(VIcon, this.setTextColor(this.getColor(props), {
         'aria-label': this.$vuetify.lang.t(this.iconLabel, i + 1, Number(this.length)),
         ...this.iconProps,
-        ...listeners,
-      }), {default: () => [this.getIconName(props)]}), this.directives)
-    },
+        ...listeners
+      }), { default: () => [this.getIconName(props)] }), this.directives)
+    }
   },
 
   render (): VNode {
@@ -254,9 +254,9 @@ export default mixins(
       class: ['v-rating',
         {
           'v-rating--readonly': this.readonly,
-          'v-rating--dense': this.dense,
+          'v-rating--dense': this.dense
         }
       ]
-    }, {default: () => createRange(Number(this.length)).map(i => this.genItem(i)) })
-  },
+    }, { default: () => createRange(Number(this.length)).map(i => this.genItem(i)) })
+  }
 })

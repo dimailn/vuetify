@@ -1,14 +1,16 @@
 module.exports = {
   root: true,
+  parser: 'vue-eslint-parser',
   parserOptions: {
     parser: '@typescript-eslint/parser',
     ecmaVersion: 2020,
     sourceType: 'module',
+    extraFileExtensions: ['.vue'],
   },
   extends: [
     'standard',
-    'plugin:vue/recommended',
-    'plugin:vuetify/base',
+    'plugin:vue/vue3-recommended',
+    'plugin:vuetify-custom/base',
     'plugin:sonarjs/recommended',
   ],
   env: {
@@ -36,13 +38,8 @@ module.exports = {
       allowTemplateLiterals: true,
     }],
     'no-console': 'off',
-    'comma-dangle': ['error', {
-      arrays: 'always-multiline',
-      objects: 'always-multiline',
-      imports: 'always-multiline',
-      exports: 'always-multiline',
-      functions: 'only-multiline',
-    }],
+    // Запрет висящих запятых (перебивает eslint-config-standard)
+    'comma-dangle': ['error', 'never'],
     // allow debugger during development
     'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
     'no-return-assign': 'off',
@@ -95,10 +92,7 @@ module.exports = {
         'vue/html-closing-bracket-spacing': 'error',
         'vue/max-attributes-per-line': ['error', {
           singleline: 5,
-          multiline: {
-            max: 1,
-            allowFirstLine: false,
-          },
+          multiline: { max: 1 },
         }],
         'vue/valid-v-on': 'off', // This rule doesn't allow empty event listeners
         'vue/no-v-html': 'off',

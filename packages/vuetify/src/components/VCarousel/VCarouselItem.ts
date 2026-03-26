@@ -6,7 +6,7 @@ import { VImg } from '../VImg'
 
 // Utilities
 import mixins, { ExtractVue } from '../../util/mixins'
-import { getSlot } from '../../util/helpers'
+import { getSlot, getTagValue } from '../../util/helpers'
 import Routable from '../../mixins/routable'
 import { vShow, withDirectives, h } from 'vue'
 
@@ -16,7 +16,7 @@ const baseMixins = mixins(
   Routable
 )
 
-interface options extends ExtractVue<typeof baseMixins> {
+type options = ExtractVue<typeof baseMixins> & {
   parentTheme: {
     isDark: boolean
   }
@@ -29,15 +29,15 @@ export default baseMixins.extend({
   inject: {
     parentTheme: {
       default: {
-        isDark: false,
-      },
-    },
+        isDark: false
+      }
+    }
   },
 
   // pass down the parent's theme
   provide (): object {
     return {
-      theme: this.parentTheme,
+      theme: this.parentTheme
     }
   },
 
@@ -50,8 +50,8 @@ export default baseMixins.extend({
           class: 'v-carousel__item',
           ...this.$attrs,
           height: this.windowGroup.internalHeight,
-          ...this.$listeners,
-        }, { default: () => getSlot(this), placeholder: this.$slots.placeholder }),
+          ...this.$listeners
+        }, { default: () => getSlot(this), placeholder: this.$slots.placeholder })
       ]
     },
     genWindowItem () {
@@ -61,13 +61,17 @@ export default baseMixins.extend({
 
       directives!.push([
         vShow,
-        this.isActive,
+        this.isActive
       ])
 
+      const content = this.genDefaultSlot()
+
       return withDirectives(
-        h(tag, data, this.genDefaultSlot()),
+        typeof tag === 'string'
+          ? h(getTagValue(tag), data, content)
+          : h(tag, data, () => content),
         directives
       )
-    },
-  },
+    }
+  }
 })

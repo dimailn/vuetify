@@ -6,7 +6,7 @@ import {
   mount,
   VueWrapper,
   MountingOptions,
-  enableAutoUnmount,
+  enableAutoUnmount
 } from '@vue/test-utils'
 import { nextTick } from 'vue'
 
@@ -26,19 +26,19 @@ describe('VCombobox.ts', () => {
           mocks: {
             $vuetify: {
               lang: {
-                t: (val: string) => val,
+                t: (val: string) => val
               },
               theme: {
-                dark: false,
+                dark: false
               },
               icons: {
-                component: null,
-              },
+                component: null
+              }
             },
-            ...options.global?.mocks,
+            ...options.global?.mocks
           },
-          ...options.global,
-        },
+          ...options.global
+        }
       })
     }
   })
@@ -48,8 +48,8 @@ describe('VCombobox.ts', () => {
   it.skip('should evaluate the range of an integer', async () => {
     const wrapper = mountFunction({
       props: {
-        modelValue: 11,
-      },
+        modelValue: 11
+      }
     })
 
     await nextTick()
@@ -65,8 +65,8 @@ describe('VCombobox.ts', () => {
       attachTo: document.body,
       props: {
         eager: true,
-        items: [1, 12],
-      },
+        items: [1, 12]
+      }
     })
 
     const input = wrapper.find('input')
@@ -94,8 +94,8 @@ describe('VCombobox.ts', () => {
     const item = { value: 123, text: 'Foo' }
     const wrapper = mountFunction({
       props: {
-        items: [item],
-      },
+        items: [item]
+      }
     })
 
     wrapper.vm.isMenuActive = true
@@ -131,7 +131,7 @@ describe('VCombobox.ts', () => {
   // TODO: fails with TS 3.9
   it.skip('should clear value', async () => {
     const wrapper = mountFunction({
-      attachTo: document.body,
+      attachTo: document.body
     })
     await nextTick()
 
@@ -169,17 +169,17 @@ describe('VCombobox.ts', () => {
         mocks: {
           $vuetify: {
             lang: {
-              t: (val: string) => val,
+              t: (val: string) => val
             },
             theme: {
-              dark: false,
+              dark: false
             },
             icons: {
-              component: null,
-            },
-          },
-        },
-      },
+              component: null
+            }
+          }
+        }
+      }
     })
 
     // Mock the method
@@ -229,8 +229,8 @@ describe('VCombobox.ts', () => {
       attachTo: document.body,
       props: {
         items: ['foo', 'bar', 'fizz'],
-        searchInput: 'foobar',
-      },
+        searchInput: 'foobar'
+      }
     })
 
     const slot = wrapper.find('.v-input__slot')
@@ -256,13 +256,13 @@ describe('VCombobox.ts', () => {
       { text: 'Programming', value: 0 },
       { text: 'Design', value: 1 },
       { text: 'Vue', value: 2 },
-      { text: 'Vuetify', value: 3 },
+      { text: 'Vuetify', value: 3 }
     ]
     const wrapper = mountFunction({
       attachTo: document.body,
       props: {
-        items,
-      },
+        items
+      }
     })
 
     const input = wrapper.find('input')
@@ -292,8 +292,8 @@ describe('VCombobox.ts', () => {
     const selectItem = jest.fn()
     const wrapper = mountFunction({
       props: {
-        items: ['foo'],
-      },
+        items: ['foo']
+      }
     })
 
     // Mock the method
@@ -342,8 +342,8 @@ describe('VCombobox.ts', () => {
   it('should change autocomplete attribute', () => {
     const wrapper = mountFunction({
       attrs: {
-        autocomplete: 'on',
-      },
+        autocomplete: 'on'
+      }
     })
 
     expect(wrapper.vm.$attrs.autocomplete).toBe('on')
@@ -358,9 +358,9 @@ describe('VCombobox.ts', () => {
           { text: 'Learn JavaScript', done: false },
           { text: 'Learn Vue', done: false },
           { text: 'Play around in JSFiddle', done: true },
-          { text: 'Build something awesome', done: true },
-        ],
-      },
+          { text: 'Build something awesome', done: true }
+        ]
+      }
     })
 
     const input = wrapper.find('input')

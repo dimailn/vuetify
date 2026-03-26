@@ -60,7 +60,7 @@ describe('mergeClasses', () => {
     [cObject, cEmptyString, cObject],
     [cObject, cString, [cObject, cString]],
     [cObject, cArray, [cObject, ...cArray]],
-    [cObject, cObject, [cObject, cObject]],
+    [cObject, cObject, [cObject, cObject]]
   ])('should merge classes', verifyFactory(mergeClasses))
 })
 
@@ -82,7 +82,7 @@ describe('mergeStyles', () => {
     [cObject, cUndefined, cObject],
     [cObject, cEmptyString, cObject],
     [cObject, cString, [cObject, cObject]],
-    [cObject, cObject, [cObject, cObject]],
+    [cObject, cObject, [cObject, cObject]]
   ])('should merge styles', verifyFactory(mergeStyles))
 })
 
@@ -99,6 +99,6 @@ describe('mergeListeners', () => {
     [{ one: listener1 }, { one: listener2 }, { onOne: [listener1, listener2] }],
     [{ one: listener1 }, { one: [listener2] }, { onOne: [listener1, listener2] }],
     [{ one: [listener1, listener2] }, { one: [listener2] }, { onOne: [listener1, listener2, listener2] }],
-    [{ one: [listener1, listener2] }, { two: listener2 }, { onOne: [listener1, listener2], onTwo: listener2 }],
+    [{ one: [listener1, listener2] }, { two: listener2 }, { onOne: [listener1, listener2], onTwo: listener2 }]
   ])('should merge listeners', verifyFactory(mergeListeners))
 })

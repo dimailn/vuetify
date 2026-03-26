@@ -11,7 +11,7 @@ import VChip from '../VChip'
 import {
   mount,
   VueWrapper,
-  enableAutoUnmount,
+  enableAutoUnmount
 } from '@vue/test-utils'
 
 describe('VChip.ts', () => {
@@ -22,20 +22,20 @@ describe('VChip.ts', () => {
       return mount(VChip, {
         global: {
           config: {
-            warnHandler: () => {}, // Подавляем предупреждения Vue
+            warnHandler: () => {} // Подавляем предупреждения Vue
           },
           mocks: {
             $vuetify: {
               lang: {
-                t: (val: string) => val,
+                t: (val: string) => val
               },
               icons: {
-                component: 'mdi',
-              },
-            },
-          },
+                component: 'mdi'
+              }
+            }
+          }
         },
-        ...options,
+        ...options
       })
     }
   })
@@ -49,9 +49,22 @@ describe('VChip.ts', () => {
     expect(wrapper.html()).toMatchSnapshot()
   })
 
+  it('should show filter icon when filter and modelValue are true (Vue 3 VIcon/transition slots)', async () => {
+    const wrapper = mountFunction({
+      props: {
+        filter: true,
+        modelValue: true
+      }
+    })
+
+    await nextTick()
+
+    expect(wrapper.find('.v-chip__filter').exists()).toBe(true)
+  })
+
   it('should be removable', async () => {
     const wrapper = mountFunction({
-      props: { close: true },
+      props: { close: true }
     })
 
     const close = wrapper.find('.v-chip__close')
@@ -68,8 +81,8 @@ describe('VChip.ts', () => {
     const wrapper = mountFunction({
       props: {
         color: 'blue',
-        textColor: 'green',
-      },
+        textColor: 'green'
+      }
     })
 
     expect(wrapper.element.classList).toContain('blue')
@@ -79,14 +92,14 @@ describe('VChip.ts', () => {
   it('should render a disabled chip', async () => {
     const wrapper = mountFunction({
       props: {
-        disabled: true,
-      },
+        disabled: true
+      }
     })
 
     expect(wrapper.element.classList).toContain('v-chip--disabled')
 
     wrapper.setProps({
-      close: true,
+      close: true
     })
     await wrapper.vm.$nextTick()
     expect(wrapper.findAll('.v-chip__close')).toHaveLength(1)
@@ -96,8 +109,8 @@ describe('VChip.ts', () => {
     const wrapper = mountFunction({
       props: {
         outlined: true,
-        color: 'blue',
-      },
+        color: 'blue'
+      }
     })
 
     expect(wrapper.element.classList).toContain('blue')
@@ -109,8 +122,8 @@ describe('VChip.ts', () => {
       props: {
         outlined: true,
         color: 'blue',
-        textColor: 'green',
-      },
+        textColor: 'green'
+      }
     })
 
     expect(wrapper.element.classList).toContain('blue')
@@ -121,8 +134,8 @@ describe('VChip.ts', () => {
     const wrapper = mountFunction({
       props: {
         filter: true,
-        modelValue: true, // ToggleableFactory использует modelValue для isActive
-      },
+        modelValue: true // ToggleableFactory использует modelValue для isActive
+      }
     })
 
     expect(wrapper.findAll('.v-chip__filter')).toHaveLength(1)
@@ -134,9 +147,9 @@ describe('VChip.ts', () => {
     const wrapper = mountFunction({
       global: {
         provide: {
-          chipGroup: { register, unregister },
-        },
-      },
+          chipGroup: { register, unregister }
+        }
+      }
     })
 
     // Проверяем, что toggle вызывается при клике
@@ -147,7 +160,7 @@ describe('VChip.ts', () => {
 
   it('should conditionally show based on active prop', async () => {
     const wrapper = mountFunction({
-      props: { close: true },
+      props: { close: true }
     })
     const close = wrapper.find('.v-chip__close')
 

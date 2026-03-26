@@ -2,7 +2,8 @@
 import './calendar-with-events.sass'
 
 // Types
-import { VNode, VNodeData, defineComponent, h, withDirectives } from 'vue'
+import { VNode, defineComponent, h, withDirectives } from 'vue'
+import type { VNodeData } from '../../../types/vue-internal'
 
 // Directives
 import ripple from '../../../directives/ripple'
@@ -13,17 +14,17 @@ import CalendarBase from './calendar-base'
 // Util
 import props from '../util/props'
 import {
-  CalendarEventOverlapModes,
+  CalendarEventOverlapModes
 } from '../modes'
 import {
-  getDayIdentifier, diffMinutes,
+  getDayIdentifier, diffMinutes
 } from '../util/timestamp'
 import {
   parseEvent,
   isEventStart,
   isEventOn,
   isEventOverlapping,
-  isEventHiddenOn,
+  isEventHiddenOn
 } from '../util/events'
 import {
   CalendarTimestamp,
@@ -37,7 +38,7 @@ import {
   CalendarEventOverlapMode,
   CalendarEvent,
   CalendarEventCategoryFunction,
-  CalendarCategory,
+  CalendarCategory
 } from 'vuetify/types'
 
 // Types
@@ -75,13 +76,12 @@ const MINUTES_IN_DAY = 1440
 export default defineComponent({
   name: 'calendar-with-events',
 
-
   extends: CalendarBase,
 
   props: {
     ...props.events,
     ...props.calendar,
-    ...props.category,
+    ...props.category
   },
 
   computed: {
@@ -124,7 +124,7 @@ export default defineComponent({
     },
     categoryMode (): boolean {
       return this.type === 'category'
-    },
+    }
   },
 
   methods: {
@@ -140,14 +140,14 @@ export default defineComponent({
         this.eventStart,
         this.eventEnd,
         this.eventTimedFunction(input),
-        this.categoryMode ? this.eventCategoryFunction(input) : false,
+        this.categoryMode ? this.eventCategoryFunction(input) : false
       )
     },
     formatTime (withTime: CalendarTimestamp, ampm: boolean): string {
       const formatter = this.getFormatter({
         timeZone: 'UTC',
         hour: 'numeric',
-        minute: withTime.minute > 0 ? 'numeric' : undefined,
+        minute: withTime.minute > 0 ? 'numeric' : undefined
       })
 
       return formatter(withTime, true)
@@ -170,7 +170,7 @@ export default defineComponent({
         const last = events.length - 1
         const eventsSorted = events.map(event => ({
           event,
-          bottom: event.getBoundingClientRect().bottom,
+          bottom: event.getBoundingClientRect().bottom
         })).sort((a, b) => a.bottom - b.bottom)
         let hidden = 0
 
@@ -209,7 +209,7 @@ export default defineComponent({
             eventsMap[date] = {
               parent: el.parentElement,
               more: null,
-              events: [],
+              events: []
             }
           }
           if (el.getAttribute('data-more')) {
@@ -249,16 +249,16 @@ export default defineComponent({
       return this.genEvent(event, scope, false, {
         class: ['v-event', {
           'v-event-start': start,
-          'v-event-end': end,
+          'v-event-end': end
         }],
         style: {
           height: `${eventHeight}px`,
           width: `${width}%`,
-          'margin-bottom': `${eventMarginBottom}px`,
+          'margin-bottom': `${eventMarginBottom}px`
         },
         'data-date': day.date,
         key: event.index,
-        ref: 'events',
+        ref: 'events'
       })
     },
     genTimedEvent ({ event, left, width }: CalendarEventVisual, day: CalendarDayBodySlotScope): VNode | false {
@@ -280,8 +280,8 @@ export default defineComponent({
           top: `${top}px`,
           height: `${height}px`,
           left: `${left}%`,
-          width: `${width}%`,
-        },
+          width: `${width}%`
+        }
       })
     },
     genEvent (event: CalendarEventParsed, scopeInput: VEventScopeInput, timedEvent: boolean, data: VNodeData): VNode {
@@ -302,7 +302,7 @@ export default defineComponent({
             return h('span', { class: 'v-event-summary' }, [
               h('strong', [name]),
               delimiter,
-              time,
+              time
             ])
           } else {
             const time = formatTime(event.start, true)
@@ -310,7 +310,7 @@ export default defineComponent({
             return h('span', { class: 'v-event-summary' }, [
               h('strong', [time]),
               ' ',
-              name,
+              name
             ])
           }
         }
@@ -326,25 +326,25 @@ export default defineComponent({
         overlapsNoon,
         formatTime,
         timeSummary,
-        eventSummary,
+        eventSummary
       }
 
       return withDirectives(h('div',
         this.setTextColor(text,
           this.setBackgroundColor(background, {
             ...this.getDefaultMouseEventHandlers(':event', nativeEvent => ({ ...scope, nativeEvent })),
-            ...data,
+            ...data
           })
         ), slot
           ? slot(scope)
           : [this.genName(eventSummary)]
       ), [
-        [ripple, this.eventRipple ?? true],
+        [ripple, this.eventRipple ?? true]
       ])
     },
     genName (eventSummary: () => string | VNode): VNode {
       return h('div', {
-        class: 'pl-1',
+        class: 'pl-1'
       }, [eventSummary()])
     },
     genPlaceholder (day: CalendarTimestamp): VNode {
@@ -352,10 +352,10 @@ export default defineComponent({
 
       return h('div', {
         style: {
-          height: `${height}px`,
+          height: `${height}px`
         },
         'data-date': day.date,
-        ref: 'events',
+        ref: 'events'
       })
     },
     genMore (day: CalendarDaySlotScope): VNode {
@@ -364,7 +364,7 @@ export default defineComponent({
 
       return withDirectives(h('div', {
         class: ['v-event-more pl-1', {
-          'v-outside': day.outside,
+          'v-outside': day.outside
         }],
         'data-date': day.date,
         'data-more': 1,
@@ -374,11 +374,11 @@ export default defineComponent({
         style: {
           display: 'none',
           height: `${eventHeight}px`,
-          'margin-bottom': `${eventMarginBottom}px`,
+          'margin-bottom': `${eventMarginBottom}px`
         },
-        ref: 'events',
+        ref: 'events'
       }), [
-        [ripple, this.eventRipple ?? true],
+        [ripple, this.eventRipple ?? true]
       ])
     },
     getVisibleEvents (): CalendarEventParsed[] {
@@ -493,8 +493,8 @@ export default defineComponent({
           const events = getSlotChildren(day, this.getEventsForDayTimed, this.genTimedEvent, true)
           let children: VNode[] = [
             h('div', {
-              class: 'v-event-timed-container',
-            }, events),
+              class: 'v-event-timed-container'
+            }, events)
           ]
 
           if (slotDayBody) {
@@ -504,8 +504,8 @@ export default defineComponent({
             }
           }
           return children
-        },
+        }
       }
-    },
-  },
+    }
+  }
 })

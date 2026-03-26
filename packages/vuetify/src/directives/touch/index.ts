@@ -75,13 +75,13 @@ function createHandlers (value: TouchHandlers): TouchStoredHandlers {
     down: value.down,
     start: value.start,
     move: value.move,
-    end: value.end,
+    end: value.end
   }
 
   return {
     touchstart: (e: TouchEvent) => touchstart(e, wrapper),
     touchend: (e: TouchEvent) => touchend(e, wrapper),
-    touchmove: (e: TouchEvent) => touchmove(e, wrapper),
+    touchmove: (e: TouchEvent) => touchmove(e, wrapper)
   }
 }
 
@@ -129,7 +129,7 @@ function unmounted (
 
 export const Touch: ObjectDirective<HTMLElement, TouchValue> = {
   mounted,
-  unmounted,
+  unmounted
 }
 
 export default makeDirectiveActivatable(Touch)

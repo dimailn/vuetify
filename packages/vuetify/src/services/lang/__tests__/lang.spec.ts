@@ -36,9 +36,9 @@ describe('$vuetify.lang', () => {
       lang: {
         current: 'foreign',
         locales: {
-          foreign: { foo: 'foreignBar' },
-        },
-      },
+          foreign: { foo: 'foreignBar' }
+        }
+      }
     })
 
     expect(lang.t('$vuetify.foo')).toBe('foreignBar')
@@ -49,7 +49,7 @@ describe('$vuetify.lang', () => {
 
     lang = new Lang({
       ...preset,
-      lang: { t: translator },
+      lang: { t: translator }
     })
 
     lang.t('$vuetify.foobar', 'fizzbuzz')
@@ -60,7 +60,7 @@ describe('$vuetify.lang', () => {
   it('should replace params on a non-prefixed key', () => {
     lang = new Lang({
       ...preset,
-      lang: { t: str => str },
+      lang: { t: str => str }
     })
 
     const translated = lang.t('{2} bar {0} foo {1}', 'hello', 'world', '!')

@@ -26,16 +26,16 @@ export default baseMixins.extend({
       default: null as unknown as PropType<string | HTMLElement | VNode | Element | null>,
       validator: (val: string | object) => {
         return ['string', 'object'].includes(typeof val)
-      },
+      }
     },
     disabled: Boolean,
     internalActivator: Boolean,
     openOnClick: {
       type: Boolean,
-      default: true,
+      default: true
     },
     openOnHover: Boolean,
-    openOnFocus: Boolean,
+    openOnFocus: Boolean
   },
 
   data: () => ({
@@ -43,13 +43,19 @@ export default baseMixins.extend({
     activatorElement: null as HTMLElement | null,
     activatorNode: [] as VNode[],
     events: ['click', 'mouseenter', 'mouseleave', 'focus'],
-    listeners: {} as Listeners,
+    listeners: {} as Listeners
   }),
+
+  computed: {
+    isActivatable () {
+      return true
+    }
+  },
 
   watch: {
     activator: 'resetActivator',
     openOnFocus: 'resetActivator',
-    openOnHover: 'resetActivator',
+    openOnHover: 'resetActivator'
   },
 
   mounted () {
@@ -58,12 +64,6 @@ export default baseMixins.extend({
 
   beforeUnmount () {
     this.removeActivatorEvents()
-  },
-
-  computed: {
-    isActivatable() {
-      return true
-    }
   },
 
   methods: {
@@ -82,27 +82,27 @@ export default baseMixins.extend({
       }
     },
     genActivator () {
-      let node = getSlot(this, 'activator', Object.assign(this.getValueProxy(), {
+      const node = getSlot(this, 'activator', Object.assign(this.getValueProxy(), {
         attrs: {
           ...this.genActivatorListeners(),
-          ...this.genActivatorAttributes(),
+          ...this.genActivatorAttributes()
         },
         on: this.genActivatorListeners()
       })) || []
 
-      node = Array.isArray(node) ? node : [node]
+      const normalized = (Array.isArray(node) ? node : [node]) as VNode[]
 
-      this.activatorNode = node.flatMap(node => {
-        return node.type === Symbol.for('v-fgt') ? node.children : node
+      this.activatorNode = normalized.flatMap(node => {
+        return node.type === Symbol.for('v-fgt') ? (node.children as VNode[]) : node
       })
 
-      return node
+      return normalized
     },
     genActivatorAttributes () {
       return {
         role: (this.openOnClick && !this.openOnHover) ? 'button' : undefined,
         'aria-haspopup': true,
-        'aria-expanded': String(this.isActive),
+        'aria-expanded': String(this.isActive)
       }
     },
     genActivatorListeners () {
@@ -162,7 +162,6 @@ export default baseMixins.extend({
           activator = this.activator
         }
       } else if (this.activatorNode.length === 1 || (this.activatorNode.length && !e)) {
-
         // Use the contents of the activator slot
         // There's either only one element in it or we
         // don't have a click event to use as a last resort
@@ -197,7 +196,7 @@ export default baseMixins.extend({
         },
         set value (isActive: boolean) {
           self.isActive = isActive
-        },
+        }
       }
     },
     removeActivatorEvents () {
@@ -220,5 +219,5 @@ export default baseMixins.extend({
       this.getActivator()
       this.addActivatorEvents()
     }
-  },
+  }
 })

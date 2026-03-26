@@ -2,7 +2,7 @@ import MobileRow from '../MobileRow'
 import {
   mount,
   VueWrapper,
-  MountingOptions,
+  MountingOptions
 } from '@vue/test-utils'
 import { h } from 'vue'
 
@@ -20,13 +20,13 @@ describe('MobileRow', () => {
       props: {
         headers: [
           { text: 'Petrol', value: 'petrol' },
-          { text: 'Diesel', value: 'diesel' },
+          { text: 'Diesel', value: 'diesel' }
         ],
         item: {
           petrol: 0.68,
-          diesel: 0.65,
-        },
-      },
+          diesel: 0.65
+        }
+      }
     })
 
     expect(wrapper.findAll('tr')).toHaveLength(1)
@@ -44,7 +44,7 @@ describe('MobileRow', () => {
           { value: 'boolean' },
           { value: 'object' },
           { value: 'undefined' },
-          { value: 'null' },
+          { value: 'null' }
         ],
         item: {
           string: 'string',
@@ -52,9 +52,9 @@ describe('MobileRow', () => {
           array: [1, 2],
           boolean: false,
           object: { foo: 'bar' },
-          null: null,
-        },
-      },
+          null: null
+        }
+      }
     })
 
     expect(wrapper.html()).toMatchSnapshot()
@@ -65,13 +65,13 @@ describe('MobileRow', () => {
       props: {
         headers: [
           { text: 'Petrol', value: 'petrol' },
-          { text: 'Diesel', value: 'diesel' },
-        ],
+          { text: 'Diesel', value: 'diesel' }
+        ]
       },
       slots: {
         petrol: '<p class="test">$0.68</p>',
-        diesel: '<p class="test">$0.65</p>',
-      },
+        diesel: '<p class="test">$0.65</p>'
+      }
     })
 
     expect(wrapper.findAll('tr')).toHaveLength(1)
@@ -85,17 +85,17 @@ describe('MobileRow', () => {
       props: {
         headers: [
           { text: 'Petrol', value: 'petrol' },
-          { text: 'Diesel', value: 'diesel' },
+          { text: 'Diesel', value: 'diesel' }
         ],
         item: {
           petrol: 0.68,
-          diesel: 0.65,
-        },
+          diesel: 0.65
+        }
       },
       slots: {
         petrol: (props: any) => h('p', { class: `test ${props.header.value}` }, [props.value]),
-        diesel: (props: any) => h('p', { class: `test ${props.header.value}` }, [props.value]),
-      },
+        diesel: (props: any) => h('p', { class: `test ${props.header.value}` }, [props.value])
+      }
     })
 
     expect(wrapper.findAll('tr')).toHaveLength(1)
@@ -109,14 +109,14 @@ describe('MobileRow', () => {
       props: {
         headers: [
           { text: 'Petrol', value: 'petrol' },
-          { text: 'Diesel', value: 'diesel' },
+          { text: 'Diesel', value: 'diesel' }
         ],
         hideDefaultHeader: true,
         item: {
           petrol: 0.68,
-          diesel: 0.65,
-        },
-      },
+          diesel: 0.65
+        }
+      }
     })
 
     expect(wrapper.findAll('tr')).toHaveLength(1)

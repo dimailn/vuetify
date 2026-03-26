@@ -4,7 +4,7 @@ import VExpansionPanelHeader from '../VExpansionPanelHeader'
 // Utilities
 import {
   mount,
-  Wrapper,
+  Wrapper
 } from '@vue/test-utils'
 
 describe('VExpansionPanelHeader', () => {
@@ -18,11 +18,11 @@ describe('VExpansionPanelHeader', () => {
           provide: {
             expansionPanel: {
               registerHeader: () => {},
-              unregisterHeader: () => {},
-            },
-          },
+              unregisterHeader: () => {}
+            }
+          }
         },
-        ...options,
+        ...options
       })
     }
   })

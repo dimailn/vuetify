@@ -1,5 +1,5 @@
 import { defineComponent, h, resolveComponent } from 'vue'
-import { VNode, VNodeDirective } from 'vue/types'
+import type { VNode, VNodeDirective } from '../types/vue-internal'
 import { VuetifyIcon } from 'vuetify/types/services/icons'
 import { DataTableCompareFunction, SelectItemKey, ItemGroup } from 'vuetify/types'
 
@@ -23,8 +23,8 @@ export function createSimpleFunctional (
     props: {
       tag: {
         type: String,
-        default: el,
-      },
+        default: el
+      }
     },
 
     render (): VNode {
@@ -33,7 +33,7 @@ export function createSimpleFunctional (
       data.class = (`${c} ${data.class || ''}`).trim()
 
       return h(getTagValue(this.tag), data, this.$slots.default?.())
-    },
+    }
   })
 }
 
@@ -43,7 +43,7 @@ export function directiveConfig (binding: BindingConfig, defaults = {}): VNodeDi
     ...defaults,
     ...binding.modifiers,
     value: binding.arg,
-    ...(binding.value || {}),
+    ...(binding.value || {})
   }
 }
 
@@ -67,7 +67,7 @@ try {
     const testListenerOpts = Object.defineProperty({}, 'passive', {
       get: () => {
         passiveSupported = true
-      },
+      }
     }) as EventListener & EventListenerOptions
 
     window.addEventListener('testListener', testListenerOpts, testListenerOpts)
@@ -222,7 +222,7 @@ export const keyCodes = Object.freeze({
   insert: 45,
   pageup: 33,
   pagedown: 34,
-  shift: 16,
+  shift: 16
 })
 
 /**
@@ -254,8 +254,8 @@ export function remapInternalIcon (vm: Vue, iconName: string): VuetifyIcon {
   return {
     component,
     props: {
-      icon: iconName,
-    },
+      icon: iconName
+    }
   }
 }
 
@@ -304,7 +304,7 @@ export function groupItems<T extends any = any> (
       current = val
       groups.push({
         name: val ?? '',
-        items: [],
+        items: []
       })
     }
     groups[groups.length - 1].items.push(item)
@@ -380,20 +380,29 @@ export function searchItems<T extends any = any> (items: T[], search: string): T
   return items.filter((item: any) => Object.keys(item).some(key => defaultFilter(getObjectValueByPath(item, key), search, item)))
 }
 
+/** Только функции слотов для третьего аргумента h(Компонент) во Vue 3 (иначе warn «Non-function value…»). */
+export function pickSlotFunctions (slots: Record<string, any> | undefined): Record<string, (...args: any[]) => any> {
+  if (!slots) return {}
+  const out: Record<string, (...args: any[]) => any> = {}
+  for (const key of Object.keys(slots)) {
+    const fn = slots[key]
+    if (typeof fn === 'function') out[key] = fn
+  }
+  return out
+}
+
 /**
- * Returns:
- *  - 'normal' for old style slots - `<template slot="default">`
- *  - 'scoped' for old style scoped slots (`<template slot="default" slot-scope="data">`) or bound v-slot (`#default="data"`)
- *  - 'v-slot' for unbound v-slot (`#default`) - only if the third param is true, otherwise counts as scoped
+ * Возвращает тип слота:
+ * - `normal` — старый стиль `<template slot="default">`
+ * - `scoped` — старый scoped (`slot-scope`) или привязанный v-slot (`#default="data"`)
+ * - `v-slot` — непривязанный v-slot (`#default`), только при `split === true`, иначе считается scoped
  */
 export function getSlotType<T extends boolean = false> (vm: Vue, name: string, split?: T): (T extends true ? 'v-slot' : never) | 'normal' | 'scoped' | void {
-  return 'scoped'
-
-  if (vm.$slots.hasOwnProperty(name) && vm.$slots.hasOwnProperty(name) && (vm.$slots[name] as any).name) {
+  if (vm.$slots.hasOwnProperty(name) && (vm.$slots[name] as any).name) {
     return split ? 'v-slot' as any : 'scoped'
   }
   if (vm.$slots.hasOwnProperty(name)) return 'normal'
-  if (vm.$slots.hasOwnProperty(name)) return 'scoped'
+  if (vm.$slots.hasOwnProperty(kebabCase(name))) return 'scoped'
 }
 
 export function debounce (fn: Function, delay: number) {
@@ -424,15 +433,10 @@ export function getPrefixedScopedSlots (prefix: string, scopedSlots: any) {
 
 export function getSlot (vm: Vue, name = 'default', data?: object | (() => object), optional = false) {
   const kebabName = kebabCase(name)
-
-  if (vm.$slots.hasOwnProperty(name)) {
-    return vm.$slots[name]!(data instanceof Function ? data() : data)
-  } else if (vm.$slots.hasOwnProperty(kebabName)) {
-    return vm.$slots[kebabName]!(data instanceof Function ? data() : data)
-  } else if (vm.$slots.hasOwnProperty(name) && (!data || optional)) {
-    return vm.$slots[name]
-  } else if (vm.$slots.hasOwnProperty(kebabName) && (!data || optional)) {
-    return vm.$slots[kebabName]
+  // Vue 3: $slots может быть прокси; hasOwnProperty('default') часто ложен — слот есть, контент теряется
+  const slot = (vm.$slots as any)[name] ?? (vm.$slots as any)[kebabName]
+  if (slot != null) {
+    return slot(data instanceof Function ? data() : data)
   }
   return undefined
 }
@@ -567,7 +571,7 @@ export function normalizeClasses (
   }
 
   if (Array.isArray(classes)) {
-    return classes.reduce((acc, cls) => {
+    return classes.reduce<Record<string, any>>((acc, cls) => {
       if (typeof cls === 'string') {
         const trimmed = cls.trim()
         if (trimmed) {
@@ -576,10 +580,10 @@ export function normalizeClasses (
           })
         }
       } else if (cls && typeof cls === 'object') {
-        Object.assign(acc, cls)
+        Object.assign(acc, cls as Record<string, any>)
       }
       return acc
-    }, {} as Record<string, any>)
+    }, {})
   }
 
   return {}

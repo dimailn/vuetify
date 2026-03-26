@@ -93,16 +93,9 @@ export function calculateCenteredOffset (
   }
 }
 
-export const BaseSlideGroup = mixins<options &
-/* eslint-disable indent */
-  ExtractVue<[
-    typeof BaseItemGroup,
-    typeof Mobile,
-  ]>
-/* eslint-enable indent */
->(
+export const BaseSlideGroup = mixins(
   BaseItemGroup,
-  Mobile,
+  Mobile
   /* @vue/component */
 ).extend({
   name: 'base-slide-group',
@@ -110,16 +103,16 @@ export const BaseSlideGroup = mixins<options &
   props: {
     activeClass: {
       type: String,
-      default: 'v-slide-item--active',
+      default: 'v-slide-item--active'
     },
     centerActive: Boolean,
     nextIcon: {
       type: String,
-      default: '$next',
+      default: '$next'
     },
     prevIcon: {
       type: String,
-      default: '$prev',
+      default: '$prev'
     },
     showArrows: {
       type: [Boolean, String],
@@ -128,10 +121,10 @@ export const BaseSlideGroup = mixins<options &
           'always',
           'never',
           'desktop',
-          'mobile',
+          'mobile'
         ].includes(v)
-      ),
-    },
+      )
+    }
   },
 
   emits: ['click:prev', 'click:next'],
@@ -145,8 +138,8 @@ export const BaseSlideGroup = mixins<options &
     scrollOffset: 0,
     widths: {
       content: 0,
-      wrapper: 0,
-    },
+      wrapper: 0
+    }
   }),
 
   computed: {
@@ -164,7 +157,7 @@ export const BaseSlideGroup = mixins<options &
         ...BaseItemGroup.computed.classes.call(this),
         'v-slide-group': true,
         'v-slide-group--has-affixes': this.hasAffixes,
-        'v-slide-group--is-overflowing': this.isOverflowing,
+        'v-slide-group--is-overflowing': this.isOverflowing
       }
     },
     hasAffixes (): Boolean {
@@ -207,7 +200,7 @@ export const BaseSlideGroup = mixins<options &
     },
     hasPrev (): boolean {
       return this.hasAffixes && this.scrollOffset !== 0
-    },
+    }
   },
 
   watch: {
@@ -229,7 +222,7 @@ export const BaseSlideGroup = mixins<options &
       if (this.$vuetify.rtl) scroll = -scroll
 
       this.$refs.content.style.transform = `translateX(${scroll}px)`
-    },
+    }
   },
 
   mounted () {
@@ -288,22 +281,22 @@ export const BaseSlideGroup = mixins<options &
 
       return h('div', {
         class: ['v-slide-group__next', {
-          'v-slide-group__next--disabled': !this.hasNext,
+          'v-slide-group__next--disabled': !this.hasNext
         }],
         onClick: () => this.onAffixClick('next'),
-        key: 'next',
+        key: 'next'
       }, [slot])
     },
     genContent (): VNode {
       return h('div', {
         class: 'v-slide-group__content',
         ref: 'content',
-        onFocusin: this.onFocusin,
+        onFocusin: this.onFocusin
       }, getSlot(this))
     },
     genData (): object {
       return {
-        class: this.classes,
+        class: this.classes
       }
     },
     genIcon (location: 'prev' | 'next'): VNode | null {
@@ -324,7 +317,7 @@ export const BaseSlideGroup = mixins<options &
       ) return null
 
       return h(VIcon, {
-        disabled: !hasAffix,
+        disabled: !hasAffix
       }, () => (this as any)[`${icon}Icon`])
     },
     // Always generate prev for scrollable hint
@@ -335,10 +328,10 @@ export const BaseSlideGroup = mixins<options &
 
       return h('div', {
         class: ['v-slide-group__prev', {
-          'v-slide-group__prev--disabled': !this.hasPrev,
+          'v-slide-group__prev--disabled': !this.hasPrev
         }],
         onClick: () => this.onAffixClick('prev'),
-        key: 'prev',
+        key: 'prev'
       }, [slot])
     },
     genTransition (location: 'prev' | 'next') {
@@ -348,16 +341,16 @@ export const BaseSlideGroup = mixins<options &
       return withDirectives(h('div', {
         class: 'v-slide-group__wrapper',
         ref: 'wrapper',
-        onScroll: this.onScroll,
+        onScroll: this.onScroll
       }, [this.genContent()]), [
         [
           Touch,
           {
             start: (e: TouchEvent) => this.overflowCheck(e, this.onTouchStart),
             move: (e: TouchEvent) => this.overflowCheck(e, this.onTouchMove),
-            end: (e: TouchEvent) => this.overflowCheck(e, this.onTouchEnd),
-          },
-        ],
+            end: (e: TouchEvent) => this.overflowCheck(e, this.onTouchEnd)
+          }
+        ]
 
       ])
     },
@@ -488,7 +481,7 @@ export const BaseSlideGroup = mixins<options &
       this.scrollOffset = this.calculateNewOffset(location, {
         // Force reflow
         content: this.$refs.content ? this.$refs.content.clientWidth : 0,
-        wrapper: this.$refs.wrapper ? this.$refs.wrapper.clientWidth : 0,
+        wrapper: this.$refs.wrapper ? this.$refs.wrapper.clientWidth : 0
       }, this.$vuetify.rtl, this.scrollOffset)
     },
     setWidths () {
@@ -502,7 +495,7 @@ export const BaseSlideGroup = mixins<options &
 
         this.widths = {
           content: content.clientWidth,
-          wrapper: wrapper.clientWidth,
+          wrapper: wrapper.clientWidth
         }
 
         // https://github.com/vuetifyjs/vuetify/issues/13212
@@ -512,21 +505,21 @@ export const BaseSlideGroup = mixins<options &
 
         this.scrollIntoView()
       })
-    },
+    }
   },
 
   render (): VNode {
     return withDirectives(h('div', this.genData(), [
       this.genPrev(),
       this.genWrapper(),
-      this.genNext(),
+      this.genNext()
     ]), [
       [
         Resize,
-        this.onResize,
-      ],
+        this.onResize
+      ]
     ])
-  },
+  }
 })
 
 export default defineComponent({
@@ -536,7 +529,7 @@ export default defineComponent({
 
   provide (): object {
     return {
-      slideGroup: this,
+      slideGroup: this
     }
-  },
+  }
 })

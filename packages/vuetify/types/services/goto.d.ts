@@ -1,7 +1,7 @@
 // Types
-import Vue from 'vue'
+import type { ComponentPublicInstance } from 'vue'
 
-export type VuetifyGoToTarget = number | string | HTMLElement | Vue
+export type VuetifyGoToTarget = number | string | HTMLElement | ComponentPublicInstance
 
 export type VuetifyGoToEasing =
   ((t: number) => number) |
@@ -20,7 +20,7 @@ export type VuetifyGoToEasing =
   'easeInOutQuint'
 
 export interface GoToOptions {
-  container?: string | HTMLElement | Vue
+  container?: string | HTMLElement | ComponentPublicInstance
   duration?: number
   offset?: number
   easing?: VuetifyGoToEasing

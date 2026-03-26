@@ -5,7 +5,7 @@ import VMessages from '../VMessages'
 import {
   mount,
   VueWrapper,
-  enableAutoUnmount,
+  enableAutoUnmount
 } from '@vue/test-utils'
 import { h } from 'vue'
 
@@ -29,12 +29,12 @@ describe('VMessages.ts', () => {
                 component: null
               },
               lang: {
-                t: (val: string) => val,
-              },
-            },
-          },
+                t: (val: string) => val
+              }
+            }
+          }
         },
-        ...options,
+        ...options
       })
     }
   })
@@ -49,8 +49,8 @@ describe('VMessages.ts', () => {
   it('should show messages', async () => {
     const wrapper = mountFunction({
       props: {
-        modelValue: ['foo', 'bar'],
-      },
+        modelValue: ['foo', 'bar']
+      }
     })
 
     expect(wrapper.html()).toMatchSnapshot()
@@ -63,8 +63,8 @@ describe('VMessages.ts', () => {
   it('should allow HTML', () => {
     const wrapper = mountFunction({
       props: {
-        modelValue: ['<a href="#">a link</a>'],
-      },
+        modelValue: ['<a href="#">a link</a>']
+      }
     })
     expect(wrapper.html()).toMatchSnapshot()
   })
@@ -78,14 +78,14 @@ describe('VMessages.ts', () => {
             rtl: false,
             icons: {},
             lang: {
-              t: (val: string) => val,
-            },
-          },
-        },
+              t: (val: string) => val
+            }
+          }
+        }
       },
       props: {
-        modelValue: ['<a href="#">a link</a>'],
-      },
+        modelValue: ['<a href="#">a link</a>']
+      }
     })
 
     expect(wrapper.html()).toMatchSnapshot()
@@ -99,17 +99,17 @@ describe('VMessages.ts', () => {
             rtl: false,
             icons: {},
             lang: {
-              t: (val: string) => val,
-            },
-          },
-        },
+              t: (val: string) => val
+            }
+          }
+        }
       },
       props: { modelValue: ['Foo'] },
       slots: {
         default (props: any) {
           return h('div', props.message)
-        },
-      },
+        }
+      }
     })
 
     expect(wrapper.html()).toMatchSnapshot()

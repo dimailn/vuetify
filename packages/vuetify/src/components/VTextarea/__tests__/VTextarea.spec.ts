@@ -3,7 +3,7 @@ import VTextarea from '../VTextarea'
 import {
   mount,
   ComponentMountingOptions,
-  VueWrapper,
+  VueWrapper
 } from '@vue/test-utils'
 import { wait } from '../../../../test'
 
@@ -21,8 +21,8 @@ describe('VTextarea.ts', () => {
       attachTo: document.body,
       props: {
         modelValue: '',
-        autoGrow: true,
-      },
+        autoGrow: true
+      }
     })
 
     const el = wrapper.findAll('textarea')[0]
@@ -63,8 +63,8 @@ describe('VTextarea.ts', () => {
     const wrapper = mountFunction({
       attachTo: document.body,
       props: {
-        autoGrow: true,
-      },
+        autoGrow: true
+      }
     })
 
     // Ждем монтирования и выполнения setTimeout
@@ -95,8 +95,8 @@ describe('VTextarea.ts', () => {
     const wrapper = mountFunction({
       attachTo: document.body,
       props: {
-        autoGrow: true,
-      },
+        autoGrow: true
+      }
     })
 
     // Ждем монтирования и выполнения setTimeout
@@ -132,8 +132,8 @@ describe('VTextarea.ts', () => {
     const wrapper = mountFunction({
       attachTo: document.body,
       props: {
-        autoGrow: true,
-      },
+        autoGrow: true
+      }
     })
 
     // Заменяем метод на spy после монтирования
@@ -160,7 +160,7 @@ describe('VTextarea.ts', () => {
     const stopPropagation = jest.fn()
     const onKeyDown = {
       keyCode: keyCodes.enter,
-      stopPropagation,
+      stopPropagation
     }
     wrapper.vm.onKeyDown(onKeyDown)
 
@@ -176,7 +176,7 @@ describe('VTextarea.ts', () => {
   it('should render no-resize the same if already auto-grow', async () => {
     const wrappers = [
       { autoGrow: true, outlined: false },
-      { autoGrow: true, outlined: true },
+      { autoGrow: true, outlined: true }
     ].map(propsData => mountFunction({ props: propsData }))
 
     for (const wrapper of wrappers) {
@@ -207,8 +207,8 @@ describe('VTextarea.ts', () => {
   it('should dynamically adjust row-height', async () => {
     const wrapper = mountFunction({
       props: {
-        autoGrow: true,
-      },
+        autoGrow: true
+      }
     })
 
     await wait()
@@ -230,8 +230,8 @@ describe('VTextarea.ts', () => {
   it('should render with custom rows attribute', () => {
     const wrapper = mountFunction({
       props: {
-        rows: 3,
-      },
+        rows: 3
+      }
     })
     expect(wrapper.html()).toMatchSnapshot()
   })
@@ -239,8 +239,8 @@ describe('VTextarea.ts', () => {
   it('should render with rows as string', () => {
     const wrapper = mountFunction({
       props: {
-        rows: '10',
-      },
+        rows: '10'
+      }
     })
     expect(wrapper.html()).toMatchSnapshot()
   })
@@ -249,8 +249,8 @@ describe('VTextarea.ts', () => {
     const wrapper = mountFunction({
       props: {
         rows: 7,
-        autoGrow: true,
-      },
+        autoGrow: true
+      }
     })
     expect(wrapper.html()).toMatchSnapshot()
   })
@@ -258,8 +258,8 @@ describe('VTextarea.ts', () => {
   it('should have rows attribute in DOM', () => {
     const wrapper = mountFunction({
       props: {
-        rows: 8,
-      },
+        rows: 8
+      }
     })
 
     const textarea = wrapper.find('textarea')

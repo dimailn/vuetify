@@ -2,7 +2,7 @@ import VTooltip from '../VTooltip'
 import {
   mount,
   enableAutoUnmount,
-  VueWrapper,
+  VueWrapper
 } from '@vue/test-utils'
 import { h } from 'vue'
 
@@ -24,12 +24,12 @@ describe('VTooltip', () => {
     const wrapper = mountFunction({
       props: {
         openDelay: 0,
-        top: true,
+        top: true
       },
       slots: {
-        activator: function({ on }: any) { return h('span', { ...on }, 'activator') },
-        default: () => h('span', 'content'),
-      },
+        activator ({ on }: any) { return h('span', { ...on }, 'activator') },
+        default: () => h('span', 'content')
+      }
     })
 
     expect(wrapper.vm.offsetX).toBeFalsy()
@@ -37,7 +37,7 @@ describe('VTooltip', () => {
     expect(wrapper.html()).toMatchSnapshot()
 
     await wrapper.setProps({
-      modelValue: true,
+      modelValue: true
     })
     expect(wrapper.html()).toMatchSnapshot()
   })
@@ -46,12 +46,12 @@ describe('VTooltip', () => {
     const wrapper = mountFunction({
       props: {
         openDelay: 0,
-        left: true,
+        left: true
       },
       slots: {
-        activator: function({ on }: any) { return h('span', { ...on }, 'activator') },
-        default: () => h('span', 'content'),
-      },
+        activator ({ on }: any) { return h('span', { ...on }, 'activator') },
+        default: () => h('span', 'content')
+      }
     })
 
     expect(wrapper.vm.offsetX).toBeTruthy()
@@ -59,7 +59,7 @@ describe('VTooltip', () => {
     expect(wrapper.html()).toMatchSnapshot()
 
     await wrapper.setProps({
-      modelValue: true,
+      modelValue: true
     })
     expect(wrapper.html()).toMatchSnapshot()
   })
@@ -68,12 +68,12 @@ describe('VTooltip', () => {
     const wrapper = mountFunction({
       props: {
         openDelay: 0,
-        bottom: true,
+        bottom: true
       },
       slots: {
-        activator: function({ on }: any) { return h('span', { ...on }, 'activator') },
-        default: () => h('span', 'content'),
-      },
+        activator ({ on }: any) { return h('span', { ...on }, 'activator') },
+        default: () => h('span', 'content')
+      }
     })
 
     expect(wrapper.vm.offsetX).toBeFalsy()
@@ -81,7 +81,7 @@ describe('VTooltip', () => {
     expect(wrapper.html()).toMatchSnapshot()
 
     await wrapper.setProps({
-      modelValue: true,
+      modelValue: true
     })
     expect(wrapper.html()).toMatchSnapshot()
   })
@@ -90,12 +90,12 @@ describe('VTooltip', () => {
     const wrapper = mountFunction({
       props: {
         openDelay: 0,
-        right: true,
+        right: true
       },
       slots: {
-        activator: function({ on }: any) { return h('span', { ...on }, 'activator') },
-        default: () => h('span', 'content'),
-      },
+        activator ({ on }: any) { return h('span', { ...on }, 'activator') },
+        default: () => h('span', 'content')
+      }
     })
 
     expect(wrapper.vm.offsetX).toBeTruthy()
@@ -103,7 +103,7 @@ describe('VTooltip', () => {
     expect(wrapper.html()).toMatchSnapshot()
 
     await wrapper.setProps({
-      modelValue: true,
+      modelValue: true
     })
     expect(wrapper.html()).toMatchSnapshot()
   })
@@ -111,12 +111,12 @@ describe('VTooltip', () => {
   it('should render component with custom eager and match snapshot', () => {
     const wrapper = mountFunction({
       props: {
-        eager: true,
+        eager: true
       },
       slots: {
-        activator: function({ on }: any) { return h('span', { ...on }, 'activator') },
-        default: () => h('span', 'content'),
-      },
+        activator ({ on }: any) { return h('span', { ...on }, 'activator') },
+        default: () => h('span', 'content')
+      }
     })
 
     expect(wrapper.html()).toMatchSnapshot()
@@ -125,12 +125,12 @@ describe('VTooltip', () => {
   it('should render component with modelValue=true and match snapshot', async () => {
     const wrapper = mountFunction({
       props: {
-        modelValue: true,
+        modelValue: true
       },
       slots: {
-        activator: function({ on }: any) { return h('span', { ...on }, 'activator') },
-        default: () => h('span', 'content'),
-      },
+        activator ({ on }: any) { return h('span', { ...on }, 'activator') },
+        default: () => h('span', 'content')
+      }
     })
 
     expect(wrapper.vm.isActive).toBe(true)
@@ -142,12 +142,12 @@ describe('VTooltip', () => {
       props: {
         modelValue: true,
         minWidth: 100,
-        maxWidth: 200,
+        maxWidth: 200
       },
       slots: {
-        activator: function({ on }: any) { return h('span', { ...on }, 'activator') },
-        default: () => h('span', 'content'),
-      },
+        activator ({ on }: any) { return h('span', { ...on }, 'activator') },
+        default: () => h('span', 'content')
+      }
     })
 
     expect(wrapper.html()).toMatchSnapshot()
@@ -156,8 +156,8 @@ describe('VTooltip', () => {
   it('should render component with zIndex prop and match snapshot', async () => {
     const wrapper = mountFunction({
       props: {
-        zIndex: 42,
-      },
+        zIndex: 42
+      }
     })
 
     expect(wrapper.html()).toMatchSnapshot()
@@ -168,12 +168,12 @@ describe('VTooltip', () => {
     const wrapper = mountFunction({
       props: {
         openDelay: 123,
-        closeDelay: 321,
+        closeDelay: 321
       },
       slots: {
         activator: ({ on }: any) => h('span', { ...on, class: 'activator' }, 'activator'),
-        default: () => h('span', { class: 'content' }, 'content'),
-      },
+        default: () => h('span', { class: 'content' }, 'content')
+      }
     })
 
     const activator = wrapper.find('.activator')
@@ -200,12 +200,12 @@ describe('VTooltip', () => {
   it(`should work with normal activator slot`, () => {
     const wrapper = mountFunction({
       props: {
-        openDelay: 0,
+        openDelay: 0
       },
       slots: {
-        activator: function({ on }: any) { return h('span', { ...on }, 'activator') },
-        default: () => h('span', 'content'),
-      },
+        activator ({ on }: any) { return h('span', { ...on }, 'activator') },
+        default: () => h('span', 'content')
+      }
     })
 
     // In Vue 3, all slots are functions and should work correctly
@@ -217,12 +217,12 @@ describe('VTooltip', () => {
     const wrapper = mountFunction({
       props: {
         openDelay: 0,
-        closeDelay: 0,
+        closeDelay: 0
       },
       slots: {
         activator: ({ on }: any) => h('span', { ...on, class: 'activator' }, 'activator'),
-        default: () => h('span', { class: 'content' }, 'content'),
-      },
+        default: () => h('span', { class: 'content' }, 'content')
+      }
     })
 
     expect(wrapper.vm.isActive).toBeFalsy()

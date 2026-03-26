@@ -13,8 +13,8 @@ export default defineComponent({
   props: {
     mandatory: {
       type: Boolean,
-      default: false,
-    },
+      default: false
+    }
   },
 
   emits: ['change'],
@@ -23,17 +23,17 @@ export default defineComponent({
     classes (): object {
       return {
         ...VWindow.computed.classes.call(this),
-        'v-tabs-items': true,
+        'v-tabs-items': true
       }
     },
     isDark (): boolean {
       return this.rootIsDark
-    },
+    }
   },
 
   methods: {
     getValue (item: GroupableInstance, i: number) {
       return item.id || BaseItemGroup.methods.getValue.call(this, item, i)
-    },
-  },
+    }
+  }
 })

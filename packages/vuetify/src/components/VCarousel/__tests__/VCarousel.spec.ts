@@ -11,7 +11,7 @@ import {
   mount,
   MountingOptions,
   VueWrapper,
-  enableAutoUnmount,
+  enableAutoUnmount
 } from '@vue/test-utils'
 import { waitAnimationFrame } from '../../../../test'
 import { VThemeProvider } from '../../VThemeProvider'
@@ -31,23 +31,23 @@ describe('VCarousel.ts', () => {
             $vuetify: {
               rtl: false,
               lang: {
-                t: str => str,
+                t: str => str
               },
               icons: {
-                component: null,
-              },
-            },
-          },
+                component: null
+              }
+            }
+          }
         },
-        ...options,
+        ...options
       })
     }
   })
 
   // TODO: animation frame not starting with jest 24
-  it.skip('it should restart or clear timeout on cycle change', async () => {
+  it.skip('should restart or clear timeout on cycle change', async () => {
     const wrapper = mountFunction({
-      props: { cycle: false },
+      props: { cycle: false }
     })
 
     const restartTimeout = jest.spyOn(wrapper.vm, 'restartTimeout')
@@ -70,7 +70,7 @@ describe('VCarousel.ts', () => {
 
   it('should generate vertical delimiters', async () => {
     const wrapper = mountFunction({
-      props: { verticalDelimiters: 'left' },
+      props: { verticalDelimiters: 'left' }
     })
 
     expect(wrapper.html()).toMatchSnapshot()
@@ -83,12 +83,12 @@ describe('VCarousel.ts', () => {
   it('should generate delimiters for each item', async () => {
     const wrapper = mountFunction({
       slots: {
-        default: [
-          { extends: VCarouselItem },
-          { extends: VCarouselItem },
-          { extends: VCarouselItem },
-        ],
-      },
+        default: () => [
+          h(VCarouselItem),
+          h(VCarouselItem),
+          h(VCarouselItem)
+        ]
+      }
     })
 
     await wrapper.vm.$nextTick()
@@ -109,8 +109,8 @@ describe('VCarousel.ts', () => {
   it('should render a progress component', async () => {
     const wrapper = mountFunction({
       props: {
-        progress: true,
-      },
+        progress: true
+      }
     })
 
     expect(wrapper.findComponent(VProgressLinear).element).toBeTruthy()
@@ -133,15 +133,16 @@ describe('VCarousel.ts', () => {
   })
 
   it('should have the correct theme', async () => {
-    const localMountFunction = (options?: MountingOptions<Instance>, props?: object) => {
+    const localMountFunction = (options?: MountingOptions<Instance>, carouselProps?: object) => {
+      const p = carouselProps || {}
       return mount({
         render () {
-          return h(VCarousel, { props }, [
-            h(VCarouselItem, [
-              h(VThemeProvider, 'test'),
-            ]),
+          return h(VCarousel, p, () => [
+            h(VCarouselItem, {}, () => [
+              h(VThemeProvider, {}, () => 'test')
+            ])
           ])
-        },
+        }
       }, {
         sync: false,
         global: {
@@ -149,15 +150,15 @@ describe('VCarousel.ts', () => {
             $vuetify: {
               rtl: false,
               lang: {
-                t: str => str,
+                t: str => str
               },
               icons: {
-                component: null,
-              },
-            },
-          },
+                component: null
+              }
+            }
+          }
         },
-        ...options,
+        ...options
       }).findComponent(VCarousel) as VueWrapper<Instance>
     }
 
@@ -187,13 +188,15 @@ describe('VCarousel.ts', () => {
   it('should not throw an error in a v-if', async () => {
     const wrapper = mount({
       props: {
-        show: Boolean,
+        show: Boolean
       },
       render () {
-        return h('div', this.show ? [
-          h(VCarousel, [h(VCarouselItem, 'test')]),
-        ] : [])
-      },
+        return h('div', this.show
+          ? [
+              h(VCarousel, {}, () => [h(VCarouselItem, {}, () => 'test')])
+            ]
+          : [])
+      }
     }, {
       sync: false,
       global: {
@@ -201,17 +204,17 @@ describe('VCarousel.ts', () => {
           $vuetify: {
             rtl: false,
             lang: {
-              t: str => str,
+              t: str => str
             },
             icons: {
-              component: null,
-            },
-          },
-        },
+              component: null
+            }
+          }
+        }
       },
       props: {
-        show: false,
-      },
+        show: false
+      }
     }) as VueWrapper<Instance>
 
     await wrapper.vm.$nextTick()

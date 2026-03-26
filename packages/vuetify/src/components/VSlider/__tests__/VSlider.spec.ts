@@ -5,7 +5,7 @@ import VSlider from '../VSlider'
 import {
   mount,
   VueWrapper,
-  enableAutoUnmount,
+  enableAutoUnmount
 } from '@vue/test-utils'
 
 /* eslint-disable max-statements */
@@ -23,11 +23,11 @@ describe('VSlider.ts', () => {
         global: {
           mocks: {
             $vuetify: {
-              rtl: false,
-            },
-          },
+              rtl: false
+            }
+          }
         },
-        ...options,
+        ...options
       })
     }
   })
@@ -44,8 +44,8 @@ describe('VSlider.ts', () => {
   it('should render vertical slider', async () => {
     const wrapper = mountFunction({
       props: {
-        vertical: true,
-      },
+        vertical: true
+      }
     })
 
     expect(wrapper.html()).toMatchSnapshot()
@@ -55,8 +55,8 @@ describe('VSlider.ts', () => {
     const wrapper = mountFunction({
       props: {
         ticks: true,
-        step: 25,
-      },
+        step: 25
+      }
     })
 
     expect(wrapper.html()).toMatchSnapshot()
@@ -69,8 +69,8 @@ describe('VSlider.ts', () => {
   it('should render component with thumbLabel and match a snapshot', async () => {
     const wrapper = mountFunction({
       props: {
-        thumbLabel: true,
-      },
+        thumbLabel: true
+      }
     })
 
     expect(wrapper.html()).toMatchSnapshot()
@@ -83,8 +83,8 @@ describe('VSlider.ts', () => {
   it('should set tabindex in disabled component', () => {
     const wrapper = mountFunction({
       props: {
-        disabled: true,
-      },
+        disabled: true
+      }
     })
 
     const slider = wrapper.find('.v-slider__thumb-container')
@@ -96,8 +96,8 @@ describe('VSlider.ts', () => {
     const wrapper = mountFunction({
       props: {
         min: 2,
-        max: 4,
-      },
+        max: 4
+      }
     })
 
     await wrapper.setProps({ modelValue: 0 })
@@ -114,8 +114,8 @@ describe('VSlider.ts', () => {
       props: {
         modelValue: 5,
         min: 0,
-        max: 10,
-      },
+        max: 10
+      }
     })
 
     await wrapper.setProps({ min: 6 })
@@ -130,8 +130,8 @@ describe('VSlider.ts', () => {
       props: {
         min: 3,
         max: 15,
-        step: 3,
-      },
+        step: 3
+      }
     })
 
     await wrapper.setProps({ modelValue: 5 })
@@ -146,8 +146,8 @@ describe('VSlider.ts', () => {
   it('should react to keydown event', async () => {
     const wrapper = mountFunction({
       props: {
-        modelValue: 50,
-      },
+        modelValue: 50
+      }
     })
 
     const slider = wrapper.find('.v-slider__thumb-container')
@@ -203,13 +203,13 @@ describe('VSlider.ts', () => {
     await wrapper.setProps({ modelValue: newValue })
 
     await slider.trigger('keydown.left', {
-      shiftKey: true,
+      shiftKey: true
     })
     const events10 = wrapper.emitted('update:modelValue') as any[][]
     expect(events10[events10.length - 1]).toEqual([94])
 
     await slider.trigger('keydown.right', {
-      ctrlKey: true,
+      ctrlKey: true
     })
     const events11 = wrapper.emitted('update:modelValue') as any[][]
     expect(events11[events11.length - 1]).toEqual([98])
@@ -227,7 +227,7 @@ describe('VSlider.ts', () => {
     wrapper.vm.$vuetify.rtl = true
 
     await slider.trigger('keydown.right', {
-      shiftKey: true,
+      shiftKey: true
     })
     const events12 = wrapper.emitted('update:modelValue') as any[][]
     expect(events12[events12.length - 1]).toEqual([92])
@@ -236,9 +236,9 @@ describe('VSlider.ts', () => {
   it('should add for to label', () => {
     const wrapper = mountFunction({
       props: {
-        label: 'bar',
+        label: 'bar'
       },
-      attrs: { id: 'foo' },
+      attrs: { id: 'foo' }
     })
 
     const label = wrapper.find('.v-label')
@@ -246,8 +246,8 @@ describe('VSlider.ts', () => {
 
     const wrapper2 = mountFunction({
       props: {
-        label: 'bar',
-      },
+        label: 'bar'
+      }
     })
 
     const label2 = wrapper2.find('.v-label')
@@ -280,7 +280,7 @@ describe('VSlider.ts', () => {
     expect(wrapper.vm.isActive).toBe(false)
 
     await container.trigger('touchstart', {
-      touches: [{}],
+      touches: [{}]
     })
     expect(wrapper.vm.thumbPressed).toBe(true)
     expect(wrapper.vm.isActive).toBe(true)
@@ -293,7 +293,7 @@ describe('VSlider.ts', () => {
 
   it('should return a rounded value', async () => {
     const wrapper = mountFunction({
-      props: { step: 0 },
+      props: { step: 0 }
     })
 
     expect(wrapper.vm.roundValue(1.234)).toBe(1.234)
@@ -311,7 +311,7 @@ describe('VSlider.ts', () => {
 
   it('should return a rounded value with offset', async () => {
     const wrapper = mountFunction({
-      props: { step: 0 },
+      props: { step: 0 }
     })
 
     expect(wrapper.vm.roundValue(1.234)).toBe(1.234)
@@ -331,8 +331,8 @@ describe('VSlider.ts', () => {
     const wrapper = mountFunction({
       props: {
         min: 5,
-        max: 10,
-      },
+        max: 10
+      }
     })
 
     await wrapper.setProps({ modelValue: 1 })
@@ -345,8 +345,8 @@ describe('VSlider.ts', () => {
   it('should not update if value matches lazy value', async () => {
     const wrapper = mountFunction({
       props: {
-        modelValue: 10,
-      },
+        modelValue: 10
+      }
     })
 
     expect(wrapper.vm.lazyValue).toBe(10)
@@ -392,8 +392,8 @@ describe('VSlider.ts', () => {
   it('should keep thumb-label when focused and clicked', async () => {
     const wrapper = mountFunction({
       props: {
-        thumbLabel: true,
-      },
+        thumbLabel: true
+      }
     })
 
     const input = wrapper.find('.v-slider__thumb-container')
@@ -415,7 +415,7 @@ describe('VSlider.ts', () => {
 
   it('should reverse label location when inverse', async () => {
     const wrapper = mountFunction({
-      props: { label: 'foo' },
+      props: { label: 'foo' }
     })
 
     expect(wrapper.html()).toMatchSnapshot()
@@ -449,7 +449,7 @@ describe('VSlider.ts', () => {
   it('should display label and have different aria-label', () => {
     const wrapper = mountFunction({
       props: { label: 'foo' },
-      attrs: { 'aria-label': 'bar' },
+      attrs: { 'aria-label': 'bar' }
     })
 
     expect(wrapper.html()).toMatchSnapshot()
@@ -459,8 +459,8 @@ describe('VSlider.ts', () => {
     const wrapper = mountFunction({
       props: {
         max: 1,
-        tickLabels: ['foo', 'bar'],
-      },
+        tickLabels: ['foo', 'bar']
+      }
     })
 
     const ticks = wrapper.findAll('.v-slider__tick')
@@ -472,7 +472,7 @@ describe('VSlider.ts', () => {
 
   it('should not react to keydown if disabled', async () => {
     const wrapper = mountFunction({
-      props: { disabled: true, modelValue: 50 },
+      props: { disabled: true, modelValue: 50 }
     })
 
     const input = wrapper.find('.v-slider__thumb-container')
@@ -484,7 +484,7 @@ describe('VSlider.ts', () => {
     // Тестируем readonly состояние
     await wrapper.setProps({
       disabled: false,
-      readonly: true,
+      readonly: true
     })
     await input.trigger('keydown.right')
     expect(wrapper.emitted('update:modelValue')).toBeFalsy()
@@ -492,7 +492,7 @@ describe('VSlider.ts', () => {
     // Тестируем нормальное состояние
     await wrapper.setProps({
       disabled: false,
-      readonly: false,
+      readonly: false
     })
     const eventsBefore = wrapper.emitted('update:modelValue')?.length || 0
     await input.trigger('keydown.right')
@@ -506,8 +506,8 @@ describe('VSlider.ts', () => {
       props: {
         min: -20,
         max: 20,
-        modelValue: NaN,
-      },
+        modelValue: NaN
+      }
     })
 
     expect(wrapper.emitted('update:modelValue')?.[0]).toEqual([-20])
@@ -518,8 +518,8 @@ describe('VSlider.ts', () => {
       props: {
         min: -20,
         max: 20,
-        modelValue: 0,
-      },
+        modelValue: 0
+      }
     })
 
     expect(wrapper.emitted('update:modelValue')).toBeFalsy()
@@ -528,14 +528,14 @@ describe('VSlider.ts', () => {
 
   it('should not fire event if value is provided and valid', async () => {
     const wrapper = mountFunction({
-      props: { modelValue: 10, min: -20 },
+      props: { modelValue: 10, min: -20 }
     })
 
     expect(wrapper.emitted('update:modelValue')).toBeFalsy()
 
     // Should set to min value if invalid
     const wrapper2 = mountFunction({
-      props: { modelValue: NaN, min: -20 },
+      props: { modelValue: NaN, min: -20 }
     })
 
     expect(wrapper2.emitted('update:modelValue')?.[0]).toEqual([-20])
@@ -543,7 +543,7 @@ describe('VSlider.ts', () => {
 
   it('should not fire change event onKeyDown if value is invalid', () => {
     const wrapper = mountFunction({
-      props: { min: 1 },
+      props: { min: 1 }
     })
 
     const slider = wrapper.find('.v-slider__thumb-container')

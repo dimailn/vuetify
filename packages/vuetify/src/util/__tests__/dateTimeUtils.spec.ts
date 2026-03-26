@@ -17,7 +17,7 @@ describe('/util/dateTimeUtils.ts', () => {
     // ISO 8601 (first day of week Monday, First week of year must contain a thurstday)
     [2012, 0, 1, 1, 4, 52],
     // American locale (first day of week Sunday, 1 Jan determines first week)
-    [2012, 0, 1, 0, 0, 1],
+    [2012, 0, 1, 0, 0, 1]
   ])('should return correct weeknumber', (year, month, day, firstDayOfWeek, localFirstDayOfYear, week) => {
     expect(weekNumber(year, month, day, firstDayOfWeek, localFirstDayOfYear)).toBe(week)
   })

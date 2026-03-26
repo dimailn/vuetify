@@ -1,4 +1,4 @@
-import {defineComponent} from 'vue'
+import { defineComponent } from 'vue'
 
 /**
  * SSRBootable
@@ -12,7 +12,7 @@ export default defineComponent({
   name: 'ssr-bootable',
 
   data: () => ({
-    isBooted: false,
+    isBooted: false
   }),
 
   mounted () {
@@ -23,5 +23,5 @@ export default defineComponent({
       this.$el.setAttribute('data-booted', 'true')
       this.isBooted = true
     })
-  },
+  }
 })

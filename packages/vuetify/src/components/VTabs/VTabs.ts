@@ -22,7 +22,7 @@ import mixins from '../../util/mixins'
 import { breaking } from '../../util/console'
 
 // Types
-import { VNode } from 'vue/types'
+import type { VNode } from '../../types/vue-internal'
 
 const baseMixins = mixins(
   Colorable,
@@ -30,7 +30,7 @@ const baseMixins = mixins(
   Themeable
 )
 
-interface options extends ExtractVue<typeof baseMixins> {
+type options = ExtractVue<typeof baseMixins> & {
   $refs: {
     items: InstanceType<typeof VTabsBar>
   }
@@ -42,12 +42,12 @@ export default baseMixins.extend({
   props: {
     activeClass: {
       type: String,
-      default: '',
+      default: ''
     },
     alignWithTitle: Boolean,
     allowDeselect: {
       type: Boolean,
-      default: false,
+      default: false
     },
     backgroundColor: String,
     centerActive: Boolean,
@@ -56,28 +56,28 @@ export default baseMixins.extend({
     grow: Boolean,
     height: {
       type: [Number, String],
-      default: undefined,
+      default: undefined
     },
     hideSlider: Boolean,
     iconsAndText: Boolean,
     mobileBreakpoint: [String, Number],
     nextIcon: {
       type: String,
-      default: '$next',
+      default: '$next'
     },
     optional: Boolean,
     prevIcon: {
       type: String,
-      default: '$prev',
+      default: '$prev'
     },
     right: Boolean,
     showArrows: [Boolean, String],
     sliderColor: String,
     sliderSize: {
       type: [Number, String],
-      default: 2,
+      default: 2
     },
-    vertical: Boolean,
+    vertical: Boolean
   },
 
   data () {
@@ -88,9 +88,9 @@ export default baseMixins.extend({
         left: null as null | number,
         right: null as null | number,
         top: null as null | number,
-        width: null as null | number,
+        width: null as null | number
       },
-      transitionTime: 300,
+      transitionTime: 300
     }
   },
 
@@ -104,7 +104,7 @@ export default baseMixins.extend({
         'v-tabs--icons-and-text': this.iconsAndText,
         'v-tabs--right': this.right,
         'v-tabs--vertical': this.vertical,
-        ...this.themeClasses,
+        ...this.themeClasses
       }
     },
     isReversed (): boolean {
@@ -117,21 +117,21 @@ export default baseMixins.extend({
         right: this.isReversed ? convertToUnit(this.slider.right) : undefined,
         top: this.vertical ? convertToUnit(this.slider.top) : undefined,
         transition: this.slider.left != null ? null : 'none',
-        width: convertToUnit(this.slider.width),
+        width: convertToUnit(this.slider.width)
       }
     },
     computedColor (): string {
       if (this.color) return this.color
       else if (this.isDark && !this.appIsDark) return 'white'
       else return 'primary'
-    },
+    }
   },
 
   created () {
     const breakingProps = [
       ['value', 'modelValue'],
       ['onChange', 'onUpdate:modelValue'],
-      ['onInput', 'onUpdate:modelValue'],
+      ['onInput', 'onUpdate:modelValue']
     ]
 
     /* istanbul ignore next */
@@ -155,7 +155,7 @@ export default baseMixins.extend({
     '$vuetify.rtl': 'onResize',
     modelValue (val: any) {
       this.validateModelValue(val)
-    },
+    }
   },
 
   mounted () {
@@ -208,7 +208,7 @@ export default baseMixins.extend({
           left: this.vertical ? 0 : el.offsetLeft,
           right: this.vertical ? 0 : el.offsetLeft + el.offsetWidth,
           top: el.offsetTop,
-          width: this.vertical ? Number(this.sliderSize) : el.scrollWidth,
+          width: this.vertical ? Number(this.sliderSize) : el.scrollWidth
         }
       })
 
@@ -217,7 +217,7 @@ export default baseMixins.extend({
     genBar (items: VNode[], slider: VNode | null) {
       const data = {
         style: {
-          height: convertToUnit(this.height),
+          height: convertToUnit(this.height)
         },
         activeClass: this.activeClass,
         allowDeselect: this.allowDeselect,
@@ -234,7 +234,7 @@ export default baseMixins.extend({
         'onUpdate:modelValue': (val: any) => {
           this.internalValue = val
         },
-        ref: 'items',
+        ref: 'items'
       }
 
       this.setTextColor(this.computedColor, data)
@@ -242,7 +242,7 @@ export default baseMixins.extend({
 
       return h(VTabsBar, data, () => [
         this.genSlider(slider),
-        items,
+        items
       ])
     },
     genItems (items: VNode | null, item: VNode[]) {
@@ -258,7 +258,7 @@ export default baseMixins.extend({
         modelValue: this.internalValue,
         'onUpdate:modelValue': (val: any) => {
           this.internalValue = val
-        },
+        }
       }, () => item)
     },
     genSlider (slider: VNode | null) {
@@ -266,13 +266,13 @@ export default baseMixins.extend({
 
       if (!slider) {
         slider = h(VTabsSlider, {
-          color: this.sliderColor,
+          color: this.sliderColor
         })
       }
 
       return h('div', {
         class: 'v-tabs-slider-wrapper',
-        style: this.sliderStyles,
+        style: this.sliderStyles
       }, [slider])
     },
     onResize () {
@@ -293,7 +293,12 @@ export default baseMixins.extend({
         const vnode = slot[i]
 
         if (vnode.type) {
-          switch (vnode.type.name) {
+          const t = vnode.type
+          const componentName =
+            typeof t === 'object' && t !== null && 'name' in t
+              ? (t as { name?: string }).name
+              : undefined
+          switch (componentName) {
             case 'v-tabs-slider': slider = vnode
               break
             case 'v-tabs-items': items = vnode
@@ -315,24 +320,24 @@ export default baseMixins.extend({
        * item: array of `v-tab-item`
        */
       return { tab, slider, items, item }
-    },
+    }
   },
 
   render (): VNode {
     const { tab, slider, items, item } = this.parseNodes()
 
     return withDirectives(h('div', {
-      class: ['v-tabs', this.classes],
+      class: ['v-tabs', this.classes]
     }, [
       this.genBar(tab, slider),
-      this.genItems(items, item),
+      this.genItems(items, item)
     ]), [
       [
         Resize,
         this.onResize,
         '',
-        { quiet: true },
-      ],
+        { quiet: true }
+      ]
     ])
-  },
+  }
 })

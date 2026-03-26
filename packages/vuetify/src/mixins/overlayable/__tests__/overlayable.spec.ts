@@ -12,9 +12,9 @@ describe('Overlayable.ts', () => {
   const Mock = defineComponent({
     mixins: [Overlayable],
     data: () => ({
-      isActive: false,
+      isActive: false
     }),
-    render: () => h('div'),
+    render: () => h('div')
   })
 
   beforeEach(() => {
@@ -29,10 +29,10 @@ describe('Overlayable.ts', () => {
       return mount(Mock, {
         global: {
           mocks: {
-            $vuetify: { breakpoint: {} },
-          },
+            $vuetify: { breakpoint: {} }
+          }
         },
-        ...options,
+        ...options
       })
     }
   })
@@ -94,9 +94,9 @@ describe('Overlayable.ts', () => {
     const wrapper = mountFunction({
       global: {
         mocks: {
-          $vuetify: { breakpoint: {} },
-        },
-      },
+          $vuetify: { breakpoint: {} }
+        }
+      }
     })
 
     // Mock the methods

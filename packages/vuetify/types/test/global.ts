@@ -1,9 +1,17 @@
-import Vue from 'vue'
+import { createApp } from 'vue'
 import Vuetify from 'vuetify'
 
 Vuetify.config.silent = true
 
-Vue.component('breakpoint', {
+const vuetify = new Vuetify()
+
+const app = createApp({
+  vuetify,
+})
+
+app.use(Vuetify)
+
+app.component('breakpoint', {
   created () {
     const name = this.$vuetify.breakpoint.name
     const numbers: number[] = [
@@ -35,7 +43,7 @@ Vue.component('breakpoint', {
   },
 })
 
-Vue.component('theme', {
+app.component('theme', {
   created () {
     // Can't do this, some components rely on the pre-defined values
     // this.$vuetify.theme = { primary: 123 }
@@ -48,7 +56,7 @@ Vue.component('theme', {
   },
 })
 
-Vue.component('icons', {
+app.component('icons', {
   created () {
     const component = this.$vuetify.icons.component
   },

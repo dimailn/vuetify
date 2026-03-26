@@ -4,7 +4,7 @@ import VTimePicker, { SelectingTimes } from '../VTimePicker'
 import {
   mount,
   MountingOptions,
-  VueWrapper,
+  VueWrapper
 } from '@vue/test-utils'
 
 import { preset } from '../../../presets/default'
@@ -17,16 +17,16 @@ describe('VTimePicker.ts', () => {
       return mount(VTimePicker, {
         global: {
           config: {
-            warnHandler: () => {}, // Подавляем предупреждения Vue
+            warnHandler: () => {} // Подавляем предупреждения Vue
           },
           mocks: {
             $vuetify: {
               lang: new Lang(preset),
               icons: {
-                component: 'mdi',
-              },
-            },
-          },
+                component: 'mdi'
+              }
+            }
+          }
         },
         ...options
       })
@@ -39,8 +39,8 @@ describe('VTimePicker.ts', () => {
       const wrapper = mountFunction({
         props: {
           modelValue: '09:12:34',
-          useSeconds: useSecondsValue,
-        },
+          useSeconds: useSecondsValue
+        }
       })
 
       await wrapper.vm.$nextTick()
@@ -59,8 +59,8 @@ describe('VTimePicker.ts', () => {
         props: {
           modelValue: '09:12:34',
           landscape: true,
-          useSeconds: useSecondsValue,
-        },
+          useSeconds: useSecondsValue
+        }
       })
 
       await wrapper.vm.$nextTick()
@@ -72,8 +72,8 @@ describe('VTimePicker.ts', () => {
         props: {
           disabled: true,
           modelValue: '09:12:34',
-          useSeconds: useSecondsValue,
-        },
+          useSeconds: useSecondsValue
+        }
       })
 
       await wrapper.vm.$nextTick()
@@ -85,8 +85,8 @@ describe('VTimePicker.ts', () => {
         props: {
           flat: true,
           modelValue: '09:12:34',
-          useSeconds: useSecondsValue,
-        },
+          useSeconds: useSecondsValue
+        }
       })
 
       await wrapper.vm.$nextTick()
@@ -98,8 +98,8 @@ describe('VTimePicker.ts', () => {
         props: {
           elevation: 15,
           modelValue: '09:12:34',
-          useSeconds: useSecondsValue,
-        },
+          useSeconds: useSecondsValue
+        }
       })
 
       await wrapper.vm.$nextTick()
@@ -111,8 +111,8 @@ describe('VTimePicker.ts', () => {
         props: {
           modelValue: '09:12:34',
           noTitle: true,
-          useSeconds: useSecondsValue,
-        },
+          useSeconds: useSecondsValue
+        }
       })
       expect(wrapper.findAll('.v-picker__title')).toHaveLength(0)
     })
@@ -122,8 +122,8 @@ describe('VTimePicker.ts', () => {
       const wrapper = mountFunction({
         props: {
           modelValue: now,
-          useSeconds: useSecondsValue,
-        },
+          useSeconds: useSecondsValue
+        }
       })
 
       await wrapper.vm.$nextTick()
@@ -138,8 +138,8 @@ describe('VTimePicker.ts', () => {
       const wrapper = mountFunction({
         props: {
           modelValue: '9:00am',
-          useSeconds: useSecondsValue,
-        },
+          useSeconds: useSecondsValue
+        }
       })
 
       await wrapper.vm.$nextTick()
@@ -160,8 +160,8 @@ describe('VTimePicker.ts', () => {
       const wrapper = mountFunction({
         props: {
           modelValue: new Date('2017-01-01 12:00 PM'),
-          useSeconds: useSecondsValue,
-        },
+          useSeconds: useSecondsValue
+        }
       })
 
       expect(wrapper.vm.period).toBe('pm')
@@ -174,8 +174,8 @@ describe('VTimePicker.ts', () => {
       const wrapper = mountFunction({
         props: {
           modelValue: '1:00 PM',
-          useSeconds: useSecondsValue,
-        },
+          useSeconds: useSecondsValue
+        }
       })
 
       await wrapper.vm.$nextTick()
@@ -190,8 +190,8 @@ describe('VTimePicker.ts', () => {
       const wrapper = mountFunction({
         props: {
           modelValue: '1:00 pm',
-          useSeconds: useSecondsValue,
-        },
+          useSeconds: useSecondsValue
+        }
       })
 
       await wrapper.vm.$nextTick()
@@ -206,8 +206,8 @@ describe('VTimePicker.ts', () => {
       const wrapper = mountFunction({
         props: {
           modelValue: new Date('2017-01-01 1:00 AM'),
-          useSeconds: useSecondsValue,
-        },
+          useSeconds: useSecondsValue
+        }
       })
 
       expect(wrapper.vm.period).toBe('am')
@@ -221,8 +221,8 @@ describe('VTimePicker.ts', () => {
         props: {
           modelValue: '09:00:00',
           color: 'orange darken-1',
-          useSeconds: useSecondsValue,
-        },
+          useSeconds: useSecondsValue
+        }
       })
 
       await wrapper.vm.$nextTick()
@@ -235,8 +235,8 @@ describe('VTimePicker.ts', () => {
           modelValue: '09:00:00',
           color: 'primary',
           headerColor: 'orange darken-1',
-          useSeconds: useSecondsValue,
-        },
+          useSeconds: useSecondsValue
+        }
       })
 
       await wrapper.vm.$nextTick()
@@ -247,8 +247,8 @@ describe('VTimePicker.ts', () => {
       const wrapper = mountFunction({
         props: {
           dark: true,
-          useSeconds: useSecondsValue,
-        },
+          useSeconds: useSecondsValue
+        }
       })
 
       await wrapper.vm.$nextTick()
@@ -260,8 +260,8 @@ describe('VTimePicker.ts', () => {
         props: {
           modelValue: '01:23pm',
           format: 'ampm',
-          useSeconds: useSecondsValue,
-        },
+          useSeconds: useSecondsValue
+        }
       })
 
       wrapper.vm.onInput(7)
@@ -308,8 +308,8 @@ describe('VTimePicker.ts', () => {
       const wrapper = mountFunction({
         props: {
           format: '24hr',
-          useSeconds: useSecondsValue,
-        },
+          useSeconds: useSecondsValue
+        }
       })
 
       wrapper.vm.setInputData(new Date('2001-01-01 17:35'))
@@ -351,8 +351,8 @@ describe('VTimePicker.ts', () => {
       const wrapper = mountFunction({
         props: {
           modelValue: '15:34',
-          useSeconds: useSecondsValue,
-        },
+          useSeconds: useSecondsValue
+        }
       })
 
       wrapper.vm.setPeriod('am')
@@ -377,8 +377,8 @@ describe('VTimePicker.ts', () => {
         props: {
           modelValue: '01:23pm',
           format: 'ampm',
-          useSeconds: useSecondsValue,
-        },
+          useSeconds: useSecondsValue
+        }
       })
 
       wrapper.vm.onChange(-1)
@@ -398,8 +398,8 @@ describe('VTimePicker.ts', () => {
         props: {
           modelValue: '01:23:45pm',
           format: 'ampm',
-          useSeconds: useSecondsValue,
-        },
+          useSeconds: useSecondsValue
+        }
       })
 
       wrapper.vm.onChange(1)
@@ -428,8 +428,8 @@ describe('VTimePicker.ts', () => {
         props: {
           modelValue: '01:23pm',
           format: 'ampm',
-          useSeconds: useSecondsValue,
-        },
+          useSeconds: useSecondsValue
+        }
       })
 
       const title = wrapper.vm.$refs.title
@@ -455,8 +455,8 @@ describe('VTimePicker.ts', () => {
         props: {
           modelValue: '01:23pm',
           format: 'ampm',
-          useSeconds: useSecondsValue,
-        },
+          useSeconds: useSecondsValue
+        }
       })
 
       expect(wrapper.vm.period).toBe('pm')
@@ -475,11 +475,11 @@ describe('VTimePicker.ts', () => {
       const wrapper = mountFunction({
         props: {
           modelValue: '10:12',
-          useSeconds: useSecondsValue,
+          useSeconds: useSecondsValue
         },
         slots: {
-          default: '<div class="scoped-slot"></div>',
-        },
+          default: '<div class="scoped-slot"></div>'
+        }
       })
       expect(wrapper.findAll('.scoped-slot')).toHaveLength(1)
     })
@@ -493,8 +493,8 @@ describe('VTimePicker.ts', () => {
           allowedHours: value => value !== 11,
           min: '9:31',
           max: '12:30',
-          useSeconds: useSecondsValue,
-        },
+          useSeconds: useSecondsValue
+        }
       })
 
       expect(wrapper.vm.isAllowedHourCb(8)).toBe(false)
@@ -599,8 +599,8 @@ describe('VTimePicker.ts', () => {
           allowedHours,
           min: '9:31',
           max: '12:30',
-          useSeconds: useSecondsValue,
-        },
+          useSeconds: useSecondsValue
+        }
       })
 
       expect(wrapper.vm.isAllowedHourCb(0)).toBe(false)
@@ -706,8 +706,8 @@ describe('VTimePicker.ts', () => {
     it('should update inputSecond when called setInputData' + useSecondsDesc, () => {
       const wrapper = mountFunction({
         props: {
-          useSeconds: useSecondsValue,
-        },
+          useSeconds: useSecondsValue
+        }
       })
       wrapper.vm.emitValue()
 
@@ -722,8 +722,8 @@ describe('VTimePicker.ts', () => {
         props: {
           modelValue: '01:23:45pm',
           format: 'ampm',
-          useSeconds: useSecondsValue,
-        },
+          useSeconds: useSecondsValue
+        }
       })
       wrapper.vm.emitValue()
       expect(wrapper.emitted('update:modelValue')).toHaveLength(1)
@@ -733,8 +733,8 @@ describe('VTimePicker.ts', () => {
     it('should update selecting when set selectingSecond/selectingMinute/selectingHour' + useSecondsDesc, () => {
       const wrapper = mountFunction({
         props: {
-          useSeconds: useSecondsValue,
-        },
+          useSeconds: useSecondsValue
+        }
       })
       wrapper.vm.selectingHour = true
       expect(wrapper.vm.selecting).toBe(SelectingTimes.Hour)
@@ -755,8 +755,8 @@ describe('VTimePicker.ts', () => {
     it('should emit active-picker when selectingSecond/selectingMinute/selectingHour' + useSecondsDesc, () => {
       const wrapper = mountFunction({
         props: {
-          useSeconds: useSecondsValue,
-        },
+          useSeconds: useSecondsValue
+        }
       })
 
       // Тестируем, что computed свойства работают правильно
@@ -784,8 +784,8 @@ describe('VTimePicker.ts', () => {
         props: {
           useSeconds: useSecondsValue,
           activePicker: '',
-          modelValue: '09:12:34',
-        },
+          modelValue: '09:12:34'
+        }
       })
       wrapper.vm.selectingMinute = true
       await wrapper.setProps({ activePicker: 'HOUR' })
@@ -799,8 +799,8 @@ describe('VTimePicker.ts', () => {
         props: {
           useSeconds: useSecondsValue,
           activePicker: '',
-          modelValue: '09:12:34',
-        },
+          modelValue: '09:12:34'
+        }
       })
       wrapper.vm.selectingSecond = true
       await wrapper.setProps({ activePicker: 'MINUTE' })
@@ -814,8 +814,8 @@ describe('VTimePicker.ts', () => {
         props: {
           useSeconds: useSecondsValue,
           activePicker: '',
-          modelValue: '09:12:34',
-        },
+          modelValue: '09:12:34'
+        }
       })
       wrapper.vm.selectingHour = true
       await wrapper.setProps({ activePicker: 'SECOND' })

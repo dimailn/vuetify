@@ -5,6 +5,6 @@ export { VCheckbox, VSimpleCheckbox }
 export default {
   $_vuetify_subcomponents: {
     VCheckbox,
-    VSimpleCheckbox,
-  },
+    VSimpleCheckbox
+  }
 }

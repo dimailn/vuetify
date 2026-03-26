@@ -9,9 +9,7 @@ import VDataTableHeaderDesktop from './VDataTableHeaderDesktop'
 import header from './mixins/header'
 
 // Utilities
-import dedupeModelListeners from '../../util/dedupeModelListeners'
-import mergeData from '../../util/mergeData'
-import rebuildSlots from '../../util/rebuildFunctionalSlots'
+import { pickSlotFunctions } from '../../util/helpers'
 
 // Types
 import { defineComponent, h } from 'vue'
@@ -22,21 +20,23 @@ export default defineComponent({
 
   props: {
     ...header.props,
-    mobile: Boolean,
+    mobile: Boolean
   },
 
   render () {
     const props = this.$props
     const data = {
       ...this.$attrs,
-      ...props,
+      ...props
     }
 
     // dedupeModelListeners(data)
+    const slotFns = pickSlotFunctions(this.$slots as Record<string, any>)
+
     if (props.mobile) {
-      return h(VDataTableHeaderMobile, data, this.$slots)
+      return h(VDataTableHeaderMobile, data, slotFns)
     } else {
-      return h(VDataTableHeaderDesktop, data, this.$slots)
+      return h(VDataTableHeaderDesktop, data, slotFns)
     }
-  },
+  }
 })

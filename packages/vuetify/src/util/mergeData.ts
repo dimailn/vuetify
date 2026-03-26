@@ -4,12 +4,12 @@
  * @see https://github.com/alexsasharegan/vue-functional-data-merge
  */
 /* eslint-disable max-statements */
-import { VNodeData } from 'vue'
+import type { VNodeData } from '../types/vue-internal'
 import { camelize, wrapInArray } from './helpers'
 
 const pattern = {
   styleList: /;(?![^(]*\))/g,
-  styleProp: /:(.*)/,
+  styleProp: /:(.*)/
 } as const
 
 function parseStyle (style: string) {
@@ -59,20 +59,6 @@ export default function mergeData (): VNodeData {
           if (arguments[i][prop]) {
             mergeTarget[prop] = mergeStyles(mergeTarget[prop], arguments[i][prop])
           }
-          break
-        // Space delimited string concatenation strategy
-        case 'class':
-          if (!arguments[i][prop]) {
-            break
-          }
-          if (mergeTarget[prop] === undefined) {
-            mergeTarget[prop] = ''
-          }
-          if (mergeTarget[prop]) {
-            // Not an empty string, so concatenate
-            mergeTarget[prop] += ' '
-          }
-          mergeTarget[prop] += arguments[i][prop].trim()
           break
         // Object, the properties of which to merge via array merge strategy (array concatenation).
         // Callback merge strategy merges callbacks to the beginning of the array,

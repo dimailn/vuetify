@@ -5,7 +5,7 @@ import VSkeletonLoader, { HTMLSkeletonLoaderElement } from '../VSkeletonLoader'
 import {
   mount,
   enableAutoUnmount,
-  VueWrapper,
+  VueWrapper
 } from '@vue/test-utils'
 import { nextTick } from 'vue'
 
@@ -22,12 +22,12 @@ describe('VSkeletonLoader.ts', () => {
           mocks: {
             $vuetify: {
               lang: {
-                t: (v: string) => v,
-              },
-            },
-          },
+                t: (v: string) => v
+              }
+            }
+          }
         },
-        ...options,
+        ...options
       })
     }
   })
@@ -54,8 +54,8 @@ describe('VSkeletonLoader.ts', () => {
   it('should dynamically render content', async () => {
     const wrapper = mountFunction({
       slots: {
-        default: '<div>foobar</div>',
-      },
+        default: '<div>foobar</div>'
+      }
     })
 
     expect(wrapper.html()).toMatchSnapshot()
@@ -72,8 +72,8 @@ describe('VSkeletonLoader.ts', () => {
       slots: {
         // Add a default slot to allow
         // toggling the loading prop
-        default: '<div>foobar</div>',
-      },
+        default: '<div>foobar</div>'
+      }
     })
 
     expect(wrapper.element.getAttribute('aria-busy')).toBe('true')
@@ -90,7 +90,7 @@ describe('VSkeletonLoader.ts', () => {
 
   it('should not render aria attributes when using boilerplate', () => {
     const wrapper = mountFunction({
-      props: { boilerplate: true },
+      props: { boilerplate: true }
     })
 
     expect(wrapper.vm.attrs).toEqual({})
@@ -101,7 +101,7 @@ describe('VSkeletonLoader.ts', () => {
   it('should remove transition when loading content', () => {
     const el = document.createElement('div') as HTMLSkeletonLoaderElement
     const wrapper = mountFunction({
-      props: { loading: true },
+      props: { loading: true }
     })
 
     wrapper.vm.onBeforeEnter(el)

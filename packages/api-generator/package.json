@@ -8,7 +8,7 @@
     "debug": "babel-node inspect src/index.js",
     "dev": "node src/index.js",
     "build": "node src/export.js",
-    "lint": "eslint --ext .js src -f codeframe --max-warnings 0",
+    "lint": "eslint --ext .js src -f eslint-formatter-codeframe --max-warnings 0",
     "lint:fix": "yarn lint --fix"
   },
   "author": "",

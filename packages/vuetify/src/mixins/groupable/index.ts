@@ -4,7 +4,7 @@ import { Registrable, inject as RegistrableInject } from '../registrable'
 // Utilities
 // import { ExtractVue } from '../../util/mixins'
 import { Component } from 'vue'
-import { PropValidator } from 'vue/types/options'
+import { PropType } from 'vue'
 
 export type Groupable<T extends string, C extends Component | null = null> = Component<Registrable<T, C> & {
   activeClass: string
@@ -25,14 +25,14 @@ export function factory<T extends string, C extends Component | null = null> (
     extends: RegistrableInject<T, C>(namespace, child, parent),
     props: {
       activeClass: {
-        type: String,
-      } as any as PropValidator<string>,
-      disabled: Boolean,
+        type: String
+      } as any as PropType<string>,
+      disabled: Boolean
     },
 
     data () {
       return {
-        isActive: false,
+        isActive: false
       }
     },
 
@@ -48,9 +48,9 @@ export function factory<T extends string, C extends Component | null = null> (
         if (!this.$activeClass) return {}
 
         return {
-          [this.$activeClass]: this.isActive,
+          [this.$activeClass]: this.isActive
         }
-      },
+      }
     },
 
     created () {
@@ -74,8 +74,8 @@ export function factory<T extends string, C extends Component | null = null> (
         }
         this.$emit('change')
         this.$emitLegacy('change')
-      },
-    },
+      }
+    }
   }
 }
 

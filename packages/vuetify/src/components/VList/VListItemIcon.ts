@@ -13,5 +13,5 @@ export default defineComponent({
     data.class = (`v-list-item__icon ${data.class || ''}`).trim()
 
     return h('div', data, this.$slots.default?.())
-  },
+  }
 })

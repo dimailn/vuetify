@@ -7,8 +7,7 @@ import mixins, { ExtractVue } from '../../util/mixins'
 import { consoleWarn } from '../../util/console'
 
 // Types
-import { PropOptions } from 'vue'
-import { VNode } from 'vue/types'
+import type { PropOptions, VNode } from '../../types/vue-internal'
 
 interface options {
   $el: HTMLElement
@@ -34,27 +33,23 @@ function removeActivator (activator: VNode[]) {
 }
 
 /* @vue/component */
-export default mixins<options &
-  /* eslint-disable indent */
-  ExtractVue<typeof Bootable>
-  /* eslint-enable indent */
->(Bootable).extend({
+export default mixins(Bootable).extend({
   name: 'detachable',
 
   props: {
     attach: {
       default: false,
-      validator: validateAttachTarget,
-    } as PropOptions<boolean | string | Element>,
+      validator: validateAttachTarget
+    } as PropOptions,
     contentClass: {
       type: String,
-      default: '',
-    },
+      default: ''
+    }
   },
 
   data: () => ({
     activatorNode: null as null | VNode | VNode[],
-    hasDetached: false,
+    hasDetached: false
   }),
 
   watch: {
@@ -64,7 +59,7 @@ export default mixins<options &
     },
     hasContent () {
       this.$nextTick(this.initDetach)
-    },
+    }
   },
 
   beforeMount () {
@@ -170,6 +165,6 @@ export default mixins<options &
       target.appendChild(this.$refs.content)
 
       this.hasDetached = true
-    },
-  },
+    }
+  }
 })

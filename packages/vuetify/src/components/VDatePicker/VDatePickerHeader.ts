@@ -31,25 +31,25 @@ export default defineComponent({
     nextAriaLabel: String,
     nextIcon: {
       type: String,
-      default: '$next',
+      default: '$next'
     },
     prevAriaLabel: String,
     prevIcon: {
       type: String,
-      default: '$prev',
+      default: '$prev'
     },
     readonly: Boolean,
     modelValue: {
       type: [Number, String],
-      required: true,
-    },
+      required: true
+    }
   },
 
   emits: ['update:modelValue', 'toggle'],
 
   data () {
     return {
-      isReversing: false,
+      isReversing: false
     }
   },
 
@@ -62,25 +62,25 @@ export default defineComponent({
       } else {
         return createNativeLocaleFormatter(this.currentLocale, { year: 'numeric', timeZone: 'UTC' }, { length: 4 })
       }
-    },
+    }
+  },
+
+  watch: {
+    modelValue (newVal, oldVal) {
+      this.isReversing = newVal < oldVal
+    }
   },
 
   created () {
     const breakingProps = [
       ['value', 'modelValue'],
-      ['onInput', 'onUpdate:modelValue'],
+      ['onInput', 'onUpdate:modelValue']
     ]
 
     /* istanbul ignore next */
     breakingProps.forEach(([original, replacement]) => {
       if (this.$attrs.hasOwnProperty(original)) breaking(original, replacement, this)
     })
-  },
-
-  watch: {
-    modelValue (newVal, oldVal) {
-      this.isReversing = newVal < oldVal
-    },
   },
 
   methods: {
@@ -100,13 +100,13 @@ export default defineComponent({
         onClick: (e: Event) => {
           e.stopPropagation()
           this.$emit('update:modelValue', this.calculateChange(change))
-        },
+        }
       }, {
         default: () => [
           h(VIcon, {}, {
-            default: () => (((change < 0) === !this.$vuetify.rtl) ? this.prevIcon : this.nextIcon),
-          }),
-        ],
+            default: () => (((change < 0) === !this.$vuetify.rtl) ? this.prevIcon : this.nextIcon)
+          })
+        ]
       })
     },
     calculateChange (sign: number) {
@@ -121,44 +121,44 @@ export default defineComponent({
     genHeader () {
       const color = !this.disabled && (this.color || 'accent')
       const header = h('div', this.setTextColor(color, {
-        key: String(this.modelValue),
+        key: String(this.modelValue)
       }), {
         default: () => [h('button', {
           type: 'button',
-          onClick: () => this.$emit('toggle'),
+          onClick: () => this.$emit('toggle')
         }, {
-          default: () => getSlot(this) || [this.formatter(String(this.modelValue))],
-        })],
+          default: () => getSlot(this) || [this.formatter(String(this.modelValue))]
+        })]
       })
 
       const transition = h(Transition, {
-        name: (this.isReversing === !this.$vuetify.rtl) ? 'tab-reverse-transition' : 'tab-transition',
+        name: (this.isReversing === !this.$vuetify.rtl) ? 'tab-reverse-transition' : 'tab-transition'
       }, {
-        default: () => [header],
+        default: () => [header]
       })
 
       return h('div', {
         class: ['v-date-picker-header__value', {
-          'v-date-picker-header__value--disabled': this.disabled,
-        }],
+          'v-date-picker-header__value--disabled': this.disabled
+        }]
       }, {
-        default: () => [transition],
+        default: () => [transition]
       })
-    },
+    }
   },
 
   render (): VNode {
     return h('div', {
       class: ['v-date-picker-header', {
         'v-date-picker-header--disabled': this.disabled,
-        ...this.themeClasses,
-      }],
+        ...this.themeClasses
+      }]
     }, {
       default: () => [
         this.genBtn(-1),
         this.genHeader(),
-        this.genBtn(+1),
-      ],
+        this.genBtn(+1)
+      ]
     })
-  },
+  }
 })

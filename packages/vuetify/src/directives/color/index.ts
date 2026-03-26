@@ -2,13 +2,14 @@
 import {
   classToHex,
   isCssColor,
-  parseGradient,
+  parseGradient
 } from '../../util/colorUtils'
 import colors from '../../util/colors'
 
 // Types
 import { VuetifyThemeVariant } from 'types/services/theme'
-import { VNode, VNodeDirective } from 'vue'
+import type { VNode } from 'vue'
+import type { VNodeDirective } from '../../types/vue-internal'
 
 interface BorderModifiers {
   top?: Boolean
@@ -20,7 +21,7 @@ interface BorderModifiers {
 function setTextColor (
   el: HTMLElement,
   color: string,
-  currentTheme: Partial<VuetifyThemeVariant>,
+  currentTheme: Partial<VuetifyThemeVariant>
 ) {
   const cssColor = !isCssColor(color) ? classToHex(color, colors, currentTheme) : color
 
@@ -31,7 +32,7 @@ function setTextColor (
 function setBackgroundColor (
   el: HTMLElement,
   color: string,
-  currentTheme: Partial<VuetifyThemeVariant>,
+  currentTheme: Partial<VuetifyThemeVariant>
 ) {
   const cssColor = !isCssColor(color) ? classToHex(color, colors, currentTheme) : color
 
@@ -43,7 +44,7 @@ function setBorderColor (
   el: HTMLElement,
   color: string,
   currentTheme: Partial<VuetifyThemeVariant>,
-  modifiers?: BorderModifiers,
+  modifiers?: BorderModifiers
 ) {
   const cssColor = !isCssColor(color) ? classToHex(color, colors, currentTheme) : color
 
@@ -61,7 +62,7 @@ function setBorderColor (
 function setGradientColor (
   el: HTMLElement,
   gradient: string,
-  currentTheme: Partial<VuetifyThemeVariant>,
+  currentTheme: Partial<VuetifyThemeVariant>
 ) {
   el.style.backgroundImage = `linear-gradient(${
     parseGradient(gradient, colors, currentTheme)
@@ -102,7 +103,7 @@ function update (
 
 export const Color = {
   mounted: updateColor,
-  updated: update,
+  updated: update
 }
 
 export default Color

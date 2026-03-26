@@ -20,7 +20,6 @@ module.exports = {
       singleline: 1,
       multiline: {
         max: 1,
-        allowFirstLine: false,
       },
     }],
     'vue/component-definition-name-casing': ['error', 'kebab-case'],
@@ -28,12 +27,20 @@ module.exports = {
     'jest/no-disabled-tests': 'off',
     'jest/no-large-snapshots': 'warn',
     'jest/prefer-spy-on': 'warn',
-    'jest/prefer-to-be-null': 'warn',
-    'jest/prefer-to-be-undefined': 'warn',
     'jest/prefer-to-contain': 'warn',
     'jest/prefer-to-have-length': 'warn',
     'jest/no-standalone-expect': 'off',
     'jest/no-conditional-expect': 'off',
+    'vue/multi-word-component-names': 'off',
+    'vue/require-explicit-emits': 'off',
+    '@typescript-eslint/member-ordering': 'off',
+    'jest/expect-expect': 'off',
+
+    'import/no-duplicates': 'off',
+    'vue/no-deprecated-dollar-listeners-api': 'off',
+    'vue/no-deprecated-events-api': 'off',
+    'vue/require-slots-as-functions': 'off',
+    'vue/custom-event-name-casing': 'off',
   },
   overrides: [
     {
@@ -47,6 +54,7 @@ module.exports = {
       rules: {
         'no-console': 'off',
         'vue/component-definition-name-casing': 'off',
+        'max-statements': 'off',
       },
     },
   ],

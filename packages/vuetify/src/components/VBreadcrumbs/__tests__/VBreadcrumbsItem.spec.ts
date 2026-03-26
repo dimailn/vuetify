@@ -6,7 +6,7 @@ import {
   mount,
   VueWrapper,
   MountingOptions,
-  enableAutoUnmount,
+  enableAutoUnmount
 } from '@vue/test-utils'
 
 describe('VBreadcrumbsItem.ts', () => {
@@ -18,7 +18,7 @@ describe('VBreadcrumbsItem.ts', () => {
   beforeEach(() => {
     mountFunction = (options: MountingOptions<Instance> = {}) => {
       return mount(VBreadcrumbsItem, {
-        ...options,
+        ...options
       })
     }
   })
@@ -32,11 +32,11 @@ describe('VBreadcrumbsItem.ts', () => {
   it('should render component with active & link state and match snapshot', async () => {
     const wrapper = mountFunction({
       props: {
-        link: true,
-      },
+        link: true
+      }
     })
     await wrapper.setData({
-      isActive: true,
+      isActive: true
     })
 
     expect(wrapper.html()).toMatchSnapshot()

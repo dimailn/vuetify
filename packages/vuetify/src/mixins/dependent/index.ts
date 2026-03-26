@@ -1,4 +1,4 @@
-import {defineComponent} from 'vue'
+import { defineComponent } from 'vue'
 
 import mixins from '../../util/mixins'
 import { VOverlay } from '../../components/VOverlay'
@@ -14,11 +14,10 @@ interface options {
 interface DependentInstance extends Vue {
   isActive?: boolean
   isDependent?: boolean
+  children?: { default?: () => any[] }
 }
 
-function searchChildren (children: Vue[]): DependentInstance[] {
-
-
+function searchChildren (children: any[]): DependentInstance[] {
   const results = []
   for (let index = 0; index < children.length; index++) {
     const child = children[index] as DependentInstance
@@ -34,14 +33,14 @@ function searchChildren (children: Vue[]): DependentInstance[] {
 }
 
 /* @vue/component */
-export default mixins<Vue & options>().extend({
+export default mixins().extend({
   name: 'dependent',
 
   data () {
     return {
       closeDependents: true,
       isActive: false,
-      isDependent: true,
+      isDependent: true
     }
   },
 
@@ -53,17 +52,16 @@ export default mixins<Vue & options>().extend({
       for (let index = 0; index < openDependents.length; index++) {
         openDependents[index].isActive = false
       }
-    },
+    }
   },
 
   methods: {
     getOpenDependents (): any[] {
       const node = this.$slots.default?.()
 
-      if(!node) return []
+      if (!node) return []
 
       if (this.closeDependents) return searchChildren(node)
-
 
       return []
     },
@@ -84,6 +82,6 @@ export default mixins<Vue & options>().extend({
       result.push(...this.getOpenDependentElements())
 
       return result
-    },
-  },
+    }
+  }
 })

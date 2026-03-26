@@ -9,7 +9,7 @@ describe('intersect', () => {
 
     Intersect.mounted(el, {
       value: callback,
-      modifiers: { quiet: true },
+      modifiers: { quiet: true }
     } as any, { ctx: { uid: 1 } } as any)
 
     expect((el as any)._observe).toBeTruthy()
@@ -19,7 +19,7 @@ describe('intersect', () => {
 
     Intersect.unmounted(el, {
       value: callback,
-      modifiers: { quiet: true },
+      modifiers: { quiet: true }
     } as any, { ctx: { uid: 1 } } as any)
 
     expect((el as any)._observe[1]).toBeFalsy()
@@ -34,7 +34,7 @@ describe('intersect', () => {
 
     Intersect.mounted(el, {
       value: callback,
-      modifiers: { once: true },
+      modifiers: { once: true }
     } as any, { ctx: { uid: 1 } } as any)
 
     expect(callback).toHaveBeenCalledTimes(0)

@@ -9,7 +9,7 @@ import { consoleError, consoleWarn } from '../../util/console'
 import { VuetifyPreset } from 'vuetify/types/services/presets'
 import {
   VuetifyLocale,
-  Lang as ILang,
+  Lang as ILang
 } from 'vuetify/types/services/lang'
 
 const LANG_PREFIX = '$vuetify.'
@@ -54,7 +54,7 @@ export class Lang extends Service implements ILang {
     const {
       current,
       locales,
-      t,
+      t
     } = preset[Lang.property]
 
     this.current = current

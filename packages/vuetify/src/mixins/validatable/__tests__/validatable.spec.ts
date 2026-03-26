@@ -2,7 +2,7 @@ import Validatable from '../'
 import {
   mount,
   MountingOptions,
-  VueWrapper,
+  VueWrapper
 } from '@vue/test-utils'
 import { wait } from '../../../../test'
 import { defineComponent, h } from 'vue'
@@ -10,7 +10,7 @@ import { defineComponent, h } from 'vue'
 describe('validatable.ts', () => {
   const Mock = defineComponent({
     mixins: [Validatable],
-    render: () => h('div'),
+    render: () => h('div')
   })
 
   type Instance = InstanceType<typeof Mock>;
@@ -23,11 +23,11 @@ describe('validatable.ts', () => {
         global: {
           mocks: {
             $vuetify: {
-              theme: { dark: false },
-            },
-          },
+              theme: { dark: false }
+            }
+          }
         },
-        ...options,
+        ...options
       })
     }
   })
@@ -35,11 +35,11 @@ describe('validatable.ts', () => {
   it('should register/unregister with injected form is available', () => {
     const form = {
       register: jest.fn(),
-      unregister: jest.fn(),
+      unregister: jest.fn()
     }
 
     const wrapper = mountFunction({
-      global: { provide: { form } },
+      global: { provide: { form } }
     })
 
     expect(form.register).toHaveBeenCalled()
@@ -65,8 +65,8 @@ describe('validatable.ts', () => {
         jest.useFakeTimers()
         const wrapper = mountFunction({
           props: {
-            rules: [() => returns || String(returns)],
-          },
+            rules: [() => returns || String(returns)]
+          }
         })
 
         expect(wrapper.vm.valid).toBe(returns)
@@ -97,7 +97,7 @@ describe('validatable.ts', () => {
 
     // Function passing with proper value handling
     await wrapper.setProps({
-      rules: [val => (val && val.length > 3) || 'fizzbuzz'],
+      rules: [val => (val && val.length > 3) || 'fizzbuzz']
     })
     wrapper.vm.validate(false, 'foo')
 
@@ -157,8 +157,8 @@ describe('validatable.ts', () => {
 
     const wrapper = mountFunction({
       props: {
-        validateOnBlur: true,
-      },
+        validateOnBlur: true
+      }
     })
 
     // Create a mock function and replace the validate method
@@ -318,8 +318,8 @@ describe('validatable.ts', () => {
   it('should return a sliced amount based on error count', async () => {
     const wrapper = mountFunction({
       props: {
-        errorMessages: ['foobar', 'fizzbuzz'],
-      },
+        errorMessages: ['foobar', 'fizzbuzz']
+      }
     })
 
     expect(wrapper.vm.validations).toHaveLength(1)
@@ -391,8 +391,8 @@ describe('validatable.ts', () => {
   it('should reset validation and internalValue', async () => {
     const wrapper = mountFunction({
       props: {
-        modelValue: 'foobar',
-      },
+        modelValue: 'foobar'
+      }
     })
 
     wrapper.vm.reset()
@@ -416,8 +416,8 @@ describe('validatable.ts', () => {
   it('should accept null for external messages', async () => {
     const wrapper = mountFunction({
       props: {
-        errorMessages: ['Foobar'],
-      },
+        errorMessages: ['Foobar']
+      }
     })
 
     expect(wrapper.vm.externalError).toBe(true)
@@ -438,14 +438,14 @@ describe('validatable.ts', () => {
       global: {
         mocks: {
           $vuetify: {
-            theme: { dark: false },
-          },
+            theme: { dark: false }
+          }
         },
         computed: {
-          appIsDark: () => false,
-        },
+          appIsDark: () => false
+        }
       },
-      props: { dark: true },
+      props: { dark: true }
     })
 
     expect(wrapper.vm.computedColor).toBe('white')
@@ -460,13 +460,13 @@ describe('validatable.ts', () => {
       global: {
         mocks: {
           $vuetify: {
-            theme: { dark: true },
-          },
+            theme: { dark: true }
+          }
         },
         computed: {
-          appIsDark: () => true,
-        },
-      },
+          appIsDark: () => true
+        }
+      }
     })
 
     expect(wrapper2.vm.computedColor).toBe('primary')
@@ -483,8 +483,8 @@ describe('validatable.ts', () => {
       props: {
         color: 'blue',
         dark: true,
-        disabled: true,
-      },
+        disabled: true
+      }
     })
 
     expect(wrapper.vm.computedColor).toBeUndefined()
@@ -498,8 +498,8 @@ describe('validatable.ts', () => {
       props: {
         rules: [v => !!v || 'Mandatory Field'],
         validateOnBlur: true,
-        modelValue: 'Foo',
-      },
+        modelValue: 'Foo'
+      }
     })
 
     wrapper.vm.isFocused = true

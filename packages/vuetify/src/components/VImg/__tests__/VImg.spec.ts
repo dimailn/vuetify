@@ -5,7 +5,7 @@ import VImg from '../VImg'
 import {
   mount,
   VueWrapper,
-  enableAutoUnmount,
+  enableAutoUnmount
 } from '@vue/test-utils'
 import { h } from 'vue'
 
@@ -21,8 +21,8 @@ describe('VImg.ts', () => {
         ...options,
         props: {
           eager: true,
-          ...options.props,
-        },
+          ...options.props
+        }
       })
     }
   })
@@ -45,18 +45,18 @@ describe('VImg.ts', () => {
             this.onload && this.onload()
           })
         }
-      },
+      }
     })
     Object.defineProperty((global as any).Image.prototype, 'currentSrc', {
       get () {
         return this._currentSrc
-      },
+      }
     })
     Object.defineProperty((global as any).Image.prototype, 'naturalWidth', {
-      get () { return this._naturalWidth },
+      get () { return this._naturalWidth }
     })
     Object.defineProperty((global as any).Image.prototype, 'naturalHeight', {
-      get () { return this._naturalHeight },
+      get () { return this._naturalHeight }
     })
   })
 
@@ -66,7 +66,7 @@ describe('VImg.ts', () => {
 
   it('should load', async () => {
     const wrapper = mountFunction({
-      props: { src: LOAD_SUCCESS_SRC },
+      props: { src: LOAD_SUCCESS_SRC }
     })
 
     expect(wrapper.html()).toMatchSnapshot()
@@ -81,11 +81,11 @@ describe('VImg.ts', () => {
     const wrapper = mountFunction({
       props: {
         src: 'full_src',
-        lazySrc: 'lazy_src',
+        lazySrc: 'lazy_src'
       },
       slots: {
-        placeholder: () => h('div', ['loading...']),
-      },
+        placeholder: () => h('div', ['loading...'])
+      }
     })
 
     expect(wrapper.html()).toMatchSnapshot()
@@ -99,8 +99,8 @@ describe('VImg.ts', () => {
   it('should emit errors', () => {
     const wrapper = mountFunction({
       props: {
-        src: LOAD_FAILURE_SRC,
-      },
+        src: LOAD_FAILURE_SRC
+      }
     })
 
     jest.runOnlyPendingTimers()
@@ -113,8 +113,8 @@ describe('VImg.ts', () => {
     const wrapper = mountFunction({
       props: {
         src: LOAD_SUCCESS_SRC,
-        alt: 'this is not a decorative image',
-      },
+        alt: 'this is not a decorative image'
+      }
     })
 
     jest.runOnlyPendingTimers()
@@ -129,9 +129,9 @@ describe('VImg.ts', () => {
         src: {
           src: LOAD_SUCCESS_SRC,
           lazySrc: 'lazySrc_auto',
-          aspect: 1,
-        },
-      },
+          aspect: 1
+        }
+      }
     })
 
     jest.runOnlyPendingTimers()
@@ -145,11 +145,11 @@ describe('VImg.ts', () => {
         src: {
           src: LOAD_SUCCESS_SRC,
           lazySrc: 'lazySrc_auto',
-          aspect: 1,
+          aspect: 1
         },
         lazySrc: 'lazySrc_manual',
-        aspectRatio: 2,
-      },
+        aspectRatio: 2
+      }
     })
 
     jest.runOnlyPendingTimers()
@@ -160,8 +160,8 @@ describe('VImg.ts', () => {
   it('should update src', async () => {
     const wrapper = mountFunction({
       props: {
-        src: LOAD_SUCCESS_SRC,
-      },
+        src: LOAD_SUCCESS_SRC
+      }
     })
 
     jest.runOnlyPendingTimers()
@@ -180,8 +180,8 @@ describe('VImg.ts', () => {
   it('should update src while still loading', async () => {
     const wrapper = mountFunction({
       props: {
-        src: LOAD_SUCCESS_SRC,
-      },
+        src: LOAD_SUCCESS_SRC
+      }
     })
 
     expect(wrapper.html()).toMatchSnapshot()

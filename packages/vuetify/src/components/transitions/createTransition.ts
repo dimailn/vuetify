@@ -1,6 +1,6 @@
-import { FunctionalComponentOptions, VNode, VNodeData, Transition, TransitionGroup } from 'vue'
+import type { FunctionalComponentOptions, VNode, VNodeData } from '../../types/vue-internal'
+import { Transition, TransitionGroup, h } from 'vue'
 import mergeData from '../../util/mergeData'
-import {h} from 'vue'
 
 function mergeTransitions (
   dest: Function | Function[] = [],
@@ -23,24 +23,24 @@ export function createSimpleTransition (
     props: {
       group: {
         type: Boolean,
-        default: false,
+        default: false
       },
       hideOnLeave: {
         type: Boolean,
-        default: false,
+        default: false
       },
       leaveAbsolute: {
         type: Boolean,
-        default: false,
+        default: false
       },
       mode: {
         type: String,
-        default: mode,
+        default: mode
       },
       origin: {
         type: String,
-        default: origin,
-      },
+        default: origin
+      }
     },
 
     render (): VNode {
@@ -63,7 +63,7 @@ export function createSimpleTransition (
             top: el.style.top,
             left: el.style.left,
             width: el.style.width,
-            height: el.style.height,
+            height: el.style.height
           }
           el.style.position = 'absolute'
           el.style.top = offsetTop + 'px'
@@ -88,8 +88,8 @@ export function createSimpleTransition (
           el.style.setProperty('display', 'none', 'important')
         })
       }
-      return h(tag, mergeData(this.$attrs, data), () => this.$slots.default())
-    },
+      return h(tag as any, mergeData(this.$attrs, data) as any, () => this.$slots.default?.() ?? [])
+    }
   }
 }
 
@@ -106,8 +106,8 @@ export function createJavascriptTransition (
     props: {
       mode: {
         type: String,
-        default: mode,
-      },
+        default: mode
+      }
     },
 
     render (): VNode {
@@ -115,10 +115,10 @@ export function createJavascriptTransition (
         Transition,
         mergeData(this.$attrs, {
           name,
-          ...functions,
+          ...functions
         }),
         () => this.$slots.default()
       )
-    },
+    }
   }
 }

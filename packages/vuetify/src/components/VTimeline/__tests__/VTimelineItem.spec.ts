@@ -3,7 +3,7 @@ import {
   mount,
   VueWrapper,
   MountingOptions,
-  enableAutoUnmount,
+  enableAutoUnmount
 } from '@vue/test-utils'
 import { h } from 'vue'
 
@@ -19,11 +19,11 @@ describe('VTimelineItem.ts', () => {
         global: {
           provide: {
             timeline: {
-              reverse: false,
-            },
-          },
+              reverse: false
+            }
+          }
         },
-        ...options,
+        ...options
       })
     }
   })
@@ -31,8 +31,8 @@ describe('VTimelineItem.ts', () => {
   it('should conditionally render dot', async () => {
     const wrapper = mountFunction({
       props: {
-        hideDot: true,
-      },
+        hideDot: true
+      }
     })
 
     expect(wrapper.html()).toMatchSnapshot()
@@ -45,20 +45,20 @@ describe('VTimelineItem.ts', () => {
   it('should conditionally render an icon or icon slot', () => {
     expect(mountFunction({
       slots: {
-        icon: () => h('div', 'foo'),
-      },
+        icon: () => h('div', 'foo')
+      }
     }).html()).toMatchSnapshot()
 
     expect(mountFunction({
-      props: { icon: 'foo' },
+      props: { icon: 'foo' }
     }).html()).toMatchSnapshot()
   })
 
   it('should render opposite slot', () => {
     const wrapper = mountFunction({
       slots: {
-        opposite: () => h('div', 'foo'),
-      },
+        opposite: () => h('div', 'foo')
+      }
     })
 
     expect(wrapper.html()).toMatchSnapshot()

@@ -5,7 +5,7 @@ import VCounter from '../VCounter'
 import {
   mount,
   VueWrapper,
-  enableAutoUnmount,
+  enableAutoUnmount
 } from '@vue/test-utils'
 
 describe('VCounter.ts', () => {
@@ -16,7 +16,7 @@ describe('VCounter.ts', () => {
   beforeEach(() => {
     mountFunction = (props = {}) => {
       return mount(VCounter, {
-        props,
+        props
       })
     }
   })

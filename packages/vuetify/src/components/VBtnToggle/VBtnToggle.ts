@@ -22,7 +22,7 @@ export default mixins(
     group: Boolean,
     rounded: Boolean,
     shaped: Boolean,
-    tile: Boolean,
+    tile: Boolean
   },
 
   computed: {
@@ -36,20 +36,20 @@ export default mixins(
         'v-btn-toggle--rounded': this.rounded,
         'v-btn-toggle--shaped': this.shaped,
         'v-btn-toggle--tile': this.tile,
-        ...this.themeClasses,
+        ...this.themeClasses
       }
-    },
+    }
   },
 
   methods: {
     genData () {
       const data = this.setTextColor(this.color, {
-        ...ButtonGroup.methods.genData.call(this),
+        ...ButtonGroup.methods.genData.call(this)
       })
 
       if (this.group) return data
 
       return this.setBackgroundColor(this.backgroundColor, data)
-    },
-  },
+    }
+  }
 })

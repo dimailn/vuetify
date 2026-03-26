@@ -3,7 +3,7 @@ export default {
   close: 'Bezárás',
   dataIterator: {
     noResultsText: 'Nincs egyező találat',
-    loadingText: 'Betöltés...',
+    loadingText: 'Betöltés...'
   },
   dataTable: {
     itemsPerPageText: 'Elem oldalanként:',
@@ -13,9 +13,9 @@ export default {
       sortNone: 'Rendezetlen.',
       activateNone: 'Rendezés törlése.',
       activateDescending: 'Aktiváld a csökkenő rendezésért.',
-      activateAscending: 'Aktiváld a növekvő rendezésért.',
+      activateAscending: 'Aktiváld a növekvő rendezésért.'
     },
-    sortBy: 'Rendezés',
+    sortBy: 'Rendezés'
   },
   dataFooter: {
     itemsPerPageText: 'Elem oldalanként:',
@@ -24,38 +24,38 @@ export default {
     prevPage: 'Előző oldal',
     firstPage: 'Első oldal',
     lastPage: 'Utolsó oldal',
-    pageText: '{0}-{1} / {2}',
+    pageText: '{0}-{1} / {2}'
   },
   datePicker: {
     itemsSelected: '{0} kiválasztva',
     nextMonthAriaLabel: 'Következő hónap',
     nextYearAriaLabel: 'Következő év',
     prevMonthAriaLabel: 'Előző hónap',
-    prevYearAriaLabel: 'Előző év',
+    prevYearAriaLabel: 'Előző év'
   },
   noDataText: 'Nincs elérhető adat',
   carousel: {
     prev: 'Előző',
     next: 'Következő',
     ariaLabel: {
-      delimiter: 'Dia {0}/{1}',
-    },
+      delimiter: 'Dia {0}/{1}'
+    }
   },
   calendar: {
-    moreEvents: '{0} további',
+    moreEvents: '{0} további'
   },
   input: {
     clear: 'Clear {0}',
     prependAction: '{0} prepended action',
-    appendAction: '{0} appended action',
+    appendAction: '{0} appended action'
   },
   fileInput: {
     counter: '{0} fájl',
-    counterSize: '{0} fájl ({1} összesen)',
+    counterSize: '{0} fájl ({1} összesen)'
   },
   timePicker: {
     am: 'de',
-    pm: 'du',
+    pm: 'du'
   },
   pagination: {
     ariaLabel: {
@@ -63,13 +63,13 @@ export default {
       next: 'Következő oldal',
       previous: 'Előző oldal',
       page: 'Menj a(z) {0}. oldalra',
-      currentPage: 'Aktuális oldal: {0}',
-    },
+      currentPage: 'Aktuális oldal: {0}'
+    }
   },
   rating: {
     ariaLabel: {
-      icon: 'Rating {0} of {1}',
-    },
+      icon: 'Rating {0} of {1}'
+    }
   },
-  loading: 'Loading...',
+  loading: 'Loading...'
 }

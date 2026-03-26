@@ -3,7 +3,7 @@ import {
   mount,
   VueWrapper,
   MountingOptions,
-  enableAutoUnmount,
+  enableAutoUnmount
 } from '@vue/test-utils'
 import { h, nextTick } from 'vue'
 import { Breakpoint } from '../../../services/breakpoint'
@@ -15,7 +15,7 @@ import { resizeWindow } from '../../../../test'
 const $vuetify = {
   icons: {},
   rtl: false,
-  lang: new Lang(preset),
+  lang: new Lang(preset)
 }
 // Vue.directive('ripple', ripple)
 
@@ -24,13 +24,13 @@ const testHeaders = [
     text: 'Dessert (100g serving)',
     align: 'left',
     sortable: false,
-    value: 'name',
+    value: 'name'
   },
   { text: 'Calories', value: 'calories' },
   { text: 'Fat (g)', value: 'fat' },
   { text: 'Carbs (g)', value: 'carbs' },
   { text: 'Protein (g)', value: 'protein' },
-  { text: 'Iron (%)', value: 'iron' },
+  { text: 'Iron (%)', value: 'iron' }
 ]
 
 const testItems = [
@@ -41,7 +41,7 @@ const testItems = [
     carbs: 24,
     protein: 4.0,
     iron: '1%',
-    class: 'test',
+    class: 'test'
   },
   {
     name: 'Ice cream sandwich',
@@ -50,7 +50,7 @@ const testItems = [
     carbs: 37,
     protein: 4.3,
     iron: '1%',
-    class: ['test', 'second'],
+    class: ['test', 'second']
   },
   {
     name: 'Eclair',
@@ -59,7 +59,7 @@ const testItems = [
     carbs: 23,
     protein: 6.0,
     iron: '7%',
-    class: { test: true, second: false },
+    class: { test: true, second: false }
   },
   {
     name: 'Cupcake',
@@ -67,7 +67,7 @@ const testItems = [
     fat: 3.7,
     carbs: 67,
     protein: 4.3,
-    iron: '8%',
+    iron: '8%'
   },
   {
     name: 'Gingerbread',
@@ -75,7 +75,7 @@ const testItems = [
     fat: 16.0,
     carbs: 49,
     protein: 3.9,
-    iron: '16%',
+    iron: '16%'
   },
   {
     name: 'Jelly bean',
@@ -83,7 +83,7 @@ const testItems = [
     fat: 0.0,
     carbs: 94,
     protein: 0.0,
-    iron: '0%',
+    iron: '0%'
   },
   {
     name: 'Lollipop',
@@ -91,7 +91,7 @@ const testItems = [
     fat: 0.2,
     carbs: 98,
     protein: 0,
-    iron: '2%',
+    iron: '2%'
   },
   {
     name: 'Honeycomb',
@@ -99,7 +99,7 @@ const testItems = [
     fat: 3.2,
     carbs: 87,
     protein: 6.5,
-    iron: '45%',
+    iron: '45%'
   },
   {
     name: 'Donut',
@@ -107,7 +107,7 @@ const testItems = [
     fat: 25.0,
     carbs: 51,
     protein: 4.9,
-    iron: '22%',
+    iron: '22%'
   },
   {
     name: 'KitKat',
@@ -115,8 +115,8 @@ const testItems = [
     fat: 26.0,
     carbs: 65,
     protein: 7,
-    iron: '6%',
-  },
+    iron: '6%'
+  }
 ]
 
 /* eslint-disable max-statements */
@@ -134,23 +134,23 @@ describe('VDataTable.ts', () => {
         breakpoint: new Breakpoint(preset),
         lang: new Lang(preset),
         theme: {
-          dark: false,
+          dark: false
         },
-        icons: {},
+        icons: {}
       }
 
       return mount(VDataTable, {
         global: {
           config: {
             globalProperties: {
-              $vuetify: vuetifyInstance,
-            },
+              $vuetify: vuetifyInstance
+            }
           },
           mocks: {
-            $vuetify: vuetifyInstance,
-          },
+            $vuetify: vuetifyInstance
+          }
         },
-        ...options,
+        ...options
       })
     }
 
@@ -168,8 +168,8 @@ describe('VDataTable.ts', () => {
       props: {
         headers: testHeaders,
         items: testItems,
-        itemsPerPage: 5,
-      },
+        itemsPerPage: 5
+      }
     })
 
     expect(wrapper.html()).toMatchSnapshot()
@@ -180,11 +180,11 @@ describe('VDataTable.ts', () => {
       props: {
         headers: testHeaders,
         items: testItems,
-        itemsPerPage: 5,
+        itemsPerPage: 5
       },
       slots: {
-        body: (props: any) => h('div', [props.items.length]),
-      },
+        body: (props: any) => h('div', [props.items.length])
+      }
     })
 
     expect(wrapper.html()).toMatchSnapshot()
@@ -195,11 +195,11 @@ describe('VDataTable.ts', () => {
       props: {
         headers: testHeaders,
         items: testItems,
-        itemsPerPage: 5,
+        itemsPerPage: 5
       },
       slots: {
-        foot: (props: any) => h('tfoot', [props.items.length]),
-      },
+        foot: (props: any) => h('tfoot', [props.items.length])
+      }
     })
 
     expect(wrapper.html()).toMatchSnapshot()
@@ -211,8 +211,8 @@ describe('VDataTable.ts', () => {
         headers: testHeaders,
         items: testItems,
         itemsPerPage: 5,
-        virtualRows: true,
-      },
+        virtualRows: true
+      }
     })
 
     expect(wrapper.html()).toMatchSnapshot()
@@ -226,11 +226,11 @@ describe('VDataTable.ts', () => {
         itemKey: 'name',
         items: testItems,
         itemsPerPage: 5,
-        showExpand: true,
+        showExpand: true
       },
       attrs: {
-        'onUpdate:expanded': expand,
-      },
+        'onUpdate:expanded': expand
+      }
     })
 
     expect(wrapper.html()).toMatchSnapshot()
@@ -251,8 +251,8 @@ describe('VDataTable.ts', () => {
         headers: testHeaders,
         items: testItems,
         itemsPerPage: 5,
-        showSelect: true,
-      },
+        showSelect: true
+      }
     })
 
     expect(wrapper.html()).toMatchSnapshot()
@@ -264,11 +264,11 @@ describe('VDataTable.ts', () => {
         headers: testHeaders,
         items: testItems,
         itemsPerPage: 5,
-        expanded: testItems,
+        expanded: testItems
       },
       slots: {
-        'expanded-item': (props: any) => h('div', ['expanded']),
-      },
+        'expanded-item': (props: any) => h('div', ['expanded'])
+      }
     })
 
     await nextTick()
@@ -282,11 +282,11 @@ describe('VDataTable.ts', () => {
         headers: testHeaders,
         items: testItems,
         itemsPerPage: 5,
-        groupBy: 'calories',
+        groupBy: 'calories'
       },
       slots: {
-        'group.summary': (props: any) => h('div', ['summary']),
-      },
+        'group.summary': (props: any) => h('div', ['summary'])
+      }
     })
 
     expect(wrapper.html()).toMatchSnapshot()
@@ -297,11 +297,11 @@ describe('VDataTable.ts', () => {
       props: {
         headers: testHeaders,
         items: testItems,
-        itemsPerPage: 5,
+        itemsPerPage: 5
       },
       slots: {
-        item: (props: any) => h('div', [JSON.stringify(props)]),
-      },
+        item: (props: any) => h('div', [JSON.stringify(props)])
+      }
     })
 
     expect(wrapper.html()).toMatchSnapshot()
@@ -313,8 +313,8 @@ describe('VDataTable.ts', () => {
         headers: testHeaders,
         items: testItems,
         itemsPerPage: 5,
-        groupBy: ['protein'],
-      },
+        groupBy: ['protein']
+      }
     })
 
     expect(wrapper.html()).toMatchSnapshot()
@@ -326,11 +326,11 @@ describe('VDataTable.ts', () => {
         headers: testHeaders,
         items: testItems,
         itemsPerPage: 5,
-        groupBy: ['protein'],
+        groupBy: ['protein']
       },
       slots: {
-        group: (props: any) => h('div', [JSON.stringify(props)]),
-      },
+        group: (props: any) => h('div', [JSON.stringify(props)])
+      }
     })
 
     expect(wrapper.html()).toMatchSnapshot()
@@ -341,8 +341,8 @@ describe('VDataTable.ts', () => {
       props: {
         loading: true,
         checkboxColor: 'primary',
-        color: 'primary',
-      },
+        color: 'primary'
+      }
     })
 
     expect(wrapper.html()).toMatchSnapshot()
@@ -350,11 +350,11 @@ describe('VDataTable.ts', () => {
     const wrapper2 = mountFunction({
       props: {
         headers: testHeaders,
-        loading: true,
+        loading: true
       },
       slots: {
-        progress: () => h('div', { class: 'progress' }, '50%'),
-      },
+        progress: () => h('div', { class: 'progress' }, '50%')
+      }
     })
 
     expect(wrapper2.html()).toMatchSnapshot()
@@ -363,13 +363,13 @@ describe('VDataTable.ts', () => {
   it.each([
     'click',
     'contextmenu',
-    'dblclick',
+    'dblclick'
   ])('should render row that can handle %s events', async event => {
     const wrapper = mountFunction({
       props: {
         headers: testHeaders,
-        items: testItems,
-      },
+        items: testItems
+      }
     })
 
     const row = wrapper.find('tbody tr')
@@ -389,9 +389,9 @@ describe('VDataTable.ts', () => {
         headers: [],
         items: [],
         footerProps: {
-          'items-per-page-text': 'Foo:',
-        },
-      },
+          'items-per-page-text': 'Foo:'
+        }
+      }
     })
 
     expect(wrapper.html()).toMatchSnapshot()
@@ -406,16 +406,16 @@ describe('VDataTable.ts', () => {
         items: testItems,
         options: {
           page: 2,
-          itemsPerPage: 5,
-        },
+          itemsPerPage: 5
+        }
       },
       attrs: {
-        'onUpdate:options': fn,
-      },
+        'onUpdate:options': fn
+      }
     })
 
     expect(fn).toHaveBeenCalledWith(expect.objectContaining({
-      page: 2,
+      page: 2
     }))
   })
 
@@ -423,11 +423,11 @@ describe('VDataTable.ts', () => {
     const wrapper = mountFunction({
       props: {
         headers: [],
-        items: [{}],
+        items: [{}]
       },
       slots: {
-        'footer.prepend': () => h('div', ['footer.prepend slot content']),
-      },
+        'footer.prepend': () => h('div', ['footer.prepend slot content'])
+      }
     })
 
     expect(wrapper.html()).toMatchSnapshot()
@@ -437,11 +437,11 @@ describe('VDataTable.ts', () => {
     const wrapper = mountFunction({
       props: {
         headers: [],
-        items: [{}],
+        items: [{}]
       },
       slots: {
-        'footer.page-text': ({ pageStart, pageStop }: any) => h('div', [`foo ${pageStart} bar ${pageStop}`]),
-      },
+        'footer.page-text': ({ pageStart, pageStop }: any) => h('div', [`foo ${pageStart} bar ${pageStop}`])
+      }
     })
 
     expect(wrapper.html()).toMatchSnapshot()
@@ -455,15 +455,15 @@ describe('VDataTable.ts', () => {
         items: [],
         page: 2,
         itemsPerPage: 5,
-        serverItemsLength: 0,
-      },
+        serverItemsLength: 0
+      }
     })
 
     expect(wrapper.html()).toMatchSnapshot()
 
     wrapper.setProps({
       items: testItems.slice(5),
-      serverItemsLength: 20,
+      serverItemsLength: 20
     })
     await nextTick()
 
@@ -479,21 +479,21 @@ describe('VDataTable.ts', () => {
             text: 'Dessert (100g serving)',
             align: 'left',
             filterable: false,
-            value: 'name',
+            value: 'name'
           },
           { text: 'Calories', value: 'calories' },
           { text: 'Fat (g)', value: 'fat' },
           { text: 'Carbs (g)', value: 'carbs' },
           { text: 'Protein (g)', value: 'protein' },
-          { text: 'Iron (%)', value: 'iron' },
-        ],
-      },
+          { text: 'Iron (%)', value: 'iron' }
+        ]
+      }
     })
 
     expect(wrapper.html()).toMatchSnapshot()
 
     wrapper.setProps({
-      search: 'cup',
+      search: 'cup'
     })
     await nextTick()
 
@@ -508,15 +508,15 @@ describe('VDataTable.ts', () => {
           {
             text: 'Dessert (100g serving)',
             align: 'left',
-            value: 'name',
+            value: 'name'
           },
           { text: 'Calories', value: 'calories', filter: (v: any) => v > 400 },
           { text: 'Fat (g)', value: 'fat' },
           { text: 'Carbs (g)', value: 'carbs' },
           { text: 'Protein (g)', value: 'protein' },
-          { text: 'Iron (%)', value: 'iron' },
-        ],
-      },
+          { text: 'Iron (%)', value: 'iron' }
+        ]
+      }
     })
 
     expect(wrapper.html()).toMatchSnapshot()
@@ -526,14 +526,14 @@ describe('VDataTable.ts', () => {
         {
           text: 'Dessert (100g serving)',
           align: 'left',
-          value: 'name',
+          value: 'name'
         },
         { text: 'Calories', value: 'calories', filter: (v: any) => v > 400, filterable: false },
         { text: 'Fat (g)', value: 'fat' },
         { text: 'Carbs (g)', value: 'carbs' },
         { text: 'Protein (g)', value: 'protein' },
-        { text: 'Iron (%)', value: 'iron' },
-      ],
+        { text: 'Iron (%)', value: 'iron' }
+      ]
     })
     await nextTick()
 
@@ -547,8 +547,8 @@ describe('VDataTable.ts', () => {
         headers: testHeaders,
         items: testItems,
         page: 3,
-        itemsPerPage: 5,
-      },
+        itemsPerPage: 5
+      }
     })
 
     expect(wrapper.html()).toMatchSnapshot()
@@ -561,9 +561,9 @@ describe('VDataTable.ts', () => {
         headers: testHeaders,
         items: testItems,
         footerProps: {
-          itemsPerPageOptions: [6, 7],
-        },
-      },
+          itemsPerPageOptions: [6, 7]
+        }
+      }
     })
 
     expect(wrapper.html()).toMatchSnapshot()
@@ -577,9 +577,9 @@ describe('VDataTable.ts', () => {
         items: testItems,
         itemsPerPage: -1,
         footerProps: {
-          itemsPerPageOptions: [6, { text: 'All', value: -1 }],
-        },
-      },
+          itemsPerPageOptions: [6, { text: 'All', value: -1 }]
+        }
+      }
     })
 
     expect(wrapper.html()).toMatchSnapshot()
@@ -593,12 +593,12 @@ describe('VDataTable.ts', () => {
         headers: testHeaders,
         items: testItems,
         footerProps: {
-          itemsPerPageOptions: [6, 7],
-        },
+          itemsPerPageOptions: [6, 7]
+        }
       },
       attrs: {
-        'onUpdate:itemsPerPage': itemsPerPage,
-      },
+        'onUpdate:itemsPerPage': itemsPerPage
+      }
     })
 
     expect(itemsPerPage).not.toHaveBeenCalled()
@@ -613,13 +613,13 @@ describe('VDataTable.ts', () => {
         items: testItems.slice(0, 4),
         itemsPerPage: 2,
         footerProps: {
-          itemsPerPageOptions: [2],
+          itemsPerPageOptions: [2]
         },
-        page: 2,
+        page: 2
       },
       attrs: {
-        'onUpdate:page': page,
-      },
+        'onUpdate:page': page
+      }
     })
 
     expect(wrapper.html()).toMatchSnapshot()
@@ -638,8 +638,8 @@ describe('VDataTable.ts', () => {
         items: testItems.slice(0, 2),
         modelValue: [testItems[0]],
         showSelect: true,
-        singleSelect: true,
-      },
+        singleSelect: true
+      }
     })
 
     const checkboxes = wrapper.findAll('.v-data-table__checkbox')
@@ -650,14 +650,14 @@ describe('VDataTable.ts', () => {
   it('should render non-selectable items correctly', async () => {
     const items = [
       { ...testItems[0], isSelectable: false },
-      { ...testItems[1] },
+      { ...testItems[1] }
     ]
     const wrapper = mountFunction({
       props: {
         headers: testHeaders,
         items,
-        showSelect: true,
-      },
+        showSelect: true
+      }
     })
 
     expect(wrapper.html()).toMatchSnapshot()
@@ -668,14 +668,14 @@ describe('VDataTable.ts', () => {
   it('should render select-all checkbox when items are selectable', async () => {
     const items = [
       { ...testItems[0], isSelectable: false },
-      { ...testItems[1] },
+      { ...testItems[1] }
     ]
     const wrapper = mountFunction({
       props: {
         headers: testHeaders,
         items,
-        showSelect: true,
-      },
+        showSelect: true
+      }
     })
 
     const selectAll = wrapper.findAll('.v-simple-checkbox')[0]
@@ -688,23 +688,23 @@ describe('VDataTable.ts', () => {
     const headers = [
       {
         text: 'Name',
-        value: 'name',
+        value: 'name'
       },
       {
         text: 'ID',
-        value: 'id',
-      },
+        value: 'id'
+      }
     ]
 
     const items = [
       {
         name: 'Assistance',
-        id: 1,
+        id: 1
       },
       {
         name: 'Candidat',
-        id: 2,
-      },
+        id: 2
+      }
     ]
 
     const wrapper = mountFunction({
@@ -712,8 +712,8 @@ describe('VDataTable.ts', () => {
         headers,
         items,
         itemKey: 'id',
-        groupBy: 'name',
-      },
+        groupBy: 'name'
+      }
     })
 
     expect(wrapper.html()).toMatchSnapshot()
@@ -730,11 +730,11 @@ describe('VDataTable.ts', () => {
         headers: testHeaders,
         itemKey: 'name',
         items: testItems.slice(0, 2),
-        groupBy: 'name',
+        groupBy: 'name'
       },
       slots: {
-        item: () => h('div', ['scoped']),
-      },
+        item: () => h('div', ['scoped'])
+      }
     })
 
     expect(wrapper.html()).toMatchSnapshot()
@@ -744,31 +744,31 @@ describe('VDataTable.ts', () => {
     const headers = [
       {
         text: 'Name',
-        value: 'name',
+        value: 'name'
       },
       {
         text: 'ID',
-        value: 'id',
-      },
+        value: 'id'
+      }
     ]
 
     const items = [
       {
         name: 'Assistance',
-        id: 1,
+        id: 1
       },
       {
         name: 'Candidat',
-        id: 2,
-      },
+        id: 2
+      }
     ]
 
     const wrapper = mountFunction({
       props: {
         headers,
         items,
-        itemKey: 'id',
-      },
+        itemKey: 'id'
+      }
     })
 
     expect(wrapper.html()).toMatchSnapshot()
@@ -783,31 +783,31 @@ describe('VDataTable.ts', () => {
     const headers = [
       {
         text: 'Name',
-        value: 'name',
+        value: 'name'
       },
       {
         text: 'ID',
-        value: 'id',
-      },
+        value: 'id'
+      }
     ]
 
     const items = [
       {
         name: 'Assistance',
-        id: 1,
+        id: 1
       },
       {
         name: 'Candidat',
-        id: 2,
-      },
+        id: 2
+      }
     ]
 
     const wrapper = mountFunction({
       props: {
         headers,
         itemKey: 'id',
-        serverItemsLength: 0,
-      },
+        serverItemsLength: 0
+      }
     })
 
     wrapper.setProps({ items, serverItemsLength: items.length })
@@ -822,8 +822,8 @@ describe('VDataTable.ts', () => {
         headers: testHeaders,
         itemKey: 'name',
         items: testItems.slice(0, 5),
-        sortBy: 'calories',
-      },
+        sortBy: 'calories'
+      }
     })
 
     wrapper.setProps({ sortDesc: true })
@@ -843,8 +843,8 @@ describe('VDataTable.ts', () => {
         headers: testHeaders,
         items: testItems,
         itemsPerPage: 5,
-        itemClass: () => ['my-class', 'my-other-class'],
-      },
+        itemClass: () => ['my-class', 'my-other-class']
+      }
     })
 
     expect(wrapper.html()).toMatchSnapshot()
@@ -856,8 +856,8 @@ describe('VDataTable.ts', () => {
         headers: testHeaders,
         items: testItems,
         itemsPerPage: 5,
-        itemClass: () => 'my-unique-class',
-      },
+        itemClass: () => 'my-unique-class'
+      }
     })
 
     expect(wrapper.html()).toMatchSnapshot()
@@ -871,9 +871,9 @@ describe('VDataTable.ts', () => {
         itemsPerPage: 5,
         itemClass: (item: any) => ({
           'first-class': item.fat < 10,
-          'second-class': item.protein > 4.0,
-        }),
-      },
+          'second-class': item.protein > 4.0
+        })
+      }
     })
 
     expect(wrapper.html()).toMatchSnapshot()
@@ -885,8 +885,8 @@ describe('VDataTable.ts', () => {
         headers: testHeaders,
         items: testItems,
         itemsPerPage: 5,
-        itemClass: 'class',
-      },
+        itemClass: 'class'
+      }
     })
 
     expect(wrapper.html()).toMatchSnapshot()
@@ -904,9 +904,9 @@ describe('VDataTable.ts', () => {
           { text: 'Fat (g)', value: 'fat' },
           { text: 'Carbs (g)', value: 'carbs' },
           { text: 'Protein (g)', value: 'protein' },
-          { text: 'Iron (%)', value: 'iron' },
-        ],
-      },
+          { text: 'Iron (%)', value: 'iron' }
+        ]
+      }
     })
 
     wrapper.setProps({ search: 'eclair' })
@@ -925,9 +925,9 @@ describe('VDataTable.ts', () => {
           { text: 'Fat (g)', value: 'fat' },
           { text: 'Carbs (g)', value: 'carbs' },
           { text: 'Protein (g)', value: 'protein' },
-          { text: 'Iron (%)', value: 'iron' },
-        ],
-      },
+          { text: 'Iron (%)', value: 'iron' }
+        ]
+      }
     })
 
     wrapper.setProps({ search: 'eclair' })
@@ -944,12 +944,12 @@ describe('VDataTable.ts', () => {
       props: {
         items: testItems,
         headers: [
-          { text: 'Dessert (100g serving)', value: 'name' },
+          { text: 'Dessert (100g serving)', value: 'name' }
         ],
         options: {
-          mustSort: true,
-        },
-      },
+          mustSort: true
+        }
+      }
     })
 
     wrapper.find('th').trigger('click')
@@ -974,15 +974,15 @@ describe('VDataTable.ts', () => {
             text: 'Dessert (100g serving)',
             align: 'left',
             value: 'name',
-            groupable: false,
+            groupable: false
           },
           { text: 'Calories', value: 'calories' },
           { text: 'Fat (g)', value: 'fat' },
           { text: 'Carbs (g)', value: 'carbs' },
           { text: 'Protein (g)', value: 'protein' },
-          { text: 'Iron (%)', value: 'iron' },
-        ],
-      },
+          { text: 'Iron (%)', value: 'iron' }
+        ]
+      }
     })
 
     expect(wrapper.html()).toMatchSnapshot()
@@ -998,9 +998,9 @@ describe('VDataTable.ts', () => {
           { text: 'Fat (g)', value: 'fat' },
           { text: 'Carbs (g)', value: 'carbs' },
           { text: 'Protein (g)', value: 'protein' },
-          { text: 'Iron (%)', value: 'iron' },
-        ],
-      },
+          { text: 'Iron (%)', value: 'iron' }
+        ]
+      }
     })
 
     wrapper.setProps({ search: 'unknown-term' })
@@ -1022,9 +1022,9 @@ describe('VDataTable.ts', () => {
           { text: 'Fat (g)', value: 'fat' },
           { text: 'Carbs (g)', value: 'carbs' },
           { text: 'Protein (g)', value: 'protein' },
-          { text: 'Iron (%)', value: 'iron' },
-        ],
-      },
+          { text: 'Iron (%)', value: 'iron' }
+        ]
+      }
     })
 
     wrapper.setProps({ search: 'EA' })
@@ -1041,8 +1041,8 @@ describe('VDataTable.ts', () => {
         itemsPerPage: 5,
         showSelect: true,
         headers: testHeaders,
-        mobileBreakpoint: 0,
-      },
+        mobileBreakpoint: 0
+      }
     })
 
     // Just check that the component renders without errors
@@ -1054,5 +1054,83 @@ describe('VDataTable.ts', () => {
     // Check that page 2 renders without errors
     expect(wrapper.html()).toContain('v-data-table')
     expect(wrapper.html()).toMatchSnapshot()
+  })
+
+  describe('Vue 3 slots / RowGroup / pickSlotFunctions regressions', () => {
+    it('should render expanded-item inside .v-data-table__expanded__content (RowGroup row.header + row.content)', async () => {
+      const two = testItems.slice(0, 2)
+      const wrapper = mountFunction({
+        props: {
+          headers: testHeaders,
+          items: two,
+          itemsPerPage: 10,
+          itemKey: 'name',
+          expanded: two
+        },
+        slots: {
+          'expanded-item': () => h('td', { colspan: testHeaders.length }, 'EXPANDED_SLOT_MARK')
+        }
+      })
+
+      await nextTick()
+
+      expect(wrapper.html()).toContain('EXPANDED_SLOT_MARK')
+      expect(wrapper.findAll('.v-data-table__expanded__content')).toHaveLength(2)
+    })
+
+    it('should render default grouped header row when groupBy is set without custom group slot', async () => {
+      const wrapper = mountFunction({
+        props: {
+          headers: testHeaders,
+          items: testItems,
+          itemsPerPage: 20,
+          groupBy: ['protein']
+        }
+      })
+
+      await nextTick()
+
+      expect(wrapper.find('.v-row-group__header').exists()).toBe(true)
+      expect(wrapper.text()).toMatch(/Protein/)
+    })
+
+    it('should render group.summary slot inside .v-row-group__summary row', async () => {
+      const wrapper = mountFunction({
+        props: {
+          headers: testHeaders,
+          items: testItems,
+          itemsPerPage: 20,
+          groupBy: 'calories'
+        },
+        slots: {
+          'group.summary': () => h('td', { colspan: testHeaders.length }, 'GROUP_SUMMARY_MARK')
+        }
+      })
+
+      await nextTick()
+
+      expect(wrapper.html()).toContain('GROUP_SUMMARY_MARK')
+      expect(wrapper.find('.v-row-group__summary').exists()).toBe(true)
+    })
+
+    it('should apply item.data-table-expand slot to row (scoped slots as functions)', async () => {
+      const wrapper = mountFunction({
+        props: {
+          headers: testHeaders,
+          items: testItems.slice(0, 1),
+          itemsPerPage: 5,
+          showExpand: true,
+          itemKey: 'name'
+        },
+        slots: {
+          'item.data-table-expand': () => h('span', { class: 'custom-expand-slot-mark' }, '▼')
+        }
+      })
+
+      await nextTick()
+
+      expect(wrapper.find('.custom-expand-slot-mark').exists()).toBe(true)
+      expect(wrapper.text()).toContain('▼')
+    })
   })
 })

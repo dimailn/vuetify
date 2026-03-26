@@ -1,7 +1,8 @@
-import { h, VNode, VNodeChildrenArrayContents, PropType } from 'vue'
+import type { PropType, VNode } from 'vue'
+import { h } from 'vue'
+import type { VNodeChildrenArrayContents } from '../../types/vue-internal'
 // Styles
 import './VTreeview.sass'
-import { PropValidator } from 'vue/types/options'
 import { TreeviewItemFunction } from 'vuetify/types'
 
 // Components
@@ -15,13 +16,13 @@ import { provide as RegistrableProvide } from '../../mixins/registrable'
 import {
   arrayDiff,
   deepEqual,
-  getObjectValueByPath,
+  getObjectValueByPath
 } from '../../util/helpers'
 import mixins from '../../util/mixins'
 import { consoleWarn, breaking } from '../../util/console'
 import {
   filterTreeItems,
-  filterTreeItem,
+  filterTreeItem
 } from './util/filterTreeItems'
 
 type VTreeviewNodeInstance = InstanceType<typeof VTreeviewNode>
@@ -54,32 +55,32 @@ export default mixins(
   props: {
     active: {
       type: Array,
-      default: () => ([]),
-    } as PropValidator<NodeArray>,
+      default: () => ([])
+    } as unknown as PropType<NodeArray>,
     dense: Boolean,
     disabled: Boolean,
     filter: Function as PropType<TreeviewItemFunction>,
     hoverable: Boolean,
     items: {
       type: Array,
-      default: () => ([]),
-    } as PropValidator<any[]>,
+      default: () => ([])
+    } as unknown as PropType<any[]>,
     modelValue: {
       type: Array,
-      default: () => ([]),
-    } as PropValidator<NodeArray>,
+      default: () => ([])
+    } as unknown as PropType<NodeArray>,
     multipleActive: Boolean,
     open: {
       type: Array,
-      default: () => ([]),
-    } as PropValidator<NodeArray>,
+      default: () => ([])
+    } as unknown as PropType<NodeArray>,
     openAll: Boolean,
     returnObject: {
       type: Boolean,
-      default: false, // TODO: Should be true in next major
+      default: false // TODO: Should be true in next major
     },
     search: String,
-    ...VTreeviewNodeProps,
+    ...VTreeviewNodeProps
   },
 
   data: () => ({
@@ -87,7 +88,7 @@ export default mixins(
     activeCache: new Set() as NodeCache,
     nodes: {} as Record<string | number, NodeState>,
     openCache: new Set() as NodeCache,
-    selectedCache: new Set() as NodeCache,
+    selectedCache: new Set() as NodeCache
   }),
 
   computed: {
@@ -109,7 +110,7 @@ export default mixins(
       }
 
       return excluded
-    },
+    }
   },
 
   watch: {
@@ -137,7 +138,7 @@ export default mixins(
         // with dynamic children
         if (!deepEqual(oldSelectedCache, [...this.selectedCache])) this.emitSelected()
       },
-      deep: true,
+      deep: true
     },
     active (value: (string | number | any)[]) {
       this.handleNodeCacheWatcher(value, this.activeCache, this.updateActive, this.emitActive)
@@ -147,14 +148,14 @@ export default mixins(
     },
     open (value: (string | number | any)[]) {
       this.handleNodeCacheWatcher(value, this.openCache, this.updateOpen, this.emitOpen)
-    },
+    }
   },
 
   created () {
     const breakingProps = [
       ['value', 'modelValue'],
       ['onInput', 'onUpdate:modelValue'],
-      ['onChange', 'onUpdate:modelValue'],
+      ['onChange', 'onUpdate:modelValue']
     ]
 
     /* istanbul ignore next */
@@ -207,15 +208,17 @@ export default mixins(
         const item = items[i]
         const key = getObjectValueByPath(item, this.itemKey)
         const children = getObjectValueByPath(item, this.itemChildren) ?? []
-        const oldNode = this.nodes.hasOwnProperty(key) ? this.nodes[key] : {
-          isSelected: false, isIndeterminate: false, isActive: false, isOpen: false, vnode: null,
-        } as NodeState
+        const oldNode = this.nodes.hasOwnProperty(key)
+          ? this.nodes[key]
+          : {
+            isSelected: false, isIndeterminate: false, isActive: false, isOpen: false, vnode: null
+          } as NodeState
 
         const node: any = {
           vnode: oldNode.vnode,
           parent,
           children: children.map((c: any) => getObjectValueByPath(c, this.itemKey)),
-          item,
+          item
         }
 
         this.buildTree(children, key)
@@ -267,7 +270,7 @@ export default mixins(
 
       return {
         isSelected,
-        isIndeterminate,
+        isIndeterminate
       }
     },
     emitOpen () {
@@ -416,7 +419,7 @@ export default mixins(
     },
     isExcluded (key: string | number) {
       return !!this.search && this.excludedItems.has(key)
-    },
+    }
   },
 
   render (): VNode {
@@ -435,8 +438,8 @@ export default mixins(
       class: ['v-treeview', {
         'v-treeview--hoverable': this.hoverable,
         'v-treeview--dense': this.dense,
-        ...this.themeClasses,
-      }],
+        ...this.themeClasses
+      }]
     }, children)
-  },
+  }
 })

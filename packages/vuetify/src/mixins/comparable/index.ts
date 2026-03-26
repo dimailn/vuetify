@@ -1,5 +1,4 @@
-import {defineComponent} from 'vue'
-import { PropValidator } from 'vue/types/options'
+import { defineComponent, PropType } from 'vue'
 import { deepEqual } from '../../util/helpers'
 
 export default defineComponent({
@@ -7,7 +6,7 @@ export default defineComponent({
   props: {
     valueComparator: {
       type: Function,
-      default: deepEqual,
-    } as PropValidator<typeof deepEqual>,
-  },
+      default: deepEqual
+    } as unknown as PropType<typeof deepEqual>
+  }
 })

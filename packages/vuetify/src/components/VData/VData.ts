@@ -1,6 +1,6 @@
 // Helpers
 import { wrapInArray, sortItems, deepEqual, groupItems, searchItems, fillArray } from '../../util/helpers'
-import { defineComponent, VNode } from 'vue'
+import { defineComponent, VNode, PropType } from 'vue'
 
 // Types
 import {
@@ -10,9 +10,8 @@ import {
   DataSortFunction,
   DataGroupFunction,
   DataSearchFunction,
-  ItemGroup,
+  ItemGroup
 } from 'vuetify/types'
-import { PropValidator } from 'vue/types/options'
 
 export default defineComponent({
   name: 'v-data',
@@ -22,47 +21,47 @@ export default defineComponent({
   props: {
     items: {
       type: Array,
-      default: () => [],
-    } as PropValidator<any[]>,
+      default: () => []
+    } as unknown as PropType<any[]>,
     options: {
       type: Object,
-      default: () => ({}),
-    } as PropValidator<Partial<DataOptions>>,
+      default: () => ({})
+    } as unknown as PropType<Partial<DataOptions>>,
     sortBy: {
-      type: [String, Array],
-    } as PropValidator<string | string[] | undefined>,
+      type: [String, Array]
+    } as unknown as PropType<string | string[] | undefined>,
     sortDesc: {
-      type: [Boolean, Array],
-    } as PropValidator<boolean | boolean[] | undefined>,
+      type: [Boolean, Array]
+    } as unknown as PropType<boolean | boolean[] | undefined>,
     customSort: {
       type: Function,
-      default: sortItems,
-    } as PropValidator<DataSortFunction>,
+      default: sortItems
+    } as unknown as PropType<DataSortFunction>,
     mustSort: Boolean,
     multiSort: Boolean,
     page: {
       type: Number,
-      default: 1,
+      default: 1
     },
     itemsPerPage: {
       type: Number,
-      default: 10,
+      default: 10
     },
     groupBy: {
       type: [String, Array],
-      default: () => [],
-    } as PropValidator<string | string[]>,
+      default: () => []
+    } as unknown as PropType<string | string[]>,
     groupDesc: {
       type: [Boolean, Array],
-      default: () => [],
-    } as PropValidator<boolean | boolean[]>,
+      default: () => []
+    } as unknown as PropType<boolean | boolean[]>,
     customGroup: {
       type: Function,
-      default: groupItems,
-    } as PropValidator<DataGroupFunction>,
+      default: groupItems
+    } as unknown as PropType<DataGroupFunction>,
     locale: {
       type: String,
-      default: 'en-US',
+      default: 'en-US'
     },
     disableSort: Boolean,
     disablePagination: Boolean,
@@ -70,12 +69,12 @@ export default defineComponent({
     search: String,
     customFilter: {
       type: Function,
-      default: searchItems,
-    } as PropValidator<DataSearchFunction>,
+      default: searchItems
+    } as unknown as PropType<DataSearchFunction>,
     serverItemsLength: {
       type: Number,
-      default: -1,
-    },
+      default: -1
+    }
   },
 
   emits: ['update:options', 'update:page', 'update:items-per-page', 'update:sort-by', 'update:sort-desc', 'update:group-by', 'update:group-desc', 'update:multi-sort', 'update:must-sort', 'page-count', 'current-items', 'pagination'],
@@ -89,7 +88,7 @@ export default defineComponent({
       groupBy: wrapInArray(this.groupBy),
       groupDesc: wrapInArray(this.groupDesc),
       mustSort: this.mustSort,
-      multiSort: this.multiSort,
+      multiSort: this.multiSort
     }
 
     if (this.options) {
@@ -109,7 +108,7 @@ export default defineComponent({
     }
 
     return {
-      internalOptions,
+      internalOptions
     }
   },
 
@@ -143,7 +142,7 @@ export default defineComponent({
         pageStart: this.pageStart,
         pageStop: this.pageStop,
         pageCount: this.pageCount,
-        itemsLength: this.itemsLength,
+        itemsLength: this.itemsLength
       }
     },
     filteredItems (): any[] {
@@ -181,12 +180,12 @@ export default defineComponent({
         updateOptions: this.updateOptions,
         pagination: this.pagination,
         groupedItems: this.groupedItems,
-        originalItemsLength: this.items.length,
+        originalItemsLength: this.items.length
       }
     },
     computedOptions (): DataOptions {
       return { ...this.options } as DataOptions
-    },
+    }
   },
 
   watch: {
@@ -197,14 +196,14 @@ export default defineComponent({
         this.updateOptions(options)
       },
       deep: true,
-      immediate: true,
+      immediate: true
     },
     internalOptions: {
       handler (options: DataOptions, old: DataOptions) {
         if (deepEqual(options, old)) return
         this.$emit('update:options', options)
       },
-      deep: true,
+      deep: true
       /*
         In Vue 3 this watcher fires even before created hook and
         if mounting fails and the consumer code relies on update:options event to fetch data
@@ -267,21 +266,24 @@ export default defineComponent({
       handler (pageCount: number) {
         this.$emit('page-count', pageCount)
       },
-      immediate: true,
+      immediate: true
     },
     computedItems: {
       handler (computedItems: any[]) {
         this.$emit('current-items', computedItems)
       },
-      immediate: true,
+      immediate: true
     },
     pagination: {
       handler (pagination: DataPagination, old: DataPagination) {
         if (deepEqual(pagination, old)) return
         this.$emit('pagination', this.pagination)
       },
-      immediate: true,
-    },
+      immediate: true
+    }
+  },
+  mounted () {
+    this.$emit('update:options', this.internalOptions)
   },
 
   methods: {
@@ -352,7 +354,7 @@ export default defineComponent({
         ...options,
         page: this.serverItemsLength < 0
           ? Math.max(1, Math.min(options.page || this.internalOptions.page, this.pageCount))
-          : options.page || this.internalOptions.page,
+          : options.page || this.internalOptions.page
       }
     },
     sortItems (items: any[]): any[] {
@@ -382,13 +384,10 @@ export default defineComponent({
       }
 
       return items.slice(this.pageStart, this.pageStop)
-    },
+    }
   },
 
   render (): VNode {
     return this.$slots.default && this.$slots.default(this.scopedProps)[0] as any
-  },
-  mounted() {
-    this.$emit('update:options', this.internalOptions)
-  },
+  }
 })

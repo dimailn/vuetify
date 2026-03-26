@@ -3,7 +3,7 @@ export default {
   close: 'Cerrar',
   dataIterator: {
     noResultsText: 'Ningún elemento coincide con la búsqueda',
-    loadingText: 'Cargando...',
+    loadingText: 'Cargando...'
   },
   dataTable: {
     itemsPerPageText: 'Filas por página:',
@@ -13,9 +13,9 @@ export default {
       sortNone: 'Sin ordenar.',
       activateNone: 'Pulse para quitar orden.',
       activateDescending: 'Pulse para ordenar de forma descendente.',
-      activateAscending: 'Pulse para ordenar de forma ascendente.',
+      activateAscending: 'Pulse para ordenar de forma ascendente.'
     },
-    sortBy: 'Ordenado por',
+    sortBy: 'Ordenado por'
   },
   dataFooter: {
     itemsPerPageText: 'Elementos por página:',
@@ -24,38 +24,38 @@ export default {
     prevPage: 'Página anterior',
     firstPage: 'Primera página',
     lastPage: 'Última página',
-    pageText: '{0}-{1} de {2}',
+    pageText: '{0}-{1} de {2}'
   },
   datePicker: {
     itemsSelected: '{0} seleccionados',
     nextMonthAriaLabel: 'Próximo mes',
     nextYearAriaLabel: 'Próximo año',
     prevMonthAriaLabel: 'Mes anterior',
-    prevYearAriaLabel: 'Año anterior',
+    prevYearAriaLabel: 'Año anterior'
   },
   noDataText: 'No hay datos disponibles',
   carousel: {
     prev: 'Visual anterior',
     next: 'Visual siguiente',
     ariaLabel: {
-      delimiter: 'Visual {0} de {1}',
-    },
+      delimiter: 'Visual {0} de {1}'
+    }
   },
   calendar: {
-    moreEvents: '{0} más',
+    moreEvents: '{0} más'
   },
   input: {
     clear: 'Clear {0}',
     prependAction: '{0} prepended action',
-    appendAction: '{0} appended action',
+    appendAction: '{0} appended action'
   },
   fileInput: {
     counter: '{0} archivos',
-    counterSize: '{0} archivos ({1} en total)',
+    counterSize: '{0} archivos ({1} en total)'
   },
   timePicker: {
     am: 'AM',
-    pm: 'PM',
+    pm: 'PM'
   },
   pagination: {
     ariaLabel: {
@@ -63,13 +63,13 @@ export default {
       next: 'Página siguiente',
       previous: 'Página anterior',
       page: 'Ir a la página {0}',
-      currentPage: 'Página actual, página {0}',
-    },
+      currentPage: 'Página actual, página {0}'
+    }
   },
   rating: {
     ariaLabel: {
-      icon: 'Puntuación {0} de {1}',
-    },
+      icon: 'Puntuación {0} de {1}'
+    }
   },
-  loading: 'Loading...',
+  loading: 'Loading...'
 }

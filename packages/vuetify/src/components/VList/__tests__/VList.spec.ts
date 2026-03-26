@@ -11,7 +11,7 @@ describe('VList.ts', () => {
   beforeEach(() => {
     mountFunction = (options = {}) => {
       return mount(VList, {
-        ...options,
+        ...options
       })
     }
   })
@@ -25,8 +25,8 @@ describe('VList.ts', () => {
   it('should render a dense component and match snapshot', () => {
     const wrapper = mountFunction({
       props: {
-        dense: true,
-      },
+        dense: true
+      }
     })
 
     expect(wrapper.html()).toMatchSnapshot()
@@ -35,8 +35,8 @@ describe('VList.ts', () => {
   it('should render a subheader component and match snapshot', () => {
     const wrapper = mountFunction({
       props: {
-        subheader: true,
-      },
+        subheader: true
+      }
     })
 
     expect(wrapper.html()).toMatchSnapshot()
@@ -45,8 +45,8 @@ describe('VList.ts', () => {
   it('should render a threeLine component and match snapshot', () => {
     const wrapper = mountFunction({
       props: {
-        threeLine: true,
-      },
+        threeLine: true
+      }
     })
 
     expect(wrapper.html()).toMatchSnapshot()
@@ -55,8 +55,8 @@ describe('VList.ts', () => {
   it('should render a twoLine component and match snapshot', () => {
     const wrapper = mountFunction({
       props: {
-        twoLine: true,
-      },
+        twoLine: true
+      }
     })
 
     expect(wrapper.html()).toMatchSnapshot()
@@ -65,16 +65,16 @@ describe('VList.ts', () => {
   it('should have an inferred role from injections', () => {
     const wrapper = mountFunction({
       global: {
-        provide: { isInMenu: true },
-      },
+        provide: { isInMenu: true }
+      }
     })
 
     expect(wrapper.element.getAttribute('role')).toBeNull()
 
     const wrapper2 = mountFunction({
       global: {
-        provide: { isInNav: true },
-      },
+        provide: { isInNav: true }
+      }
     })
 
     expect(wrapper2.element.getAttribute('role')).toBeNull()

@@ -6,7 +6,7 @@ import {
   mount,
   VueWrapper,
   MountingOptions,
-  enableAutoUnmount,
+  enableAutoUnmount
 } from '@vue/test-utils'
 import { h } from 'vue'
 
@@ -19,14 +19,14 @@ describe('VSubheader.ts', () => {
   beforeEach(() => {
     mountFunction = (options = {}) => {
       return mount(VSubheader, {
-        ...options,
+        ...options
       })
     }
   })
 
   it('should have custom class', () => {
     const wrapper = mount(VSubheader, {
-      props: { class: 'foo' },
+      props: { class: 'foo' }
     })
 
     expect(wrapper.element.classList.contains('foo')).toBe(true)
@@ -35,7 +35,7 @@ describe('VSubheader.ts', () => {
 
   it('should be light', () => {
     const wrapper = mountFunction({
-      props: { light: true },
+      props: { light: true }
     })
 
     expect(wrapper.element.classList.contains('theme--light')).toBe(true)
@@ -44,7 +44,7 @@ describe('VSubheader.ts', () => {
 
   it('should be dark', () => {
     const wrapper = mountFunction({
-      props: { dark: true },
+      props: { dark: true }
     })
 
     expect(wrapper.element.classList.contains('theme--dark')).toBe(true)
@@ -53,7 +53,7 @@ describe('VSubheader.ts', () => {
 
   it('should be inset', () => {
     const wrapper = mountFunction({
-      props: { inset: true },
+      props: { inset: true }
     })
 
     expect(wrapper.element.classList.contains('v-subheader--inset')).toBe(true)

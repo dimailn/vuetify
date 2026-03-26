@@ -1,4 +1,4 @@
-import {h} from 'vue'
+import { h } from 'vue'
 // Styles
 import './VSubheader.sass'
 
@@ -17,7 +17,7 @@ export default mixins(
   name: 'v-subheader',
 
   props: {
-    inset: Boolean,
+    inset: Boolean
   },
 
   render (): VNode {
@@ -25,9 +25,9 @@ export default mixins(
       ...this.$attrs,
       class: ['v-subheader', {
         'v-subheader--inset': this.inset,
-        ...this.themeClasses,
+        ...this.themeClasses
       }],
       ...this.$listeners
     }, getSlot(this))
-  },
+  }
 })

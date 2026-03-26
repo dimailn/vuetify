@@ -33,7 +33,7 @@ const icons: VuetifyIcons = {
   unfold: 'unfold_more',
   file: 'attach_file',
   plus: 'add',
-  minus: 'remove',
+  minus: 'remove'
 }
 
 export default icons

@@ -25,11 +25,11 @@ export default mixins(
     second: Number,
     period: {
       type: String as PropType<'am' | 'pm'>,
-      validator: period => period === 'am' || period === 'pm',
+      validator: period => period === 'am' || period === 'pm'
     },
     readonly: Boolean,
     useSeconds: Boolean,
-    selecting: Number,
+    selecting: Number
   },
 
   emits: ['update:selecting', 'update:period'],
@@ -46,7 +46,7 @@ export default mixins(
       const titleContent = [
         this.genPickerButton('selecting', SelectingTimes.Hour, displayedHour, this.disabled),
         h('span', ':'),
-        this.genPickerButton('selecting', SelectingTimes.Minute, displayedMinute, this.disabled),
+        this.genPickerButton('selecting', SelectingTimes.Minute, displayedMinute, this.disabled)
       ]
 
       if (this.useSeconds) {
@@ -55,20 +55,20 @@ export default mixins(
         titleContent.push(this.genPickerButton('selecting', SelectingTimes.Second, displayedSecond, this.disabled))
       }
       return h('div', {
-        class: 'v-time-picker-title__time',
+        class: 'v-time-picker-title__time'
       }, titleContent)
     },
     genAmPm () {
       return h('div', {
         class: {
           'v-time-picker-title__ampm': true,
-          'v-time-picker-title__ampm--readonly': this.ampmReadonly,
-        },
+          'v-time-picker-title__ampm--readonly': this.ampmReadonly
+        }
       }, [
         (!this.ampmReadonly || this.period === 'am') ? this.genPickerButton('period', 'am', this.$vuetify.lang.t('$vuetify.timePicker.am'), this.disabled || this.readonly) : null,
-        (!this.ampmReadonly || this.period === 'pm') ? this.genPickerButton('period', 'pm', this.$vuetify.lang.t('$vuetify.timePicker.pm'), this.disabled || this.readonly) : null,
+        (!this.ampmReadonly || this.period === 'pm') ? this.genPickerButton('period', 'pm', this.$vuetify.lang.t('$vuetify.timePicker.pm'), this.disabled || this.readonly) : null
       ])
-    },
+    }
   },
 
   render (): VNode {
@@ -77,7 +77,7 @@ export default mixins(
     this.ampm && children.push(this.genAmPm())
 
     return h('div', {
-      class: 'v-time-picker-title',
+      class: 'v-time-picker-title'
     }, children)
-  },
+  }
 })

@@ -7,7 +7,7 @@ import {
   mount,
   VueWrapper,
   MountingOptions,
-  enableAutoUnmount,
+  enableAutoUnmount
 } from '@vue/test-utils'
 import { keyCodes } from '../../../util/helpers'
 import { nextTick } from 'vue'
@@ -28,19 +28,19 @@ describe('VCombobox.ts', () => {
           mocks: {
             $vuetify: {
               lang: {
-                t: (val: string) => val,
+                t: (val: string) => val
               },
               theme: {
-                dark: false,
+                dark: false
               },
               icons: {
-                component: null,
-              },
+                component: null
+              }
             },
-            ...options.global?.mocks,
+            ...options.global?.mocks
           },
-          ...options.global,
-        },
+          ...options.global
+        }
       })
     }
   })
@@ -51,8 +51,8 @@ describe('VCombobox.ts', () => {
       attachTo: document.body,
       props: Object.assign({
         multiple: true,
-        modelValue: [],
-      }, propsData || {}),
+        modelValue: []
+      }, propsData || {})
     })
 
     return { wrapper, change }
@@ -77,7 +77,7 @@ describe('VCombobox.ts', () => {
 
   it('should change selectedIndex with keyboard', async () => {
     const { wrapper } = createMultipleCombobox({
-      modelValue: ['foo', 'bar'],
+      modelValue: ['foo', 'bar']
     })
 
     const input = wrapper.find('input')
@@ -94,7 +94,7 @@ describe('VCombobox.ts', () => {
 
   it('should delete a tagged item when selected and backspace/delete is pressed', async () => {
     const { wrapper } = createMultipleCombobox({
-      modelValue: ['foo', 'bar'],
+      modelValue: ['foo', 'bar']
     })
 
     const input = wrapper.find('input')
@@ -120,7 +120,7 @@ describe('VCombobox.ts', () => {
 
   it('should add a tag on enter using the current searchValue', async () => {
     const { wrapper } = createMultipleCombobox({
-      items: ['bar'],
+      items: ['bar']
     })
 
     const input = wrapper.find('input')
@@ -142,7 +142,7 @@ describe('VCombobox.ts', () => {
   it.skip('should add a tag on left arrow and select the previous tag', async () => {
     const { wrapper } = createMultipleCombobox({
       modelValue: ['foo'],
-      items: ['foo', 'bar'],
+      items: ['foo', 'bar']
     })
 
     const input = wrapper.find('input')
@@ -160,7 +160,7 @@ describe('VCombobox.ts', () => {
 
   it('should remove a duplicate tag and add it to the end', async () => {
     const { wrapper } = createMultipleCombobox({
-      modelValue: ['foo', 'bar'],
+      modelValue: ['foo', 'bar']
     })
 
     const input = wrapper.find('input')
@@ -199,7 +199,7 @@ describe('VCombobox.ts', () => {
   it('should be able to add a tag from user input after deleting a tag with delete', async () => {
     const { wrapper } = createMultipleCombobox({
       multiple: true,
-      modelValue: ['foo', 'bar'],
+      modelValue: ['foo', 'bar']
     })
 
     const input = wrapper.find('input')
@@ -234,7 +234,7 @@ describe('VCombobox.ts', () => {
       clearable: true,
       deletableChips: true,
       multiple: true,
-      modelValue: ['foo', 'bar'],
+      modelValue: ['foo', 'bar']
     })
 
     const input = wrapper.find('input')
@@ -266,7 +266,7 @@ describe('VCombobox.ts', () => {
     const { wrapper } = createMultipleCombobox({
       chips: true,
       multiple: true,
-      modelValue: ['foo', 'bar'],
+      modelValue: ['foo', 'bar']
     })
 
     const input = wrapper.find('input')
@@ -290,7 +290,7 @@ describe('VCombobox.ts', () => {
   // eslint-disable-next-line max-statements
   it('should create new items when a delimiter is entered', async () => {
     const { wrapper } = createMultipleCombobox({
-      delimiters: [', ', 'baz'],
+      delimiters: [', ', 'baz']
     })
 
     await nextTick()
@@ -331,7 +331,7 @@ describe('VCombobox.ts', () => {
   it('should allow the editing of an existing value', async () => {
     const { wrapper } = createMultipleCombobox({
       chips: true,
-      modelValue: ['foo'],
+      modelValue: ['foo']
     })
 
     const chip = wrapper.find('.v-chip')
@@ -358,22 +358,22 @@ describe('VCombobox.ts', () => {
 
   it('should paste as item if source of pasted text is item in another v-combobox/v-autocomplete', async () => {
     const { wrapper } = createMultipleCombobox({
-      items: ['aaa', 'bbb'],
+      items: ['aaa', 'bbb']
     })
 
     const input = wrapper.find('input')
     const getData = jest.fn(mimeType => 'ccc')
     const event = {
       clipboardData: {
-        getData,
-      },
+        getData
+      }
     }
 
     input.trigger('focus')
 
     const pasteEvent = {
       ...event,
-      preventDefault: jest.fn(),
+      preventDefault: jest.fn()
     }
     wrapper.vm.onPaste(pasteEvent)
     await nextTick()
@@ -384,15 +384,15 @@ describe('VCombobox.ts', () => {
 
   it('should paste as text if source of pasted text is not item in another v-combobox/v-autocomplete', async () => {
     const { wrapper } = createMultipleCombobox({
-      items: ['aaa', 'bbb'],
+      items: ['aaa', 'bbb']
     })
 
     const input = wrapper.find('input')
     const getData = jest.fn(mimeType => mimeType === 'text/plain' ? 'ccc' : '')
     const event = {
       clipboardData: {
-        getData,
-      },
+        getData
+      }
     }
 
     input.trigger('focus')
@@ -406,7 +406,7 @@ describe('VCombobox.ts', () => {
     const { wrapper } = createMultipleCombobox({
       chips: true,
       multiple: true,
-      items: ['aaa', 'bbb'],
+      items: ['aaa', 'bbb']
     })
 
     const input = wrapper.find('input')
@@ -435,7 +435,7 @@ describe('VCombobox.ts', () => {
       multiple: true,
       chips: true,
       modelValue: ['foo', 'bar'],
-      items: ['foo', 'bar'],
+      items: ['foo', 'bar']
     })
 
     const input = wrapper.find('input')
@@ -485,7 +485,7 @@ describe('VCombobox.ts', () => {
       chips: true,
       multiple: true,
       items: ['foo'],
-      modelValue: ['foo'],
+      modelValue: ['foo']
     })
 
     const input = wrapper.find('input')
@@ -514,7 +514,7 @@ describe('VCombobox.ts', () => {
       multiple: true,
       clearable: true,
       items: ['foo', 'bar'],
-      modelValue: ['foo', 'bar'],
+      modelValue: ['foo', 'bar']
     })
 
     const input = wrapper.find('input')
@@ -553,11 +553,11 @@ describe('VCombobox.ts', () => {
       multiple: true,
       items: [
         { text: 'foo', value: 'foo' },
-        { text: 'bar', value: 'bar' },
+        { text: 'bar', value: 'bar' }
       ],
       modelValue: [
-        { text: 'foo', value: 'foo' },
-      ],
+        { text: 'foo', value: 'foo' }
+      ]
     })
 
     const input = wrapper.find('input')
@@ -588,7 +588,7 @@ describe('VCombobox.ts', () => {
       multiple: true,
       clearable: true,
       items: ['foo', 'bar'],
-      modelValue: ['foo', 'bar'],
+      modelValue: ['foo', 'bar']
     })
 
     const input = wrapper.find('input')
@@ -616,7 +616,7 @@ describe('VCombobox.ts', () => {
   // example 1 in https://github.com/vuetifyjs/vuetify/issues/14194
   it('should not point to a result that does not exist as in example 1', async () => {
     const { wrapper } = createMultipleCombobox({
-      items: ['a', 'aa', 'aaa', 'bar'],
+      items: ['a', 'aa', 'aaa', 'bar']
     })
 
     const input = wrapper.find('input')
@@ -657,7 +657,7 @@ describe('VCombobox.ts', () => {
   // example 2 in https://github.com/vuetifyjs/vuetify/issues/14194
   it('should not change selection on search input as in example 2', async () => {
     const { wrapper } = createMultipleCombobox({
-      items: ['a', 'aa', 'aaa', 'bar'],
+      items: ['a', 'aa', 'aaa', 'bar']
     })
 
     const input = wrapper.find('input')
@@ -694,7 +694,7 @@ describe('VCombobox.ts', () => {
   // example 3 in https://github.com/vuetifyjs/vuetify/issues/14194
   it('should not point to a result that does not exist as in example 3', async () => {
     const { wrapper } = createMultipleCombobox({
-      items: ['a', 'aa', 'aaa', 'bar'],
+      items: ['a', 'aa', 'aaa', 'bar']
     })
 
     const input = wrapper.find('input')

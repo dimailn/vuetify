@@ -230,7 +230,7 @@ function getNode (visual: CalendarEventVisual, dayStart: number): Node {
     visual,
     start,
     end,
-    children: [],
+    children: []
   }
 }
 

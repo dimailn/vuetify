@@ -5,7 +5,7 @@ import VAppBar from '../VAppBar'
 // Utilities
 import {
   mount,
-  VueWrapper,
+  VueWrapper
 } from '@vue/test-utils'
 import { scrollWindow } from '../../../../test'
 
@@ -20,19 +20,19 @@ describe('AppBar.ts', () => {
         right: 0,
         bar: 0,
         register: () => {},
-        unregister: () => {},
+        unregister: () => {}
       },
       breakpoint: {
-        smAndDown: false,
-      },
-    },
+        smAndDown: false
+      }
+    }
   })
 
   const createMountFunction = () => {
     return (options = {}) => {
       return mount(VAppBar, {
         global: { mocks: createDefaultMocks() },
-        ...options,
+        ...options
       })
     }
   }
@@ -80,7 +80,7 @@ describe('AppBar.ts', () => {
   it('should scroll off screen', async () => {
     const wrapper = mountFunction({
       attachTo: document.body,
-      props: { hideOnScroll: true, scrollThreshold: 300 },
+      props: { hideOnScroll: true, scrollThreshold: 300 }
     })
 
     expect(wrapper.vm.isActive).toBe(true)
@@ -119,7 +119,7 @@ describe('AppBar.ts', () => {
   it('should hide when inverted scroll is enabled and page is scrolled to the top', async () => {
     const wrapper = mountFunction({
       attachTo: document.body,
-      props: { hideOnScroll: true, invertedScroll: true, scrollThreshold: 300 },
+      props: { hideOnScroll: true, invertedScroll: true, scrollThreshold: 300 }
     })
 
     expect(wrapper.vm.currentScroll).toBe(0)
@@ -145,8 +145,8 @@ describe('AppBar.ts', () => {
   it('should set active based on value', async () => {
     const wrapper = mountFunction({
       props: {
-        hideOnScroll: true,
-      },
+        hideOnScroll: true
+      }
     })
 
     expect(wrapper.vm.isActive).toBe(true)
@@ -158,8 +158,8 @@ describe('AppBar.ts', () => {
   it('should set margin top', async () => {
     const wrapper = mountFunction({
       props: {
-        app: true,
-      },
+        app: true
+      }
     })
 
     // Set the bar value and wait for reactivity
@@ -175,8 +175,8 @@ describe('AppBar.ts', () => {
   it('should set isActive false when created and vertical-scroll', () => {
     const wrapper = mountFunction({
       props: {
-        invertedScroll: true,
-      },
+        invertedScroll: true
+      }
     })
 
     expect(wrapper.vm.isActive).toBe(false)
@@ -185,8 +185,8 @@ describe('AppBar.ts', () => {
   it('should hide shadow when using elevate-on-scroll', () => {
     const wrapper = mountFunction({
       props: {
-        elevateOnScroll: true,
-      },
+        elevateOnScroll: true
+      }
     })
 
     expect(wrapper.vm.hideShadow).toBe(true)
@@ -199,8 +199,8 @@ describe('AppBar.ts', () => {
   it('should collapse-on-scroll', () => {
     const wrapper = mountFunction({
       props: {
-        collapseOnScroll: true,
-      },
+        collapseOnScroll: true
+      }
     })
 
     wrapper.vm.currentScroll = 0
@@ -213,15 +213,15 @@ describe('AppBar.ts', () => {
     const wrapper = mountFunction({
       props: {
         shrinkOnScroll: false,
-        prominent: false,
-      },
+        prominent: false
+      }
     })
 
     expect(wrapper.vm.computedFontSize).toBeUndefined()
 
     wrapper.setProps({
       shrinkOnScroll: true,
-      prominent: true,
+      prominent: true
     })
     await wrapper.vm.$nextTick()
 
@@ -232,8 +232,8 @@ describe('AppBar.ts', () => {
   it('should render with background', () => {
     const wrapper = mountFunction({
       props: {
-        src: '/test.jpg',
-      },
+        src: '/test.jpg'
+      }
     })
 
     expect(wrapper.html()).toMatchSnapshot()
@@ -244,8 +244,8 @@ describe('AppBar.ts', () => {
       props: {
         src: '/test.jpg',
         fadeImgOnScroll: true,
-        scrollThreshold: 100,
-      },
+        scrollThreshold: 100
+      }
     })
 
     expect(wrapper.vm.computedOpacity).toBe(1)
@@ -265,8 +265,8 @@ describe('AppBar.ts', () => {
     const wrapper = mountFunction({
       props: {
         hideOnScroll: true,
-        extended: true,
-      },
+        extended: true
+      }
     })
 
     expect(wrapper.vm.computedTransform).toBe(0)
@@ -293,8 +293,8 @@ describe('AppBar.ts', () => {
       props: {
         hideOnScroll: true,
         elevateOnScroll: true,
-        scrollThreshold: 100,
-      },
+        scrollThreshold: 100
+      }
     })
 
     expect(wrapper.vm.computedTransform).toBe(0)
@@ -315,8 +315,8 @@ describe('AppBar.ts', () => {
         hideOnScroll: true,
         elevateOnScroll: true,
         extended: true,
-        scrollThreshold: 100,
-      },
+        scrollThreshold: 100
+      }
     })
 
     expect(wrapper.vm.computedTransform).toBe(0)
@@ -336,8 +336,8 @@ describe('AppBar.ts', () => {
     const wrapper = mountFunction({
       props: {
         hideOnScroll: true,
-        scrollThreshold: 100,
-      },
+        scrollThreshold: 100
+      }
     })
 
     wrapper.setProps({ modelValue: false })
@@ -352,8 +352,8 @@ describe('AppBar.ts', () => {
   it('when scroll position is 0, v-model should be able to be control visibility regardless of other props', async () => {
     const wrapper = mountFunction({
       props: {
-        elevateOnScroll: true,
-      },
+        elevateOnScroll: true
+      }
     })
 
     expect(wrapper.vm.isActive).toBe(true)
@@ -371,8 +371,8 @@ describe('AppBar.ts', () => {
       props: {
         dense: true,
         flat: true,
-        floating: true,
-      },
+        floating: true
+      }
     })
 
     expect(wrapper.vm.dense).toBe(true)
@@ -383,7 +383,7 @@ describe('AppBar.ts', () => {
   it('should handle scroll events', async () => {
     const wrapper = mountFunction({
       attachTo: document.body,
-      props: { hideOnScroll: true, scrollThreshold: 300 },
+      props: { hideOnScroll: true, scrollThreshold: 300 }
     })
 
     expect(wrapper.vm.isActive).toBe(true)
@@ -399,8 +399,8 @@ describe('AppBar.ts', () => {
   it('should handle value prop changes', async () => {
     const wrapper = mountFunction({
       props: {
-        modelValue: true,
-      },
+        modelValue: true
+      }
     })
 
     expect(wrapper.vm.isActive).toBe(true)
@@ -422,8 +422,8 @@ describe('AppBar.ts', () => {
         app: true,
         clippedLeft: true,
         hideOnScroll: true,
-        scrollThreshold: 50,
-      },
+        scrollThreshold: 50
+      }
     })
 
     // Test that transform is calculated correctly
@@ -437,8 +437,8 @@ describe('AppBar.ts', () => {
   it('should handle inverted scroll changes', async () => {
     const wrapper = mountFunction({
       props: {
-        invertedScroll: false,
-      },
+        invertedScroll: false
+      }
     })
 
     expect(wrapper.vm.isActive).toBe(true)
@@ -453,8 +453,8 @@ describe('AppBar.ts', () => {
   it('should handle hide on scroll changes', async () => {
     const wrapper = mountFunction({
       props: {
-        hideOnScroll: false,
-      },
+        hideOnScroll: false
+      }
     })
 
     expect(wrapper.vm.isActive).toBe(true)
@@ -469,8 +469,8 @@ describe('AppBar.ts', () => {
   it('should calculate scroll ratio correctly', () => {
     const wrapper = mountFunction({
       props: {
-        scrollThreshold: 100,
-      },
+        scrollThreshold: 100
+      }
     })
 
     expect(wrapper.vm.scrollRatio).toBe(1) // At scroll 0
@@ -486,8 +486,8 @@ describe('AppBar.ts', () => {
     const wrapper = mountFunction({
       props: {
         prominent: true,
-        shrinkOnScroll: true,
-      },
+        shrinkOnScroll: true
+      }
     })
 
     expect(wrapper.vm.isProminent).toBe(true)
@@ -497,25 +497,28 @@ describe('AppBar.ts', () => {
   it('should handle bottom positioning', () => {
     const wrapper = mountFunction({
       props: {
-        bottom: true,
-      },
+        bottom: true
+      }
     })
 
     expect(wrapper.vm.applicationProperty).toBe('bottom')
   })
 
   it('should handle scroll target', () => {
-    const originalWarn = console.warn
-    console.warn = jest.fn()
+    const target = document.createElement('div')
+    target.id = 'test-target'
+    document.body.appendChild(target)
 
-    const wrapper = mountFunction({
-      props: {
-        scrollTarget: '#test-target',
-      },
-    })
+    try {
+      const wrapper = mountFunction({
+        props: {
+          scrollTarget: '#test-target'
+        }
+      })
 
-    expect(wrapper.vm.scrollTarget).toBe('#test-target')
-
-    console.warn = originalWarn
+      expect(wrapper.vm.scrollTarget).toBe('#test-target')
+    } finally {
+      document.body.removeChild(target)
+    }
   })
 })

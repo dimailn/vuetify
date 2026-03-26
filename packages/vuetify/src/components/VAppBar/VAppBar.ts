@@ -33,7 +33,7 @@ const baseMixins = mixins(
     'invertedScroll',
     'isExtended',
     'isProminent',
-    'value',
+    'value'
   ])
 )
 
@@ -59,15 +59,15 @@ export default baseMixins.extend({
     shrinkOnScroll: Boolean,
     value: {
       type: Boolean,
-      default: true,
-    },
+      default: true
+    }
   },
 
   emits: ['update:modelValue'],
 
   data () {
     return {
-      isActive: this.value,
+      isActive: this.value
     }
   },
 
@@ -102,7 +102,7 @@ export default baseMixins.extend({
         'v-app-bar--fixed': !this.absolute && (this.app || this.fixed),
         'v-app-bar--hide-shadow': this.hideShadow,
         'v-app-bar--is-scrolled': this.currentScroll > 0,
-        'v-app-bar--shrink-on-scroll': this.shrinkOnScroll,
+        'v-app-bar--shrink-on-scroll': this.shrinkOnScroll
       }
     },
     scrollRatio (): number {
@@ -204,9 +204,9 @@ export default baseMixins.extend({
         marginTop: convertToUnit(this.computedMarginTop),
         transform: `translateY(${convertToUnit(this.computedTransform)})`,
         left: convertToUnit(this.computedLeft),
-        right: convertToUnit(this.computedRight),
+        right: convertToUnit(this.computedRight)
       }
-    },
+    }
   },
 
   watch: {
@@ -230,7 +230,7 @@ export default baseMixins.extend({
     },
     hideOnScroll (val: boolean) {
       this.isActive = !val || this.currentScroll < this.computedScrollThreshold
-    },
+    }
   },
 
   created () {
@@ -273,7 +273,7 @@ export default baseMixins.extend({
       if (this.currentThreshold < this.computedScrollThreshold) return
 
       this.savedScroll = this.currentScroll
-    },
+    }
   },
 
   render (): VNode {
@@ -282,12 +282,12 @@ export default baseMixins.extend({
     if (this.canScroll) {
       render.key = 'v-app-bar-scroll'
       return withDirectives(render, [
-        [Scroll, this.onScroll, this.scrollTarget],
+        [Scroll, this.onScroll, this.scrollTarget]
       ])
     }
 
     render.key = 'v-app-bar-no-scroll'
 
     return render
-  },
+  }
 })

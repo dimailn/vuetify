@@ -7,7 +7,7 @@ import VToolbar from '../VToolbar'
 // Utilities
 import {
   mount,
-  VueWrapper,
+  VueWrapper
 } from '@vue/test-utils'
 import { enableAutoUnmount } from '@vue/test-utils'
 
@@ -24,12 +24,12 @@ describe('VToolbar.ts', () => {
           mocks: {
             $vuetify: {
               breakpoint: {
-                smAndDown: false,
-              },
-            },
-          },
+                smAndDown: false
+              }
+            }
+          }
         },
-        ...options,
+        ...options
       })
     }
   })
@@ -37,8 +37,8 @@ describe('VToolbar.ts', () => {
   it('should render an extended toolbar', () => {
     const wrapper = mountFunction({
       props: {
-        extended: true,
-      },
+        extended: true
+      }
     })
 
     expect(wrapper.html()).toMatchSnapshot()
@@ -48,8 +48,8 @@ describe('VToolbar.ts', () => {
     const wrapper = mountFunction({
       props: {
         extended: true,
-        extensionHeight: 42,
-      },
+        extensionHeight: 42
+      }
     })
 
     expect(wrapper.html()).toMatchSnapshot()
@@ -59,27 +59,27 @@ describe('VToolbar.ts', () => {
     const wrapper = mountFunction()
 
     await wrapper.setProps({
-      height: 999,
+      height: 999
     })
     expect(wrapper.vm.computedContentHeight).toBe(999)
 
     await wrapper.setProps({
       height: undefined,
-      dense: true,
+      dense: true
     })
     expect(wrapper.vm.computedContentHeight).toBe(48)
 
     await wrapper.setProps({
       height: undefined,
       dense: false,
-      prominent: true,
+      prominent: true
     })
     expect(wrapper.vm.computedContentHeight).toBe(128)
 
     await wrapper.setProps({
       height: undefined,
       dense: false,
-      prominent: false,
+      prominent: false
     })
 
     // Проверяем значение по умолчанию (smAndDown: false)
@@ -91,17 +91,17 @@ describe('VToolbar.ts', () => {
         mocks: {
           $vuetify: {
             breakpoint: {
-              smAndDown: true,
-            },
-          },
-        },
-      },
+              smAndDown: true
+            }
+          }
+        }
+      }
     })
 
     await wrapperMobile.setProps({
       height: undefined,
       dense: false,
-      prominent: false,
+      prominent: false
     })
 
     expect(wrapperMobile.vm.computedContentHeight).toBe(56)
@@ -109,7 +109,7 @@ describe('VToolbar.ts', () => {
 
   it('should have a custom extension height', () => {
     const wrapper = mountFunction({
-      props: { tabs: true },
+      props: { tabs: true }
     })
 
     expect(wrapper.vm.extensionHeight).toBe(48)
@@ -120,8 +120,8 @@ describe('VToolbar.ts', () => {
       props: {
         height: 112,
         extended: true,
-        extensionHeight: 64,
-      },
+        extensionHeight: 64
+      }
     })
 
     expect((wrapper.vm.styles as any).height).toBe('176px')

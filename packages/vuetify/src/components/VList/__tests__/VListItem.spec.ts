@@ -5,7 +5,7 @@ import VListItem from '../VListItem'
 import {
   mount,
   VueWrapper,
-  enableAutoUnmount,
+  enableAutoUnmount
 } from '@vue/test-utils'
 import { Vue3RouterLinkStub } from '../../../../test/util/stubs'
 
@@ -20,11 +20,11 @@ describe('VListItem.ts', () => {
       return mount(VListItem, {
         global: {
           stubs: {
-            'router-link': Vue3RouterLinkStub,
+            'router-link': Vue3RouterLinkStub
           },
-          ...options.global,
+          ...options.global
         },
-        ...options,
+        ...options
       })
     }
   })
@@ -33,8 +33,8 @@ describe('VListItem.ts', () => {
     const wrapper = mountFunction({
       props: {
         href: 'http://www.google.com',
-        inactive: true,
-      },
+        inactive: true
+      }
     })
 
     expect(wrapper.element.tagName.toLowerCase()).toBe('div')
@@ -44,8 +44,8 @@ describe('VListItem.ts', () => {
   it('should render with a tag when tag is specified', () => {
     const wrapper = mountFunction({
       props: {
-        tag: 'code',
-      },
+        tag: 'code'
+      }
     })
 
     expect(wrapper.element.tagName.toLowerCase()).toBe('code')
@@ -61,8 +61,8 @@ describe('VListItem.ts', () => {
   it('should render with <a> when using href prop', () => {
     const wrapper = mountFunction({
       props: {
-        href: 'http://www.google.com',
-      },
+        href: 'http://www.google.com'
+      }
     })
 
     const a = wrapper.find('a')
@@ -75,8 +75,8 @@ describe('VListItem.ts', () => {
   it('should have --link class when href/to prop present or link prop is used', async () => {
     const wrapper = mountFunction({
       props: {
-        href: '/home',
-      },
+        href: '/home'
+      }
     })
 
     expect(wrapper.classes('v-list-item--link')).toBe(true)
@@ -94,8 +94,8 @@ describe('VListItem.ts', () => {
   it('should have --link class when click handler present', () => {
     const wrapper = mountFunction({
       props: {
-        link: true,
-      },
+        link: true
+      }
     })
 
     expect(wrapper.classes('v-list-item--link')).toBe(true)
@@ -104,8 +104,8 @@ describe('VListItem.ts', () => {
   it('should have --selectable class if the selectable property is true', () => {
     const wrapper = mountFunction({
       props: {
-        selectable: true,
-      },
+        selectable: true
+      }
     })
 
     expect(wrapper.classes('v-list-item--selectable')).toBe(true)
@@ -155,10 +155,10 @@ describe('VListItem.ts', () => {
           listItemGroup: {
             activeClass: 'foobar',
             register: () => {},
-            unregister: () => {},
-          },
-        },
-      },
+            unregister: () => {}
+          }
+        }
+      }
     })
 
     expect(wrapper.vm.$activeClass).toBe('foobar')
@@ -166,7 +166,7 @@ describe('VListItem.ts', () => {
 
   it('should have the correct aria attributes and tabindex', async () => {
     const wrapper = mountFunction({
-      props: { disabled: true },
+      props: { disabled: true }
     })
 
     expect(wrapper.element.getAttribute('aria-disabled')).toBe('true')
@@ -174,7 +174,7 @@ describe('VListItem.ts', () => {
 
     await wrapper.setProps({
       disabled: false,
-      modelValue: true,
+      modelValue: true
     })
 
     expect(wrapper.element.getAttribute('aria-disabled')).toBeNull()
@@ -189,23 +189,23 @@ describe('VListItem.ts', () => {
   it('should have the correct role', async () => {
     // Custom provided
     const wrapper = mountFunction({
-      attrs: { role: 'item' },
+      attrs: { role: 'item' }
     })
     expect(wrapper.element.getAttribute('role')).toBe('item')
 
     // In nav
     const wrapper2 = mountFunction({
       global: {
-        provide: { isInNav: true },
-      },
+        provide: { isInNav: true }
+      }
     })
     expect(wrapper2.element.getAttribute('role')).toBeNull()
 
     // In list-item-group
     const wrapper3 = mountFunction({
       global: {
-        provide: { isInGroup: true },
-      },
+        provide: { isInGroup: true }
+      }
     })
     expect(wrapper3.element.getAttribute('role')).toBe('option')
     expect(wrapper3.element.getAttribute('aria-selected')).toBe('false')
@@ -213,8 +213,8 @@ describe('VListItem.ts', () => {
     // In menu
     const wrapper4 = mountFunction({
       global: {
-        provide: { isInMenu: true },
-      },
+        provide: { isInMenu: true }
+      }
     })
     expect(wrapper4.element.getAttribute('role')).toBeNull()
     await wrapper4.setProps({ href: '#' }) // could be `to` or `link` as well
@@ -224,8 +224,8 @@ describe('VListItem.ts', () => {
     // In list not a link
     const wrapper5 = mountFunction({
       global: {
-        provide: { isInList: true },
-      },
+        provide: { isInList: true }
+      }
     })
     expect(wrapper5.element.getAttribute('role')).toBe('listitem')
   })
@@ -243,9 +243,9 @@ describe('VListItem.ts', () => {
       props: { to: { name: 'test' } },
       global: {
         stubs: {
-          'router-link': Vue3RouterLinkStub,
-        },
-      },
+          'router-link': Vue3RouterLinkStub
+        }
+      }
     })
 
     expect(wrapper2.vm.isActive).toBeFalsy()
@@ -257,9 +257,9 @@ describe('VListItem.ts', () => {
     const click = jest.fn()
     const wrapper = mountFunction({
       global: {
-        mocks: { click },
+        mocks: { click }
       },
-      props: { disabled: true },
+      props: { disabled: true }
     })
 
     await wrapper.trigger('keydown.enter')
@@ -270,8 +270,8 @@ describe('VListItem.ts', () => {
   it('should be clickable when href is provided', () => {
     const wrapper = mountFunction({
       props: {
-        href: 'http://www.google.com',
-      },
+        href: 'http://www.google.com'
+      }
     })
 
     expect(wrapper.vm.isClickable).toBe(true)
@@ -280,8 +280,8 @@ describe('VListItem.ts', () => {
   it('should be clickable when to is provided', () => {
     const wrapper = mountFunction({
       props: {
-        to: '/home',
-      },
+        to: '/home'
+      }
     })
 
     expect(wrapper.vm.isClickable).toBe(true)
@@ -293,10 +293,10 @@ describe('VListItem.ts', () => {
         provide: {
           listItemGroup: {
             register: () => {},
-            unregister: () => {},
-          },
-        },
-      },
+            unregister: () => {}
+          }
+        }
+      }
     })
 
     expect(wrapper.vm.isClickable).toBe(true)
@@ -311,16 +311,16 @@ describe('VListItem.ts', () => {
   it('should be clickable when both href and listItemGroup are present', () => {
     const wrapper = mountFunction({
       props: {
-        href: 'http://www.google.com',
+        href: 'http://www.google.com'
       },
       global: {
         provide: {
           listItemGroup: {
             register: () => {},
-            unregister: () => {},
-          },
-        },
-      },
+            unregister: () => {}
+          }
+        }
+      }
     })
 
     expect(wrapper.vm.isClickable).toBe(true)

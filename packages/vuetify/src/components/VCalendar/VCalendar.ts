@@ -27,7 +27,7 @@ import {
   getEndOfMonth,
   VTime,
   VTimestampInput,
-  timestampToDate,
+  timestampToDate
 } from './util/timestamp'
 
 // Calendars
@@ -52,21 +52,20 @@ interface VCalendarRenderProps {
 export default defineComponent({
   name: 'v-calendar',
 
-
   extends: CalendarWithEvents,
 
   props: {
     ...props.calendar,
     ...props.weeks,
     ...props.intervals,
-    ...props.category,
+    ...props.category
   },
 
   emits: ['change', 'update:modelValue', 'moved', 'click:date'],
 
   data: () => ({
     lastStart: null as CalendarTimestamp | null,
-    lastEnd: null as CalendarTimestamp | null,
+    lastEnd: null as CalendarTimestamp | null
   }),
 
   computed: {
@@ -112,7 +111,7 @@ export default defineComponent({
             start.weekday,
             (start.weekday + 1) % 7,
             (start.weekday + 2) % 7,
-            (start.weekday + 3) % 7,
+            (start.weekday + 3) % 7
           ]
           break
         case 'custom-weekly':
@@ -169,21 +168,21 @@ export default defineComponent({
     },
     monthLongFormatter (): CalendarFormatter {
       return this.getFormatter({
-        timeZone: 'UTC', month: 'long',
+        timeZone: 'UTC', month: 'long'
       })
     },
     monthShortFormatter (): CalendarFormatter {
       return this.getFormatter({
-        timeZone: 'UTC', month: 'short',
+        timeZone: 'UTC', month: 'short'
       })
     },
     parsedCategories (): CalendarCategory[] {
       return getParsedCategories(this.categories, this.categoryText)
-    },
+    }
   },
 
   watch: {
-    renderProps: 'checkChange',
+    renderProps: 'checkChange'
   },
 
   mounted () {
@@ -324,7 +323,7 @@ export default defineComponent({
             } else if (!this.categoryHideDynamic) {
               categoryMap[category] = {
                 index: categoryLength++,
-                count: 1,
+                count: 1
               }
             }
           })
@@ -348,7 +347,7 @@ export default defineComponent({
         })
       }
       return categories
-    },
+    }
   },
 
   render (): VNode {
@@ -358,7 +357,7 @@ export default defineComponent({
     const props: any = {
       ref: 'calendarChild',
       class: ['v-calendar', {
-        'v-calendar-events': !this.noEvents,
+        'v-calendar-events': !this.noEvents
       }],
       start: start.date,
       end: end.date,
@@ -368,7 +367,7 @@ export default defineComponent({
       'onClick:date': (day: CalendarTimestamp, e?: MouseEvent) => {
         this.$emit('update:modelValue', day.date)
         this.$emit('click:date', day, e)
-      },
+      }
     }
 
     // Only add categories prop for VCalendarCategory component
@@ -377,7 +376,7 @@ export default defineComponent({
     }
 
     return withDirectives(h(component, props, this.getScopedSlots()), [
-      [Resize, this.updateEventVisibility, '', { quiet: true }],
+      [Resize, this.updateEventVisibility, '', { quiet: true }]
     ])
-  },
+  }
 })

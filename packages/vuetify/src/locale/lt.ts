@@ -3,7 +3,7 @@ export default {
   close: 'Uždaryti',
   dataIterator: {
     noResultsText: 'Nerasta atitinkančių įrašų',
-    loadingText: 'Kraunama...',
+    loadingText: 'Kraunama...'
   },
   dataTable: {
     itemsPerPageText: 'Eilutės per puslapį:',
@@ -13,9 +13,9 @@ export default {
       sortNone: 'Nerikiuota.',
       activateNone: 'Suaktyvinkite, jei norite rikiavimą pašalinti.',
       activateDescending: 'Suaktyvinkite, jei norite rikiuoti mažėjimo tvarka.',
-      activateAscending: 'Suaktyvinkite, jei norite rikiuoti didėjimo tvarka.',
+      activateAscending: 'Suaktyvinkite, jei norite rikiuoti didėjimo tvarka.'
     },
-    sortBy: 'Sort by',
+    sortBy: 'Sort by'
   },
   dataFooter: {
     itemsPerPageText: 'Įrašai per puslapį:',
@@ -24,38 +24,38 @@ export default {
     prevPage: 'Ankstesnis puslapis',
     firstPage: 'Pirmas puslapis',
     lastPage: 'Paskutinis puslapis',
-    pageText: '{0}-{1} iš {2}',
+    pageText: '{0}-{1} iš {2}'
   },
   datePicker: {
     itemsSelected: '{0} pasirinkta',
     nextMonthAriaLabel: 'Kitą mėnesį',
     nextYearAriaLabel: 'Kitais metais',
     prevMonthAriaLabel: 'Praeita mėnesį',
-    prevYearAriaLabel: 'Praeiti metai',
+    prevYearAriaLabel: 'Praeiti metai'
   },
   noDataText: 'Nėra duomenų',
   carousel: {
     prev: 'Ankstesnioji skaidrė',
     next: 'Kita skaidrė',
     ariaLabel: {
-      delimiter: 'Carousel slide {0} of {1}',
-    },
+      delimiter: 'Carousel slide {0} of {1}'
+    }
   },
   calendar: {
-    moreEvents: 'Daugiau {0}',
+    moreEvents: 'Daugiau {0}'
   },
   input: {
     clear: 'Clear {0}',
     prependAction: '{0} prepended action',
-    appendAction: '{0} appended action',
+    appendAction: '{0} appended action'
   },
   fileInput: {
     counter: '{0} failų',
-    counterSize: '{0} failų ({1} iš viso)',
+    counterSize: '{0} failų ({1} iš viso)'
   },
   timePicker: {
     am: 'AM',
-    pm: 'PM',
+    pm: 'PM'
   },
   pagination: {
     ariaLabel: {
@@ -63,13 +63,13 @@ export default {
       next: 'Kitas puslapis',
       previous: 'Ankstesnis puslapis',
       page: 'Eiti į puslapį {0}',
-      currentPage: 'Dabartinis puslapis, puslapis {0}',
-    },
+      currentPage: 'Dabartinis puslapis, puslapis {0}'
+    }
   },
   rating: {
     ariaLabel: {
-      icon: 'Rating {0} of {1}',
-    },
+      icon: 'Rating {0} of {1}'
+    }
   },
-  loading: 'Loading...',
+  loading: 'Loading...'
 }

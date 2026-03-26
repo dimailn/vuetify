@@ -1,4 +1,4 @@
-import { CreateElement, VNode } from 'vue'
+import type { CreateElement, VNode } from '../types/vue-internal'
 
 export default function rebuildFunctionalSlots (slots: { [key: string]: VNode[] | undefined }, h: CreateElement) {
   const children: VNode[] = []

@@ -32,24 +32,24 @@ export default baseMixins.extend({
     disableIconRotate: Boolean,
     expandIcon: {
       type: String,
-      default: '$expand',
+      default: '$expand'
     },
     hideActions: Boolean,
     ripple: {
       type: [Boolean, Object],
-      default: false,
-    },
+      default: false
+    }
   },
 
   data: () => ({
-    hasMousedown: false,
+    hasMousedown: false
   }),
 
   computed: {
     classes (): object {
       return {
         'v-expansion-panel-header--active': this.isActive,
-        'v-expansion-panel-header--mousedown': this.hasMousedown,
+        'v-expansion-panel-header--mousedown': this.hasMousedown
       }
     },
     isActive (): boolean {
@@ -60,7 +60,7 @@ export default baseMixins.extend({
     },
     isReadonly (): boolean {
       return this.expansionPanel.isReadonly
-    },
+    }
   },
 
   created () {
@@ -83,24 +83,24 @@ export default baseMixins.extend({
       return h(VFadeTransition, {}, () => [
         withDirectives(h('div', {
           class: ['v-expansion-panel-header__icon', {
-            'v-expansion-panel-header__icon--disable-rotate': this.disableIconRotate,
-          }],
+            'v-expansion-panel-header__icon--disable-rotate': this.disableIconRotate
+          }]
         }, icon), [
           [
             vShow,
-            !this.isDisabled,
-          ],
-        ]),
+            !this.isDisabled
+          ]
+        ])
       ])
-    },
+    }
   },
 
   render (): VNode {
     const directives = [
       [
         Ripple,
-        this.ripple,
-      ],
+        this.ripple
+      ]
     ]
 
     return withDirectives(h('button', this.setBackgroundColor(this.color, {
@@ -111,10 +111,10 @@ export default baseMixins.extend({
       ...this.$listeners,
       onClick: this.onClick,
       onMousedown: () => (this.hasMousedown = true),
-      onMouseup: () => (this.hasMousedown = false),
+      onMouseup: () => (this.hasMousedown = false)
     }), [
       getSlot(this, 'default', { open: this.isActive }, true),
-      this.hideActions || this.genIcon(),
-    ]), directives)
-  },
+      this.hideActions || this.genIcon()
+    ]), directives as any)
+  }
 })

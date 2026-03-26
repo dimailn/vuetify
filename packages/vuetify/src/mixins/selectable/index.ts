@@ -28,19 +28,19 @@ export default mixins(
     trueValue: null as any,
     multiple: {
       type: Boolean,
-      default: null,
+      default: null
     },
-    label: String,
+    label: String
   },
 
   data () {
     return {
       hasColor: this.modelValue,
-      lazyValue: this.modelValue,
+      lazyValue: this.modelValue
     }
   },
 
-  created() {
+  created () {
     this.$_emitChangeEvent = true
   },
 
@@ -79,14 +79,14 @@ export default mixins(
       return !this.isDisabled && !this.validationState
         ? undefined
         : this.validationState
-    },
+    }
   },
 
   watch: {
     modelValue (val) {
       this.lazyValue = val
       this.hasColor = val
-    },
+    }
   },
 
   methods: {
@@ -107,7 +107,7 @@ export default mixins(
         disabled: this.isDisabled,
         id: this.computedId,
         role: type,
-        type,
+        type
       }
 
       return h('input', {
@@ -166,6 +166,6 @@ export default mixins(
       this.$emit('blur', e)
     },
     /** @abstract */
-    onKeydown (e: Event) {},
-  },
+    onKeydown (e: Event) {}
+  }
 })

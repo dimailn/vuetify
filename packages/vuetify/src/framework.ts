@@ -1,14 +1,14 @@
 import { install } from './install'
 
 // Types
-import Vue from 'vue'
+import type { ComponentPublicInstance } from 'vue'
 import {
   UserVuetifyPreset,
-  VuetifyPreset,
+  VuetifyPreset
 } from 'vuetify/types/services/presets'
 import {
   VuetifyService,
-  VuetifyServiceContract,
+  VuetifyServiceContract
 } from 'vuetify/types/services'
 
 // Services
@@ -22,11 +22,11 @@ export default class Vuetify {
   static version = __VUETIFY_VERSION__
 
   static config = {
-    silent: false,
+    silent: false
   }
 
   public framework: Dictionary<VuetifyServiceContract> = {
-    isHydrating: false,
+    isHydrating: false
   } as any
 
   public installed: string[] = []
@@ -45,13 +45,12 @@ export default class Vuetify {
     this.use(services.Icons)
     this.use(services.Lang)
     this.use(services.Theme)
-
   }
 
   // Called on the new vuetify instance
   // bootstrap in install beforeCreate
   // Exposes ssrContext if available
-  init (root: Vue, ssrContext?: object) {
+  init (root: ComponentPublicInstance, ssrContext?: object) {
     this.installed.forEach(property => {
       const service = this.framework[property]
 

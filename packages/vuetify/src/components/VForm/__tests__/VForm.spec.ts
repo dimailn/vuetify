@@ -9,7 +9,7 @@ import VTextField from '../../VTextField'
 import {
   mount,
   MountingOptions,
-  VueWrapper,
+  VueWrapper
 } from '@vue/test-utils'
 
 import { wait } from '../../../../test'
@@ -18,10 +18,10 @@ const errorInput = {
   render () {
     return h(VTextField, {
       props: {
-        rules: [v => v === 1 || 'Error'],
-      },
+        rules: [v => v === 1 || 'Error']
+      }
     })
-  },
+  }
 }
 
 describe('VForm.ts', () => {
@@ -37,16 +37,16 @@ describe('VForm.ts', () => {
           mocks: {
             $vuetify: {
               lang: {
-                t: (val: string) => val,
+                t: (val: string) => val
               },
               rtl: false,
               theme: {
-                dark: false,
-              },
-            },
-          },
+                dark: false
+              }
+            }
+          }
         },
-        ...options,
+        ...options
       })
     }
   })
@@ -57,13 +57,13 @@ describe('VForm.ts', () => {
     const component = {
       render () {
         return h(VForm, {
-          onSubmit: submit,
+          onSubmit: submit
         }, {
           default: () => [
-            h('button', ['Submit']),
+            h('button', ['Submit'])
           ]
         })
-      },
+      }
     }
 
     const wrapper = mount(component)
@@ -103,8 +103,8 @@ describe('VForm.ts', () => {
   it('should register input child', async () => {
     const wrapper = mountFunction({
       slots: {
-        default: () => [h(VTextField)],
-      },
+        default: () => [h(VTextField)]
+      }
     })
 
     await wrapper.vm.$nextTick()
@@ -115,11 +115,11 @@ describe('VForm.ts', () => {
   it('should emit input when calling validate on lazy-validated form', async () => {
     const wrapper = mountFunction({
       props: {
-        lazyValidation: true,
+        lazyValidation: true
       },
       slots: {
-        default: () => [h(errorInput)],
-      },
+        default: () => [h(errorInput)]
+      }
     })
 
     // В Vue 3 validate может возвращать true если нет ошибок
@@ -135,8 +135,8 @@ describe('VForm.ts', () => {
   it('resetValidation should work', async () => {
     const wrapper = mountFunction({
       slots: {
-        default: () => [h(VTextField)],
-      },
+        default: () => [h(VTextField)]
+      }
     })
 
     expect(Object.keys(wrapper.vm.errorBag)).toHaveLength(1)
@@ -155,8 +155,8 @@ describe('VForm.ts', () => {
   it('should register and unregister items', () => {
     const wrapper = mountFunction({
       slots: {
-        default: () => [h(VTextField)],
-      },
+        default: () => [h(VTextField)]
+      }
     })
 
     expect(wrapper.vm.inputs).toHaveLength(1)
@@ -206,8 +206,8 @@ describe('VForm.ts', () => {
   it('should reset validation', async () => {
     const wrapper = mountFunction({
       slots: {
-        default: () => [h(VTextField)],
-      },
+        default: () => [h(VTextField)]
+      }
     })
 
     // Просто проверяем что метод существует и не выбрасывает ошибку
@@ -220,8 +220,8 @@ describe('VForm.ts', () => {
     const validate = jest.fn(() => false)
     const wrapper = mountFunction({
       slots: {
-        default: () => Array(2).fill(h(errorInput)),
-      },
+        default: () => Array(2).fill(h(errorInput))
+      }
     })
 
     wrapper.vm.inputs.forEach(input => {
@@ -242,7 +242,7 @@ describe('VForm.ts', () => {
 
     const wrapper = mountFunction({
       props: { disabled: true },
-      slots: { default: () => inputs.map(comp => h(comp)) },
+      slots: { default: () => inputs.map(comp => h(comp)) }
     })
 
     await wrapper.vm.$nextTick()
@@ -260,12 +260,12 @@ describe('VForm.ts', () => {
       functional: true,
       render () {
         return [h(VTextField), h(VTextField, { props: { disabled: false } })]
-      },
+      }
     }
 
     const wrapper = mountFunction({
       props: { disabled: true },
-      slots: { default: () => [h(inputs)] },
+      slots: { default: () => [h(inputs)] }
     })
 
     await wrapper.vm.$nextTick()

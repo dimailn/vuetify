@@ -23,23 +23,23 @@ export default defineComponent({
     indeterminate: Boolean,
     indeterminateIcon: {
       type: String,
-      default: '$checkboxIndeterminate',
+      default: '$checkboxIndeterminate'
     },
     offIcon: {
       type: String,
-      default: '$checkboxOff',
+      default: '$checkboxOff'
     },
     onIcon: {
       type: String,
-      default: '$checkboxOn',
-    },
+      default: '$checkboxOn'
+    }
   },
 
   emits: ['click', 'focus', 'blur', 'update:indeterminate', 'update:modelValue', 'change'],
 
   data () {
     return {
-      inputIndeterminate: this.indeterminate,
+      inputIndeterminate: this.indeterminate
     }
   },
 
@@ -49,7 +49,7 @@ export default defineComponent({
         ...VInput.computed.classes.call(this),
         'v-input--selection-controls': true,
         'v-input--checkbox': true,
-        'v-input--indeterminate': this.inputIndeterminate,
+        'v-input--indeterminate': this.inputIndeterminate
       }
     },
     computedIcon (): string {
@@ -70,7 +70,7 @@ export default defineComponent({
       if (this.hasSuccess) return 'success'
       if (this.hasColor !== null) return this.computedColor
       return undefined
-    },
+    }
   },
 
   watch: {
@@ -80,13 +80,13 @@ export default defineComponent({
     },
     inputIndeterminate (val) {
       this.$emit('update:indeterminate', val)
-    },
+    }
   },
 
   created () {
     const breakingProps = [
       ['inputValue', 'model-value'],
-      ['input-value', 'model-value'],
+      ['input-value', 'model-value']
     ]
 
     /* istanbul ignore next */
@@ -100,25 +100,25 @@ export default defineComponent({
       const { title, class: parentClass, ...checkboxAttrs } = this.$attrs
       const ariaChecked = this.inputIndeterminate ? 'mixed' : this.isActive.toString()
       return h('div', {
-        class: 'v-input--selection-controls__input',
+        class: 'v-input--selection-controls__input'
       }, [
         h(VIcon, this.setTextColor(this.validationState, {
           dense: this.dense,
           dark: this.dark,
-          light: this.light,
+          light: this.light
         }), () => this.computedIcon),
         this.genInput('checkbox', {
           ...checkboxAttrs,
-          'aria-checked': ariaChecked,
+          'aria-checked': ariaChecked
         }),
-        this.genRipple(this.setTextColor(this.rippleState)),
+        this.genRipple(this.setTextColor(this.rippleState))
       ])
     },
     genDefaultSlot () {
       return [
         this.genCheckbox(),
-        this.genLabel(),
+        this.genLabel()
       ]
-    },
-  },
+    }
+  }
 })

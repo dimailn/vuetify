@@ -3,7 +3,7 @@ import { h, VNode } from 'vue'
 import './VBreadcrumbs.sass'
 
 // Types
-import { PropValidator } from 'vue/types/options'
+import { PropType } from 'vue'
 
 // Components
 import VBreadcrumbsItem from './VBreadcrumbsItem'
@@ -25,22 +25,22 @@ export default mixins(
   props: {
     divider: {
       type: String,
-      default: '/',
+      default: '/'
     },
     items: {
       type: Array,
-      default: () => ([]),
-    } as PropValidator<any[]>,
-    large: Boolean,
+      default: () => ([])
+    } as unknown as PropType<any[]>,
+    large: Boolean
   },
 
   computed: {
     classes (): object {
       return {
         'v-breadcrumbs--large': this.large,
-        ...this.themeClasses,
+        ...this.themeClasses
       }
-    },
+    }
   },
 
   methods: {
@@ -69,14 +69,14 @@ export default mixins(
       }
 
       return items
-    },
+    }
   },
 
   render (): VNode {
     const children = getSlot(this) || this.genItems()
 
     return h('ul', {
-      class: ['v-breadcrumbs', this.classes],
+      class: ['v-breadcrumbs', this.classes]
     }, children)
-  },
+  }
 })

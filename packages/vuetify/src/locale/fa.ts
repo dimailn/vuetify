@@ -3,7 +3,7 @@ export default {
   close: 'بستن',
   dataIterator: {
     noResultsText: 'نتیجه‌ای یافت نشد',
-    loadingText: 'در حال بارگذاری...',
+    loadingText: 'در حال بارگذاری...'
   },
   dataTable: {
     itemsPerPageText: 'ردیف در صفحه:',
@@ -13,9 +13,9 @@ export default {
       sortNone: 'بدون مرتب‌سازی',
       activateNone: 'غیرفعال‌سازی مرتب‌سازی',
       activateDescending: 'غیرفعال‌سازی مرتب‌سازی نزولی',
-      activateAscending: 'غیرفعال‌سازی مرتب‌سازی صعودی',
+      activateAscending: 'غیرفعال‌سازی مرتب‌سازی صعودی'
     },
-    sortBy: 'مرتب‌سازی براساس',
+    sortBy: 'مرتب‌سازی براساس'
   },
   dataFooter: {
     itemsPerPageText: 'ردیف در صفحه:',
@@ -24,38 +24,38 @@ export default {
     prevPage: 'صفحه‌ی قبل',
     firstPage: 'صفحه‌ی یکم',
     lastPage: 'صفحه‌ی آخر',
-    pageText: '{0} تا {1} از {2}',
+    pageText: '{0} تا {1} از {2}'
   },
   datePicker: {
     itemsSelected: '{0} انتخاب شده',
     nextMonthAriaLabel: 'ماه بعد',
     nextYearAriaLabel: 'سال بعد',
     prevMonthAriaLabel: 'ماه قبل',
-    prevYearAriaLabel: 'سال قبل',
+    prevYearAriaLabel: 'سال قبل'
   },
   noDataText: 'داده‌ای موجود نیست',
   carousel: {
     prev: 'اسلاید قبلی',
     next: 'اسلاید بعدی',
     ariaLabel: {
-      delimiter: 'اسلاید {0} از {1}',
-    },
+      delimiter: 'اسلاید {0} از {1}'
+    }
   },
   calendar: {
-    moreEvents: '{بیشتر {0',
+    moreEvents: '{بیشتر {0'
   },
   input: {
     clear: 'Clear {0}',
     prependAction: '{0} prepended action',
-    appendAction: '{0} appended action',
+    appendAction: '{0} appended action'
   },
   fileInput: {
     counter: '{0} پرونده',
-    counterSize: '{0} پرونده ({1} در کل)',
+    counterSize: '{0} پرونده ({1} در کل)'
   },
   timePicker: {
     am: 'قبل از ظهر',
-    pm: 'بعد از ظهر',
+    pm: 'بعد از ظهر'
   },
   pagination: {
     ariaLabel: {
@@ -63,13 +63,13 @@ export default {
       next: 'صفحه بعد',
       previous: 'صفحه قبلی',
       page: 'برو صفحه {0}',
-      currentPage: '{0} صفحه فعلی ، صفحه',
-    },
+      currentPage: '{0} صفحه فعلی ، صفحه'
+    }
   },
   rating: {
     ariaLabel: {
-      icon: 'Rating {0} of {1}',
-    },
+      icon: 'Rating {0} of {1}'
+    }
   },
-  loading: 'Loading...',
+  loading: 'Loading...'
 }

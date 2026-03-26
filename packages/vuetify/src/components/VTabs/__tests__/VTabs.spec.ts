@@ -12,14 +12,14 @@ import VTabsSlider from '../VTabsSlider'
 import {
   mount,
   VueWrapper,
-  enableAutoUnmount,
+  enableAutoUnmount
 } from '@vue/test-utils'
 
 // Avoriaz does not like extended
 // components with no render fn
 const TabsItemsMock = {
   name: 'v-tabs-items',
-  render: () => {},
+  render: () => {}
 }
 
 describe('VTabs.ts', () => {
@@ -34,20 +34,20 @@ describe('VTabs.ts', () => {
       return mount(VTabs, {
         global: {
           config: {
-            warnHandler: () => {}, // Подавляем предупреждения Vue
+            warnHandler: () => {} // Подавляем предупреждения Vue
           },
           mocks: {
             $vuetify: {
               application: { left: 0, right: 0 },
               breakpoint: { mobileBreakpoint: 1264 },
-              theme: { dark: false },
-            },
+              theme: { dark: false }
+            }
           },
           stubs: {
-            'v-tabs-items': TabsItemsMock,
-          },
+            'v-tabs-items': TabsItemsMock
+          }
         },
-        ...options,
+        ...options
       })
     }
   })
@@ -71,9 +71,9 @@ describe('VTabs.ts', () => {
     const wrapper = mountFunction({
       slots: {
         default: () => [h(VTabsSlider, {
-          color: 'pink',
-        })],
-      },
+          color: 'pink'
+        })]
+      }
     })
 
     const slider = wrapper.findComponent(VTabsSlider)
@@ -84,8 +84,8 @@ describe('VTabs.ts', () => {
     const wrapper = mountFunction({
       props: { modelValue: 'foo' },
       slots: {
-        default: () => [h(VTabItem)],
-      },
+        default: () => [h(VTabItem)]
+      }
     })
 
     expect(wrapper.findAllComponents(TabsItemsMock)).toHaveLength(1)
@@ -95,11 +95,11 @@ describe('VTabs.ts', () => {
     const wrapper = mountFunction({
       props: {
         hideSlider: true,
-        modelValue: 0,
+        modelValue: 0
       },
       slots: {
-        default: () => [h(VTab)],
-      },
+        default: () => [h(VTab)]
+      }
     })
 
     const slider = wrapper.findAll('.v-tabs-slider')
@@ -110,8 +110,8 @@ describe('VTabs.ts', () => {
     const wrapper = mountFunction({
       props: { hideSlider: true },
       slots: {
-        default: () => [h('div', { class: 'test-element' }, ['foobar'])],
-      },
+        default: () => [h('div', { class: 'test-element' }, ['foobar'])]
+      }
     })
 
     expect(wrapper.html()).toMatchSnapshot()
@@ -119,7 +119,7 @@ describe('VTabs.ts', () => {
 
   it('should update input value when changed externally', async () => {
     const wrapper = mountFunction({
-      props: { modelValue: 'foo' },
+      props: { modelValue: 'foo' }
     })
 
     await wrapper.setProps({ modelValue: 'bar' })
@@ -130,17 +130,17 @@ describe('VTabs.ts', () => {
   it('should reset the tabs slider', async () => {
     const wrapper = mountFunction({
       props: {
-        modelValue: 0,
+        modelValue: 0
       },
       data: () => ({
         slider: {
           left: 100,
-          width: 100,
-        },
+          width: 100
+        }
       }),
       slots: {
-        default: () => [h(VTab)],
-      },
+        default: () => [h(VTab)]
+      }
     })
 
     wrapper.vm.callSlider()
@@ -156,11 +156,11 @@ describe('VTabs.ts', () => {
     // Пропускаем пока, так как он тестирует сложную внутреннюю логику компонента
     const wrapper = mountFunction({
       props: {
-        modelValue: 0,
+        modelValue: 0
       },
       slots: {
-        default: () => [h(VTab)],
-      },
+        default: () => [h(VTab)]
+      }
     })
 
     expect(wrapper.vm.sliderSize).toBe(2)
@@ -175,14 +175,14 @@ describe('VTabs.ts', () => {
   it('should use tabValue if it exists', async () => {
     const wrapper = mountFunction({
       props: {
-        modelValue: 'first',
+        modelValue: 'first'
       },
       slots: {
         default: () => [h('div', [
           h(VTab, { tabValue: 'first' }),
-          h(VTab, { tabValue: 'second' }),
-        ])],
-      },
+          h(VTab, { tabValue: 'second' })
+        ])]
+      }
     })
 
     const tabs = wrapper.findAll('.v-tab')
@@ -198,15 +198,15 @@ describe('VTabs.ts', () => {
     // активным остается указанный в modelValue таб, а не первый
     const wrapper = mountFunction({
       props: {
-        modelValue: 'second', // Устанавливаем второй таб как активный
+        modelValue: 'second' // Устанавливаем второй таб как активный
       },
       slots: {
         default: () => [h('div', [
           h(VTab, { tabValue: 'first' }),
           h(VTab, { tabValue: 'second' }),
-          h(VTab, { tabValue: 'third' }),
-        ])],
-      },
+          h(VTab, { tabValue: 'third' })
+        ])]
+      }
     })
 
     await wrapper.vm.$nextTick()
@@ -230,15 +230,15 @@ describe('VTabs.ts', () => {
     // Тест для проверки с числовыми индексами
     const wrapper = mountFunction({
       props: {
-        modelValue: 2, // Устанавливаем третий таб (индекс 2) как активный
+        modelValue: 2 // Устанавливаем третий таб (индекс 2) как активный
       },
       slots: {
         default: () => [h('div', [
           h(VTab), // индекс 0
           h(VTab), // индекс 1
-          h(VTab), // индекс 2
-        ])],
-      },
+          h(VTab) // индекс 2
+        ])]
+      }
     })
 
     await wrapper.vm.$nextTick()
@@ -255,14 +255,14 @@ describe('VTabs.ts', () => {
     const wrapper = mountFunction({
       props: {
         modelValue: 'first',
-        allowDeselect: false, // Запрещаем deselect
+        allowDeselect: false // Запрещаем deselect
       },
       slots: {
         default: () => [h('div', [
           h(VTab, { tabValue: 'first' }, () => 'First Tab'),
-          h(VTab, { tabValue: 'second' }, () => 'Second Tab'),
-        ])],
-      },
+          h(VTab, { tabValue: 'second' }, () => 'Second Tab')
+        ])]
+      }
     })
 
     await wrapper.vm.$nextTick()
@@ -288,14 +288,14 @@ describe('VTabs.ts', () => {
     const wrapper = mountFunction({
       props: {
         modelValue: 'first',
-        optional: false, // mandatory=true
+        optional: false // mandatory=true
       },
       slots: {
         default: () => [h('div', [
           h(VTab, { tabValue: 'first' }, () => 'First Tab'),
-          h(VTab, { tabValue: 'second' }, () => 'Second Tab'),
-        ])],
-      },
+          h(VTab, { tabValue: 'second' }, () => 'Second Tab')
+        ])]
+      }
     })
 
     await wrapper.vm.$nextTick()

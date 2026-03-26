@@ -10,7 +10,7 @@ import Vuetify from 'vuetify/types'
 import { Service } from '../service'
 import {
   UserVuetifyPreset,
-  VuetifyPreset,
+  VuetifyPreset
 } from 'vuetify/types/services/presets'
 
 export class Presets extends Service {
@@ -18,7 +18,7 @@ export class Presets extends Service {
 
   constructor (
     parentPreset: Partial<UserVuetifyPreset>,
-    parent: Vuetify,
+    parent: Vuetify
   ) {
     super()
 

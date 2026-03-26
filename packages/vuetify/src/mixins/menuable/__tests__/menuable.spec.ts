@@ -8,7 +8,7 @@ describe('menuable.ts', () => {
     mixins: [Menuable],
     render () {
       return h('div')
-    },
+    }
   })
 
   type Instance = InstanceType<typeof Mock>;
@@ -21,11 +21,11 @@ describe('menuable.ts', () => {
           mocks: {
             $vuetify: {
               theme: {},
-              rtl: false,
-            },
-          },
+              rtl: false
+            }
+          }
         },
-        ...options,
+        ...options
       })
     }
   })
@@ -34,8 +34,8 @@ describe('menuable.ts', () => {
     const wrapper = mountFunction({
       attachTo: document.body,
       props: {
-        activator: 'body',
-      },
+        activator: 'body'
+      }
     })
 
     expect(wrapper.vm.getActivator()).toBeTruthy()
@@ -46,11 +46,11 @@ describe('menuable.ts', () => {
     const MockWithMethod = defineComponent({
       mixins: [Menuable],
       methods: {
-        sneakPeek,
+        sneakPeek
       },
       render () {
         return h('div')
-      },
+      }
     })
 
     const wrapper = mount(MockWithMethod, {
@@ -58,10 +58,10 @@ describe('menuable.ts', () => {
         mocks: {
           $vuetify: {
             theme: {},
-            rtl: false,
-          },
-        },
-      },
+            rtl: false
+          }
+        }
+      }
     })
 
     wrapper.vm.updateDimensions()
@@ -75,8 +75,8 @@ describe('menuable.ts', () => {
         attach: true,
         left: true,
         offsetX: true,
-        maxWidth: 200,
-      },
+        maxWidth: 200
+      }
     })
 
     // Настраиваем размеры для правильного тестирования
@@ -84,11 +84,11 @@ describe('menuable.ts', () => {
       activator: {
         width: 100,
         offsetLeft: 0,
-        left: 0,
+        left: 0
       },
       content: {
-        width: 300,
-      },
+        width: 300
+      }
     }
 
     // Мокаем pageWidth для создания сценария переполнения
@@ -109,10 +109,10 @@ describe('menuable.ts', () => {
           VApp,
           {},
           {
-            default: () => h(Mock),
+            default: () => h(Mock)
           }
         )
-      },
+      }
     })
 
     const wrapper = mount(AppComponent, {
@@ -120,10 +120,10 @@ describe('menuable.ts', () => {
         mocks: {
           $vuetify: {
             theme: {},
-            rtl: false,
-          },
-        },
-      },
+            rtl: false
+          }
+        }
+      }
     })
 
     await wrapper.vm.$nextTick()

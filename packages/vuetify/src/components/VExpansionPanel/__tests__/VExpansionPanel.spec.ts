@@ -9,7 +9,7 @@ import {
   mount,
   VueWrapper,
   MountingOptions,
-  enableAutoUnmount,
+  enableAutoUnmount
 } from '@vue/test-utils'
 
 describe('VExpansionPanel', () => {
@@ -26,20 +26,20 @@ describe('VExpansionPanel', () => {
             VExpansionPanelHeader,
             {
               render: () => h(VExpansionPanelContent, {
-                eager: true,
-              }),
-            },
-          ],
+                eager: true
+              })
+            }
+          ]
         },
         global: {
           provide: {
             expansionPanels: {
               register: () => {},
-              unregister: () => {},
-            },
-          },
+              unregister: () => {}
+            }
+          }
         },
-        ...options,
+        ...options
       })
     }
   })
@@ -48,7 +48,7 @@ describe('VExpansionPanel', () => {
     const click = jest.fn()
     const toggle = jest.fn()
     const wrapper = mountFunction({
-      props: { readonly: true },
+      props: { readonly: true }
     })
 
     // In Vue 3, events are handled differently
@@ -88,12 +88,12 @@ describe('VExpansionPanel', () => {
     const change = jest.fn()
     const wrapper = mountFunction({
       props: {
-        lazy: true,
-      },
+        lazy: true
+      }
     })
 
     // In Vue 3, events are handled differently
-// wrapper.vm.$on('change', change)
+    // wrapper.vm.$on('change', change)
 
     expect(wrapper.vm.isBooted).toBe(false)
 
@@ -104,7 +104,7 @@ describe('VExpansionPanel', () => {
     await wrapper.vm.$nextTick()
 
     // In Vue 3, events are handled differently
-// expect(change).toHaveBeenCalled()
+    // expect(change).toHaveBeenCalled()
   })
 
   it('should hide actions and match snapshot', async () => {
@@ -113,12 +113,12 @@ describe('VExpansionPanel', () => {
         default: [
           {
             render: () => h(VExpansionPanelHeader, {
-              hideActions: true,
-            }),
+              hideActions: true
+            })
           },
-          VExpansionPanelContent,
-        ],
-      },
+          VExpansionPanelContent
+        ]
+      }
     })
 
     const wrapper2 = mountFunction()
@@ -154,14 +154,14 @@ describe('VExpansionPanel', () => {
       slots: {
         default: [
           VExpansionPanelHeader,
-          VExpansionPanelContent,
-        ],
-      },
+          VExpansionPanelContent
+        ]
+      }
     })
     let content = wrapper.find('.v-expansion-panel-content')
 
     // In Vue 3, events are handled differently
-// wrapper.vm.$on('change', change)
+    // wrapper.vm.$on('change', change)
 
     expect(content.exists()).toBeFalsy()
 
@@ -173,6 +173,6 @@ describe('VExpansionPanel', () => {
     await wrapper.vm.$nextTick()
 
     // In Vue 3, events are handled differently
-// expect(change).toHaveBeenCalled()
+    // expect(change).toHaveBeenCalled()
   })
 })

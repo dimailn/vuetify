@@ -10,24 +10,45 @@ import { defineComponent, mergeProps } from 'vue'
 import {
   getObjectValueByPath,
   getPropertyFromItem,
-  keyCodes,
+  keyCodes
 } from '../../util/helpers'
 
 // Types
-import { PropType, VNode } from 'vue'
-import { PropValidator } from 'vue/types/options'
+import type { PropType, VNode } from 'vue'
 
 const defaultMenuProps = {
   ...VSelectMenuProps,
   offsetY: true,
   offsetOverflow: true,
-  transition: false,
+  transition: false
 }
 
 /* @vue/component */
 export default defineComponent({
   name: 'v-autocomplete',
   extends: VSelect,
+
+  props: {
+    autoSelectFirst: {
+      type: Boolean,
+      default: false
+    },
+    filter: {
+      type: Function,
+      default: (item: any, queryText: string, itemText: string) => {
+        return itemText.toLocaleLowerCase().indexOf(queryText.toLocaleLowerCase()) > -1
+      }
+    } as unknown as PropType<(item: any, queryText: string, itemText: string) => boolean>,
+    hideNoData: Boolean,
+    menuProps: {
+      type: VSelect.props.menuProps.type,
+      default: () => defaultMenuProps
+    },
+    noFilter: Boolean,
+    searchInput: {
+      type: String as PropType<string | null>
+    }
+  },
 
   emits: [
     'update:search-input',
@@ -48,34 +69,12 @@ export default defineComponent({
     'click:prepend-inner',
     'click:clear',
     'input',
-    'update:error',
+    'update:error'
   ],
-
-  props: {
-    autoSelectFirst: {
-      type: Boolean,
-      default: false,
-    },
-    filter: {
-      type: Function,
-      default: (item: any, queryText: string, itemText: string) => {
-        return itemText.toLocaleLowerCase().indexOf(queryText.toLocaleLowerCase()) > -1
-      },
-    } as PropValidator<(item: any, queryText: string, itemText: string) => boolean>,
-    hideNoData: Boolean,
-    menuProps: {
-      type: VSelect.props.menuProps.type,
-      default: () => defaultMenuProps,
-    },
-    noFilter: Boolean,
-    searchInput: {
-      type: String as PropType<string | null>,
-    },
-  },
 
   data () {
     return {
-      lazySearch: this.searchInput,
+      lazySearch: this.searchInput
     }
   },
 
@@ -84,7 +83,7 @@ export default defineComponent({
       return {
         ...VSelect.computed.classes.call(this),
         'v-autocomplete': true,
-        'v-autocomplete--is-selecting-index': this.selectedIndex > -1,
+        'v-autocomplete--is-selecting-index': this.selectedIndex > -1
       }
     },
     computedItems (): object[] {
@@ -124,7 +123,7 @@ export default defineComponent({
           this.lazySearch = val
           this.$emit('update:search-input', val)
         }
-      },
+      }
     },
     isAnyValueAllowed (): boolean {
       return false
@@ -151,7 +150,7 @@ export default defineComponent({
       (props as any).contentClass = `v-autocomplete__content ${(props as any).contentClass || ''}`.trim()
       return {
         ...defaultMenuProps,
-        ...props,
+        ...props
       }
     },
     searchIsDirty (): boolean {
@@ -176,11 +175,11 @@ export default defineComponent({
           !this.isSearching ||
           !this.filteredItems.length
         ),
-        searchInput: this.internalSearch,
+        searchInput: this.internalSearch
       }
 
       return data
-    },
+    }
   },
 
   watch: {
@@ -219,7 +218,7 @@ export default defineComponent({
       this.lazySearch = val
     },
     internalSearch: 'onInternalSearchChanged',
-    itemText: 'updateSelf',
+    itemText: 'updateSelf'
   },
 
   created () {
@@ -345,7 +344,7 @@ export default defineComponent({
       }, {
         'aria-activedescendant': ariaActiveDescendant,
         autocomplete,
-        value: this.internalSearch,
+        value: this.internalSearch
       })
 
       return input
@@ -475,6 +474,6 @@ export default defineComponent({
       event.clipboardData?.setData('text/plain', currentItemText)
       event.clipboardData?.setData('text/vnd.vuetify.autocomplete.item+plain', currentItemText)
       event.preventDefault()
-    },
-  },
+    }
+  }
 })

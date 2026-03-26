@@ -2,7 +2,7 @@ import VColorPickerCanvas from '../VColorPickerCanvas'
 import {
   mount,
   VueWrapper,
-  enableAutoUnmount,
+  enableAutoUnmount
 } from '@vue/test-utils'
 import { fromRGBA } from '../util'
 
@@ -12,7 +12,7 @@ function createMouseEvent (x: number, y: number): MouseEvent {
   return {
     preventDefault: () => {},
     clientX: x,
-    clientY: y,
+    clientY: y
   } as any
 }
 
@@ -24,7 +24,7 @@ const rectMock: DOMRect = {
   right: 0,
   top: 0,
   x: 0,
-  y: 0,
+  y: 0
 }
 
 describe('VColorPickerCanvas.ts', () => {
@@ -42,11 +42,11 @@ describe('VColorPickerCanvas.ts', () => {
       props: {
         color: fromRGBA({ r: 0, g: 0, b: 0, a: 0 }),
         width: 100,
-        height: 100,
+        height: 100
       },
       attrs: {
-        'onUpdate:color': update,
-      },
+        'onUpdate:color': update
+      }
     })
     wrapper.vm.$el.getBoundingClientRect = () => rectMock
 
@@ -61,11 +61,11 @@ describe('VColorPickerCanvas.ts', () => {
       props: {
         color: fromRGBA({ r: 0, g: 0, b: 0, a: 0 }),
         width: 100,
-        height: 100,
+        height: 100
       },
       attrs: {
-        'onUpdate:color': update,
-      },
+        'onUpdate:color': update
+      }
     })
     wrapper.vm.$el.getBoundingClientRect = () => rectMock
     const addEventListener = jest.spyOn(window, 'addEventListener')
@@ -94,11 +94,11 @@ describe('VColorPickerCanvas.ts', () => {
         color: fromRGBA({ r: 0, g: 0, b: 0, a: 0 }),
         width: 100,
         height: 100,
-        disabled: true,
+        disabled: true
       },
       attrs: {
-        'onUpdate:color': update,
-      },
+        'onUpdate:color': update
+      }
     })
     wrapper.vm.$el.getBoundingClientRect = () => rectMock
 

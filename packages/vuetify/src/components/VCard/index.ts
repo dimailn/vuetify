@@ -11,7 +11,7 @@ export {
   VCardActions,
   VCardSubtitle,
   VCardText,
-  VCardTitle,
+  VCardTitle
 }
 
 export default {
@@ -20,6 +20,6 @@ export default {
     VCardActions,
     VCardSubtitle,
     VCardText,
-    VCardTitle,
-  },
+    VCardTitle
+  }
 }

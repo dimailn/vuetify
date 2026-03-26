@@ -9,7 +9,7 @@ import VAutocomplete from '../VAutocomplete/VAutocomplete'
 import { keyCodes } from '../../util/helpers'
 
 // Types
-import { PropValidator } from 'vue/types/options'
+import { PropType } from 'vue'
 import { defineComponent } from 'vue'
 
 /* @vue/component */
@@ -21,12 +21,12 @@ export default defineComponent({
   props: {
     delimiters: {
       type: Array,
-      default: () => ([]),
-    } as PropValidator<string[]>,
+      default: () => ([])
+    } as unknown as PropType<string[]>,
     returnObject: {
       type: Boolean,
-      default: true,
-    },
+      default: true
+    }
   },
 
   emits: [
@@ -49,11 +49,11 @@ export default defineComponent({
     'click:clear',
     'input',
     'update:error',
-    'paste',
+    'paste'
   ],
 
   data: () => ({
-    editingIndex: -1,
+    editingIndex: -1
   }),
 
   computed: {
@@ -76,7 +76,7 @@ export default defineComponent({
     },
     searchIsDirty (): boolean {
       return this.internalSearch != null
-    },
+    }
   },
 
   methods: {
@@ -297,6 +297,6 @@ export default defineComponent({
       this.editingIndex = -1
 
       VAutocomplete.methods.clearableCallback.call(this)
-    },
-  },
+    }
+  }
 })

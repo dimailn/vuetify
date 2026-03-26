@@ -1,4 +1,4 @@
-import {h} from 'vue'
+import { h } from 'vue'
 // Styles
 import './VList.sass'
 import VListGroup from './VListGroup'
@@ -25,17 +25,17 @@ export default defineComponent({
   provide (): object {
     return {
       isInList: true,
-      list: this,
+      list: this
     }
   },
 
   inject: {
     isInMenu: {
-      default: false,
+      default: false
     },
     isInNav: {
-      default: false,
-    },
+      default: false
+    }
   },
 
   props: {
@@ -47,11 +47,11 @@ export default defineComponent({
     rounded: Boolean,
     subheader: Boolean,
     threeLine: Boolean,
-    twoLine: Boolean,
+    twoLine: Boolean
   },
 
   data: () => ({
-    groups: [] as VListGroupInstance[],
+    groups: [] as VListGroupInstance[]
   }),
 
   computed: {
@@ -65,9 +65,9 @@ export default defineComponent({
         'v-list--rounded': this.rounded,
         'v-list--subheader': this.subheader,
         'v-list--two-line': this.twoLine,
-        'v-list--three-line': this.threeLine,
+        'v-list--three-line': this.threeLine
       }
-    },
+    }
   },
 
   methods: {
@@ -85,7 +85,7 @@ export default defineComponent({
       for (const group of this.groups) {
         group.toggle(uid)
       }
-    },
+    }
   },
 
   render (): VNode {
@@ -94,9 +94,9 @@ export default defineComponent({
       style: this.styles,
       role: this.isInNav || this.isInMenu ? undefined : 'list',
       // ...this.attrs$,
-      ...this.listeners$,
+      ...this.listeners$
     }
 
     return h(getTagValue(this.tag), this.setBackgroundColor(this.color, data), getSlot(this))
-  },
+  }
 })

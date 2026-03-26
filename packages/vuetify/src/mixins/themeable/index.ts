@@ -1,5 +1,5 @@
-import {defineComponent, App} from 'vue'
-import { PropType, RenderContext } from 'vue/types/options'
+import { defineComponent, App } from 'vue'
+import type { PropType } from 'vue'
 
 interface options extends App {
   theme: {
@@ -13,34 +13,34 @@ const Themeable = defineComponent({
 
   provide (): object {
     return {
-      theme: this.themeableProvide,
+      theme: this.themeableProvide
     }
   },
 
   inject: {
     theme: {
       default: {
-        isDark: false,
-      },
-    },
+        isDark: false
+      }
+    }
   },
 
   props: {
     dark: {
       type: Boolean as PropType<boolean | null>,
-      default: null,
+      default: null
     },
     light: {
       type: Boolean as PropType<boolean | null>,
-      default: null,
-    },
+      default: null
+    }
   },
 
   data () {
     return {
       themeableProvide: {
-        isDark: false,
-      },
+        isDark: false
+      }
     }
   },
 
@@ -63,7 +63,7 @@ const Themeable = defineComponent({
     themeClasses (): object {
       return {
         'theme--dark': this.isDark,
-        'theme--light': !this.isDark,
+        'theme--light': !this.isDark
       }
     },
     /** Used by menus and dialogs, inherits from v-app instead of the parent */
@@ -82,9 +82,9 @@ const Themeable = defineComponent({
     rootThemeClasses (): Dictionary<boolean> {
       return {
         'theme--dark': this.rootIsDark,
-        'theme--light': !this.rootIsDark,
+        'theme--light': !this.rootIsDark
       }
-    },
+    }
   },
 
   watch: {
@@ -94,9 +94,9 @@ const Themeable = defineComponent({
           this.themeableProvide.isDark = this.isDark
         }
       },
-      immediate: true,
-    },
-  },
+      immediate: true
+    }
+  }
 })
 
 export default Themeable

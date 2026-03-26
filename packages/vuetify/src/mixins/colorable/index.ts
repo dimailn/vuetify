@@ -1,5 +1,5 @@
-import {defineComponent} from 'vue'
-import { VNodeData } from 'vue/types/vnode'
+import { defineComponent } from 'vue'
+import type { VNodeData } from '../../types/vue-internal'
 import { consoleError } from '../../util/console'
 import { isCssColor } from '../../util/colorUtils'
 
@@ -7,7 +7,7 @@ export default defineComponent({
   name: 'colorable',
 
   props: {
-    color: String,
+    color: String
   },
 
   methods: {
@@ -28,13 +28,13 @@ export default defineComponent({
         // return data
       }
 
-      if(data.class instanceof Array) {
+      if (data.class instanceof Array) {
         data.class = data.class.reduce((classes, current) => {
-          if(typeof current === 'string') {
+          if (typeof current === 'string') {
             classes[current] = true
           }
 
-          if(typeof current === 'object') {
+          if (typeof current === 'object') {
             classes = {
               ...classes,
               ...current
@@ -49,12 +49,12 @@ export default defineComponent({
         data.style = {
           ...data.style as object,
           'background-color': `${color}`,
-          'border-color': `${color}`,
+          'border-color': `${color}`
         }
       } else if (color) {
         data.class = {
           ...data.class,
-          [color]: true,
+          [color]: true
         }
       }
 
@@ -80,14 +80,15 @@ export default defineComponent({
 
       if (data.class instanceof Array) {
         data.class = data.class.reduce((classes, current) => {
-          if(typeof current === 'string') {
+          if (typeof current === 'string') {
             classes[current] = true
-          } else if(typeof current === 'object') {
+          } else if (typeof current === 'object') {
             classes = {
               ...classes,
               ...current
             }
           } else {
+            // eslint-disable-next-line no-console -- debug unknown class shape
             console.error(`Unknown type of class ${typeof current}`)
           }
 
@@ -99,13 +100,13 @@ export default defineComponent({
         data.style = {
           ...data.style as object,
           color: `${color}`,
-          'caret-color': `${color}`,
+          'caret-color': `${color}`
         }
       } else if (color) {
         const [colorName, colorModifier] = color.toString().trim().split(' ', 2) as (string | undefined)[]
         data.class = {
           ...data.class,
-          [colorName + '--text']: true,
+          [colorName + '--text']: true
         }
         if (colorModifier) {
           data.class['text--' + colorModifier] = true
@@ -113,6 +114,6 @@ export default defineComponent({
       }
 
       return data
-    },
-  },
+    }
+  }
 })

@@ -20,13 +20,13 @@ export default mixins(Colorable, Themeable).extend({
   props: {
     modelValue: {
       type: Array,
-      default: () => ([]),
-    },
+      default: () => ([])
+    }
   },
 
   created () {
     const breakingProps = [
-      ['value', 'modelValue'],
+      ['value', 'modelValue']
     ]
 
     /* istanbul ignore next */
@@ -40,20 +40,27 @@ export default mixins(Colorable, Themeable).extend({
       return h(TransitionGroup, {
         class: 'v-messages__wrapper',
         name: 'message-transition',
-        tag: 'div',
+        tag: 'div'
       }, () => this.modelValue.map(this.genMessage))
     },
     genMessage (message: string, key: number) {
+      const fromSlot = getSlot(this, 'default', { message, key })
+      const hasSlotContent = fromSlot != null &&
+        (!Array.isArray(fromSlot) || fromSlot.length > 0)
+      const children = hasSlotContent
+        ? (Array.isArray(fromSlot) ? fromSlot : [fromSlot])
+        : [message]
+
       return h('div', {
         class: 'v-messages__message',
-        key,
-      }, getSlot(this, 'default', { message, key }) || [message])
-    },
+        key
+      }, children)
+    }
   },
 
   render (): VNode {
     return h('div', this.setTextColor(this.color, {
-      class: ['v-messages', this.themeClasses],
+      class: ['v-messages', this.themeClasses]
     }), [this.genChildren()])
-  },
+  }
 })

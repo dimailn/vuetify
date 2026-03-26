@@ -1,16 +1,16 @@
-import {h, withDirectives} from 'vue'
+import { h, withDirectives } from 'vue'
 // Mixins
 import { factory as GroupableFactory } from '../../mixins/groupable'
 import Routable from '../../mixins/routable'
 import Themeable from '../../mixins/themeable'
 
 // Utilities
-import { getSlot, keyCodes } from './../../util/helpers'
+import { getSlot, getTagValue, keyCodes } from './../../util/helpers'
 import mixins from '../../util/mixins'
 import { ExtractVue } from './../../util/mixins'
 
 // Types
-import { VNode } from 'vue/types'
+import type { VNode } from '../../types/vue-internal'
 
 // Components
 import VTabsBar from '../VTabs/VTabsBar'
@@ -25,7 +25,7 @@ const baseMixins = mixins(
 
 type VTabBarInstance = InstanceType<typeof VTabsBar>
 
-interface options extends ExtractVue<typeof baseMixins> {
+type options = ExtractVue<typeof baseMixins> & {
   $el: HTMLElement
   tabsBar: VTabBarInstance
 }
@@ -38,15 +38,15 @@ export default baseMixins.extend({
   props: {
     ripple: {
       type: [Boolean, Object],
-      default: true,
+      default: true
     },
     tabValue: {
-      required: false,
-    },
+      required: false
+    }
   },
 
   data: () => ({
-    proxyClass: 'v-tab--active',
+    proxyClass: 'v-tab--active'
   }),
 
   computed: {
@@ -55,7 +55,7 @@ export default baseMixins.extend({
         'v-tab': true,
         ...Routable.computed.classes.call(this),
         'v-tab--disabled': this.disabled,
-        ...this.groupClasses,
+        ...this.groupClasses
       }
     },
     value (): any {
@@ -78,7 +78,7 @@ export default baseMixins.extend({
       }
 
       return to.replace('#', '')
-    },
+    }
   },
 
   methods: {
@@ -110,7 +110,7 @@ export default baseMixins.extend({
         this.$emit('change')
         this.$emitLegacy('change')
       }
-    },
+    }
   },
 
   render (): VNode {
@@ -128,9 +128,20 @@ export default baseMixins.extend({
       }
     }
 
-    return withDirectives(
-      h(tag, data, getSlot(this)),
-      directives
-    )
-  },
+    const slotContent = getSlot(this)
+    const resolvedTag = typeof tag === 'string' ? getTagValue(tag) : tag
+    const isNativeTag = typeof resolvedTag === 'string'
+    const normalizedChildren =
+      slotContent == null
+        ? null
+        : (Array.isArray(slotContent) ? slotContent : [slotContent])
+
+    const link = normalizedChildren == null
+      ? h(resolvedTag as any, data)
+      : isNativeTag
+        ? h(resolvedTag, data, normalizedChildren)
+        : h(resolvedTag, data, () => normalizedChildren)
+
+    return withDirectives(link, directives)
+  }
 })

@@ -5,7 +5,7 @@ import VSelectList from '../VSelectList'
 import {
   mount,
   Wrapper,
-  enableAutoUnmount,
+  enableAutoUnmount
 } from '@vue/test-utils'
 import { h } from 'vue'
 
@@ -18,7 +18,7 @@ describe('VSelectList.ts', () => {
   beforeEach(() => {
     mountFunction = (options = {}) => {
       return mount(VSelectList, {
-        ...options,
+        ...options
       })
     }
   })
@@ -27,7 +27,7 @@ describe('VSelectList.ts', () => {
     const wrapper = mountFunction()
 
     const divider = wrapper.vm.genDivider({
-      inset: true,
+      inset: true
     })
 
     expect(divider.props.inset).toBe(true)
@@ -39,7 +39,7 @@ describe('VSelectList.ts', () => {
 
     const header = wrapper.vm.genHeader({
       light: true,
-      header: 'foobar',
+      header: 'foobar'
     })
 
     expect(header.props.light).toBe(true)
@@ -52,8 +52,8 @@ describe('VSelectList.ts', () => {
   it('should use no-data slot', () => {
     const wrapper = mountFunction({
       slots: {
-        'no-data': () => h('div', 'foo'),
-      },
+        'no-data': () => h('div', 'foo')
+      }
     })
     expect(wrapper.vm.$slots['no-data']).toBeDefined()
   })
@@ -70,9 +70,9 @@ describe('VSelectList.ts', () => {
         items: [
           { header: true },
           { divider: true },
-          'foo',
-        ],
-      },
+          'foo'
+        ]
+      }
     })
 
     expect(wrapper.html()).toMatchSnapshot()
@@ -81,8 +81,8 @@ describe('VSelectList.ts', () => {
   it('should return defined item value', async () => {
     const wrapper = mountFunction({
       props: {
-        itemValue: 'foo',
-      },
+        itemValue: 'foo'
+      }
     })
 
     const getValue = wrapper.vm.getValue
@@ -100,8 +100,8 @@ describe('VSelectList.ts', () => {
       props: {
         selectedItems: ['foo'],
         hideSelected: true,
-        items: ['foo', 'bar', 'fizz'],
-      },
+        items: ['foo', 'bar', 'fizz']
+      }
     })
 
     expect(wrapper.findAll('.v-list-item')).toHaveLength(2)
@@ -117,8 +117,8 @@ describe('VSelectList.ts', () => {
   it('should display falsy items', () => {
     const wrapper = mountFunction({
       props: {
-        items: [0, null, false, undefined, ''],
-      },
+        items: [0, null, false, undefined, '']
+      }
     })
 
     expect(wrapper.html()).toMatchSnapshot()
@@ -130,8 +130,8 @@ describe('VSelectList.ts', () => {
       props: {
         action: true,
         items: ['Foo', 'Bar', 'Fizz', 'Buzz'],
-        multiple: true,
-      },
+        multiple: true
+      }
     })
 
     const checkbox = wrapper.find('.v-simple-checkbox')
@@ -140,5 +140,18 @@ describe('VSelectList.ts', () => {
 
     expect(wrapper.emitted('select')).toBeTruthy()
     expect(wrapper.emitted('select')?.[0]).toEqual(['Foo'])
+  })
+
+  it('should render primitive header marker as text in v-subheader (Vue 3 slot function)', async () => {
+    const wrapper = mountFunction({
+      props: {
+        items: [{ header: true }]
+      }
+    })
+
+    await wrapper.vm.$nextTick()
+
+    expect(wrapper.find('.v-subheader').exists()).toBe(true)
+    expect(wrapper.text()).toContain('true')
   })
 })

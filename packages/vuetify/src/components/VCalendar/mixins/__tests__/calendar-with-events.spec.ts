@@ -1,7 +1,7 @@
 import {
   mount,
   VueWrapper,
-  MountingOptions,
+  MountingOptions
 } from '@vue/test-utils'
 import CalendarWithEvents from '../calendar-with-events'
 import { parseTimestamp } from '../../util/timestamp'
@@ -9,7 +9,7 @@ import { defineComponent, h } from 'vue'
 
 const Mock = defineComponent({
   ...CalendarWithEvents,
-  render: () => h('div'),
+  render: () => h('div')
 })
 
 describe('calendar-with-events.ts', () => {
@@ -29,9 +29,9 @@ describe('calendar-with-events.ts', () => {
     await wrapper.setProps({
       events: [
         {
-          start: '2019-02-12',
-        },
-      ],
+          start: '2019-02-12'
+        }
+      ]
     })
 
     expect(wrapper.vm.noEvents).toBeFalsy()
@@ -42,10 +42,10 @@ describe('calendar-with-events.ts', () => {
       props: {
         events: [
           {
-            start: '2019-02-12',
-          },
-        ],
-      },
+            start: '2019-02-12'
+          }
+        ]
+      }
     })
 
     expect(wrapper.vm.parsedEvents).toBeDefined()
@@ -56,8 +56,8 @@ describe('calendar-with-events.ts', () => {
   it('should work with event colors', async () => {
     const wrapper = mount(Mock, {
       props: {
-        eventColor: () => 'green',
-      },
+        eventColor: () => 'green'
+      }
     })
 
     expect(wrapper.vm.eventColorFunction).toBeDefined()
@@ -65,7 +65,7 @@ describe('calendar-with-events.ts', () => {
     expect(wrapper.vm.eventColorFunction({})).toBe('green')
 
     await wrapper.setProps({
-      eventColor: 'red',
+      eventColor: 'red'
     })
 
     expect(wrapper.vm.eventColorFunction).toBeDefined()
@@ -76,8 +76,8 @@ describe('calendar-with-events.ts', () => {
   it('should work with event text colors', async () => {
     const wrapper = mount(Mock, {
       props: {
-        eventTextColor: () => 'green',
-      },
+        eventTextColor: () => 'green'
+      }
     })
 
     expect(wrapper.vm.eventTextColorFunction).toBeDefined()
@@ -85,7 +85,7 @@ describe('calendar-with-events.ts', () => {
     expect(wrapper.vm.eventTextColorFunction({})).toBe('green')
 
     await wrapper.setProps({
-      eventTextColor: 'red',
+      eventTextColor: 'red'
     })
 
     expect(wrapper.vm.eventTextColorFunction).toBeDefined()
@@ -96,8 +96,8 @@ describe('calendar-with-events.ts', () => {
   it('should work with event names', async () => {
     const wrapper = mount(Mock, {
       props: {
-        eventName: () => 'Meetup',
-      },
+        eventName: () => 'Meetup'
+      }
     })
 
     expect(wrapper.vm.eventNameFunction).toBeDefined()
@@ -106,7 +106,7 @@ describe('calendar-with-events.ts', () => {
     expect(wrapper.vm.eventNameFunction({ start: { date: '2019-02-12', hour: 8, minute: 30, hasTime: true }, input: { Meetup: 'Meetup' } })).toBe('Meetup')
 
     await wrapper.setProps({
-      eventName: 'x',
+      eventName: 'x'
     })
 
     expect(wrapper.vm.eventNameFunction).toBeDefined()
@@ -138,20 +138,20 @@ describe('calendar-with-events.ts', () => {
         h('div', {
           ref: 'events',
           'data-event': 'test',
-          'data-date': '2019-02-12',
+          'data-date': '2019-02-12'
         }),
         h('div', {
           ref: 'events',
           'data-event': 'test1',
-          'data-date': '2019-02-13',
+          'data-date': '2019-02-13'
         }),
         h('div', {
           ref: 'events',
           'data-event': 'test2',
           'data-date': '2019-02-13',
-          'data-more': '123',
-        }),
-      ]),
+          'data-more': '123'
+        })
+      ])
     })
 
     expect(wrapper.vm.getEventsMap()).toMatchSnapshot()
@@ -163,14 +163,14 @@ describe('calendar-with-events.ts', () => {
         events: [
           {
             start: '2019-02-12 8:30',
-            end: '2019-02-12 12:00',
+            end: '2019-02-12 12:00'
           },
           {
             start: '2019-02-11',
-            end: '2019-02-13',
-          },
-        ],
-      },
+            end: '2019-02-13'
+          }
+        ]
+      }
     })
 
     expect(wrapper.vm.getEventsForDay(parseTimestamp('2019-02-10'))).toHaveLength(0)
@@ -186,14 +186,14 @@ describe('calendar-with-events.ts', () => {
         events: [
           {
             start: '2019-02-12 8:30',
-            end: '2019-02-12 12:00',
+            end: '2019-02-12 12:00'
           },
           {
             start: '2019-02-11',
-            end: '2019-02-13',
-          },
-        ],
-      },
+            end: '2019-02-13'
+          }
+        ]
+      }
     })
 
     expect(wrapper.vm.getEventsForDayAll(parseTimestamp('2019-02-10'))).toHaveLength(0)
@@ -209,14 +209,14 @@ describe('calendar-with-events.ts', () => {
         events: [
           {
             start: '2019-02-12 8:30',
-            end: '2019-02-12 12:00',
+            end: '2019-02-12 12:00'
           },
           {
             start: '2019-02-11',
-            end: '2019-02-13',
-          },
-        ],
-      },
+            end: '2019-02-13'
+          }
+        ]
+      }
     })
 
     expect(wrapper.vm.getEventsForDayTimed(parseTimestamp('2019-02-10'))).toHaveLength(0)

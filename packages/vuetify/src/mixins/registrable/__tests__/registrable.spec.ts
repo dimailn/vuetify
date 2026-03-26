@@ -2,7 +2,7 @@ import { inject as RegistrableInject, provide as RegistrableProvide } from '../'
 import {
   mount,
   MountingOptions,
-  VueWrapper,
+  VueWrapper
 } from '@vue/test-utils'
 import { defineComponent } from 'vue'
 
@@ -10,7 +10,7 @@ describe('registrable.ts', () => {
   it('should inject registrable', () => {
     const Mock = defineComponent({
       extends: RegistrableInject('test'),
-      render: () => null,
+      render: () => null
     })
 
     const wrapper = mount(Mock)
@@ -21,7 +21,7 @@ describe('registrable.ts', () => {
   it('should provide registrable', () => {
     const Mock = defineComponent({
       mixins: [RegistrableProvide('test')],
-      render: () => null,
+      render: () => null
     })
 
     const wrapper = mount(Mock)

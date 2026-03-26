@@ -15,7 +15,7 @@ const baseMixins = mixins(
   Stackable,
   positionableFactory(['top', 'right', 'bottom', 'left', 'absolute']),
   Activatable,
-  Detachable,
+  Detachable
 )
 
 interface dimensions {
@@ -30,7 +30,7 @@ interface dimensions {
   offsetLeft: number
 }
 
-interface options extends ExtractVue<typeof baseMixins> {
+type options = ExtractVue<typeof baseMixins> & {
   attach: boolean | string | Element
   offsetY: boolean
   offsetX: boolean
@@ -54,42 +54,42 @@ export default baseMixins.extend({
     dark: Boolean,
     maxWidth: {
       type: [Number, String],
-      default: 'auto',
+      default: 'auto'
     },
     minWidth: [Number, String],
     nudgeBottom: {
       type: [Number, String],
-      default: 0,
+      default: 0
     },
     nudgeLeft: {
       type: [Number, String],
-      default: 0,
+      default: 0
     },
     nudgeRight: {
       type: [Number, String],
-      default: 0,
+      default: 0
     },
     nudgeTop: {
       type: [Number, String],
-      default: 0,
+      default: 0
     },
     nudgeWidth: {
       type: [Number, String],
-      default: 0,
+      default: 0
     },
     offsetOverflow: Boolean,
     positionX: {
       type: Number,
-      default: null,
+      default: null
     },
     positionY: {
       type: Number,
-      default: null,
+      default: null
     },
     zIndex: {
       type: [Number, String],
-      default: null,
-    },
+      default: null
+    }
   },
 
   data: () => ({
@@ -108,7 +108,7 @@ export default baseMixins.extend({
         height: 0,
         offsetTop: 0,
         scrollHeight: 0,
-        offsetLeft: 0,
+        offsetLeft: 0
       },
       content: {
         top: 0,
@@ -118,8 +118,8 @@ export default baseMixins.extend({
         width: 0,
         height: 0,
         offsetTop: 0,
-        scrollHeight: 0,
-      },
+        scrollHeight: 0
+      }
     },
     relativeYOffset: 0,
     hasJustFocused: false,
@@ -129,11 +129,11 @@ export default baseMixins.extend({
     pageWidth: 0,
     pageYOffset: 0,
     stackClass: 'v-menu__content--active',
-    stackMinZIndex: 6,
+    stackMinZIndex: 6
   }),
 
   computed: {
-    isMenuable() {
+    isMenuable () {
       return true
     },
     computedLeft () {
@@ -171,11 +171,11 @@ export default baseMixins.extend({
       return top
     },
     hasActivator (): boolean {
-      return !!this.$slots.activator || !!this.$slots.activator || !!this.activator || !!this.inputActivator
+      return !!this.$slots.activator || !!this.activator || !!this.inputActivator
     },
     absoluteYOffset (): number {
       return this.pageYOffset - this.relativeYOffset
-    },
+    }
   },
 
   watch: {
@@ -188,7 +188,7 @@ export default baseMixins.extend({
       val ? this.callActivate() : this.callDeactivate()
     },
     positionX: 'updateDimensions',
-    positionY: 'updateDimensions',
+    positionY: 'updateDimensions'
   },
 
   beforeMount () {
@@ -216,7 +216,7 @@ export default baseMixins.extend({
         left: this.positionX || this.absoluteX,
         right: this.positionX || this.absoluteX,
         height: 0,
-        width: 0,
+        width: 0
       }
     },
     activate () {},
@@ -307,7 +307,7 @@ export default baseMixins.extend({
       if (onClick) {
         listeners.onClick = (e: MouseEvent & KeyboardEvent & FocusEvent) => {
           if (this.openOnClick) {
-            onClick && onClick(e)
+            onClick(e)
           }
 
           this.absoluteX = e.clientX
@@ -343,7 +343,7 @@ export default baseMixins.extend({
         bottom: Math.round(rect.bottom),
         right: Math.round(rect.right),
         width: Math.round(rect.width),
-        height: Math.round(rect.height),
+        height: Math.round(rect.height)
       }
     },
     measure (el: HTMLElement) {
@@ -389,7 +389,7 @@ export default baseMixins.extend({
 
       const dimensions: any = {
         activator: { ...this.dimensions.activator },
-        content: { ...this.dimensions.content },
+        content: { ...this.dimensions.content }
       }
 
       // Activator should already be shown
@@ -426,6 +426,6 @@ export default baseMixins.extend({
 
         this.dimensions = dimensions
       })
-    },
-  },
+    }
+  }
 })

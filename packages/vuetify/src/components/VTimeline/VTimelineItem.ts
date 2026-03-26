@@ -1,7 +1,7 @@
-import {h} from 'vue'
+import { h } from 'vue'
 // Types
 import mixins, { ExtractVue } from '../../util/mixins'
-import { VNode, VNodeData } from 'vue'
+import type { VNode, VNodeData } from '../../types/vue-internal'
 
 // Components
 import VTimeline from './VTimeline'
@@ -21,7 +21,7 @@ const baseMixins = mixins(
 
 type VTimelineInstance = InstanceType<typeof VTimeline>
 
-interface options extends ExtractVue<typeof baseMixins> {
+type options = ExtractVue<typeof baseMixins> & {
   timeline: VTimelineInstance
 }
 
@@ -33,7 +33,7 @@ export default baseMixins.extend({
   props: {
     color: {
       type: String,
-      default: 'primary',
+      default: 'primary'
     },
     fillDot: Boolean,
     hideDot: Boolean,
@@ -42,41 +42,43 @@ export default baseMixins.extend({
     large: Boolean,
     left: Boolean,
     right: Boolean,
-    small: Boolean,
+    small: Boolean
   },
 
   computed: {
     hasIcon (): boolean {
       return !!this.icon || !!this.$slots.icon
-    },
+    }
   },
 
   methods: {
     genBody () {
       return h('div', {
-        class: 'v-timeline-item__body',
+        class: 'v-timeline-item__body'
       }, getSlot(this))
     },
     genIcon (): VNode | VNode[] {
-      return getSlot(this, 'icon') || h(VIcon, {
+      const slot = getSlot(this, 'icon')
+      if (slot != null) return slot as VNode | VNode[]
+      return h(VIcon, {
         color: this.iconColor,
         dark: !this.theme.isDark,
         small: this.small
-      }, this.icon)
+      }, () => [this.icon])
     },
     genInnerDot () {
       const data: VNodeData = this.setBackgroundColor(this.color)
 
       return h('div', mergeData({
-        class: 'v-timeline-item__inner-dot',
+        class: 'v-timeline-item__inner-dot'
       }, data), [this.hasIcon && this.genIcon()])
     },
     genDot () {
       return h('div', {
         class: ['v-timeline-item__dot', {
           'v-timeline-item__dot--small': this.small,
-          'v-timeline-item__dot--large': this.large,
-        }],
+          'v-timeline-item__dot--large': this.large
+        }]
       }, [this.genInnerDot()])
     },
     genDivider () {
@@ -85,20 +87,20 @@ export default baseMixins.extend({
       if (!this.hideDot) children.push(this.genDot())
 
       return h('div', {
-        class: 'v-timeline-item__divider',
+        class: 'v-timeline-item__divider'
       }, children)
     },
     genOpposite () {
       return h('div', {
-        class: 'v-timeline-item__opposite',
+        class: 'v-timeline-item__opposite'
       }, getSlot(this, 'opposite'))
-    },
+    }
   },
 
   render (): VNode {
     const children = [
       this.genBody(),
-      this.genDivider(),
+      this.genDivider()
     ]
 
     if (this.$slots.opposite) children.push(this.genOpposite())
@@ -108,8 +110,8 @@ export default baseMixins.extend({
         'v-timeline-item--fill-dot': this.fillDot,
         'v-timeline-item--before': this.timeline.reverse ? this.right : this.left,
         'v-timeline-item--after': this.timeline.reverse ? this.left : this.right,
-        ...this.themeClasses,
-      }],
+        ...this.themeClasses
+      }]
     }, children)
-  },
+  }
 })

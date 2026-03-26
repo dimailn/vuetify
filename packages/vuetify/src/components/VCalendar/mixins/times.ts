@@ -3,7 +3,7 @@ import { defineComponent } from 'vue'
 import {
   validateTimestamp,
   parseTimestamp,
-  parseDate,
+  parseDate
 } from '../util/timestamp'
 import { CalendarTimestamp } from 'vuetify/types'
 
@@ -13,25 +13,25 @@ export default defineComponent({
   props: {
     now: {
       type: String,
-      validator: validateTimestamp,
-    },
+      validator: validateTimestamp
+    }
   },
 
   data: () => ({
     times: {
       now: parseTimestamp('0000-00-00 00:00', true),
-      today: parseTimestamp('0000-00-00', true),
-    },
+      today: parseTimestamp('0000-00-00', true)
+    }
   }),
 
   computed: {
     parsedNow (): CalendarTimestamp | null {
       return this.now ? parseTimestamp(this.now, true) : null
-    },
+    }
   },
 
   watch: {
-    parsedNow: 'updateTimes',
+    parsedNow: 'updateTimes'
   },
 
   created () {
@@ -69,6 +69,6 @@ export default defineComponent({
         target.minute = now.minute
         target.time = now.time
       }
-    },
-  },
+    }
+  }
 })

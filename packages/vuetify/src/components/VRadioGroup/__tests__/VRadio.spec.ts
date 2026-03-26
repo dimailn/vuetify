@@ -6,7 +6,7 @@ import {
   mount,
   MountingOptions,
   VueWrapper,
-  enableAutoUnmount,
+  enableAutoUnmount
 } from '@vue/test-utils'
 
 describe('VRadio.ts', () => {
@@ -25,7 +25,7 @@ describe('VRadio.ts', () => {
     const wrapper = mountFunction({
       props: {
         modelValue: 'test',
-        value: 'test',
+        value: 'test'
       },
       global: {
         provide: {
@@ -33,13 +33,13 @@ describe('VRadio.ts', () => {
             name: 'name',
             isMandatory: false,
             register: () => {},
-            unregister: () => {},
-          },
-        },
-      },
+            unregister: () => {}
+          }
+        }
+      }
     })
 
-    let inputGroup = wrapper.find('input')
+    const inputGroup = wrapper.find('input')
     expect(inputGroup.element.getAttribute('role')).toBe('radio')
     expect(inputGroup.element.getAttribute('aria-checked')).toBe('false')
 
@@ -51,7 +51,7 @@ describe('VRadio.ts', () => {
   it('should not render aria-label attribute with no label value on input group', () => {
     const wrapper = mountFunction({
       props: {
-        label: null,
+        label: null
       },
       global: {
         provide: {
@@ -59,10 +59,10 @@ describe('VRadio.ts', () => {
             name: 'name',
             isMandatory: false,
             register: () => {},
-            unregister: () => {},
-          },
-        },
-      },
+            unregister: () => {}
+          }
+        }
+      }
     })
 
     const inputGroup = wrapper.find('input')
@@ -77,10 +77,10 @@ describe('VRadio.ts', () => {
           radioGroup: {
             name: 'name',
             register: () => {},
-            unregister: () => {},
-          },
-        },
-      },
+            unregister: () => {}
+          }
+        }
+      }
     })
 
     const input = wrapper.find('input')
@@ -106,8 +106,8 @@ describe('VRadio.ts', () => {
         onIcon: 'foo',
         offIcon: 'bar',
         modelValue: 'test',
-        value: 'test',
-      },
+        value: 'test'
+      }
     })
 
     expect(wrapper.html()).toMatchSnapshot()
@@ -122,8 +122,8 @@ describe('VRadio.ts', () => {
     const wrapper = mountFunction({
       props: {
         modelValue: 'test',
-        value: 'test',
-      },
+        value: 'test'
+      }
     })
 
     // In Vue 3, the component might need different approach to test reactivity
@@ -148,7 +148,7 @@ describe('VRadio.ts', () => {
 
   it('should be render colored radio', () => {
     const wrapper = mountFunction({
-      props: { color: 'yellow' },
+      props: { color: 'yellow' }
     })
 
     expect(wrapper.html()).toMatchSnapshot()

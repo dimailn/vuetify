@@ -7,7 +7,7 @@ describe('rippleable.ts', () => {
     extends: Rippleable,
     render () {
       return this.genRipple()
-    },
+    }
   })
 
   type Instance = InstanceType<typeof Mock>;

@@ -17,21 +17,16 @@ import { throttle } from '../../../util/helpers'
 import { breaking } from '../../../util/console'
 
 // Types
-import {
-  PropType,
-  VNodeChildren,
-  Transition,
-  withDirectives,
-  h,
-} from 'vue'
-import { PropValidator } from 'vue/types/options'
+import type { PropType } from 'vue'
+import { Transition, withDirectives, h } from 'vue'
+import type { VNodeChildren } from '../../../types/vue-internal'
 import {
   DatePickerAllowedDatesFunction,
   DatePickerEventColors,
   DatePickerEventColorValue,
   DatePickerEvents,
   DatePickerFormatter,
-  TouchWrapper,
+  TouchWrapper
 } from 'vuetify/types'
 
 type CalculateTableDateFunction = (v: number) => string
@@ -50,12 +45,12 @@ export default mixins(
     format: Function as PropType<DatePickerFormatter | undefined>,
     events: {
       type: [Array, Function, Object],
-      default: () => null,
-    } as PropValidator<DatePickerEvents | null>,
+      default: () => null
+    } as unknown as PropType<DatePickerEvents | null>,
     eventColor: {
       type: [Array, Function, Object, String],
-      default: () => 'warning',
-    } as PropValidator<DatePickerEventColors>,
+      default: () => 'warning'
+    } as unknown as PropType<DatePickerEventColors>,
     min: String,
     max: String,
     range: Boolean,
@@ -63,14 +58,14 @@ export default mixins(
     scrollable: Boolean,
     tableDate: {
       type: String,
-      required: true,
+      required: true
     },
-    modelValue: [String, Array] as PropType<string | string[]>,
+    modelValue: [String, Array] as PropType<string | string[]>
   },
 
   data: () => ({
     isReversing: false,
-    wheelThrottle: null as any,
+    wheelThrottle: null as any
   }),
 
   computed: {
@@ -86,25 +81,25 @@ export default mixins(
     // Vue 3 compatibility: use modelValue
     currentValue (): string | string[] | undefined {
       return this.modelValue
-    },
+    }
+  },
+
+  watch: {
+    tableDate (newVal: string, oldVal: string) {
+      this.isReversing = newVal < oldVal
+    }
   },
 
   created () {
     const breakingProps = [
       ['value', 'modelValue'],
-      ['onInput', 'onUpdate:modelValue'],
+      ['onInput', 'onUpdate:modelValue']
     ]
 
     /* istanbul ignore next */
     breakingProps.forEach(([original, replacement]) => {
       if (this.$attrs.hasOwnProperty(original)) breaking(original, replacement, this)
     })
-  },
-
-  watch: {
-    tableDate (newVal: string, oldVal: string) {
-      this.isReversing = newVal < oldVal
-    },
   },
 
   mounted () {
@@ -118,7 +113,7 @@ export default mixins(
       isSelected: boolean,
       isCurrent: boolean,
       isFirst: boolean,
-      isLast: boolean,
+      isLast: boolean
     ) {
       return {
         'v-size--default': !isFloating,
@@ -131,7 +126,7 @@ export default mixins(
         'v-btn--outlined': isCurrent && !isSelected,
         'v-date-picker--first-in-range': isFirst,
         'v-date-picker--last-in-range': isLast,
-        ...this.themeClasses,
+        ...this.themeClasses
       }
     },
     genButtonEvents (value: string, isAllowed: boolean, mouseEventType: string) {
@@ -142,7 +137,7 @@ export default mixins(
           if (isAllowed && !this.readonly) {
             this.$emit('update:modelValue', value)
           }
-        },
+        }
       }, createItemTypeNativeListeners(this, mouseEventType, value))
     },
     genButton (value: string, isFloating: boolean, mouseEventType: string, formatter: DatePickerFormatter, isOtherMonth = false) {
@@ -165,16 +160,16 @@ export default mixins(
           isSelected,
           isCurrent,
           isFirst,
-          isLast,
+          isLast
         )],
         type: 'button',
         disabled: this.disabled || !isAllowed || isOtherMonth,
-        ...this.genButtonEvents(value, isAllowed, mouseEventType),
+        ...this.genButtonEvents(value, isAllowed, mouseEventType)
       }), [
         h('div', {
-          class: 'v-btn__content',
+          class: 'v-btn__content'
         }, [formatter(value)]),
-        this.genEvents(value),
+        this.genEvents(value)
       ])
     },
     getEventColors (date: string) {
@@ -211,9 +206,11 @@ export default mixins(
     genEvents (date: string) {
       const eventColors = this.getEventColors(date)
 
-      return eventColors.length ? h('div', {
-        class: 'v-date-picker-table__events',
-      }, eventColors.map(color => h('div', this.setBackgroundColor(color)))) : null
+      return eventColors.length
+        ? h('div', {
+          class: 'v-date-picker-table__events'
+        }, eventColors.map(color => h('div', this.setBackgroundColor(color))))
+        : null
     },
     isValidScroll (value: number, calculateTableDate: CalculateTableDateFunction) {
       const tableDate = calculateTableDate(value)
@@ -230,8 +227,8 @@ export default mixins(
     },
     genTable (staticClass: string, children: VNodeChildren, calculateTableDate: CalculateTableDateFunction) {
       const transition = h(Transition, {
-        name: this.computedTransition,
-      }, () => [h('table', { key: this.tableDate }, children)])
+        name: this.computedTransition
+      }, () => [h('table', { key: this.tableDate }, children as any)])
 
       const touchDirective = [
         Touch,
@@ -239,23 +236,25 @@ export default mixins(
           left: (e: TouchWrapper) => (e.offsetX < -15) &&
             (this.isValidScroll(1, calculateTableDate) && this.touch(1, calculateTableDate)),
           right: (e: TouchWrapper) => (e.offsetX > 15) &&
-            (this.isValidScroll(-1, calculateTableDate) && this.touch(-1, calculateTableDate)),
-        },
+            (this.isValidScroll(-1, calculateTableDate) && this.touch(-1, calculateTableDate))
+        }
       ]
 
       return withDirectives(h('div', {
         class: {
           [staticClass]: true,
           'v-date-picker-table--disabled': this.disabled,
-          ...this.themeClasses,
+          ...this.themeClasses
         },
-        ...((!this.disabled && this.scrollable) ? {
-          onWheel: (e: WheelEvent) => {
-            e.preventDefault()
-            if (this.isValidScroll(e.deltaY, calculateTableDate)) { this.wheelThrottle(e, calculateTableDate) }
-          },
-        } : {}),
-      }, [transition]), [touchDirective])
+        ...((!this.disabled && this.scrollable)
+          ? {
+              onWheel: (e: WheelEvent) => {
+                e.preventDefault()
+                if (this.isValidScroll(e.deltaY, calculateTableDate)) { this.wheelThrottle(e, calculateTableDate) }
+              }
+            }
+          : {})
+      }, [transition]), [touchDirective] as any)
     },
     isSelected (value: string): boolean {
       if (Array.isArray(this.currentValue)) {
@@ -268,6 +267,6 @@ export default mixins(
       }
 
       return value === this.currentValue
-    },
-  },
+    }
+  }
 })

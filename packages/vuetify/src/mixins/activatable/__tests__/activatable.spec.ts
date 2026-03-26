@@ -9,7 +9,7 @@ import {
   mount,
   MountingOptions,
   VueWrapper,
-  enableAutoUnmount,
+  enableAutoUnmount
 } from '@vue/test-utils'
 import toHaveBeenWarnedInit from '../../../../test/util/to-have-been-warned'
 import { wait } from '../../../../test'
@@ -18,9 +18,9 @@ describe('activatable.ts', () => {
   const Mock = defineComponent({
     mixins: [Activatable],
     data: () => ({
-      isActive: false,
+      isActive: false
     }),
-    render: () => h('div'),
+    render: () => h('div')
   })
   type Instance = InstanceType<typeof Mock>
   let mountFunction: (options?: MountingOptions<Instance>) => VueWrapper<Instance>
@@ -38,11 +38,11 @@ describe('activatable.ts', () => {
   it('should render activator slot with listeners', async () => {
     const wrapper = mountFunction({
       slots: {
-        activator: ({ on, attrs }: any) => h('button', { ...attrs, onClick: on.onClick }),
+        activator: ({ on, attrs }: any) => h('button', { ...attrs, onClick: on.onClick })
       },
       render () {
         return h('div', [this.genActivator()])
-      },
+      }
     })
 
     expect(wrapper.html()).toMatchSnapshot()
@@ -62,12 +62,12 @@ describe('activatable.ts', () => {
       slots: {
         activator: ({ on, attrs, value }: any) => h('button', {
           ...attrs,
-          onClick: on.onClick,
-        }, String(value)),
+          onClick: on.onClick
+        }, String(value))
       },
       render () {
         return h('div', [this.genActivator()])
-      },
+      }
     })
 
     expect(wrapper.find('button').text()).toBe('false')
@@ -82,18 +82,18 @@ describe('activatable.ts', () => {
 
     const wrapper = mountFunction({
       props: {
-        openOnHover: true,
+        openOnHover: true
       },
       slots: {
         activator: ({ on, attrs }: any) => h('button', {
           ...attrs,
           onMouseenter: on.onMouseenter,
-          onMouseleave: on.onMouseleave,
-        }),
+          onMouseleave: on.onMouseleave
+        })
       },
       render () {
         return h('div', [this.genActivator()])
-      },
+      }
     })
 
     // Mock the runDelay method
@@ -114,8 +114,8 @@ describe('activatable.ts', () => {
     // In Vue 3, getSlotType always returns 'scoped', so this warning is not generated
     mountFunction({
       slots: {
-        activator: '<div></div>',
-      },
+        activator: '<div></div>'
+      }
     })
 
     // This test is skipped in Vue 3 as the warning mechanism changed
@@ -129,8 +129,8 @@ describe('activatable.ts', () => {
 
     const wrapper = mountFunction({
       props: {
-        activator: '#foobar',
-      },
+        activator: '#foobar'
+      }
     })
 
     await wrapper.vm.$nextTick()
@@ -158,8 +158,8 @@ describe('activatable.ts', () => {
 
     const wrapper = mountFunction({
       props: {
-        activator: '#foobar',
-      },
+        activator: '#foobar'
+      }
     })
 
     await wrapper.vm.$nextTick()

@@ -5,7 +5,7 @@ import VListItemGroup from '../VListItemGroup'
 import {
   mount,
   VueWrapper,
-  enableAutoUnmount,
+  enableAutoUnmount
 } from '@vue/test-utils'
 
 describe('VListItemGroup.ts', () => {
@@ -17,7 +17,7 @@ describe('VListItemGroup.ts', () => {
   beforeEach(() => {
     mountFunction = (options = {}) => {
       return mount(VListItemGroup, {
-        ...options,
+        ...options
       })
     }
   })

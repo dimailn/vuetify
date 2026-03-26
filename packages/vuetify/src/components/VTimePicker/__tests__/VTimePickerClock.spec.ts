@@ -11,7 +11,7 @@ describe('VTimePickerClock.js', () => {
   function anglePosition (angle: number): [number, number] {
     return [
       CLOCK_SIZE / 2 + INNER_SIZE / 2 * Math.sin(angle / (180 / Math.PI)),
-      CLOCK_SIZE / 2 - INNER_SIZE / 2 * Math.cos(angle / (180 / Math.PI)),
+      CLOCK_SIZE / 2 - INNER_SIZE / 2 * Math.cos(angle / (180 / Math.PI))
     ]
   }
 
@@ -25,7 +25,7 @@ describe('VTimePickerClock.js', () => {
         right: CLOCK_SIZE,
         bottom: CLOCK_SIZE,
         x: 0,
-        y: 0,
+        y: 0
       }
     }
 
@@ -38,7 +38,7 @@ describe('VTimePickerClock.js', () => {
         right: INNER_SIZE,
         bottom: INNER_SIZE,
         x: 0,
-        y: 0,
+        y: 0
       }
     }
   }
@@ -50,8 +50,8 @@ describe('VTimePickerClock.js', () => {
         max: 59,
         min: 0,
         step: 5,
-        modelValue: 10,
-      },
+        modelValue: 10
+      }
     })
 
     expect(wrapper.html()).toMatchSnapshot()
@@ -65,8 +65,8 @@ describe('VTimePickerClock.js', () => {
         max: 59,
         min: 0,
         step: 5,
-        modelValue: 10,
-      },
+        modelValue: 10
+      }
     })
 
     expect(wrapper.html()).toMatchSnapshot()
@@ -80,8 +80,8 @@ describe('VTimePickerClock.js', () => {
         max: 59,
         min: 0,
         step: 5,
-        modelValue: 10,
-      },
+        modelValue: 10
+      }
     })
 
     expect(wrapper.html()).toMatchSnapshot()
@@ -93,8 +93,8 @@ describe('VTimePickerClock.js', () => {
         max: 59,
         min: 3,
         modelValue: 59,
-        scrollable: true,
-      },
+        scrollable: true
+      }
     })
 
     // Вызываем метод wheel напрямую
@@ -110,8 +110,8 @@ describe('VTimePickerClock.js', () => {
         min: 1,
         modelValue: 6,
         scrollable: true,
-        readonly: true,
-      },
+        readonly: true
+      }
     })
 
     // В readonly режиме событие wheel не должно быть подключено
@@ -127,8 +127,8 @@ describe('VTimePickerClock.js', () => {
         min: 1,
         modelValue: 6,
         scrollable: true,
-        allowedValues: val => !(val % 3),
-      },
+        allowedValues: val => !(val % 3)
+      }
     })
 
     // Вызываем метод wheel напрямую
@@ -143,8 +143,8 @@ describe('VTimePickerClock.js', () => {
         max: 59,
         min: 3,
         modelValue: 59,
-        scrollable: false,
-      },
+        scrollable: false
+      }
     })
 
     // В не-scrollable режиме событие wheel не должно быть подключено
@@ -158,8 +158,8 @@ describe('VTimePickerClock.js', () => {
       props: {
         modelValue: 59,
         min: 0,
-        max: 60,
-      },
+        max: 60
+      }
     })
 
     wrapper.vm.valueOnMouseUp = 55
@@ -178,8 +178,8 @@ describe('VTimePickerClock.js', () => {
         modelValue: 59,
         min: 0,
         max: 60,
-        readonly: true,
-      },
+        readonly: true
+      }
     })
 
     wrapper.vm.valueOnMouseUp = 55
@@ -195,8 +195,8 @@ describe('VTimePickerClock.js', () => {
       props: {
         modelValue: 59,
         min: 0,
-        max: 60,
-      },
+        max: 60
+      }
     })
 
     wrapper.trigger('mouseleave')
@@ -214,8 +214,8 @@ describe('VTimePickerClock.js', () => {
       props: {
         modelValue: 59,
         min: 0,
-        max: 60,
-      },
+        max: 60
+      }
     })
 
     const center = { x: 1, y: 1 }
@@ -231,8 +231,8 @@ describe('VTimePickerClock.js', () => {
     const wrapper = mount(VTimePickerClock, {
       props: {
         min: 0,
-        max: 6,
-      },
+        max: 6
+      }
     })
 
     createBoundingRect(wrapper)
@@ -263,8 +263,8 @@ describe('VTimePickerClock.js', () => {
       props: {
         allowedValues: value => value === ALLOWED_VALUE || value === 60 - ALLOWED_VALUE,
         min: 0,
-        max: 59,
-      },
+        max: 59
+      }
     })
 
     createBoundingRect(wrapper)
@@ -297,8 +297,8 @@ describe('VTimePickerClock.js', () => {
         min: 0,
         max: 7,
         modelValue: 0,
-        double: true,
-      },
+        double: true
+      }
     })
 
     createBoundingRect(wrapper)

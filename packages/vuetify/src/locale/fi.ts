@@ -3,7 +3,7 @@ export default {
   close: 'Sulje',
   dataIterator: {
     noResultsText: 'Ei osumia',
-    loadingText: 'Ladataan kohteita...',
+    loadingText: 'Ladataan kohteita...'
   },
   dataTable: {
     itemsPerPageText: 'Rivejä sivulla:',
@@ -13,9 +13,9 @@ export default {
       sortNone: ': Ei järjestetty. Järjestä nousevasti aktivoimalla.',
       activateNone: 'Aktivoi lajittelun poistamiseksi.',
       activateDescending: 'Aktivoi laskevien laskevien lajittelemiseksi.',
-      activateAscending: 'Aktivoi lajitella nouseva.',
+      activateAscending: 'Aktivoi lajitella nouseva.'
     },
-    sortBy: 'Järjestä',
+    sortBy: 'Järjestä'
   },
   dataFooter: {
     itemsPerPageText: 'Kohteita sivulla:',
@@ -24,38 +24,38 @@ export default {
     prevPage: 'Edellinen sivu',
     firstPage: 'Ensimmäinen sivu',
     lastPage: 'Viimeinen sivu',
-    pageText: '{0}-{1} ({2})',
+    pageText: '{0}-{1} ({2})'
   },
   datePicker: {
     itemsSelected: '{0} valittu',
     nextMonthAriaLabel: 'Seuraava kuukausi',
     nextYearAriaLabel: 'Ensi vuosi',
     prevMonthAriaLabel: 'Edellinen kuukausi',
-    prevYearAriaLabel: 'Edellinen vuosi',
+    prevYearAriaLabel: 'Edellinen vuosi'
   },
   noDataText: 'Ei dataa',
   carousel: {
     prev: 'Edellinen kuva',
     next: 'Seuraava kuva',
     ariaLabel: {
-      delimiter: 'Karusellin kuva {0}/{1}',
-    },
+      delimiter: 'Karusellin kuva {0}/{1}'
+    }
   },
   calendar: {
-    moreEvents: '{0} lisää',
+    moreEvents: '{0} lisää'
   },
   input: {
     clear: 'Clear {0}',
     prependAction: '{0} prepended action',
-    appendAction: '{0} appended action',
+    appendAction: '{0} appended action'
   },
   fileInput: {
     counter: '{0} tiedostoa',
-    counterSize: '{0} tiedostoa ({1} yhteensä)',
+    counterSize: '{0} tiedostoa ({1} yhteensä)'
   },
   timePicker: {
     am: 'ap.',
-    pm: 'ip.',
+    pm: 'ip.'
   },
   pagination: {
     ariaLabel: {
@@ -63,13 +63,13 @@ export default {
       next: 'Seuraava sivu',
       previous: 'Edellinen sivu',
       page: 'Mene sivulle {0}',
-      currentPage: 'Nykyinen sivu, Sivu {0}',
-    },
+      currentPage: 'Nykyinen sivu, Sivu {0}'
+    }
   },
   rating: {
     ariaLabel: {
-      icon: 'Luokitus {0}/{1}',
-    },
+      icon: 'Luokitus {0}/{1}'
+    }
   },
-  loading: 'Loading...',
+  loading: 'Loading...'
 }

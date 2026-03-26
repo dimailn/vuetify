@@ -55,7 +55,7 @@ export function colorToInt (color: Color): ColorInt {
 export function classToHex (
   color: string,
   colors: Record<string, Record<string, string>>,
-  currentTheme: Partial<VuetifyThemeVariant>,
+  currentTheme: Partial<VuetifyThemeVariant>
 ): string {
   const [colorName, colorModifier] = color
     .toString().trim().replace('-', '').split(' ', 2) as (string | undefined)[]
@@ -175,7 +175,7 @@ export function RGBAtoHex (rgba: RGBA): Hex {
     toHex(rgba.r),
     toHex(rgba.g),
     toHex(rgba.b),
-    toHex(Math.round(rgba.a * 255)),
+    toHex(Math.round(rgba.a * 255))
   ].join('')}`
 }
 
@@ -186,7 +186,7 @@ export function HexToRGBA (hex: Hex): RGBA {
     r: rgba[0],
     g: rgba[1],
     b: rgba[2],
-    a: Math.round((rgba[3] / 255) * 100) / 100,
+    a: Math.round((rgba[3] / 255) * 100) / 100
   }
 }
 
@@ -222,7 +222,7 @@ export function parseHex (hex: string): Hex {
 export function parseGradient (
   gradient: string,
   colors: Record<string, Record<string, string>>,
-  currentTheme: Partial<VuetifyThemeVariant>,
+  currentTheme: Partial<VuetifyThemeVariant>
 ) {
   return gradient.replace(/([a-z]+(\s[a-z]+-[1-5])?)(?=$|,)/gi, x => {
     return classToHex(x, colors, currentTheme) || x

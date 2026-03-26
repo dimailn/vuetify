@@ -5,7 +5,7 @@ import VProgressLinear from '../VProgressLinear'
 import {
   mount,
   VueWrapper,
-  enableAutoUnmount,
+  enableAutoUnmount
 } from '@vue/test-utils'
 import { h } from 'vue'
 
@@ -19,16 +19,16 @@ describe('VProgressLinear.ts', () => {
     mountFunction = (options = {}) => {
       return mount(VProgressLinear, {
         data: () => ({
-          isVisible: false,
+          isVisible: false
         }),
         global: {
           mocks: {
             $vuetify: {
-              rtl: false,
-            },
-          },
+              rtl: false
+            }
+          }
         },
-        ...options,
+        ...options
       })
     }
   })
@@ -36,8 +36,8 @@ describe('VProgressLinear.ts', () => {
   it('should render component and match snapshot', async () => {
     const wrapper = mountFunction({
       props: {
-        value: 33,
-      },
+        value: 33
+      }
     })
 
     expect(wrapper.html()).toMatchSnapshot()
@@ -79,8 +79,8 @@ describe('VProgressLinear.ts', () => {
     const wrapper = mountFunction({
       props: {
         value: 33,
-        active: false,
-      },
+        active: false
+      }
     })
 
     expect(wrapper.html()).toMatchSnapshot()
@@ -89,15 +89,15 @@ describe('VProgressLinear.ts', () => {
   it('should render component in RTL mode', () => {
     const wrapper = mountFunction({
       props: {
-        value: 33,
+        value: 33
       },
       global: {
         mocks: {
           $vuetify: {
-            rtl: true,
-          },
-        },
-      },
+            rtl: true
+          }
+        }
+      }
     })
 
     expect(wrapper.html()).toMatchSnapshot()
@@ -107,8 +107,8 @@ describe('VProgressLinear.ts', () => {
     const wrapper = mountFunction({
       props: {
         reverse: true,
-        value: 33,
-      },
+        value: 33
+      }
     })
 
     expect(wrapper.html()).toMatchSnapshot()
@@ -118,13 +118,13 @@ describe('VProgressLinear.ts', () => {
     const wrapper = mountFunction({
       props: {
         reverse: true,
-        value: 33,
+        value: 33
       },
       global: {
         mocks: {
-          $vuetify: { rtl: true },
-        },
-      },
+          $vuetify: { rtl: true }
+        }
+      }
     })
 
     expect(wrapper.html()).toMatchSnapshot()
@@ -134,8 +134,8 @@ describe('VProgressLinear.ts', () => {
     const wrapper = mountFunction({
       props: {
         value: 33,
-        color: 'red',
-      },
+        color: 'red'
+      }
     })
 
     expect(wrapper.html()).toMatchSnapshot()
@@ -145,8 +145,8 @@ describe('VProgressLinear.ts', () => {
     const wrapper = mountFunction({
       props: {
         value: 33,
-        color: '#FF0000',
-      },
+        color: '#FF0000'
+      }
     })
 
     expect(wrapper.html()).toMatchSnapshot()
@@ -157,8 +157,8 @@ describe('VProgressLinear.ts', () => {
       props: {
         value: 33,
         color: 'red',
-        backgroundOpacity: 0.5,
-      },
+        backgroundOpacity: 0.5
+      }
     })
 
     expect(wrapper.html()).toMatchSnapshot()
@@ -169,8 +169,8 @@ describe('VProgressLinear.ts', () => {
       props: {
         value: 33,
         color: 'red',
-        backgroundColor: 'blue',
-      },
+        backgroundColor: 'blue'
+      }
     })
 
     expect(wrapper.html()).toMatchSnapshot()
@@ -182,8 +182,8 @@ describe('VProgressLinear.ts', () => {
         value: 33,
         color: 'red',
         backgroundColor: 'blue',
-        backgroundOpacity: 0.5,
-      },
+        backgroundOpacity: 0.5
+      }
     })
 
     expect(wrapper.html()).toMatchSnapshot()
@@ -192,8 +192,8 @@ describe('VProgressLinear.ts', () => {
   it('should render indeterminate progress and match snapshot', () => {
     const wrapper = mountFunction({
       props: {
-        indeterminate: true,
-      },
+        indeterminate: true
+      }
     })
 
     expect(wrapper.html()).toMatchSnapshot()
@@ -203,8 +203,8 @@ describe('VProgressLinear.ts', () => {
     const wrapper = mountFunction({
       props: {
         indeterminate: true,
-        query: true,
-      },
+        query: true
+      }
     })
 
     expect(wrapper.html()).toMatchSnapshot()
@@ -214,8 +214,8 @@ describe('VProgressLinear.ts', () => {
     const wrapper = mountFunction({
       props: {
         value: 33,
-        bufferValue: 80,
-      },
+        bufferValue: 80
+      }
     })
 
     expect(wrapper.html()).toMatchSnapshot()
@@ -225,8 +225,8 @@ describe('VProgressLinear.ts', () => {
     const wrapper = mountFunction({
       props: {
         value: 90,
-        bufferValue: 80,
-      },
+        bufferValue: 80
+      }
     })
 
     expect(wrapper.html()).toMatchSnapshot()
@@ -246,7 +246,7 @@ describe('VProgressLinear.ts', () => {
   it('should render slot content with custom value', () => {
     const wrapper = mountFunction({
       props: {
-        value: 75,
+        value: 75
       },
       slots: {
         default: ({ value }) => h('div', { class: 'slot-content' }, `Custom: ${value}%`)
@@ -262,13 +262,13 @@ describe('VProgressLinear.ts', () => {
       props: {
         value: 33,
         onUpdateModelValue: () => {},
-        onChange: () => {},
+        onChange: () => {}
       },
       attrs: {
         'onUpdate:modelValue': () => {},
-        onChange: () => {},
+        onChange: () => {}
       },
-      attachTo: document.body, // Важно для корректной работы событий
+      attachTo: document.body // Важно для корректной работы событий
     })
 
     // Находим элемент прогресс-бара
@@ -281,7 +281,7 @@ describe('VProgressLinear.ts', () => {
       top: 0,
       left: 0,
       right: 400,
-      bottom: 20,
+      bottom: 20
     }
 
     // Мокаем offsetX для события клика
@@ -293,7 +293,7 @@ describe('VProgressLinear.ts', () => {
 
     // Мокаем getBoundingClientRect
     const originalGetBoundingClientRect = progressBar.element.getBoundingClientRect
-    progressBar.element.getBoundingClientRect = jest.fn().mockReturnValue(mockRect)
+    jest.spyOn(progressBar.element, 'getBoundingClientRect').mockImplementation().mockReturnValue(mockRect)
 
     try {
       // Триггерим событие клика
@@ -320,9 +320,9 @@ describe('VProgressLinear.ts', () => {
   it('should not respond to click events when not reactive', async () => {
     const wrapper = mountFunction({
       props: {
-        value: 33,
+        value: 33
       },
-      attachTo: document.body,
+      attachTo: document.body
     })
 
     // Убираем все слушатели событий
@@ -335,11 +335,11 @@ describe('VProgressLinear.ts', () => {
       top: 0,
       left: 0,
       right: 400,
-      bottom: 20,
+      bottom: 20
     }
 
     const originalGetBoundingClientRect = progressBar.element.getBoundingClientRect
-    progressBar.element.getBoundingClientRect = jest.fn().mockReturnValue(mockRect)
+    jest.spyOn(progressBar.element, 'getBoundingClientRect').mockImplementation().mockReturnValue(mockRect)
 
     try {
       // Триггерим событие клика
@@ -358,13 +358,13 @@ describe('VProgressLinear.ts', () => {
       props: {
         modelValue: 0,
         onUpdateModelValue: () => {},
-        onChange: () => {},
+        onChange: () => {}
       },
       attrs: {
         'onUpdate:modelValue': () => {},
-        onChange: () => {},
+        onChange: () => {}
       },
-      attachTo: document.body,
+      attachTo: document.body
     })
 
     const progressBar = wrapper.find('.v-progress-linear')
@@ -376,7 +376,7 @@ describe('VProgressLinear.ts', () => {
       top: 0,
       left: 0,
       right: 400,
-      bottom: 20,
+      bottom: 20
     }
 
     // Мокаем offsetX для 75% позиции
@@ -387,7 +387,7 @@ describe('VProgressLinear.ts', () => {
     })
 
     const originalGetBoundingClientRect = progressBar.element.getBoundingClientRect
-    progressBar.element.getBoundingClientRect = jest.fn().mockReturnValue(mockRect)
+    jest.spyOn(progressBar.element, 'getBoundingClientRect').mockImplementation().mockReturnValue(mockRect)
 
     try {
       // Триггерим событие клика
@@ -414,13 +414,13 @@ describe('VProgressLinear.ts', () => {
       props: {
         modelValue: 0,
         onUpdateModelValue: () => {},
-        onChange: () => {},
+        onChange: () => {}
       },
       attrs: {
         'onUpdate:modelValue': () => {},
-        onChange: () => {},
+        onChange: () => {}
       },
-      attachTo: document.body,
+      attachTo: document.body
     })
 
     const progressBar = wrapper.find('.v-progress-linear')
@@ -432,11 +432,11 @@ describe('VProgressLinear.ts', () => {
       top: 0,
       left: 0,
       right: 400,
-      bottom: 20,
+      bottom: 20
     }
 
     const originalGetBoundingClientRect = progressBar.element.getBoundingClientRect
-    progressBar.element.getBoundingClientRect = jest.fn().mockReturnValue(mockRect)
+    jest.spyOn(progressBar.element, 'getBoundingClientRect').mockImplementation().mockReturnValue(mockRect)
 
     try {
       // Клик по левому краю (0%)
@@ -484,8 +484,8 @@ describe('VProgressLinear.ts', () => {
     const wrapper = mountFunction({
       props: {
         value: 33,
-        stream: true,
-      },
+        stream: true
+      }
     })
 
     expect(wrapper.html()).toMatchSnapshot()
@@ -496,8 +496,8 @@ describe('VProgressLinear.ts', () => {
 
     const entries = [
       {
-        isIntersecting: true,
-      },
+        isIntersecting: true
+      }
     ] as IntersectionObserverEntry[]
 
     wrapper.vm.onObserve(entries, {} as IntersectionObserver, true)
@@ -508,8 +508,8 @@ describe('VProgressLinear.ts', () => {
   it('should work with v-model', async () => {
     const wrapper = mountFunction({
       props: {
-        modelValue: 25,
-      },
+        modelValue: 25
+      }
     })
 
     // Проверяем начальное значение
@@ -529,13 +529,13 @@ describe('VProgressLinear.ts', () => {
       props: {
         modelValue: 0,
         onUpdateModelValue: () => {},
-        onChange: () => {},
+        onChange: () => {}
       },
       attrs: {
         'onUpdate:modelValue': () => {},
-        onChange: () => {},
+        onChange: () => {}
       },
-      attachTo: document.body,
+      attachTo: document.body
     })
 
     const progressBar = wrapper.find('.v-progress-linear')
@@ -547,7 +547,7 @@ describe('VProgressLinear.ts', () => {
       top: 0,
       left: 0,
       right: 400,
-      bottom: 20,
+      bottom: 20
     }
 
     // Мокаем offsetX для 60% позиции
@@ -558,7 +558,7 @@ describe('VProgressLinear.ts', () => {
     })
 
     const originalGetBoundingClientRect = progressBar.element.getBoundingClientRect
-    progressBar.element.getBoundingClientRect = jest.fn().mockReturnValue(mockRect)
+    jest.spyOn(progressBar.element, 'getBoundingClientRect').mockImplementation().mockReturnValue(mockRect)
 
     try {
       // Триггерим событие клика
@@ -585,8 +585,8 @@ describe('VProgressLinear.ts', () => {
   it('should maintain backward compatibility with value prop', async () => {
     const wrapper = mountFunction({
       props: {
-        value: 30,
-      },
+        value: 30
+      }
     })
 
     // Проверяем, что работает старый prop value

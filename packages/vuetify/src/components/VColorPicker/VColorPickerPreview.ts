@@ -20,10 +20,10 @@ export default defineComponent({
   props: {
     color: {
       type: Object as PropType<VColorPickerColor>,
-      required: true,
+      required: true
     },
     disabled: Boolean,
-    hideAlpha: Boolean,
+    hideAlpha: Boolean
   },
 
   emits: ['update:color'],
@@ -42,13 +42,13 @@ export default defineComponent({
         style: {
           backgroundImage: this.disabled
             ? undefined
-            : `linear-gradient(to ${this.$vuetify?.rtl ? 'left' : 'right'}, transparent, ${RGBtoCSS(this.color.rgba)})`,
+            : `linear-gradient(to ${this.$vuetify?.rtl ? 'left' : 'right'}, transparent, ${RGBtoCSS(this.color.rgba)})`
         },
         'onUpdate:modelValue': (val: number) => {
           if (this.color && this.color.alpha !== val) {
             this.$emit('update:color', fromHSVA({ ...this.color.hsva, a: val }))
           }
-        },
+        }
       })
     },
 
@@ -66,7 +66,7 @@ export default defineComponent({
           if (this.color && this.color.hue !== val) {
             this.$emit('update:color', fromHSVA({ ...this.color.hsva, h: val }))
           }
-        },
+        }
       })
     },
 
@@ -74,40 +74,40 @@ export default defineComponent({
       return h(VSlider, {
         class: 'v-color-picker__track',
         disabled: this.disabled,
-        ...options,
+        ...options
       })
     },
 
     genSliders (): VNode {
       return h('div', {
-        class: 'v-color-picker__sliders',
+        class: 'v-color-picker__sliders'
       }, [
         this.genHue(),
-        !this.hideAlpha && this.genAlpha(),
+        !this.hideAlpha && this.genAlpha()
       ])
     },
 
     genDot (): VNode {
       return h('div', {
-        class: 'v-color-picker__dot',
+        class: 'v-color-picker__dot'
       }, [
         h('div', {
           style: {
-            background: this.color ? RGBAtoCSS(this.color.rgba) : 'transparent',
-          },
-        }),
+            background: this.color ? RGBAtoCSS(this.color.rgba) : 'transparent'
+          }
+        })
       ])
-    },
+    }
   },
 
   render (): VNode {
     return h('div', {
       class: ['v-color-picker__preview', {
-        'v-color-picker__preview--hide-alpha': this.hideAlpha,
-      }],
+        'v-color-picker__preview--hide-alpha': this.hideAlpha
+      }]
     }, [
       this.genDot(),
-      this.genSliders(),
+      this.genSliders()
     ])
-  },
+  }
 })

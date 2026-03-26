@@ -3,7 +3,7 @@ import {
   mount,
   MountingOptions,
   VueWrapper,
-  enableAutoUnmount,
+  enableAutoUnmount
 } from '@vue/test-utils'
 
 describe('VDatePickerTitle.ts', () => {
@@ -22,13 +22,13 @@ describe('VDatePickerTitle.ts', () => {
               icons: {
                 values: {
                   next: 'mdi-chevron-right',
-                  prev: 'mdi-chevron-left',
+                  prev: 'mdi-chevron-left'
                 },
-                component: 'mdi',
-              },
-            },
-          },
-        },
+                component: 'mdi'
+              }
+            }
+          }
+        }
       })
     }
   })
@@ -37,8 +37,8 @@ describe('VDatePickerTitle.ts', () => {
     const wrapper = mountFunction({
       props: {
         year: '1234',
-        date: '2005-11-01',
-      },
+        date: '2005-11-01'
+      }
     })
 
     expect(wrapper.html()).toMatchSnapshot()
@@ -49,8 +49,8 @@ describe('VDatePickerTitle.ts', () => {
       props: {
         year: '1234',
         date: '2005-11-01',
-        disabled: true,
-      },
+        disabled: true
+      }
     })
 
     expect(wrapper.html()).toMatchSnapshot()
@@ -61,8 +61,8 @@ describe('VDatePickerTitle.ts', () => {
       props: {
         year: '1234',
         date: '2005-11-01',
-        readonly: true,
-      },
+        readonly: true
+      }
     })
 
     expect(wrapper.html()).toMatchSnapshot()
@@ -73,8 +73,8 @@ describe('VDatePickerTitle.ts', () => {
       props: {
         year: '1234',
         date: '2005-11-01',
-        selectingYear: true,
-      },
+        selectingYear: true
+      }
     })
 
     expect(wrapper.html()).toMatchSnapshot()
@@ -85,8 +85,8 @@ describe('VDatePickerTitle.ts', () => {
       props: {
         year: '1234',
         yearIcon: 'year',
-        date: '2005-11-01',
-      },
+        date: '2005-11-01'
+      }
     })
 
     expect(wrapper.findAll('.v-date-picker-title__year')[0].html()).toMatchSnapshot()
@@ -98,8 +98,8 @@ describe('VDatePickerTitle.ts', () => {
         year: '1234',
         yearIcon: 'year',
         date: '2005-11-01',
-        selectingYear: false, // Изначально выбираем дату, не год
-      },
+        selectingYear: false // Изначально выбираем дату, не год
+      }
     })
 
     // Клик по дате не должен эмитить событие (дата уже активна)
@@ -125,22 +125,22 @@ describe('VDatePickerTitle.ts', () => {
       props: {
         year: '2018',
         date: 'Tue, Mar 3',
-        modelValue: '2018-03-03',
-      },
+        modelValue: '2018-03-03'
+      }
     })
 
     expect(wrapper.vm.isReversing).toBe(false)
 
     await wrapper.setProps({
       date: 'Wed, Mar 4',
-      modelValue: '2018-03-04',
+      modelValue: '2018-03-04'
     })
 
     expect(wrapper.vm.isReversing).toBe(false)
 
     await wrapper.setProps({
       date: 'Wed, Mar 3',
-      modelValue: '2018-03-03',
+      modelValue: '2018-03-03'
     })
 
     expect(wrapper.vm.isReversing).toBe(true)

@@ -3,7 +3,7 @@ import Roundable from '../'
 import {
   mount,
   MountOptions,
-  Wrapper,
+  Wrapper
 } from '@vue/test-utils'
 
 describe('roundable.ts', () => {
@@ -11,9 +11,9 @@ describe('roundable.ts', () => {
     mixins: [Roundable],
     render () {
       return h('div', {
-        class: this.roundedClasses,
+        class: this.roundedClasses
       })
-    },
+    }
   })
 
   type Instance = InstanceType<typeof Mock>
@@ -31,7 +31,7 @@ describe('roundable.ts', () => {
     [{ rounded: '0' }, { 'rounded-0': true }],
     [{ rounded: true }, { rounded: true }],
     [{ rounded: false }, {}],
-    [{ rounded: 'tr-xl br-lg' }, { 'rounded-tr-xl rounded-br-lg': true }],
+    [{ rounded: 'tr-xl br-lg' }, { 'rounded-tr-xl rounded-br-lg': true }]
   ])('should return correct rounded classes', (propsData, expected: any) => {
     const wrapper = mountFunction({ props: propsData })
 

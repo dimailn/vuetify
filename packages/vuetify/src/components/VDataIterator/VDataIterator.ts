@@ -12,7 +12,8 @@ import { deepEqual, getObjectValueByPath, getPrefixedScopedSlots, getSlot, camel
 import { breaking, removed } from '../../util/console'
 
 // Types
-import { h, VNode, VNodeChildren, PropType, defineComponent } from 'vue'
+import { h, VNode, PropType, defineComponent } from 'vue'
+import type { VNodeChildren } from '../../types/vue-internal'
 import { DataItemProps, DataScopeProps } from 'vuetify/types'
 
 /* @vue/component */
@@ -25,41 +26,41 @@ export default defineComponent({
     ...VData.props, // TODO: filter out props not used
     itemKey: {
       type: String,
-      default: 'id',
+      default: 'id'
     },
     modelValue: {
       type: Array as PropType<any[]>,
-      default: () => [],
+      default: () => []
     },
     singleSelect: Boolean,
     expanded: {
       type: Array as PropType<any[]>,
-      default: () => [],
+      default: () => []
     },
     mobileBreakpoint: {
       ...Mobile.props.mobileBreakpoint,
-      default: 600,
+      default: 600
     },
     singleExpand: Boolean,
     loading: [Boolean, String],
     noResultsText: {
       type: String,
-      default: '$vuetify.dataIterator.noResultsText',
+      default: '$vuetify.dataIterator.noResultsText'
     },
     noDataText: {
       type: String,
-      default: '$vuetify.noDataText',
+      default: '$vuetify.noDataText'
     },
     loadingText: {
       type: String,
-      default: '$vuetify.dataIterator.loadingText',
+      default: '$vuetify.dataIterator.loadingText'
     },
     hideDefaultFooter: Boolean,
     footerProps: Object,
     selectableKey: {
       type: String,
-      default: 'isSelectable',
-    },
+      default: 'isSelectable'
+    }
   },
 
   emits: [
@@ -77,7 +78,7 @@ export default defineComponent({
     'update:group-desc',
     'pagination',
     'current-items',
-    'page-count',
+    'page-count'
   ],
 
   data: () => ({
@@ -85,7 +86,7 @@ export default defineComponent({
     expansion: {} as Record<string, boolean>,
     internalCurrentItems: [] as any[],
     shiftKeyDown: false,
-    lastEntry: -1,
+    lastEntry: -1
   }),
 
   computed: {
@@ -100,7 +101,7 @@ export default defineComponent({
     },
     selectableItems (): any[] {
       return this.internalCurrentItems.filter(item => this.isSelectable(item))
-    },
+    }
   },
 
   watch: {
@@ -113,7 +114,7 @@ export default defineComponent({
           return selection
         }, {})
       },
-      immediate: true,
+      immediate: true
     },
     selection (value: Record<string, boolean>, old: Record<string, boolean>) {
       if (deepEqual(Object.keys(value), Object.keys(old))) return
@@ -127,14 +128,14 @@ export default defineComponent({
           return expansion
         }, {})
       },
-      immediate: true,
+      immediate: true
     },
     expansion (value: Record<string, boolean>, old: Record<string, boolean>) {
       if (deepEqual(value, old)) return
       const keys = Object.keys(value).filter(k => value[k])
       const expanded = !keys.length ? [] : this.items.filter(i => keys.includes(String(getObjectValueByPath(i, this.itemKey))))
       this.$emit('update:expanded', expanded)
-    },
+    }
   },
 
   created () {
@@ -149,7 +150,7 @@ export default defineComponent({
       ['rows-per-page-items', 'footer-props.items-per-page-options'],
       ['rows-per-page-text', 'footer-props.items-per-page-text'],
       ['prev-icon', 'footer-props.prev-icon'],
-      ['next-icon', 'footer-props.next-icon'],
+      ['next-icon', 'footer-props.next-icon']
     ]
 
     /* istanbul ignore next */
@@ -161,7 +162,7 @@ export default defineComponent({
       'expand',
       'content-class',
       'content-props',
-      'content-tag',
+      'content-tag'
     ]
 
     /* istanbul ignore next */
@@ -268,11 +269,11 @@ export default defineComponent({
         isSelected: this.isSelected(item),
         expand: (v: boolean) => this.expand(item, v),
         isExpanded: this.isExpanded(item),
-        isMobile: this.isMobile,
+        isMobile: this.isMobile
       }
     },
     genEmptyWrapper (content: VNodeChildren) {
-      return h('div', content)
+      return h('div', null, content as any)
     },
     genEmpty (originalItemsLength: number, filteredItemsLength: number) {
       if (originalItemsLength === 0 && this.loading) {
@@ -299,7 +300,7 @@ export default defineComponent({
           select: this.select,
           isExpanded: this.isExpanded,
           isMobile: this.isMobile,
-          expand: this.expand,
+          expand: this.expand
         })
       }
 
@@ -319,13 +320,13 @@ export default defineComponent({
         ...this.sanitizedFooterProps,
         options: props.options,
         pagination: props.pagination,
-        onUpdateOptions: (value: any) => props.updateOptions(value),
+        onUpdateOptions: (value: any) => props.updateOptions(value)
       }
 
       const scopedSlots = getPrefixedScopedSlots('footer.', this.$slots)
 
       return h(VDataFooter, {
-        ...data,
+        ...data
       }, scopedSlots)
     },
     genDefaultScopedSlot (props: any) {
@@ -333,18 +334,18 @@ export default defineComponent({
         ...props,
         someItems: this.someItems,
         everyItem: this.everyItem,
-        toggleSelectAll: this.toggleSelectAll,
+        toggleSelectAll: this.toggleSelectAll
       }
 
       return h('div', {
-        class: 'v-data-iterator',
+        class: 'v-data-iterator'
       }, [
         getSlot(this, 'header', outerProps, true),
         this.genItems(props),
         this.genFooter(props),
-        getSlot(this, 'footer', outerProps, true),
+        getSlot(this, 'footer', outerProps, true)
       ])
-    },
+    }
   },
 
   render (): VNode {
@@ -362,9 +363,9 @@ export default defineComponent({
         this.internalCurrentItems = v
         this.$emit('current-items', v)
       },
-      onPageCount: (v: number) => this.$emit('page-count', v),
+      onPageCount: (v: number) => this.$emit('page-count', v)
     }, {
-      default: this.genDefaultScopedSlot,
+      default: this.genDefaultScopedSlot
     })
-  },
+  }
 })

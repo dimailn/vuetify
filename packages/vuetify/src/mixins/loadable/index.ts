@@ -22,26 +22,28 @@ export default defineComponent({
   props: {
     loading: {
       type: [Boolean, String],
-      default: false,
+      default: false
     },
     loaderHeight: {
       type: [Number, String],
-      default: 2,
-    },
+      default: 2
+    }
   },
 
   methods: {
     genProgress (): VNode | VNode[] | null {
       if (this.loading === false) return null
 
-      return getSlot(this, 'progress') || h(VProgressLinear, {
+      const progress = getSlot(this, 'progress')
+      if (progress != null) return progress as VNode | VNode[]
+      return h(VProgressLinear, {
         absolute: true,
         color: (this.loading === true || this.loading === '')
           ? (this.color || 'primary')
           : this.loading,
         height: this.loaderHeight,
-        indeterminate: true,
+        indeterminate: true
       })
-    },
-  },
+    }
+  }
 })

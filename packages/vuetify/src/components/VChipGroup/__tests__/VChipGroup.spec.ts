@@ -8,7 +8,7 @@ import VChipGroup from '../VChipGroup'
 import {
   mount,
   VueWrapper,
-  enableAutoUnmount,
+  enableAutoUnmount
 } from '@vue/test-utils'
 
 describe('VChipGroup.ts', () => {
@@ -22,11 +22,11 @@ describe('VChipGroup.ts', () => {
         global: {
           mocks: {
             $vuetify: {
-              breakpoint: {},
-            },
-          },
+              breakpoint: {}
+            }
+          }
         },
-        ...options,
+        ...options
       })
     }
   })
@@ -41,8 +41,8 @@ describe('VChipGroup.ts', () => {
   it('should render column', () => {
     const wrapper = mountFunction({
       props: {
-        column: true,
-      },
+        column: true
+      }
     })
 
     expect(wrapper.classes()).toContain('v-chip-group--column')
@@ -56,7 +56,7 @@ describe('VChipGroup.ts', () => {
     expect(wrapper.html()).toMatchSnapshot()
 
     await wrapper.setProps({
-      column: true,
+      column: true
     })
 
     expect(wrapper.classes()).toContain('v-chip-group--column')

@@ -6,7 +6,7 @@ import {
   mount,
   VueWrapper,
   MountingOptions,
-  enableAutoUnmount,
+  enableAutoUnmount
 } from '@vue/test-utils'
 
 // Types
@@ -21,14 +21,14 @@ describe('VBtnToggle.ts', () => {
   beforeEach(() => {
     mountFunction = (options: MountingOptions<Instance> = {}) => {
       return mount(VBtnToggle, {
-        ...options,
+        ...options
       })
     }
   })
 
   it('should not apply background color with group', async () => {
     const wrapper = mountFunction({
-      props: { backgroundColor: 'primary' },
+      props: { backgroundColor: 'primary' }
     })
 
     expect(wrapper.element.classList.contains('primary')).toBeTruthy()

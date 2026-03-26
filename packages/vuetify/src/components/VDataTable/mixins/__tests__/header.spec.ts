@@ -3,7 +3,7 @@ import {
   mount,
   MountingOptions,
   VueWrapper,
-  enableAutoUnmount,
+  enableAutoUnmount
 } from '@vue/test-utils'
 import { h } from 'vue'
 import { wrapInArray } from '../../../../util/helpers'
@@ -19,12 +19,12 @@ describe('VDataTable/header.ts', () => {
       return mount(Header, {
         props: {
           headers: [],
-          ...options.props,
+          ...options.props
         },
         render (h) {
           return h('div')
         },
-        ...options,
+        ...options
       })
     }
   })
@@ -32,11 +32,11 @@ describe('VDataTable/header.ts', () => {
   it('should generate sort icon', async () => {
     const wrapper = mountFunction({
       props: {
-        sortIcon: 'mdi-sort',
+        sortIcon: 'mdi-sort'
       },
       render () {
         return this.genSortIcon()
-      },
+      }
     })
 
     expect(wrapper.html()).toMatchSnapshot()
@@ -46,24 +46,24 @@ describe('VDataTable/header.ts', () => {
     const wrapper = mountFunction({
       render () {
         return h('div', wrapInArray(this.genSelectAll()))
-      },
+      }
     })
 
     wrapper.setProps({
       everyItem: false,
-      someItems: false,
+      someItems: false
     })
     expect(wrapper.html()).toMatchSnapshot()
 
     wrapper.setProps({
       everyItem: true,
-      someItems: false,
+      someItems: false
     })
     expect(wrapper.html()).toMatchSnapshot()
 
     wrapper.setProps({
       everyItem: false,
-      someItems: true,
+      someItems: true
     })
     expect(wrapper.html()).toMatchSnapshot()
   })
@@ -77,27 +77,27 @@ describe('VDataTable/header.ts', () => {
         'data-table-select' (props) {
           return h('div', {
             onClick: () => props['onUpdate:modelValue'](true),
-            class: 'test',
+            class: 'test'
           }, [JSON.stringify(props)])
-        },
-      },
+        }
+      }
     })
 
     wrapper.setProps({
       everyItem: false,
-      someItems: false,
+      someItems: false
     })
     expect(wrapper.html()).toMatchSnapshot()
 
     wrapper.setProps({
       everyItem: true,
-      someItems: false,
+      someItems: false
     })
     expect(wrapper.html()).toMatchSnapshot()
 
     wrapper.setProps({
       everyItem: false,
-      someItems: true,
+      someItems: true
     })
     expect(wrapper.html()).toMatchSnapshot()
 

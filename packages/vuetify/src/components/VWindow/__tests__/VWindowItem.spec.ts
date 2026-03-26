@@ -1,9 +1,9 @@
 // Libraries
-import { h, nextTick } from "vue";
+import { h, nextTick } from 'vue'
 
 // Components
-import VWindow from "../VWindow";
-import VWindowItem from "../VWindowItem";
+import VWindow from '../VWindow'
+import VWindowItem from '../VWindowItem'
 
 // Utilities
 import {
@@ -11,17 +11,17 @@ import {
   VueWrapper,
   MountingOptions,
   enableAutoUnmount
-} from "@vue/test-utils";
-import { waitAnimationFrame } from "../../../../test";
+} from '@vue/test-utils'
+import { waitAnimationFrame } from '../../../../test'
 
-describe("VWindowItem.ts", () => {
+describe('VWindowItem.ts', () => {
   type Instance = InstanceType<typeof VWindowItem>;
   let mountFunction: (
     options?: MountingOptions<Instance>
-  ) => VueWrapper<Instance>;
+  ) => VueWrapper<Instance>
 
   // Включаем автоматическое размонтирование после каждого теста
-  enableAutoUnmount(afterEach);
+  enableAutoUnmount(afterEach)
 
   beforeEach(() => {
     mountFunction = (options = {}) => {
@@ -32,12 +32,12 @@ describe("VWindowItem.ts", () => {
           }
         },
         ...options
-      });
-    };
-  });
+      })
+    }
+  })
 
   // eslint-disable-next-line max-statements
-  it("should transition content", async () => {
+  it('should transition content', async () => {
     const wrapper = mount(VWindow, {
       slots: {
         default: () => [h(VWindowItem)]
@@ -52,53 +52,53 @@ describe("VWindowItem.ts", () => {
           }
         }
       }
-    });
+    })
 
-    await waitAnimationFrame();
+    await waitAnimationFrame()
 
-    const item = wrapper.findComponent(VWindowItem);
-    const windowVm = wrapper.vm as any;
-    const itemVm = item.vm as any;
+    const item = wrapper.findComponent(VWindowItem)
+    const windowVm = wrapper.vm as any
+    const itemVm = item.vm as any
 
     // Before enter
-    expect(windowVm.isActive).toBeFalsy();
-    expect(windowVm.transitionHeight).toBeUndefined();
-    itemVm.onBeforeTransition();
-    expect(windowVm.isActive).toBeTruthy();
-    expect(windowVm.transitionHeight).toBe("0px");
+    expect(windowVm.isActive).toBeFalsy()
+    expect(windowVm.transitionHeight).toBeUndefined()
+    itemVm.onBeforeTransition()
+    expect(windowVm.isActive).toBeTruthy()
+    expect(windowVm.transitionHeight).toBe('0px')
 
     // Enter
-    const el = { clientHeight: 50 };
-    itemVm.onEnter(el);
-    await nextTick();
-    expect(windowVm.transitionHeight).toBe("50px");
+    const el = { clientHeight: 50 }
+    itemVm.onEnter(el)
+    await nextTick()
+    expect(windowVm.transitionHeight).toBe('50px')
 
     // After enter
-    itemVm.onAfterTransition();
-    expect(windowVm.transitionHeight).toBeUndefined();
-    expect(windowVm.isActive).toBeFalsy();
+    itemVm.onAfterTransition()
+    expect(windowVm.transitionHeight).toBeUndefined()
+    expect(windowVm.isActive).toBeFalsy()
 
     // Canceling
-    itemVm.onBeforeTransition();
-    itemVm.onEnter(el);
-    itemVm.onTransitionCancelled();
+    itemVm.onBeforeTransition()
+    itemVm.onEnter(el)
+    itemVm.onTransitionCancelled()
 
-    expect(itemVm.inTransition).toBeFalsy();
-    expect(windowVm.isActive).toBeFalsy();
+    expect(itemVm.inTransition).toBeFalsy()
+    expect(windowVm.isActive).toBeFalsy()
 
     // Normal path.
-    itemVm.onBeforeTransition();
-    expect(windowVm.isActive).toBeTruthy();
-    itemVm.onAfterTransition();
+    itemVm.onBeforeTransition()
+    expect(windowVm.isActive).toBeTruthy()
+    itemVm.onAfterTransition()
 
-    expect(windowVm.isActive).toBeFalsy();
-  });
+    expect(windowVm.isActive).toBeFalsy()
+  })
 
-  it("should use custom transition", async () => {
+  it('should use custom transition', async () => {
     const wrapper = mountFunction({
       props: {
-        transition: "foo",
-        reverseTransition: "bar"
+        transition: 'foo',
+        reverseTransition: 'bar'
       },
       data: () => ({
         windowGroup: {
@@ -107,28 +107,28 @@ describe("VWindowItem.ts", () => {
           unregister: () => {}
         }
       })
-    });
+    })
 
-    const vm = wrapper.vm as any;
+    const vm = wrapper.vm as any
 
-    expect(vm.computedTransition).toBe("foo");
+    expect(vm.computedTransition).toBe('foo')
 
-    await wrapper.setProps({ transition: false });
-    await nextTick();
+    await wrapper.setProps({ transition: false })
+    await nextTick()
     // В Vue 3 нужно дождаться обновления computed
-    expect(vm.computedTransition).toBe("");
+    expect(vm.computedTransition).toBe('')
 
-    vm.windowGroup.internalReverse = true;
-    await nextTick();
-    expect(vm.computedTransition).toBe("bar");
+    vm.windowGroup.internalReverse = true
+    await nextTick()
+    expect(vm.computedTransition).toBe('bar')
 
-    await wrapper.setProps({ reverseTransition: false });
-    await nextTick();
-    expect(vm.computedTransition).toBe("");
-  });
+    await wrapper.setProps({ reverseTransition: false })
+    await nextTick()
+    expect(vm.computedTransition).toBe('')
+  })
 
-  it("should not set initial height if no computedTransition", async () => {
-    const heightChanged = jest.fn();
+  it('should not set initial height if no computedTransition', async () => {
+    const heightChanged = jest.fn()
     const wrapper = mount(VWindow, {
       props: {
         transition: false,
@@ -150,28 +150,28 @@ describe("VWindowItem.ts", () => {
           }
         }
       }
-    });
+    })
 
-    const item = wrapper.findComponent(VWindowItem);
-    const windowVm = wrapper.vm as any;
-    const itemVm = item.vm as any;
+    const item = wrapper.findComponent(VWindowItem)
+    const windowVm = wrapper.vm as any
+    const itemVm = item.vm as any
 
-    expect(windowVm.computedTransition).toBeFalsy();
+    expect(windowVm.computedTransition).toBeFalsy()
 
-    itemVm.onBeforeTransition();
-    expect(windowVm.isActive).toBeTruthy();
+    itemVm.onBeforeTransition()
+    expect(windowVm.isActive).toBeTruthy()
     // В Vue 3 watch может не срабатывать сразу, поэтому проверяем после nextTick
-    await nextTick();
-    expect(heightChanged).toHaveBeenCalledTimes(1);
+    await nextTick()
+    expect(heightChanged).toHaveBeenCalledTimes(1)
 
-    itemVm.onEnter(wrapper.element);
-    await waitAnimationFrame();
-    expect(windowVm.isActive).toBeTruthy();
+    itemVm.onEnter(wrapper.element)
+    await waitAnimationFrame()
+    expect(windowVm.isActive).toBeTruthy()
 
-    expect(heightChanged).toHaveBeenCalledTimes(1);
-  });
+    expect(heightChanged).toHaveBeenCalledTimes(1)
+  })
 
-  it("should increase and decrease transition count correctly", () => {
+  it('should increase and decrease transition count correctly', () => {
     const wrapper = mount(VWindow, {
       slots: {
         default: () => [h(VWindowItem), h(VWindowItem), h(VWindowItem)]
@@ -186,35 +186,35 @@ describe("VWindowItem.ts", () => {
           }
         }
       }
-    });
+    })
 
-    const windowVm = wrapper.vm as any;
-    const items = windowVm.items as any[];
-    expect(items).toHaveLength(3);
+    const windowVm = wrapper.vm as any
+    const items = windowVm.items as any[]
+    expect(items).toHaveLength(3)
 
-    expect(windowVm.transitionCount).toBe(0);
-    expect(windowVm.isActive).toBeFalsy();
-    items[0].onBeforeTransition();
-    expect(windowVm.transitionCount).toBe(1);
-    expect(windowVm.isActive).toBeTruthy();
-    items[1].onBeforeTransition();
-    expect(windowVm.transitionCount).toBe(2);
-    expect(windowVm.isActive).toBeTruthy();
-    items[0].onTransitionCancelled();
-    expect(windowVm.transitionCount).toBe(1);
-    expect(windowVm.isActive).toBeTruthy();
-    items[2].onBeforeTransition();
-    expect(windowVm.transitionCount).toBe(2);
-    expect(windowVm.isActive).toBeTruthy();
-    items[1].onAfterTransition();
-    expect(windowVm.transitionCount).toBe(1);
-    expect(windowVm.isActive).toBeTruthy();
-    items[2].onAfterTransition();
-    expect(windowVm.transitionCount).toBe(0);
-    expect(windowVm.isActive).toBeFalsy();
-  });
+    expect(windowVm.transitionCount).toBe(0)
+    expect(windowVm.isActive).toBeFalsy()
+    items[0].onBeforeTransition()
+    expect(windowVm.transitionCount).toBe(1)
+    expect(windowVm.isActive).toBeTruthy()
+    items[1].onBeforeTransition()
+    expect(windowVm.transitionCount).toBe(2)
+    expect(windowVm.isActive).toBeTruthy()
+    items[0].onTransitionCancelled()
+    expect(windowVm.transitionCount).toBe(1)
+    expect(windowVm.isActive).toBeTruthy()
+    items[2].onBeforeTransition()
+    expect(windowVm.transitionCount).toBe(2)
+    expect(windowVm.isActive).toBeTruthy()
+    items[1].onAfterTransition()
+    expect(windowVm.transitionCount).toBe(1)
+    expect(windowVm.isActive).toBeTruthy()
+    items[2].onAfterTransition()
+    expect(windowVm.transitionCount).toBe(0)
+    expect(windowVm.isActive).toBeFalsy()
+  })
 
-  it("should render with correct structure and classes when active", () => {
+  it('should render with correct structure and classes when active', () => {
     const wrapper = mountFunction({
       data: () => ({
         isActive: true,
@@ -222,18 +222,18 @@ describe("VWindowItem.ts", () => {
           internalReverse: false,
           register: () => {},
           unregister: () => {},
-          computedTransition: "v-window-x-transition"
+          computedTransition: 'v-window-x-transition'
         }
       })
-    });
+    })
 
-    expect(wrapper.html()).toMatchSnapshot();
-  });
+    expect(wrapper.html()).toMatchSnapshot()
+  })
 
-  it("should render with custom transition when active", () => {
+  it('should render with custom transition when active', () => {
     const wrapper = mountFunction({
       props: {
-        transition: "custom-transition"
+        transition: 'custom-transition'
       },
       data: () => ({
         isActive: true,
@@ -241,18 +241,18 @@ describe("VWindowItem.ts", () => {
           internalReverse: false,
           register: () => {},
           unregister: () => {},
-          computedTransition: "v-window-x-transition"
+          computedTransition: 'v-window-x-transition'
         }
       })
-    });
+    })
 
-    expect(wrapper.html()).toMatchSnapshot();
-  });
+    expect(wrapper.html()).toMatchSnapshot()
+  })
 
-  it("should render with reverse transition when active", () => {
+  it('should render with reverse transition when active', () => {
     const wrapper = mountFunction({
       props: {
-        reverseTransition: "custom-reverse-transition"
+        reverseTransition: 'custom-reverse-transition'
       },
       data: () => ({
         isActive: true,
@@ -260,15 +260,15 @@ describe("VWindowItem.ts", () => {
           internalReverse: true,
           register: () => {},
           unregister: () => {},
-          computedTransition: "v-window-x-reverse-transition"
+          computedTransition: 'v-window-x-reverse-transition'
         }
       })
-    });
+    })
 
-    expect(wrapper.html()).toMatchSnapshot();
-  });
+    expect(wrapper.html()).toMatchSnapshot()
+  })
 
-  it("should render with disabled prop when active", () => {
+  it('should render with disabled prop when active', () => {
     const wrapper = mountFunction({
       props: {
         disabled: true
@@ -279,18 +279,18 @@ describe("VWindowItem.ts", () => {
           internalReverse: false,
           register: () => {},
           unregister: () => {},
-          computedTransition: "v-window-x-transition"
+          computedTransition: 'v-window-x-transition'
         }
       })
-    });
+    })
 
-    expect(wrapper.html()).toMatchSnapshot();
-  });
+    expect(wrapper.html()).toMatchSnapshot()
+  })
 
-  it("should render with slot content when active", () => {
+  it('should render with slot content when active', () => {
     const wrapper = mountFunction({
       slots: {
-        default: () => h("div", { class: "test-content" }, "Test content")
+        default: () => h('div', { class: 'test-content' }, 'Test content')
       },
       data: () => ({
         isActive: true,
@@ -298,18 +298,18 @@ describe("VWindowItem.ts", () => {
           internalReverse: false,
           register: () => {},
           unregister: () => {},
-          computedTransition: "v-window-x-transition"
+          computedTransition: 'v-window-x-transition'
         }
       })
-    });
+    })
 
-    expect(wrapper.html()).toMatchSnapshot();
-  });
+    expect(wrapper.html()).toMatchSnapshot()
+  })
 
-  it("should render with value prop when active", () => {
+  it('should render with value prop when active', () => {
     const wrapper = mountFunction({
       props: {
-        value: "test-value"
+        value: 'test-value'
       },
       data: () => ({
         isActive: true,
@@ -317,15 +317,15 @@ describe("VWindowItem.ts", () => {
           internalReverse: false,
           register: () => {},
           unregister: () => {},
-          computedTransition: "v-window-x-transition"
+          computedTransition: 'v-window-x-transition'
         }
       })
-    });
+    })
 
-    expect(wrapper.html()).toMatchSnapshot();
-  });
+    expect(wrapper.html()).toMatchSnapshot()
+  })
 
-  it("should not render when not active", () => {
+  it('should not render when not active', () => {
     const wrapper = mountFunction({
       data: () => ({
         isActive: false,
@@ -333,12 +333,11 @@ describe("VWindowItem.ts", () => {
           internalReverse: false,
           register: () => {},
           unregister: () => {},
-          computedTransition: "v-window-x-transition"
+          computedTransition: 'v-window-x-transition'
         }
       })
-    });
+    })
 
-    expect(wrapper.html()).toMatchSnapshot();
-  });
-});
-
+    expect(wrapper.html()).toMatchSnapshot()
+  })
+})

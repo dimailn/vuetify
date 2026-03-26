@@ -18,11 +18,11 @@ import Sizeable from '../../mixins/sizeable'
 // Utilities
 import mixins, { ExtractVue } from '../../util/mixins'
 import { breaking } from '../../util/console'
-import { getSlot } from '../../util/helpers'
+import { getSlot, getTagValue } from '../../util/helpers'
 
 // Types
-import { VNode, withDirectives, h } from 'vue'
-import { PropValidator, PropType } from 'vue/types/options'
+import type { PropType, VNode } from 'vue'
+import { withDirectives, h } from 'vue'
 import { RippleOptions } from '../../directives/ripple'
 
 const baseMixins = mixins(
@@ -34,7 +34,7 @@ const baseMixins = mixins(
   ToggleableFactory()
   /* @vue/component */
 )
-interface options extends ExtractVue<typeof baseMixins> {
+type options = ExtractVue<typeof baseMixins> & {
   $el: HTMLElement
 }
 
@@ -42,8 +42,8 @@ export default baseMixins.extend({
   name: 'v-btn',
   props: {
     activeClass: {
-      type: String,
-    } as any as PropValidator<string>,
+      type: String
+    } as any as PropType<string>,
     block: Boolean,
     depressed: Boolean,
     fab: Boolean,
@@ -55,21 +55,21 @@ export default baseMixins.extend({
     rounded: Boolean,
     tag: {
       type: String,
-      default: 'button',
+      default: 'button'
     },
     text: Boolean,
     tile: Boolean,
     type: {
       type: String,
-      default: 'button',
+      default: 'button'
     },
-    value: null as any as PropType<any>,
+    value: null as any as PropType<any>
   },
 
   emits: ['click', 'change', 'update:modelValue'],
 
   data: () => ({
-    proxyClass: 'v-btn--active',
+    proxyClass: 'v-btn--active'
   }),
 
   computed: {
@@ -100,7 +100,7 @@ export default baseMixins.extend({
         ...this.themeClasses,
         ...this.groupClasses,
         ...this.elevationClasses,
-        ...this.sizeableClasses,
+        ...this.sizeableClasses
       }
     },
     computedElevation (): string | number | undefined {
@@ -135,16 +135,16 @@ export default baseMixins.extend({
     },
     styles (): object {
       return {
-        ...this.measurableStyles,
+        ...this.measurableStyles
       }
-    },
+    }
   },
 
   created () {
     const breakingProps = [
       ['flat', 'text'],
       ['outline', 'outlined'],
-      ['round', 'rounded'],
+      ['round', 'rounded']
     ]
 
     /* istanbul ignore next */
@@ -164,24 +164,24 @@ export default baseMixins.extend({
     },
     genContent (): VNode {
       return h('span', {
-        class: 'v-btn__content',
+        class: 'v-btn__content'
       }, getSlot(this))
     },
     genLoader (): VNode {
       return h('span', {
-        class: 'v-btn__loader',
+        class: 'v-btn__loader'
       }, getSlot(this, 'loader') || [h(VProgressCircular, {
         indeterminate: true,
         size: 23,
-        width: 2,
+        width: 2
       })])
-    },
+    }
   },
 
   render (): VNode {
     const children = [
       this.genContent(),
-      this.loading && this.genLoader(),
+      this.loading && this.genLoader()
     ]
     const { tag, data: linkData, directives } = this.generateRouteLink()
     const setColor = this.hasBg
@@ -191,7 +191,7 @@ export default baseMixins.extend({
     // Merge component classes with routable classes
     const mergedClasses = {
       ...this.classes,
-      ...linkData.class,
+      ...linkData.class
     }
 
     if (tag === 'button') {
@@ -205,19 +205,19 @@ export default baseMixins.extend({
     const data = {
       ...linkData,
       class: mergedClasses,
-      style: this.styles,
+      style: this.styles
     }
 
     // Apply color styling but preserve Vue's automatic attribute inheritance
     const finalData = this.disabled ? data : setColor(this.color, data)
 
     const vnode = typeof tag === 'string'
-      ? h(tag, finalData, children)
+      ? h(getTagValue(tag), finalData, children)
       : h(tag, finalData, () => children)
 
     return withDirectives(
       vnode,
       directives
     )
-  },
+  }
 })

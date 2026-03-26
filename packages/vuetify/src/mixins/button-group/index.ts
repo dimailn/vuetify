@@ -9,18 +9,18 @@ export default defineComponent({
 
   provide (): object {
     return {
-      btnToggle: this,
+      btnToggle: this
     }
   },
 
   computed: {
     classes (): object {
       return BaseItemGroup.computed.classes.call(this)
-    },
+    }
   },
 
   methods: {
     // Isn't being passed down through types
-    genData: BaseItemGroup.methods.genData,
-  },
+    genData: BaseItemGroup.methods.genData
+  }
 })

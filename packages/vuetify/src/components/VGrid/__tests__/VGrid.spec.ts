@@ -1,11 +1,10 @@
-
 // Components
 import Grid from '../grid'
 
 // Utilities
 import {
   mount,
-  VueWrapper,
+  VueWrapper
 } from '@vue/test-utils'
 
 const Mock = Grid('test')
@@ -17,7 +16,7 @@ describe('VGrid.ts', () => {
   beforeEach(() => {
     mountFunction = (options = {}) => {
       return mount(Mock, {
-        ...options,
+        ...options
       })
     }
   })
@@ -26,8 +25,8 @@ describe('VGrid.ts', () => {
     const wrapper = mountFunction({
       attrs: {
         foo: '',
-        bar: false,
-      },
+        bar: false
+      }
     })
 
     // В Vue 3 атрибуты передаются как DOM атрибуты
@@ -41,8 +40,8 @@ describe('VGrid.ts', () => {
   it('should pass the id attr', () => {
     const wrapper = mountFunction({
       props: {
-        id: 'test',
-      },
+        id: 'test'
+      }
     })
 
     expect(wrapper.attributes('id')).toBe('test')
@@ -52,8 +51,8 @@ describe('VGrid.ts', () => {
     const wrapper = mountFunction({
       attrs: {
         foo: 'bar',
-        'data-test': 'foo',
-      },
+        'data-test': 'foo'
+      }
     })
 
     // В текущей реализации атрибуты не фильтруются в классы
@@ -66,7 +65,7 @@ describe('VGrid.ts', () => {
   // https://github.com/vuejs/vue/issues/7841
   it('should filter the slot attr', () => {
     const wrapper = mountFunction({
-      attrs: { slot: 'content' },
+      attrs: { slot: 'content' }
     })
 
     expect(wrapper.element.classList.contains('slot')).toBe(false)

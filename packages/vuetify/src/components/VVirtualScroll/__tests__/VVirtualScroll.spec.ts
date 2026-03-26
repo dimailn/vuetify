@@ -6,7 +6,7 @@ import {
   mount,
   VueWrapper,
   MountingOptions,
-  enableAutoUnmount,
+  enableAutoUnmount
 } from '@vue/test-utils'
 import { h, nextTick } from 'vue'
 
@@ -24,14 +24,14 @@ describe('VVirtualScroll.ts', () => {
       return mount(VVirtualScroll, {
         ...options,
         slots: {
-          default: ({ item }: { item: any }) => h('div', { class: 'item' }, item),
-        },
+          default: ({ item }: { item: any }) => h('div', { class: 'item' }, item)
+        }
       })
     }
     propsData = {
       height: elementHeight,
       items: [1, 2, 3],
-      itemHeight: 50,
+      itemHeight: 50
     }
 
     // mock clientHeight
@@ -44,7 +44,7 @@ describe('VVirtualScroll.ts', () => {
 
   it('should render component with scopedSlot and match snapshot', async () => {
     const wrapper = mountFunction({
-      props: propsData,
+      props: propsData
     })
 
     await nextTick()
@@ -53,7 +53,7 @@ describe('VVirtualScroll.ts', () => {
 
   it('should set height of scrollable element', () => {
     const wrapper = mountFunction({
-      props: propsData,
+      props: propsData
     })
 
     const scrollable = wrapper.find('.v-virtual-scroll__container')
@@ -65,8 +65,8 @@ describe('VVirtualScroll.ts', () => {
       props: {
         height: elementHeight,
         items: [1, 2, 3, 4, 5, 6, 7, 8, 9, 0],
-        itemHeight: 50,
-      },
+        itemHeight: 50
+      }
     })
 
     await nextTick()
@@ -78,8 +78,8 @@ describe('VVirtualScroll.ts', () => {
       props: {
         height: elementHeight,
         items: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20],
-        itemHeight: 50,
-      },
+        itemHeight: 50
+      }
     })
 
     wrapper.vm.scrollTop = 500
@@ -93,7 +93,7 @@ describe('VVirtualScroll.ts', () => {
     const helpers = require('../../../util/helpers')
     const spy = jest.spyOn(helpers, 'getSlot')
     const wrapper = mountFunction({
-      props: propsData,
+      props: propsData
     })
 
     wrapper.vm.first = 2
@@ -102,7 +102,7 @@ describe('VVirtualScroll.ts', () => {
 
     expect(spy.mock.calls[0][2]).toEqual({
       item: 0,
-      index: 3,
+      index: 3
     })
   })
 })

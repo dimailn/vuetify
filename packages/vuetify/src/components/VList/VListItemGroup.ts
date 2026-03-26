@@ -19,7 +19,7 @@ export default mixins(
   provide () {
     return {
       isInGroup: true,
-      listItemGroup: this,
+      listItemGroup: this
     }
   },
 
@@ -27,9 +27,9 @@ export default mixins(
     classes (): object {
       return {
         ...BaseItemGroup.computed.classes.call(this),
-        'v-list-item-group': true,
+        'v-list-item-group': true
       }
-    },
+    }
   },
 
   methods: {
@@ -37,9 +37,9 @@ export default mixins(
       return this.setTextColor(this.color, {
         ...BaseItemGroup.methods.genData.call(this),
         attrs: {
-          role: 'listbox',
-        },
+          role: 'listbox'
+        }
       })
-    },
-  },
+    }
+  }
 })

@@ -21,7 +21,7 @@ function mounted (
   const { self = false } = binding.modifiers || {}
   const value = binding.value
   const options = (typeof value === 'object' && value.options) || {
-    passive: true,
+    passive: true
   }
   const handler =
     typeof value === 'function' || 'handleEvent' in value
@@ -43,7 +43,7 @@ function mounted (
     handler,
     options,
     // Don't reference self
-    target: self ? undefined : target,
+    target: self ? undefined : target
   }
 }
 
@@ -62,7 +62,7 @@ function unmounted (
 
 export const Scroll: ObjectDirective = {
   mounted,
-  unmounted,
+  unmounted
 }
 
 export default Scroll

@@ -5,9 +5,14 @@ import { DataTableHeader } from 'vuetify/types'
 // Utils
 import { getObjectValueByPath, wrapInArray } from '../../util/helpers'
 
+function vnodeTag (vnode: VNode | undefined): string | undefined {
+  const t = vnode?.type
+  return typeof t === 'string' ? t : undefined
+}
+
 function needsTd (slot: VNode[] | undefined) {
   return slot!.length !== 1 ||
-    !['td', 'th'].includes(slot![0]?.tag!)
+    !['td', 'th'].includes(vnodeTag(slot![0])!)
 }
 
 export default defineComponent({
@@ -19,7 +24,7 @@ export default defineComponent({
     headers: Array as PropType<DataTableHeader[]>,
     index: Number,
     item: Object,
-    rtl: Boolean,
+    rtl: Boolean
   },
 
   render (): VNode {
@@ -39,10 +44,9 @@ export default defineComponent({
           isMobile: false,
           header,
           index: props.index,
-          value,
+          value
         })))
-      }
-      else {
+      } else {
         children.push(value == null ? value : String(value))
       }
 
@@ -54,13 +58,13 @@ export default defineComponent({
             textAlign,
             header.cellClass,
             {
-              'v-data-table__divider': header.divider,
-            },
-          ],
+              'v-data-table__divider': header.divider
+            }
+          ]
         }, children)
         : children
     })
 
     return h('tr', data, columns)
-  },
+  }
 })

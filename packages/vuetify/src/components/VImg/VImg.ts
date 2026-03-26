@@ -1,4 +1,4 @@
-import {h, Transition, withDirectives, mergeProps} from 'vue'
+import { h, Transition, withDirectives, mergeProps, PropType } from 'vue'
 // Styles
 import './VImg.sass'
 
@@ -7,7 +7,6 @@ import intersect from '../../directives/intersect'
 
 // Types
 import { VNode } from 'vue'
-import { PropValidator } from 'vue/types/options'
 
 // Components
 import VResponsive from '../VResponsive'
@@ -35,10 +34,9 @@ const hasIntersect = typeof window !== 'undefined' && 'IntersectionObserver' in 
 /* @vue/component */
 export default mixins(
   VResponsive,
-  Themeable,
+  Themeable
 ).extend({
   name: 'v-img',
-
 
   props: {
     alt: String,
@@ -53,23 +51,23 @@ export default mixins(
       default: () => ({
         root: undefined,
         rootMargin: undefined,
-        threshold: undefined,
-      }),
-    } as PropValidator<IntersectionObserverInit>,
+        threshold: undefined
+      })
+    } as unknown as PropType<IntersectionObserverInit>,
     position: {
       type: String,
-      default: 'center center',
+      default: 'center center'
     },
     sizes: String,
     src: {
       type: [String, Object],
-      default: '',
-    } as PropValidator<string | srcObject>,
+      default: ''
+    } as unknown as PropType<string | srcObject>,
     srcset: String,
     transition: {
       type: [Boolean, String],
-      default: 'fade-transition',
-    },
+      default: 'fade-transition'
+    }
   },
 
   emits: ['load', 'error', 'loadstart'],
@@ -81,7 +79,7 @@ export default mixins(
       isLoading: true,
       calculatedAspectRatio: undefined as number | undefined,
       naturalWidth: undefined as number | undefined,
-      hasError: false,
+      hasError: false
     }
   },
 
@@ -92,16 +90,17 @@ export default mixins(
     normalisedSrc (): srcObject {
       return this.src && typeof this.src === 'object'
         ? {
-          src: this.src.src,
-          srcset: this.srcset || this.src.srcset,
-          lazySrc: this.lazySrc || this.src.lazySrc,
-          aspect: Number(this.aspectRatio || this.src.aspect),
-        } : {
-          src: this.src,
-          srcset: this.srcset,
-          lazySrc: this.lazySrc,
-          aspect: Number(this.aspectRatio || 0),
-        }
+            src: this.src.src,
+            srcset: this.srcset || this.src.srcset,
+            lazySrc: this.lazySrc || this.src.lazySrc,
+            aspect: Number(this.aspectRatio || this.src.aspect)
+          }
+        : {
+            src: this.src,
+            srcset: this.srcset,
+            lazySrc: this.lazySrc,
+            aspect: Number(this.aspectRatio || 0)
+          }
     },
     __cachedImage (): VNode | [] {
       if (!(this.normalisedSrc.src || this.normalisedSrc.lazySrc || this.gradient)) return []
@@ -121,9 +120,9 @@ export default mixins(
         },
         style: {
           backgroundImage: backgroundImage.join(', '),
-          backgroundPosition: this.position,
+          backgroundPosition: this.position
         },
-        key: +this.isLoading,
+        key: +this.isLoading
       })
 
       /* istanbul ignore if */
@@ -131,9 +130,9 @@ export default mixins(
 
       return h(Transition, {
         name: this.transition,
-        mode: 'in-out',
+        mode: 'in-out'
       }, () => [image])
-    },
+    }
   },
 
   watch: {
@@ -142,7 +141,7 @@ export default mixins(
       if (!this.isLoading) this.init(undefined, undefined, true)
       else this.loadImage()
     },
-    '$vuetify.breakpoint.width': 'getSrc',
+    '$vuetify.breakpoint.width': 'getSrc'
   },
 
   mounted () {
@@ -245,9 +244,9 @@ export default mixins(
       let content: VNode = VResponsive.methods.genContent.call(this)
 
       if (this.naturalWidth) {
-        content = h(content.type, mergeProps(content.props, {
-          style: { width: `${this.naturalWidth}px` },
-        }), content.children)
+        content = h(content.type as any, mergeProps(content.props ?? {}, {
+          style: { width: `${this.naturalWidth}px` }
+        }), content.children ?? [])
       }
 
       return content
@@ -257,18 +256,18 @@ export default mixins(
       if (slot) {
         const placeholder = this.isLoading
           ? [h('div', {
-            class: 'v-image__placeholder',
-          }, slot)]
+              class: 'v-image__placeholder'
+            }, slot)]
           : []
 
         if (!this.transition) return placeholder[0]
 
         return h(Transition, {
           appear: true,
-          name: this.transition,
+          name: this.transition
         }, () => placeholder)
       }
-    },
+    }
   },
 
   render (): VNode {
@@ -277,7 +276,7 @@ export default mixins(
     const data = mergeData(node.props, {
       'aria-label': this.alt,
       role: this.alt ? 'img' : undefined,
-      class:  {
+      class: {
         ...this.themeClasses,
         'v-image': true
       }
@@ -287,26 +286,26 @@ export default mixins(
       this.__cachedSizer,
       this.__cachedImage,
       this.__genPlaceholder(),
-      this.genContent(),
+      this.genContent()
     ] as VNode[]
 
     node = h(node.type, data, node.children)
 
     return withDirectives(node, hasIntersect
       ? [
-        [
-          Intersect,
-          {
-            handler: this.init,
-            options: this.options,
-          },
-          '',
-          {
-            once: true
-          }
+          [
+            Intersect,
+            {
+              handler: this.init,
+              options: this.options
+            },
+            '',
+            {
+              once: true
+            }
+          ]
         ]
-      ]
 
       : [])
-  },
+  }
 })

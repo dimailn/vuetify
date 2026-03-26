@@ -8,7 +8,6 @@ import { consoleWarn } from '../../util/console'
 
 // Types
 import { VNode, mergeProps } from 'vue'
-import { ScopedSlotChildren } from 'vue/types/vnode'
 
 export default mixins(
   Delayable,
@@ -20,12 +19,12 @@ export default mixins(
   props: {
     disabled: {
       type: Boolean,
-      default: false,
+      default: false
     },
     modelValue: {
       type: Boolean,
-      default: undefined,
-    },
+      default: undefined
+    }
   },
 
   emits: ['update:modelValue'],
@@ -38,7 +37,7 @@ export default mixins(
     onMouseLeave () {
       if (this.disabled) return
       this.runDelay('close')
-    },
+    }
   },
 
   render (): VNode {
@@ -70,10 +69,10 @@ export default mixins(
     if (!this.disabled) {
       element.props = mergeProps(element.props || {}, {
         onMouseenter: this.onMouseEnter,
-        onMouseleave: this.onMouseLeave,
+        onMouseleave: this.onMouseLeave
       })
     }
 
     return element
-  },
+  }
 })

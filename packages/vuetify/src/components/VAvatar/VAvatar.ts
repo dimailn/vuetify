@@ -1,4 +1,4 @@
-import {h} from 'vue'
+import { h } from 'vue'
 import './VAvatar.sass'
 
 // Mixins
@@ -16,7 +16,7 @@ import mixins from '../../util/mixins'
 export default mixins(
   Colorable,
   Measurable,
-  Roundable,
+  Roundable
   /* @vue/component */
 ).extend({
   name: 'v-avatar',
@@ -26,8 +26,8 @@ export default mixins(
     right: Boolean,
     size: {
       type: [Number, String],
-      default: 48,
-    },
+      default: 48
+    }
   },
 
   computed: {
@@ -35,7 +35,7 @@ export default mixins(
       return {
         'v-avatar--left': this.left,
         'v-avatar--right': this.right,
-        ...this.roundedClasses,
+        ...this.roundedClasses
       }
     },
     styles (): object {
@@ -43,18 +43,18 @@ export default mixins(
         height: convertToUnit(this.size),
         minWidth: convertToUnit(this.size),
         width: convertToUnit(this.size),
-        ...this.measurableStyles,
+        ...this.measurableStyles
       }
-    },
+    }
   },
 
   render (): VNode {
     const data = {
       class: ['v-avatar', this.classes],
       style: this.styles,
-      ...this.$listeners,
+      ...this.$listeners
     }
 
     return h('div', this.setBackgroundColor(this.color, data), getSlot(this))
-  },
+  }
 })

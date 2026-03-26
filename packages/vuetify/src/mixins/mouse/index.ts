@@ -41,7 +41,7 @@ export default defineComponent({
 
       return this.getMouseEventHandlers({
         ...listeners,
-        ['contextmenu' + suffix]: { event: 'contextmenu', prevent: true, result: false },
+        ['contextmenu' + suffix]: { event: 'contextmenu', prevent: true, result: false }
       }, getData, eventFirst)
     },
     getMouseEventHandlers (events: MouseEvents, getData: MouseHandler, eventFirst = false): MouseEventsMap {
@@ -88,7 +88,7 @@ export default defineComponent({
                 currentTarget.dispatchEvent(new TouchEvent(e.type, {
                   changedTouches: e.changedTouches as unknown as Touch[],
                   targetTouches: e.targetTouches as unknown as Touch[],
-                  touches: e.touches as unknown as Touch[],
+                  touches: e.touches as unknown as Touch[]
                 }))
                 return
               }
@@ -119,6 +119,6 @@ export default defineComponent({
       }
 
       return on
-    },
-  },
+    }
+  }
 })

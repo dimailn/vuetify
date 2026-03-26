@@ -1,4 +1,4 @@
-import {h, withDirectives} from 'vue'
+import { h, withDirectives } from 'vue'
 // Styles
 import './VBottomNavigation.sass'
 
@@ -16,6 +16,7 @@ import { factory as ToggleableFactory } from '../../mixins/toggleable'
 import mixins from '../../util/mixins'
 import { breaking } from '../../util/console'
 import { getSlot } from '../../util/helpers'
+import Scroll from '../../directives/scroll'
 
 // Types
 import { VNode } from 'vue'
@@ -23,7 +24,7 @@ import { VNode } from 'vue'
 export default mixins(
   Applicationable('bottom', [
     'height',
-    'modelValue',
+    'modelValue'
   ]),
   Colorable,
   Measurable,
@@ -38,33 +39,33 @@ export default mixins(
   props: {
     activeClass: {
       type: String,
-      default: 'v-btn--active',
+      default: 'v-btn--active'
     },
     backgroundColor: String,
     grow: Boolean,
     height: {
       type: [Number, String],
-      default: 56,
+      default: 56
     },
     hideOnScroll: Boolean,
     horizontal: Boolean,
     modelValue: {
       type: Boolean,
-      default: true,
+      default: true
     },
     mandatory: Boolean,
     shift: Boolean,
     tag: {
       type: String,
-      default: 'div',
-    },
+      default: 'div'
+    }
   },
 
   emits: ['update:modelValue', 'change'],
 
   data () {
     return {
-      isActive: this.modelValue,
+      isActive: this.modelValue
     }
   },
 
@@ -84,25 +85,25 @@ export default mixins(
         'v-bottom-navigation--grow': this.grow,
         'v-bottom-navigation--fixed': !this.absolute && (this.app || this.fixed),
         'v-bottom-navigation--horizontal': this.horizontal,
-        'v-bottom-navigation--shift': this.shift,
+        'v-bottom-navigation--shift': this.shift
       }
     },
     styles (): object {
       return {
         ...this.measurableStyles,
-        transform: this.isActive ? 'none' : 'translateY(100%)',
+        transform: this.isActive ? 'none' : 'translateY(100%)'
       }
-    },
+    }
   },
 
   watch: {
-    canScroll: 'onScroll',
+    canScroll: 'onScroll'
   },
 
   created () {
     const breakingProps = [
       ['inputValue', 'modelValue'],
-      ['onUpdate:input-value', 'onUpdate:modelValue'],
+      ['onUpdate:input-value', 'onUpdate:modelValue']
     ]
 
     /* istanbul ignore next */
@@ -136,7 +137,7 @@ export default mixins(
     },
     updateValue (val: any) {
       this.$emit('change', val)
-    },
+    }
   },
 
   render (): VNode {
@@ -153,16 +154,19 @@ export default mixins(
       onChange: this.updateValue
     })
 
-    const vnode = h(ButtonGroup, this.setTextColor(this.color, data), getSlot(this))
+    const content = getSlot(this)
+    const vnode = content == null
+      ? h(ButtonGroup, this.setTextColor(this.color, data))
+      : h(ButtonGroup, this.setTextColor(this.color, data), () => content)
 
     if (this.canScroll) {
       return withDirectives(vnode, [[
-        'scroll',
+        Scroll,
         this.onScroll,
         this.scrollTarget
       ]])
     }
 
     return vnode
-  },
+  }
 })

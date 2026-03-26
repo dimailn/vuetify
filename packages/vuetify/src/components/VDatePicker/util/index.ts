@@ -1,6 +1,6 @@
 import {
   createItemTypeListeners,
-  createItemTypeNativeListeners,
+  createItemTypeNativeListeners
 } from './eventHelpers'
 import createNativeLocaleFormatter from './createNativeLocaleFormatter'
 import monthChange from './monthChange'
@@ -13,5 +13,5 @@ export {
   createNativeLocaleFormatter,
   monthChange,
   sanitizeDateString,
-  pad,
+  pad
 }

@@ -7,7 +7,7 @@ import {
   VListItem,
   VListItemAction,
   VListItemContent,
-  VListItemTitle,
+  VListItemTitle
 } from '../VList'
 
 // Directives
@@ -23,8 +23,9 @@ import { breaking } from '../../util/console'
 
 // Types
 import mixins from '../../util/mixins'
-import { VNode, PropType, VNodeChildren, h } from 'vue'
-import { PropValidator } from 'vue/types/options'
+import type { PropType, VNode } from 'vue'
+import { h } from 'vue'
+import type { VNodeChildren } from '../../types/vue-internal'
 import { SelectItemKey } from 'vuetify/types'
 
 type ListTile = { item: any, disabled?: null | boolean, value?: boolean, index: number };
@@ -39,27 +40,27 @@ export default mixins(Colorable, Themeable).extend({
     hideSelected: Boolean,
     items: {
       type: Array,
-      default: () => [],
-    } as PropValidator<any[]>,
+      default: () => []
+    } as unknown as PropType<any[]>,
     itemDisabled: {
       type: [String, Array, Function] as PropType<SelectItemKey>,
-      default: 'disabled',
+      default: 'disabled'
     },
     itemText: {
       type: [String, Array, Function] as PropType<SelectItemKey>,
-      default: 'text',
+      default: 'text'
     },
     itemValue: {
       type: [String, Array, Function] as PropType<SelectItemKey>,
-      default: 'value',
+      default: 'value'
     },
     noDataText: String,
     noFilter: Boolean,
     searchInput: null as unknown as PropType<any>,
     selectedItems: {
       type: Array,
-      default: () => [],
-    } as PropValidator<any[]>,
+      default: () => []
+    } as unknown as PropType<any[]>
   },
 
   computed: {
@@ -72,19 +73,19 @@ export default mixins(Colorable, Themeable).extend({
     staticNoDataTile (): VNode {
       const tile = {
         role: undefined,
-        onMousedown: (e: Event) => e.preventDefault(), // Prevent onBlur from being called
+        onMousedown: (e: Event) => e.preventDefault() // Prevent onBlur from being called
       }
 
-      return h(VListItem, tile, [
-        this.genTileContent(this.noDataText),
+      return h(VListItem, tile, () => [
+        this.genTileContent(this.noDataText)
       ])
-    },
+    }
   },
 
   created () {
     const breakingProps = [
       ['value', 'modelValue'],
-      ['onInput', 'onUpdate:modelValue'],
+      ['onInput', 'onUpdate:modelValue']
     ]
 
     /* istanbul ignore next */
@@ -100,8 +101,8 @@ export default mixins(Colorable, Themeable).extend({
           color: this.color,
           modelValue: inputValue,
           ripple: false,
-          'onUpdate:modelValue': () => this.$emit('select', item),
-        }),
+          'onUpdate:modelValue': () => this.$emit('select', item)
+        })
       ])
     },
     genDivider (props: { [key: string]: any }) {
@@ -117,7 +118,12 @@ export default mixins(Colorable, Themeable).extend({
       return [start, this.genHighlight(middle), end]
     },
     genHeader (props: { [key: string]: any }): VNode {
-      return h(VSubheader, props, props.header)
+      const c = props.header
+      return h(VSubheader, props, () => {
+        if (c == null) return []
+        if (typeof c === 'object') return c as VNode | VNode[]
+        return String(c)
+      })
     },
     genHighlight (text: string) {
       return h('span', { class: 'v-list-item__mask' }, text)
@@ -141,7 +147,7 @@ export default mixins(Colorable, Themeable).extend({
       item,
       index,
       disabled = null,
-      value = false,
+      value = false
     }: ListTile): VNode | VNode[] | undefined {
       if (!value) value = this.hasItem(item)
 
@@ -172,15 +178,15 @@ export default mixins(Colorable, Themeable).extend({
             acc[key] = this.$attrs[key]
           }
           return acc
-        }, {} as Record<string, any>),
+        }, {} as Record<string, any>)
       }
 
       if (!this.$slots.item) {
-        return h(VListItem, tile, [
+        return h(VListItem, tile, () => [
           this.action && !this.hideSelected && this.items.length > 0
             ? this.genAction(item, value)
             : null,
-          this.genTileContent(item, index),
+          this.genTileContent(item, index)
         ])
       }
 
@@ -193,19 +199,19 @@ export default mixins(Colorable, Themeable).extend({
         attrs: tile,
         on: {
           onMousedown,
-          onClick,
-        },
+          onClick
+        }
       })
 
       return this.needsTile(scopedSlot)
-        ? h(VListItem, tile, scopedSlot)
+        ? h(VListItem, tile, () => scopedSlot)
         : scopedSlot
     },
     genTileContent (item: any, index = 0): VNode {
       return h(VListItemContent, {}, () => [
         h(VListItemTitle, {}, () => [
-          this.genFilteredText(this.getText(item)),
-        ]),
+          this.genFilteredText(this.getText(item))
+        ])
       ])
     },
     hasItem (item: object) {
@@ -243,7 +249,7 @@ export default mixins(Colorable, Themeable).extend({
     },
     getValue (item: object) {
       return getPropertyFromItem(item, this.itemValue, this.getText(item))
-    },
+    }
   },
 
   render (): VNode {
@@ -276,7 +282,7 @@ export default mixins(Colorable, Themeable).extend({
       onMousedown: (e: Event) => {
         e.preventDefault()
       },
-      dense: this.dense,
-    }, children)
-  },
+      dense: this.dense
+    }, () => children)
+  }
 })

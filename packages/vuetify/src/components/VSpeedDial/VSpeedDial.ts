@@ -1,4 +1,5 @@
-import { TransitionGroup, h, VNode, VNodeData, withDirectives } from 'vue'
+import { TransitionGroup, h, VNode, withDirectives, PropType } from 'vue'
+import type { VNodeData } from '../../types/vue-internal'
 // Styles
 import './VSpeedDial.sass'
 
@@ -13,7 +14,6 @@ import ClickOutside from '../../directives/click-outside'
 // Types
 import mixins from '../../util/mixins'
 
-import { Prop } from 'vue/types/options'
 import { getSlot } from '../../util/helpers'
 
 /* @vue/component */
@@ -22,17 +22,17 @@ export default mixins(Positionable, Toggleable, Transitionable).extend({
 
   props: {
     direction: {
-      type: String as Prop<'top' | 'right' | 'bottom' | 'left'>,
+      type: String as PropType<'top' | 'right' | 'bottom' | 'left'>,
       default: 'top',
       validator: (val: string) => {
         return ['top', 'right', 'bottom', 'left'].includes(val)
-      },
+      }
     },
     openOnHover: Boolean,
     transition: {
       type: String,
-      default: 'scale-transition',
-    },
+      default: 'scale-transition'
+    }
   },
 
   emits: ['update:modelValue'],
@@ -48,16 +48,16 @@ export default mixins(Positionable, Toggleable, Transitionable).extend({
         'v-speed-dial--absolute': this.absolute,
         'v-speed-dial--fixed': this.fixed,
         [`v-speed-dial--direction-${this.direction}`]: true,
-        'v-speed-dial--is-active': this.isActive,
+        'v-speed-dial--is-active': this.isActive
       }
-    },
+    }
   },
 
   render (): VNode {
     let children: VNode[] = []
     const data: VNodeData = {
       class: this.classes,
-      onClick: () => (this.isActive = !this.isActive),
+      onClick: () => (this.isActive = !this.isActive)
     }
 
     if (this.openOnHover) {
@@ -67,15 +67,17 @@ export default mixins(Positionable, Toggleable, Transitionable).extend({
 
     if (this.isActive) {
       let btnCount = 0
-      children = (getSlot(this) || []).map((b, i) => {
-        const componentName = b.type && typeof b.type === 'object' && 'name' in b.type ? b.type.name : null
-        if (b.tag && (componentName === 'v-btn' || componentName === 'v-tooltip')) {
+      const raw = getSlot(this)
+      const nodes = (Array.isArray(raw) ? raw : raw != null ? [raw] : []) as VNode[]
+      children = nodes.map((b, i) => {
+        const componentName = b.type && typeof b.type === 'object' && 'name' in b.type ? (b.type as { name?: string }).name : null
+        if (componentName === 'v-btn' || componentName === 'v-tooltip') {
           btnCount++
           return h('div', {
             style: {
-              transitionDelay: btnCount * 0.05 + 's',
+              transitionDelay: btnCount * 0.05 + 's'
             },
-            key: i,
+            key: i
           }, [b])
         } else {
           b.key = i
@@ -89,11 +91,11 @@ export default mixins(Positionable, Toggleable, Transitionable).extend({
       name: this.transition,
       mode: this.mode,
       origin: this.origin,
-      tag: 'div',
-    }, children)
+      tag: 'div'
+    }, () => children)
 
-    return withDirectives(h('div', data, [getSlot(this, 'activator'), list]), [
-      [ClickOutside, () => (this.isActive = false)],
-    ])
-  },
+    return withDirectives(h('div', data, [getSlot(this, 'activator'), list] as any), [
+      [ClickOutside, () => (this.isActive = false)]
+    ] as any)
+  }
 })

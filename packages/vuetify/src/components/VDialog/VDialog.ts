@@ -21,11 +21,11 @@ import mixins from '../../util/mixins'
 import { removed, breaking } from '../../util/console'
 import {
   convertToUnit,
-  keyCodes,
+  keyCodes
 } from '../../util/helpers'
 
 // Types
-import { VNode, VNodeData } from 'vue'
+import type { VNode, VNodeData } from '../../types/vue-internal'
 
 const baseMixins = mixins(
   Dependent,
@@ -33,7 +33,7 @@ const baseMixins = mixins(
   Overlayable,
   Returnable,
   Stackable,
-  Activatable,
+  Activatable
 )
 
 /* @vue/component */
@@ -49,19 +49,19 @@ export default baseMixins.extend({
     noClickAnimation: Boolean,
     origin: {
       type: String,
-      default: 'center center',
+      default: 'center center'
     },
     persistent: Boolean,
     retainFocus: {
       type: Boolean,
-      default: true,
+      default: true
     },
     scrollable: Boolean,
     transition: {
       type: [String, Boolean],
-      default: 'dialog-transition',
+      default: 'dialog-transition'
     },
-    width: [String, Number],
+    width: [String, Number]
   },
 
   emits: ['click:outside', 'keydown', 'update:return-value', 'update:modelValue'],
@@ -72,7 +72,7 @@ export default baseMixins.extend({
       animate: false,
       animateTimeout: -1,
       stackMinZIndex: 200,
-      previousActiveElement: null as HTMLElement | null,
+      previousActiveElement: null as HTMLElement | null
     }
   },
 
@@ -84,21 +84,18 @@ export default baseMixins.extend({
         'v-dialog--persistent': this.persistent,
         'v-dialog--fullscreen': this.fullscreen,
         'v-dialog--scrollable': this.scrollable,
-        'v-dialog--animated': this.animate,
+        'v-dialog--animated': this.animate
       }
     },
     contentClasses (): object {
       return {
         'v-dialog__content': true,
-        'v-dialog__content--active': this.isActive,
+        'v-dialog__content--active': this.isActive
       }
     },
     hasActivator (): boolean {
-      return Boolean(
-        !!this.$slots.activator ||
-        !!this.$slots.activator
-      )
-    },
+      return Boolean(this.$slots.activator)
+    }
   },
 
   watch: {
@@ -122,13 +119,13 @@ export default baseMixins.extend({
         this.showScroll()
         this.genOverlay()
       }
-    },
+    }
   },
 
   created () {
     const breakingProps = [
       ['value', 'modelValue'],
-      ['onInput', 'onUpdate:modelValue'],
+      ['onInput', 'onUpdate:modelValue']
     ]
 
     /* istanbul ignore next */
@@ -255,7 +252,7 @@ export default baseMixins.extend({
         h(VThemeProvider, {
           root: true,
           light: this.light,
-          dark: this.dark,
+          dark: this.dark
         }, () => [
           h('div', {
             class: this.contentClasses,
@@ -264,9 +261,9 @@ export default baseMixins.extend({
             ...this.getScopeIdAttrs(),
             onKeydown: this.onKeydown,
             style: { zIndex: this.activeZIndex },
-            ref: 'content',
-          }, [this.genTransition()]),
-        ]),
+            ref: 'content'
+          }, [this.genTransition()])
+        ])
       ])
     },
     genTransition () {
@@ -277,7 +274,7 @@ export default baseMixins.extend({
       return h(Transition, {
         name: this.transition,
         origin: this.origin,
-        appear: true,
+        appear: true
       }, () => [content])
     },
     genInnerContent () {
@@ -287,36 +284,36 @@ export default baseMixins.extend({
           {
             handler: this.onClickOutside,
             closeConditional: this.closeConditional,
-            include: this.getOpenDependentElements,
-          },
+            include: this.getOpenDependentElements
+          }
         ],
         [
           vShow,
-          this.isActive,
-        ],
+          this.isActive
+        ]
       ]
       const data: VNodeData = {
         class: this.classes,
         tabindex: this.isActive ? 0 : undefined,
         ref: 'dialog',
         style: {
-          transformOrigin: this.origin,
-        },
+          transformOrigin: this.origin
+        }
       }
 
       if (!this.fullscreen) {
         data.style = {
           ...data.style as object,
           maxWidth: convertToUnit(this.maxWidth),
-          width: convertToUnit(this.width),
+          width: convertToUnit(this.width)
         }
       }
 
       return withDirectives(
         h('div', data, this.getContentSlot()),
-        directives
+        directives as any
       )
-    },
+    }
   },
 
   render (): VNode {
@@ -325,11 +322,11 @@ export default baseMixins.extend({
         'v-dialog__container--attached':
           this.attach === '' ||
           this.attach === true ||
-          this.attach === 'attach',
-      }],
+          this.attach === 'attach'
+      }]
     }, [
       this.genActivator(),
-      this.genContent(),
+      this.genContent()
     ])
-  },
+  }
 })

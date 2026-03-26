@@ -17,13 +17,13 @@ import VProgressCircular from '../VProgressCircular/VProgressCircular'
 import { getSlot, keyCodes } from '../../util/helpers'
 
 // Types
-import { defineComponent, VNode, VNodeData, h } from 'vue'
+import { defineComponent, VNode, h } from 'vue'
+import type { VNodeData } from '../../types/vue-internal'
 import mergeData from '../../util/mergeData'
 
 /* @vue/component */
 export default defineComponent({
   name: 'v-switch',
-
 
   extends: Selectable,
 
@@ -31,12 +31,12 @@ export default defineComponent({
     inset: Boolean,
     loading: {
       type: [Boolean, String],
-      default: false,
+      default: false
     },
     flat: {
       type: Boolean,
-      default: false,
-    },
+      default: false
+    }
   },
 
   emits: ['click', 'focus', 'blur', 'update:modelValue', 'change'],
@@ -47,14 +47,14 @@ export default defineComponent({
         ...VInput.computed.classes.call(this),
         'v-input--selection-controls v-input--switch': true,
         'v-input--switch--flat': this.flat,
-        'v-input--switch--inset': this.inset,
+        'v-input--switch--inset': this.inset
       }
     },
     attrs (): object {
       return {
         'aria-checked': String(this.isActive),
         'aria-disabled': String(this.isDisabled),
-        role: 'switch',
+        role: 'switch'
       }
     },
     // Do not return undefined if disabled,
@@ -68,44 +68,44 @@ export default defineComponent({
     },
     switchData (): VNodeData {
       return this.setTextColor(this.loading ? undefined : this.validationState, {
-        class: this.themeClasses,
+        class: this.themeClasses
       })
-    },
+    }
   },
 
   methods: {
     genDefaultSlot (): (VNode | null)[] {
       return [
         this.genSwitch(),
-        this.genLabel(),
+        this.genLabel()
       ]
     },
     genSwitch (): VNode {
       const { title, ...switchAttrs } = this.attrs$
 
       return h('div', {
-        class: 'v-input--selection-controls__input',
+        class: 'v-input--selection-controls__input'
       }, [
         this.genInput('checkbox', {
           ...this.attrs,
-          ...switchAttrs,
+          ...switchAttrs
         }),
         this.genRipple(this.setTextColor(this.validationState, {
           directives: [[
             Touch,
             {
               left: this.onSwipeLeft,
-              right: this.onSwipeRight,
-            },
-          ]],
+              right: this.onSwipeRight
+            }
+          ]]
         })),
 
         h('div', mergeData({ class: 'v-input--switch__track' },
-          this.switchData,
+          this.switchData
         )),
         h('div', mergeData({ class: 'v-input--switch__thumb' },
-          this.switchData,
-        ), [this.genProgress()]),
+          this.switchData
+        ), [this.genProgress()])
       ])
     },
     genProgress (): VNode {
@@ -118,8 +118,8 @@ export default defineComponent({
               : this.loading,
             size: 16,
             width: 2,
-            indeterminate: true,
-          }),
+            indeterminate: true
+          })
       ])
     },
     onSwipeLeft () {
@@ -133,6 +133,6 @@ export default defineComponent({
         (e.keyCode === keyCodes.left && this.isActive) ||
         (e.keyCode === keyCodes.right && !this.isActive)
       ) this.onChange()
-    },
-  },
+    }
+  }
 })

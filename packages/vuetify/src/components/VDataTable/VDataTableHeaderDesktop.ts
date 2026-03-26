@@ -1,5 +1,6 @@
 // Helpers
-import { VNode, VNodeData, h } from 'vue'
+import { VNode, h } from 'vue'
+import type { VNodeData } from '../../types/vue-internal'
 import mixins from '../../util/mixins'
 import header from './mixins/header'
 import { wrapInArray, convertToUnit } from '../../util/helpers'
@@ -9,12 +10,12 @@ export default mixins(header).extend({
   name: 'v-data-table-header-desktop',
 
   props: {
-    mobile: Boolean,
+    mobile: Boolean
   },
 
   emits: [
     'group',
-    'sort',
+    'sort'
   ],
 
   methods: {
@@ -23,7 +24,7 @@ export default mixins(header).extend({
         onClick: (e: MouseEvent) => {
           e.stopPropagation()
           this.$emit('group', header.value)
-        },
+        }
       }, ['group'])
     },
     getAria (beingSorted: boolean, isDesc: boolean) {
@@ -32,7 +33,7 @@ export default mixins(header).extend({
       let ariaSort = 'none'
       let ariaLabel = [
         $t('sortNone'),
-        $t('activateAscending'),
+        $t('activateAscending')
       ]
 
       if (!beingSorted) {
@@ -43,32 +44,32 @@ export default mixins(header).extend({
         ariaSort = 'descending'
         ariaLabel = [
           $t('sortDescending'),
-          $t(this.options.mustSort ? 'activateAscending' : 'activateNone'),
+          $t(this.options.mustSort ? 'activateAscending' : 'activateNone')
         ]
       } else {
         ariaSort = 'ascending'
         ariaLabel = [
           $t('sortAscending'),
-          $t('activateDescending'),
+          $t('activateDescending')
         ]
       }
 
       return { ariaSort, ariaLabel: ariaLabel.join(' ') }
     },
     genHeader (header: DataTableHeader) {
-      const data: Required<Pick<VNodeData, 'attrs' | 'on' | 'class' | 'style'>> = {
+      const data: VNodeData = {
         role: 'columnheader',
         scope: 'col',
         'aria-label': header.text || '',
         style: {
           width: convertToUnit(header.width),
-          minWidth: convertToUnit(header.width),
+          minWidth: convertToUnit(header.width)
         },
         class: [
           `text-${header.align || 'start'}`,
           ...wrapInArray(header.class),
-          header.divider && 'v-data-table__divider',
-        ],
+          header.divider && 'v-data-table__divider'
+        ]
       }
       const children = []
 
@@ -112,14 +113,14 @@ export default mixins(header).extend({
       if (this.showGroupBy && header.groupable !== false) children.push(this.genGroupByToggle(header))
 
       return h('th', data, children)
-    },
+    }
   },
 
   render (): VNode {
     return h('thead', {
-      class: 'v-data-table-header',
+      class: 'v-data-table-header'
     }, [
-      h('tr', this.headers?.map(header => this.genHeader(header)) || []),
+      h('tr', this.headers?.map(header => this.genHeader(header)) || [])
     ])
-  },
+  }
 })

@@ -42,8 +42,8 @@ export default mixins(
     sticky: Boolean,
     modelValue: {
       type: Boolean,
-      default: true,
-    },
+      default: true
+    }
   },
 
   computed: {
@@ -53,7 +53,7 @@ export default mixins(
         'v-banner--has-icon': this.hasIcon,
         'v-banner--is-mobile': this.isMobile,
         'v-banner--single-line': this.singleLine,
-        'v-banner--sticky': this.isSticky,
+        'v-banner--sticky': this.isSticky
       }
     },
     hasIcon (): boolean {
@@ -76,13 +76,13 @@ export default mixins(
       }
 
       return styles
-    },
+    }
   },
 
   created () {
     const breakingProps = [
       ['value', 'modelValue'],
-      ['input', 'update:modelValue'],
+      ['input', 'update:modelValue']
     ]
 
     /* istanbul ignore next */
@@ -117,48 +117,48 @@ export default mixins(
         class: 'v-banner__icon',
         color: this.color,
         size: 40,
-        onClick: this.iconClick,
+        onClick: this.iconClick
       }, () => [content])
     },
     genText () {
       return h('div', {
-        class: 'v-banner__text',
+        class: 'v-banner__text'
       }, getSlot(this))
     },
     genActions () {
       const children = getSlot(this, 'actions', {
-        dismiss: () => this.isActive = false,
+        dismiss: () => this.isActive = false
       })
 
       if (!children) return undefined
 
       return h('div', {
-        class: 'v-banner__actions',
+        class: 'v-banner__actions'
       }, children)
     },
     genContent () {
       return h('div', {
-        class: 'v-banner__content',
+        class: 'v-banner__content'
       }, [
         this.genIcon(),
-        this.genText(),
+        this.genText()
       ])
     },
     genWrapper () {
       return h('div', {
-        class: 'v-banner__wrapper',
+        class: 'v-banner__wrapper'
       }, [
         this.genContent(),
-        this.genActions(),
+        this.genActions()
       ])
-    },
+    }
   },
 
   render (): VNode {
     const data = {
       class: ['v-banner', this.classes],
       ...this.$attrs,
-      style: this.styles,
+      style: this.styles
     }
 
     return h(VExpandTransition, {}, () => [
@@ -166,10 +166,10 @@ export default mixins(
         h(
           'div',
           this.outlined ? data : this.setBackgroundColor(this.color, data),
-          [this.genWrapper()],
+          [this.genWrapper()]
         ),
-        [[vShow, this.isActive]],
-      ),
+        [[vShow, this.isActive]]
+      )
     ])
-  },
+  }
 })

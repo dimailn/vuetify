@@ -57,6 +57,7 @@ function mounted (
       // initted, invoke the user callback
       if (
         handler &&
+        typeof handler === 'function' &&
         (!modifiers.quiet || _observe.init) &&
         (!modifiers.once || isIntersecting || _observe.init)
       ) {
@@ -106,7 +107,7 @@ export const Intersect: ObjectDirective<
 > = {
   mounted,
   updated,
-  unmounted,
+  unmounted
 }
 
 export default Intersect

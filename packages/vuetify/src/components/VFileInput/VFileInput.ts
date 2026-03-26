@@ -8,7 +8,7 @@ import VTextField from '../VTextField'
 import { VChip } from '../VChip'
 
 // Types
-import { PropValidator } from 'vue/types/options'
+import { PropType } from 'vue'
 
 // Utilities
 import { deepEqual, humanReadableFileSize, wrapInArray } from '../../util/helpers'
@@ -22,33 +22,33 @@ export default defineComponent({
 
   model: {
     prop: 'value',
-    event: 'change',
+    event: 'change'
   },
 
   props: {
     chips: Boolean,
     clearable: {
       type: Boolean,
-      default: true,
+      default: true
     },
     counterSizeString: {
       type: String,
-      default: '$vuetify.fileInput.counterSize',
+      default: '$vuetify.fileInput.counterSize'
     },
     counterString: {
       type: String,
-      default: '$vuetify.fileInput.counter',
+      default: '$vuetify.fileInput.counter'
     },
     hideInput: Boolean,
     multiple: Boolean,
     placeholder: String,
     prependIcon: {
       type: String,
-      default: '$file',
+      default: '$file'
     },
     readonly: {
       type: Boolean,
-      default: false,
+      default: false
     },
     showSize: {
       type: [Boolean, Number],
@@ -58,23 +58,23 @@ export default defineComponent({
           typeof v === 'boolean' ||
           [1000, 1024].includes(v)
         )
-      },
-    } as PropValidator<boolean | 1000 | 1024>,
+      }
+    } as unknown as PropType<boolean | 1000 | 1024>,
     smallChips: Boolean,
     truncateLength: {
       type: [Number, String],
-      default: 22,
+      default: 22
     },
     type: {
       type: String,
-      default: 'file',
+      default: 'file'
     },
     value: {
       default: undefined,
       validator: val => {
         return wrapInArray(val).every(v => v != null && typeof v === 'object')
-      },
-    } as PropValidator<File | File[]>,
+      }
+    } as unknown as PropType<File | File[]>
   },
 
   emits: ['change', 'keydown', 'click:prepend'],
@@ -83,7 +83,7 @@ export default defineComponent({
     classes (): object {
       return {
         ...VTextField.computed.classes.call(this),
-        'v-file-input': true,
+        'v-file-input': true
       }
     },
     computedCounterValue (): string {
@@ -113,7 +113,7 @@ export default defineComponent({
       set (val: File | File[]) {
         this.lazyValue = val
         this.$emit('change', this.lazyValue)
-      },
+      }
     },
     isDirty (): boolean {
       return this.internalArrayValue.length > 0
@@ -127,7 +127,7 @@ export default defineComponent({
       return this.internalArrayValue.map((file: File) => {
         const {
           name = '',
-          size = 0,
+          size = 0
         } = file
 
         const truncatedText = this.truncateText(name)
@@ -142,7 +142,7 @@ export default defineComponent({
     },
     hasChips (): boolean {
       return this.chips || this.smallChips
-    },
+    }
   },
 
   watch: {
@@ -150,7 +150,7 @@ export default defineComponent({
       handler (v) {
         if (v === true) consoleError('readonly is not supported on <v-file-input>', this)
       },
-      immediate: true,
+      immediate: true
     },
     value (v) {
       const value = this.multiple ? v : v ? [v] : []
@@ -162,7 +162,7 @@ export default defineComponent({
         // manipulated directly but that property is readonly.
         this.$refs.input.value = ''
       }
-    },
+    }
   },
 
   methods: {
@@ -179,8 +179,8 @@ export default defineComponent({
           const internalValue = this.internalValue
           internalValue.splice(index, 1)
           this.internalValue = internalValue // Trigger the watcher
-        },
-      }, [text]))
+        }
+      }, () => [text]))
     },
     genControl () {
       const render = VTextField.methods.genControl.call(this)
@@ -188,11 +188,11 @@ export default defineComponent({
       if (this.hideInput) {
         if (render.props) {
           render.props.style = mergeStyles(render.props.style, {
-            display: 'none',
+            display: 'none'
           })
         } else {
           render.props = {
-            style: { display: 'none' },
+            style: { display: 'none' }
           }
         }
       }
@@ -217,7 +217,7 @@ export default defineComponent({
         ...listeners,
         onChange: this.onInput,
         onKeyDown: this.onKeyDown,
-        ref: 'input',
+        ref: 'input'
       })
 
       return [this.genSelections(), input]
@@ -249,7 +249,7 @@ export default defineComponent({
             this.$slots.selection({
               text: this.text[index],
               file,
-              index,
+              index
             })
           )
         })
@@ -260,8 +260,8 @@ export default defineComponent({
       return h('div', {
         class: ['v-file-input__text', {
           'v-file-input__text--placeholder': this.placeholder && !this.isDirty,
-          'v-file-input__text--chips': this.hasChips && !this.$slots.selection,
-        }],
+          'v-file-input__text--chips': this.hasChips && !this.$slots.selection
+        }]
       }, children)
     },
     genTextFieldSlot () {
@@ -272,12 +272,12 @@ export default defineComponent({
           if (e.target && (e.target as HTMLElement).nodeName === 'LABEL') return
 
           this.$refs.input.click()
-        },
+        }
       }, [
         this.genLabel(),
         this.prefix ? this.genAffix('prefix') : null,
         this.genInput(),
-        this.suffix ? this.genAffix('suffix') : null,
+        this.suffix ? this.genAffix('suffix') : null
       ])
     },
     onInput (e: Event) {
@@ -297,6 +297,6 @@ export default defineComponent({
       if (str.length < Number(this.truncateLength)) return str
       const charsKeepOneSide = Math.floor((Number(this.truncateLength) - 1) / 2)
       return `${str.slice(0, charsKeepOneSide)}…${str.slice(str.length - charsKeepOneSide)}`
-    },
-  },
+    }
+  }
 })

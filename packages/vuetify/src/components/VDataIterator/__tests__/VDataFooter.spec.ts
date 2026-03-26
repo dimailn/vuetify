@@ -5,7 +5,7 @@ import {
   mount,
   MountingOptions,
   VueWrapper,
-  enableAutoUnmount,
+  enableAutoUnmount
 } from '@vue/test-utils'
 import { preset } from '../../../presets/default'
 
@@ -25,16 +25,16 @@ describe('VDataFooter.ts', () => {
           mocks: {
             $vuetify: {
               icons: {
-                component: null,
+                component: null
               },
               lang: new Lang(preset),
               theme: {
-                dark: false,
-              },
-            },
-          },
+                dark: false
+              }
+            }
+          }
         },
-        ...options,
+        ...options
       })
     }
   })
@@ -45,7 +45,7 @@ describe('VDataFooter.ts', () => {
         itemsPerPageOptions: [50, 100],
         options: {
           page: 4,
-          itemsPerPage: 100,
+          itemsPerPage: 100
         },
         pagination: {
           page: 4,
@@ -53,9 +53,9 @@ describe('VDataFooter.ts', () => {
           pageStart: 1,
           pageStop: 10,
           pageCount: 10,
-          itemsLength: 100,
-        },
-      },
+          itemsLength: 100
+        }
+      }
     })
 
     expect(wrapper.html()).toMatchSnapshot()
@@ -66,7 +66,7 @@ describe('VDataFooter.ts', () => {
       props: {
         options: {
           page: 4,
-          itemsPerPage: 10,
+          itemsPerPage: 10
         },
         pagination: {
           page: 4,
@@ -74,24 +74,24 @@ describe('VDataFooter.ts', () => {
           pageStart: 1,
           pageStop: 10,
           pageCount: 10,
-          itemsLength: 100,
+          itemsLength: 100
         },
-        showFirstLastPage: true,
+        showFirstLastPage: true
       },
       global: {
         mocks: {
           $vuetify: {
             rtl: true,
             icons: {
-              component: null,
+              component: null
             },
             lang: new Lang(preset),
             theme: {
-              dark: false,
-            },
-          },
-        },
-      },
+              dark: false
+            }
+          }
+        }
+      }
     })
 
     expect(wrapper.html()).toMatchSnapshot()
@@ -102,7 +102,7 @@ describe('VDataFooter.ts', () => {
       props: {
         options: {
           page: 4,
-          itemsPerPage: 10,
+          itemsPerPage: 10
         },
         pagination: {
           page: 4,
@@ -110,10 +110,10 @@ describe('VDataFooter.ts', () => {
           pageStart: 1,
           pageStop: 10,
           pageCount: 10,
-          itemsLength: 100,
+          itemsLength: 100
         },
-        showFirstLastPage: true,
-      },
+        showFirstLastPage: true
+      }
     })
 
     expect(wrapper.html()).toMatchSnapshot()
@@ -126,7 +126,7 @@ describe('VDataFooter.ts', () => {
       props: {
         options: {
           page: 4,
-          itemsPerPage: 10,
+          itemsPerPage: 10
         },
         pagination: {
           page: 4,
@@ -134,10 +134,10 @@ describe('VDataFooter.ts', () => {
           pageStart: 1,
           pageStop: 10,
           pageCount: 10,
-          itemsLength: 100,
+          itemsLength: 100
         },
-        'onUpdate:options': mock,
-      },
+        'onUpdate:options': mock
+      }
     })
 
     wrapper.vm.onNextPage()
@@ -159,7 +159,7 @@ describe('VDataFooter.ts', () => {
       props: {
         options: {
           page: 4,
-          itemsPerPage: 10,
+          itemsPerPage: 10
         },
         pagination: {
           page: 4,
@@ -167,10 +167,10 @@ describe('VDataFooter.ts', () => {
           pageStart: 1,
           pageStop: 10,
           pageCount: 10,
-          itemsLength: 100,
+          itemsLength: 100
         },
-        showCurrentPage: true,
-      },
+        showCurrentPage: true
+      }
     })
 
     expect(wrapper.html()).toMatchSnapshot()
@@ -181,7 +181,7 @@ describe('VDataFooter.ts', () => {
       props: {
         options: {
           page: 1,
-          itemsPerPage: 10,
+          itemsPerPage: 10
         },
         pagination: {
           page: 1,
@@ -189,10 +189,10 @@ describe('VDataFooter.ts', () => {
           pageStart: 0,
           pageStop: 0,
           pageCount: 0,
-          itemsLength: 0,
+          itemsLength: 0
         },
-        showFirstLastPage: true,
-      },
+        showFirstLastPage: true
+      }
     })
 
     expect(wrapper.html()).toMatchSnapshot()

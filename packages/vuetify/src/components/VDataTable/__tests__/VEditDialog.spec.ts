@@ -4,7 +4,7 @@ import VMenu from '../../VMenu'
 import {
   mount,
   VueWrapper,
-  MountingOptions,
+  MountingOptions
 } from '@vue/test-utils'
 import { keyCodes } from '../../../util/helpers'
 import mixins from '../../../util/mixins'
@@ -22,12 +22,12 @@ describe('VEditDialog.ts', () => {
           mocks: {
             $vuetify: {
               theme: {
-                dark: false,
-              },
-            },
-          },
+                dark: false
+              }
+            }
+          }
         },
-        ...options,
+        ...options
       })
     }
   })
@@ -42,8 +42,8 @@ describe('VEditDialog.ts', () => {
     const wrapper = mountFunction({
       props: {
         cancelText: `I don't want to modify that!`,
-        saveText: 'Save it!',
-      },
+        saveText: 'Save it!'
+      }
     })
 
     expect(wrapper.html()).toMatchSnapshot()
@@ -58,8 +58,8 @@ describe('VEditDialog.ts', () => {
     const wrapper = mountFunction({
       props: {
         onOpen: open,
-        onClose: close,
-      },
+        onClose: close
+      }
     })
 
     wrapper.vm.isActive = true
@@ -81,8 +81,8 @@ describe('VEditDialog.ts', () => {
     const wrapper = mountFunction({
       props: {
         onOpen: open,
-        onClose: close,
-      },
+        onClose: close
+      }
     })
 
     const menu = wrapper.findComponent(VMenu)
@@ -111,14 +111,14 @@ describe('VEditDialog.ts', () => {
         'v-edit-dialog': mixins(VEditDialog).extend({
           render () {
             return this.genContent()
-          },
-        }),
+          }
+        })
       },
       data () {
         return {
-          val: 'test',
+          val: 'test'
         }
-      },
+      }
     })
 
     const wrapper = parentWrapper.findComponent(VEditDialog)
@@ -162,7 +162,7 @@ describe('VEditDialog.ts', () => {
     const wrapper = mountFunction({
       render () {
         return this.genButton(fn, 'test')
-      },
+      }
     })
 
     expect(wrapper.html()).toMatchSnapshot()
@@ -178,8 +178,8 @@ describe('VEditDialog.ts', () => {
         return this.genContent()
       },
       slots: {
-        input: '<input class="test" />',
-      },
+        input: '<input class="test" />'
+      }
     })
 
     const input = wrapper.find('input.test')
@@ -198,8 +198,8 @@ describe('VEditDialog.ts', () => {
         return this.genActions()
       },
       props: {
-        onSave: saveEvent,
-      },
+        onSave: saveEvent
+      }
     })
 
     // Mock the save method
@@ -217,11 +217,11 @@ describe('VEditDialog.ts', () => {
     const cancel = jest.fn()
     const wrapper = mountFunction({
       props: {
-        onCancel: cancel,
+        onCancel: cancel
       },
       data: () => ({
-        isActive: true,
-      }),
+        isActive: true
+      })
     })
 
     wrapper.vm.cancel()

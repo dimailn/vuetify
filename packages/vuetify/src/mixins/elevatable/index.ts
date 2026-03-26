@@ -1,10 +1,10 @@
-import {defineComponent} from 'vue'
+import { defineComponent } from 'vue'
 
 export default defineComponent({
   name: 'elevatable',
 
   props: {
-    elevation: [Number, String],
+    elevation: [Number, String]
   },
 
   computed: {
@@ -17,6 +17,6 @@ export default defineComponent({
       if (elevation == null) return {}
       if (isNaN(parseInt(elevation))) return {}
       return { [`elevation-${this.elevation}`]: true }
-    },
-  },
+    }
+  }
 })

@@ -1,4 +1,6 @@
-import { VNodeData, PropType, defineComponent, resolveComponent } from 'vue'
+import type { VNodeData } from '../../types/vue-internal'
+import type { PropType } from 'vue'
+import { defineComponent, resolveComponent } from 'vue'
 
 // Directives
 import Ripple, { RippleOptions } from '../../directives/ripple'
@@ -10,7 +12,7 @@ export default defineComponent({
   name: 'routable',
 
   directives: {
-    Ripple,
+    Ripple
   },
 
   props: {
@@ -19,7 +21,7 @@ export default defineComponent({
     disabled: Boolean,
     exact: {
       type: Boolean as PropType<boolean | undefined>,
-      default: undefined,
+      default: undefined
     },
     exactPath: Boolean,
     exactActiveClass: String,
@@ -30,7 +32,7 @@ export default defineComponent({
     replace: Boolean,
     ripple: {
       type: [Boolean, Object],
-      default: null,
+      default: null
     },
     tag: String,
     target: String,
@@ -39,7 +41,7 @@ export default defineComponent({
 
   data: () => ({
     isActive: false,
-    proxyClass: '',
+    proxyClass: ''
   }),
 
   computed: {
@@ -60,26 +62,26 @@ export default defineComponent({
       return this.ripple ?? (!this.disabled && this.isClickable)
     },
     isClickable (): boolean {
-      if(this.notALink) return false
+      if (this.notALink) return false
 
       if (this.disabled) return false
 
       return Boolean(
         this.isLink ||
         this.$attrs.onClick ||
-        this.$attrs["on!click"] ||
+        this.$attrs['on!click'] ||
         this.$attrs.tabindex ||
         this.$props?.onClick
-      );
+      )
     },
     isLink (): boolean {
       return this.to || this.href || this.link
     },
-    styles: () => ({}),
+    styles: () => ({})
   },
 
   watch: {
-    $route: 'onRouteChange',
+    $route: 'onRouteChange'
   },
 
   mounted () {
@@ -93,7 +95,7 @@ export default defineComponent({
 
       const directives = [[
         Ripple,
-        this.computedRipple,
+        this.computedRipple
       ]]
 
       const data: VNodeData = {
@@ -129,7 +131,7 @@ export default defineComponent({
           activeClass,
           exactActiveClass,
           append: this.append,
-          replace: this.replace,
+          replace: this.replace
         })
       } else {
         tag = (this.href && 'a') || this.tag || 'div'
@@ -157,6 +159,6 @@ export default defineComponent({
     },
     toggle () {
       this.isActive = !this.isActive
-    },
-  },
+    }
+  }
 })

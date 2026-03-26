@@ -28,7 +28,7 @@ export default defineComponent({
     extended: Boolean,
     extensionHeight: {
       default: 48,
-      type: [Number, String],
+      type: [Number, String]
     },
     flat: Boolean,
     floating: Boolean,
@@ -36,16 +36,16 @@ export default defineComponent({
     short: Boolean,
     src: {
       type: [String, Object] as PropType<string | srcObject>,
-      default: '',
+      default: ''
     },
     tag: {
       type: String,
-      default: 'header',
-    },
+      default: 'header'
+    }
   },
 
   data: () => ({
-    isExtended: false,
+    isExtended: false
   }),
 
   computed: {
@@ -81,7 +81,7 @@ export default defineComponent({
         'v-toolbar--extended': this.isExtended,
         'v-toolbar--flat': this.flat,
         'v-toolbar--floating': this.floating,
-        'v-toolbar--prominent': this.isProminent,
+        'v-toolbar--prominent': this.isProminent
       }
     },
     isCollapsed (): boolean {
@@ -93,9 +93,9 @@ export default defineComponent({
     styles (): object {
       return {
         ...this.measurableStyles,
-        height: convertToUnit(this.computedHeight),
+        height: convertToUnit(this.computedHeight)
       }
-    },
+    }
   },
 
   created () {
@@ -108,7 +108,7 @@ export default defineComponent({
       ['scroll-off-screen', '<v-app-bar scroll-off-screen>'],
       ['scroll-target', '<v-app-bar scroll-target>'],
       ['scroll-threshold', '<v-app-bar scroll-threshold>'],
-      ['card', '<v-app-bar flat>'],
+      ['card', '<v-app-bar flat>']
     ]
 
     /* istanbul ignore next */
@@ -121,7 +121,7 @@ export default defineComponent({
     genBackground () {
       const props = {
         height: convertToUnit(this.computedHeight),
-        src: this.src,
+        src: this.src
       }
 
       const image = this.$slots.img
@@ -129,25 +129,25 @@ export default defineComponent({
         : h(VImg, props)
 
       return h('div', {
-        class: 'v-toolbar__image',
+        class: 'v-toolbar__image'
       }, [image])
     },
     genContent () {
       return h('div', {
         class: 'v-toolbar__content',
         style: {
-          height: convertToUnit(this.computedContentHeight),
-        },
+          height: convertToUnit(this.computedContentHeight)
+        }
       }, getSlot(this))
     },
     genExtension () {
       return h('div', {
         class: 'v-toolbar__extension',
         style: {
-          height: convertToUnit(this.extensionHeight),
-        },
+          height: convertToUnit(this.extensionHeight)
+        }
       }, getSlot(this, 'extension'))
-    },
+    }
   },
 
   render (): VNode {
@@ -162,6 +162,6 @@ export default defineComponent({
     if (this.isExtended) children.push(this.genExtension())
     if (this.src || this.$slots.img) children.unshift(this.genBackground())
 
-    return h(getTagValue(this.tag), {...this.attrs$, ...data}, children)
+    return h(getTagValue(this.tag), { ...this.attrs$, ...data }, children)
   }
 })

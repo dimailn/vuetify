@@ -23,12 +23,13 @@ import mixins from '../../util/mixins'
 import { removed, breaking } from '../../util/console'
 import {
   convertToUnit,
-  keyCodes,
+  keyCodes
 } from '../../util/helpers'
 import goTo from '../../services/goto'
 
 // Types
-import { VNode, VNodeDirective, VNodeData, PropType } from 'vue'
+import { VNode, PropType } from 'vue'
+import type { VNodeData } from '../../types/vue-internal'
 
 const baseMixins = mixins(
   Dependent,
@@ -36,7 +37,7 @@ const baseMixins = mixins(
   Returnable,
   Roundable,
   Themeable,
-  Menuable,
+  Menuable
 )
 
 /* @vue/component */
@@ -47,7 +48,7 @@ export default baseMixins.extend({
     return {
       isInMenu: true,
       // Pass theme through to default slot
-      theme: this.theme,
+      theme: this.theme
     }
   },
 
@@ -55,43 +56,43 @@ export default baseMixins.extend({
     auto: Boolean,
     closeOnClick: {
       type: Boolean,
-      default: true,
+      default: true
     },
     closeOnContentClick: {
       type: Boolean,
-      default: true,
+      default: true
     },
     disabled: Boolean,
     disableKeys: Boolean,
     maxHeight: {
       type: [Number, String],
-      default: 'auto',
+      default: 'auto'
     },
     offsetX: Boolean,
     offsetY: Boolean,
     openOnHover: Boolean,
     origin: {
       type: String,
-      default: 'top left',
+      default: 'top left'
     },
     transition: {
       type: [Boolean, String],
-      default: 'v-menu-transition',
+      default: 'v-menu-transition'
     },
     contentProps: {
       type: Object as PropType<Record<string, any>>,
-      default: () => ({}),
+      default: () => ({})
     },
     onScroll: {
       type: Function as PropType<(event: Event) => void>,
-      default: undefined,
-    },
+      default: undefined
+    }
   },
 
   emits: [
     'keydown',
     'update:modelValue',
-    'update:return-value',
+    'update:return-value'
   ],
 
   data () {
@@ -102,7 +103,7 @@ export default baseMixins.extend({
       listIndex: -1,
       resizeTimeout: 0,
       selectedIndex: null as null | number,
-      tiles: [] as HTMLElement[],
+      tiles: [] as HTMLElement[]
     }
   },
 
@@ -166,9 +167,9 @@ export default baseMixins.extend({
         top: this.calculatedTop,
         left: this.calculatedLeft,
         transformOrigin: this.origin,
-        zIndex: this.zIndex || this.activeZIndex,
+        zIndex: this.zIndex || this.activeZIndex
       }
-    },
+    }
   },
 
   watch: {
@@ -189,26 +190,26 @@ export default baseMixins.extend({
           goTo(tile.offsetTop - tile.clientHeight, {
             appOffset: false,
             duration: 300,
-            container: this.$refs.content,
+            container: this.$refs.content
           })
         } else if (scrollTop + contentHeight < tile.offsetTop + tile.clientHeight + 8) {
           goTo(tile.offsetTop - contentHeight + tile.clientHeight * 2, {
             appOffset: false,
             duration: 300,
-            container: this.$refs.content,
+            container: this.$refs.content
           })
         }
       }
 
       prev in this.tiles &&
         this.tiles[prev].classList.remove('v-list-item--highlighted')
-    },
+    }
   },
 
   created () {
     const breakingProps = [
       ['value', 'modelValue'],
-      ['onInput', 'onUpdate:modelValue'],
+      ['onInput', 'onUpdate:modelValue']
     ]
 
     /* istanbul ignore next */
@@ -311,7 +312,7 @@ export default baseMixins.extend({
       if (this.activeTile && this.activeTile.id) {
         return {
           ...attributes,
-          'aria-activedescendant': this.activeTile.id,
+          'aria-activedescendant': this.activeTile.id
         }
       }
 
@@ -321,7 +322,7 @@ export default baseMixins.extend({
       const listeners = Menuable.methods.genActivatorListeners.call(this)
 
       if (!this.disableKeys) {
-        listeners.onKeydown = this.onKeyDown;
+        listeners.onKeydown = this.onKeyDown
       }
 
       return listeners
@@ -335,8 +336,8 @@ export default baseMixins.extend({
         name: this.transition
       }, () => [content])
     },
-    genDirectives (): VNodeDirective[] {
-      const directives = [[
+    genDirectives (): any[] {
+      const directives: any[] = [[
         vShow,
         this.isContentActive
       ]]
@@ -348,8 +349,8 @@ export default baseMixins.extend({
           {
             handler: () => { this.isActive = false },
             closeConditional: this.closeConditional,
-            include: () => [this.$el, ...this.getOpenDependentElements()],
-          },
+            include: () => [this.$el, ...this.getOpenDependentElements()]
+          }
         ])
       }
 
@@ -366,7 +367,7 @@ export default baseMixins.extend({
           'v-menu__content--auto': this.auto,
           'v-menu__content--fixed': this.activatorFixed,
           menuable__content__active: this.isActive,
-          [this.contentClass.trim()]: true,
+          [this.contentClass.trim()]: true
         }],
         style: this.styles,
         ref: 'content',
@@ -376,7 +377,7 @@ export default baseMixins.extend({
           if (target.getAttribute('disabled')) return
           if (this.closeOnContentClick) this.isActive = false
         },
-        onKeydown: this.onKeyDown,
+        onKeydown: this.onKeyDown
       } as VNodeData
 
       if (this.onScroll) {
@@ -393,7 +394,7 @@ export default baseMixins.extend({
 
       const directives = this.genDirectives()
 
-      return withDirectives(h('div', options, this.getContentSlot()), directives)
+      return withDirectives(h('div', options, this.getContentSlot()), directives as any)
     },
     getTiles () {
       if (!this.$refs.content) return
@@ -500,7 +501,7 @@ export default baseMixins.extend({
       // hacky but will revisit in the future
       clearTimeout(this.resizeTimeout)
       this.resizeTimeout = window.setTimeout(this.updateDimensions, 100)
-    },
+    }
   },
 
   render (): VNode {
@@ -509,7 +510,7 @@ export default baseMixins.extend({
         'v-menu--attached':
           this.attach === '' ||
           this.attach === true ||
-          this.attach === 'attach',
+          this.attach === 'attach'
       }]
     }
 
@@ -527,9 +528,9 @@ export default baseMixins.extend({
         h(VThemeProvider, {
           root: true,
           light: this.light,
-          dark: this.dark,
-        }, () => [this.genTransition()]),
-      ]),
-    ]), directives)
-  },
+          dark: this.dark
+        }, () => [this.genTransition()])
+      ])
+    ]), directives as any)
+  }
 })

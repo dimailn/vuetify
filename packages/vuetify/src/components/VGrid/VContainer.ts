@@ -16,12 +16,12 @@ export default defineComponent({
     id: String,
     tag: {
       type: String,
-      default: 'div',
+      default: 'div'
     },
     fluid: {
       type: Boolean,
-      default: false,
-    },
+      default: false
+    }
   },
   render () {
     let classes
@@ -53,8 +53,8 @@ export default defineComponent({
       class: [
         'container',
         { 'container--fluid': this.fluid },
-        ...(classes || []),
-      ],
+        ...(classes || [])
+      ]
     })
 
     if (this.id) {
@@ -66,5 +66,5 @@ export default defineComponent({
       data,
       this.$slots.default?.()
     )
-  },
+  }
 })

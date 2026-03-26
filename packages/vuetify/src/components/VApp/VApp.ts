@@ -7,7 +7,7 @@ import Themeable from '../../mixins/themeable'
 // Utilities
 import mixins from '../../util/mixins'
 import { getSlot } from '../../util/helpers'
-import {h} from 'vue'
+import { h } from 'vue'
 
 /* @vue/component */
 export default {
@@ -19,22 +19,22 @@ export default {
   props: {
     dark: {
       type: Boolean,
-      default: undefined,
+      default: undefined
     },
     id: {
       type: String,
-      default: 'app',
+      default: 'app'
     },
     light: {
       type: Boolean,
-      default: undefined,
-    },
+      default: undefined
+    }
   },
 
   computed: {
     isDark (): boolean {
       return this.$vuetify.theme.dark
-    },
+    }
   },
 
   beforeCreate () {
@@ -51,10 +51,10 @@ export default {
         'v-application': true,
         'v-application--is-rtl': this.$vuetify.rtl,
         'v-application--is-ltr': !this.$vuetify.rtl,
-        ...this.themeClasses,
+        ...this.themeClasses
       },
       'data-app': true,
-      id: this.id,
+      id: this.id
     }, [wrapper])
-  },
+  }
 }

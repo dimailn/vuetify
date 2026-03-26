@@ -6,7 +6,7 @@ import {
   mount,
   VueWrapper,
   MountingOptions,
-  enableAutoUnmount,
+  enableAutoUnmount
 } from '@vue/test-utils'
 import { h, nextTick } from 'vue'
 
@@ -37,7 +37,7 @@ describe('VAutocomplete.ts', () => {
             }
           }
         }
-      });
+      })
     }
   })
 
@@ -46,8 +46,8 @@ describe('VAutocomplete.ts', () => {
     const wrapper = mountFunction({
       props: {
         items: ['foo', 'bar'],
-        modelValue: 'foo',
-      },
+        modelValue: 'foo'
+      }
     })
 
     expect(wrapper.vm.isMenuActive).toBe(false)
@@ -66,10 +66,10 @@ describe('VAutocomplete.ts', () => {
         multiple: true,
         items: [
           { text: 'foo', value: 'foo', disabled: true },
-          { text: 'bar', value: 'bar' },
+          { text: 'bar', value: 'bar' }
         ],
-        modelValue: ['foo', 'bar'],
-      },
+        modelValue: ['foo', 'bar']
+      }
     })
 
     const chips = wrapper.find('.v-chip')
@@ -94,8 +94,8 @@ describe('VAutocomplete.ts', () => {
   it('should not filter results', async () => {
     const wrapper = mountFunction({
       props: {
-        items: ['foo', 'bar'],
-      },
+        items: ['foo', 'bar']
+      }
     })
 
     const input = wrapper.find('input')
@@ -147,7 +147,7 @@ describe('VAutocomplete.ts', () => {
       hideSelected: true,
       items: [1, 2, 3, 4],
       multiple: true,
-      modelValue: [1, 2, 3],
+      modelValue: [1, 2, 3]
     })
 
     await nextTick()
@@ -165,11 +165,11 @@ describe('VAutocomplete.ts', () => {
     const wrapper = mountFunction({
       attachTo: document.body,
       props: {
-        combobox: true,
+        combobox: true
       },
       slots: {
-        'no-data': () => h('span', 'show me'),
-      },
+        'no-data': () => h('span', 'show me')
+      }
     })
 
     const input = wrapper.find('input')
@@ -207,8 +207,8 @@ describe('VAutocomplete.ts', () => {
       props: {
         clearable: true,
         items: ['foo'],
-        modelValue: 'foo',
-      },
+        modelValue: 'foo'
+      }
     })
 
     const icon = wrapper.find('.v-input__append-inner .v-icon')
@@ -229,8 +229,8 @@ describe('VAutocomplete.ts', () => {
     const wrapper = mountFunction({
       props: {
         menuProps: { contentClass: 'foobar', eager: true },
-        items: ['foo', 'bar'],
-      },
+        items: ['foo', 'bar']
+      }
     })
 
     const slot = wrapper.find('.v-input__slot')
@@ -255,8 +255,8 @@ describe('VAutocomplete.ts', () => {
     const wrapper = mountFunction({
       props: {
         modelValue: 1,
-        items: [],
-      },
+        items: []
+      }
     })
 
     const input = wrapper.find('input')
@@ -274,8 +274,8 @@ describe('VAutocomplete.ts', () => {
     const wrapper = mountFunction({
       props: {
         hideNoData: true,
-        items: [],
-      },
+        items: []
+      }
     })
 
     const input = wrapper.find('input')
@@ -286,7 +286,7 @@ describe('VAutocomplete.ts', () => {
     expect(wrapper.vm.isFocused).toBe(true)
 
     wrapper.setProps({
-      items: ['Foo', 'Bar'],
+      items: ['Foo', 'Bar']
     })
 
     await nextTick()
@@ -299,8 +299,8 @@ describe('VAutocomplete.ts', () => {
       attachTo: document.body,
       props: {
         hideNoData: true,
-        items: ['Something first'],
-      },
+        items: ['Something first']
+      }
     })
 
     const input = wrapper.find('input')
@@ -311,7 +311,7 @@ describe('VAutocomplete.ts', () => {
     expect(wrapper.vm.isFocused).toBe(true)
 
     wrapper.setProps({
-      items: ['Foo', 'Bar'],
+      items: ['Foo', 'Bar']
     })
 
     await nextTick()
@@ -326,8 +326,8 @@ describe('VAutocomplete.ts', () => {
     const wrapper = mountFunction({
       props: {
         modelValue: undefined,
-        items: [0, 1, 2],
-      },
+        items: [0, 1, 2]
+      }
     })
 
     // Initial value
@@ -369,9 +369,9 @@ describe('VAutocomplete.ts', () => {
         items: [
           'foo',
           'foobar',
-          'bar',
-        ],
-      },
+          'bar'
+        ]
+      }
     })
 
     await nextTick()
@@ -400,8 +400,8 @@ describe('VAutocomplete.ts', () => {
         items: [1, 2],
         modelValue: 1,
         hideNoData: true,
-        hideSelected: true,
-      },
+        hideSelected: true
+      }
     })
 
     const input = wrapper.find('input')
@@ -421,8 +421,8 @@ describe('VAutocomplete.ts', () => {
     const wrapper = mountFunction({
       props: {
         items: ['Sandra Adams', 'Ali Connors', 'Trevor Hansen', 'Tucker Smith'],
-        multiple: true,
-      },
+        multiple: true
+      }
     })
 
     await nextTick()
@@ -448,14 +448,14 @@ describe('VAutocomplete.ts', () => {
         items: [
           {
             id: 1,
-            labels: { 1033: 'ID 1 English', 1036: 'ID 1 French' },
+            labels: { 1033: 'ID 1 English', 1036: 'ID 1 French' }
           },
           {
             id: 2,
-            labels: { 1033: 'ID 2 English', 1036: 'ID 2 French' },
-          },
-        ],
-      },
+            labels: { 1033: 'ID 2 English', 1036: 'ID 2 French' }
+          }
+        ]
+      }
     })
 
     await nextTick()
@@ -480,11 +480,11 @@ describe('VAutocomplete.ts', () => {
     const onKeyPress = jest.fn()
     const wrapper = mountFunction({
       props: {
-        items: ['aaa', 'foo', 'faa'],
+        items: ['aaa', 'foo', 'faa']
       },
       global: {
-        methods: { onKeyPress },
-      },
+        methods: { onKeyPress }
+      }
     })
 
     const input = wrapper.find('input')

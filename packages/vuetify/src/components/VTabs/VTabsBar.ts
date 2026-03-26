@@ -27,12 +27,12 @@ export default mixins(
 
   provide () {
     return {
-      tabsBar: this,
+      tabsBar: this
     }
   },
 
   props: {
-    allowDeselect: Boolean,
+    allowDeselect: Boolean
   },
 
   computed: {
@@ -43,15 +43,15 @@ export default mixins(
         'v-tabs-bar--is-mobile': this.isMobile,
         // TODO: Remove this and move to v-slide-group
         'v-tabs-bar--show-arrows': this.showArrows,
-        ...this.themeClasses,
+        ...this.themeClasses
       }
-    },
+    }
   },
 
   watch: {
     items: 'callSlider',
     internalValue: 'callSlider',
-    $route: 'onRouteChange',
+    $route: 'onRouteChange'
   },
 
   methods: {
@@ -92,7 +92,7 @@ export default mixins(
       // it's assumed that the user navigated to
       // a path that is not present in the items
       if (!hasNew && hasOld) this.internalValue = undefined
-    },
+    }
   },
 
   render (): VNode {
@@ -101,5 +101,5 @@ export default mixins(
     render.role = 'tablist'
 
     return render
-  },
+  }
 })

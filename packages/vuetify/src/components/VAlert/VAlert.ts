@@ -1,4 +1,4 @@
-import {h, vShow, withDirectives} from 'vue'
+import { h, vShow, withDirectives, Transition } from 'vue'
 // Styles
 import './VAlert.sass'
 
@@ -20,8 +20,7 @@ import { breaking } from '../../util/console'
 import { getSlot } from '../../util/helpers'
 
 // Types
-import { VNodeData, Transition } from 'vue'
-import { VNode } from 'vue/types'
+import type { VNode, VNodeData } from '../../types/vue-internal'
 
 /* @vue/component */
 export default mixins(
@@ -41,26 +40,26 @@ export default mixins(
           'top',
           'right',
           'bottom',
-          'left',
+          'left'
         ].includes(val)
-      },
+      }
     },
     closeLabel: {
       type: String,
-      default: '$vuetify.close',
+      default: '$vuetify.close'
     },
     coloredBorder: Boolean,
     dense: Boolean,
     dismissible: Boolean,
     closeIcon: {
       type: String,
-      default: '$cancel',
+      default: '$cancel'
     },
     icon: {
       type: [Boolean, String],
       validator (val: boolean | string) {
         return typeof val === 'string' || val === false
-      },
+      }
     },
     outlined: Boolean,
     prominent: Boolean,
@@ -72,14 +71,14 @@ export default mixins(
           'info',
           'error',
           'success',
-          'warning',
+          'warning'
         ].includes(val)
-      },
+      }
     },
     modelValue: {
       type: Boolean,
-      default: true,
-    },
+      default: true
+    }
   },
 
   computed: {
@@ -88,7 +87,7 @@ export default mixins(
 
       let data: VNodeData = {
         class: ['v-alert__border', {
-          [`v-alert__border--${this.border}`]: true,
+          [`v-alert__border--${this.border}`]: true
         }]
       }
 
@@ -110,13 +109,13 @@ export default mixins(
         icon: true,
         small: true,
         'aria-label': this.$vuetify.lang.t(this.closeLabel),
-        onClick: () => (this.isActive = false),
-      }, [
+        onClick: () => (this.isActive = false)
+      }, () => [
         h(VIcon, {
-          color,
+          color
         }, {
           default: () => this.closeIcon
-        }),
+        })
       ])
     },
     __cachedIcon (): VNode | null {
@@ -124,7 +123,7 @@ export default mixins(
 
       return h(VIcon, {
         class: 'v-alert__icon',
-        color: this.iconColor,
+        color: this.iconColor
       }, {
         default: () => this.computedIcon
       })
@@ -136,7 +135,7 @@ export default mixins(
         'v-alert--dense': this.dense,
         'v-alert--outlined': this.outlined,
         'v-alert--prominent': this.prominent,
-        'v-alert--text': this.text,
+        'v-alert--text': this.text
       }
 
       if (this.border) {
@@ -175,14 +174,14 @@ export default mixins(
       ) return true
 
       return Themeable.computed.isDark.call(this)
-    },
+    }
   },
 
   created () {
     const breakingProps = [
       ['outline', 'outlined'],
       ['value', 'modelValue'],
-      ['onInput', 'onUpdate:modelValue'],
+      ['onInput', 'onUpdate:modelValue']
     ]
 
     /* istanbul ignore next */
@@ -200,18 +199,18 @@ export default mixins(
         getSlot(this, 'append'),
         this.$slots.close
           ? this.$slots.close({ toggle: this.toggle })
-          : this.__cachedDismissible,
+          : this.__cachedDismissible
       ]
 
       const data: VNodeData = {
-        class: 'v-alert__wrapper',
+        class: 'v-alert__wrapper'
       }
 
       return h('div', data, children)
     },
     genContent (): VNode {
       return h('div', {
-        class: 'v-alert__content',
+        class: 'v-alert__content'
       }, getSlot(this))
     },
     genAlert (): VNode {
@@ -234,12 +233,12 @@ export default mixins(
         data = setColor(this.computedColor, data)
       }
 
-      return withDirectives(h('div', data, [this.genWrapper()]), directives)
+      return withDirectives(h('div', data, [this.genWrapper()]), directives as any)
     },
     /** @public */
     toggle () {
       this.isActive = !this.isActive
-    },
+    }
   },
 
   render (): VNode {
@@ -251,6 +250,6 @@ export default mixins(
       name: this.transition,
       origin: this.origin,
       mode: this.mode
-    }, [render])
-  },
+    }, () => [render])
+  }
 })

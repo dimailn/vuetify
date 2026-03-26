@@ -5,7 +5,7 @@ import VSelect from '../VSelect'
 import { waitAnimationFrame } from '../../../../test'
 import {
   mount,
-  VueWrapper,
+  VueWrapper
 } from '@vue/test-utils'
 import { h } from 'vue'
 
@@ -15,7 +15,7 @@ describe('VSelect.ts', () => {
   let el
 
   (global as any).performance = {
-    now: () => {},
+    now: () => {}
   }
   beforeEach(() => {
     mountFunction = (options = {}) => {
@@ -28,19 +28,19 @@ describe('VSelect.ts', () => {
           mocks: {
             $vuetify: {
               lang: {
-                t: (val: string) => val,
+                t: (val: string) => val
               },
               theme: {
-                dark: false,
+                dark: false
               },
               icons: {
-                component: 'mdi',
-              },
-            },
-          },
+                component: 'mdi'
+              }
+            }
+          }
         },
         attachTo: el,
-        ...options,
+        ...options
       })
     }
   })
@@ -57,11 +57,11 @@ describe('VSelect.ts', () => {
   it('should select value when using a scoped slot', async () => {
     const wrapper = mountFunction({
       props: {
-        items: ['foo', 'bar'],
+        items: ['foo', 'bar']
       },
       slots: {
-        'no-data': () => h('div', 'No Data'),
-      },
+        'no-data': () => h('div', 'No Data')
+      }
     })
 
     // Проверяем, что компонент корректно инициализирован
@@ -77,10 +77,10 @@ describe('VSelect.ts', () => {
         clearable: true,
         items: [
           { text: 'Foo', value: null },
-          { text: 'Bar', value: 'bar' },
+          { text: 'Bar', value: 'bar' }
         ],
-        modelValue: null,
-      },
+        modelValue: null
+      }
     })
 
     expect(wrapper.vm.selectedItems).toHaveLength(1)
@@ -92,8 +92,8 @@ describe('VSelect.ts', () => {
       props: {
         clearable: true,
         items: ['foo'],
-        modelValue: 'foo',
-      },
+        modelValue: 'foo'
+      }
     })
 
     const icon = wrapper.find('.v-input__icon > .v-icon')
@@ -138,9 +138,9 @@ describe('VSelect.ts', () => {
           nudgeTop: 5,
           nudgeRight: 5,
           nudgeBottom: 5,
-          nudgeLeft: 5,
-        },
-      },
+          nudgeLeft: 5
+        }
+      }
     })
 
     const menu = wrapper.vm.$refs.menu
@@ -155,8 +155,8 @@ describe('VSelect.ts', () => {
   it('should close menu on tab down when no selectedIndex', async () => {
     const wrapper = mountFunction({
       props: {
-        items: ['foo', 'bar'],
-      },
+        items: ['foo', 'bar']
+      }
     })
 
     const menu = wrapper.find('.v-input__slot')
@@ -179,8 +179,8 @@ describe('VSelect.ts', () => {
   it('should select item after typing its first few letters', async () => {
     const wrapper = mountFunction({
       props: {
-        items: ['aaa', 'foo', 'faa'],
-      },
+        items: ['aaa', 'foo', 'faa']
+      }
     })
 
     const input = wrapper.find('input')
@@ -200,8 +200,8 @@ describe('VSelect.ts', () => {
   it('should load more items when typing', async () => {
     const wrapper = mountFunction({
       props: {
-        items: Array.from({ length: 24 }, (_, i) => 'Item ' + i).concat('foo'),
-      },
+        items: Array.from({ length: 24 }, (_, i) => 'Item ' + i).concat('foo')
+      }
     })
 
     const input = wrapper.find('input')
@@ -223,8 +223,8 @@ describe('VSelect.ts', () => {
       props: {
         eager: true,
         items: ['Foo', 'Bar', 'Fizz', 'Buzz'],
-        modelValue: 'Foo',
-      },
+        modelValue: 'Foo'
+      }
     })
     await wrapper.vm.$nextTick()
 
@@ -262,8 +262,8 @@ describe('VSelect.ts', () => {
   it.skip('should not reset menu index when hide-on-selected is used', async () => {
     const wrapper = mountFunction({
       props: {
-        items: ['Foo', 'Bar', 'Fizz', 'Buzz'],
-      },
+        items: ['Foo', 'Bar', 'Fizz', 'Buzz']
+      }
     })
 
     const input = wrapper.find('input')
@@ -296,8 +296,8 @@ describe('VSelect.ts', () => {
       props: {
         items: ['Foo', 'Bar', 'Fizz', 'Buzz'],
         readonly: true,
-        modelValue: 'Foo',
-      },
+        modelValue: 'Foo'
+      }
     })
 
     const input = wrapper.find('input')
@@ -327,8 +327,8 @@ describe('VSelect.ts', () => {
   it('should emit listIndex event when navigated by keyboard', async () => {
     const wrapper = mountFunction({
       props: {
-        items: ['foo', 'bar'],
-      },
+        items: ['foo', 'bar']
+      }
     })
 
     const input = wrapper.find('input')
@@ -350,8 +350,8 @@ describe('VSelect.ts', () => {
   it('should close menu when append icon is clicked', async () => {
     const wrapper = mountFunction({
       props: {
-        items: ['foo', 'bar'],
-      },
+        items: ['foo', 'bar']
+      }
     })
 
     const append = wrapper.find('.v-input__append-inner')
@@ -368,8 +368,8 @@ describe('VSelect.ts', () => {
   it('should open menu when append icon is clicked', async () => {
     const wrapper = mountFunction({
       props: {
-        items: ['foo', 'bar'],
-      },
+        items: ['foo', 'bar']
+      }
     })
 
     const append = wrapper.find('.v-input__append-inner')
@@ -385,7 +385,7 @@ describe('VSelect.ts', () => {
   it('should not manipulate menu state if is readonly or disabled', async () => {
     const wrapper = mountFunction({
       data: () => ({ hasMouseDown: true }),
-      props: { readonly: true },
+      props: { readonly: true }
     })
 
     const icon = wrapper.find('.v-input__append-inner')
@@ -399,7 +399,7 @@ describe('VSelect.ts', () => {
 
     await wrapper.setProps({
       disabled: true,
-      readonly: undefined,
+      readonly: undefined
     })
 
     icon.trigger('mousedown')
@@ -424,8 +424,8 @@ describe('VSelect.ts', () => {
     const wrapper = mountFunction({
       props: {
         modelValue: 'hello',
-        items: [item],
-      },
+        items: [item]
+      }
     })
 
     const select = wrapper.find('.v-input__slot')

@@ -15,13 +15,13 @@ export function factory (
 
     props: {
       [prop]: {
-        required: false,
-      },
+        required: false
+      }
     },
 
     data () {
       return {
-        internalLazyValue: this[prop] as unknown,
+        internalLazyValue: this[prop] as unknown
       }
     },
 
@@ -37,17 +37,17 @@ export function factory (
 
           // Don't emit events if component is being destroyed
           if (!this.$.isUnmounted) {
-            this.$emit(event, val);
+            this.$emit(event, val)
           }
-        },
-      },
+        }
+      }
     },
 
     watch: {
       [prop] (val) {
         this.internalLazyValue = val
-      },
-    },
+      }
+    }
   })
 }
 

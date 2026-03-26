@@ -15,43 +15,43 @@ import { InputMessage, InputValidationRules } from 'vuetify/types'
 export default defineComponent({
   name: 'validatable',
 
-  extends: RegistrableInject<'form', any>('form'),
+  extends: RegistrableInject<'form', any>('form') as any,
 
-  mixins: [Colorable, Themeable],
+  mixins: [Colorable, Themeable] as any,
 
   props: {
     disabled: {
       type: Boolean,
-      default: null,
+      default: null
     },
     error: Boolean,
     errorCount: {
       type: [Number, String],
-      default: 1,
+      default: 1
     },
     errorMessages: {
       type: [String, Array] as PropType<InputMessage | null>,
-      default: () => [],
+      default: () => []
     },
     messages: {
       type: [String, Array] as PropType<InputMessage | null>,
-      default: () => [],
+      default: () => []
     },
     readonly: {
       type: Boolean,
-      default: null,
+      default: null
     },
     rules: {
       type: Array as PropType<InputValidationRules>,
-      default: () => [],
+      default: () => []
     },
     success: Boolean,
     successMessages: {
       type: [String, Array] as PropType<InputMessage | null>,
-      default: () => [],
+      default: () => []
     },
     validateOnBlur: Boolean,
-    modelValue: { required: false },
+    modelValue: { required: false }
   },
 
   data () {
@@ -63,7 +63,7 @@ export default defineComponent({
       isFocused: false,
       isResetting: false,
       lazyValue: this.modelValue ?? null,
-      valid: false,
+      valid: false
     }
   },
 
@@ -126,7 +126,7 @@ export default defineComponent({
 
         this.$emit('input', val)
         this.$emit('update:modelValue', val)
-      },
+      }
     },
     isDisabled (): boolean {
       return this.disabled ?? (
@@ -171,7 +171,7 @@ export default defineComponent({
       } else if (this.shouldValidate) {
         return this.errorBucket
       } else return []
-    },
+    }
   },
 
   watch: {
@@ -180,7 +180,7 @@ export default defineComponent({
         if (deepEqual(newVal, oldVal)) return
         this.validate()
       },
-      deep: true,
+      deep: true
     },
     internalValue () {
       // If it's the first time we're setting input,
@@ -214,7 +214,7 @@ export default defineComponent({
     },
     modelValue (val) {
       this.lazyValue = val
-    },
+    }
   },
 
   beforeMount () {
@@ -224,7 +224,7 @@ export default defineComponent({
   created () {
     const breakingProps = [
       ['value', 'modelValue'],
-      ['onInput', 'onUpdate:modelValue'],
+      ['onInput', 'onUpdate:modelValue']
     ]
 
     /* istanbul ignore next */
@@ -278,6 +278,6 @@ export default defineComponent({
       this.valid = errorBucket.length === 0
 
       return this.valid
-    },
-  },
+    }
+  }
 })

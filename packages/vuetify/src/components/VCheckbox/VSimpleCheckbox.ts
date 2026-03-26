@@ -18,29 +18,28 @@ import { breaking } from '../../util/console'
 export default defineComponent({
   name: 'v-simple-checkbox',
 
-
   props: {
     ...Colorable.props,
     ...Themeable.props,
     disabled: Boolean,
     ripple: {
       type: Boolean,
-      default: true,
+      default: true
     },
     modelValue: Boolean,
     indeterminate: Boolean,
     indeterminateIcon: {
       type: String,
-      default: '$checkboxIndeterminate',
+      default: '$checkboxIndeterminate'
     },
     onIcon: {
       type: String,
-      default: '$checkboxOn',
+      default: '$checkboxOn'
     },
     offIcon: {
       type: String,
-      default: '$checkboxOff',
-    },
+      default: '$checkboxOff'
+    }
   },
 
   emits: ['input', 'update:modelValue'],
@@ -48,7 +47,7 @@ export default defineComponent({
   created () {
     const breakingProps = [
       ['value', 'modelValue'],
-      ['onInput', 'onUpdate:modelValue'],
+      ['onInput', 'onUpdate:modelValue']
     ]
 
     /* istanbul ignore next */
@@ -74,7 +73,7 @@ export default defineComponent({
         Colorable.methods.setTextColor(modelValue && color, {
           disabled,
           dark,
-          light,
+          light
         }),
         () => this.getIcon()
       )
@@ -89,11 +88,11 @@ export default defineComponent({
         h(
           'div',
           Colorable.methods.setTextColor(color, {
-            class: 'v-input--selection-controls__ripple',
+            class: 'v-input--selection-controls__ripple'
           })
         ),
         [
-          [Ripple, { center: true }],
+          [Ripple, { center: true }]
         ]
       )
     },
@@ -106,8 +105,7 @@ export default defineComponent({
       const newValue = !this.modelValue
       const attrs = this.$attrs
 
-
-      this.$emit("input", newValue);
+      this.$emit('input', newValue)
       this.$emit('update:modelValue', newValue)
     },
 
@@ -120,7 +118,7 @@ export default defineComponent({
       }
 
       return children
-    },
+    }
   },
 
   render (): VNode {
@@ -132,9 +130,9 @@ export default defineComponent({
       mergeData(data, {
         class: {
           'v-simple-checkbox': true,
-          'v-simple-checkbox--disabled': disabled,
+          'v-simple-checkbox--disabled': disabled
         },
-        onClick: this.handleClick,
+        onClick: this.handleClick
       }),
       [
         h(
@@ -144,5 +142,5 @@ export default defineComponent({
         )
       ]
     )
-  },
+  }
 })

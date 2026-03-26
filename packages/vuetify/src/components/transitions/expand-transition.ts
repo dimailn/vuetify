@@ -20,12 +20,12 @@ export default function (expandedParentClass = '', x = false) {
       el._initialStyle = {
         transition: el.style.transition,
         overflow: el.style.overflow,
-        [sizeProperty]: el.style[sizeProperty],
+        [sizeProperty]: el.style[sizeProperty]
       }
     },
 
     onEnter (el: HTMLExpandElement) {
-      if(el.style.display === 'none') return
+      if (el.style.display === 'none') return
 
       const initialStyle = el._initialStyle!
 
@@ -56,7 +56,7 @@ export default function (expandedParentClass = '', x = false) {
       el._initialStyle = {
         transition: '',
         overflow: el.style.overflow,
-        [sizeProperty]: el.style[sizeProperty],
+        [sizeProperty]: el.style[sizeProperty]
       }
 
       el.style.overflow = 'hidden'
@@ -67,7 +67,7 @@ export default function (expandedParentClass = '', x = false) {
     },
 
     onAfterLeave: afterLeave,
-    onLeaveCancelled: afterLeave,
+    onLeaveCancelled: afterLeave
   }
 
   function afterLeave (el: HTMLExpandElement) {

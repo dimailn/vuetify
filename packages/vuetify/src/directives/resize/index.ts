@@ -30,7 +30,7 @@ function mounted (
   el._onResize = Object(el._onResize)
   el._onResize![vnode.ctx!.uid] = {
     callback,
-    options,
+    options
   }
 
   if (!binding.modifiers || !binding.modifiers.quiet) {
@@ -54,7 +54,7 @@ function unmounted (
 
 export const Resize: ObjectDirective = {
   mounted,
-  unmounted,
+  unmounted
 }
 
 export default Resize

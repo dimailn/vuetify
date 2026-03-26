@@ -20,7 +20,7 @@ export {
   VListItemAction,
   VListItemAvatar,
   VListItemIcon,
-  VListItemGroup,
+  VListItemGroup
 }
 
 export default {
@@ -35,6 +35,6 @@ export default {
     VListItemGroup,
     VListItemIcon,
     VListItemSubtitle,
-    VListItemTitle,
-  },
+    VListItemTitle
+  }
 }

@@ -8,7 +8,7 @@ import {
   mount,
   VueWrapper,
   MountingOptions,
-  enableAutoUnmount,
+  enableAutoUnmount
 } from '@vue/test-utils'
 
 describe('VBreadcrumbs.ts', () => {
@@ -20,7 +20,7 @@ describe('VBreadcrumbs.ts', () => {
   beforeEach(() => {
     mountFunction = (options: MountingOptions<Instance> = {}) => {
       return mount(VBreadcrumbs, {
-        ...options,
+        ...options
       })
     }
   })
@@ -39,9 +39,9 @@ describe('VBreadcrumbs.ts', () => {
           { text: 'a' },
           { text: 'b' },
           { text: 'c' },
-          { text: 'd' },
-        ],
-      },
+          { text: 'd' }
+        ]
+      }
     })
 
     expect(wrapper.html()).toMatchSnapshot()
@@ -52,9 +52,9 @@ describe('VBreadcrumbs.ts', () => {
       props: {
         items: [
           { text: 'a' },
-          { text: 'a' },
-        ],
-      },
+          { text: 'a' }
+        ]
+      }
     })
 
     expect(`Duplicate keys detected: 'a'`).not.toHaveBeenWarned()
@@ -67,16 +67,16 @@ describe('VBreadcrumbs.ts', () => {
           { text: 'a' },
           { text: 'b' },
           { text: 'c' },
-          { text: 'd' },
-        ],
+          { text: 'd' }
+        ]
       },
       slots: {
         item (props) {
           return h(VBreadcrumbsItem, {
-            key: props.item.text,
-          }, props.item.text.toUpperCase())
-        },
-      },
+            key: props.item.text
+          }, () => props.item.text.toUpperCase())
+        }
+      }
     })
 
     expect(wrapper.html()).toMatchSnapshot()
@@ -89,12 +89,12 @@ describe('VBreadcrumbs.ts', () => {
           { text: 'a' },
           { text: 'b' },
           { text: 'c' },
-          { text: 'd' },
-        ],
+          { text: 'd' }
+        ]
       },
       slots: {
-        divider: () => '/divider/',
-      },
+        divider: () => '/divider/'
+      }
     })
 
     expect(wrapper.html()).toMatchSnapshot()
@@ -105,9 +105,9 @@ describe('VBreadcrumbs.ts', () => {
       props: {
         items: [
           { text: 'Home', 'data-testid': 'home-link', 'aria-label': 'Go to home' },
-          { text: 'About', 'data-testid': 'about-link', 'aria-label': 'Go to about' },
-        ],
-      },
+          { text: 'About', 'data-testid': 'about-link', 'aria-label': 'Go to about' }
+        ]
+      }
     })
 
     const homeItem = wrapper.find('[data-testid="home-link"]')
@@ -124,17 +124,17 @@ describe('VBreadcrumbs.ts', () => {
       props: {
         items: [
           { text: 'Home', to: '/home', disabled: true, ripple: false },
-          { text: 'About', href: '/about', activeClass: 'custom-active' },
-        ],
+          { text: 'About', href: '/about', activeClass: 'custom-active' }
+        ]
       },
       global: {
         mocks: {
-          $route: { path: '/' },
+          $route: { path: '/' }
         },
         stubs: {
-          'router-link': true,
-        },
-      },
+          'router-link': true
+        }
+      }
     })
 
     const homeItem = wrapper.findComponent({ name: 'v-breadcrumbs-item' })
@@ -158,17 +158,17 @@ describe('VBreadcrumbs.ts', () => {
             'aria-current': 'page',
             class: 'custom-class',
             style: 'color: red;'
-          },
-        ],
+          }
+        ]
       },
       global: {
         mocks: {
-          $route: { path: '/' },
+          $route: { path: '/' }
         },
         stubs: {
-          'router-link': true,
-        },
-      },
+          'router-link': true
+        }
+      }
     })
 
     const dashboardItem = wrapper.find('[data-testid="dashboard-link"]')
@@ -192,9 +192,9 @@ describe('VBreadcrumbs.ts', () => {
             invalidProp: 'should-not-be-passed',
             someRandomValue: 123,
             'data-valid': 'this-should-be-passed'
-          },
-        ],
-      },
+          }
+        ]
+      }
     })
 
     const breadcrumbItem = wrapper.findComponent({ name: 'v-breadcrumbs-item' })

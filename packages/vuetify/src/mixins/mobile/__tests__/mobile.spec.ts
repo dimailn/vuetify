@@ -17,7 +17,7 @@ describe('mobile.ts', () => {
   beforeEach(() => {
     const Mock = defineComponent({
       mixins: [Mobile],
-      render: () => h('div'),
+      render: () => h('div')
     })
 
     mountFunction = (options = {}) => {
@@ -25,9 +25,9 @@ describe('mobile.ts', () => {
         ...options,
         global: {
           mocks: {
-            $vuetify: { breakpoint: new Breakpoint(preset) },
-          },
-        },
+            $vuetify: { breakpoint: new Breakpoint(preset) }
+          }
+        }
       })
     }
   })
@@ -37,18 +37,18 @@ describe('mobile.ts', () => {
     [1263, 1264, true],
     [1263, 'xl', false],
     [1920, 'md', false],
-    [1263, 1400, true],
+    [1263, 1400, true]
   ])('should conditionally be mobile using a breakpoint of %s', async (...item) => {
     const [
       resizeTo,
       mobileBreakpoint,
-      isMobile,
+      isMobile
     ] = item
 
     await resizeWindow(resizeTo as number)
 
     const wrapper = mountFunction({
-      props: { mobileBreakpoint },
+      props: { mobileBreakpoint }
     })
 
     expect(wrapper.vm.isMobile).toBe(isMobile)

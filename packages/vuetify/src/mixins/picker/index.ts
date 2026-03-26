@@ -29,8 +29,8 @@ export default mixins(
     noTitle: Boolean,
     width: {
       type: [Number, String],
-      default: 290,
-    },
+      default: 290
+    }
   },
 
   methods: {
@@ -41,10 +41,12 @@ export default mixins(
       return null
     },
     genPickerActionsSlot () {
-      return this.$slots.default ? this.$slots.default({
-        save: (this as any).save,
-        cancel: (this as any).cancel,
-      }) : getSlot(this)
+      return this.$slots.default
+        ? this.$slots.default({
+          save: (this as any).save,
+          cancel: (this as any).cancel
+        })
+        : getSlot(this)
     },
     genPicker (staticClass: string) {
       const children: Record<string, any> = {}
@@ -71,6 +73,6 @@ export default mixins(
         width: this.width,
         noTitle: this.noTitle
       }, children)
-    },
-  },
+    }
+  }
 })

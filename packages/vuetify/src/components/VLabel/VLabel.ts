@@ -23,20 +23,20 @@ export default mixins(Themeable).extend({
     absolute: Boolean,
     color: {
       type: String,
-      default: 'primary',
+      default: 'primary'
     },
     disabled: Boolean,
     focused: Boolean,
     for: String,
     left: {
       type: [Number, String],
-      default: 0,
+      default: 0
     },
     right: {
       type: [Number, String],
-      default: 'auto',
+      default: 'auto'
     },
-    value: Boolean,
+    value: Boolean
   },
 
   render (): VNode {
@@ -48,18 +48,18 @@ export default mixins(Themeable).extend({
         'v-label': true,
         'v-label--active': this.value,
         'v-label--is-disabled': this.disabled,
-        ...functionalThemeClasses(this),
+        ...functionalThemeClasses(this)
       },
       for: props.for,
       'aria-hidden': !props.for,
       style: {
         left: convertToUnit(props.left),
         right: convertToUnit(props.right),
-        position: props.absolute ? 'absolute' : 'relative',
+        position: props.absolute ? 'absolute' : 'relative'
       },
-      ref: 'label',
+      ref: 'label'
     }, data)
 
     return h('label', Colorable.methods.setTextColor(props.focused && props.color, newData), this.$slots.default?.())
-  },
+  }
 })

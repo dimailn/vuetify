@@ -8,7 +8,7 @@ import VAvatar from '../VAvatar'
 import {
   mount,
   MountingOptions,
-  VueWrapper,
+  VueWrapper
 } from '@vue/test-utils'
 
 describe('VAvatar', () => {
@@ -23,14 +23,14 @@ describe('VAvatar', () => {
             // Мокаем только необходимые свойства Vuetify
             $vuetify: {
               lang: {
-                t: (val: string) => val,
+                t: (val: string) => val
               },
               icons: {
-                component: 'mdi',
-              },
-            },
-          },
-        },
+                component: 'mdi'
+              }
+            }
+          }
+        }
       }
 
       // Объединяем опции правильно
@@ -39,8 +39,8 @@ describe('VAvatar', () => {
         ...options,
         global: {
           ...defaultOptions.global,
-          ...options?.global,
-        },
+          ...options?.global
+        }
       }
 
       return mount(VAvatar, mergedOptions)
@@ -57,8 +57,8 @@ describe('VAvatar', () => {
   it('should render with custom size', () => {
     const wrapper = mountFunction({
       props: {
-        size: 64,
-      },
+        size: 64
+      }
     })
 
     expect(wrapper.attributes('style')).toContain('width: 64px')
@@ -68,8 +68,8 @@ describe('VAvatar', () => {
   it('should render with left class when left prop is true', () => {
     const wrapper = mountFunction({
       props: {
-        left: true,
-      },
+        left: true
+      }
     })
 
     expect(wrapper.classes()).toContain('v-avatar--left')
@@ -78,8 +78,8 @@ describe('VAvatar', () => {
   it('should render with right class when right prop is true', () => {
     const wrapper = mountFunction({
       props: {
-        right: true,
-      },
+        right: true
+      }
     })
 
     expect(wrapper.classes()).toContain('v-avatar--right')
@@ -88,8 +88,8 @@ describe('VAvatar', () => {
   it('should render slot content', () => {
     const wrapper = mountFunction({
       slots: {
-        default: () => [h('span', 'Avatar Content')],
-      },
+        default: () => [h('span', 'Avatar Content')]
+      }
     })
 
     expect(wrapper.text()).toContain('Avatar Content')

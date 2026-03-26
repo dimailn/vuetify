@@ -1,16 +1,16 @@
-import {defineComponent} from 'vue'
+import { defineComponent } from 'vue'
 
 /* @vue/component */
 export default defineComponent({
   name: 'returnable',
 
   props: {
-    returnValue: null as any,
+    returnValue: null as any
   },
 
   data: () => ({
     isActive: false,
-    originalValue: null as any,
+    originalValue: null as any
   }),
 
   watch: {
@@ -20,7 +20,7 @@ export default defineComponent({
       } else {
         this.$emit('update:return-value', this.originalValue)
       }
-    },
+    }
   },
 
   methods: {
@@ -29,6 +29,6 @@ export default defineComponent({
       setTimeout(() => {
         this.isActive = false
       })
-    },
-  },
+    }
+  }
 })

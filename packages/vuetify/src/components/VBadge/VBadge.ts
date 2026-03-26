@@ -15,7 +15,7 @@ import mergeData from '../../util/mergeData'
 // Utilities
 import {
   convertToUnit,
-  getSlot,
+  getSlot
 } from '../../util/helpers'
 import { breaking } from '../../util/console'
 
@@ -29,21 +29,21 @@ export default defineComponent({
     PositionableFactory(['left', 'bottom']),
     Themeable,
     Toggleable,
-    Transitionable,
-  ],
+    Transitionable
+  ] as any,
 
   props: {
     avatar: Boolean,
     bordered: Boolean,
     color: {
       type: String,
-      default: 'primary',
+      default: 'primary'
     },
     content: { required: false },
     dot: Boolean,
     label: {
       type: String,
-      default: '$vuetify.badge',
+      default: '$vuetify.badge'
     },
     icon: String,
     inline: Boolean,
@@ -53,9 +53,9 @@ export default defineComponent({
     tile: Boolean,
     transition: {
       type: String,
-      default: 'scale-rotate-transition',
+      default: 'scale-rotate-transition'
     },
-    modelValue: { default: true },
+    modelValue: { default: true }
   },
   emits: ['update:modelValue'],
   computed: {
@@ -70,7 +70,7 @@ export default defineComponent({
         'v-badge--left': this.left,
         'v-badge--overlap': this.overlap,
         'v-badge--tile': this.tile,
-        ...this.themeClasses,
+        ...this.themeClasses
       }
     },
     computedBottom (): string {
@@ -115,15 +115,15 @@ export default defineComponent({
         bottom: this.computedBottom,
         left: this.computedLeft,
         right: this.computedRight,
-        top: this.computedTop,
+        top: this.computedTop
       }
-    },
+    }
   },
 
   created () {
     const breakingProps = [
       ['value', 'modelValue'],
-      ['onInput', 'onUpdate:modelValue'],
+      ['onInput', 'onUpdate:modelValue']
     ]
 
     /* istanbul ignore next */
@@ -147,7 +147,7 @@ export default defineComponent({
         'aria-label': label,
         'aria-live': this.$attrs['aria-live'] || 'polite',
         title: this.$attrs.title,
-        role: this.$attrs.role || 'status',
+        role: this.$attrs.role || 'status'
       })
 
       const badge = withDirectives(
@@ -160,9 +160,9 @@ export default defineComponent({
       return h(Transition, {
         name: this.transition,
         origin: this.origin,
-        mode: this.mode,
+        mode: this.mode
       }, {
-        default: () => [badge],
+        default: () => [badge]
       })
     },
     genBadgeContent () {
@@ -179,9 +179,9 @@ export default defineComponent({
     },
     genBadgeWrapper () {
       return h('span', {
-        class: 'v-badge__wrapper',
+        class: 'v-badge__wrapper'
       }, [this.genBadge()])
-    },
+    }
   },
 
   render (): VNode {
@@ -200,7 +200,7 @@ export default defineComponent({
     else children.push(badge)
 
     return h('span', mergeData({
-      class: ['v-badge', this.classes],
-    }, attrs), children)
-  },
+      class: ['v-badge', this.classes]
+    }, attrs), children as any)
+  }
 })

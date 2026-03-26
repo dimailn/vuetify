@@ -11,5 +11,5 @@ export default Object.freeze({
   mdi,
   fa,
   fa4,
-  faSvg,
+  faSvg
 })
