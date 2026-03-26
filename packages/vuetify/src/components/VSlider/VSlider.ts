@@ -562,14 +562,18 @@ export default mixins(
 
       const { pageup, pagedown, end, home, left, right, down, up } = keyCodes
 
-      if (![pageup, pagedown, end, home, left, right, down, up].includes(e.keyCode)) return
+      if (
+        ![pageup, pagedown, end, home, left, right, down, up].includes(
+          e.keyCode as typeof pageup | typeof pagedown | typeof end | typeof home | typeof left | typeof right | typeof down | typeof up
+        )
+      ) return
 
       e.preventDefault()
       const step = this.stepNumeric || 1
       const steps = (this.maxValue - this.minValue) / step
-      if ([left, right, down, up].includes(e.keyCode)) {
+      if ([left, right, down, up].includes(e.keyCode as typeof left | typeof right | typeof down | typeof up)) {
         const increase = this.$vuetify.rtl ? [left, up] : [right, up]
-        const direction = increase.includes(e.keyCode) ? 1 : -1
+        const direction = increase.includes(e.keyCode as typeof left | typeof right | typeof up) ? 1 : -1
         const multiplier = e.shiftKey ? 3 : (e.ctrlKey ? 2 : 1)
 
         value = value + (direction * step * multiplier)

@@ -50,7 +50,7 @@ export default defineComponent({
     interval: {
       type: [Number, String],
       default: 6000,
-      validator: (value: string | number) => value > 0
+      validator: (value: string | number) => Number(value) > 0
     },
     mandatory: {
       type: Boolean,

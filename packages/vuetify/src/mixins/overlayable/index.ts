@@ -166,9 +166,9 @@ export default defineComponent({
         const up = [keyCodes.up, keyCodes.pageup]
         const down = [keyCodes.down, keyCodes.pagedown]
 
-        if (up.includes(e.keyCode)) {
+        if (up.includes(e.keyCode as typeof keyCodes.up | typeof keyCodes.pageup)) {
           (e as any).deltaY = -1
-        } else if (down.includes(e.keyCode)) {
+        } else if (down.includes(e.keyCode as typeof keyCodes.down | typeof keyCodes.pagedown)) {
           (e as any).deltaY = 1
         } else {
           return
