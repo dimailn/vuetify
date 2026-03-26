@@ -730,7 +730,9 @@ export default baseMixins.extend({
 
       // If menu is active, allow default
       // listIndex change from menu
-      if (this.isMenuActive && [keyCodes.up, keyCodes.down, keyCodes.home, keyCodes.end, keyCodes.enter].includes(keyCode)) {
+      if (this.isMenuActive && [keyCodes.up, keyCodes.down, keyCodes.home, keyCodes.end, keyCodes.enter].includes(
+        keyCode as typeof keyCodes.up | typeof keyCodes.down | typeof keyCodes.home | typeof keyCodes.end | typeof keyCodes.enter
+      )) {
         this.$nextTick(() => {
           menu.changeListIndex(e)
           this.$emit('update:list-index', menu.listIndex)
@@ -741,7 +743,7 @@ export default baseMixins.extend({
       if ([
         keyCodes.enter,
         keyCodes.space
-      ].includes(keyCode)) this.activateMenu()
+      ].includes(keyCode as typeof keyCodes.enter | typeof keyCodes.space)) this.activateMenu()
 
       // If menu is not active, up/down/home/end can do
       // one of 2 things. If multiple, opens the
@@ -749,7 +751,9 @@ export default baseMixins.extend({
       // available options
       if (
         !this.isMenuActive &&
-        [keyCodes.up, keyCodes.down, keyCodes.home, keyCodes.end].includes(keyCode)
+        [keyCodes.up, keyCodes.down, keyCodes.home, keyCodes.end].includes(
+          keyCode as typeof keyCodes.up | typeof keyCodes.down | typeof keyCodes.home | typeof keyCodes.end
+        )
       ) return this.onUpDown(e)
 
       // If escape deactivate the menu

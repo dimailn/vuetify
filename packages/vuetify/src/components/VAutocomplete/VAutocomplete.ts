@@ -392,7 +392,7 @@ export default defineComponent({
 
       if (
         e.ctrlKey ||
-        ![keyCodes.home, keyCodes.end].includes(keyCode)
+        ![keyCodes.home, keyCodes.end].includes(keyCode as typeof keyCodes.home | typeof keyCodes.end)
       ) {
         VSelect.methods.onKeyDown.call(this, e)
       }

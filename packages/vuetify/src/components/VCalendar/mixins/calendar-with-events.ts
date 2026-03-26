@@ -262,7 +262,13 @@ export default defineComponent({
       })
     },
     genTimedEvent ({ event, left, width }: CalendarEventVisual, day: CalendarDayBodySlotScope): VNode | false {
-      if (day.timeDelta(event.end) < 0 || day.timeDelta(event.start) >= 1 || isEventHiddenOn(event, day)) {
+      const endDelta = day.timeDelta(event.end)
+      const startDelta = day.timeDelta(event.start)
+      if (
+        (typeof endDelta === 'number' && endDelta < 0) ||
+        (typeof startDelta === 'number' && startDelta >= 1) ||
+        isEventHiddenOn(event, day)
+      ) {
         return false
       }
 
