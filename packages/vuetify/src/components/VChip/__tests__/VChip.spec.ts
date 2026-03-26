@@ -49,6 +49,19 @@ describe('VChip.ts', () => {
     expect(wrapper.html()).toMatchSnapshot()
   })
 
+  it('should show filter icon when filter and modelValue are true (Vue 3 VIcon/transition slots)', async () => {
+    const wrapper = mountFunction({
+      props: {
+        filter: true,
+        modelValue: true
+      }
+    })
+
+    await nextTick()
+
+    expect(wrapper.find('.v-chip__filter').exists()).toBe(true)
+  })
+
   it('should be removable', async () => {
     const wrapper = mountFunction({
       props: { close: true }

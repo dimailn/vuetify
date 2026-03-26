@@ -141,4 +141,17 @@ describe('VSelectList.ts', () => {
     expect(wrapper.emitted('select')).toBeTruthy()
     expect(wrapper.emitted('select')?.[0]).toEqual(['Foo'])
   })
+
+  it('should render primitive header marker as text in v-subheader (Vue 3 slot function)', async () => {
+    const wrapper = mountFunction({
+      props: {
+        items: [{ header: true }]
+      }
+    })
+
+    await wrapper.vm.$nextTick()
+
+    expect(wrapper.find('.v-subheader').exists()).toBe(true)
+    expect(wrapper.text()).toContain('true')
+  })
 })

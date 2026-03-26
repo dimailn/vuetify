@@ -100,7 +100,7 @@ export default baseMixins.extend({
       }
     },
     genIcon (icon: string) {
-      return h(VIcon, icon)
+      return h(VIcon, {}, () => icon)
     },
     genLabel () {
       return h('div', {

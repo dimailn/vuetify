@@ -169,7 +169,7 @@ export default defineComponent({
         ...this.elevationClasses
       }],
       maxWidth: this.width
-    }, [
+    }, () => [
       !this.hideCanvas && this.genCanvas(),
       (!this.hideSliders || !this.hideInputs) && this.genControls(),
       this.showSwatches && this.genSwatches()

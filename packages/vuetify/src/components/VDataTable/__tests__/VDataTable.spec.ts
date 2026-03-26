@@ -1055,4 +1055,82 @@ describe('VDataTable.ts', () => {
     expect(wrapper.html()).toContain('v-data-table')
     expect(wrapper.html()).toMatchSnapshot()
   })
+
+  describe('Vue 3 slots / RowGroup / pickSlotFunctions regressions', () => {
+    it('should render expanded-item inside .v-data-table__expanded__content (RowGroup row.header + row.content)', async () => {
+      const two = testItems.slice(0, 2)
+      const wrapper = mountFunction({
+        props: {
+          headers: testHeaders,
+          items: two,
+          itemsPerPage: 10,
+          itemKey: 'name',
+          expanded: two
+        },
+        slots: {
+          'expanded-item': () => h('td', { colspan: testHeaders.length }, 'EXPANDED_SLOT_MARK')
+        }
+      })
+
+      await nextTick()
+
+      expect(wrapper.html()).toContain('EXPANDED_SLOT_MARK')
+      expect(wrapper.findAll('.v-data-table__expanded__content')).toHaveLength(2)
+    })
+
+    it('should render default grouped header row when groupBy is set without custom group slot', async () => {
+      const wrapper = mountFunction({
+        props: {
+          headers: testHeaders,
+          items: testItems,
+          itemsPerPage: 20,
+          groupBy: ['protein']
+        }
+      })
+
+      await nextTick()
+
+      expect(wrapper.find('.v-row-group__header').exists()).toBe(true)
+      expect(wrapper.text()).toMatch(/Protein/)
+    })
+
+    it('should render group.summary slot inside .v-row-group__summary row', async () => {
+      const wrapper = mountFunction({
+        props: {
+          headers: testHeaders,
+          items: testItems,
+          itemsPerPage: 20,
+          groupBy: 'calories'
+        },
+        slots: {
+          'group.summary': () => h('td', { colspan: testHeaders.length }, 'GROUP_SUMMARY_MARK')
+        }
+      })
+
+      await nextTick()
+
+      expect(wrapper.html()).toContain('GROUP_SUMMARY_MARK')
+      expect(wrapper.find('.v-row-group__summary').exists()).toBe(true)
+    })
+
+    it('should apply item.data-table-expand slot to row (scoped slots as functions)', async () => {
+      const wrapper = mountFunction({
+        props: {
+          headers: testHeaders,
+          items: testItems.slice(0, 1),
+          itemsPerPage: 5,
+          showExpand: true,
+          itemKey: 'name'
+        },
+        slots: {
+          'item.data-table-expand': () => h('span', { class: 'custom-expand-slot-mark' }, '▼')
+        }
+      })
+
+      await nextTick()
+
+      expect(wrapper.find('.custom-expand-slot-mark').exists()).toBe(true)
+      expect(wrapper.text()).toContain('▼')
+    })
+  })
 })

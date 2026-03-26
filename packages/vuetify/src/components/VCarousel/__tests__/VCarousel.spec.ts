@@ -83,10 +83,10 @@ describe('VCarousel.ts', () => {
   it('should generate delimiters for each item', async () => {
     const wrapper = mountFunction({
       slots: {
-        default: [
-          { extends: VCarouselItem },
-          { extends: VCarouselItem },
-          { extends: VCarouselItem }
+        default: () => [
+          h(VCarouselItem),
+          h(VCarouselItem),
+          h(VCarouselItem)
         ]
       }
     })
@@ -133,12 +133,13 @@ describe('VCarousel.ts', () => {
   })
 
   it('should have the correct theme', async () => {
-    const localMountFunction = (options?: MountingOptions<Instance>, props?: object) => {
+    const localMountFunction = (options?: MountingOptions<Instance>, carouselProps?: object) => {
+      const p = carouselProps || {}
       return mount({
         render () {
-          return h(VCarousel, { props }, [
-            h(VCarouselItem, [
-              h(VThemeProvider, 'test')
+          return h(VCarousel, p, () => [
+            h(VCarouselItem, {}, () => [
+              h(VThemeProvider, {}, () => 'test')
             ])
           ])
         }
@@ -192,7 +193,7 @@ describe('VCarousel.ts', () => {
       render () {
         return h('div', this.show
           ? [
-              h(VCarousel, [h(VCarouselItem, 'test')])
+              h(VCarousel, {}, () => [h(VCarouselItem, {}, () => 'test')])
             ]
           : [])
       }

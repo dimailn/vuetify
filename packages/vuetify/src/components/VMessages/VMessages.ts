@@ -44,10 +44,17 @@ export default mixins(Colorable, Themeable).extend({
       }, () => this.modelValue.map(this.genMessage))
     },
     genMessage (message: string, key: number) {
+      const fromSlot = getSlot(this, 'default', { message, key })
+      const hasSlotContent = fromSlot != null &&
+        (!Array.isArray(fromSlot) || fromSlot.length > 0)
+      const children = hasSlotContent
+        ? (Array.isArray(fromSlot) ? fromSlot : [fromSlot])
+        : [message]
+
       return h('div', {
         class: 'v-messages__message',
         key
-      }, getSlot(this, 'default', { message, key }) || [message])
+      }, children)
     }
   },
 

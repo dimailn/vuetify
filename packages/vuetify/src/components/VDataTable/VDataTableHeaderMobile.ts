@@ -43,7 +43,7 @@ export default mixins(header).extend({
           e.stopPropagation()
           this.$emit('sort', props.item.value)
         }
-      }, children)
+      }, () => children)
     },
     genSortSelect (items: any[]) {
       return h(VSelect, {

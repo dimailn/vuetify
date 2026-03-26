@@ -76,7 +76,7 @@ export default mixins(Colorable, Themeable).extend({
         onMousedown: (e: Event) => e.preventDefault() // Prevent onBlur from being called
       }
 
-      return h(VListItem, tile, [
+      return h(VListItem, tile, () => [
         this.genTileContent(this.noDataText)
       ])
     }
@@ -118,7 +118,12 @@ export default mixins(Colorable, Themeable).extend({
       return [start, this.genHighlight(middle), end]
     },
     genHeader (props: { [key: string]: any }): VNode {
-      return h(VSubheader, props, props.header)
+      const c = props.header
+      return h(VSubheader, props, () => {
+        if (c == null) return []
+        if (typeof c === 'object') return c as VNode | VNode[]
+        return String(c)
+      })
     },
     genHighlight (text: string) {
       return h('span', { class: 'v-list-item__mask' }, text)
@@ -177,7 +182,7 @@ export default mixins(Colorable, Themeable).extend({
       }
 
       if (!this.$slots.item) {
-        return h(VListItem, tile, [
+        return h(VListItem, tile, () => [
           this.action && !this.hideSelected && this.items.length > 0
             ? this.genAction(item, value)
             : null,
@@ -199,7 +204,7 @@ export default mixins(Colorable, Themeable).extend({
       })
 
       return this.needsTile(scopedSlot)
-        ? h(VListItem, tile, scopedSlot)
+        ? h(VListItem, tile, () => scopedSlot)
         : scopedSlot
     },
     genTileContent (item: any, index = 0): VNode {
@@ -278,6 +283,6 @@ export default mixins(Colorable, Themeable).extend({
         e.preventDefault()
       },
       dense: this.dense
-    }, children)
+    }, () => children)
   }
 })

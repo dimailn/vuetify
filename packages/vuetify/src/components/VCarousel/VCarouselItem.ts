@@ -64,8 +64,12 @@ export default baseMixins.extend({
         this.isActive
       ])
 
+      const content = this.genDefaultSlot()
+
       return withDirectives(
-        h(tag, data, this.genDefaultSlot()),
+        typeof tag === 'string'
+          ? h(tag, data, content)
+          : h(tag, data, () => content),
         directives
       )
     }

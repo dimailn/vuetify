@@ -112,7 +112,7 @@ describe('VSelect.ts', () => {
     }, () => [
       item.text
     ])
-    const selectionSlot = ({ item }) => h(VListItem, () => item.value)
+    const selectionSlot = ({ item }) => h(VListItem, {}, () => [item.value])
     const component = defineComponent({
       render () {
         return h(VSelect, {

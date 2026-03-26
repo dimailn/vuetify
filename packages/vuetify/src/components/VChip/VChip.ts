@@ -145,11 +145,11 @@ export default mixins(
           h(VIcon, {
             class: 'v-chip__filter',
             left: true
-          }, this.filterIcon)
+          }, () => this.filterIcon)
         )
       }
 
-      return h(VExpandXTransition, children)
+      return h(VExpandXTransition, {}, () => children)
     },
     genClose (): VNode {
       return h(VIcon, {
@@ -164,7 +164,7 @@ export default mixins(
           this.$emit('click:close')
           this.$emit('update:modelValue', false)
         }
-      }, this.closeIcon)
+      }, () => this.closeIcon)
     },
     genContent (): VNode {
       return h('span', {

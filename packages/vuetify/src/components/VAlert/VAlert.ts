@@ -110,7 +110,7 @@ export default mixins(
         small: true,
         'aria-label': this.$vuetify.lang.t(this.closeLabel),
         onClick: () => (this.isActive = false)
-      }, [
+      }, () => [
         h(VIcon, {
           color
         }, {
@@ -250,6 +250,6 @@ export default mixins(
       name: this.transition,
       origin: this.origin,
       mode: this.mode
-    }, [render])
+    }, () => [render])
   }
 })

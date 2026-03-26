@@ -169,7 +169,7 @@ export default defineComponent({
         disabled: this.disabled,
         onClick: this.changeMode
       }, {
-        default: () => [h(VIcon, {}, '$unfold')]
+        default: () => [h(VIcon, {}, () => '$unfold')]
       })
     }
   },

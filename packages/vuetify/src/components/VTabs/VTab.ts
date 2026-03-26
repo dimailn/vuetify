@@ -128,8 +128,12 @@ export default baseMixins.extend({
       }
     }
 
+    const content = getSlot(this)
+
     return withDirectives(
-      h(tag, data, getSlot(this)),
+      content == null
+        ? h(tag, data)
+        : h(tag, data, () => content),
       directives
     )
   }

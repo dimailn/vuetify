@@ -279,7 +279,9 @@ export default baseMixins.extend({
         light: this.light,
         modelValue: this.messagesToDisplay,
         role: this.hasMessages ? 'alert' : null
-      }, { default: getSlot(this, 'message') })
+      }, {
+        default: (props?: any) => getSlot(this, 'message', props) ?? []
+      })
     },
     genSlot (
       type: string,

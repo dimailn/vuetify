@@ -154,7 +154,10 @@ export default mixins(
       onChange: this.updateValue
     })
 
-    const vnode = h(ButtonGroup, this.setTextColor(this.color, data), getSlot(this))
+    const content = getSlot(this)
+    const vnode = content == null
+      ? h(ButtonGroup, this.setTextColor(this.color, data))
+      : h(ButtonGroup, this.setTextColor(this.color, data), () => content)
 
     if (this.canScroll) {
       return withDirectives(vnode, [[

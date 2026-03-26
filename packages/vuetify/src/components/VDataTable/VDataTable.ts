@@ -41,7 +41,7 @@ import ripple from '../../directives/ripple'
 
 // Helpers
 import mixins from '../../util/mixins'
-import { deepEqual, getObjectValueByPath, getPrefixedScopedSlots, getSlot, defaultFilter, camelizeObjectKeys, getPropertyFromItem } from '../../util/helpers'
+import { deepEqual, getObjectValueByPath, getPrefixedScopedSlots, getSlot, defaultFilter, camelizeObjectKeys, getPropertyFromItem, pickSlotFunctions } from '../../util/helpers'
 import { breaking } from '../../util/console'
 import { mergeClasses, mergeStyles } from '../../util/mergeData'
 
@@ -333,7 +333,7 @@ export default mixins(
       }) as any]
 
       if (!this.hideDefaultHeader) {
-        const scopedSlots = getPrefixedScopedSlots('header.', this.$slots)
+        const scopedSlots = pickSlotFunctions(getPrefixedScopedSlots('header.', this.$slots))
         children.push(h(VDataTableHeader, {
           ...data
 
@@ -380,15 +380,21 @@ export default mixins(
     },
     genDefaultGroupedRow (group: string, items: any[], props: DataScopeProps) {
       const isOpen = !!this.openCache[group]
-      const children: VNodeChildren = [
-        h('template', { slot: 'row.content' }, this.genRows(items, props))
-      ]
       const toggleFn = () => this.openCache[group] = !this.openCache[group]
       const removeFn = () => props.updateOptions({ groupBy: [], groupDesc: [] })
 
+      const rowContent = () => {
+        const rows = this.genRows(items, props)
+        return Array.isArray(rows) ? rows : [rows]
+      }
+
+      const slots: Record<string, () => VNode | VNode[]> = {
+        'row.content': rowContent
+      }
+
       if (this.$slots['group.header']) {
-        children.unshift(h('template', { slot: 'column.header' }, [
-          this.$slots['group.header']!({
+        slots['column.header'] = () => {
+          const v = this.$slots['group.header']!({
             group,
             groupBy: props.options.groupBy,
             isMobile: this.isMobile,
@@ -398,7 +404,8 @@ export default mixins(
             toggle: toggleFn,
             remove: removeFn
           })
-        ]))
+          return Array.isArray(v) ? v : [v]
+        }
       } else {
         const toggle = h(VBtn, {
           class: 'ma-0',
@@ -419,12 +426,12 @@ export default mixins(
           ...this.colspanAttrs
         }, [toggle, `${this.groupByText}: ${group}`, remove])
 
-        children.unshift(h('template', { slot: 'column.header' }, [column]))
+        slots['column.header'] = () => [column]
       }
 
       if (this.$slots['group.summary']) {
-        children.push(h('template', { slot: 'column.summary' }, [
-          this.$slots['group.summary']!({
+        slots['column.summary'] = () => {
+          const v = this.$slots['group.summary']!({
             group,
             groupBy: props.options.groupBy,
             isMobile: this.isMobile,
@@ -433,13 +440,14 @@ export default mixins(
             isOpen,
             toggle: toggleFn
           })
-        ]))
+          return Array.isArray(v) ? v : [v]
+        }
       }
 
       return h(RowGroup, {
         key: group,
         modelValue: isOpen
-      }, children)
+      }, slots)
     },
     genRows (items: any[], props: DataScopeProps) {
       return this.$slots.item ? this.genScopedRows(items, props) : this.genDefaultRows(items, props)
@@ -487,10 +495,10 @@ export default mixins(
 
       return h(RowGroup, {
         modelValue: isExpanded
-      }, [
-        h('template', { slot: 'row.header' }, [headerRow]),
-        h('template', { slot: 'row.content' }, [expandedRow])
-      ])
+      }, {
+        'row.header': () => [headerRow],
+        'row.content': () => [expandedRow]
+      })
     },
     genDefaultSimpleRow (item: any, index: number, classes: Record<string, boolean> = {}): VNode {
       const scopedSlots = getPrefixedScopedSlots('item.', this.$slots)
@@ -541,7 +549,7 @@ export default mixins(
         item,
         rtl: this.$vuetify.rtl,
         ...data.on
-      }, scopedSlots)
+      }, pickSlotFunctions(scopedSlots))
     },
     genBody (props: DataScopeProps): VNode | string | VNodeChildren {
       const data = {
@@ -587,7 +595,7 @@ export default mixins(
       if (!this.hideDefaultFooter) {
         children.push(h(VDataFooter, {
           ...data
-        }, getPrefixedScopedSlots('footer.', this.$slots)))
+        }, pickSlotFunctions(getPrefixedScopedSlots('footer.', this.$slots))))
       }
 
       return children

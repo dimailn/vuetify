@@ -77,7 +77,7 @@ export default defineComponent({
           small: true,
           dark: contrastRatio(this.color.rgba, white) > 2 && this.color.alpha > 0.5,
           light: contrastRatio(this.color.rgba, black) > 2 && this.color.alpha > 0.5
-        }, '$success')
+        }, () => '$success')
       ])
 
       return h('div', {

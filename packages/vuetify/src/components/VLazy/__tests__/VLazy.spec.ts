@@ -2,6 +2,7 @@
 import VLazy from '../VLazy'
 
 // Utilities
+import { h } from 'vue'
 import {
   mount,
   MountOptions,
@@ -26,7 +27,7 @@ describe('VLazy.ts', () => {
   it('should conditionally render content', async () => {
     const wrapper = mountFunction({
       slots: {
-        default: '<div>foobar</div>'
+        default: () => h('div', 'foobar')
       }
     })
 

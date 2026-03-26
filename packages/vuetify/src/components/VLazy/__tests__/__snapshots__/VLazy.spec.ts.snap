@@ -2,7 +2,6 @@
 
 exports[`VLazy.ts should conditionally render content 1`] = `
 <div class="v-lazy">
-  false
 </div>
 `;
 

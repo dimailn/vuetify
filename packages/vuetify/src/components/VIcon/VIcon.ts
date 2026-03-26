@@ -194,7 +194,10 @@ export const VIconInternal = mixins(
 
       this.applyColors(fontData)
 
-      return h(this.hasClickListener ? 'button' : getTagValue(this.tag), fontData, { default: () => newChildren })
+      const el = this.hasClickListener ? 'button' : getTagValue(this.tag)
+      return typeof el === 'string'
+        ? h(el, fontData, newChildren)
+        : h(el, fontData, { default: () => newChildren })
     },
     renderSvgIcon (icon: string): VNode {
       const size = this.getSize()

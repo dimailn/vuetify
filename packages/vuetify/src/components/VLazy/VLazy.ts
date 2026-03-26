@@ -57,7 +57,10 @@ export default mixins(
       return this.transition
         ? h(Transition, {
           name: this.transition
-        }, children)
+        }, () => {
+          if (!children) return []
+          return Array.isArray(children) ? children : [children]
+        })
         : children
     },
     onObserve (

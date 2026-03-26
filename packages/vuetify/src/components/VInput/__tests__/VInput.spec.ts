@@ -1,6 +1,6 @@
 import VInput from '../VInput'
 import { mount, MountingOptions, VueWrapper } from '@vue/test-utils'
-import { h } from 'vue'
+import { h, nextTick } from 'vue'
 
 describe('VInput.ts', () => {
   type Instance = InstanceType<typeof VInput>;
@@ -211,5 +211,24 @@ describe('VInput.ts', () => {
 
     expect(wrapper.html()).toMatchSnapshot()
     expect(wrapper.attributes()).toHaveProperty('foo', 'bar')
+  })
+
+  it('should pass message slot to VMessages as a function slot (Vue 3)', async () => {
+    const wrapper = mountFunction({
+      props: {
+        errorMessages: ['validation-error'],
+        hideDetails: false
+      },
+      slots: {
+        message: (props: { message: string }) =>
+          h('span', { class: 'v-input__message-slot-test' }, [props.message, '-SLOT_OK'])
+      }
+    })
+
+    await nextTick()
+
+    expect(wrapper.find('.v-input__message-slot-test').exists()).toBe(true)
+    expect(wrapper.text()).toContain('validation-error')
+    expect(wrapper.text()).toContain('-SLOT_OK')
   })
 })

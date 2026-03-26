@@ -74,7 +74,7 @@ describe('VBreadcrumbs.ts', () => {
         item (props) {
           return h(VBreadcrumbsItem, {
             key: props.item.text
-          }, props.item.text.toUpperCase())
+          }, () => props.item.text.toUpperCase())
         }
       }
     })

@@ -180,7 +180,7 @@ export default defineComponent({
           internalValue.splice(index, 1)
           this.internalValue = internalValue // Trigger the watcher
         }
-      }, [text]))
+      }, () => [text]))
     },
     genControl () {
       const render = VTextField.methods.genControl.call(this)

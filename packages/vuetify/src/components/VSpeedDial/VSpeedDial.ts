@@ -92,7 +92,7 @@ export default mixins(Positionable, Toggleable, Transitionable).extend({
       mode: this.mode,
       origin: this.origin,
       tag: 'div'
-    }, children)
+    }, () => children)
 
     return withDirectives(h('div', data, [getSlot(this, 'activator'), list] as any), [
       [ClickOutside, () => (this.isActive = false)]
