@@ -6,7 +6,7 @@ import { VImg } from '../VImg'
 
 // Utilities
 import mixins, { ExtractVue } from '../../util/mixins'
-import { getSlot } from '../../util/helpers'
+import { getSlot, getTagValue } from '../../util/helpers'
 import Routable from '../../mixins/routable'
 import { vShow, withDirectives, h } from 'vue'
 
@@ -68,7 +68,7 @@ export default baseMixins.extend({
 
       return withDirectives(
         typeof tag === 'string'
-          ? h(tag, data, content)
+          ? h(getTagValue(tag), data, content)
           : h(tag, data, () => content),
         directives
       )

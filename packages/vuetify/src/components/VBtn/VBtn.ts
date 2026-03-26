@@ -18,7 +18,7 @@ import Sizeable from '../../mixins/sizeable'
 // Utilities
 import mixins, { ExtractVue } from '../../util/mixins'
 import { breaking } from '../../util/console'
-import { getSlot } from '../../util/helpers'
+import { getSlot, getTagValue } from '../../util/helpers'
 
 // Types
 import type { PropType, VNode } from 'vue'
@@ -212,7 +212,7 @@ export default baseMixins.extend({
     const finalData = this.disabled ? data : setColor(this.color, data)
 
     const vnode = typeof tag === 'string'
-      ? h(tag, finalData, children)
+      ? h(getTagValue(tag), finalData, children)
       : h(tag, finalData, () => children)
 
     return withDirectives(

@@ -195,9 +195,10 @@ export default mixins(
     data = this.setBackgroundColor(this.color, data)
 
     const color = this.textColor || (this.outlined && this.color)
+    const tagForH = typeof tag === 'string' ? getTagValue(tag) : tag
 
     return withDirectives(
-      h(getTagValue(tag), this.setTextColor(color, data), children),
+      h(tagForH as any, this.setTextColor(color, data), children),
       directives
     )
   }

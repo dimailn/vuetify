@@ -5,7 +5,7 @@ import Routable from '../../mixins/routable'
 import Themeable from '../../mixins/themeable'
 
 // Utilities
-import { getSlot, keyCodes } from './../../util/helpers'
+import { getSlot, getTagValue, keyCodes } from './../../util/helpers'
 import mixins from '../../util/mixins'
 import { ExtractVue } from './../../util/mixins'
 
@@ -128,13 +128,20 @@ export default baseMixins.extend({
       }
     }
 
-    const content = getSlot(this)
+    const slotContent = getSlot(this)
+    const resolvedTag = typeof tag === 'string' ? getTagValue(tag) : tag
+    const isNativeTag = typeof resolvedTag === 'string'
+    const normalizedChildren =
+      slotContent == null
+        ? null
+        : (Array.isArray(slotContent) ? slotContent : [slotContent])
 
-    return withDirectives(
-      content == null
-        ? h(tag, data)
-        : h(tag, data, () => content),
-      directives
-    )
+    const link = normalizedChildren == null
+      ? h(resolvedTag as any, data)
+      : isNativeTag
+        ? h(resolvedTag, data, normalizedChildren)
+        : h(resolvedTag, data, () => normalizedChildren)
+
+    return withDirectives(link, directives)
   }
 })

@@ -10,7 +10,7 @@ import Routable from '../../mixins/routable'
 
 // Helpers
 import mixins from '../../util/mixins'
-import { getSlot } from '../../util/helpers'
+import { getSlot, getTagValue } from '../../util/helpers'
 
 // Types
 import { VNode, h, withDirectives } from 'vue'
@@ -84,7 +84,9 @@ export default mixins(
       data.tabindex = 0
     }
 
-    return withDirectives(h(tag, this.setBackgroundColor(this.color, data), [
+    const tagForH = typeof tag === 'string' ? getTagValue(tag) : tag
+
+    return withDirectives(h(tagForH as any, this.setBackgroundColor(this.color, data), [
       this.genProgress(),
       getSlot(this)
     ]), directives)
