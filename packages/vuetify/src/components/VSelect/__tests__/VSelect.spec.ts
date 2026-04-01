@@ -610,7 +610,7 @@ describe('VSelect.ts', () => {
     const item = document.querySelector('.v-list-item')
     expect(item).toBeTruthy()
     if (item) {
-      ;(item as HTMLElement).click()
+      (item as HTMLElement).click()
     }
     await waitAnimationFrame()
     await selectWrapper.vm.$nextTick()
