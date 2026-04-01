@@ -1,4 +1,5 @@
 import { defineComponent } from 'vue'
+import type { VNode } from 'vue'
 
 import mixins from '../../util/mixins'
 import { VOverlay } from '../../components/VOverlay'
@@ -14,18 +15,27 @@ interface options {
 interface DependentInstance extends Vue {
   isActive?: boolean
   isDependent?: boolean
-  children?: { default?: () => any[] }
+  getClickableDependentElements?: () => HTMLElement[]
 }
 
-function searchChildren (children: any[]): DependentInstance[] {
-  const results = []
-  for (let index = 0; index < children.length; index++) {
-    const child = children[index] as DependentInstance
+function searchVNodeTree (vnodes: VNode[]): DependentInstance[] {
+  const results: DependentInstance[] = []
 
-    if (child.isActive && child.isDependent) {
-      results.push(child)
+  for (const vnode of vnodes) {
+    const proxy = (vnode as any).component?.proxy as DependentInstance | undefined
+
+    if (proxy?.isActive && proxy?.isDependent) {
+      results.push(proxy)
     } else {
-      results.push(...searchChildren(child.children?.default?.() || []))
+      const subTree = (vnode as any).component?.subTree
+      if (subTree) {
+        results.push(...searchVNodeTree(Array.isArray(subTree) ? subTree : [subTree]))
+      }
+
+      const children = (vnode as any).children
+      if (Array.isArray(children)) {
+        results.push(...searchVNodeTree(children))
+      }
     }
   }
 
@@ -57,13 +67,12 @@ export default mixins().extend({
 
   methods: {
     getOpenDependents (): any[] {
-      const node = this.$slots.default?.()
+      if (!this.closeDependents) return []
 
-      if (!node) return []
+      const subTree = (this.$ as any)?.subTree
+      if (!subTree) return []
 
-      if (this.closeDependents) return searchChildren(node)
-
-      return []
+      return searchVNodeTree(Array.isArray(subTree) ? subTree : [subTree])
     },
     getOpenDependentElements (): HTMLElement[] {
       const result = []

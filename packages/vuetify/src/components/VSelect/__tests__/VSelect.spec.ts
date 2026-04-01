@@ -564,4 +564,58 @@ describe('VSelect.ts', () => {
     // Confirm dialog is still open (проверяем существование)
     expect(dialogWrapper.exists()).toBe(true)
   })
+
+  it('should not treat click on select item as outside dialog', async () => {
+    const items = ['Foo', 'Bar', 'Fizz']
+
+    const dialogWrapper = mount(VDialog, {
+      slots: {
+        default: () => h(VSelect, {
+          items
+        })
+      },
+      props: {
+        modelValue: false,
+        fullscreen: true
+      },
+      global: {
+        mocks: {
+          $vuetify: {
+            lang: {
+              t: (val: string) => val
+            },
+            theme: {
+              dark: false
+            },
+            icons: {
+              component: 'mdi'
+            },
+            breakpoint: {}
+          }
+        }
+      }
+    }) as VueWrapper<InstanceType<typeof VDialog>>
+
+    await dialogWrapper.setProps({ modelValue: true })
+    await dialogWrapper.vm.$nextTick()
+
+    const selectWrapper = dialogWrapper.findComponent(VSelect) as VueWrapper<Instance>
+
+    const inputSlot = selectWrapper.find('.v-input__slot')
+    await inputSlot.trigger('click')
+    await selectWrapper.vm.$nextTick()
+
+    expect(selectWrapper.vm.isMenuActive).toBe(true)
+
+    const item = document.querySelector('.v-list-item')
+    expect(item).toBeTruthy()
+    if (item) {
+      (item as HTMLElement).click()
+    }
+    await waitAnimationFrame()
+    await selectWrapper.vm.$nextTick()
+
+    expect(dialogWrapper.emitted('click:outside')).toBeFalsy()
+    expect(dialogWrapper.vm.isActive).toBe(true)
+  })
 })
