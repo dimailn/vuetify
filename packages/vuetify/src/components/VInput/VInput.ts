@@ -61,7 +61,7 @@ export default baseMixins.extend({
     modelValue: null as any as PropType<any>
   },
 
-  emits: ['click', 'mousedown', 'mouseup', 'touchstart', 'touchend', 'update:error'],
+  emits: ['click', 'mousedown', 'mouseup', 'touchstart', 'touchend', 'update:error', 'change', 'update:modelValue'],
 
   data () {
     return {

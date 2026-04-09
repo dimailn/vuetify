@@ -86,7 +86,7 @@ export default baseMixins.extend({
     }
   },
 
-  emits: ['update:modelValue', 'blur', 'focus', 'keydown', 'click:clear', 'click'],
+  emits: ['update:modelValue', 'change', 'blur', 'focus', 'keydown', 'click:clear', 'click'],
 
   data: () => ({
     badInput: false,
@@ -387,7 +387,7 @@ export default baseMixins.extend({
     genInput () {
       const listeners = Object.assign({}, this.listeners$)
       delete listeners.change // Change should not be bound externally
-      const { title, ...inputAttrs } = this.attrs$
+      const { title, onChange: _onChange, ...inputAttrs } = this.attrs$ as Record<string, any>
 
       const node = h('input', {
         style: {},
@@ -537,7 +537,7 @@ export default baseMixins.extend({
       if (val) {
         this.initialValue = this.lazyValue
       } else if (this.initialValue !== this.lazyValue) {
-        this.$emit('update:modelValue', this.lazyValue)
+        this.$emit('change', this.lazyValue)
       }
     },
     onResize () {
