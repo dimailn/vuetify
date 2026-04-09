@@ -537,7 +537,6 @@ export default baseMixins.extend({
       if (val) {
         this.initialValue = this.lazyValue
       } else if (this.initialValue !== this.lazyValue) {
-        this.$emit('update:modelValue', this.lazyValue)
         this.$emit('change', this.lazyValue)
       }
     },
