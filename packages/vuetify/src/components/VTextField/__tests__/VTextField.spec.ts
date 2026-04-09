@@ -2,6 +2,7 @@ import { h } from 'vue'
 import VTextField from '../VTextField'
 import VProgressLinear from '../../VProgressLinear'
 import {
+  enableAutoUnmount,
   mount,
   MountingOptions,
   VueWrapper
@@ -9,6 +10,8 @@ import {
 import { waitAnimationFrame } from '../../../../test'
 
 describe('VTextField.ts', () => { // eslint-disable-line max-statements
+  enableAutoUnmount(afterEach)
+
   type Instance = InstanceType<typeof VTextField>
   let mountFunction: (options?: MountingOptions<Instance>) => VueWrapper<Instance>
   let mocks: any
@@ -309,6 +312,10 @@ describe('VTextField.ts', () => { // eslint-disable-line max-statements
     }
   })
 
+  // Vue 3: слушатель @change родителя попадает в $attrs и может оказаться и на
+  // корне v-input, и на внутреннем input — тогда нативный change после blur
+  // вызывает обработчик дважды (target + bubble). Плюс нужен emit('change') при
+  // blur как во Vuetify 2.
   it('should fire a single change event on blur', async () => {
     let value = 'asd'
     const change = jest.fn()
@@ -316,11 +323,9 @@ describe('VTextField.ts', () => { // eslint-disable-line max-statements
     const component = {
       render () {
         return h(VTextField, {
-          on: {
-            input: i => value = i,
-            change
-          },
-          props: { value }
+          modelValue: value,
+          'onUpdate:modelValue': (v: string) => { value = v },
+          onChange: change
         })
       }
     }
@@ -331,17 +336,19 @@ describe('VTextField.ts', () => { // eslint-disable-line max-statements
 
     const input = wrapper.findAll('input')[0]
     if (input) {
-      input.trigger('focus')
+      const inputEl = input.element as HTMLInputElement
+      await input.trigger('focus')
       await wrapper.vm.$nextTick()
-      input.element.value = 'fgh'
-      input.trigger('input')
+      inputEl.value = 'fgh'
+      await input.trigger('input')
+      await wrapper.vm.$nextTick()
+      await input.trigger('blur')
+      await wrapper.vm.$nextTick()
+      inputEl.dispatchEvent(new Event('change', { bubbles: true }))
+      await wrapper.vm.$nextTick()
 
-      await wrapper.vm.$nextTick()
-      input.trigger('blur')
-      await wrapper.vm.$nextTick()
-
-      // In Vue 3, change event might not fire immediately
-      expect(wrapper.props()).toBeDefined()
+      expect(change).toHaveBeenCalledWith('fgh')
+      expect(change.mock.calls).toHaveLength(1)
     }
   })
 
