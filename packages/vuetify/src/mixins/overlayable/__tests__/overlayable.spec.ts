@@ -75,6 +75,21 @@ describe('Overlayable.ts', () => {
     expect(wrapper.vm.overlay).toBeFalsy()
   })
 
+  it('should remove overlay app container after close', async () => {
+    const wrapper = mountFunction()
+
+    wrapper.vm.genOverlay()
+    await waitAnimationFrame()
+
+    expect(document.querySelectorAll('[data-v-app]')).toHaveLength(1)
+
+    wrapper.vm.removeOverlay()
+    wrapper.vm.overlay.$el.dispatchEvent(new Event('transitionend'))
+
+    expect(wrapper.vm.overlay).toBeFalsy()
+    expect(document.querySelectorAll('[data-v-app]')).toHaveLength(0)
+  })
+
   // https://github.com/vuetifyjs/vuetify/issues/8473
   it('should get root element z-index if activeIndex is not available', async () => {
     const wrapper = mountFunction()

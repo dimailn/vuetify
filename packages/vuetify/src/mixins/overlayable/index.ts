@@ -42,7 +42,8 @@ export default defineComponent({
   data () {
     return {
       animationFrame: 0,
-      overlay: null as InstanceType<typeof VOverlay> | null
+      overlay: null as InstanceType<typeof VOverlay> | null,
+      overlayApp: null as App<Element> | null
     }
   },
 
@@ -139,9 +140,15 @@ export default defineComponent({
             this.isActive
           ) return
 
-          this.overlay.$el.parentNode.removeChild(this.overlay.$el)
-          this.overlayApp.unmount()
+          const overlayContainer = this.overlay.$el.parentNode as HTMLElement | null
+
+          this.overlayApp?.unmount()
           this.overlayApp = null
+
+          if (overlayContainer?.parentNode) {
+            overlayContainer.parentNode.removeChild(overlayContainer)
+          }
+
           this.overlay = null
         })
 
