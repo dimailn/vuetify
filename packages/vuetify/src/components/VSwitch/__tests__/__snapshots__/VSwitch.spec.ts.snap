@@ -6,7 +6,7 @@ exports[`VSwitch.ts should render element with loader and match the snapshot 1`]
     <div class="v-input__slot">
       <div class="v-input--selection-controls__input">
         <input aria-checked="false"
-               id="input-29"
+               id="input-36"
                role="switch"
                type="checkbox"
                aria-disabled="false"
