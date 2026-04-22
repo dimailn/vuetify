@@ -240,7 +240,7 @@ describe('VInput.ts', () => {
 
     expect(wrapper.emitted('change')).toBeFalsy()
 
-    ;(wrapper.vm.$options as Record<string, any>)['$_emitChangeEvent'] = true
+    ;(wrapper.vm.$options as Record<string, any>).$_emitChangeEvent = true
 
     wrapper.vm.internalValue = 'with-change'
     await nextTick()

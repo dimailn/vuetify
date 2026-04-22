@@ -113,7 +113,7 @@ export default baseMixins.extend({
         this.lazyValue = val
         this.$emit(this.$_modelEvent, val)
 
-        if (this.$options['$_emitChangeEvent']) {
+        if (this.$options.$_emitChangeEvent) {
           this.$emit('change', val)
         }
       }
