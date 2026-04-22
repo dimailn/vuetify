@@ -21,6 +21,8 @@ export default mixins(
 ).extend({
   name: 'selectable',
 
+  $_emitChangeEvent: true,
+
   props: {
     id: String,
     value: null as any,
@@ -38,10 +40,6 @@ export default mixins(
       hasColor: this.modelValue,
       lazyValue: this.modelValue
     }
-  },
-
-  created () {
-    this.$_emitChangeEvent = true
   },
 
   computed: {
