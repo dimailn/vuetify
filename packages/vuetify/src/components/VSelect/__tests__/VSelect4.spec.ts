@@ -102,13 +102,8 @@ describe('VSelect.ts', () => {
 
     await wrapper.vm.$nextTick()
 
-    // Проверяем, что событие change эмитится или не эмитится (в зависимости от реализации)
-    if (wrapper.emitted('change')) {
-      expect(wrapper.emitted('change')).toHaveLength(1)
-    } else {
-      // Если событие не эмитится, это тоже может быть корректным поведением
-      expect(wrapper.emitted('change')).toBeFalsy()
-    }
+    expect(wrapper.emitted('change')).toHaveLength(1)
+    expect(wrapper.emitted('change')![0]).toEqual([null])
   })
 
   it('should not call change when model updated externally', async () => {
@@ -120,14 +115,46 @@ describe('VSelect.ts', () => {
 
     wrapper.vm.setValue('foo')
 
-    // Проверяем, что событие change эмитится или не эмитится (в зависимости от реализации)
-    if (wrapper.emitted('change')) {
-      expect(wrapper.emitted('change')).toHaveLength(1)
-      expect(wrapper.emitted('change')[0]).toEqual(['foo'])
-    } else {
-      // Если событие не эмитится, это тоже может быть корректным поведением
-      expect(wrapper.emitted('change')).toBeFalsy()
-    }
+    expect(wrapper.emitted('change')).toHaveLength(1)
+    expect(wrapper.emitted('change')![0]).toEqual(['foo'])
+  })
+
+  it('should not emit duplicate change after blur when value changed internally', async () => {
+    const wrapper = mountFunction()
+
+    wrapper.vm.setValue('foo')
+    await wrapper.vm.$nextTick()
+
+    expect(wrapper.emitted('change')).toHaveLength(1)
+    expect(wrapper.emitted('change')![0]).toEqual(['foo'])
+
+    wrapper.vm.blur()
+    await wrapper.vm.$nextTick()
+
+    expect(wrapper.emitted('change')).toHaveLength(1)
+  })
+
+  it('should not emit duplicate change after blur when cleared', async () => {
+    const wrapper = mountFunction({
+      props: {
+        clearable: true,
+        items: ['foo'],
+        modelValue: 'foo'
+      }
+    })
+
+    const icon = wrapper.find('.v-input__icon > .v-icon')
+
+    icon.trigger('click')
+    await wrapper.vm.$nextTick()
+
+    expect(wrapper.emitted('change')).toHaveLength(1)
+    expect(wrapper.emitted('change')![0]).toEqual([null])
+
+    wrapper.vm.blur()
+    await wrapper.vm.$nextTick()
+
+    expect(wrapper.emitted('change')).toHaveLength(1)
   })
 
   // https://github.com/vuetifyjs/vuetify/issues/4713

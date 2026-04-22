@@ -231,4 +231,21 @@ describe('VInput.ts', () => {
     expect(wrapper.text()).toContain('validation-error')
     expect(wrapper.text()).toContain('-SLOT_OK')
   })
+
+  it('should emit change only when $_emitChangeEvent is enabled in options', async () => {
+    const wrapper = mountFunction()
+
+    wrapper.vm.internalValue = 'no-change'
+    await nextTick()
+
+    expect(wrapper.emitted('change')).toBeFalsy()
+
+    ;(wrapper.vm.$options as Record<string, any>).$_emitChangeEvent = true
+
+    wrapper.vm.internalValue = 'with-change'
+    await nextTick()
+
+    expect(wrapper.emitted('change')).toHaveLength(1)
+    expect(wrapper.emitted('change')![0]).toEqual(['with-change'])
+  })
 })

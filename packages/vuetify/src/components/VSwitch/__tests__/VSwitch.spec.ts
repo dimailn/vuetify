@@ -56,6 +56,20 @@ describe('VSwitch.ts', () => {
     expect(wrapper.emitted('update:modelValue')![1]).toEqual([false])
   })
 
+  it('should emit change event when input is clicked', async () => {
+    const wrapper = mountFunction({
+      props: {
+        modelValue: false
+      }
+    })
+
+    const input = wrapper.find('input')
+
+    await input.trigger('click')
+    expect(wrapper.emitted('change')).toHaveLength(1)
+    expect(wrapper.emitted('change')![0]).toEqual([true])
+  })
+
   it('should emit change event on key events', async () => {
     const wrapper = mountFunction({
       props: {

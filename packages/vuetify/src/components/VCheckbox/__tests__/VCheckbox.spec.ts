@@ -30,6 +30,20 @@ describe('VCheckbox.ts', () => { // eslint-disable-line max-statements
     expect(wrapper.emitted('update:modelValue')![0]).toEqual([true])
   })
 
+  it('should emit change event when clicked', async () => {
+    const wrapper = mountFunction({
+      props: {
+        modelValue: false
+      } as any
+    })
+
+    const input = wrapper.find('input')
+
+    await input.trigger('click')
+    expect(wrapper.emitted('change')).toHaveLength(1)
+    expect(wrapper.emitted('change')![0]).toEqual([true])
+  })
+
   it('should return a value when toggled on with a specified value', async () => {
     const wrapper = mountFunction({
       props: {

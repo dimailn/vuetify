@@ -145,6 +145,10 @@ export default baseMixins.extend({
       set (val: any) {
         this.lazyValue = val
         this.$emit('update:modelValue', this.lazyValue)
+
+        if (this.$options.$_emitChangeEvent) {
+          this.$emit('change', this.lazyValue)
+        }
       }
     },
     isDirty (): boolean {
