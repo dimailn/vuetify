@@ -714,29 +714,38 @@ describe('VTextField.ts', () => { // eslint-disable-line max-statements
     expect(input.element.id).toBe('foo')
   })
 
-  it('should fire change event when pressing enter and value has changed', () => {
+  it('should fire change event when pressing enter and value has changed', async () => {
     const wrapper = mountFunction()
     const input = wrapper.find('input')
-    const change = jest.fn()
     const el = input.element as HTMLInputElement
 
-    wrapper.vm.$on('change', change)
-
-    input.trigger('focus')
+    await input.trigger('focus')
     el.value = 'foo'
-    input.trigger('input')
-    input.trigger('keydown.enter')
-    input.trigger('keydown.enter')
+    await input.trigger('input')
+    await input.trigger('keydown.enter')
+    await input.trigger('keydown.enter')
 
-    // In Vue 3, change event might not fire immediately
-    expect(wrapper.exists()).toBe(true)
+    expect(wrapper.emitted('change')).toEqual([['foo']])
+    expect(wrapper.emitted('update:modelValue')).toEqual([['foo']])
 
     el.value = 'foobar'
-    input.trigger('input')
-    input.trigger('keydown.enter')
+    await input.trigger('input')
+    await input.trigger('keydown.enter')
 
-    // In Vue 3, value might not be accessible immediately
-    expect(wrapper.exists()).toBe(true)
+    expect(wrapper.emitted('change')).toEqual([['foo'], ['foobar']])
+    expect(wrapper.emitted('update:modelValue')).toEqual([['foo'], ['foobar']])
+  })
+
+  it('should render append and append-outer slots passed as functions', () => {
+    const wrapper = mountFunction({
+      slots: {
+        append: () => h('span', { class: 'append-slot-content' }, 'append'),
+        'append-outer': () => h('span', { class: 'append-outer-slot-content' }, 'append-outer')
+      }
+    })
+
+    expect(wrapper.find('.append-slot-content').exists()).toBe(true)
+    expect(wrapper.find('.append-outer-slot-content').exists()).toBe(true)
   })
 
   it('should have focus and blur methods', async () => {

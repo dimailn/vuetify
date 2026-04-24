@@ -22,13 +22,13 @@ exports[`VTextField.ts should apply theme to label, counter, messages and icons 
       </div>
       <div class="v-text-field__slot">
         <label class="v-label theme--light"
-               for="input-189"
+               for="input-193"
                aria-hidden="false"
                style="left: 0px; position: absolute;"
         >
           foo
         </label>
-        <input id="input-189"
+        <input id="input-193"
                type="text"
         >
       </div>
@@ -96,7 +96,7 @@ exports[`VTextField.ts should hide messages if no messages and hide-details is a
   <div class="v-input__control">
     <div class="v-input__slot">
       <div class="v-text-field__slot">
-        <input id="input-207"
+        <input id="input-211"
                type="text"
         >
       </div>
@@ -110,7 +110,7 @@ exports[`VTextField.ts should hide messages if no messages and hide-details is a
   <div class="v-input__control">
     <div class="v-input__slot">
       <div class="v-text-field__slot">
-        <input id="input-207"
+        <input id="input-211"
                type="text"
         >
       </div>
@@ -133,7 +133,7 @@ exports[`VTextField.ts should hide messages if no messages and hide-details is a
   <div class="v-input__control">
     <div class="v-input__slot">
       <div class="v-text-field__slot">
-        <input id="input-207"
+        <input id="input-211"
                type="text"
         >
       </div>
