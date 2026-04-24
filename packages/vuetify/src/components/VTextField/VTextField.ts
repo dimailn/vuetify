@@ -485,7 +485,7 @@ export default baseMixins.extend({
         this.lazyValue !== this.initialValue
       ) {
         this.initialValue = this.lazyValue
-        this.$emit('update:modelValue', this.initialValue)
+        this.$emit('change', this.initialValue)
       }
 
       this.$emit('keydown', e)
