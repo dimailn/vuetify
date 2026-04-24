@@ -1,0 +1,58 @@
+name: Publish to NPM
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version (e.g. 2.7.2-alpha46)'
+        required: true
+
+jobs:
+  publish:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 16
+
+      - uses: actions/cache@v4
+        with:
+          path: |
+            node_modules
+            **/node_modules
+          key: ${{ runner.os }}-${{ hashFiles('./yarn.lock') }}
+
+      - run: yarn --frozen-lockfile --non-interactive
+
+      - name: Bump version
+        run: |
+          node -e "
+            const fs = require('fs');
+            const pkg = JSON.parse(fs.readFileSync('packages/vuetify/package.json', 'utf8'));
+            pkg.version = '${{ github.event.inputs.version }}';
+            fs.writeFileSync('packages/vuetify/package.json', JSON.stringify(pkg, null, 2) + '\n');
+          "
+
+      - name: Build
+        run: yarn build
+        working-directory: ./packages/vuetify
+
+      - name: Publish to NPM
+        run: |
+          npm config set //registry.npmjs.org/:_authToken ${{ secrets.NPM_TOKEN }}
+          cd packages/vuetify
+          npm publish --tag $(node ../../scripts/parse-npm-tag.js ${{ github.event.inputs.version }})
+
+      - name: Commit and tag
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add packages/vuetify/package.json
+          git commit -m "${{ github.event.inputs.version }}"
+          git tag "v${{ github.event.inputs.version }}"
+          git push origin HEAD:${{ github.ref_name }}
+          git push origin "v${{ github.event.inputs.version }}"
