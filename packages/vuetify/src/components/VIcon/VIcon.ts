@@ -33,12 +33,8 @@ function isSvgPath (icon: string): boolean {
   return (/^[mzlhvcsqta]\s*[-+.0-9][^mlhvzcsqta]+/i.test(icon) && /[\dz]$/i.test(icon) && icon.length > 4)
 }
 
-function classesToString (classObj: Record<string, boolean>): string {
-  return Object.keys(classObj).filter(key => classObj[key]).join(' ')
-}
-
 function readFirstText (node: any): string {
-  if (node == null) return ''
+  if (!node) return ''
   if (typeof node === 'string') return node.trim()
   if (typeof node.children === 'string') return node.children.trim()
   if (Array.isArray(node.children)) {
@@ -50,7 +46,8 @@ function readFirstText (node: any): string {
   return ''
 }
 
-export const VIconInternal = mixins(
+
+export default mixins(
   BindsAttrs,
   Colorable,
   Sizeable,
@@ -69,7 +66,9 @@ export const VIconInternal = mixins(
       type: String,
       required: false,
       default: 'i'
-    }
+    },
+    textContent: String,
+    innerHTML: String
   },
 
   computed: {
@@ -86,11 +85,14 @@ export const VIconInternal = mixins(
   methods: {
     getIcon (): VuetifyIcon {
       let iconName = ''
-      const slotChildren = this.$slots.default?.() || []
-
-      for (const child of slotChildren) {
-        iconName = readFirstText(child)
-        if (iconName) break
+      if (this.textContent) iconName = this.textContent.trim()
+      else if (this.innerHTML) iconName = this.innerHTML.trim()
+      else {
+        const slotChildren = this.$slots.default?.() || []
+        for (const child of slotChildren) {
+          iconName = readFirstText(child)
+          if (iconName) break
+        }
       }
 
       return remapInternalIcon(this, iconName)
@@ -134,30 +136,18 @@ export const VIconInternal = mixins(
       return data
     },
     applyColors (data: any): void {
+      data.class = normalizeClasses([data.class, this.themeClasses])
       this.setTextColor(this.color, data)
     },
     getSvgWrapperData () {
       const fontSize = this.getSize()
-
-      const defaultData = this.getDefaultData()
-      const normalizedClasses = normalizeClasses([defaultData.class, this.themeClasses])
-
       const wrapperData: any = {
-        class: classesToString(normalizedClasses),
-        'aria-hidden': defaultData['aria-hidden'],
-        type: defaultData.type,
-        style: fontSize
-          ? {
-              fontSize,
-              height: fontSize,
-              width: fontSize
-            }
-          : undefined,
-        ...this.listeners$
-      }
-
-      if (this.hasClickListener && this.disabled) {
-        wrapperData.disabled = true
+        ...this.getDefaultData(),
+        style: fontSize ? {
+          fontSize,
+          height: fontSize,
+          width: fontSize
+        } : undefined
       }
 
       this.applyColors(wrapperData)
@@ -166,7 +156,7 @@ export const VIconInternal = mixins(
     },
     renderFontIcon (icon: string): VNode {
       const newChildren: VNodeChildren = []
-      const defaultData = this.getDefaultData()
+      const data = this.getDefaultData()
 
       let iconType = 'material-icons'
       // Material Icon delimiter is _
@@ -182,33 +172,18 @@ export const VIconInternal = mixins(
         if (isFontAwesome5(iconType)) iconType = ''
       }
 
-      // Создаем объект классов для иконки
-      const iconClasses = { [iconType]: true }
-      if (!isMaterialIcon) {
-        iconClasses[icon] = true
-      }
-
-      const allClasses = normalizeClasses([defaultData.class, this.themeClasses, iconClasses])
+      data.class[iconType] = true
+      data.class[icon] = !isMaterialIcon
 
       const fontSize = this.getSize()
-      const fontData: any = {
-        class: classesToString(allClasses),
-        'aria-hidden': defaultData['aria-hidden'],
-        type: defaultData.type,
-        style: fontSize ? { fontSize } : undefined,
-        ...this.listeners$
-      }
+      if (fontSize) data.style = { fontSize }
 
-      if (this.hasClickListener && this.disabled) {
-        fontData.disabled = true
-      }
-
-      this.applyColors(fontData)
+      this.applyColors(data)
 
       const el = this.hasClickListener ? 'button' : getTagValue(this.tag)
       return typeof el === 'string'
-        ? h(el, fontData, newChildren)
-        : h(el, fontData, { default: () => newChildren })
+        ? h(el, data, newChildren)
+        : h(el, data, { default: () => newChildren })
     },
     renderSvgIcon (icon: string): VNode {
       const size = this.getSize()
@@ -239,29 +214,29 @@ export const VIconInternal = mixins(
     renderSvgIconComponent (
       icon: VuetifyIconComponent
     ): VNode {
-      const size = this.getSize()
-      const componentClasses = normalizeClasses([
-        { 'v-icon__component': true },
-        this.themeClasses
-      ])
-
-      const componentData: any = {
-        class: classesToString(componentClasses),
-        style: size
-          ? {
-              fontSize: size,
-              height: size,
-              width: size
-            }
-          : undefined,
-        ...icon.props
+      const data: any = {
+        class: {
+          'v-icon__component': true
+        }
       }
 
-      this.applyColors(componentData)
+      const size = this.getSize()
+      if (size) {
+        data.style = {
+          fontSize: size,
+          height: size,
+          width: size
+        }
+      }
+
+      this.applyColors(data)
+
+      const component = icon.component
+      Object.assign(data, icon.props)
 
       return h(this.hasClickListener ? 'button' : 'span', this.getSvgWrapperData(), {
         default: () => [
-          h(icon.component, componentData)
+          h(component, data)
         ]
       })
     }
@@ -281,33 +256,3 @@ export const VIconInternal = mixins(
   }
 })
 
-export default defineComponent({
-  name: 'v-icon',
-
-  $_wrapperFor: VIconInternal,
-
-  functional: true,
-  inheritAttrs: false,
-
-  render (): VNode {
-    const data: Record<string, any> = { ...this.$attrs }
-    let iconName = ''
-    const vnodeProps: Record<string, any> = (this.$.vnode.props as any) || {}
-    const textContent = data.textContent ?? vnodeProps.textContent
-    const innerHTML = data.innerHTML ?? vnodeProps.innerHTML
-
-    if (typeof textContent === 'string' || typeof innerHTML === 'string') {
-      iconName = (textContent || innerHTML || '').trim()
-      delete data.textContent
-      delete data.innerHTML
-    }
-
-    return h(VIconInternal, data, {
-      default: () => {
-        const children = this.$slots.default?.()
-
-        return iconName ? [iconName] : (children || [])
-      }
-    })
-  }
-})

@@ -11,9 +11,6 @@ import {
   enableAutoUnmount
 } from '@vue/test-utils'
 
-// Импортируем внутренний компонент для прямого тестирования
-import { VIconInternal } from '../VIcon'
-
 interface MountContext {
   props?: Record<string, any>
   attrs?: Record<string, any>
@@ -290,8 +287,8 @@ describe('VIcon', () => {
     it('should render an svg icon', async () => {
       const svgPath = 'M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z'
 
-      // Тестируем напрямую внутренний компонент VIconInternal
-      const directWrapper = mount(VIconInternal, {
+      // Тестируем напрямую внутренний компонент VIcon
+      const directWrapper = mount(VIcon, {
         slots: {
           default: () => svgPath
         },
