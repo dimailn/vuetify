@@ -37,6 +37,19 @@ function classesToString (classObj: Record<string, boolean>): string {
   return Object.keys(classObj).filter(key => classObj[key]).join(' ')
 }
 
+function readFirstText (node: any): string {
+  if (node == null) return ''
+  if (typeof node === 'string') return node.trim()
+  if (typeof node.children === 'string') return node.children.trim()
+  if (Array.isArray(node.children)) {
+    for (const child of node.children) {
+      const text = readFirstText(child)
+      if (text) return text
+    }
+  }
+  return ''
+}
+
 export const VIconInternal = mixins(
   BindsAttrs,
   Colorable,
@@ -73,15 +86,13 @@ export const VIconInternal = mixins(
   methods: {
     getIcon (): VuetifyIcon {
       let iconName = ''
-      if (this.$slots.default) {
-        const slotChildren = this.$slots.default()
-        if (slotChildren && slotChildren[0]) {
-          const children = slotChildren[0].children
-          if (typeof children === 'string') {
-            iconName = children.trim()
-          }
-        }
+      const slotChildren = this.$slots.default?.() || []
+
+      for (const child of slotChildren) {
+        iconName = readFirstText(child)
+        if (iconName) break
       }
+
       return remapInternalIcon(this, iconName)
     },
     getSize (): string | undefined {
@@ -276,30 +287,26 @@ export default defineComponent({
   $_wrapperFor: VIconInternal,
 
   functional: true,
-
-  mounted () {
-    this.$el.innerHTML = ''
-  },
+  inheritAttrs: false,
 
   render (): VNode {
-    const data = { ...this.$attrs }
+    const data: Record<string, any> = { ...this.$attrs }
+    let iconName = ''
+    const vnodeProps: Record<string, any> = (this.$.vnode.props as any) || {}
+    const textContent = data.textContent ?? vnodeProps.textContent
+    const innerHTML = data.innerHTML ?? vnodeProps.innerHTML
 
-    // console.log(children && children[0]?.children)
+    if (typeof textContent === 'string' || typeof innerHTML === 'string') {
+      iconName = (textContent || innerHTML || '').trim()
+      delete data.textContent
+      delete data.innerHTML
+    }
+
     return h(VIconInternal, data, {
       default: () => {
-        let iconName = ''
-
-        // Support usage of v-text and v-html
-        // if (data.domProps) {
-        if (this.$.vnode.props?.textContent) {
-          iconName = this.$.vnode.props.textContent ||
-          this.$.vnode.props.innerHTML ||
-            iconName
-        }
-
         const children = this.$slots.default?.()
 
-        return iconName ? [iconName] : children && children[0]?.children
+        return iconName ? [iconName] : (children || [])
       }
     })
   }

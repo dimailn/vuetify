@@ -26,6 +26,7 @@ exports[`VTimelineItem.ts should conditionally render an icon or icon slot 2`] =
         <i class="v-icon notranslate theme--dark material-icons"
            aria-hidden="true"
         >
+          foo
         </i>
       </div>
     </div>

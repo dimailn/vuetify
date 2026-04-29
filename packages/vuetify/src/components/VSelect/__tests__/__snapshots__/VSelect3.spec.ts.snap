@@ -26,6 +26,10 @@ exports[`VSelect.ts should add color to selected index 1`] = `
             <span class="v-icon notranslate theme--light"
                   aria-hidden="true"
             >
+              <mdi class="v-icon__component theme--light"
+                   icon="$dropdown"
+              >
+              </mdi>
             </span>
           </div>
         </div>

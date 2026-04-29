@@ -9,6 +9,10 @@ exports[`VDatePickerHeader.ts should render component and match snapshot 1`] = `
       <span class="v-icon notranslate theme--light"
             aria-hidden="true"
       >
+        <mdi class="v-icon__component theme--light"
+             icon="$prev"
+        >
+        </mdi>
       </span>
     </span>
   </button>
@@ -26,6 +30,10 @@ exports[`VDatePickerHeader.ts should render component and match snapshot 1`] = `
       <span class="v-icon notranslate theme--light"
             aria-hidden="true"
       >
+        <mdi class="v-icon__component theme--light"
+             icon="$next"
+        >
+        </mdi>
       </span>
     </span>
   </button>
@@ -41,6 +49,10 @@ exports[`VDatePickerHeader.ts should render component in RTL mode and match snap
       <span class="v-icon notranslate theme--light"
             aria-hidden="true"
       >
+        <mdi class="v-icon__component theme--light"
+             icon="$prev"
+        >
+        </mdi>
       </span>
     </span>
   </button>
@@ -58,6 +70,10 @@ exports[`VDatePickerHeader.ts should render component in RTL mode and match snap
       <span class="v-icon notranslate theme--light"
             aria-hidden="true"
       >
+        <mdi class="v-icon__component theme--light"
+             icon="$next"
+        >
+        </mdi>
       </span>
     </span>
   </button>
@@ -73,6 +89,10 @@ exports[`VDatePickerHeader.ts should render component with default slot and matc
       <span class="v-icon notranslate theme--light"
             aria-hidden="true"
       >
+        <mdi class="v-icon__component theme--light"
+             icon="$prev"
+        >
+        </mdi>
       </span>
     </span>
   </button>
@@ -92,6 +112,10 @@ exports[`VDatePickerHeader.ts should render component with default slot and matc
       <span class="v-icon notranslate theme--light"
             aria-hidden="true"
       >
+        <mdi class="v-icon__component theme--light"
+             icon="$next"
+        >
+        </mdi>
       </span>
     </span>
   </button>
@@ -108,6 +132,10 @@ exports[`VDatePickerHeader.ts should render disabled component and match snapsho
       <span class="v-icon notranslate theme--light"
             aria-hidden="true"
       >
+        <mdi class="v-icon__component theme--light"
+             icon="$prev"
+        >
+        </mdi>
       </span>
     </span>
   </button>
@@ -126,6 +154,10 @@ exports[`VDatePickerHeader.ts should render disabled component and match snapsho
       <span class="v-icon notranslate theme--light"
             aria-hidden="true"
       >
+        <mdi class="v-icon__component theme--light"
+             icon="$next"
+        >
+        </mdi>
       </span>
     </span>
   </button>
@@ -141,6 +173,10 @@ exports[`VDatePickerHeader.ts should render readonly component and match snapsho
       <span class="v-icon notranslate theme--light"
             aria-hidden="true"
       >
+        <mdi class="v-icon__component theme--light"
+             icon="$prev"
+        >
+        </mdi>
       </span>
     </span>
   </button>
@@ -158,6 +194,10 @@ exports[`VDatePickerHeader.ts should render readonly component and match snapsho
       <span class="v-icon notranslate theme--light"
             aria-hidden="true"
       >
+        <mdi class="v-icon__component theme--light"
+             icon="$next"
+        >
+        </mdi>
       </span>
     </span>
   </button>

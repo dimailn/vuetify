@@ -53,6 +53,7 @@ exports[`VColorPickerEdit.ts should change mode 1`] = `
       <i class="v-icon notranslate theme--light material-icons"
          aria-hidden="true"
       >
+        $unfold
       </i>
     </span>
   </button>
@@ -112,6 +113,7 @@ exports[`VColorPickerEdit.ts should change mode 2`] = `
       <i class="v-icon notranslate theme--light material-icons"
          aria-hidden="true"
       >
+        $unfold
       </i>
     </span>
   </button>
@@ -135,6 +137,7 @@ exports[`VColorPickerEdit.ts should change mode 3`] = `
       <i class="v-icon notranslate theme--light material-icons"
          aria-hidden="true"
       >
+        $unfold
       </i>
     </span>
   </button>
@@ -194,6 +197,7 @@ exports[`VColorPickerEdit.ts should change mode 4`] = `
       <i class="v-icon notranslate theme--light material-icons"
          aria-hidden="true"
       >
+        $unfold
       </i>
     </span>
   </button>
@@ -307,6 +311,7 @@ exports[`VColorPickerEdit.ts should render with disabled 1`] = `
       <i class="v-icon notranslate theme--light material-icons"
          aria-hidden="true"
       >
+        $unfold
       </i>
     </span>
   </button>

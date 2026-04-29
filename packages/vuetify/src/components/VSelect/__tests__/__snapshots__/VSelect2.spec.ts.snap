@@ -29,6 +29,10 @@ exports[`VSelect.ts should be clearable with prop, dirty and multi select 1`] = 
                     aria-label="$vuetify.input.clear"
                     tabindex="-1"
             >
+              <mdi class="v-icon__component theme--light"
+                   icon="$clear"
+              >
+              </mdi>
             </button>
           </div>
         </div>
@@ -37,6 +41,10 @@ exports[`VSelect.ts should be clearable with prop, dirty and multi select 1`] = 
             <span class="v-icon notranslate theme--light"
                   aria-hidden="true"
             >
+              <mdi class="v-icon__component theme--light"
+                   icon="$dropdown"
+              >
+              </mdi>
             </span>
           </div>
         </div>
@@ -86,6 +94,10 @@ exports[`VSelect.ts should be clearable with prop, dirty and single select 1`] =
                     aria-label="$vuetify.input.clear"
                     tabindex="-1"
             >
+              <mdi class="v-icon__component theme--light"
+                   icon="$clear"
+              >
+              </mdi>
             </button>
           </div>
         </div>
@@ -94,6 +106,10 @@ exports[`VSelect.ts should be clearable with prop, dirty and single select 1`] =
             <span class="v-icon notranslate theme--light"
                   aria-hidden="true"
             >
+              <mdi class="v-icon__component theme--light"
+                   icon="$dropdown"
+              >
+              </mdi>
             </span>
           </div>
         </div>
@@ -140,6 +156,10 @@ exports[`VSelect.ts should use scoped slot for selection generation 1`] = `
             <span class="v-icon notranslate theme--light"
                   aria-hidden="true"
             >
+              <mdi class="v-icon__component theme--light"
+                   icon="$dropdown"
+              >
+              </mdi>
             </span>
           </div>
         </div>

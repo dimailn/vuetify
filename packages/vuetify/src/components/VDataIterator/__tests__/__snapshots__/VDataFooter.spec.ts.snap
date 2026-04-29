@@ -32,6 +32,7 @@ exports[`VDataFooter.ts should disable last page button if no items 1`] = `
                 <i class="v-icon notranslate theme--light material-icons"
                    aria-hidden="true"
                 >
+                  $dropdown
                 </i>
               </div>
             </div>
@@ -58,6 +59,7 @@ exports[`VDataFooter.ts should disable last page button if no items 1`] = `
         <i class="v-icon notranslate theme--light material-icons"
            aria-hidden="true"
         >
+          $first
         </i>
       </span>
     </button>
@@ -70,6 +72,7 @@ exports[`VDataFooter.ts should disable last page button if no items 1`] = `
         <i class="v-icon notranslate theme--light material-icons"
            aria-hidden="true"
         >
+          $prev
         </i>
       </span>
     </button>
@@ -84,6 +87,7 @@ exports[`VDataFooter.ts should disable last page button if no items 1`] = `
         <i class="v-icon notranslate theme--light material-icons"
            aria-hidden="true"
         >
+          $next
         </i>
       </span>
     </button>
@@ -96,6 +100,7 @@ exports[`VDataFooter.ts should disable last page button if no items 1`] = `
         <i class="v-icon notranslate theme--light material-icons"
            aria-hidden="true"
         >
+          $last
         </i>
       </span>
     </button>
@@ -135,6 +140,7 @@ exports[`VDataFooter.ts should render first & last icons with showFirstLastPage 
                 <i class="v-icon notranslate theme--light material-icons"
                    aria-hidden="true"
                 >
+                  $dropdown
                 </i>
               </div>
             </div>
@@ -160,6 +166,7 @@ exports[`VDataFooter.ts should render first & last icons with showFirstLastPage 
         <i class="v-icon notranslate theme--light material-icons"
            aria-hidden="true"
         >
+          $first
         </i>
       </span>
     </button>
@@ -171,6 +178,7 @@ exports[`VDataFooter.ts should render first & last icons with showFirstLastPage 
         <i class="v-icon notranslate theme--light material-icons"
            aria-hidden="true"
         >
+          $prev
         </i>
       </span>
     </button>
@@ -184,6 +192,7 @@ exports[`VDataFooter.ts should render first & last icons with showFirstLastPage 
         <i class="v-icon notranslate theme--light material-icons"
            aria-hidden="true"
         >
+          $next
         </i>
       </span>
     </button>
@@ -195,6 +204,7 @@ exports[`VDataFooter.ts should render first & last icons with showFirstLastPage 
         <i class="v-icon notranslate theme--light material-icons"
            aria-hidden="true"
         >
+          $last
         </i>
       </span>
     </button>
@@ -234,6 +244,7 @@ exports[`VDataFooter.ts should render in RTL mode 1`] = `
                 <i class="v-icon notranslate theme--light material-icons"
                    aria-hidden="true"
                 >
+                  $dropdown
                 </i>
               </div>
             </div>
@@ -259,6 +270,7 @@ exports[`VDataFooter.ts should render in RTL mode 1`] = `
         <i class="v-icon notranslate theme--light material-icons"
            aria-hidden="true"
         >
+          $last
         </i>
       </span>
     </button>
@@ -270,6 +282,7 @@ exports[`VDataFooter.ts should render in RTL mode 1`] = `
         <i class="v-icon notranslate theme--light material-icons"
            aria-hidden="true"
         >
+          $next
         </i>
       </span>
     </button>
@@ -283,6 +296,7 @@ exports[`VDataFooter.ts should render in RTL mode 1`] = `
         <i class="v-icon notranslate theme--light material-icons"
            aria-hidden="true"
         >
+          $prev
         </i>
       </span>
     </button>
@@ -294,6 +308,7 @@ exports[`VDataFooter.ts should render in RTL mode 1`] = `
         <i class="v-icon notranslate theme--light material-icons"
            aria-hidden="true"
         >
+          $first
         </i>
       </span>
     </button>
@@ -333,6 +348,7 @@ exports[`VDataFooter.ts should render with custom itemsPerPage 1`] = `
                 <i class="v-icon notranslate theme--light material-icons"
                    aria-hidden="true"
                 >
+                  $dropdown
                 </i>
               </div>
             </div>
@@ -358,6 +374,7 @@ exports[`VDataFooter.ts should render with custom itemsPerPage 1`] = `
         <i class="v-icon notranslate theme--light material-icons"
            aria-hidden="true"
         >
+          $prev
         </i>
       </span>
     </button>
@@ -372,6 +389,7 @@ exports[`VDataFooter.ts should render with custom itemsPerPage 1`] = `
         <i class="v-icon notranslate theme--light material-icons"
            aria-hidden="true"
         >
+          $next
         </i>
       </span>
     </button>
@@ -411,6 +429,7 @@ exports[`VDataFooter.ts should show current page if has showCurrentPage 1`] = `
                 <i class="v-icon notranslate theme--light material-icons"
                    aria-hidden="true"
                 >
+                  $dropdown
                 </i>
               </div>
             </div>
@@ -436,6 +455,7 @@ exports[`VDataFooter.ts should show current page if has showCurrentPage 1`] = `
         <i class="v-icon notranslate theme--light material-icons"
            aria-hidden="true"
         >
+          $prev
         </i>
       </span>
     </button>
@@ -452,6 +472,7 @@ exports[`VDataFooter.ts should show current page if has showCurrentPage 1`] = `
         <i class="v-icon notranslate theme--light material-icons"
            aria-hidden="true"
         >
+          $next
         </i>
       </span>
     </button>

@@ -56,6 +56,7 @@ exports[`VTreeViewNode.ts should not be able to have active children with empty 
             aria-hidden="false"
             type="button"
     >
+      arrow_drop_down
     </button>
     <div class="v-treeview-node__content">
       <div class="v-treeview-node__label">

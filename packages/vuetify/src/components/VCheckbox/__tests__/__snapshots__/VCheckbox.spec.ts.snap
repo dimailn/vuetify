@@ -96,6 +96,7 @@ exports[`VCheckbox.ts should use custom icons 1`] = `
         <i class="v-icon notranslate theme--light material-icons"
            aria-hidden="true"
         >
+          fizzbuzz
         </i>
         <input aria-checked="mixed"
                id="input-116"
@@ -123,6 +124,7 @@ exports[`VCheckbox.ts should use custom icons 2`] = `
         <i class="v-icon notranslate theme--light material-icons"
            aria-hidden="true"
         >
+          fizzbuzz
         </i>
         <input aria-checked="mixed"
                id="input-116"
@@ -150,6 +152,7 @@ exports[`VCheckbox.ts should use custom icons 3`] = `
         <i class="v-icon notranslate theme--light material-icons"
            aria-hidden="true"
         >
+          fizzbuzz
         </i>
         <input aria-checked="mixed"
                id="input-116"

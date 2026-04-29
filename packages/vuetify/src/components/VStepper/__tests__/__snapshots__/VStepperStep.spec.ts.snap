@@ -67,6 +67,7 @@ exports[`VStepperStep.ts should render editable step 1`] = `
     <i class="v-icon notranslate theme--light material-icons"
        aria-hidden="true"
     >
+      $edit
     </i>
   </span>
   <div class="v-stepper__label">

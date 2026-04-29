@@ -26,6 +26,7 @@ exports[`VDataTableHeader.ts desktop should render 1`] = `
          aria-hidden="true"
          style="font-size: 18px;"
       >
+        $sort
       </i>
     </th>
     <th role="columnheader"
@@ -42,6 +43,7 @@ exports[`VDataTableHeader.ts desktop should render 1`] = `
          aria-hidden="true"
          style="font-size: 18px;"
       >
+        $sort
       </i>
     </th>
     <th role="columnheader"
@@ -57,6 +59,7 @@ exports[`VDataTableHeader.ts desktop should render 1`] = `
          aria-hidden="true"
          style="font-size: 18px;"
       >
+        $sort
       </i>
     </th>
     <th role="columnheader"
@@ -72,6 +75,7 @@ exports[`VDataTableHeader.ts desktop should render 1`] = `
          aria-hidden="true"
          style="font-size: 18px;"
       >
+        $sort
       </i>
     </th>
     <th role="columnheader"
@@ -87,6 +91,7 @@ exports[`VDataTableHeader.ts desktop should render 1`] = `
          aria-hidden="true"
          style="font-size: 18px;"
       >
+        $sort
       </i>
     </th>
   </tr>
@@ -119,6 +124,7 @@ exports[`VDataTableHeader.ts desktop should work with multiSort 1`] = `
          aria-hidden="true"
          style="font-size: 18px;"
       >
+        $sort
       </i>
     </th>
     <th role="columnheader"
@@ -135,6 +141,7 @@ exports[`VDataTableHeader.ts desktop should work with multiSort 1`] = `
          aria-hidden="true"
          style="font-size: 18px;"
       >
+        $sort
       </i>
     </th>
     <th role="columnheader"
@@ -150,6 +157,7 @@ exports[`VDataTableHeader.ts desktop should work with multiSort 1`] = `
          aria-hidden="true"
          style="font-size: 18px;"
       >
+        $sort
       </i>
     </th>
     <th role="columnheader"
@@ -165,6 +173,7 @@ exports[`VDataTableHeader.ts desktop should work with multiSort 1`] = `
          aria-hidden="true"
          style="font-size: 18px;"
       >
+        $sort
       </i>
     </th>
     <th role="columnheader"
@@ -180,6 +189,7 @@ exports[`VDataTableHeader.ts desktop should work with multiSort 1`] = `
          aria-hidden="true"
          style="font-size: 18px;"
       >
+        $sort
       </i>
       <span class="v-data-table-header__sort-badge">
         1
@@ -218,6 +228,7 @@ exports[`VDataTableHeader.ts desktop should work with showGroupBy 1`] = `
          aria-hidden="true"
          style="font-size: 18px;"
       >
+        $sort
       </i>
       <span>
         group
@@ -237,6 +248,7 @@ exports[`VDataTableHeader.ts desktop should work with showGroupBy 1`] = `
          aria-hidden="true"
          style="font-size: 18px;"
       >
+        $sort
       </i>
       <span>
         group
@@ -255,6 +267,7 @@ exports[`VDataTableHeader.ts desktop should work with showGroupBy 1`] = `
          aria-hidden="true"
          style="font-size: 18px;"
       >
+        $sort
       </i>
       <span>
         group
@@ -273,6 +286,7 @@ exports[`VDataTableHeader.ts desktop should work with showGroupBy 1`] = `
          aria-hidden="true"
          style="font-size: 18px;"
       >
+        $sort
       </i>
       <span>
         group
@@ -291,6 +305,7 @@ exports[`VDataTableHeader.ts desktop should work with showGroupBy 1`] = `
          aria-hidden="true"
          style="font-size: 18px;"
       >
+        $sort
       </i>
       <span>
         group
@@ -326,6 +341,7 @@ exports[`VDataTableHeader.ts desktop should work with sortBy correctly 1`] = `
          aria-hidden="true"
          style="font-size: 18px;"
       >
+        $sort
       </i>
     </th>
     <th role="columnheader"
@@ -342,6 +358,7 @@ exports[`VDataTableHeader.ts desktop should work with sortBy correctly 1`] = `
          aria-hidden="true"
          style="font-size: 18px;"
       >
+        $sort
       </i>
     </th>
     <th role="columnheader"
@@ -357,6 +374,7 @@ exports[`VDataTableHeader.ts desktop should work with sortBy correctly 1`] = `
          aria-hidden="true"
          style="font-size: 18px;"
       >
+        $sort
       </i>
     </th>
     <th role="columnheader"
@@ -372,6 +390,7 @@ exports[`VDataTableHeader.ts desktop should work with sortBy correctly 1`] = `
          aria-hidden="true"
          style="font-size: 18px;"
       >
+        $sort
       </i>
     </th>
     <th role="columnheader"
@@ -387,6 +406,7 @@ exports[`VDataTableHeader.ts desktop should work with sortBy correctly 1`] = `
          aria-hidden="true"
          style="font-size: 18px;"
       >
+        $sort
       </i>
     </th>
   </tr>
@@ -419,6 +439,7 @@ exports[`VDataTableHeader.ts desktop should work with sortDesc correctly 1`] = `
          aria-hidden="true"
          style="font-size: 18px;"
       >
+        $sort
       </i>
     </th>
     <th role="columnheader"
@@ -435,6 +456,7 @@ exports[`VDataTableHeader.ts desktop should work with sortDesc correctly 1`] = `
          aria-hidden="true"
          style="font-size: 18px;"
       >
+        $sort
       </i>
     </th>
     <th role="columnheader"
@@ -450,6 +472,7 @@ exports[`VDataTableHeader.ts desktop should work with sortDesc correctly 1`] = `
          aria-hidden="true"
          style="font-size: 18px;"
       >
+        $sort
       </i>
     </th>
     <th role="columnheader"
@@ -465,6 +488,7 @@ exports[`VDataTableHeader.ts desktop should work with sortDesc correctly 1`] = `
          aria-hidden="true"
          style="font-size: 18px;"
       >
+        $sort
       </i>
     </th>
     <th role="columnheader"
@@ -480,6 +504,7 @@ exports[`VDataTableHeader.ts desktop should work with sortDesc correctly 1`] = `
          aria-hidden="true"
          style="font-size: 18px;"
       >
+        $sort
       </i>
     </th>
   </tr>
@@ -520,6 +545,7 @@ exports[`VDataTableHeader.ts mobile should render 1`] = `
                     <i class="v-icon notranslate theme--light material-icons"
                        aria-hidden="true"
                     >
+                      $dropdown
                     </i>
                   </div>
                 </div>
@@ -547,6 +573,7 @@ exports[`VDataTableHeader.ts mobile should render with data-table-select header 
               <i class="v-icon notranslate theme--light material-icons"
                  aria-hidden="true"
               >
+                $checkboxOff
               </i>
               <div class="v-input--selection-controls__ripple">
               </div>
@@ -582,6 +609,7 @@ exports[`VDataTableHeader.ts mobile should render with data-table-select header 
                     <i class="v-icon notranslate theme--light material-icons"
                        aria-hidden="true"
                     >
+                      $dropdown
                     </i>
                   </div>
                 </div>
@@ -628,6 +656,7 @@ exports[`VDataTableHeader.ts mobile should work with multiSort 1`] = `
                            aria-hidden="true"
                            style="font-size: 18px;"
                         >
+                          $sort
                         </i>
                       </div>
                     </span>
@@ -644,6 +673,7 @@ exports[`VDataTableHeader.ts mobile should work with multiSort 1`] = `
                     <i class="v-icon notranslate theme--light material-icons"
                        aria-hidden="true"
                     >
+                      $dropdown
                     </i>
                   </div>
                 </div>
@@ -696,6 +726,7 @@ exports[`VDataTableHeader.ts mobile should work with showGroupBy 1`] = `
                     <i class="v-icon notranslate theme--light material-icons"
                        aria-hidden="true"
                     >
+                      $dropdown
                     </i>
                   </div>
                 </div>
@@ -742,6 +773,7 @@ exports[`VDataTableHeader.ts mobile should work with sortBy correctly 1`] = `
                            aria-hidden="true"
                            style="font-size: 18px;"
                         >
+                          $sort
                         </i>
                       </div>
                     </span>
@@ -758,6 +790,7 @@ exports[`VDataTableHeader.ts mobile should work with sortBy correctly 1`] = `
                     <i class="v-icon notranslate theme--light material-icons"
                        aria-hidden="true"
                     >
+                      $dropdown
                     </i>
                   </div>
                 </div>
@@ -806,6 +839,7 @@ exports[`VDataTableHeader.ts mobile should work with sortDesc correctly 1`] = `
                            aria-hidden="true"
                            style="font-size: 18px;"
                         >
+                          $sort
                         </i>
                       </div>
                     </span>
@@ -822,6 +856,7 @@ exports[`VDataTableHeader.ts mobile should work with sortDesc correctly 1`] = `
                     <i class="v-icon notranslate theme--light material-icons"
                        aria-hidden="true"
                     >
+                      $dropdown
                     </i>
                   </div>
                 </div>

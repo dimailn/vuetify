@@ -201,6 +201,30 @@ describe('VIcon', () => {
       expect(wrapper.element.classList).toContain('mdi')
       expect(wrapper.element.classList).toContain('mdi-chevron-left')
     })
+
+    it('should not render raw $mdi token from v-text in Vue 3', () => {
+      const wrapper = mount(VIcon, {
+        attrs: { textContent: '$mdiReddit' },
+        global: {
+          mocks: {
+            $vuetify: {
+              theme: {
+                current: 'light',
+                dark: false
+              },
+              icons: {
+                component: null,
+                values: {
+                  mdiReddit: 'M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z'
+                }
+              }
+            }
+          }
+        }
+      })
+
+      expect(wrapper.html()).not.toContain('$mdiReddit')
+    })
   })
 
   it('should use an <i> tag if none provided', () => {
