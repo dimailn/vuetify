@@ -1,12 +1,9 @@
 <template>
   <app-btn
-    :to="{
-      name: 'Documentation',
-      params: {
-        category: 'about',
-        page: 'meet-the-team'
-      }
-    }"
+    :to="withLocaleRoute('Documentation', {
+      category: 'about',
+      page: 'meet-the-team',
+    })"
     path="team"
     @click="onClick"
   />

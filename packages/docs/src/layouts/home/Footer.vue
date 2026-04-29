@@ -43,30 +43,30 @@
         </v-col>
 
         <v-col cols="12">
-          <i18n path="released-under-the">
+          <i18n-t keypath="released-under-the">
             &nbsp;
-            <i18n
+            <i18n-t
               class="grey--text text--lighten-1"
               href="https://opensource.org/licenses/MIT"
-              path="mit-license"
+              keypath="mit-license"
               rel="noopener"
               tag="a"
               target="_blank"
             />
-          </i18n>
+          </i18n-t>
 
           <br>
 
           <div class="mb-4">
-            <i18n path="copyright">
+            <i18n-t keypath="copyright">
               &copy; 2016-{{ (new Date()).getFullYear() }}
 
               {{ $t('vuetify') }}
-            </i18n>
+            </i18n-t>
           </div>
 
           <template v-for="(link, i) in links" :key="i">
-            <i18n
+            <i18n-t
               v-bind="link"
               class="grey--text text--lighten-1"
               rel="noopener"
@@ -90,15 +90,15 @@
       links: [
         {
           href: 'https://www.iubenda.com/privacy-policy/76325752',
-          path: 'privacy-policy',
+          keypath: 'privacy-policy',
         },
         {
           href: 'https://www.iubenda.com/privacy-policy/76325752/cookie-policy',
-          path: 'cookie-policy',
+          keypath: 'cookie-policy',
         },
         {
           href: 'mailto:support@vuetifyjs.com',
-          path: 'contact-us',
+          keypath: 'contact-us',
         },
       ],
       socials: [

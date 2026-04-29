@@ -16,7 +16,22 @@
       onRouteChange (to) {
         if (this.scrolling) return
 
-        VListGroup.options.methods.onRouteChange.call(this, to)
+        const baseOnRouteChange = VListGroup?.methods?.onRouteChange
+
+        if (typeof baseOnRouteChange === 'function') {
+          baseOnRouteChange.call(this, to)
+          return
+        }
+
+        if (!this.group || typeof this.matchRoute !== 'function') return
+
+        const isActive = this.matchRoute(to.path)
+
+        if (isActive && this.isActive !== isActive && this.list) {
+          this.list.listClick(this.$.uid)
+        }
+
+        this.isActive = isActive
       },
     },
   }

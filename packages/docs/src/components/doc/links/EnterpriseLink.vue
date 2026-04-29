@@ -7,7 +7,7 @@
     class="ml-2"
     @click="onClick"
   >
-    <i18n path="get-help" />
+    <i18n-t keypath="get-help" />
   </app-btn>
 </template>
 

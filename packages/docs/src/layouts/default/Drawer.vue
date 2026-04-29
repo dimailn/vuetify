@@ -115,6 +115,8 @@
 
             // Find the active list group
             for (const node of nodes) {
+              if (!(node instanceof HTMLElement)) continue
+
               if (
                 !node.classList.contains('v-list-group--active') ||
                 node.children.length < 2

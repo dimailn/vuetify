@@ -1,12 +1,9 @@
 <template>
   <app-tooltip-btn
-    :to="{
-      name: 'Documentation',
-      params: {
-        category: 'resources',
-        page: 'jobs-for-vue'
-      }
-    }"
+    :to="withLocaleRoute('Documentation', {
+      category: 'resources',
+      page: 'jobs-for-vue',
+    })"
     class="jobs-link"
     path="jobs"
     @click="onClick"

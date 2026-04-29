@@ -5,8 +5,11 @@
 </template>
 
 <script>
+  import { computed } from 'vue'
+  import { useRoute } from 'vue-router'
+  import { useHead } from '@unhead/vue'
   // Utilities
-  import { call, get, sync } from 'vuex-pathify'
+  import { call } from 'vuex-pathify'
   import { genAppMetaInfo } from '@/util/metadata'
   import { wait, waitForReadystate } from '@/util/helpers'
 
@@ -16,21 +19,38 @@
   export default {
     name: 'App',
 
-    metaInfo () {
-      const suffix = this.name !== 'Home' ? ' — Vuetify' : ''
-
-      return {
-        ...genAppMetaInfo(metadata),
-        titleTemplate: chunk => `${chunk}${suffix}`,
-      }
+    setup () {
+      const route = useRoute()
+      useHead(
+        computed(() => {
+          const base = genAppMetaInfo(metadata)
+          const suffix = route.name !== 'Home' ? ' — Vuetify' : ''
+          return {
+            title: base.title,
+            titleTemplate: suffix ? `%s${suffix}` : undefined,
+            link: base.link,
+            meta: base.meta,
+          }
+        }),
+      )
     },
 
     computed: {
-      ...get('route', [
-        'hash',
-        'name',
-      ]),
-      scrolling: sync('app/scrolling'),
+      /** Явные геттеры: vuex-pathify get() в связке с Vue 3 даёт «no getter» */
+      hash () {
+        return this.$store.state.route?.hash ?? ''
+      },
+      routeName () {
+        return this.$store.state.route?.name ?? ''
+      },
+      scrolling: {
+        get () {
+          return this.$store.state.app.scrolling
+        },
+        set (v) {
+          this.$store.commit('app/scrolling', v)
+        },
+      },
     },
 
     async mounted () {

@@ -52,11 +52,11 @@
           />
 
           <v-list-item-subtitle>
-            <i18n path="published-on">
+            <i18n-t keypath="published-on">
               <template #date>
                 <strong v-text="props.item.published_at" />
               </template>
-            </i18n>
+            </i18n-t>
           </v-list-item-subtitle>
         </v-list-item-content>
       </template>
@@ -84,21 +84,21 @@
 
           <v-list-item-content>
             <v-list-item-title class="mb-1 text-h6">
-              <i18n path="released-by">
+              <i18n-t keypath="released-by">
                 <template #author>
                   <app-link :href="search.author.html_url">
                     {{ search.author.login }}
                   </app-link>
                 </template>
-              </i18n>
+              </i18n-t>
             </v-list-item-title>
 
             <v-list-item-subtitle>
-              <i18n path="published-on">
+              <i18n-t keypath="published-on">
                 <template #date>
                   <strong v-text="search.published_at" />
                 </template>
-              </i18n>
+              </i18n-t>
             </v-list-item-subtitle>
           </v-list-item-content>
         </v-list-item>

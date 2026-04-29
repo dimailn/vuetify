@@ -14,7 +14,8 @@ const languageRegexp = new RegExp('^(' + languagePattern + ')$')
 export function abort (code = 404) {
   return {
     name: 'FourOhFour',
-    path: '/:pathMatch(.*)*',
+    // относительный путь: иначе Vue Router 4 ругается на абсолют без :locale как у родителя /:locale(...)
+    path: ':pathMatch(.*)*',
     component: () => error(code),
   }
 }

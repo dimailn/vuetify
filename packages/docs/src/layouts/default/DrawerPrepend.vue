@@ -4,7 +4,7 @@
     flat
   >
     <v-list-item class="pa-0 mx-n1">
-      <vuetify-logo :to="{ name: 'Home' }" />
+      <vuetify-logo :to="withLocaleRoute('Home')" />
 
       <v-spacer />
     </v-list-item>

@@ -45,11 +45,11 @@
         text
         @click="archived = !archived"
       >
-        <i18n :path="archived ? 'unread' : 'read'">
+        <i18n-t :keypath="archived ? 'unread' : 'read'">
           <template #number>
             <strong v-text="archived ? unread.length : read.length" />
           </template>
-        </i18n>
+        </i18n-t>
       </v-btn>
 
       <v-spacer />
@@ -74,8 +74,8 @@
         v-if="done"
         class="py-8 text-center text-subtitle-1"
       >
-        <i18n
-          path="done"
+        <i18n-t
+          keypath="done"
           tag="p"
         />
 

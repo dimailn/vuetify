@@ -38,46 +38,45 @@
   export default {
     name: 'BgOverview',
 
-    data: () => ({
-      items: [
-        {
-          icon: 'mdi-speedometer',
-          title: 'Installation',
-          subtitle: 'Install Vuetify.',
-          to: {
-            name: 'Documentation',
-            params: {
+    computed: {
+      items () {
+        return [
+          {
+            icon: 'mdi-speedometer',
+            title: 'Installation',
+            subtitle: 'Install Vuetify.',
+            to: this.withLocaleRoute('Documentation', {
               category: 'getting-started',
               page: 'installation',
-            },
+            }),
           },
-        },
-        {
-          icon: 'mdi-image-edit-outline',
-          title: 'Customization',
-          subtitle: 'Configuring your App.',
-        },
-        {
-          icon: 'mdi-palette-outline',
-          title: 'Styling',
-          subtitle: 'Styling Vuetify.',
-        },
-        {
-          icon: 'mdi-human-male-board',
-          title: 'Resources',
-          subtitle: 'Available tooling and more.',
-        },
-        {
-          icon: 'mdi-bullhorn-outline',
-          title: `What's new`,
-          subtitle: 'Browse latest releases.',
-        },
-        {
-          icon: 'mdi-console',
-          title: 'Support',
-          subtitle: 'Professional services.',
-        },
-      ],
-    }),
+          {
+            icon: 'mdi-image-edit-outline',
+            title: 'Customization',
+            subtitle: 'Configuring your App.',
+          },
+          {
+            icon: 'mdi-palette-outline',
+            title: 'Styling',
+            subtitle: 'Styling Vuetify.',
+          },
+          {
+            icon: 'mdi-human-male-board',
+            title: 'Resources',
+            subtitle: 'Available tooling and more.',
+          },
+          {
+            icon: 'mdi-bullhorn-outline',
+            title: `What's new`,
+            subtitle: 'Browse latest releases.',
+          },
+          {
+            icon: 'mdi-console',
+            title: 'Support',
+            subtitle: 'Professional services.',
+          },
+        ]
+      },
+    },
   }
 </script>

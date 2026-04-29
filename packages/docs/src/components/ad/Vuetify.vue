@@ -43,10 +43,10 @@
         </div>
       </v-list-item-content>
 
-      <i18n
+      <i18n-t
         v-if="!compact"
         class="powered-by align-self-end justify-self-end pl-4 my-2 hidden-sm-and-down"
-        path="ads-via-vuetify"
+        keypath="ads-via-vuetify"
         tag="div"
       />
     </v-list-item>

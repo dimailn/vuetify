@@ -1,9 +1,9 @@
 <template>
   <app-sheet class="mb-12 overflow-hidden">
     <v-simple-table>
-      <i18n
+      <i18n-t
         class="pa-4"
-        path="breakpoints-table.caption"
+        keypath="breakpoints-table.caption"
         tag="caption"
       />
 
@@ -24,8 +24,8 @@
               v-text="breakpoint.icon"
             />
 
-            <i18n
-              :path="breakpoint.device"
+            <i18n-t
+              :keypath="breakpoint.device"
               tag="span"
             />
           </td>
@@ -34,8 +34,8 @@
             <strong v-text="breakpoint.code" />
           </td>
 
-          <i18n
-            :path="breakpoint.type"
+          <i18n-t
+            :keypath="breakpoint.type"
             tag="td"
           />
 
@@ -49,14 +49,14 @@
             class="text-caption text-center grey--text"
             colspan="4"
           >
-            <i18n
-              path="breakpoints-table.footer"
+            <i18n-t
+              keypath="breakpoints-table.footer"
               tag="em"
             >
               <template #size>
                 * -16px
               </template>
-            </i18n>
+            </i18n-t>
           </td>
         </tr>
 
@@ -80,7 +80,7 @@
                   $mdiMaterialDesign
                 </v-icon>
 
-                <i18n path="breakpoints-table.spec" />
+                <i18n-t keypath="breakpoints-table.spec" />
               </a>
             </small>
           </td>

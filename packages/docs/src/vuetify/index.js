@@ -6,14 +6,10 @@
 
 // Imports
 import { icons } from './icons'
-import Vuetify from 'vuetify/lib/framework'
+import Vuetify from 'vuetify/lib'
 
 // Globals
 import { IS_SERVER } from '@/util/globals'
-
-export function useVuetify (app) {
-  app.use(Vuetify)
-}
 
 export function createVuetify (store) {
   const vuetify = new Vuetify({

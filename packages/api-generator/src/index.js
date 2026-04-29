@@ -1,11 +1,23 @@
-const Vue = require('vue')
-const Vuetify = require('vuetify')
+const path = require('path')
+const workspaceRoot = path.resolve(__dirname, '../../..')
+// api-generator исторически тянет vue@2 из своих deps, но docs уже на vue@3.
+// Для миграции генератора принудительно используем корневой Vue 3.
+const Vue = require(path.join(workspaceRoot, 'node_modules/vue'))
+const styleExtensions = ['.sass', '.scss', '.styl']
+for (const ext of styleExtensions) {
+  require.extensions[ext] = () => null
+}
+const Vuetify = require(path.resolve(__dirname, '../../vuetify/es5')).default
 const { components: excludes } = require('./helpers/excludes')
 const { camelCase, kebabCase, pascalize } = require('./helpers/text')
 const { parseComponent, parseSassVariables, parseGlobalSassVariables } = require('./helpers/parsing')
 const deepmerge = require('./helpers/merge')
 
-Vue.use(Vuetify)
+const app = Vue.createApp({})
+app.use(Vuetify)
+
+const registeredComponents = app._context.components
+const registeredDirectives = app._context.directives
 
 const loadLocale = (componentName, locale, fallback = {}) => {
   try {
@@ -114,9 +126,9 @@ const addGenericApiDescriptions = (name, api, locales, categories) => {
 const getComponentApi = (componentName, locales) => {
   const pascalName = pascalize(componentName)
 
-  let component = Vue.options._base.options.components[pascalName]
+  let component = registeredComponents[pascalName]
 
-  if (component.options.$_wrapperFor) {
+  if (component?.options?.$_wrapperFor) {
     component = component.options.$_wrapperFor
   }
 
@@ -139,7 +151,7 @@ const getComponentApi = (componentName, locales) => {
 const getDirectiveApi = (directiveName, locales) => {
   const pascalName = pascalize(directiveName.slice(2))
 
-  const directive = Vue.options._base.options.directives[pascalName]
+  const directive = registeredDirectives[pascalName]
 
   if (!directive) throw new Error(`Could not find directive: ${directiveName}`)
 
@@ -174,7 +186,7 @@ const getApi = (name, locales) => {
 
 const getComponentsApi = locales => {
   const components = []
-  const installedComponents = Vue.options._base.options.components
+  const installedComponents = registeredComponents
   const componentNameRegex = /^(?:V[A-Z]|v-[a-z])/
 
   for (const componentName in installedComponents) {

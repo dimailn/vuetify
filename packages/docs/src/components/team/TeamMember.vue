@@ -55,9 +55,9 @@
           v-if="member.focus"
           class="d-flex align-center flex-wrap"
         >
-          <i18n
+          <i18n-t
             class="text-uppercase text-caption font-weight-regular"
-            path="focus"
+            keypath="focus"
             tag="h3"
           />
 
@@ -84,9 +84,9 @@
           v-if="member.funding"
           class="d-flex align-center flex-wrap mt-1"
         >
-          <i18n
+          <i18n-t
             class="text-uppercase text-caption font-weight-regular"
-            path="funding"
+            keypath="funding"
             tag="h3"
           />
 

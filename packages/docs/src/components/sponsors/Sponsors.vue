@@ -5,7 +5,6 @@
     class="v-sponsors"
     dense
     v-bind="$attrs"
-    v-on="$listeners"
   >
     <v-col
       v-for="sponsor in sponsors"

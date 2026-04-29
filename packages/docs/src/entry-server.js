@@ -9,72 +9,60 @@ require('dotenv').config({ path: resolve('../.env.local') })
 
 global.fetch = require('node-fetch')
 
-// This exported function will be called by `bundleRenderer`.
-// This is where we perform data-prefetching to determine the
-// state of our application before actually rendering it.
-// Since data fetching is async, this function is expected to
-// return a Promise that resolves to the app instance.
-export default context => {
-  /* eslint-disable-next-line no-async-promise-executor */
-  return new Promise(async (resolve, reject) => {
-    let app
-    let router
-    let store
+async function getAsyncDataFromMatched (router, store) {
+  const matched = router.currentRoute.value.matched
+  const tasks = []
 
-    try {
-      const res = await createApp(undefined, context)
+  for (const record of matched) {
+    const comp = record.components?.default
+    if (!comp) continue
 
-      app = res.app
-      router = res.router
-      store = res.store
-    } catch (e) {
-      console.log('error in server try')
-
-      reject(e)
+    let def = comp
+    if (typeof comp === 'function') {
+      const resolved = await comp()
+      def = resolved.default || resolved
     }
 
-    // set router's location
-    router.push(context.url)
-
-    // wait until router has resolved possible async hooks
-    router.onReady(() => {
-      const matchedComponents = router.getMatchedComponents()
-
-      // Call fetchData hooks on components matched by the route.
-      // A preFetch hook dispatches a store action and returns a Promise,
-      // which is resolved when the action is complete and store state has been
-      // updated.
-      Promise.all(
-        matchedComponents.map(async c => {
-          try {
-            const asyncData = c._Ctor[0].options.asyncData
-            await asyncData({
-              route: router.currentRoute,
-              store,
-            })
-          } catch (e) {
-            return Promise.resolve(e)
-          }
+    if (def && typeof def.asyncData === 'function') {
+      tasks.push(
+        def.asyncData({
+          route: router.currentRoute.value,
+          store,
         }),
-      ).then(() => {
-        // After all preFetch hooks are resolved, our store is now
-        // filled with the state needed to render the app.
-        // Expose the state on the render context, and let the request handler
-        // inline the state in the HTML response. This allows the client-side
-        // store to pick-up the server-side state without having to duplicate
-        // the initial data fetching on the client.
-        context.state = store.state
+      )
+    }
+  }
 
-        // Vue Meta 3 SSR integration
-        // В новой версии vue-meta метаданные будут автоматически добавлены
-        // через teleport в контекст рендеринга при использовании renderToString
+  return Promise.all(tasks)
+}
 
-        resolve(app)
-      }).catch(e => {
-        console.log('missing route break server')
+export default async context => {
+  let app
+  let router
+  let store
 
-        reject(e)
-      })
-    }, reject)
-  })
+  try {
+    const res = await createApp(undefined, context)
+
+    app = res.app
+    router = res.router
+    store = res.store
+  } catch (e) {
+    console.log('error in server try')
+    return Promise.reject(e)
+  }
+
+  await router.push(context.url)
+  await router.isReady()
+
+  try {
+    await getAsyncDataFromMatched(router, store)
+  } catch (e) {
+    console.log('asyncData error', e)
+    return Promise.reject(e)
+  }
+
+  context.state = store.state
+
+  return app
 }

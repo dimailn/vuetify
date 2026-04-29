@@ -17,15 +17,12 @@ interface ObserveDirectiveBinding
   }
 }
 
-// Расширяем HTMLElement для хранения данных наблюдателя
-declare global {
-  interface HTMLElement {
-    _observe?: Record<
-      number,
-      { init: boolean, observer: IntersectionObserver }
-    >
-  }
+interface IntersectState {
+  init: boolean
+  observer: IntersectionObserver
 }
+
+const intersectState = new WeakMap<HTMLElement, IntersectState>()
 
 function mounted (
   el: HTMLElement,
@@ -48,8 +45,8 @@ function mounted (
       entries: IntersectionObserverEntry[] = [],
       observer: IntersectionObserver
     ) => {
-      const _observe = el._observe?.[vnode.ctx!.uid]
-      if (!_observe) return // Just in case, should never fire
+      const state = intersectState.get(el)
+      if (!state) return // Just in case, should never fire
 
       const isIntersecting = entries.some(entry => entry.isIntersecting)
 
@@ -58,20 +55,19 @@ function mounted (
       if (
         handler &&
         typeof handler === 'function' &&
-        (!modifiers.quiet || _observe.init) &&
-        (!modifiers.once || isIntersecting || _observe.init)
+        (!modifiers.quiet || state.init) &&
+        (!modifiers.once || isIntersecting || state.init)
       ) {
         handler(entries, observer, isIntersecting)
       }
 
       if (isIntersecting && modifiers.once) unmounted(el, binding, vnode)
-      else _observe.init = true
+      else state.init = true
     },
     options
   )
 
-  el._observe = Object(el._observe)
-  el._observe![vnode.ctx!.uid] = { init: false, observer }
+  intersectState.set(el, { init: false, observer })
 
   observer.observe(el)
 }
@@ -93,11 +89,11 @@ function unmounted (
   binding: ObserveDirectiveBinding,
   vnode: VNode
 ) {
-  const observe = el._observe?.[vnode.ctx!.uid]
-  if (!observe) return
+  const state = intersectState.get(el)
+  if (!state) return
 
-  observe.observer.unobserve(el)
-  delete el._observe![vnode.ctx!.uid]
+  state.observer.unobserve(el)
+  intersectState.delete(el)
 }
 
 export const Intersect: ObjectDirective<

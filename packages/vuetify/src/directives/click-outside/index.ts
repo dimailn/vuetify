@@ -12,6 +12,14 @@ type ClickOutsideDirective = VNodeDirective & {
   value?: ((e: Event) => void) | ClickOutsideBindingArgs
 }
 
+interface ClickOutsideState {
+  onClick: (e: Event) => void
+  onMousedown: (e: Event) => void
+  lastMousedownWasOutside: boolean
+}
+
+const clickOutsideState = new WeakMap<HTMLElement, ClickOutsideState>()
+
 function defaultConditional () {
   return true
 }
@@ -55,8 +63,10 @@ function checkIsActive (e: PointerEvent, binding: ClickOutsideDirective): boolea
 
 function directive (e: PointerEvent, el: HTMLElement, binding: ClickOutsideDirective) {
   const handler = typeof binding.value === 'function' ? binding.value : binding.value!.handler
+  const state = clickOutsideState.get(el)
+  if (!state) return
 
-  el._clickOutside!.lastMousedownWasOutside && checkEvent(e, el, binding) && setTimeout(() => {
+  state.lastMousedownWasOutside && checkEvent(e, el, binding) && setTimeout(() => {
     checkIsActive(e, binding) && handler && handler(e)
   }, 0)
 }
@@ -80,39 +90,36 @@ export const ClickOutside = {
   mounted (el: HTMLElement, binding: ClickOutsideDirective, vnode: VNode) {
     const onClick = (e: Event) => directive(e as PointerEvent, el, binding)
     const onMousedown = (e: Event) => {
-      el._clickOutside!.lastMousedownWasOutside = checkEvent(e as PointerEvent, el, binding)
+      const state = clickOutsideState.get(el)
+      if (!state) return
+      state.lastMousedownWasOutside = checkEvent(e as PointerEvent, el, binding)
     }
+
+    clickOutsideState.set(el, {
+      onClick,
+      onMousedown,
+      lastMousedownWasOutside: true
+    })
 
     handleShadow(el, (app: HTMLElement) => {
       app.addEventListener('click', onClick, true)
       app.addEventListener('mousedown', onMousedown, true)
     })
-
-    if (!el._clickOutside) {
-      el._clickOutside = {
-        lastMousedownWasOutside: true
-      }
-    }
-
-    el._clickOutside[vnode.ctx.uid] = {
-      onClick,
-      onMousedown
-    }
   },
 
   unmounted (el: HTMLElement, binding: ClickOutsideDirective, vnode: VNode) {
-    if (!el._clickOutside) return
+    const state = clickOutsideState.get(el)
+    if (!state) return
 
     handleShadow(el, (app: HTMLElement) => {
-      if (!app || !el._clickOutside?.[vnode.ctx.uid]) return
+      if (!app) return
 
-      const { onClick, onMousedown } = el._clickOutside[vnode.ctx.uid]!
-
+      const { onClick, onMousedown } = state
       app.removeEventListener('click', onClick, true)
       app.removeEventListener('mousedown', onMousedown, true)
     })
 
-    delete el._clickOutside[vnode.ctx.uid]
+    clickOutsideState.delete(el)
   }
 }
 

@@ -21,7 +21,10 @@
     "paths": {
       "@/test/*": ["test/*"],
       "@*": ["src/*"],
-      "vue": ["../../node_modules/vue"]
+      "vue": ["../../node_modules/vue"],
+      "vuetify": ["src/entry-lib.ts"],
+      "vuetify/types": ["types/index.d.ts"],
+      "vuetify/types/*": ["types/*"]
     }
   }
 }

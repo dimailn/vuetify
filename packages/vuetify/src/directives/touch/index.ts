@@ -85,6 +85,8 @@ function createHandlers (value: TouchHandlers): TouchStoredHandlers {
   }
 }
 
+const touchState = new WeakMap<EventTarget, TouchStoredHandlers>()
+
 function mounted (
   el: HTMLElement,
   binding: DirectiveBinding<TouchValue>,
@@ -98,8 +100,7 @@ function mounted (
   if (!target) return
 
   const handlers = createHandlers(binding.value)
-  target._touchHandlers = Object(target._touchHandlers)
-  target._touchHandlers![vnode.ctx!.uid] = handlers
+  touchState.set(target, handlers)
 
   keys(handlers).forEach(eventName => {
     target.addEventListener(
@@ -116,14 +117,14 @@ function unmounted (
   vnode: VNode
 ) {
   const target = binding.value.parent ? el.parentElement : el
-  if (!target || !target._touchHandlers) return
+  if (!target) return
 
-  const handlers = target._touchHandlers[vnode.ctx!.uid]
+  const handlers = touchState.get(target)
   if (handlers) {
     keys(handlers).forEach(eventName => {
       target.removeEventListener(eventName, handlers[eventName])
     })
-    delete target._touchHandlers[vnode.ctx!.uid]
+    touchState.delete(target)
   }
 }
 

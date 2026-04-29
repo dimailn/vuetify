@@ -3,15 +3,14 @@
     class="v-btn--app text--secondary text-capitalize font-weight-regular px-2"
     v-bind="{
       text: true,
-      ...$attrs,
+      ...forwardedAttrs,
     }"
-    v-on="$listeners"
   >
     <slot v-if="$slots.default" />
 
-    <i18n
+    <i18n-t
       v-else-if="path"
-      :path="path"
+      :keypath="path"
     />
   </v-btn>
 </template>
@@ -20,6 +19,16 @@
   export default {
     name: 'AppBtn',
 
+    inheritAttrs: false,
+
     props: { path: String },
+
+    computed: {
+      forwardedAttrs () {
+        // `ref` from legacy activator bindings breaks on hoisted vnode in Vue 3
+        const { ref, ...attrs } = this.$attrs
+        return attrs
+      },
+    },
   }
 </script>

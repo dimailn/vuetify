@@ -12,9 +12,10 @@ describe('scroll.ts', () => {
   let vnode
 
   beforeEach(() => {
-    vnode = { ctx: { uid: 1 } } as any
+    vnode = {} as any
     options = { passive: true }
     binding = {
+      instance: { $: { uid: 1 } },
       value: jest.fn(),
       modifiers: {},
       arg: null
@@ -32,16 +33,10 @@ describe('scroll.ts', () => {
     mounted(el, binding, vnode)
 
     expect(spyOnWindowAddListener).toHaveBeenCalledWith('scroll', binding.value, options)
-    expect(el._onScroll[1]).toEqual({
-      handler: binding.value,
-      options,
-      target: window
-    })
 
     unmounted(el, binding, vnode)
 
     expect(spyOnWindowRemoveListener).toHaveBeenCalledWith('scroll', binding.value, options)
-    expect(el._onScroll[1]).toBeUndefined()
   })
 
   it('should work with a provided valid querySelector string', () => {
@@ -66,16 +61,10 @@ describe('scroll.ts', () => {
     mounted(el, binding, vnode)
 
     expect(spyOnFooAddListener).toHaveBeenCalledWith('scroll', binding.value, options)
-    expect(el._onScroll[1]).toEqual({
-      handler: binding.value,
-      options,
-      target
-    })
 
     unmounted(el, binding, vnode)
 
     expect(spyOnFooRemoveListener).toHaveBeenCalledWith('scroll', binding.value, options)
-    expect(el._onScroll[1]).toBeUndefined()
 
     document.body.removeChild(target)
   })
@@ -86,16 +75,10 @@ describe('scroll.ts', () => {
     mounted(el, binding, vnode)
 
     expect(el.addEventListener).toHaveBeenCalledWith('scroll', binding.value, options)
-    expect(el._onScroll[1]).toEqual({
-      handler: binding.value,
-      options,
-      target: undefined
-    })
 
     unmounted(el, binding, vnode)
 
     expect(el.removeEventListener).toHaveBeenCalledWith('scroll', binding.value, options)
-    expect(el._onScroll[1]).toBeUndefined()
   })
 
   it('should not remove listeners if no _onScroll property present', () => {
@@ -106,25 +89,18 @@ describe('scroll.ts', () => {
 
   it('should accept an object for the value with handler and/or options', () => {
     const handler = binding.value
+    jest.spyOn(window, 'addEventListener')
 
     binding.value = { handler }
 
     mounted(el, binding, vnode)
 
-    expect(el._onScroll[1]).toEqual({
-      handler,
-      target: window,
-      options: { passive: true }
-    })
+    expect(window.addEventListener).toHaveBeenLastCalledWith('scroll', handler, { passive: true })
 
     binding.value = { handler, options: { passive: false } }
 
     mounted(el, binding, vnode)
 
-    expect(el._onScroll[1]).toEqual({
-      handler,
-      target: window,
-      options: { passive: false }
-    })
+    expect(window.addEventListener).toHaveBeenLastCalledWith('scroll', handler, { passive: false })
   })
 })

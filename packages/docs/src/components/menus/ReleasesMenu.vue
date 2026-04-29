@@ -41,13 +41,10 @@
           { heading: this.$t('releases') },
           {
             title: this.$t('release-notes'),
-            to: {
-              name: 'Documentation',
-              params: {
-                category: 'getting-started',
-                page: 'release-notes',
-              },
-            },
+            to: this.withLocaleRoute('Documentation', {
+              category: 'getting-started',
+              page: 'release-notes',
+            }),
           },
           {
             title: this.$t('github-releases'),

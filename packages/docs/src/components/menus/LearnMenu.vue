@@ -26,14 +26,14 @@
           { heading: this.$t('documentation') },
           {
             title: this.$t('guide'),
-            to: {
-              name: 'Documentation',
-              params: {
+            to: this.withLocaleRoute(
+              'Documentation',
+              {
                 category: 'introduction',
                 page: 'why-vuetify',
               },
-              hash: '#feature-guides',
-            },
+              { hash: '#feature-guides' },
+            ),
           },
           { divider: true },
           { heading: this.$t('video-courses') },

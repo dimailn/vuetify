@@ -6,7 +6,6 @@
       ...$attrs,
       ...$props,
     }"
-    v-on="$listeners"
   />
 </template>
 

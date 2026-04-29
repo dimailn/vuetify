@@ -1,4 +1,3 @@
-const Vue = require('vue')
 const fs = require('fs')
 const { props: excludes } = require('./excludes')
 const { kebabCase, pascalize } = require('./text')
@@ -44,29 +43,31 @@ function getPropDefault (def, type) {
 }
 
 function getPropSource (name, mixins) {
-  const source = null
-  for (let i = 0; i < mixins.length; i++) {
-    let mixin = mixins[i]
-    if (mixin.name !== 'VueComponent') mixin = Vue.extend(mixin)
-    if (mixin.options.name) {
-      const source = Object.keys(mixin.options.props || {}).find(p => p === name) && mixin.options.name
-      const found = getPropSource(name, [mixin.super].concat(mixin.options.extends).concat(mixin.options.mixins).filter(m => !!m)) || source
-      if (found) return kebabCase(found)
-    }
+  for (const mixin of mixins) {
+    const options = mixin?.options || mixin
+    if (!options) continue
+
+    const source = Object.keys(options.props || {}).find(p => p === name) && options.name
+    const nested = [mixin?.super, options.extends].concat(options.mixins || []).filter(Boolean)
+    const found = getPropSource(name, nested) || source
+    if (found) return kebabCase(found)
   }
 
-  return source
+  return null
 }
 
 function genProp (name, prop, mixins, cmp) {
-  const type = getPropType(prop.type)
+  const normalized = (prop && typeof prop === 'object' && !Array.isArray(prop))
+    ? prop
+    : { type: prop }
+  const type = getPropType(normalized.type)
   const propSource = getPropSource(name, mixins) || kebabCase(cmp)
   const source = (propSource.slice(-10) === 'transition') ? 'transitions' : propSource
 
   return {
     name: kebabCase(name),
     type,
-    default: getPropDefault(prop.default, type),
+    default: getPropDefault(normalized.default, type),
     source,
   }
 }
@@ -90,16 +91,15 @@ function parseMixins (component) {
   if (!component.mixins) return []
 
   let mixins = []
-  for (let i = 0; i < component.mixins.length; i++) {
-    let mixin = component.mixins[i]
+  for (const mixin of component.mixins) {
+    const options = mixin?.options || mixin
+    if (!options) continue
 
-    if (mixin.name !== 'VueComponent') mixin = Vue.extend(mixin)
+    if (options.name) {
+      mixins.push(options.name)
 
-    if (mixin.name) {
-      mixins.push(mixin.name)
-
-      if (mixin.mixins) {
-        mixins = mixins.concat(parseMixins(mixin))
+      if (options.mixins) {
+        mixins = mixins.concat(parseMixins(options))
       }
     }
   }

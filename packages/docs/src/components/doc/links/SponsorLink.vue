@@ -1,17 +1,13 @@
 <template>
   <v-btn
     :aria-label="$t('become-a-sponsor')"
-    :to="{
-      name: 'Documentation',
-      params: {
-        category: 'about',
-        page: 'sponsors-and-backers'
-      }
-    }"
+    :to="withLocaleRoute('Documentation', {
+      category: 'about',
+      page: 'sponsors-and-backers',
+    })"
     color="primary"
     outlined
     v-bind="$attrs"
-    v-on="$listeners"
     @click="onClick"
   >
     <span
