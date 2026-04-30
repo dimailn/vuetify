@@ -112,6 +112,7 @@ module.exports = {
       alias: {
         // Совместимость импортов `vuetify/...` со скоуп-пакетом workspace
         vuetify: path.resolve(__dirname, '../vuetify'),
+        vue: path.resolve(__dirname, 'node_modules/vue'),
         // Единая точка импорта pathify с Vue 3-совместимыми get/sync для Options API.
         'vuex-pathify': path.resolve(__dirname, 'src/plugins/vuex-pathify.js'),
         '@unhead/vue/client': unheadVueDist('client.mjs'),

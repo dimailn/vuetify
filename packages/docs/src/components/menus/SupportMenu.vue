@@ -3,10 +3,9 @@
     :items="items"
     min-width="180"
   >
-    <template #activator="slotProps">
+    <template #activator="{ attrs }">
       <app-btn
-        v-bind="slotProps.props || slotProps.attrs"
-        v-on="slotProps.on || {}"
+        v-bind="attrs"
       >
         {{ $t('support') }}
 
