@@ -158,6 +158,10 @@ exports[`VDatePicker.ts should match snapshot with colored picker & header 1`] =
             <span class="v-icon notranslate theme--light"
                   aria-hidden="true"
             >
+              <mdi class="v-icon__component theme--light"
+                   icon="mdi-chevron-left"
+              >
+              </mdi>
             </span>
           </span>
         </button>
@@ -176,6 +180,10 @@ exports[`VDatePicker.ts should match snapshot with colored picker & header 1`] =
             <span class="v-icon notranslate theme--light"
                   aria-hidden="true"
             >
+              <mdi class="v-icon__component theme--light"
+                   icon="mdi-chevron-right"
+              >
+              </mdi>
             </span>
           </span>
         </button>
@@ -338,6 +346,10 @@ exports[`VDatePicker.ts should match snapshot with colored picker 1`] = `
             <span class="v-icon notranslate theme--light"
                   aria-hidden="true"
             >
+              <mdi class="v-icon__component theme--light"
+                   icon="mdi-chevron-left"
+              >
+              </mdi>
             </span>
           </span>
         </button>
@@ -356,6 +368,10 @@ exports[`VDatePicker.ts should match snapshot with colored picker 1`] = `
             <span class="v-icon notranslate theme--light"
                   aria-hidden="true"
             >
+              <mdi class="v-icon__component theme--light"
+                   icon="mdi-chevron-right"
+              >
+              </mdi>
             </span>
           </span>
         </button>
@@ -639,6 +655,10 @@ exports[`VDatePicker.ts should match snapshot with pick-month prop 1`] = `
             <span class="v-icon notranslate theme--light"
                   aria-hidden="true"
             >
+              <mdi class="v-icon__component theme--light"
+                   icon="mdi-chevron-left"
+              >
+              </mdi>
             </span>
           </span>
         </button>
@@ -657,6 +677,10 @@ exports[`VDatePicker.ts should match snapshot with pick-month prop 1`] = `
             <span class="v-icon notranslate theme--light"
                   aria-hidden="true"
             >
+              <mdi class="v-icon__component theme--light"
+                   icon="mdi-chevron-right"
+              >
+              </mdi>
             </span>
           </span>
         </button>
@@ -819,6 +843,10 @@ exports[`VDatePicker.ts should render flat picker 1`] = `
             <span class="v-icon notranslate theme--light"
                   aria-hidden="true"
             >
+              <mdi class="v-icon__component theme--light"
+                   icon="mdi-chevron-left"
+              >
+              </mdi>
             </span>
           </span>
         </button>
@@ -837,6 +865,10 @@ exports[`VDatePicker.ts should render flat picker 1`] = `
             <span class="v-icon notranslate theme--light"
                   aria-hidden="true"
             >
+              <mdi class="v-icon__component theme--light"
+                   icon="mdi-chevron-right"
+              >
+              </mdi>
             </span>
           </span>
         </button>
@@ -999,6 +1031,10 @@ exports[`VDatePicker.ts should render picker with elevation 1`] = `
             <span class="v-icon notranslate theme--light"
                   aria-hidden="true"
             >
+              <mdi class="v-icon__component theme--light"
+                   icon="mdi-chevron-left"
+              >
+              </mdi>
             </span>
           </span>
         </button>
@@ -1017,6 +1053,10 @@ exports[`VDatePicker.ts should render picker with elevation 1`] = `
             <span class="v-icon notranslate theme--light"
                   aria-hidden="true"
             >
+              <mdi class="v-icon__component theme--light"
+                   icon="mdi-chevron-right"
+              >
+              </mdi>
             </span>
           </span>
         </button>

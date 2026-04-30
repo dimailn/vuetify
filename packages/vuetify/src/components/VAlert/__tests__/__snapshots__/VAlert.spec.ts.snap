@@ -13,7 +13,7 @@ exports[`VAlert.ts should be dismissible 1`] = `
             aria-label="Close"
     >
       <span class="v-btn__content">
-        <i class="v-icon notranslate theme--light mdi mdi-close-circle"
+        <i class="v-icon notranslate mdi mdi-close-circle theme--light"
            aria-hidden="true"
         >
         </i>
@@ -58,7 +58,7 @@ exports[`VAlert.ts should have a close icon 1`] = `
             aria-label="Close"
     >
       <span class="v-btn__content">
-        <i class="v-icon notranslate theme--light mdi mdi-close-circle"
+        <i class="v-icon notranslate mdi mdi-close-circle theme--light"
            aria-hidden="true"
         >
         </i>

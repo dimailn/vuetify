@@ -23,9 +23,10 @@ exports[`VTimelineItem.ts should conditionally render an icon or icon slot 2`] =
   <div class="v-timeline-item__divider">
     <div class="v-timeline-item__dot">
       <div class="primary v-timeline-item__inner-dot">
-        <i class="v-icon notranslate theme--dark material-icons"
+        <i class="v-icon notranslate material-icons theme--dark"
            aria-hidden="true"
         >
+          foo
         </i>
       </div>
     </div>

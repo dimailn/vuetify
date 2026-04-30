@@ -5,12 +5,12 @@ exports[`VCheckbox.ts should apply classes to root element 1`] = `
   <div class="v-input__control">
     <div class="v-input__slot">
       <div class="v-input--selection-controls__input">
-        <i class="v-icon notranslate theme--light mdi mdi-checkbox-marked primary--text"
+        <i class="v-icon notranslate mdi mdi-checkbox-marked theme--light primary--text"
            aria-hidden="true"
         >
         </i>
         <input aria-checked="true"
-               id="input-140"
+               id="input-117"
                role="checkbox"
                type="checkbox"
                checked
@@ -30,7 +30,7 @@ exports[`VCheckbox.ts should apply classes to root element 1`] = `
 exports[`VCheckbox.ts should be disabled 1`] = `
 <input aria-checked="false"
        disabled
-       id="input-128"
+       id="input-107"
        role="checkbox"
        type="checkbox"
 >
@@ -41,12 +41,12 @@ exports[`VCheckbox.ts should be render colored checkbox 1`] = `
   <div class="v-input__control">
     <div class="v-input__slot">
       <div class="v-input--selection-controls__input">
-        <i class="v-icon notranslate theme--light mdi mdi-checkbox-blank-outline"
+        <i class="v-icon notranslate mdi mdi-checkbox-blank-outline theme--light"
            aria-hidden="true"
         >
         </i>
         <input aria-checked="false"
-               id="input-134"
+               id="input-112"
                role="checkbox"
                type="checkbox"
         >
@@ -67,12 +67,12 @@ exports[`VCheckbox.ts should render themed component 1`] = `
   <div class="v-input__control">
     <div class="v-input__slot">
       <div class="v-input--selection-controls__input">
-        <i class="v-icon notranslate theme--light mdi mdi-checkbox-blank-outline"
+        <i class="v-icon notranslate mdi mdi-checkbox-blank-outline theme--light"
            aria-hidden="true"
         >
         </i>
         <input aria-checked="false"
-               id="input-122"
+               id="input-102"
                role="checkbox"
                type="checkbox"
         >
@@ -93,12 +93,13 @@ exports[`VCheckbox.ts should use custom icons 1`] = `
   <div class="v-input__control">
     <div class="v-input__slot">
       <div class="v-input--selection-controls__input">
-        <i class="v-icon notranslate theme--light material-icons"
+        <i class="v-icon notranslate material-icons theme--light"
            aria-hidden="true"
         >
+          fizzbuzz
         </i>
         <input aria-checked="mixed"
-               id="input-116"
+               id="input-97"
                role="checkbox"
                type="checkbox"
                value="fizz"
@@ -120,12 +121,13 @@ exports[`VCheckbox.ts should use custom icons 2`] = `
   <div class="v-input__control">
     <div class="v-input__slot">
       <div class="v-input--selection-controls__input">
-        <i class="v-icon notranslate theme--light material-icons"
+        <i class="v-icon notranslate material-icons theme--light"
            aria-hidden="true"
         >
+          fizzbuzz
         </i>
         <input aria-checked="mixed"
-               id="input-116"
+               id="input-97"
                role="checkbox"
                type="checkbox"
                value="fizz"
@@ -147,12 +149,13 @@ exports[`VCheckbox.ts should use custom icons 3`] = `
   <div class="v-input__control">
     <div class="v-input__slot">
       <div class="v-input--selection-controls__input">
-        <i class="v-icon notranslate theme--light material-icons"
+        <i class="v-icon notranslate material-icons theme--light"
            aria-hidden="true"
         >
+          fizzbuzz
         </i>
         <input aria-checked="mixed"
-               id="input-116"
+               id="input-97"
                role="checkbox"
                type="checkbox"
                value="fizz"

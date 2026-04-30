@@ -21,7 +21,7 @@ exports[`VExpansionPanel should hide actions and match snapshot 2`] = `
           aria-expanded="false"
   >
     <div class="v-expansion-panel-header__icon">
-      <i class="v-icon notranslate theme--light mdi mdi-chevron-down"
+      <i class="v-icon notranslate mdi mdi-chevron-down theme--light"
          aria-hidden="true"
       >
       </i>

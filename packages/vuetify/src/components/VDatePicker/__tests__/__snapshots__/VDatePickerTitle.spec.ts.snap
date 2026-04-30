@@ -68,6 +68,10 @@ exports[`VDatePickerTitle.ts should render year icon 1`] = `
   <span class="v-icon notranslate theme--dark"
         aria-hidden="true"
   >
+    <mdi class="v-icon__component theme--dark"
+         icon="year"
+    >
+    </mdi>
   </span>
 </div>
 `;

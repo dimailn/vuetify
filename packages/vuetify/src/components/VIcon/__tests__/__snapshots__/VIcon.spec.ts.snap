@@ -38,37 +38,44 @@ exports[`VIcon for component icon should render component 1`] = `
 <span class="v-icon notranslate theme--light"
       aria-hidden="true"
 >
+  <div class="test-component v-icon__component theme--light">
+    test icon
+  </div>
 </span>
 `;
 
 exports[`VIcon set font size from helper prop 1`] = `
-<i class="v-icon notranslate theme--light material-icons"
+<i class="v-icon notranslate material-icons theme--light"
    aria-hidden="true"
    style="font-size: 16px;"
 >
+  add
 </i>
 `;
 
 exports[`VIcon set font size from helper prop 2`] = `
-<i class="v-icon notranslate theme--light material-icons"
+<i class="v-icon notranslate material-icons theme--light"
    aria-hidden="true"
    medium="true"
 >
+  add
 </i>
 `;
 
 exports[`VIcon set font size from helper prop 3`] = `
-<i class="v-icon notranslate theme--light material-icons"
+<i class="v-icon notranslate material-icons theme--light"
    aria-hidden="true"
    style="font-size: 36px;"
 >
+  add
 </i>
 `;
 
 exports[`VIcon set font size from helper prop 4`] = `
-<i class="v-icon notranslate theme--light material-icons"
+<i class="v-icon notranslate material-icons theme--light"
    aria-hidden="true"
    style="font-size: 40px;"
 >
+  add
 </i>
 `;

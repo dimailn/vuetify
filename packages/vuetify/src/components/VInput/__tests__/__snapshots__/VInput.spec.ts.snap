@@ -22,13 +22,17 @@ exports[`VInput.ts should apply theme to label, counter, messages and icons 1`] 
       <span class="v-icon notranslate theme--light"
             aria-hidden="true"
       >
+        <mdi class="v-icon__component theme--light"
+             icon="prepend"
+        >
+        </mdi>
       </span>
     </div>
   </div>
   <div class="v-input__control">
     <div class="v-input__slot">
       <label class="v-label theme--light"
-             for="input-50"
+             for="input-48"
              aria-hidden="false"
              style="left: 0px; position: relative;"
       >
@@ -48,6 +52,10 @@ exports[`VInput.ts should apply theme to label, counter, messages and icons 1`] 
       <span class="v-icon notranslate theme--light"
             aria-hidden="true"
       >
+        <mdi class="v-icon__component theme--light"
+             icon="append"
+        >
+        </mdi>
       </span>
     </div>
   </div>
@@ -92,6 +100,10 @@ exports[`VInput.ts should generate an icon and match snapshot 1`] = `
       <span class="v-icon notranslate theme--light"
             aria-hidden="true"
       >
+        <mdi class="v-icon__component theme--light"
+             icon="list"
+        >
+        </mdi>
       </span>
     </div>
   </div>
@@ -121,6 +133,10 @@ exports[`VInput.ts should generate an icon and match snapshot 2`] = `
       <span class="v-icon notranslate theme--light"
             aria-hidden="true"
       >
+        <mdi class="v-icon__component theme--light"
+             icon="list"
+        >
+        </mdi>
       </span>
     </div>
   </div>
@@ -177,7 +193,7 @@ exports[`VInput.ts should render a label 1`] = `
   <div class="v-input__control">
     <div class="v-input__slot">
       <label class="v-label theme--light"
-             for="input-45"
+             for="input-43"
              aria-hidden="false"
              style="left: 0px; position: relative;"
       >

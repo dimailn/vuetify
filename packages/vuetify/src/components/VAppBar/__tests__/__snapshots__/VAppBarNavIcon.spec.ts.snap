@@ -5,7 +5,7 @@ exports[`AppBarNavIcon.ts should render correctly 1`] = `
         type="button"
 >
   <span class="v-btn__content">
-    <i class="v-icon notranslate theme--light mdi mdi-menu"
+    <i class="v-icon notranslate mdi mdi-menu theme--light"
        aria-hidden="true"
     >
     </i>
