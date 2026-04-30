@@ -524,13 +524,16 @@ export default baseMixins.extend({
 
     return withDirectives(h('div', data, [
       !this.activator && this.genActivator(),
-      this.showLazyContent(() => [
-        h(VThemeProvider, {
-          root: true,
-          light: this.light,
-          dark: this.dark
-        }, () => [this.genTransition()])
-      ])
+      this.showLazyContent(() => {
+        const transition = this.genTransition()
+        return [
+          h(VThemeProvider, {
+            root: true,
+            light: this.light,
+            dark: this.dark
+          }, () => [transition])
+        ]
+      })
     ]), directives as any)
   }
 })
