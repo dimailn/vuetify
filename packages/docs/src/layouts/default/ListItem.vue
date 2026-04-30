@@ -1,12 +1,12 @@
 <template>
   <v-list-item
     :href="item.href || undefined"
+    :to="item.href ? undefined : item.to || undefined"
     :rel="item.href ? 'nofollow' : undefined"
     :target="item.href ? '_blank' : undefined"
     class="v-list-item--default"
     color="primary"
     v-bind="forwardedAttrs"
-    @click="onClick"
   >
     <v-list-item-icon v-if="item.icon">
       <v-icon>{{ item.icon }}</v-icon>
@@ -35,23 +35,6 @@
       item: {
         type: Object,
         default: () => ({}),
-      },
-    },
-
-    methods: {
-      onClick (e) {
-        if (!this.item?.to || this.item?.href) return
-        if (!this.$router) return
-
-        e.preventDefault()
-
-        const target = typeof this.item.to === 'string'
-          ? this.item.to
-          : this.item.to?.path
-
-        if (!target || target === this.$route.path) return
-
-        this.$router.push(this.item.to)
       },
     },
 
