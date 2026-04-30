@@ -46,7 +46,6 @@ function readFirstText (node: any): string {
   return ''
 }
 
-
 export default mixins(
   BindsAttrs,
   Colorable,
@@ -143,11 +142,13 @@ export default mixins(
       const fontSize = this.getSize()
       const wrapperData: any = {
         ...this.getDefaultData(),
-        style: fontSize ? {
-          fontSize,
-          height: fontSize,
-          width: fontSize
-        } : undefined
+        style: fontSize
+          ? {
+              fontSize,
+              height: fontSize,
+              width: fontSize
+            }
+          : undefined
       }
 
       this.applyColors(wrapperData)
@@ -255,4 +256,3 @@ export default mixins(
     return this.renderSvgIconComponent(icon)
   }
 })
-
