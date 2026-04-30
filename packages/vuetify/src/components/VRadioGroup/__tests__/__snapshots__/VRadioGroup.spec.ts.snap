@@ -12,7 +12,7 @@ exports[`VRadioGroup.ts should match dense snapshot 1`] = `
       >
         <div class="v-radio theme--light">
           <div class="v-input--selection-controls__input">
-            <i class="v-icon--dense v-icon notranslate theme--light mdi mdi-radiobox-blank"
+            <i class="v-icon--dense v-icon notranslate mdi mdi-radiobox-blank theme--light"
                aria-hidden="true"
             >
             </i>

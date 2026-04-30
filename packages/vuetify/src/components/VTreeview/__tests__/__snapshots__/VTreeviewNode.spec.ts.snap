@@ -52,7 +52,7 @@ exports[`VTreeViewNode.ts should not be able to have active children with empty 
      aria-expanded="true"
 >
   <div class="v-treeview-node__root">
-    <button class="v-icon--link v-icon notranslate theme--light material-icons v-treeview-node__toggle v-treeview-node__toggle--open"
+    <button class="v-icon--link v-icon notranslate material-icons theme--light v-treeview-node__toggle v-treeview-node__toggle--open"
             aria-hidden="false"
             type="button"
     >
@@ -74,7 +74,7 @@ exports[`VTreeViewNode.ts should render disabled item 1`] = `
      aria-expanded="false"
 >
   <div class="v-treeview-node__root">
-    <button class="v-icon--link v-icon notranslate theme--light mdi mdi-menu-down v-treeview-node__toggle"
+    <button class="v-icon--link v-icon notranslate mdi mdi-menu-down theme--light v-treeview-node__toggle"
             aria-hidden="false"
             type="button"
     >
@@ -103,7 +103,7 @@ exports[`VTreeViewNode.ts should use label slot 1`] = `
      aria-expanded="false"
 >
   <div class="v-treeview-node__root">
-    <button class="v-icon--link v-icon notranslate theme--light mdi mdi-menu-down v-treeview-node__toggle"
+    <button class="v-icon--link v-icon notranslate mdi mdi-menu-down theme--light v-treeview-node__toggle"
             aria-hidden="false"
             type="button"
     >
@@ -124,7 +124,7 @@ exports[`VTreeViewNode.ts should use scoped slots 1`] = `
      aria-expanded="false"
 >
   <div class="v-treeview-node__root">
-    <button class="v-icon--link v-icon notranslate theme--light mdi mdi-menu-down v-treeview-node__toggle"
+    <button class="v-icon--link v-icon notranslate mdi mdi-menu-down theme--light v-treeview-node__toggle"
             aria-hidden="false"
             type="button"
     >

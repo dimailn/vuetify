@@ -11,7 +11,7 @@ exports[`VDataFooter.ts should disable last page button if no items 1`] = `
         <div role="button"
              aria-haspopup="listbox"
              aria-expanded="false"
-             aria-owns="list-74"
+             aria-owns="list-55"
              class="v-input__slot"
         >
           <div class="v-select__slot">
@@ -22,14 +22,14 @@ exports[`VDataFooter.ts should disable last page button if no items 1`] = `
               <input aria-label="Items per page:"
                      aria-readonly="false"
                      autocomplete="off"
-                     id="input-74"
+                     id="input-55"
                      readonly
                      type="text"
               >
             </div>
             <div class="v-input__append-inner">
               <div class="v-input__icon v-input__icon--append">
-                <i class="v-icon notranslate theme--light material-icons"
+                <i class="v-icon notranslate material-icons theme--light"
                    aria-hidden="true"
                 >
                   $dropdown
@@ -56,7 +56,7 @@ exports[`VDataFooter.ts should disable last page button if no items 1`] = `
             aria-label="First page"
     >
       <span class="v-btn__content">
-        <i class="v-icon notranslate theme--light material-icons"
+        <i class="v-icon notranslate material-icons theme--light"
            aria-hidden="true"
         >
           $first
@@ -69,7 +69,7 @@ exports[`VDataFooter.ts should disable last page button if no items 1`] = `
             aria-label="Previous page"
     >
       <span class="v-btn__content">
-        <i class="v-icon notranslate theme--light material-icons"
+        <i class="v-icon notranslate material-icons theme--light"
            aria-hidden="true"
         >
           $prev
@@ -84,7 +84,7 @@ exports[`VDataFooter.ts should disable last page button if no items 1`] = `
             aria-label="Next page"
     >
       <span class="v-btn__content">
-        <i class="v-icon notranslate theme--light material-icons"
+        <i class="v-icon notranslate material-icons theme--light"
            aria-hidden="true"
         >
           $next
@@ -97,7 +97,7 @@ exports[`VDataFooter.ts should disable last page button if no items 1`] = `
             aria-label="Last page"
     >
       <span class="v-btn__content">
-        <i class="v-icon notranslate theme--light material-icons"
+        <i class="v-icon notranslate material-icons theme--light"
            aria-hidden="true"
         >
           $last
@@ -119,7 +119,7 @@ exports[`VDataFooter.ts should render first & last icons with showFirstLastPage 
         <div role="button"
              aria-haspopup="listbox"
              aria-expanded="false"
-             aria-owns="list-32"
+             aria-owns="list-24"
              class="v-input__slot"
         >
           <div class="v-select__slot">
@@ -130,14 +130,14 @@ exports[`VDataFooter.ts should render first & last icons with showFirstLastPage 
               <input aria-label="Items per page:"
                      aria-readonly="false"
                      autocomplete="off"
-                     id="input-32"
+                     id="input-24"
                      readonly
                      type="text"
               >
             </div>
             <div class="v-input__append-inner">
               <div class="v-input__icon v-input__icon--append">
-                <i class="v-icon notranslate theme--light material-icons"
+                <i class="v-icon notranslate material-icons theme--light"
                    aria-hidden="true"
                 >
                   $dropdown
@@ -163,7 +163,7 @@ exports[`VDataFooter.ts should render first & last icons with showFirstLastPage 
             aria-label="First page"
     >
       <span class="v-btn__content">
-        <i class="v-icon notranslate theme--light material-icons"
+        <i class="v-icon notranslate material-icons theme--light"
            aria-hidden="true"
         >
           $first
@@ -175,7 +175,7 @@ exports[`VDataFooter.ts should render first & last icons with showFirstLastPage 
             aria-label="Previous page"
     >
       <span class="v-btn__content">
-        <i class="v-icon notranslate theme--light material-icons"
+        <i class="v-icon notranslate material-icons theme--light"
            aria-hidden="true"
         >
           $prev
@@ -189,7 +189,7 @@ exports[`VDataFooter.ts should render first & last icons with showFirstLastPage 
             aria-label="Next page"
     >
       <span class="v-btn__content">
-        <i class="v-icon notranslate theme--light material-icons"
+        <i class="v-icon notranslate material-icons theme--light"
            aria-hidden="true"
         >
           $next
@@ -201,7 +201,7 @@ exports[`VDataFooter.ts should render first & last icons with showFirstLastPage 
             aria-label="Last page"
     >
       <span class="v-btn__content">
-        <i class="v-icon notranslate theme--light material-icons"
+        <i class="v-icon notranslate material-icons theme--light"
            aria-hidden="true"
         >
           $last
@@ -223,7 +223,7 @@ exports[`VDataFooter.ts should render in RTL mode 1`] = `
         <div role="button"
              aria-haspopup="listbox"
              aria-expanded="false"
-             aria-owns="list-14"
+             aria-owns="list-11"
              class="v-input__slot"
         >
           <div class="v-select__slot">
@@ -234,14 +234,14 @@ exports[`VDataFooter.ts should render in RTL mode 1`] = `
               <input aria-label="Items per page:"
                      aria-readonly="false"
                      autocomplete="off"
-                     id="input-14"
+                     id="input-11"
                      readonly
                      type="text"
               >
             </div>
             <div class="v-input__append-inner">
               <div class="v-input__icon v-input__icon--append">
-                <i class="v-icon notranslate theme--light material-icons"
+                <i class="v-icon notranslate material-icons theme--light"
                    aria-hidden="true"
                 >
                   $dropdown
@@ -267,7 +267,7 @@ exports[`VDataFooter.ts should render in RTL mode 1`] = `
             aria-label="First page"
     >
       <span class="v-btn__content">
-        <i class="v-icon notranslate theme--light material-icons"
+        <i class="v-icon notranslate material-icons theme--light"
            aria-hidden="true"
         >
           $last
@@ -279,7 +279,7 @@ exports[`VDataFooter.ts should render in RTL mode 1`] = `
             aria-label="Previous page"
     >
       <span class="v-btn__content">
-        <i class="v-icon notranslate theme--light material-icons"
+        <i class="v-icon notranslate material-icons theme--light"
            aria-hidden="true"
         >
           $next
@@ -293,7 +293,7 @@ exports[`VDataFooter.ts should render in RTL mode 1`] = `
             aria-label="Next page"
     >
       <span class="v-btn__content">
-        <i class="v-icon notranslate theme--light material-icons"
+        <i class="v-icon notranslate material-icons theme--light"
            aria-hidden="true"
         >
           $prev
@@ -305,7 +305,7 @@ exports[`VDataFooter.ts should render in RTL mode 1`] = `
             aria-label="Last page"
     >
       <span class="v-btn__content">
-        <i class="v-icon notranslate theme--light material-icons"
+        <i class="v-icon notranslate material-icons theme--light"
            aria-hidden="true"
         >
           $first
@@ -345,7 +345,7 @@ exports[`VDataFooter.ts should render with custom itemsPerPage 1`] = `
             </div>
             <div class="v-input__append-inner">
               <div class="v-input__icon v-input__icon--append">
-                <i class="v-icon notranslate theme--light material-icons"
+                <i class="v-icon notranslate material-icons theme--light"
                    aria-hidden="true"
                 >
                   $dropdown
@@ -371,7 +371,7 @@ exports[`VDataFooter.ts should render with custom itemsPerPage 1`] = `
             aria-label="Previous page"
     >
       <span class="v-btn__content">
-        <i class="v-icon notranslate theme--light material-icons"
+        <i class="v-icon notranslate material-icons theme--light"
            aria-hidden="true"
         >
           $prev
@@ -386,7 +386,7 @@ exports[`VDataFooter.ts should render with custom itemsPerPage 1`] = `
             aria-label="Next page"
     >
       <span class="v-btn__content">
-        <i class="v-icon notranslate theme--light material-icons"
+        <i class="v-icon notranslate material-icons theme--light"
            aria-hidden="true"
         >
           $next
@@ -408,7 +408,7 @@ exports[`VDataFooter.ts should show current page if has showCurrentPage 1`] = `
         <div role="button"
              aria-haspopup="listbox"
              aria-expanded="false"
-             aria-owns="list-62"
+             aria-owns="list-46"
              class="v-input__slot"
         >
           <div class="v-select__slot">
@@ -419,14 +419,14 @@ exports[`VDataFooter.ts should show current page if has showCurrentPage 1`] = `
               <input aria-label="Items per page:"
                      aria-readonly="false"
                      autocomplete="off"
-                     id="input-62"
+                     id="input-46"
                      readonly
                      type="text"
               >
             </div>
             <div class="v-input__append-inner">
               <div class="v-input__icon v-input__icon--append">
-                <i class="v-icon notranslate theme--light material-icons"
+                <i class="v-icon notranslate material-icons theme--light"
                    aria-hidden="true"
                 >
                   $dropdown
@@ -452,7 +452,7 @@ exports[`VDataFooter.ts should show current page if has showCurrentPage 1`] = `
             aria-label="Previous page"
     >
       <span class="v-btn__content">
-        <i class="v-icon notranslate theme--light material-icons"
+        <i class="v-icon notranslate material-icons theme--light"
            aria-hidden="true"
         >
           $prev
@@ -469,7 +469,7 @@ exports[`VDataFooter.ts should show current page if has showCurrentPage 1`] = `
             aria-label="Next page"
     >
       <span class="v-btn__content">
-        <i class="v-icon notranslate theme--light material-icons"
+        <i class="v-icon notranslate material-icons theme--light"
            aria-hidden="true"
         >
           $next

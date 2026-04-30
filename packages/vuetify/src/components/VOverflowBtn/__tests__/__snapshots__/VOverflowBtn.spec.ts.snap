@@ -6,19 +6,19 @@ exports[`VOverflowBtn.js should show label with persistentPlaceholder property s
     <div role="combobox"
          aria-haspopup="listbox"
          aria-expanded="false"
-         aria-owns="list-17"
+         aria-owns="list-15"
          class="v-input__slot"
     >
       <div class="v-select__slot">
         <label class="v-label theme--light"
-               for="input-17"
+               for="input-15"
                aria-hidden="false"
                style="left: 0px; position: absolute;"
         >
           Some label
         </label>
         <div class="v-select__selections">
-          <input id="input-17"
+          <input id="input-15"
                  readonly
                  type="text"
                  value
@@ -26,7 +26,7 @@ exports[`VOverflowBtn.js should show label with persistentPlaceholder property s
         </div>
         <div class="v-input__append-inner">
           <div class="v-input__icon v-input__icon--append">
-            <i class="v-icon notranslate theme--light mdi mdi-menu-down"
+            <i class="v-icon notranslate mdi mdi-menu-down theme--light"
                aria-hidden="true"
             >
             </i>
@@ -53,19 +53,19 @@ exports[`VOverflowBtn.js should show label with persistentPlaceholder property s
     <div role="combobox"
          aria-haspopup="listbox"
          aria-expanded="true"
-         aria-owns="list-17"
+         aria-owns="list-15"
          class="v-input__slot"
     >
       <div class="v-select__slot">
         <label class="v-label theme--light"
-               for="input-17"
+               for="input-15"
                aria-hidden="false"
                style="left: 0px; position: absolute;"
         >
           Some label
         </label>
         <div class="v-select__selections">
-          <input id="input-17"
+          <input id="input-15"
                  readonly
                  type="text"
                  value
@@ -73,7 +73,7 @@ exports[`VOverflowBtn.js should show label with persistentPlaceholder property s
         </div>
         <div class="v-input__append-inner">
           <div class="v-input__icon v-input__icon--append">
-            <i class="v-icon notranslate theme--light mdi mdi-menu-down"
+            <i class="v-icon notranslate mdi mdi-menu-down theme--light"
                aria-hidden="true"
             >
             </i>
@@ -116,7 +116,7 @@ exports[`VOverflowBtn.js should use default autocomplete selections 1`] = `
         </div>
         <div class="v-input__append-inner">
           <div class="v-input__icon v-input__icon--append">
-            <i class="v-icon notranslate theme--light mdi mdi-menu-down"
+            <i class="v-icon notranslate mdi mdi-menu-down theme--light"
                aria-hidden="true"
             >
             </i>
@@ -165,7 +165,7 @@ exports[`VOverflowBtn.js should use default autocomplete selections 2`] = `
         </div>
         <div class="v-input__append-inner">
           <div class="v-input__icon v-input__icon--append">
-            <i class="v-icon notranslate theme--light mdi mdi-menu-down"
+            <i class="v-icon notranslate mdi mdi-menu-down theme--light"
                aria-hidden="true"
             >
             </i>

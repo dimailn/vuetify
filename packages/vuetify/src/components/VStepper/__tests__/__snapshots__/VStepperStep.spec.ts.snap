@@ -5,7 +5,7 @@ exports[`VStepperStep.ts should accept a custom color 1`] = `
      class="v-stepper__step v-stepper__step--inactive v-stepper__step--complete"
 >
   <span class="v-stepper__step__step pink">
-    <i class="v-icon notranslate theme--light mdi mdi-check"
+    <i class="v-icon notranslate mdi mdi-check theme--light"
        aria-hidden="true"
     >
     </i>
@@ -22,7 +22,7 @@ exports[`VStepperStep.ts should accept a custom css color 1`] = `
   <span class="v-stepper__step__step"
         style="background-color: rgb(170, 187, 204); border-color: #aabbcc;"
   >
-    <i class="v-icon notranslate theme--light mdi mdi-check"
+    <i class="v-icon notranslate mdi mdi-check theme--light"
        aria-hidden="true"
     >
     </i>
@@ -49,7 +49,7 @@ exports[`VStepperStep.ts should render complete step 1`] = `
      class="v-stepper__step v-stepper__step--inactive v-stepper__step--complete"
 >
   <span class="v-stepper__step__step primary">
-    <i class="v-icon notranslate theme--light mdi mdi-check"
+    <i class="v-icon notranslate mdi mdi-check theme--light"
        aria-hidden="true"
     >
     </i>
@@ -64,7 +64,7 @@ exports[`VStepperStep.ts should render editable step 1`] = `
      class="v-stepper__step v-stepper__step--editable v-stepper__step--inactive v-stepper__step--complete"
 >
   <span class="v-stepper__step__step primary">
-    <i class="v-icon notranslate theme--light material-icons"
+    <i class="v-icon notranslate material-icons theme--light"
        aria-hidden="true"
     >
       $edit
@@ -80,7 +80,7 @@ exports[`VStepperStep.ts should render step with error 1`] = `
      class="v-stepper__step v-stepper__step--inactive v-stepper__step--error error--text"
 >
   <span class="v-stepper__step__step">
-    <i class="v-icon notranslate theme--light mdi mdi-alert"
+    <i class="v-icon notranslate mdi mdi-alert theme--light"
        aria-hidden="true"
     >
     </i>

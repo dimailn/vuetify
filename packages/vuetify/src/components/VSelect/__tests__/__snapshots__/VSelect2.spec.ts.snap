@@ -6,7 +6,7 @@ exports[`VSelect.ts should be clearable with prop, dirty and multi select 1`] = 
     <div role="button"
          aria-haspopup="listbox"
          aria-expanded="false"
-         aria-owns="list-150"
+         aria-owns="list-136"
          class="v-input__slot"
     >
       <div class="v-select__slot">
@@ -16,7 +16,7 @@ exports[`VSelect.ts should be clearable with prop, dirty and multi select 1`] = 
           </div>
           <input aria-readonly="false"
                  autocomplete="off"
-                 id="input-150"
+                 id="input-136"
                  readonly
                  type="text"
           >
@@ -71,7 +71,7 @@ exports[`VSelect.ts should be clearable with prop, dirty and single select 1`] =
     <div role="button"
          aria-haspopup="listbox"
          aria-expanded="false"
-         aria-owns="list-141"
+         aria-owns="list-129"
          class="v-input__slot"
     >
       <div class="v-select__slot">
@@ -81,7 +81,7 @@ exports[`VSelect.ts should be clearable with prop, dirty and single select 1`] =
           </div>
           <input aria-readonly="false"
                  autocomplete="off"
-                 id="input-141"
+                 id="input-129"
                  readonly
                  type="text"
           >
@@ -136,7 +136,7 @@ exports[`VSelect.ts should use scoped slot for selection generation 1`] = `
     <div role="button"
          aria-haspopup="listbox"
          aria-expanded="false"
-         aria-owns="list-32"
+         aria-owns="list-30"
          class="v-input__slot"
     >
       <div class="v-select__slot">
@@ -146,7 +146,7 @@ exports[`VSelect.ts should use scoped slot for selection generation 1`] = `
           </div>
           <input aria-readonly="false"
                  autocomplete="off"
-                 id="input-32"
+                 id="input-30"
                  readonly
                  type="text"
           >
@@ -183,11 +183,11 @@ exports[`VSelect.ts should use scoped slot for selection generation 1`] = `
 exports[`VSelect.ts should use slotted append-item 1`] = `
 <div class="v-sheet theme--light v-list v-select-list theme--light"
      role="listbox"
-     id="list-16"
+     id="list-15"
      tabindex="-1"
 >
   <div aria-selected="false"
-       id="list-item-23-0"
+       id="list-item-21-0"
        role="option"
        tabindex="0"
        class="v-list-item v-list-item--link theme--light"
@@ -214,7 +214,7 @@ exports[`VSelect.ts should use slotted prepend-item 1`] = `
     foo
   </div>
   <div aria-selected="false"
-       id="list-item-8-0"
+       id="list-item-7-0"
        role="option"
        tabindex="0"
        class="v-list-item v-list-item--link theme--light"

@@ -8,7 +8,7 @@ exports[`VListGroup.ts should render component and match snapshot 1`] = `
        class="v-list-item v-list-item--link theme--light v-list-group__header"
   >
     <div class="v-list-item__icon v-list-group__header__append-icon v-list-group__header__append-icon">
-      <i class="v-icon notranslate theme--light mdi mdi-chevron-down"
+      <i class="v-icon notranslate mdi mdi-chevron-down theme--light"
          aria-hidden="true"
       >
       </i>

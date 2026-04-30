@@ -220,7 +220,7 @@ exports[`VSelect.ts should render v-select correctly when not using scope slot 1
     <div role="button"
          aria-haspopup="listbox"
          aria-expanded="false"
-         aria-owns="list-41"
+         aria-owns="list-37"
          class="v-input__slot"
     >
       <div class="v-select__slot">
@@ -230,7 +230,7 @@ exports[`VSelect.ts should render v-select correctly when not using scope slot 1
           </div>
           <input aria-readonly="false"
                  autocomplete="off"
-                 id="input-41"
+                 id="input-37"
                  readonly
                  type="text"
           >
@@ -270,7 +270,7 @@ exports[`VSelect.ts should render v-select correctly when not using v-list-item 
     <div role="button"
          aria-haspopup="listbox"
          aria-expanded="false"
-         aria-owns="list-33"
+         aria-owns="list-30"
          class="v-input__slot"
     >
       <div class="v-select__slot">
@@ -280,7 +280,7 @@ exports[`VSelect.ts should render v-select correctly when not using v-list-item 
           </div>
           <input aria-readonly="false"
                  autocomplete="off"
-                 id="input-33"
+                 id="input-30"
                  readonly
                  type="text"
           >
@@ -320,7 +320,7 @@ exports[`VSelect.ts should render v-select correctly when using v-list-item in i
     <div role="button"
          aria-haspopup="listbox"
          aria-expanded="false"
-         aria-owns="list-24"
+         aria-owns="list-22"
          class="v-input__slot"
     >
       <div class="v-select__slot">
@@ -332,7 +332,7 @@ exports[`VSelect.ts should render v-select correctly when using v-list-item in i
           </div>
           <input aria-readonly="false"
                  autocomplete="off"
-                 id="input-24"
+                 id="input-22"
                  readonly
                  type="text"
           >
@@ -369,7 +369,7 @@ exports[`VSelect.ts should render v-select correctly when using v-list-item in i
 exports[`VSelect.ts should use slotted no-data 1`] = `
 <div class="v-sheet theme--light v-list v-select-list theme--light"
      role="listbox"
-     id="list-184"
+     id="list-162"
      tabindex="-1"
 >
   <div>

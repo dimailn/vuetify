@@ -4,7 +4,7 @@ exports[`VTextField.ts should apply theme to label, counter, messages and icons 
 <div class="v-input theme--light v-text-field">
   <div class="v-input__prepend-outer">
     <div class="v-input__icon v-input__icon--prepend">
-      <i class="v-icon notranslate theme--light material-icons"
+      <i class="v-icon notranslate material-icons theme--light"
          aria-hidden="true"
       >
         prepend
@@ -15,7 +15,7 @@ exports[`VTextField.ts should apply theme to label, counter, messages and icons 
     <div class="v-input__slot">
       <div class="v-input__prepend-inner">
         <div class="v-input__icon v-input__icon--prepend-inner">
-          <i class="v-icon notranslate theme--light prepend prepend-inner"
+          <i class="v-icon notranslate prepend prepend-inner theme--light"
              aria-hidden="true"
           >
           </i>
@@ -23,19 +23,19 @@ exports[`VTextField.ts should apply theme to label, counter, messages and icons 
       </div>
       <div class="v-text-field__slot">
         <label class="v-label theme--light"
-               for="input-193"
+               for="input-185"
                aria-hidden="false"
                style="left: 0px; position: absolute;"
         >
           foo
         </label>
-        <input id="input-193"
+        <input id="input-185"
                type="text"
         >
       </div>
       <div class="v-input__append-inner">
         <div class="v-input__icon v-input__icon--append">
-          <i class="v-icon notranslate theme--light material-icons"
+          <i class="v-icon notranslate material-icons theme--light"
              aria-hidden="true"
           >
             append
@@ -58,7 +58,7 @@ exports[`VTextField.ts should apply theme to label, counter, messages and icons 
   </div>
   <div class="v-input__append-outer">
     <div class="v-input__icon v-input__icon--append-outer">
-      <i class="v-icon notranslate theme--light append append-outer"
+      <i class="v-icon notranslate append append-outer theme--light"
          aria-hidden="true"
       >
       </i>
@@ -75,7 +75,7 @@ exports[`VTextField.ts should have prefix and suffix 1`] = `
         <div class="v-text-field__prefix">
           $
         </div>
-        <input id="input-119"
+        <input id="input-113"
                type="text"
         >
         <div class="v-text-field__suffix">
@@ -98,7 +98,7 @@ exports[`VTextField.ts should hide messages if no messages and hide-details is a
   <div class="v-input__control">
     <div class="v-input__slot">
       <div class="v-text-field__slot">
-        <input id="input-211"
+        <input id="input-199"
                type="text"
         >
       </div>
@@ -112,7 +112,7 @@ exports[`VTextField.ts should hide messages if no messages and hide-details is a
   <div class="v-input__control">
     <div class="v-input__slot">
       <div class="v-text-field__slot">
-        <input id="input-211"
+        <input id="input-199"
                type="text"
         >
       </div>
@@ -135,7 +135,7 @@ exports[`VTextField.ts should hide messages if no messages and hide-details is a
   <div class="v-input__control">
     <div class="v-input__slot">
       <div class="v-text-field__slot">
-        <input id="input-211"
+        <input id="input-199"
                type="text"
         >
       </div>
@@ -229,7 +229,7 @@ exports[`VTextField.ts should render component with async loading and custom pro
   <div class="v-input__control">
     <div class="v-input__slot">
       <div class="v-text-field__slot">
-        <input id="input-102"
+        <input id="input-96"
                type="text"
         >
       </div>
@@ -268,7 +268,7 @@ exports[`VTextField.ts should render component with async loading and match snap
   <div class="v-input__control">
     <div class="v-input__slot">
       <div class="v-text-field__slot">
-        <input id="input-94"
+        <input id="input-88"
                type="text"
         >
       </div>

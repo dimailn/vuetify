@@ -27,7 +27,7 @@ exports[`VColorPicker.ts should change canvas height 1`] = `
           <div class="v-input__control">
             <div class="v-input__slot">
               <div class="v-slider v-slider--horizontal theme--light">
-                <input id="input-16"
+                <input id="input-15"
                        disabled
                        readonly
                        tabindex="-1"
@@ -65,7 +65,7 @@ exports[`VColorPicker.ts should change canvas height 1`] = `
           <div class="v-input__control">
             <div class="v-input__slot">
               <div class="v-slider v-slider--horizontal theme--light">
-                <input id="input-17"
+                <input id="input-16"
                        disabled
                        readonly
                        tabindex="-1"
@@ -150,7 +150,7 @@ exports[`VColorPicker.ts should change canvas height 1`] = `
               type="button"
       >
         <span class="v-btn__content">
-          <i class="v-icon notranslate theme--light material-icons"
+          <i class="v-icon notranslate material-icons theme--light"
              aria-hidden="true"
           >
             $unfold
@@ -177,7 +177,7 @@ exports[`VColorPicker.ts should hide canvas 1`] = `
           <div class="v-input__control">
             <div class="v-input__slot">
               <div class="v-slider v-slider--horizontal theme--light">
-                <input id="input-38"
+                <input id="input-35"
                        disabled
                        readonly
                        tabindex="-1"
@@ -215,7 +215,7 @@ exports[`VColorPicker.ts should hide canvas 1`] = `
           <div class="v-input__control">
             <div class="v-input__slot">
               <div class="v-slider v-slider--horizontal theme--light">
-                <input id="input-39"
+                <input id="input-36"
                        disabled
                        readonly
                        tabindex="-1"
@@ -300,7 +300,7 @@ exports[`VColorPicker.ts should hide canvas 1`] = `
               type="button"
       >
         <span class="v-btn__content">
-          <i class="v-icon notranslate theme--light material-icons"
+          <i class="v-icon notranslate material-icons theme--light"
              aria-hidden="true"
           >
             $unfold
@@ -358,7 +358,7 @@ exports[`VColorPicker.ts should hide inputs 1`] = `
           <div class="v-input__control">
             <div class="v-input__slot">
               <div class="v-slider v-slider--horizontal theme--light">
-                <input id="input-57"
+                <input id="input-52"
                        disabled
                        readonly
                        tabindex="-1"
@@ -396,7 +396,7 @@ exports[`VColorPicker.ts should hide inputs 1`] = `
           <div class="v-input__control">
             <div class="v-input__slot">
               <div class="v-slider v-slider--horizontal theme--light">
-                <input id="input-58"
+                <input id="input-53"
                        disabled
                        readonly
                        tabindex="-1"
@@ -502,7 +502,7 @@ exports[`VColorPicker.ts should hide sliders 1`] = `
               type="button"
       >
         <span class="v-btn__content">
-          <i class="v-icon notranslate theme--light material-icons"
+          <i class="v-icon notranslate material-icons theme--light"
              aria-hidden="true"
           >
             $unfold
@@ -541,7 +541,7 @@ exports[`VColorPicker.ts should not show alpha controls if given hex value witho
           <div class="v-input__control">
             <div class="v-input__slot">
               <div class="v-slider v-slider--horizontal theme--light">
-                <input id="input-88"
+                <input id="input-81"
                        disabled
                        readonly
                        tabindex="-1"
@@ -615,7 +615,7 @@ exports[`VColorPicker.ts should not show alpha controls if given hex value witho
               type="button"
       >
         <span class="v-btn__content">
-          <i class="v-icon notranslate theme--light material-icons"
+          <i class="v-icon notranslate material-icons theme--light"
              aria-hidden="true"
           >
             $unfold
@@ -777,7 +777,7 @@ exports[`VColorPicker.ts should render color picker 1`] = `
               type="button"
       >
         <span class="v-btn__content">
-          <i class="v-icon notranslate theme--light material-icons"
+          <i class="v-icon notranslate material-icons theme--light"
              aria-hidden="true"
           >
             $unfold
@@ -816,7 +816,7 @@ exports[`VColorPicker.ts should render flat picker 1`] = `
           <div class="v-input__control">
             <div class="v-input__slot">
               <div class="v-slider v-slider--horizontal theme--light">
-                <input id="input-109"
+                <input id="input-100"
                        disabled
                        readonly
                        tabindex="-1"
@@ -854,7 +854,7 @@ exports[`VColorPicker.ts should render flat picker 1`] = `
           <div class="v-input__control">
             <div class="v-input__slot">
               <div class="v-slider v-slider--horizontal theme--light">
-                <input id="input-110"
+                <input id="input-101"
                        disabled
                        readonly
                        tabindex="-1"
@@ -939,7 +939,7 @@ exports[`VColorPicker.ts should render flat picker 1`] = `
               type="button"
       >
         <span class="v-btn__content">
-          <i class="v-icon notranslate theme--light material-icons"
+          <i class="v-icon notranslate material-icons theme--light"
              aria-hidden="true"
           >
             $unfold
@@ -978,7 +978,7 @@ exports[`VColorPicker.ts should render picker with elevation 1`] = `
           <div class="v-input__control">
             <div class="v-input__slot">
               <div class="v-slider v-slider--horizontal theme--light">
-                <input id="input-120"
+                <input id="input-110"
                        disabled
                        readonly
                        tabindex="-1"
@@ -1016,7 +1016,7 @@ exports[`VColorPicker.ts should render picker with elevation 1`] = `
           <div class="v-input__control">
             <div class="v-input__slot">
               <div class="v-slider v-slider--horizontal theme--light">
-                <input id="input-121"
+                <input id="input-111"
                        disabled
                        readonly
                        tabindex="-1"
@@ -1101,7 +1101,7 @@ exports[`VColorPicker.ts should render picker with elevation 1`] = `
               type="button"
       >
         <span class="v-btn__content">
-          <i class="v-icon notranslate theme--light material-icons"
+          <i class="v-icon notranslate material-icons theme--light"
              aria-hidden="true"
           >
             $unfold
@@ -1140,7 +1140,7 @@ exports[`VColorPicker.ts should show swatches 1`] = `
           <div class="v-input__control">
             <div class="v-input__slot">
               <div class="v-slider v-slider--horizontal theme--light">
-                <input id="input-27"
+                <input id="input-25"
                        disabled
                        readonly
                        tabindex="-1"
@@ -1178,7 +1178,7 @@ exports[`VColorPicker.ts should show swatches 1`] = `
           <div class="v-input__control">
             <div class="v-input__slot">
               <div class="v-slider v-slider--horizontal theme--light">
-                <input id="input-28"
+                <input id="input-26"
                        disabled
                        readonly
                        tabindex="-1"
@@ -1263,7 +1263,7 @@ exports[`VColorPicker.ts should show swatches 1`] = `
               type="button"
       >
         <span class="v-btn__content">
-          <i class="v-icon notranslate theme--light material-icons"
+          <i class="v-icon notranslate material-icons theme--light"
              aria-hidden="true"
           >
             $unfold
@@ -2120,7 +2120,7 @@ exports[`VColorPicker.ts should work correctly when initial value is null 1`] = 
           <div class="v-input__control">
             <div class="v-input__slot">
               <div class="v-slider v-slider--horizontal theme--light">
-                <input id="input-98"
+                <input id="input-90"
                        disabled
                        readonly
                        tabindex="-1"
@@ -2158,7 +2158,7 @@ exports[`VColorPicker.ts should work correctly when initial value is null 1`] = 
           <div class="v-input__control">
             <div class="v-input__slot">
               <div class="v-slider v-slider--horizontal theme--light">
-                <input id="input-99"
+                <input id="input-91"
                        disabled
                        readonly
                        tabindex="-1"
@@ -2243,7 +2243,7 @@ exports[`VColorPicker.ts should work correctly when initial value is null 1`] = 
               type="button"
       >
         <span class="v-btn__content">
-          <i class="v-icon notranslate theme--light material-icons"
+          <i class="v-icon notranslate material-icons theme--light"
              aria-hidden="true"
           >
             $unfold

@@ -41,7 +41,7 @@ exports[`VDataIterator.ts should render and match snapshot 1`] = `
               </div>
               <div class="v-input__append-inner">
                 <div class="v-input__icon v-input__icon--append">
-                  <i class="v-icon notranslate theme--light material-icons"
+                  <i class="v-icon notranslate material-icons theme--light"
                      aria-hidden="true"
                   >
                     $dropdown
@@ -68,7 +68,7 @@ exports[`VDataIterator.ts should render and match snapshot 1`] = `
               aria-label="Previous page"
       >
         <span class="v-btn__content">
-          <i class="v-icon notranslate theme--light material-icons"
+          <i class="v-icon notranslate material-icons theme--light"
              aria-hidden="true"
           >
             $prev
@@ -83,7 +83,7 @@ exports[`VDataIterator.ts should render and match snapshot 1`] = `
               aria-label="Next page"
       >
         <span class="v-btn__content">
-          <i class="v-icon notranslate theme--light material-icons"
+          <i class="v-icon notranslate material-icons theme--light"
              aria-hidden="true"
           >
             $next
@@ -119,7 +119,7 @@ exports[`VDataIterator.ts should render and match snapshot with data 1`] = `
           <div role="button"
                aria-haspopup="listbox"
                aria-expanded="false"
-               aria-owns="list-18"
+               aria-owns="list-15"
                class="v-input__slot"
           >
             <div class="v-select__slot">
@@ -130,14 +130,14 @@ exports[`VDataIterator.ts should render and match snapshot with data 1`] = `
                 <input aria-label="Items per page:"
                        aria-readonly="false"
                        autocomplete="off"
-                       id="input-18"
+                       id="input-15"
                        readonly
                        type="text"
                 >
               </div>
               <div class="v-input__append-inner">
                 <div class="v-input__icon v-input__icon--append">
-                  <i class="v-icon notranslate theme--light material-icons"
+                  <i class="v-icon notranslate material-icons theme--light"
                      aria-hidden="true"
                   >
                     $dropdown
@@ -164,7 +164,7 @@ exports[`VDataIterator.ts should render and match snapshot with data 1`] = `
               aria-label="Previous page"
       >
         <span class="v-btn__content">
-          <i class="v-icon notranslate theme--light material-icons"
+          <i class="v-icon notranslate material-icons theme--light"
              aria-hidden="true"
           >
             $prev
@@ -179,7 +179,7 @@ exports[`VDataIterator.ts should render and match snapshot with data 1`] = `
               aria-label="Next page"
       >
         <span class="v-btn__content">
-          <i class="v-icon notranslate theme--light material-icons"
+          <i class="v-icon notranslate material-icons theme--light"
              aria-hidden="true"
           >
             $next
@@ -206,7 +206,7 @@ exports[`VDataIterator.ts should render valid no-data, loading and no-results st
           <div role="button"
                aria-haspopup="listbox"
                aria-expanded="false"
-               aria-owns="list-32"
+               aria-owns="list-26"
                class="v-input__slot"
           >
             <div class="v-select__slot">
@@ -217,14 +217,14 @@ exports[`VDataIterator.ts should render valid no-data, loading and no-results st
                 <input aria-label="Items per page:"
                        aria-readonly="false"
                        autocomplete="off"
-                       id="input-32"
+                       id="input-26"
                        readonly
                        type="text"
                 >
               </div>
               <div class="v-input__append-inner">
                 <div class="v-input__icon v-input__icon--append">
-                  <i class="v-icon notranslate theme--light material-icons"
+                  <i class="v-icon notranslate material-icons theme--light"
                      aria-hidden="true"
                   >
                     $dropdown
@@ -251,7 +251,7 @@ exports[`VDataIterator.ts should render valid no-data, loading and no-results st
               aria-label="Previous page"
       >
         <span class="v-btn__content">
-          <i class="v-icon notranslate theme--light material-icons"
+          <i class="v-icon notranslate material-icons theme--light"
              aria-hidden="true"
           >
             $prev
@@ -266,7 +266,7 @@ exports[`VDataIterator.ts should render valid no-data, loading and no-results st
               aria-label="Next page"
       >
         <span class="v-btn__content">
-          <i class="v-icon notranslate theme--light material-icons"
+          <i class="v-icon notranslate material-icons theme--light"
              aria-hidden="true"
           >
             $next
@@ -293,7 +293,7 @@ exports[`VDataIterator.ts should render valid no-data, loading and no-results st
           <div role="button"
                aria-haspopup="listbox"
                aria-expanded="false"
-               aria-owns="list-32"
+               aria-owns="list-26"
                class="v-input__slot"
           >
             <div class="v-select__slot">
@@ -304,14 +304,14 @@ exports[`VDataIterator.ts should render valid no-data, loading and no-results st
                 <input aria-label="Items per page:"
                        aria-readonly="false"
                        autocomplete="off"
-                       id="input-32"
+                       id="input-26"
                        readonly
                        type="text"
                 >
               </div>
               <div class="v-input__append-inner">
                 <div class="v-input__icon v-input__icon--append">
-                  <i class="v-icon notranslate theme--light material-icons"
+                  <i class="v-icon notranslate material-icons theme--light"
                      aria-hidden="true"
                   >
                     $dropdown
@@ -338,7 +338,7 @@ exports[`VDataIterator.ts should render valid no-data, loading and no-results st
               aria-label="Previous page"
       >
         <span class="v-btn__content">
-          <i class="v-icon notranslate theme--light material-icons"
+          <i class="v-icon notranslate material-icons theme--light"
              aria-hidden="true"
           >
             $prev
@@ -353,7 +353,7 @@ exports[`VDataIterator.ts should render valid no-data, loading and no-results st
               aria-label="Next page"
       >
         <span class="v-btn__content">
-          <i class="v-icon notranslate theme--light material-icons"
+          <i class="v-icon notranslate material-icons theme--light"
              aria-hidden="true"
           >
             $next
@@ -380,7 +380,7 @@ exports[`VDataIterator.ts should render valid no-data, loading and no-results st
           <div role="button"
                aria-haspopup="listbox"
                aria-expanded="false"
-               aria-owns="list-32"
+               aria-owns="list-26"
                class="v-input__slot"
           >
             <div class="v-select__slot">
@@ -391,14 +391,14 @@ exports[`VDataIterator.ts should render valid no-data, loading and no-results st
                 <input aria-label="Items per page:"
                        aria-readonly="false"
                        autocomplete="off"
-                       id="input-32"
+                       id="input-26"
                        readonly
                        type="text"
                 >
               </div>
               <div class="v-input__append-inner">
                 <div class="v-input__icon v-input__icon--append">
-                  <i class="v-icon notranslate theme--light material-icons"
+                  <i class="v-icon notranslate material-icons theme--light"
                      aria-hidden="true"
                   >
                     $dropdown
@@ -425,7 +425,7 @@ exports[`VDataIterator.ts should render valid no-data, loading and no-results st
               aria-label="Previous page"
       >
         <span class="v-btn__content">
-          <i class="v-icon notranslate theme--light material-icons"
+          <i class="v-icon notranslate material-icons theme--light"
              aria-hidden="true"
           >
             $prev
@@ -440,7 +440,7 @@ exports[`VDataIterator.ts should render valid no-data, loading and no-results st
               aria-label="Next page"
       >
         <span class="v-btn__content">
-          <i class="v-icon notranslate theme--light material-icons"
+          <i class="v-icon notranslate material-icons theme--light"
              aria-hidden="true"
           >
             $next

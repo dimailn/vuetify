@@ -21,12 +21,12 @@ exports[`VDataTable.ts should apply class from item to rows 1`] = `
                   <div role="button"
                        aria-haspopup="listbox"
                        aria-expanded="false"
-                       aria-owns="list-1175"
+                       aria-owns="list-975"
                        class="v-input__slot"
                   >
                     <div class="v-select__slot">
                       <label class="v-label theme--light"
-                             for="input-1175"
+                             for="input-975"
                              aria-hidden="false"
                              style="right: 0px; position: absolute;"
                       >
@@ -35,14 +35,14 @@ exports[`VDataTable.ts should apply class from item to rows 1`] = `
                       <div class="v-select__selections">
                         <input aria-readonly="false"
                                autocomplete="off"
-                               id="input-1175"
+                               id="input-975"
                                readonly
                                type="text"
                         >
                       </div>
                       <div class="v-input__append-inner">
                         <div class="v-input__icon v-input__icon--append">
-                          <i class="v-icon notranslate theme--light material-icons"
+                          <i class="v-icon notranslate material-icons theme--light"
                              aria-hidden="true"
                           >
                             $dropdown
@@ -324,7 +324,7 @@ exports[`VDataTable.ts should apply class from item to rows 1`] = `
           <div role="button"
                aria-haspopup="listbox"
                aria-expanded="false"
-               aria-owns="list-1186"
+               aria-owns="list-985"
                class="v-input__slot"
           >
             <div class="v-select__slot">
@@ -335,14 +335,14 @@ exports[`VDataTable.ts should apply class from item to rows 1`] = `
                 <input aria-label="Rows per page:"
                        aria-readonly="false"
                        autocomplete="off"
-                       id="input-1186"
+                       id="input-985"
                        readonly
                        type="text"
                 >
               </div>
               <div class="v-input__append-inner">
                 <div class="v-input__icon v-input__icon--append">
-                  <i class="v-icon notranslate theme--light material-icons"
+                  <i class="v-icon notranslate material-icons theme--light"
                      aria-hidden="true"
                   >
                     $dropdown
@@ -369,7 +369,7 @@ exports[`VDataTable.ts should apply class from item to rows 1`] = `
               aria-label="Previous page"
       >
         <span class="v-btn__content">
-          <i class="v-icon notranslate theme--light material-icons"
+          <i class="v-icon notranslate material-icons theme--light"
              aria-hidden="true"
           >
             $prev
@@ -383,7 +383,7 @@ exports[`VDataTable.ts should apply class from item to rows 1`] = `
               aria-label="Next page"
       >
         <span class="v-btn__content">
-          <i class="v-icon notranslate theme--light material-icons"
+          <i class="v-icon notranslate material-icons theme--light"
              aria-hidden="true"
           >
             $next
@@ -416,12 +416,12 @@ exports[`VDataTable.ts should apply class function to rows 1`] = `
                   <div role="button"
                        aria-haspopup="listbox"
                        aria-expanded="false"
-                       aria-owns="list-1148"
+                       aria-owns="list-952"
                        class="v-input__slot"
                   >
                     <div class="v-select__slot">
                       <label class="v-label theme--light"
-                             for="input-1148"
+                             for="input-952"
                              aria-hidden="false"
                              style="right: 0px; position: absolute;"
                       >
@@ -430,14 +430,14 @@ exports[`VDataTable.ts should apply class function to rows 1`] = `
                       <div class="v-select__selections">
                         <input aria-readonly="false"
                                autocomplete="off"
-                               id="input-1148"
+                               id="input-952"
                                readonly
                                type="text"
                         >
                       </div>
                       <div class="v-input__append-inner">
                         <div class="v-input__icon v-input__icon--append">
-                          <i class="v-icon notranslate theme--light material-icons"
+                          <i class="v-icon notranslate material-icons theme--light"
                              aria-hidden="true"
                           >
                             $dropdown
@@ -719,7 +719,7 @@ exports[`VDataTable.ts should apply class function to rows 1`] = `
           <div role="button"
                aria-haspopup="listbox"
                aria-expanded="false"
-               aria-owns="list-1159"
+               aria-owns="list-962"
                class="v-input__slot"
           >
             <div class="v-select__slot">
@@ -730,14 +730,14 @@ exports[`VDataTable.ts should apply class function to rows 1`] = `
                 <input aria-label="Rows per page:"
                        aria-readonly="false"
                        autocomplete="off"
-                       id="input-1159"
+                       id="input-962"
                        readonly
                        type="text"
                 >
               </div>
               <div class="v-input__append-inner">
                 <div class="v-input__icon v-input__icon--append">
-                  <i class="v-icon notranslate theme--light material-icons"
+                  <i class="v-icon notranslate material-icons theme--light"
                      aria-hidden="true"
                   >
                     $dropdown
@@ -764,7 +764,7 @@ exports[`VDataTable.ts should apply class function to rows 1`] = `
               aria-label="Previous page"
       >
         <span class="v-btn__content">
-          <i class="v-icon notranslate theme--light material-icons"
+          <i class="v-icon notranslate material-icons theme--light"
              aria-hidden="true"
           >
             $prev
@@ -778,7 +778,7 @@ exports[`VDataTable.ts should apply class function to rows 1`] = `
               aria-label="Next page"
       >
         <span class="v-btn__content">
-          <i class="v-icon notranslate theme--light material-icons"
+          <i class="v-icon notranslate material-icons theme--light"
              aria-hidden="true"
           >
             $next
@@ -811,12 +811,12 @@ exports[`VDataTable.ts should apply class list to rows 1`] = `
                   <div role="button"
                        aria-haspopup="listbox"
                        aria-expanded="false"
-                       aria-owns="list-1094"
+                       aria-owns="list-906"
                        class="v-input__slot"
                   >
                     <div class="v-select__slot">
                       <label class="v-label theme--light"
-                             for="input-1094"
+                             for="input-906"
                              aria-hidden="false"
                              style="right: 0px; position: absolute;"
                       >
@@ -825,14 +825,14 @@ exports[`VDataTable.ts should apply class list to rows 1`] = `
                       <div class="v-select__selections">
                         <input aria-readonly="false"
                                autocomplete="off"
-                               id="input-1094"
+                               id="input-906"
                                readonly
                                type="text"
                         >
                       </div>
                       <div class="v-input__append-inner">
                         <div class="v-input__icon v-input__icon--append">
-                          <i class="v-icon notranslate theme--light material-icons"
+                          <i class="v-icon notranslate material-icons theme--light"
                              aria-hidden="true"
                           >
                             $dropdown
@@ -1114,7 +1114,7 @@ exports[`VDataTable.ts should apply class list to rows 1`] = `
           <div role="button"
                aria-haspopup="listbox"
                aria-expanded="false"
-               aria-owns="list-1105"
+               aria-owns="list-916"
                class="v-input__slot"
           >
             <div class="v-select__slot">
@@ -1125,14 +1125,14 @@ exports[`VDataTable.ts should apply class list to rows 1`] = `
                 <input aria-label="Rows per page:"
                        aria-readonly="false"
                        autocomplete="off"
-                       id="input-1105"
+                       id="input-916"
                        readonly
                        type="text"
                 >
               </div>
               <div class="v-input__append-inner">
                 <div class="v-input__icon v-input__icon--append">
-                  <i class="v-icon notranslate theme--light material-icons"
+                  <i class="v-icon notranslate material-icons theme--light"
                      aria-hidden="true"
                   >
                     $dropdown
@@ -1159,7 +1159,7 @@ exports[`VDataTable.ts should apply class list to rows 1`] = `
               aria-label="Previous page"
       >
         <span class="v-btn__content">
-          <i class="v-icon notranslate theme--light material-icons"
+          <i class="v-icon notranslate material-icons theme--light"
              aria-hidden="true"
           >
             $prev
@@ -1173,7 +1173,7 @@ exports[`VDataTable.ts should apply class list to rows 1`] = `
               aria-label="Next page"
       >
         <span class="v-btn__content">
-          <i class="v-icon notranslate theme--light material-icons"
+          <i class="v-icon notranslate material-icons theme--light"
              aria-hidden="true"
           >
             $next
@@ -1206,12 +1206,12 @@ exports[`VDataTable.ts should apply class unique to rows 1`] = `
                   <div role="button"
                        aria-haspopup="listbox"
                        aria-expanded="false"
-                       aria-owns="list-1121"
+                       aria-owns="list-929"
                        class="v-input__slot"
                   >
                     <div class="v-select__slot">
                       <label class="v-label theme--light"
-                             for="input-1121"
+                             for="input-929"
                              aria-hidden="false"
                              style="right: 0px; position: absolute;"
                       >
@@ -1220,14 +1220,14 @@ exports[`VDataTable.ts should apply class unique to rows 1`] = `
                       <div class="v-select__selections">
                         <input aria-readonly="false"
                                autocomplete="off"
-                               id="input-1121"
+                               id="input-929"
                                readonly
                                type="text"
                         >
                       </div>
                       <div class="v-input__append-inner">
                         <div class="v-input__icon v-input__icon--append">
-                          <i class="v-icon notranslate theme--light material-icons"
+                          <i class="v-icon notranslate material-icons theme--light"
                              aria-hidden="true"
                           >
                             $dropdown
@@ -1509,7 +1509,7 @@ exports[`VDataTable.ts should apply class unique to rows 1`] = `
           <div role="button"
                aria-haspopup="listbox"
                aria-expanded="false"
-               aria-owns="list-1132"
+               aria-owns="list-939"
                class="v-input__slot"
           >
             <div class="v-select__slot">
@@ -1520,14 +1520,14 @@ exports[`VDataTable.ts should apply class unique to rows 1`] = `
                 <input aria-label="Rows per page:"
                        aria-readonly="false"
                        autocomplete="off"
-                       id="input-1132"
+                       id="input-939"
                        readonly
                        type="text"
                 >
               </div>
               <div class="v-input__append-inner">
                 <div class="v-input__icon v-input__icon--append">
-                  <i class="v-icon notranslate theme--light material-icons"
+                  <i class="v-icon notranslate material-icons theme--light"
                      aria-hidden="true"
                   >
                     $dropdown
@@ -1554,7 +1554,7 @@ exports[`VDataTable.ts should apply class unique to rows 1`] = `
               aria-label="Previous page"
       >
         <span class="v-btn__content">
-          <i class="v-icon notranslate theme--light material-icons"
+          <i class="v-icon notranslate material-icons theme--light"
              aria-hidden="true"
           >
             $prev
@@ -1568,7 +1568,7 @@ exports[`VDataTable.ts should apply class unique to rows 1`] = `
               aria-label="Next page"
       >
         <span class="v-btn__content">
-          <i class="v-icon notranslate theme--light material-icons"
+          <i class="v-icon notranslate material-icons theme--light"
              aria-hidden="true"
           >
             $next
@@ -1601,12 +1601,12 @@ exports[`VDataTable.ts should change page if item count decreases below page sta
                   <div role="button"
                        aria-haspopup="listbox"
                        aria-expanded="false"
-                       aria-owns="list-826"
+                       aria-owns="list-690"
                        class="v-input__slot"
                   >
                     <div class="v-select__slot">
                       <label class="v-label theme--light"
-                             for="input-826"
+                             for="input-690"
                              aria-hidden="false"
                              style="right: 0px; position: absolute;"
                       >
@@ -1615,14 +1615,14 @@ exports[`VDataTable.ts should change page if item count decreases below page sta
                       <div class="v-select__selections">
                         <input aria-readonly="false"
                                autocomplete="off"
-                               id="input-826"
+                               id="input-690"
                                readonly
                                type="text"
                         >
                       </div>
                       <div class="v-input__append-inner">
                         <div class="v-input__icon v-input__icon--append">
-                          <i class="v-icon notranslate theme--light material-icons"
+                          <i class="v-icon notranslate material-icons theme--light"
                              aria-hidden="true"
                           >
                             $dropdown
@@ -1754,7 +1754,7 @@ exports[`VDataTable.ts should change page if item count decreases below page sta
               aria-label="Previous page"
       >
         <span class="v-btn__content">
-          <i class="v-icon notranslate theme--light material-icons"
+          <i class="v-icon notranslate material-icons theme--light"
              aria-hidden="true"
           >
             $prev
@@ -1769,7 +1769,7 @@ exports[`VDataTable.ts should change page if item count decreases below page sta
               aria-label="Next page"
       >
         <span class="v-btn__content">
-          <i class="v-icon notranslate theme--light material-icons"
+          <i class="v-icon notranslate material-icons theme--light"
              aria-hidden="true"
           >
             $next
@@ -1802,12 +1802,12 @@ exports[`VDataTable.ts should default to first option in itemsPerPageOptions if 
                   <div role="button"
                        aria-haspopup="listbox"
                        aria-expanded="false"
-                       aria-owns="list-738"
+                       aria-owns="list-614"
                        class="v-input__slot"
                   >
                     <div class="v-select__slot">
                       <label class="v-label theme--light"
-                             for="input-738"
+                             for="input-614"
                              aria-hidden="false"
                              style="right: 0px; position: absolute;"
                       >
@@ -1816,14 +1816,14 @@ exports[`VDataTable.ts should default to first option in itemsPerPageOptions if 
                       <div class="v-select__selections">
                         <input aria-readonly="false"
                                autocomplete="off"
-                               id="input-738"
+                               id="input-614"
                                readonly
                                type="text"
                         >
                       </div>
                       <div class="v-input__append-inner">
                         <div class="v-input__icon v-input__icon--append">
-                          <i class="v-icon notranslate theme--light material-icons"
+                          <i class="v-icon notranslate material-icons theme--light"
                              aria-hidden="true"
                           >
                             $dropdown
@@ -2155,7 +2155,7 @@ exports[`VDataTable.ts should default to first option in itemsPerPageOptions if 
           <div role="button"
                aria-haspopup="listbox"
                aria-expanded="false"
-               aria-owns="list-750"
+               aria-owns="list-625"
                class="v-input__slot"
           >
             <div class="v-select__slot">
@@ -2166,14 +2166,14 @@ exports[`VDataTable.ts should default to first option in itemsPerPageOptions if 
                 <input aria-label="Rows per page:"
                        aria-readonly="false"
                        autocomplete="off"
-                       id="input-750"
+                       id="input-625"
                        readonly
                        type="text"
                 >
               </div>
               <div class="v-input__append-inner">
                 <div class="v-input__icon v-input__icon--append">
-                  <i class="v-icon notranslate theme--light material-icons"
+                  <i class="v-icon notranslate material-icons theme--light"
                      aria-hidden="true"
                   >
                     $dropdown
@@ -2200,7 +2200,7 @@ exports[`VDataTable.ts should default to first option in itemsPerPageOptions if 
               aria-label="Previous page"
       >
         <span class="v-btn__content">
-          <i class="v-icon notranslate theme--light material-icons"
+          <i class="v-icon notranslate material-icons theme--light"
              aria-hidden="true"
           >
             $prev
@@ -2214,7 +2214,7 @@ exports[`VDataTable.ts should default to first option in itemsPerPageOptions if 
               aria-label="Next page"
       >
         <span class="v-btn__content">
-          <i class="v-icon notranslate theme--light material-icons"
+          <i class="v-icon notranslate material-icons theme--light"
              aria-hidden="true"
           >
             $next
@@ -2243,12 +2243,12 @@ exports[`VDataTable.ts should handle filtering correctly 1`] = `
                   <div role="button"
                        aria-haspopup="listbox"
                        aria-expanded="false"
-                       aria-owns="list-1016"
+                       aria-owns="list-841"
                        class="v-input__slot"
                   >
                     <div class="v-select__slot">
                       <label class="v-label theme--light"
-                             for="input-1016"
+                             for="input-841"
                              aria-hidden="false"
                              style="right: 0px; position: absolute;"
                       >
@@ -2257,14 +2257,14 @@ exports[`VDataTable.ts should handle filtering correctly 1`] = `
                       <div class="v-select__selections">
                         <input aria-readonly="false"
                                autocomplete="off"
-                               id="input-1016"
+                               id="input-841"
                                readonly
                                type="text"
                         >
                       </div>
                       <div class="v-input__append-inner">
                         <div class="v-input__icon v-input__icon--append">
-                          <i class="v-icon notranslate theme--light material-icons"
+                          <i class="v-icon notranslate material-icons theme--light"
                              aria-hidden="true"
                           >
                             $dropdown
@@ -2332,7 +2332,7 @@ exports[`VDataTable.ts should handle filtering correctly 1`] = `
           <div role="button"
                aria-haspopup="listbox"
                aria-expanded="false"
-               aria-owns="list-1024"
+               aria-owns="list-848"
                class="v-input__slot"
           >
             <div class="v-select__slot">
@@ -2343,14 +2343,14 @@ exports[`VDataTable.ts should handle filtering correctly 1`] = `
                 <input aria-label="Rows per page:"
                        aria-readonly="false"
                        autocomplete="off"
-                       id="input-1024"
+                       id="input-848"
                        readonly
                        type="text"
                 >
               </div>
               <div class="v-input__append-inner">
                 <div class="v-input__icon v-input__icon--append">
-                  <i class="v-icon notranslate theme--light material-icons"
+                  <i class="v-icon notranslate material-icons theme--light"
                      aria-hidden="true"
                   >
                     $dropdown
@@ -2377,7 +2377,7 @@ exports[`VDataTable.ts should handle filtering correctly 1`] = `
               aria-label="Previous page"
       >
         <span class="v-btn__content">
-          <i class="v-icon notranslate theme--light material-icons"
+          <i class="v-icon notranslate material-icons theme--light"
              aria-hidden="true"
           >
             $prev
@@ -2392,7 +2392,7 @@ exports[`VDataTable.ts should handle filtering correctly 1`] = `
               aria-label="Next page"
       >
         <span class="v-btn__content">
-          <i class="v-icon notranslate theme--light material-icons"
+          <i class="v-icon notranslate material-icons theme--light"
              aria-hidden="true"
           >
             $next
@@ -2421,12 +2421,12 @@ exports[`VDataTable.ts should handle filtering correctly 2`] = `
                   <div role="button"
                        aria-haspopup="listbox"
                        aria-expanded="false"
-                       aria-owns="list-1016"
+                       aria-owns="list-841"
                        class="v-input__slot"
                   >
                     <div class="v-select__slot">
                       <label class="v-label theme--light"
-                             for="input-1016"
+                             for="input-841"
                              aria-hidden="false"
                              style="right: 0px; position: absolute;"
                       >
@@ -2435,14 +2435,14 @@ exports[`VDataTable.ts should handle filtering correctly 2`] = `
                       <div class="v-select__selections">
                         <input aria-readonly="false"
                                autocomplete="off"
-                               id="input-1016"
+                               id="input-841"
                                readonly
                                type="text"
                         >
                       </div>
                       <div class="v-input__append-inner">
                         <div class="v-input__icon v-input__icon--append">
-                          <i class="v-icon notranslate theme--light material-icons"
+                          <i class="v-icon notranslate material-icons theme--light"
                              aria-hidden="true"
                           >
                             $dropdown
@@ -2492,7 +2492,7 @@ exports[`VDataTable.ts should handle filtering correctly 2`] = `
           <div role="button"
                aria-haspopup="listbox"
                aria-expanded="false"
-               aria-owns="list-1024"
+               aria-owns="list-848"
                class="v-input__slot"
           >
             <div class="v-select__slot">
@@ -2503,14 +2503,14 @@ exports[`VDataTable.ts should handle filtering correctly 2`] = `
                 <input aria-label="Rows per page:"
                        aria-readonly="false"
                        autocomplete="off"
-                       id="input-1024"
+                       id="input-848"
                        readonly
                        type="text"
                 >
               </div>
               <div class="v-input__append-inner">
                 <div class="v-input__icon v-input__icon--append">
-                  <i class="v-icon notranslate theme--light material-icons"
+                  <i class="v-icon notranslate material-icons theme--light"
                      aria-hidden="true"
                   >
                     $dropdown
@@ -2537,7 +2537,7 @@ exports[`VDataTable.ts should handle filtering correctly 2`] = `
               aria-label="Previous page"
       >
         <span class="v-btn__content">
-          <i class="v-icon notranslate theme--light material-icons"
+          <i class="v-icon notranslate material-icons theme--light"
              aria-hidden="true"
           >
             $prev
@@ -2552,7 +2552,7 @@ exports[`VDataTable.ts should handle filtering correctly 2`] = `
               aria-label="Next page"
       >
         <span class="v-btn__content">
-          <i class="v-icon notranslate theme--light material-icons"
+          <i class="v-icon notranslate material-icons theme--light"
              aria-hidden="true"
           >
             $next
@@ -2585,12 +2585,12 @@ exports[`VDataTable.ts should handle object when checking if it should default t
                   <div role="button"
                        aria-haspopup="listbox"
                        aria-expanded="false"
-                       aria-owns="list-766"
+                       aria-owns="list-638"
                        class="v-input__slot"
                   >
                     <div class="v-select__slot">
                       <label class="v-label theme--light"
-                             for="input-766"
+                             for="input-638"
                              aria-hidden="false"
                              style="right: 0px; position: absolute;"
                       >
@@ -2599,14 +2599,14 @@ exports[`VDataTable.ts should handle object when checking if it should default t
                       <div class="v-select__selections">
                         <input aria-readonly="false"
                                autocomplete="off"
-                               id="input-766"
+                               id="input-638"
                                readonly
                                type="text"
                         >
                       </div>
                       <div class="v-input__append-inner">
                         <div class="v-input__icon v-input__icon--append">
-                          <i class="v-icon notranslate theme--light material-icons"
+                          <i class="v-icon notranslate material-icons theme--light"
                              aria-hidden="true"
                           >
                             $dropdown
@@ -3138,7 +3138,7 @@ exports[`VDataTable.ts should handle object when checking if it should default t
           <div role="button"
                aria-haspopup="listbox"
                aria-expanded="false"
-               aria-owns="list-782"
+               aria-owns="list-653"
                class="v-input__slot"
           >
             <div class="v-select__slot">
@@ -3149,14 +3149,14 @@ exports[`VDataTable.ts should handle object when checking if it should default t
                 <input aria-label="Rows per page:"
                        aria-readonly="false"
                        autocomplete="off"
-                       id="input-782"
+                       id="input-653"
                        readonly
                        type="text"
                 >
               </div>
               <div class="v-input__append-inner">
                 <div class="v-input__icon v-input__icon--append">
-                  <i class="v-icon notranslate theme--light material-icons"
+                  <i class="v-icon notranslate material-icons theme--light"
                      aria-hidden="true"
                   >
                     $dropdown
@@ -3183,7 +3183,7 @@ exports[`VDataTable.ts should handle object when checking if it should default t
               aria-label="Previous page"
       >
         <span class="v-btn__content">
-          <i class="v-icon notranslate theme--light material-icons"
+          <i class="v-icon notranslate material-icons theme--light"
              aria-hidden="true"
           >
             $prev
@@ -3198,7 +3198,7 @@ exports[`VDataTable.ts should handle object when checking if it should default t
               aria-label="Next page"
       >
         <span class="v-btn__content">
-          <i class="v-icon notranslate theme--light material-icons"
+          <i class="v-icon notranslate material-icons theme--light"
              aria-hidden="true"
           >
             $next
@@ -3231,12 +3231,12 @@ exports[`VDataTable.ts should hide group button when column is not groupable 1`]
                   <div role="button"
                        aria-haspopup="listbox"
                        aria-expanded="false"
-                       aria-owns="list-1282"
+                       aria-owns="list-1066"
                        class="v-input__slot"
                   >
                     <div class="v-select__slot">
                       <label class="v-label theme--light"
-                             for="input-1282"
+                             for="input-1066"
                              aria-hidden="false"
                              style="right: 0px; position: absolute;"
                       >
@@ -3245,14 +3245,14 @@ exports[`VDataTable.ts should hide group button when column is not groupable 1`]
                       <div class="v-select__selections">
                         <input aria-readonly="false"
                                autocomplete="off"
-                               id="input-1282"
+                               id="input-1066"
                                readonly
                                type="text"
                         >
                       </div>
                       <div class="v-input__append-inner">
                         <div class="v-input__icon v-input__icon--append">
-                          <i class="v-icon notranslate theme--light material-icons"
+                          <i class="v-icon notranslate material-icons theme--light"
                              aria-hidden="true"
                           >
                             $dropdown
@@ -3784,7 +3784,7 @@ exports[`VDataTable.ts should hide group button when column is not groupable 1`]
           <div role="button"
                aria-haspopup="listbox"
                aria-expanded="false"
-               aria-owns="list-1298"
+               aria-owns="list-1081"
                class="v-input__slot"
           >
             <div class="v-select__slot">
@@ -3795,14 +3795,14 @@ exports[`VDataTable.ts should hide group button when column is not groupable 1`]
                 <input aria-label="Rows per page:"
                        aria-readonly="false"
                        autocomplete="off"
-                       id="input-1298"
+                       id="input-1081"
                        readonly
                        type="text"
                 >
               </div>
               <div class="v-input__append-inner">
                 <div class="v-input__icon v-input__icon--append">
-                  <i class="v-icon notranslate theme--light material-icons"
+                  <i class="v-icon notranslate material-icons theme--light"
                      aria-hidden="true"
                   >
                     $dropdown
@@ -3829,7 +3829,7 @@ exports[`VDataTable.ts should hide group button when column is not groupable 1`]
               aria-label="Previous page"
       >
         <span class="v-btn__content">
-          <i class="v-icon notranslate theme--light material-icons"
+          <i class="v-icon notranslate material-icons theme--light"
              aria-hidden="true"
           >
             $prev
@@ -3844,7 +3844,7 @@ exports[`VDataTable.ts should hide group button when column is not groupable 1`]
               aria-label="Next page"
       >
         <span class="v-btn__content">
-          <i class="v-icon notranslate theme--light material-icons"
+          <i class="v-icon notranslate material-icons theme--light"
              aria-hidden="true"
           >
             $next
@@ -3877,12 +3877,12 @@ exports[`VDataTable.ts should limit page to current page count if not using serv
                   <div role="button"
                        aria-haspopup="listbox"
                        aria-expanded="false"
-                       aria-owns="list-711"
+                       aria-owns="list-591"
                        class="v-input__slot"
                   >
                     <div class="v-select__slot">
                       <label class="v-label theme--light"
-                             for="input-711"
+                             for="input-591"
                              aria-hidden="false"
                              style="right: 0px; position: absolute;"
                       >
@@ -3891,14 +3891,14 @@ exports[`VDataTable.ts should limit page to current page count if not using serv
                       <div class="v-select__selections">
                         <input aria-readonly="false"
                                autocomplete="off"
-                               id="input-711"
+                               id="input-591"
                                readonly
                                type="text"
                         >
                       </div>
                       <div class="v-input__append-inner">
                         <div class="v-input__icon v-input__icon--append">
-                          <i class="v-icon notranslate theme--light material-icons"
+                          <i class="v-icon notranslate material-icons theme--light"
                              aria-hidden="true"
                           >
                             $dropdown
@@ -4180,7 +4180,7 @@ exports[`VDataTable.ts should limit page to current page count if not using serv
           <div role="button"
                aria-haspopup="listbox"
                aria-expanded="false"
-               aria-owns="list-722"
+               aria-owns="list-601"
                class="v-input__slot"
           >
             <div class="v-select__slot">
@@ -4191,14 +4191,14 @@ exports[`VDataTable.ts should limit page to current page count if not using serv
                 <input aria-label="Rows per page:"
                        aria-readonly="false"
                        autocomplete="off"
-                       id="input-722"
+                       id="input-601"
                        readonly
                        type="text"
                 >
               </div>
               <div class="v-input__append-inner">
                 <div class="v-input__icon v-input__icon--append">
-                  <i class="v-icon notranslate theme--light material-icons"
+                  <i class="v-icon notranslate material-icons theme--light"
                      aria-hidden="true"
                   >
                     $dropdown
@@ -4224,7 +4224,7 @@ exports[`VDataTable.ts should limit page to current page count if not using serv
               aria-label="Previous page"
       >
         <span class="v-btn__content">
-          <i class="v-icon notranslate theme--light material-icons"
+          <i class="v-icon notranslate material-icons theme--light"
              aria-hidden="true"
           >
             $prev
@@ -4239,7 +4239,7 @@ exports[`VDataTable.ts should limit page to current page count if not using serv
               aria-label="Next page"
       >
         <span class="v-btn__content">
-          <i class="v-icon notranslate theme--light material-icons"
+          <i class="v-icon notranslate material-icons theme--light"
              aria-hidden="true"
           >
             $next
@@ -4272,12 +4272,12 @@ exports[`VDataTable.ts should not limit page to current item count when using se
                   <div role="button"
                        aria-haspopup="listbox"
                        aria-expanded="false"
-                       aria-owns="list-620"
+                       aria-owns="list-512"
                        class="v-input__slot"
                   >
                     <div class="v-select__slot">
                       <label class="v-label theme--light"
-                             for="input-620"
+                             for="input-512"
                              aria-hidden="false"
                              style="right: 0px; position: absolute;"
                       >
@@ -4286,14 +4286,14 @@ exports[`VDataTable.ts should not limit page to current item count when using se
                       <div class="v-select__selections">
                         <input aria-readonly="false"
                                autocomplete="off"
-                               id="input-620"
+                               id="input-512"
                                readonly
                                type="text"
                         >
                       </div>
                       <div class="v-input__append-inner">
                         <div class="v-input__icon v-input__icon--append">
-                          <i class="v-icon notranslate theme--light material-icons"
+                          <i class="v-icon notranslate material-icons theme--light"
                              aria-hidden="true"
                           >
                             $dropdown
@@ -4330,7 +4330,7 @@ exports[`VDataTable.ts should not limit page to current item count when using se
           <div role="button"
                aria-haspopup="listbox"
                aria-expanded="false"
-               aria-owns="list-626"
+               aria-owns="list-517"
                class="v-input__slot"
           >
             <div class="v-select__slot">
@@ -4341,14 +4341,14 @@ exports[`VDataTable.ts should not limit page to current item count when using se
                 <input aria-label="Rows per page:"
                        aria-readonly="false"
                        autocomplete="off"
-                       id="input-626"
+                       id="input-517"
                        readonly
                        type="text"
                 >
               </div>
               <div class="v-input__append-inner">
                 <div class="v-input__icon v-input__icon--append">
-                  <i class="v-icon notranslate theme--light material-icons"
+                  <i class="v-icon notranslate material-icons theme--light"
                      aria-hidden="true"
                   >
                     $dropdown
@@ -4374,7 +4374,7 @@ exports[`VDataTable.ts should not limit page to current item count when using se
               aria-label="Previous page"
       >
         <span class="v-btn__content">
-          <i class="v-icon notranslate theme--light material-icons"
+          <i class="v-icon notranslate material-icons theme--light"
              aria-hidden="true"
           >
             $prev
@@ -4389,7 +4389,7 @@ exports[`VDataTable.ts should not limit page to current item count when using se
               aria-label="Next page"
       >
         <span class="v-btn__content">
-          <i class="v-icon notranslate theme--light material-icons"
+          <i class="v-icon notranslate material-icons theme--light"
              aria-hidden="true"
           >
             $next
@@ -4422,12 +4422,12 @@ exports[`VDataTable.ts should not limit page to current item count when using se
                   <div role="button"
                        aria-haspopup="listbox"
                        aria-expanded="false"
-                       aria-owns="list-620"
+                       aria-owns="list-512"
                        class="v-input__slot"
                   >
                     <div class="v-select__slot">
                       <label class="v-label theme--light"
-                             for="input-620"
+                             for="input-512"
                              aria-hidden="false"
                              style="right: 0px; position: absolute;"
                       >
@@ -4436,14 +4436,14 @@ exports[`VDataTable.ts should not limit page to current item count when using se
                       <div class="v-select__selections">
                         <input aria-readonly="false"
                                autocomplete="off"
-                               id="input-620"
+                               id="input-512"
                                readonly
                                type="text"
                         >
                       </div>
                       <div class="v-input__append-inner">
                         <div class="v-input__icon v-input__icon--append">
-                          <i class="v-icon notranslate theme--light material-icons"
+                          <i class="v-icon notranslate material-icons theme--light"
                              aria-hidden="true"
                           >
                             $dropdown
@@ -4725,7 +4725,7 @@ exports[`VDataTable.ts should not limit page to current item count when using se
           <div role="button"
                aria-haspopup="listbox"
                aria-expanded="false"
-               aria-owns="list-626"
+               aria-owns="list-517"
                class="v-input__slot"
           >
             <div class="v-select__slot">
@@ -4736,14 +4736,14 @@ exports[`VDataTable.ts should not limit page to current item count when using se
                 <input aria-label="Rows per page:"
                        aria-readonly="false"
                        autocomplete="off"
-                       id="input-626"
+                       id="input-517"
                        readonly
                        type="text"
                 >
               </div>
               <div class="v-input__append-inner">
                 <div class="v-input__icon v-input__icon--append">
-                  <i class="v-icon notranslate theme--light material-icons"
+                  <i class="v-icon notranslate material-icons theme--light"
                      aria-hidden="true"
                   >
                     $dropdown
@@ -4769,7 +4769,7 @@ exports[`VDataTable.ts should not limit page to current item count when using se
               aria-label="Previous page"
       >
         <span class="v-btn__content">
-          <i class="v-icon notranslate theme--light material-icons"
+          <i class="v-icon notranslate material-icons theme--light"
              aria-hidden="true"
           >
             $prev
@@ -4783,7 +4783,7 @@ exports[`VDataTable.ts should not limit page to current item count when using se
               aria-label="Next page"
       >
         <span class="v-btn__content">
-          <i class="v-icon notranslate theme--light material-icons"
+          <i class="v-icon notranslate material-icons theme--light"
              aria-hidden="true"
           >
             $next
@@ -4816,12 +4816,12 @@ exports[`VDataTable.ts should not search column with filterable set to false 1`]
                   <div role="button"
                        aria-haspopup="listbox"
                        aria-expanded="false"
-                       aria-owns="list-647"
+                       aria-owns="list-535"
                        class="v-input__slot"
                   >
                     <div class="v-select__slot">
                       <label class="v-label theme--light"
-                             for="input-647"
+                             for="input-535"
                              aria-hidden="false"
                              style="right: 0px; position: absolute;"
                       >
@@ -4830,14 +4830,14 @@ exports[`VDataTable.ts should not search column with filterable set to false 1`]
                       <div class="v-select__selections">
                         <input aria-readonly="false"
                                autocomplete="off"
-                               id="input-647"
+                               id="input-535"
                                readonly
                                type="text"
                         >
                       </div>
                       <div class="v-input__append-inner">
                         <div class="v-input__icon v-input__icon--append">
-                          <i class="v-icon notranslate theme--light material-icons"
+                          <i class="v-icon notranslate material-icons theme--light"
                              aria-hidden="true"
                           >
                             $dropdown
@@ -5369,7 +5369,7 @@ exports[`VDataTable.ts should not search column with filterable set to false 1`]
           <div role="button"
                aria-haspopup="listbox"
                aria-expanded="false"
-               aria-owns="list-663"
+               aria-owns="list-550"
                class="v-input__slot"
           >
             <div class="v-select__slot">
@@ -5380,14 +5380,14 @@ exports[`VDataTable.ts should not search column with filterable set to false 1`]
                 <input aria-label="Rows per page:"
                        aria-readonly="false"
                        autocomplete="off"
-                       id="input-663"
+                       id="input-550"
                        readonly
                        type="text"
                 >
               </div>
               <div class="v-input__append-inner">
                 <div class="v-input__icon v-input__icon--append">
-                  <i class="v-icon notranslate theme--light material-icons"
+                  <i class="v-icon notranslate material-icons theme--light"
                      aria-hidden="true"
                   >
                     $dropdown
@@ -5414,7 +5414,7 @@ exports[`VDataTable.ts should not search column with filterable set to false 1`]
               aria-label="Previous page"
       >
         <span class="v-btn__content">
-          <i class="v-icon notranslate theme--light material-icons"
+          <i class="v-icon notranslate material-icons theme--light"
              aria-hidden="true"
           >
             $prev
@@ -5429,7 +5429,7 @@ exports[`VDataTable.ts should not search column with filterable set to false 1`]
               aria-label="Next page"
       >
         <span class="v-btn__content">
-          <i class="v-icon notranslate theme--light material-icons"
+          <i class="v-icon notranslate material-icons theme--light"
              aria-hidden="true"
           >
             $next
@@ -5462,12 +5462,12 @@ exports[`VDataTable.ts should not search column with filterable set to false 2`]
                   <div role="button"
                        aria-haspopup="listbox"
                        aria-expanded="false"
-                       aria-owns="list-647"
+                       aria-owns="list-535"
                        class="v-input__slot"
                   >
                     <div class="v-select__slot">
                       <label class="v-label theme--light"
-                             for="input-647"
+                             for="input-535"
                              aria-hidden="false"
                              style="right: 0px; position: absolute;"
                       >
@@ -5476,14 +5476,14 @@ exports[`VDataTable.ts should not search column with filterable set to false 2`]
                       <div class="v-select__selections">
                         <input aria-readonly="false"
                                autocomplete="off"
-                               id="input-647"
+                               id="input-535"
                                readonly
                                type="text"
                         >
                       </div>
                       <div class="v-input__append-inner">
                         <div class="v-input__icon v-input__icon--append">
-                          <i class="v-icon notranslate theme--light material-icons"
+                          <i class="v-icon notranslate material-icons theme--light"
                              aria-hidden="true"
                           >
                             $dropdown
@@ -5520,7 +5520,7 @@ exports[`VDataTable.ts should not search column with filterable set to false 2`]
           <div role="button"
                aria-haspopup="listbox"
                aria-expanded="false"
-               aria-owns="list-663"
+               aria-owns="list-550"
                class="v-input__slot"
           >
             <div class="v-select__slot">
@@ -5531,14 +5531,14 @@ exports[`VDataTable.ts should not search column with filterable set to false 2`]
                 <input aria-label="Rows per page:"
                        aria-readonly="false"
                        autocomplete="off"
-                       id="input-663"
+                       id="input-550"
                        readonly
                        type="text"
                 >
               </div>
               <div class="v-input__append-inner">
                 <div class="v-input__icon v-input__icon--append">
-                  <i class="v-icon notranslate theme--light material-icons"
+                  <i class="v-icon notranslate material-icons theme--light"
                      aria-hidden="true"
                   >
                     $dropdown
@@ -5565,7 +5565,7 @@ exports[`VDataTable.ts should not search column with filterable set to false 2`]
               aria-label="Previous page"
       >
         <span class="v-btn__content">
-          <i class="v-icon notranslate theme--light material-icons"
+          <i class="v-icon notranslate material-icons theme--light"
              aria-hidden="true"
           >
             $prev
@@ -5580,7 +5580,7 @@ exports[`VDataTable.ts should not search column with filterable set to false 2`]
               aria-label="Next page"
       >
         <span class="v-btn__content">
-          <i class="v-icon notranslate theme--light material-icons"
+          <i class="v-icon notranslate material-icons theme--light"
              aria-hidden="true"
           >
             $next
@@ -5613,12 +5613,12 @@ exports[`VDataTable.ts should not search column with filterable set to false and
                   <div role="button"
                        aria-haspopup="listbox"
                        aria-expanded="false"
-                       aria-owns="list-679"
+                       aria-owns="list-563"
                        class="v-input__slot"
                   >
                     <div class="v-select__slot">
                       <label class="v-label theme--light"
-                             for="input-679"
+                             for="input-563"
                              aria-hidden="false"
                              style="right: 0px; position: absolute;"
                       >
@@ -5627,14 +5627,14 @@ exports[`VDataTable.ts should not search column with filterable set to false and
                       <div class="v-select__selections">
                         <input aria-readonly="false"
                                autocomplete="off"
-                               id="input-679"
+                               id="input-563"
                                readonly
                                type="text"
                         >
                       </div>
                       <div class="v-input__append-inner">
                         <div class="v-input__icon v-input__icon--append">
-                          <i class="v-icon notranslate theme--light material-icons"
+                          <i class="v-icon notranslate material-icons theme--light"
                              aria-hidden="true"
                           >
                             $dropdown
@@ -5816,7 +5816,7 @@ exports[`VDataTable.ts should not search column with filterable set to false and
           <div role="button"
                aria-haspopup="listbox"
                aria-expanded="false"
-               aria-owns="list-688"
+               aria-owns="list-571"
                class="v-input__slot"
           >
             <div class="v-select__slot">
@@ -5827,14 +5827,14 @@ exports[`VDataTable.ts should not search column with filterable set to false and
                 <input aria-label="Rows per page:"
                        aria-readonly="false"
                        autocomplete="off"
-                       id="input-688"
+                       id="input-571"
                        readonly
                        type="text"
                 >
               </div>
               <div class="v-input__append-inner">
                 <div class="v-input__icon v-input__icon--append">
-                  <i class="v-icon notranslate theme--light material-icons"
+                  <i class="v-icon notranslate material-icons theme--light"
                      aria-hidden="true"
                   >
                     $dropdown
@@ -5861,7 +5861,7 @@ exports[`VDataTable.ts should not search column with filterable set to false and
               aria-label="Previous page"
       >
         <span class="v-btn__content">
-          <i class="v-icon notranslate theme--light material-icons"
+          <i class="v-icon notranslate material-icons theme--light"
              aria-hidden="true"
           >
             $prev
@@ -5876,7 +5876,7 @@ exports[`VDataTable.ts should not search column with filterable set to false and
               aria-label="Next page"
       >
         <span class="v-btn__content">
-          <i class="v-icon notranslate theme--light material-icons"
+          <i class="v-icon notranslate material-icons theme--light"
              aria-hidden="true"
           >
             $next
@@ -5909,12 +5909,12 @@ exports[`VDataTable.ts should not search column with filterable set to false and
                   <div role="button"
                        aria-haspopup="listbox"
                        aria-expanded="false"
-                       aria-owns="list-679"
+                       aria-owns="list-563"
                        class="v-input__slot"
                   >
                     <div class="v-select__slot">
                       <label class="v-label theme--light"
-                             for="input-679"
+                             for="input-563"
                              aria-hidden="false"
                              style="right: 0px; position: absolute;"
                       >
@@ -5923,14 +5923,14 @@ exports[`VDataTable.ts should not search column with filterable set to false and
                       <div class="v-select__selections">
                         <input aria-readonly="false"
                                autocomplete="off"
-                               id="input-679"
+                               id="input-563"
                                readonly
                                type="text"
                         >
                       </div>
                       <div class="v-input__append-inner">
                         <div class="v-input__icon v-input__icon--append">
-                          <i class="v-icon notranslate theme--light material-icons"
+                          <i class="v-icon notranslate material-icons theme--light"
                              aria-hidden="true"
                           >
                             $dropdown
@@ -6462,7 +6462,7 @@ exports[`VDataTable.ts should not search column with filterable set to false and
           <div role="button"
                aria-haspopup="listbox"
                aria-expanded="false"
-               aria-owns="list-688"
+               aria-owns="list-571"
                class="v-input__slot"
           >
             <div class="v-select__slot">
@@ -6473,14 +6473,14 @@ exports[`VDataTable.ts should not search column with filterable set to false and
                 <input aria-label="Rows per page:"
                        aria-readonly="false"
                        autocomplete="off"
-                       id="input-688"
+                       id="input-571"
                        readonly
                        type="text"
                 >
               </div>
               <div class="v-input__append-inner">
                 <div class="v-input__icon v-input__icon--append">
-                  <i class="v-icon notranslate theme--light material-icons"
+                  <i class="v-icon notranslate material-icons theme--light"
                      aria-hidden="true"
                   >
                     $dropdown
@@ -6507,7 +6507,7 @@ exports[`VDataTable.ts should not search column with filterable set to false and
               aria-label="Previous page"
       >
         <span class="v-btn__content">
-          <i class="v-icon notranslate theme--light material-icons"
+          <i class="v-icon notranslate material-icons theme--light"
              aria-hidden="true"
           >
             $prev
@@ -6522,7 +6522,7 @@ exports[`VDataTable.ts should not search column with filterable set to false and
               aria-label="Next page"
       >
         <span class="v-btn__content">
-          <i class="v-icon notranslate theme--light material-icons"
+          <i class="v-icon notranslate material-icons theme--light"
              aria-hidden="true"
           >
             $next
@@ -6563,7 +6563,7 @@ exports[`VDataTable.ts should pass kebab-case footer props correctly 1`] = `
           <div role="button"
                aria-haspopup="listbox"
                aria-expanded="false"
-               aria-owns="list-541"
+               aria-owns="list-446"
                class="v-input__slot"
           >
             <div class="v-select__slot">
@@ -6574,14 +6574,14 @@ exports[`VDataTable.ts should pass kebab-case footer props correctly 1`] = `
                 <input aria-label="Foo:"
                        aria-readonly="false"
                        autocomplete="off"
-                       id="input-541"
+                       id="input-446"
                        readonly
                        type="text"
                 >
               </div>
               <div class="v-input__append-inner">
                 <div class="v-input__icon v-input__icon--append">
-                  <i class="v-icon notranslate theme--light material-icons"
+                  <i class="v-icon notranslate material-icons theme--light"
                      aria-hidden="true"
                   >
                     $dropdown
@@ -6608,7 +6608,7 @@ exports[`VDataTable.ts should pass kebab-case footer props correctly 1`] = `
               aria-label="Previous page"
       >
         <span class="v-btn__content">
-          <i class="v-icon notranslate theme--light material-icons"
+          <i class="v-icon notranslate material-icons theme--light"
              aria-hidden="true"
           >
             $prev
@@ -6623,7 +6623,7 @@ exports[`VDataTable.ts should pass kebab-case footer props correctly 1`] = `
               aria-label="Next page"
       >
         <span class="v-btn__content">
-          <i class="v-icon notranslate theme--light material-icons"
+          <i class="v-icon notranslate material-icons theme--light"
              aria-hidden="true"
           >
             $next
@@ -6682,7 +6682,7 @@ exports[`VDataTable.ts should render 1`] = `
               </div>
               <div class="v-input__append-inner">
                 <div class="v-input__icon v-input__icon--append">
-                  <i class="v-icon notranslate theme--light material-icons"
+                  <i class="v-icon notranslate material-icons theme--light"
                      aria-hidden="true"
                   >
                     $dropdown
@@ -6709,7 +6709,7 @@ exports[`VDataTable.ts should render 1`] = `
               aria-label="Previous page"
       >
         <span class="v-btn__content">
-          <i class="v-icon notranslate theme--light material-icons"
+          <i class="v-icon notranslate material-icons theme--light"
              aria-hidden="true"
           >
             $prev
@@ -6724,7 +6724,7 @@ exports[`VDataTable.ts should render 1`] = `
               aria-label="Next page"
       >
         <span class="v-btn__content">
-          <i class="v-icon notranslate theme--light material-icons"
+          <i class="v-icon notranslate material-icons theme--light"
              aria-hidden="true"
           >
             $next
@@ -6762,7 +6762,7 @@ exports[`VDataTable.ts should render footer.page-text slot content 1`] = `
           <div role="button"
                aria-haspopup="listbox"
                aria-expanded="false"
-               aria-owns="list-604"
+               aria-owns="list-499"
                class="v-input__slot"
           >
             <div class="v-select__slot">
@@ -6773,14 +6773,14 @@ exports[`VDataTable.ts should render footer.page-text slot content 1`] = `
                 <input aria-label="Rows per page:"
                        aria-readonly="false"
                        autocomplete="off"
-                       id="input-604"
+                       id="input-499"
                        readonly
                        type="text"
                 >
               </div>
               <div class="v-input__append-inner">
                 <div class="v-input__icon v-input__icon--append">
-                  <i class="v-icon notranslate theme--light material-icons"
+                  <i class="v-icon notranslate material-icons theme--light"
                      aria-hidden="true"
                   >
                     $dropdown
@@ -6809,7 +6809,7 @@ exports[`VDataTable.ts should render footer.page-text slot content 1`] = `
               aria-label="Previous page"
       >
         <span class="v-btn__content">
-          <i class="v-icon notranslate theme--light material-icons"
+          <i class="v-icon notranslate material-icons theme--light"
              aria-hidden="true"
           >
             $prev
@@ -6824,7 +6824,7 @@ exports[`VDataTable.ts should render footer.page-text slot content 1`] = `
               aria-label="Next page"
       >
         <span class="v-btn__content">
-          <i class="v-icon notranslate theme--light material-icons"
+          <i class="v-icon notranslate material-icons theme--light"
              aria-hidden="true"
           >
             $next
@@ -6865,7 +6865,7 @@ exports[`VDataTable.ts should render footer.prepend slot content 1`] = `
           <div role="button"
                aria-haspopup="listbox"
                aria-expanded="false"
-               aria-owns="list-586"
+               aria-owns="list-484"
                class="v-input__slot"
           >
             <div class="v-select__slot">
@@ -6876,14 +6876,14 @@ exports[`VDataTable.ts should render footer.prepend slot content 1`] = `
                 <input aria-label="Rows per page:"
                        aria-readonly="false"
                        autocomplete="off"
-                       id="input-586"
+                       id="input-484"
                        readonly
                        type="text"
                 >
               </div>
               <div class="v-input__append-inner">
                 <div class="v-input__icon v-input__icon--append">
-                  <i class="v-icon notranslate theme--light material-icons"
+                  <i class="v-icon notranslate material-icons theme--light"
                      aria-hidden="true"
                   >
                     $dropdown
@@ -6910,7 +6910,7 @@ exports[`VDataTable.ts should render footer.prepend slot content 1`] = `
               aria-label="Previous page"
       >
         <span class="v-btn__content">
-          <i class="v-icon notranslate theme--light material-icons"
+          <i class="v-icon notranslate material-icons theme--light"
              aria-hidden="true"
           >
             $prev
@@ -6925,7 +6925,7 @@ exports[`VDataTable.ts should render footer.prepend slot content 1`] = `
               aria-label="Next page"
       >
         <span class="v-btn__content">
-          <i class="v-icon notranslate theme--light material-icons"
+          <i class="v-icon notranslate material-icons theme--light"
              aria-hidden="true"
           >
             $next
@@ -6958,12 +6958,12 @@ exports[`VDataTable.ts should render item slot when using group-by function 1`] 
                   <div role="button"
                        aria-haspopup="listbox"
                        aria-expanded="false"
-                       aria-owns="list-980"
+                       aria-owns="list-813"
                        class="v-input__slot"
                   >
                     <div class="v-select__slot">
                       <label class="v-label theme--light"
-                             for="input-980"
+                             for="input-813"
                              aria-hidden="false"
                              style="right: 0px; position: absolute;"
                       >
@@ -6972,14 +6972,14 @@ exports[`VDataTable.ts should render item slot when using group-by function 1`] 
                       <div class="v-select__selections">
                         <input aria-readonly="false"
                                autocomplete="off"
-                               id="input-980"
+                               id="input-813"
                                readonly
                                type="text"
                         >
                       </div>
                       <div class="v-input__append-inner">
                         <div class="v-input__icon v-input__icon--append">
-                          <i class="v-icon notranslate theme--light material-icons"
+                          <i class="v-icon notranslate material-icons theme--light"
                              aria-hidden="true"
                           >
                             $dropdown
@@ -7004,7 +7004,7 @@ exports[`VDataTable.ts should render item slot when using group-by function 1`] 
                     type="button"
             >
               <span class="v-btn__content">
-                <i class="v-icon notranslate theme--light material-icons"
+                <i class="v-icon notranslate material-icons theme--light"
                    aria-hidden="true"
                 >
                   $minus
@@ -7016,7 +7016,7 @@ exports[`VDataTable.ts should render item slot when using group-by function 1`] 
                     type="button"
             >
               <span class="v-btn__content">
-                <i class="v-icon notranslate theme--light material-icons"
+                <i class="v-icon notranslate material-icons theme--light"
                    aria-hidden="true"
                 >
                   $close
@@ -7034,7 +7034,7 @@ exports[`VDataTable.ts should render item slot when using group-by function 1`] 
                     type="button"
             >
               <span class="v-btn__content">
-                <i class="v-icon notranslate theme--light material-icons"
+                <i class="v-icon notranslate material-icons theme--light"
                    aria-hidden="true"
                 >
                   $minus
@@ -7046,7 +7046,7 @@ exports[`VDataTable.ts should render item slot when using group-by function 1`] 
                     type="button"
             >
               <span class="v-btn__content">
-                <i class="v-icon notranslate theme--light material-icons"
+                <i class="v-icon notranslate material-icons theme--light"
                    aria-hidden="true"
                 >
                   $close
@@ -7071,7 +7071,7 @@ exports[`VDataTable.ts should render item slot when using group-by function 1`] 
           <div role="button"
                aria-haspopup="listbox"
                aria-expanded="false"
-               aria-owns="list-1000"
+               aria-owns="list-828"
                class="v-input__slot"
           >
             <div class="v-select__slot">
@@ -7082,14 +7082,14 @@ exports[`VDataTable.ts should render item slot when using group-by function 1`] 
                 <input aria-label="Rows per page:"
                        aria-readonly="false"
                        autocomplete="off"
-                       id="input-1000"
+                       id="input-828"
                        readonly
                        type="text"
                 >
               </div>
               <div class="v-input__append-inner">
                 <div class="v-input__icon v-input__icon--append">
-                  <i class="v-icon notranslate theme--light material-icons"
+                  <i class="v-icon notranslate material-icons theme--light"
                      aria-hidden="true"
                   >
                     $dropdown
@@ -7116,7 +7116,7 @@ exports[`VDataTable.ts should render item slot when using group-by function 1`] 
               aria-label="Previous page"
       >
         <span class="v-btn__content">
-          <i class="v-icon notranslate theme--light material-icons"
+          <i class="v-icon notranslate material-icons theme--light"
              aria-hidden="true"
           >
             $prev
@@ -7131,7 +7131,7 @@ exports[`VDataTable.ts should render item slot when using group-by function 1`] 
               aria-label="Next page"
       >
         <span class="v-btn__content">
-          <i class="v-icon notranslate theme--light material-icons"
+          <i class="v-icon notranslate material-icons theme--light"
              aria-hidden="true"
           >
             $next
@@ -7197,7 +7197,7 @@ exports[`VDataTable.ts should render loading state 1`] = `
           <div role="button"
                aria-haspopup="listbox"
                aria-expanded="false"
-               aria-owns="list-406"
+               aria-owns="list-330"
                class="v-input__slot"
           >
             <div class="v-select__slot">
@@ -7208,14 +7208,14 @@ exports[`VDataTable.ts should render loading state 1`] = `
                 <input aria-label="Rows per page:"
                        aria-readonly="false"
                        autocomplete="off"
-                       id="input-406"
+                       id="input-330"
                        readonly
                        type="text"
                 >
               </div>
               <div class="v-input__append-inner">
                 <div class="v-input__icon v-input__icon--append">
-                  <i class="v-icon notranslate theme--light material-icons"
+                  <i class="v-icon notranslate material-icons theme--light"
                      aria-hidden="true"
                   >
                     $dropdown
@@ -7242,7 +7242,7 @@ exports[`VDataTable.ts should render loading state 1`] = `
               aria-label="Previous page"
       >
         <span class="v-btn__content">
-          <i class="v-icon notranslate theme--light material-icons"
+          <i class="v-icon notranslate material-icons theme--light"
              aria-hidden="true"
           >
             $prev
@@ -7257,7 +7257,7 @@ exports[`VDataTable.ts should render loading state 1`] = `
               aria-label="Next page"
       >
         <span class="v-btn__content">
-          <i class="v-icon notranslate theme--light material-icons"
+          <i class="v-icon notranslate material-icons theme--light"
              aria-hidden="true"
           >
             $next
@@ -7290,12 +7290,12 @@ exports[`VDataTable.ts should render loading state 2`] = `
                   <div role="button"
                        aria-haspopup="listbox"
                        aria-expanded="false"
-                       aria-owns="list-422"
+                       aria-owns="list-343"
                        class="v-input__slot"
                   >
                     <div class="v-select__slot">
                       <label class="v-label theme--light"
-                             for="input-422"
+                             for="input-343"
                              aria-hidden="false"
                              style="right: 0px; position: absolute;"
                       >
@@ -7304,14 +7304,14 @@ exports[`VDataTable.ts should render loading state 2`] = `
                       <div class="v-select__selections">
                         <input aria-readonly="false"
                                autocomplete="off"
-                               id="input-422"
+                               id="input-343"
                                readonly
                                type="text"
                         >
                       </div>
                       <div class="v-input__append-inner">
                         <div class="v-input__icon v-input__icon--append">
-                          <i class="v-icon notranslate theme--light material-icons"
+                          <i class="v-icon notranslate material-icons theme--light"
                              aria-hidden="true"
                           >
                             $dropdown
@@ -7357,7 +7357,7 @@ exports[`VDataTable.ts should render loading state 2`] = `
           <div role="button"
                aria-haspopup="listbox"
                aria-expanded="false"
-               aria-owns="list-428"
+               aria-owns="list-348"
                class="v-input__slot"
           >
             <div class="v-select__slot">
@@ -7368,14 +7368,14 @@ exports[`VDataTable.ts should render loading state 2`] = `
                 <input aria-label="Rows per page:"
                        aria-readonly="false"
                        autocomplete="off"
-                       id="input-428"
+                       id="input-348"
                        readonly
                        type="text"
                 >
               </div>
               <div class="v-input__append-inner">
                 <div class="v-input__icon v-input__icon--append">
-                  <i class="v-icon notranslate theme--light material-icons"
+                  <i class="v-icon notranslate material-icons theme--light"
                      aria-hidden="true"
                   >
                     $dropdown
@@ -7402,7 +7402,7 @@ exports[`VDataTable.ts should render loading state 2`] = `
               aria-label="Previous page"
       >
         <span class="v-btn__content">
-          <i class="v-icon notranslate theme--light material-icons"
+          <i class="v-icon notranslate material-icons theme--light"
              aria-hidden="true"
           >
             $prev
@@ -7417,7 +7417,7 @@ exports[`VDataTable.ts should render loading state 2`] = `
               aria-label="Next page"
       >
         <span class="v-btn__content">
-          <i class="v-icon notranslate theme--light material-icons"
+          <i class="v-icon notranslate material-icons theme--light"
              aria-hidden="true"
           >
             $next
@@ -7451,7 +7451,7 @@ exports[`VDataTable.ts should render non-selectable items correctly 1`] = `
               >
                 <div class="v-simple-checkbox v-data-table__checkbox v-data-table__checkbox">
                   <div class="v-input--selection-controls__input">
-                    <i class="v-icon notranslate theme--light material-icons"
+                    <i class="v-icon notranslate material-icons theme--light"
                        aria-hidden="true"
                     >
                       $checkboxOff
@@ -7466,12 +7466,12 @@ exports[`VDataTable.ts should render non-selectable items correctly 1`] = `
                   <div role="button"
                        aria-haspopup="listbox"
                        aria-expanded="false"
-                       aria-owns="list-879"
+                       aria-owns="list-733"
                        class="v-input__slot"
                   >
                     <div class="v-select__slot">
                       <label class="v-label theme--light"
-                             for="input-879"
+                             for="input-733"
                              aria-hidden="false"
                              style="right: 0px; position: absolute;"
                       >
@@ -7480,14 +7480,14 @@ exports[`VDataTable.ts should render non-selectable items correctly 1`] = `
                       <div class="v-select__selections">
                         <input aria-readonly="false"
                                autocomplete="off"
-                               id="input-879"
+                               id="input-733"
                                readonly
                                type="text"
                         >
                       </div>
                       <div class="v-input__append-inner">
                         <div class="v-input__icon v-input__icon--append">
-                          <i class="v-icon notranslate theme--light material-icons"
+                          <i class="v-icon notranslate material-icons theme--light"
                              aria-hidden="true"
                           >
                             $dropdown
@@ -7513,7 +7513,7 @@ exports[`VDataTable.ts should render non-selectable items correctly 1`] = `
             <div class="v-data-table__mobile-row__cell">
               <div class="v-simple-checkbox v-simple-checkbox--disabled v-data-table__checkbox v-data-table__checkbox">
                 <div class="v-input--selection-controls__input">
-                  <i class="v-icon--disabled v-icon notranslate theme--light material-icons"
+                  <i class="v-icon--disabled v-icon notranslate material-icons theme--light"
                      aria-hidden="true"
                   >
                     $checkboxOff
@@ -7578,7 +7578,7 @@ exports[`VDataTable.ts should render non-selectable items correctly 1`] = `
             <div class="v-data-table__mobile-row__cell">
               <div class="v-simple-checkbox v-data-table__checkbox v-data-table__checkbox">
                 <div class="v-input--selection-controls__input">
-                  <i class="v-icon notranslate theme--light material-icons"
+                  <i class="v-icon notranslate material-icons theme--light"
                      aria-hidden="true"
                   >
                     $checkboxOff
@@ -7651,7 +7651,7 @@ exports[`VDataTable.ts should render non-selectable items correctly 1`] = `
           <div role="button"
                aria-haspopup="listbox"
                aria-expanded="false"
-               aria-owns="list-893"
+               aria-owns="list-744"
                class="v-input__slot"
           >
             <div class="v-select__slot">
@@ -7662,14 +7662,14 @@ exports[`VDataTable.ts should render non-selectable items correctly 1`] = `
                 <input aria-label="Rows per page:"
                        aria-readonly="false"
                        autocomplete="off"
-                       id="input-893"
+                       id="input-744"
                        readonly
                        type="text"
                 >
               </div>
               <div class="v-input__append-inner">
                 <div class="v-input__icon v-input__icon--append">
-                  <i class="v-icon notranslate theme--light material-icons"
+                  <i class="v-icon notranslate material-icons theme--light"
                      aria-hidden="true"
                   >
                     $dropdown
@@ -7696,7 +7696,7 @@ exports[`VDataTable.ts should render non-selectable items correctly 1`] = `
               aria-label="Previous page"
       >
         <span class="v-btn__content">
-          <i class="v-icon notranslate theme--light material-icons"
+          <i class="v-icon notranslate material-icons theme--light"
              aria-hidden="true"
           >
             $prev
@@ -7711,7 +7711,7 @@ exports[`VDataTable.ts should render non-selectable items correctly 1`] = `
               aria-label="Next page"
       >
         <span class="v-btn__content">
-          <i class="v-icon notranslate theme--light material-icons"
+          <i class="v-icon notranslate material-icons theme--light"
              aria-hidden="true"
           >
             $next
@@ -7745,7 +7745,7 @@ exports[`VDataTable.ts should render select-all checkbox when items are selectab
               >
                 <div class="v-simple-checkbox v-data-table__checkbox v-data-table__checkbox">
                   <div class="v-input--selection-controls__input">
-                    <i class="v-icon notranslate theme--light material-icons"
+                    <i class="v-icon notranslate material-icons theme--light"
                        aria-hidden="true"
                     >
                       $checkboxOff
@@ -7760,12 +7760,12 @@ exports[`VDataTable.ts should render select-all checkbox when items are selectab
                   <div role="button"
                        aria-haspopup="listbox"
                        aria-expanded="false"
-                       aria-owns="list-912"
+                       aria-owns="list-759"
                        class="v-input__slot"
                   >
                     <div class="v-select__slot">
                       <label class="v-label theme--light"
-                             for="input-912"
+                             for="input-759"
                              aria-hidden="false"
                              style="right: 0px; position: absolute;"
                       >
@@ -7774,14 +7774,14 @@ exports[`VDataTable.ts should render select-all checkbox when items are selectab
                       <div class="v-select__selections">
                         <input aria-readonly="false"
                                autocomplete="off"
-                               id="input-912"
+                               id="input-759"
                                readonly
                                type="text"
                         >
                       </div>
                       <div class="v-input__append-inner">
                         <div class="v-input__icon v-input__icon--append">
-                          <i class="v-icon notranslate theme--light material-icons"
+                          <i class="v-icon notranslate material-icons theme--light"
                              aria-hidden="true"
                           >
                             $dropdown
@@ -7807,7 +7807,7 @@ exports[`VDataTable.ts should render select-all checkbox when items are selectab
             <div class="v-data-table__mobile-row__cell">
               <div class="v-simple-checkbox v-simple-checkbox--disabled v-data-table__checkbox v-data-table__checkbox">
                 <div class="v-input--selection-controls__input">
-                  <i class="v-icon--disabled v-icon notranslate theme--light material-icons"
+                  <i class="v-icon--disabled v-icon notranslate material-icons theme--light"
                      aria-hidden="true"
                   >
                     $checkboxOff
@@ -7872,7 +7872,7 @@ exports[`VDataTable.ts should render select-all checkbox when items are selectab
             <div class="v-data-table__mobile-row__cell">
               <div class="v-simple-checkbox v-data-table__checkbox v-data-table__checkbox">
                 <div class="v-input--selection-controls__input">
-                  <i class="v-icon notranslate theme--light material-icons"
+                  <i class="v-icon notranslate material-icons theme--light"
                      aria-hidden="true"
                   >
                     $checkboxOff
@@ -7945,7 +7945,7 @@ exports[`VDataTable.ts should render select-all checkbox when items are selectab
           <div role="button"
                aria-haspopup="listbox"
                aria-expanded="false"
-               aria-owns="list-926"
+               aria-owns="list-770"
                class="v-input__slot"
           >
             <div class="v-select__slot">
@@ -7956,14 +7956,14 @@ exports[`VDataTable.ts should render select-all checkbox when items are selectab
                 <input aria-label="Rows per page:"
                        aria-readonly="false"
                        autocomplete="off"
-                       id="input-926"
+                       id="input-770"
                        readonly
                        type="text"
                 >
               </div>
               <div class="v-input__append-inner">
                 <div class="v-input__icon v-input__icon--append">
-                  <i class="v-icon notranslate theme--light material-icons"
+                  <i class="v-icon notranslate material-icons theme--light"
                      aria-hidden="true"
                   >
                     $dropdown
@@ -7990,7 +7990,7 @@ exports[`VDataTable.ts should render select-all checkbox when items are selectab
               aria-label="Previous page"
       >
         <span class="v-btn__content">
-          <i class="v-icon notranslate theme--light material-icons"
+          <i class="v-icon notranslate material-icons theme--light"
              aria-hidden="true"
           >
             $prev
@@ -8005,7 +8005,7 @@ exports[`VDataTable.ts should render select-all checkbox when items are selectab
               aria-label="Next page"
       >
         <span class="v-btn__content">
-          <i class="v-icon notranslate theme--light material-icons"
+          <i class="v-icon notranslate material-icons theme--light"
              aria-hidden="true"
           >
             $next
@@ -8039,7 +8039,7 @@ exports[`VDataTable.ts should render selection checkboxes on multiple pages with
               >
                 <div class="v-simple-checkbox v-data-table__checkbox v-data-table__checkbox">
                   <div class="v-input--selection-controls__input">
-                    <i class="v-icon notranslate theme--light material-icons"
+                    <i class="v-icon notranslate material-icons theme--light"
                        aria-hidden="true"
                     >
                       $checkboxOff
@@ -8054,12 +8054,12 @@ exports[`VDataTable.ts should render selection checkboxes on multiple pages with
                   <div role="button"
                        aria-haspopup="listbox"
                        aria-expanded="false"
-                       aria-owns="list-1375"
+                       aria-owns="list-1146"
                        class="v-input__slot"
                   >
                     <div class="v-select__slot">
                       <label class="v-label theme--light"
-                             for="input-1375"
+                             for="input-1146"
                              aria-hidden="false"
                              style="right: 0px; position: absolute;"
                       >
@@ -8068,14 +8068,14 @@ exports[`VDataTable.ts should render selection checkboxes on multiple pages with
                       <div class="v-select__selections">
                         <input aria-readonly="false"
                                autocomplete="off"
-                               id="input-1375"
+                               id="input-1146"
                                readonly
                                type="text"
                         >
                       </div>
                       <div class="v-input__append-inner">
                         <div class="v-input__icon v-input__icon--append">
-                          <i class="v-icon notranslate theme--light material-icons"
+                          <i class="v-icon notranslate material-icons theme--light"
                              aria-hidden="true"
                           >
                             $dropdown
@@ -8101,7 +8101,7 @@ exports[`VDataTable.ts should render selection checkboxes on multiple pages with
             <div class="v-data-table__mobile-row__cell">
               <div class="v-simple-checkbox v-data-table__checkbox v-data-table__checkbox">
                 <div class="v-input--selection-controls__input">
-                  <i class="v-icon notranslate theme--light material-icons"
+                  <i class="v-icon notranslate material-icons theme--light"
                      aria-hidden="true"
                   >
                     $checkboxOff
@@ -8168,7 +8168,7 @@ exports[`VDataTable.ts should render selection checkboxes on multiple pages with
             <div class="v-data-table__mobile-row__cell">
               <div class="v-simple-checkbox v-data-table__checkbox v-data-table__checkbox">
                 <div class="v-input--selection-controls__input">
-                  <i class="v-icon notranslate theme--light material-icons"
+                  <i class="v-icon notranslate material-icons theme--light"
                      aria-hidden="true"
                   >
                     $checkboxOff
@@ -8235,7 +8235,7 @@ exports[`VDataTable.ts should render selection checkboxes on multiple pages with
             <div class="v-data-table__mobile-row__cell">
               <div class="v-simple-checkbox v-data-table__checkbox v-data-table__checkbox">
                 <div class="v-input--selection-controls__input">
-                  <i class="v-icon notranslate theme--light material-icons"
+                  <i class="v-icon notranslate material-icons theme--light"
                      aria-hidden="true"
                   >
                     $checkboxOff
@@ -8308,7 +8308,7 @@ exports[`VDataTable.ts should render selection checkboxes on multiple pages with
           <div role="button"
                aria-haspopup="listbox"
                aria-expanded="false"
-               aria-owns="list-1401"
+               aria-owns="list-1166"
                class="v-input__slot"
           >
             <div class="v-select__slot">
@@ -8319,14 +8319,14 @@ exports[`VDataTable.ts should render selection checkboxes on multiple pages with
                 <input aria-label="Rows per page:"
                        aria-readonly="false"
                        autocomplete="off"
-                       id="input-1401"
+                       id="input-1166"
                        readonly
                        type="text"
                 >
               </div>
               <div class="v-input__append-inner">
                 <div class="v-input__icon v-input__icon--append">
-                  <i class="v-icon notranslate theme--light material-icons"
+                  <i class="v-icon notranslate material-icons theme--light"
                      aria-hidden="true"
                   >
                     $dropdown
@@ -8352,7 +8352,7 @@ exports[`VDataTable.ts should render selection checkboxes on multiple pages with
               aria-label="Previous page"
       >
         <span class="v-btn__content">
-          <i class="v-icon notranslate theme--light material-icons"
+          <i class="v-icon notranslate material-icons theme--light"
              aria-hidden="true"
           >
             $prev
@@ -8367,7 +8367,7 @@ exports[`VDataTable.ts should render selection checkboxes on multiple pages with
               disabled
       >
         <span class="v-btn__content">
-          <i class="v-icon notranslate theme--light material-icons"
+          <i class="v-icon notranslate material-icons theme--light"
              aria-hidden="true"
           >
             $next
@@ -8400,12 +8400,12 @@ exports[`VDataTable.ts should render virtual table 1`] = `
                   <div role="button"
                        aria-haspopup="listbox"
                        aria-expanded="false"
-                       aria-owns="list-99"
+                       aria-owns="list-84"
                        class="v-input__slot"
                   >
                     <div class="v-select__slot">
                       <label class="v-label theme--light"
-                             for="input-99"
+                             for="input-84"
                              aria-hidden="false"
                              style="right: 0px; position: absolute;"
                       >
@@ -8414,14 +8414,14 @@ exports[`VDataTable.ts should render virtual table 1`] = `
                       <div class="v-select__selections">
                         <input aria-readonly="false"
                                autocomplete="off"
-                               id="input-99"
+                               id="input-84"
                                readonly
                                type="text"
                         >
                       </div>
                       <div class="v-input__append-inner">
                         <div class="v-input__icon v-input__icon--append">
-                          <i class="v-icon notranslate theme--light material-icons"
+                          <i class="v-icon notranslate material-icons theme--light"
                              aria-hidden="true"
                           >
                             $dropdown
@@ -8703,7 +8703,7 @@ exports[`VDataTable.ts should render virtual table 1`] = `
           <div role="button"
                aria-haspopup="listbox"
                aria-expanded="false"
-               aria-owns="list-110"
+               aria-owns="list-94"
                class="v-input__slot"
           >
             <div class="v-select__slot">
@@ -8714,14 +8714,14 @@ exports[`VDataTable.ts should render virtual table 1`] = `
                 <input aria-label="Rows per page:"
                        aria-readonly="false"
                        autocomplete="off"
-                       id="input-110"
+                       id="input-94"
                        readonly
                        type="text"
                 >
               </div>
               <div class="v-input__append-inner">
                 <div class="v-input__icon v-input__icon--append">
-                  <i class="v-icon notranslate theme--light material-icons"
+                  <i class="v-icon notranslate material-icons theme--light"
                      aria-hidden="true"
                   >
                     $dropdown
@@ -8748,7 +8748,7 @@ exports[`VDataTable.ts should render virtual table 1`] = `
               aria-label="Previous page"
       >
         <span class="v-btn__content">
-          <i class="v-icon notranslate theme--light material-icons"
+          <i class="v-icon notranslate material-icons theme--light"
              aria-hidden="true"
           >
             $prev
@@ -8762,7 +8762,7 @@ exports[`VDataTable.ts should render virtual table 1`] = `
               aria-label="Next page"
       >
         <span class="v-btn__content">
-          <i class="v-icon notranslate theme--light material-icons"
+          <i class="v-icon notranslate material-icons theme--light"
              aria-hidden="true"
           >
             $next
@@ -8795,12 +8795,12 @@ exports[`VDataTable.ts should render with body slot 1`] = `
                   <div role="button"
                        aria-haspopup="listbox"
                        aria-expanded="false"
-                       aria-owns="list-50"
+                       aria-owns="list-43"
                        class="v-input__slot"
                   >
                     <div class="v-select__slot">
                       <label class="v-label theme--light"
-                             for="input-50"
+                             for="input-43"
                              aria-hidden="false"
                              style="right: 0px; position: absolute;"
                       >
@@ -8809,14 +8809,14 @@ exports[`VDataTable.ts should render with body slot 1`] = `
                       <div class="v-select__selections">
                         <input aria-readonly="false"
                                autocomplete="off"
-                               id="input-50"
+                               id="input-43"
                                readonly
                                type="text"
                         >
                       </div>
                       <div class="v-input__append-inner">
                         <div class="v-input__icon v-input__icon--append">
-                          <i class="v-icon notranslate theme--light material-icons"
+                          <i class="v-icon notranslate material-icons theme--light"
                              aria-hidden="true"
                           >
                             $dropdown
@@ -8849,7 +8849,7 @@ exports[`VDataTable.ts should render with body slot 1`] = `
           <div role="button"
                aria-haspopup="listbox"
                aria-expanded="false"
-               aria-owns="list-56"
+               aria-owns="list-48"
                class="v-input__slot"
           >
             <div class="v-select__slot">
@@ -8860,14 +8860,14 @@ exports[`VDataTable.ts should render with body slot 1`] = `
                 <input aria-label="Rows per page:"
                        aria-readonly="false"
                        autocomplete="off"
-                       id="input-56"
+                       id="input-48"
                        readonly
                        type="text"
                 >
               </div>
               <div class="v-input__append-inner">
                 <div class="v-input__icon v-input__icon--append">
-                  <i class="v-icon notranslate theme--light material-icons"
+                  <i class="v-icon notranslate material-icons theme--light"
                      aria-hidden="true"
                   >
                     $dropdown
@@ -8894,7 +8894,7 @@ exports[`VDataTable.ts should render with body slot 1`] = `
               aria-label="Previous page"
       >
         <span class="v-btn__content">
-          <i class="v-icon notranslate theme--light material-icons"
+          <i class="v-icon notranslate material-icons theme--light"
              aria-hidden="true"
           >
             $prev
@@ -8908,7 +8908,7 @@ exports[`VDataTable.ts should render with body slot 1`] = `
               aria-label="Next page"
       >
         <span class="v-btn__content">
-          <i class="v-icon notranslate theme--light material-icons"
+          <i class="v-icon notranslate material-icons theme--light"
              aria-hidden="true"
           >
             $next
@@ -8941,12 +8941,12 @@ exports[`VDataTable.ts should render with data 1`] = `
                   <div role="button"
                        aria-haspopup="listbox"
                        aria-expanded="false"
-                       aria-owns="list-23"
+                       aria-owns="list-20"
                        class="v-input__slot"
                   >
                     <div class="v-select__slot">
                       <label class="v-label theme--light"
-                             for="input-23"
+                             for="input-20"
                              aria-hidden="false"
                              style="right: 0px; position: absolute;"
                       >
@@ -8955,14 +8955,14 @@ exports[`VDataTable.ts should render with data 1`] = `
                       <div class="v-select__selections">
                         <input aria-readonly="false"
                                autocomplete="off"
-                               id="input-23"
+                               id="input-20"
                                readonly
                                type="text"
                         >
                       </div>
                       <div class="v-input__append-inner">
                         <div class="v-input__icon v-input__icon--append">
-                          <i class="v-icon notranslate theme--light material-icons"
+                          <i class="v-icon notranslate material-icons theme--light"
                              aria-hidden="true"
                           >
                             $dropdown
@@ -9244,7 +9244,7 @@ exports[`VDataTable.ts should render with data 1`] = `
           <div role="button"
                aria-haspopup="listbox"
                aria-expanded="false"
-               aria-owns="list-34"
+               aria-owns="list-30"
                class="v-input__slot"
           >
             <div class="v-select__slot">
@@ -9255,14 +9255,14 @@ exports[`VDataTable.ts should render with data 1`] = `
                 <input aria-label="Rows per page:"
                        aria-readonly="false"
                        autocomplete="off"
-                       id="input-34"
+                       id="input-30"
                        readonly
                        type="text"
                 >
               </div>
               <div class="v-input__append-inner">
                 <div class="v-input__icon v-input__icon--append">
-                  <i class="v-icon notranslate theme--light material-icons"
+                  <i class="v-icon notranslate material-icons theme--light"
                      aria-hidden="true"
                   >
                     $dropdown
@@ -9289,7 +9289,7 @@ exports[`VDataTable.ts should render with data 1`] = `
               aria-label="Previous page"
       >
         <span class="v-btn__content">
-          <i class="v-icon notranslate theme--light material-icons"
+          <i class="v-icon notranslate material-icons theme--light"
              aria-hidden="true"
           >
             $prev
@@ -9303,7 +9303,7 @@ exports[`VDataTable.ts should render with data 1`] = `
               aria-label="Next page"
       >
         <span class="v-btn__content">
-          <i class="v-icon notranslate theme--light material-icons"
+          <i class="v-icon notranslate material-icons theme--light"
              aria-hidden="true"
           >
             $next
@@ -9336,12 +9336,12 @@ exports[`VDataTable.ts should render with foot slot 1`] = `
                   <div role="button"
                        aria-haspopup="listbox"
                        aria-expanded="false"
-                       aria-owns="list-72"
+                       aria-owns="list-61"
                        class="v-input__slot"
                   >
                     <div class="v-select__slot">
                       <label class="v-label theme--light"
-                             for="input-72"
+                             for="input-61"
                              aria-hidden="false"
                              style="right: 0px; position: absolute;"
                       >
@@ -9350,14 +9350,14 @@ exports[`VDataTable.ts should render with foot slot 1`] = `
                       <div class="v-select__selections">
                         <input aria-readonly="false"
                                autocomplete="off"
-                               id="input-72"
+                               id="input-61"
                                readonly
                                type="text"
                         >
                       </div>
                       <div class="v-input__append-inner">
                         <div class="v-input__icon v-input__icon--append">
-                          <i class="v-icon notranslate theme--light material-icons"
+                          <i class="v-icon notranslate material-icons theme--light"
                              aria-hidden="true"
                           >
                             $dropdown
@@ -9642,7 +9642,7 @@ exports[`VDataTable.ts should render with foot slot 1`] = `
           <div role="button"
                aria-haspopup="listbox"
                aria-expanded="false"
-               aria-owns="list-83"
+               aria-owns="list-71"
                class="v-input__slot"
           >
             <div class="v-select__slot">
@@ -9653,14 +9653,14 @@ exports[`VDataTable.ts should render with foot slot 1`] = `
                 <input aria-label="Rows per page:"
                        aria-readonly="false"
                        autocomplete="off"
-                       id="input-83"
+                       id="input-71"
                        readonly
                        type="text"
                 >
               </div>
               <div class="v-input__append-inner">
                 <div class="v-input__icon v-input__icon--append">
-                  <i class="v-icon notranslate theme--light material-icons"
+                  <i class="v-icon notranslate material-icons theme--light"
                      aria-hidden="true"
                   >
                     $dropdown
@@ -9687,7 +9687,7 @@ exports[`VDataTable.ts should render with foot slot 1`] = `
               aria-label="Previous page"
       >
         <span class="v-btn__content">
-          <i class="v-icon notranslate theme--light material-icons"
+          <i class="v-icon notranslate material-icons theme--light"
              aria-hidden="true"
           >
             $prev
@@ -9701,7 +9701,7 @@ exports[`VDataTable.ts should render with foot slot 1`] = `
               aria-label="Next page"
       >
         <span class="v-btn__content">
-          <i class="v-icon notranslate theme--light material-icons"
+          <i class="v-icon notranslate material-icons theme--light"
              aria-hidden="true"
           >
             $next
@@ -9734,12 +9734,12 @@ exports[`VDataTable.ts should render with group scoped slot 1`] = `
                   <div role="button"
                        aria-haspopup="listbox"
                        aria-expanded="false"
-                       aria-owns="list-379"
+                       aria-owns="list-307"
                        class="v-input__slot"
                   >
                     <div class="v-select__slot">
                       <label class="v-label theme--light"
-                             for="input-379"
+                             for="input-307"
                              aria-hidden="false"
                              style="right: 0px; position: absolute;"
                       >
@@ -9748,14 +9748,14 @@ exports[`VDataTable.ts should render with group scoped slot 1`] = `
                       <div class="v-select__selections">
                         <input aria-readonly="false"
                                autocomplete="off"
-                               id="input-379"
+                               id="input-307"
                                readonly
                                type="text"
                         >
                       </div>
                       <div class="v-input__append-inner">
                         <div class="v-input__icon v-input__icon--append">
-                          <i class="v-icon notranslate theme--light material-icons"
+                          <i class="v-icon notranslate material-icons theme--light"
                              aria-hidden="true"
                           >
                             $dropdown
@@ -9799,7 +9799,7 @@ exports[`VDataTable.ts should render with group scoped slot 1`] = `
           <div role="button"
                aria-haspopup="listbox"
                aria-expanded="false"
-               aria-owns="list-385"
+               aria-owns="list-312"
                class="v-input__slot"
           >
             <div class="v-select__slot">
@@ -9810,14 +9810,14 @@ exports[`VDataTable.ts should render with group scoped slot 1`] = `
                 <input aria-label="Rows per page:"
                        aria-readonly="false"
                        autocomplete="off"
-                       id="input-385"
+                       id="input-312"
                        readonly
                        type="text"
                 >
               </div>
               <div class="v-input__append-inner">
                 <div class="v-input__icon v-input__icon--append">
-                  <i class="v-icon notranslate theme--light material-icons"
+                  <i class="v-icon notranslate material-icons theme--light"
                      aria-hidden="true"
                   >
                     $dropdown
@@ -9844,7 +9844,7 @@ exports[`VDataTable.ts should render with group scoped slot 1`] = `
               aria-label="Previous page"
       >
         <span class="v-btn__content">
-          <i class="v-icon notranslate theme--light material-icons"
+          <i class="v-icon notranslate material-icons theme--light"
              aria-hidden="true"
           >
             $prev
@@ -9858,7 +9858,7 @@ exports[`VDataTable.ts should render with group scoped slot 1`] = `
               aria-label="Next page"
       >
         <span class="v-btn__content">
-          <i class="v-icon notranslate theme--light material-icons"
+          <i class="v-icon notranslate material-icons theme--light"
              aria-hidden="true"
           >
             $next
@@ -9891,12 +9891,12 @@ exports[`VDataTable.ts should render with group.summary scoped slot 1`] = `
                   <div role="button"
                        aria-haspopup="listbox"
                        aria-expanded="false"
-                       aria-owns="list-240"
+                       aria-owns="list-198"
                        class="v-input__slot"
                   >
                     <div class="v-select__slot">
                       <label class="v-label theme--light"
-                             for="input-240"
+                             for="input-198"
                              aria-hidden="false"
                              style="right: 0px; position: absolute;"
                       >
@@ -9905,14 +9905,14 @@ exports[`VDataTable.ts should render with group.summary scoped slot 1`] = `
                       <div class="v-select__selections">
                         <input aria-readonly="false"
                                autocomplete="off"
-                               id="input-240"
+                               id="input-198"
                                readonly
                                type="text"
                         >
                       </div>
                       <div class="v-input__append-inner">
                         <div class="v-input__icon v-input__icon--append">
-                          <i class="v-icon notranslate theme--light material-icons"
+                          <i class="v-icon notranslate material-icons theme--light"
                              aria-hidden="true"
                           >
                             $dropdown
@@ -9937,7 +9937,7 @@ exports[`VDataTable.ts should render with group.summary scoped slot 1`] = `
                     type="button"
             >
               <span class="v-btn__content">
-                <i class="v-icon notranslate theme--light material-icons"
+                <i class="v-icon notranslate material-icons theme--light"
                    aria-hidden="true"
                 >
                   $minus
@@ -9949,7 +9949,7 @@ exports[`VDataTable.ts should render with group.summary scoped slot 1`] = `
                     type="button"
             >
               <span class="v-btn__content">
-                <i class="v-icon notranslate theme--light material-icons"
+                <i class="v-icon notranslate material-icons theme--light"
                    aria-hidden="true"
                 >
                   $close
@@ -10019,7 +10019,7 @@ exports[`VDataTable.ts should render with group.summary scoped slot 1`] = `
                     type="button"
             >
               <span class="v-btn__content">
-                <i class="v-icon notranslate theme--light material-icons"
+                <i class="v-icon notranslate material-icons theme--light"
                    aria-hidden="true"
                 >
                   $minus
@@ -10031,7 +10031,7 @@ exports[`VDataTable.ts should render with group.summary scoped slot 1`] = `
                     type="button"
             >
               <span class="v-btn__content">
-                <i class="v-icon notranslate theme--light material-icons"
+                <i class="v-icon notranslate material-icons theme--light"
                    aria-hidden="true"
                 >
                   $close
@@ -10101,7 +10101,7 @@ exports[`VDataTable.ts should render with group.summary scoped slot 1`] = `
                     type="button"
             >
               <span class="v-btn__content">
-                <i class="v-icon notranslate theme--light material-icons"
+                <i class="v-icon notranslate material-icons theme--light"
                    aria-hidden="true"
                 >
                   $minus
@@ -10113,7 +10113,7 @@ exports[`VDataTable.ts should render with group.summary scoped slot 1`] = `
                     type="button"
             >
               <span class="v-btn__content">
-                <i class="v-icon notranslate theme--light material-icons"
+                <i class="v-icon notranslate material-icons theme--light"
                    aria-hidden="true"
                 >
                   $close
@@ -10183,7 +10183,7 @@ exports[`VDataTable.ts should render with group.summary scoped slot 1`] = `
                     type="button"
             >
               <span class="v-btn__content">
-                <i class="v-icon notranslate theme--light material-icons"
+                <i class="v-icon notranslate material-icons theme--light"
                    aria-hidden="true"
                 >
                   $minus
@@ -10195,7 +10195,7 @@ exports[`VDataTable.ts should render with group.summary scoped slot 1`] = `
                     type="button"
             >
               <span class="v-btn__content">
-                <i class="v-icon notranslate theme--light material-icons"
+                <i class="v-icon notranslate material-icons theme--light"
                    aria-hidden="true"
                 >
                   $close
@@ -10265,7 +10265,7 @@ exports[`VDataTable.ts should render with group.summary scoped slot 1`] = `
                     type="button"
             >
               <span class="v-btn__content">
-                <i class="v-icon notranslate theme--light material-icons"
+                <i class="v-icon notranslate material-icons theme--light"
                    aria-hidden="true"
                 >
                   $minus
@@ -10277,7 +10277,7 @@ exports[`VDataTable.ts should render with group.summary scoped slot 1`] = `
                     type="button"
             >
               <span class="v-btn__content">
-                <i class="v-icon notranslate theme--light material-icons"
+                <i class="v-icon notranslate material-icons theme--light"
                    aria-hidden="true"
                 >
                   $close
@@ -10354,7 +10354,7 @@ exports[`VDataTable.ts should render with group.summary scoped slot 1`] = `
           <div role="button"
                aria-haspopup="listbox"
                aria-expanded="false"
-               aria-owns="list-286"
+               aria-owns="list-233"
                class="v-input__slot"
           >
             <div class="v-select__slot">
@@ -10365,14 +10365,14 @@ exports[`VDataTable.ts should render with group.summary scoped slot 1`] = `
                 <input aria-label="Rows per page:"
                        aria-readonly="false"
                        autocomplete="off"
-                       id="input-286"
+                       id="input-233"
                        readonly
                        type="text"
                 >
               </div>
               <div class="v-input__append-inner">
                 <div class="v-input__icon v-input__icon--append">
-                  <i class="v-icon notranslate theme--light material-icons"
+                  <i class="v-icon notranslate material-icons theme--light"
                      aria-hidden="true"
                   >
                     $dropdown
@@ -10399,7 +10399,7 @@ exports[`VDataTable.ts should render with group.summary scoped slot 1`] = `
               aria-label="Previous page"
       >
         <span class="v-btn__content">
-          <i class="v-icon notranslate theme--light material-icons"
+          <i class="v-icon notranslate material-icons theme--light"
              aria-hidden="true"
           >
             $prev
@@ -10413,7 +10413,7 @@ exports[`VDataTable.ts should render with group.summary scoped slot 1`] = `
               aria-label="Next page"
       >
         <span class="v-btn__content">
-          <i class="v-icon notranslate theme--light material-icons"
+          <i class="v-icon notranslate material-icons theme--light"
              aria-hidden="true"
           >
             $next
@@ -10446,12 +10446,12 @@ exports[`VDataTable.ts should render with grouped rows 1`] = `
                   <div role="button"
                        aria-haspopup="listbox"
                        aria-expanded="false"
-                       aria-owns="list-324"
+                       aria-owns="list-264"
                        class="v-input__slot"
                   >
                     <div class="v-select__slot">
                       <label class="v-label theme--light"
-                             for="input-324"
+                             for="input-264"
                              aria-hidden="false"
                              style="right: 0px; position: absolute;"
                       >
@@ -10460,14 +10460,14 @@ exports[`VDataTable.ts should render with grouped rows 1`] = `
                       <div class="v-select__selections">
                         <input aria-readonly="false"
                                autocomplete="off"
-                               id="input-324"
+                               id="input-264"
                                readonly
                                type="text"
                         >
                       </div>
                       <div class="v-input__append-inner">
                         <div class="v-input__icon v-input__icon--append">
-                          <i class="v-icon notranslate theme--light material-icons"
+                          <i class="v-icon notranslate material-icons theme--light"
                              aria-hidden="true"
                           >
                             $dropdown
@@ -10492,7 +10492,7 @@ exports[`VDataTable.ts should render with grouped rows 1`] = `
                     type="button"
             >
               <span class="v-btn__content">
-                <i class="v-icon notranslate theme--light material-icons"
+                <i class="v-icon notranslate material-icons theme--light"
                    aria-hidden="true"
                 >
                   $minus
@@ -10504,7 +10504,7 @@ exports[`VDataTable.ts should render with grouped rows 1`] = `
                     type="button"
             >
               <span class="v-btn__content">
-                <i class="v-icon notranslate theme--light material-icons"
+                <i class="v-icon notranslate material-icons theme--light"
                    aria-hidden="true"
                 >
                   $close
@@ -10619,7 +10619,7 @@ exports[`VDataTable.ts should render with grouped rows 1`] = `
                     type="button"
             >
               <span class="v-btn__content">
-                <i class="v-icon notranslate theme--light material-icons"
+                <i class="v-icon notranslate material-icons theme--light"
                    aria-hidden="true"
                 >
                   $minus
@@ -10631,7 +10631,7 @@ exports[`VDataTable.ts should render with grouped rows 1`] = `
                     type="button"
             >
               <span class="v-btn__content">
-                <i class="v-icon notranslate theme--light material-icons"
+                <i class="v-icon notranslate material-icons theme--light"
                    aria-hidden="true"
                 >
                   $close
@@ -10696,7 +10696,7 @@ exports[`VDataTable.ts should render with grouped rows 1`] = `
                     type="button"
             >
               <span class="v-btn__content">
-                <i class="v-icon notranslate theme--light material-icons"
+                <i class="v-icon notranslate material-icons theme--light"
                    aria-hidden="true"
                 >
                   $minus
@@ -10708,7 +10708,7 @@ exports[`VDataTable.ts should render with grouped rows 1`] = `
                     type="button"
             >
               <span class="v-btn__content">
-                <i class="v-icon notranslate theme--light material-icons"
+                <i class="v-icon notranslate material-icons theme--light"
                    aria-hidden="true"
                 >
                   $close
@@ -10773,7 +10773,7 @@ exports[`VDataTable.ts should render with grouped rows 1`] = `
                     type="button"
             >
               <span class="v-btn__content">
-                <i class="v-icon notranslate theme--light material-icons"
+                <i class="v-icon notranslate material-icons theme--light"
                    aria-hidden="true"
                 >
                   $minus
@@ -10785,7 +10785,7 @@ exports[`VDataTable.ts should render with grouped rows 1`] = `
                     type="button"
             >
               <span class="v-btn__content">
-                <i class="v-icon notranslate theme--light material-icons"
+                <i class="v-icon notranslate material-icons theme--light"
                    aria-hidden="true"
                 >
                   $close
@@ -10857,7 +10857,7 @@ exports[`VDataTable.ts should render with grouped rows 1`] = `
           <div role="button"
                aria-haspopup="listbox"
                aria-expanded="false"
-               aria-owns="list-363"
+               aria-owns="list-294"
                class="v-input__slot"
           >
             <div class="v-select__slot">
@@ -10868,14 +10868,14 @@ exports[`VDataTable.ts should render with grouped rows 1`] = `
                 <input aria-label="Rows per page:"
                        aria-readonly="false"
                        autocomplete="off"
-                       id="input-363"
+                       id="input-294"
                        readonly
                        type="text"
                 >
               </div>
               <div class="v-input__append-inner">
                 <div class="v-input__icon v-input__icon--append">
-                  <i class="v-icon notranslate theme--light material-icons"
+                  <i class="v-icon notranslate material-icons theme--light"
                      aria-hidden="true"
                   >
                     $dropdown
@@ -10902,7 +10902,7 @@ exports[`VDataTable.ts should render with grouped rows 1`] = `
               aria-label="Previous page"
       >
         <span class="v-btn__content">
-          <i class="v-icon notranslate theme--light material-icons"
+          <i class="v-icon notranslate material-icons theme--light"
              aria-hidden="true"
           >
             $prev
@@ -10916,7 +10916,7 @@ exports[`VDataTable.ts should render with grouped rows 1`] = `
               aria-label="Next page"
       >
         <span class="v-btn__content">
-          <i class="v-icon notranslate theme--light material-icons"
+          <i class="v-icon notranslate material-icons theme--light"
              aria-hidden="true"
           >
             $next
@@ -10949,12 +10949,12 @@ exports[`VDataTable.ts should render with item scoped slot 1`] = `
                   <div role="button"
                        aria-haspopup="listbox"
                        aria-expanded="false"
-                       aria-owns="list-302"
+                       aria-owns="list-246"
                        class="v-input__slot"
                   >
                     <div class="v-select__slot">
                       <label class="v-label theme--light"
-                             for="input-302"
+                             for="input-246"
                              aria-hidden="false"
                              style="right: 0px; position: absolute;"
                       >
@@ -10963,14 +10963,14 @@ exports[`VDataTable.ts should render with item scoped slot 1`] = `
                       <div class="v-select__selections">
                         <input aria-readonly="false"
                                autocomplete="off"
-                               id="input-302"
+                               id="input-246"
                                readonly
                                type="text"
                         >
                       </div>
                       <div class="v-input__append-inner">
                         <div class="v-input__icon v-input__icon--append">
-                          <i class="v-icon notranslate theme--light material-icons"
+                          <i class="v-icon notranslate material-icons theme--light"
                              aria-hidden="true"
                           >
                             $dropdown
@@ -11017,7 +11017,7 @@ exports[`VDataTable.ts should render with item scoped slot 1`] = `
           <div role="button"
                aria-haspopup="listbox"
                aria-expanded="false"
-               aria-owns="list-308"
+               aria-owns="list-251"
                class="v-input__slot"
           >
             <div class="v-select__slot">
@@ -11028,14 +11028,14 @@ exports[`VDataTable.ts should render with item scoped slot 1`] = `
                 <input aria-label="Rows per page:"
                        aria-readonly="false"
                        autocomplete="off"
-                       id="input-308"
+                       id="input-251"
                        readonly
                        type="text"
                 >
               </div>
               <div class="v-input__append-inner">
                 <div class="v-input__icon v-input__icon--append">
-                  <i class="v-icon notranslate theme--light material-icons"
+                  <i class="v-icon notranslate material-icons theme--light"
                      aria-hidden="true"
                   >
                     $dropdown
@@ -11062,7 +11062,7 @@ exports[`VDataTable.ts should render with item scoped slot 1`] = `
               aria-label="Previous page"
       >
         <span class="v-btn__content">
-          <i class="v-icon notranslate theme--light material-icons"
+          <i class="v-icon notranslate material-icons theme--light"
              aria-hidden="true"
           >
             $prev
@@ -11076,7 +11076,7 @@ exports[`VDataTable.ts should render with item scoped slot 1`] = `
               aria-label="Next page"
       >
         <span class="v-btn__content">
-          <i class="v-icon notranslate theme--light material-icons"
+          <i class="v-icon notranslate material-icons theme--light"
              aria-hidden="true"
           >
             $next
@@ -11109,12 +11109,12 @@ exports[`VDataTable.ts should render with item.expanded scoped slot 1`] = `
                   <div role="button"
                        aria-haspopup="listbox"
                        aria-expanded="false"
-                       aria-owns="list-208"
+                       aria-owns="list-170"
                        class="v-input__slot"
                   >
                     <div class="v-select__slot">
                       <label class="v-label theme--light"
-                             for="input-208"
+                             for="input-170"
                              aria-hidden="false"
                              style="right: 0px; position: absolute;"
                       >
@@ -11123,14 +11123,14 @@ exports[`VDataTable.ts should render with item.expanded scoped slot 1`] = `
                       <div class="v-select__selections">
                         <input aria-readonly="false"
                                autocomplete="off"
-                               id="input-208"
+                               id="input-170"
                                readonly
                                type="text"
                         >
                       </div>
                       <div class="v-input__append-inner">
                         <div class="v-input__icon v-input__icon--append">
-                          <i class="v-icon notranslate theme--light material-icons"
+                          <i class="v-icon notranslate material-icons theme--light"
                              aria-hidden="true"
                           >
                             $dropdown
@@ -11437,7 +11437,7 @@ exports[`VDataTable.ts should render with item.expanded scoped slot 1`] = `
           <div role="button"
                aria-haspopup="listbox"
                aria-expanded="false"
-               aria-owns="list-224"
+               aria-owns="list-185"
                class="v-input__slot"
           >
             <div class="v-select__slot">
@@ -11448,14 +11448,14 @@ exports[`VDataTable.ts should render with item.expanded scoped slot 1`] = `
                 <input aria-label="Rows per page:"
                        aria-readonly="false"
                        autocomplete="off"
-                       id="input-224"
+                       id="input-185"
                        readonly
                        type="text"
                 >
               </div>
               <div class="v-input__append-inner">
                 <div class="v-input__icon v-input__icon--append">
-                  <i class="v-icon notranslate theme--light material-icons"
+                  <i class="v-icon notranslate material-icons theme--light"
                      aria-hidden="true"
                   >
                     $dropdown
@@ -11482,7 +11482,7 @@ exports[`VDataTable.ts should render with item.expanded scoped slot 1`] = `
               aria-label="Previous page"
       >
         <span class="v-btn__content">
-          <i class="v-icon notranslate theme--light material-icons"
+          <i class="v-icon notranslate material-icons theme--light"
              aria-hidden="true"
           >
             $prev
@@ -11496,7 +11496,7 @@ exports[`VDataTable.ts should render with item.expanded scoped slot 1`] = `
               aria-label="Next page"
       >
         <span class="v-btn__content">
-          <i class="v-icon notranslate theme--light material-icons"
+          <i class="v-icon notranslate material-icons theme--light"
              aria-hidden="true"
           >
             $next
@@ -11530,12 +11530,12 @@ exports[`VDataTable.ts should render with showExpand 1`] = `
                   <div role="button"
                        aria-haspopup="listbox"
                        aria-expanded="false"
-                       aria-owns="list-126"
+                       aria-owns="list-107"
                        class="v-input__slot"
                   >
                     <div class="v-select__slot">
                       <label class="v-label theme--light"
-                             for="input-126"
+                             for="input-107"
                              aria-hidden="false"
                              style="right: 0px; position: absolute;"
                       >
@@ -11544,14 +11544,14 @@ exports[`VDataTable.ts should render with showExpand 1`] = `
                       <div class="v-select__selections">
                         <input aria-readonly="false"
                                autocomplete="off"
-                               id="input-126"
+                               id="input-107"
                                readonly
                                type="text"
                         >
                       </div>
                       <div class="v-input__append-inner">
                         <div class="v-input__icon v-input__icon--append">
-                          <i class="v-icon notranslate theme--light material-icons"
+                          <i class="v-icon notranslate material-icons theme--light"
                              aria-hidden="true"
                           >
                             $dropdown
@@ -11575,7 +11575,7 @@ exports[`VDataTable.ts should render with showExpand 1`] = `
             <div class="v-data-table__mobile-row__header">
             </div>
             <div class="v-data-table__mobile-row__cell">
-              <button class="v-icon--link v-icon notranslate theme--light material-icons v-data-table__expand-icon"
+              <button class="v-icon--link v-icon notranslate material-icons theme--light v-data-table__expand-icon"
                       aria-hidden="false"
                       type="button"
               >
@@ -11637,7 +11637,7 @@ exports[`VDataTable.ts should render with showExpand 1`] = `
             <div class="v-data-table__mobile-row__header">
             </div>
             <div class="v-data-table__mobile-row__cell">
-              <button class="v-icon--link v-icon notranslate theme--light material-icons v-data-table__expand-icon"
+              <button class="v-icon--link v-icon notranslate material-icons theme--light v-data-table__expand-icon"
                       aria-hidden="false"
                       type="button"
               >
@@ -11699,7 +11699,7 @@ exports[`VDataTable.ts should render with showExpand 1`] = `
             <div class="v-data-table__mobile-row__header">
             </div>
             <div class="v-data-table__mobile-row__cell">
-              <button class="v-icon--link v-icon notranslate theme--light material-icons v-data-table__expand-icon"
+              <button class="v-icon--link v-icon notranslate material-icons theme--light v-data-table__expand-icon"
                       aria-hidden="false"
                       type="button"
               >
@@ -11761,7 +11761,7 @@ exports[`VDataTable.ts should render with showExpand 1`] = `
             <div class="v-data-table__mobile-row__header">
             </div>
             <div class="v-data-table__mobile-row__cell">
-              <button class="v-icon--link v-icon notranslate theme--light material-icons v-data-table__expand-icon"
+              <button class="v-icon--link v-icon notranslate material-icons theme--light v-data-table__expand-icon"
                       aria-hidden="false"
                       type="button"
               >
@@ -11823,7 +11823,7 @@ exports[`VDataTable.ts should render with showExpand 1`] = `
             <div class="v-data-table__mobile-row__header">
             </div>
             <div class="v-data-table__mobile-row__cell">
-              <button class="v-icon--link v-icon notranslate theme--light material-icons v-data-table__expand-icon"
+              <button class="v-icon--link v-icon notranslate material-icons theme--light v-data-table__expand-icon"
                       aria-hidden="false"
                       type="button"
               >
@@ -11893,7 +11893,7 @@ exports[`VDataTable.ts should render with showExpand 1`] = `
           <div role="button"
                aria-haspopup="listbox"
                aria-expanded="false"
-               aria-owns="list-147"
+               aria-owns="list-122"
                class="v-input__slot"
           >
             <div class="v-select__slot">
@@ -11904,14 +11904,14 @@ exports[`VDataTable.ts should render with showExpand 1`] = `
                 <input aria-label="Rows per page:"
                        aria-readonly="false"
                        autocomplete="off"
-                       id="input-147"
+                       id="input-122"
                        readonly
                        type="text"
                 >
               </div>
               <div class="v-input__append-inner">
                 <div class="v-input__icon v-input__icon--append">
-                  <i class="v-icon notranslate theme--light material-icons"
+                  <i class="v-icon notranslate material-icons theme--light"
                      aria-hidden="true"
                   >
                     $dropdown
@@ -11938,7 +11938,7 @@ exports[`VDataTable.ts should render with showExpand 1`] = `
               aria-label="Previous page"
       >
         <span class="v-btn__content">
-          <i class="v-icon notranslate theme--light material-icons"
+          <i class="v-icon notranslate material-icons theme--light"
              aria-hidden="true"
           >
             $prev
@@ -11952,7 +11952,7 @@ exports[`VDataTable.ts should render with showExpand 1`] = `
               aria-label="Next page"
       >
         <span class="v-btn__content">
-          <i class="v-icon notranslate theme--light material-icons"
+          <i class="v-icon notranslate material-icons theme--light"
              aria-hidden="true"
           >
             $next
@@ -11986,12 +11986,12 @@ exports[`VDataTable.ts should render with showExpand 2`] = `
                   <div role="button"
                        aria-haspopup="listbox"
                        aria-expanded="false"
-                       aria-owns="list-126"
+                       aria-owns="list-107"
                        class="v-input__slot"
                   >
                     <div class="v-select__slot">
                       <label class="v-label theme--light"
-                             for="input-126"
+                             for="input-107"
                              aria-hidden="false"
                              style="right: 0px; position: absolute;"
                       >
@@ -12000,14 +12000,14 @@ exports[`VDataTable.ts should render with showExpand 2`] = `
                       <div class="v-select__selections">
                         <input aria-readonly="false"
                                autocomplete="off"
-                               id="input-126"
+                               id="input-107"
                                readonly
                                type="text"
                         >
                       </div>
                       <div class="v-input__append-inner">
                         <div class="v-input__icon v-input__icon--append">
-                          <i class="v-icon notranslate theme--light material-icons"
+                          <i class="v-icon notranslate material-icons theme--light"
                              aria-hidden="true"
                           >
                             $dropdown
@@ -12031,7 +12031,7 @@ exports[`VDataTable.ts should render with showExpand 2`] = `
             <div class="v-data-table__mobile-row__header">
             </div>
             <div class="v-data-table__mobile-row__cell">
-              <button class="v-icon--link v-icon notranslate theme--light material-icons v-data-table__expand-icon v-data-table__expand-icon--active"
+              <button class="v-icon--link v-icon notranslate material-icons theme--light v-data-table__expand-icon v-data-table__expand-icon--active"
                       aria-hidden="false"
                       type="button"
               >
@@ -12093,7 +12093,7 @@ exports[`VDataTable.ts should render with showExpand 2`] = `
             <div class="v-data-table__mobile-row__header">
             </div>
             <div class="v-data-table__mobile-row__cell">
-              <button class="v-icon--link v-icon notranslate theme--light material-icons v-data-table__expand-icon"
+              <button class="v-icon--link v-icon notranslate material-icons theme--light v-data-table__expand-icon"
                       aria-hidden="false"
                       type="button"
               >
@@ -12155,7 +12155,7 @@ exports[`VDataTable.ts should render with showExpand 2`] = `
             <div class="v-data-table__mobile-row__header">
             </div>
             <div class="v-data-table__mobile-row__cell">
-              <button class="v-icon--link v-icon notranslate theme--light material-icons v-data-table__expand-icon"
+              <button class="v-icon--link v-icon notranslate material-icons theme--light v-data-table__expand-icon"
                       aria-hidden="false"
                       type="button"
               >
@@ -12217,7 +12217,7 @@ exports[`VDataTable.ts should render with showExpand 2`] = `
             <div class="v-data-table__mobile-row__header">
             </div>
             <div class="v-data-table__mobile-row__cell">
-              <button class="v-icon--link v-icon notranslate theme--light material-icons v-data-table__expand-icon"
+              <button class="v-icon--link v-icon notranslate material-icons theme--light v-data-table__expand-icon"
                       aria-hidden="false"
                       type="button"
               >
@@ -12279,7 +12279,7 @@ exports[`VDataTable.ts should render with showExpand 2`] = `
             <div class="v-data-table__mobile-row__header">
             </div>
             <div class="v-data-table__mobile-row__cell">
-              <button class="v-icon--link v-icon notranslate theme--light material-icons v-data-table__expand-icon"
+              <button class="v-icon--link v-icon notranslate material-icons theme--light v-data-table__expand-icon"
                       aria-hidden="false"
                       type="button"
               >
@@ -12349,7 +12349,7 @@ exports[`VDataTable.ts should render with showExpand 2`] = `
           <div role="button"
                aria-haspopup="listbox"
                aria-expanded="false"
-               aria-owns="list-147"
+               aria-owns="list-122"
                class="v-input__slot"
           >
             <div class="v-select__slot">
@@ -12360,14 +12360,14 @@ exports[`VDataTable.ts should render with showExpand 2`] = `
                 <input aria-label="Rows per page:"
                        aria-readonly="false"
                        autocomplete="off"
-                       id="input-147"
+                       id="input-122"
                        readonly
                        type="text"
                 >
               </div>
               <div class="v-input__append-inner">
                 <div class="v-input__icon v-input__icon--append">
-                  <i class="v-icon notranslate theme--light material-icons"
+                  <i class="v-icon notranslate material-icons theme--light"
                      aria-hidden="true"
                   >
                     $dropdown
@@ -12394,7 +12394,7 @@ exports[`VDataTable.ts should render with showExpand 2`] = `
               aria-label="Previous page"
       >
         <span class="v-btn__content">
-          <i class="v-icon notranslate theme--light material-icons"
+          <i class="v-icon notranslate material-icons theme--light"
              aria-hidden="true"
           >
             $prev
@@ -12408,7 +12408,7 @@ exports[`VDataTable.ts should render with showExpand 2`] = `
               aria-label="Next page"
       >
         <span class="v-btn__content">
-          <i class="v-icon notranslate theme--light material-icons"
+          <i class="v-icon notranslate material-icons theme--light"
              aria-hidden="true"
           >
             $next
@@ -12442,7 +12442,7 @@ exports[`VDataTable.ts should render with showSelect 1`] = `
               >
                 <div class="v-simple-checkbox v-data-table__checkbox v-data-table__checkbox">
                   <div class="v-input--selection-controls__input">
-                    <i class="v-icon notranslate theme--light material-icons"
+                    <i class="v-icon notranslate material-icons theme--light"
                        aria-hidden="true"
                     >
                       $checkboxOff
@@ -12457,12 +12457,12 @@ exports[`VDataTable.ts should render with showSelect 1`] = `
                   <div role="button"
                        aria-haspopup="listbox"
                        aria-expanded="false"
-                       aria-owns="list-166"
+                       aria-owns="list-137"
                        class="v-input__slot"
                   >
                     <div class="v-select__slot">
                       <label class="v-label theme--light"
-                             for="input-166"
+                             for="input-137"
                              aria-hidden="false"
                              style="right: 0px; position: absolute;"
                       >
@@ -12471,14 +12471,14 @@ exports[`VDataTable.ts should render with showSelect 1`] = `
                       <div class="v-select__selections">
                         <input aria-readonly="false"
                                autocomplete="off"
-                               id="input-166"
+                               id="input-137"
                                readonly
                                type="text"
                         >
                       </div>
                       <div class="v-input__append-inner">
                         <div class="v-input__icon v-input__icon--append">
-                          <i class="v-icon notranslate theme--light material-icons"
+                          <i class="v-icon notranslate material-icons theme--light"
                              aria-hidden="true"
                           >
                             $dropdown
@@ -12504,7 +12504,7 @@ exports[`VDataTable.ts should render with showSelect 1`] = `
             <div class="v-data-table__mobile-row__cell">
               <div class="v-simple-checkbox v-data-table__checkbox v-data-table__checkbox">
                 <div class="v-input--selection-controls__input">
-                  <i class="v-icon notranslate theme--light material-icons"
+                  <i class="v-icon notranslate material-icons theme--light"
                      aria-hidden="true"
                   >
                     $checkboxOff
@@ -12571,7 +12571,7 @@ exports[`VDataTable.ts should render with showSelect 1`] = `
             <div class="v-data-table__mobile-row__cell">
               <div class="v-simple-checkbox v-data-table__checkbox v-data-table__checkbox">
                 <div class="v-input--selection-controls__input">
-                  <i class="v-icon notranslate theme--light material-icons"
+                  <i class="v-icon notranslate material-icons theme--light"
                      aria-hidden="true"
                   >
                     $checkboxOff
@@ -12638,7 +12638,7 @@ exports[`VDataTable.ts should render with showSelect 1`] = `
             <div class="v-data-table__mobile-row__cell">
               <div class="v-simple-checkbox v-data-table__checkbox v-data-table__checkbox">
                 <div class="v-input--selection-controls__input">
-                  <i class="v-icon notranslate theme--light material-icons"
+                  <i class="v-icon notranslate material-icons theme--light"
                      aria-hidden="true"
                   >
                     $checkboxOff
@@ -12705,7 +12705,7 @@ exports[`VDataTable.ts should render with showSelect 1`] = `
             <div class="v-data-table__mobile-row__cell">
               <div class="v-simple-checkbox v-data-table__checkbox v-data-table__checkbox">
                 <div class="v-input--selection-controls__input">
-                  <i class="v-icon notranslate theme--light material-icons"
+                  <i class="v-icon notranslate material-icons theme--light"
                      aria-hidden="true"
                   >
                     $checkboxOff
@@ -12772,7 +12772,7 @@ exports[`VDataTable.ts should render with showSelect 1`] = `
             <div class="v-data-table__mobile-row__cell">
               <div class="v-simple-checkbox v-data-table__checkbox v-data-table__checkbox">
                 <div class="v-input--selection-controls__input">
-                  <i class="v-icon notranslate theme--light material-icons"
+                  <i class="v-icon notranslate material-icons theme--light"
                      aria-hidden="true"
                   >
                     $checkboxOff
@@ -12845,7 +12845,7 @@ exports[`VDataTable.ts should render with showSelect 1`] = `
           <div role="button"
                aria-haspopup="listbox"
                aria-expanded="false"
-               aria-owns="list-192"
+               aria-owns="list-157"
                class="v-input__slot"
           >
             <div class="v-select__slot">
@@ -12856,14 +12856,14 @@ exports[`VDataTable.ts should render with showSelect 1`] = `
                 <input aria-label="Rows per page:"
                        aria-readonly="false"
                        autocomplete="off"
-                       id="input-192"
+                       id="input-157"
                        readonly
                        type="text"
                 >
               </div>
               <div class="v-input__append-inner">
                 <div class="v-input__icon v-input__icon--append">
-                  <i class="v-icon notranslate theme--light material-icons"
+                  <i class="v-icon notranslate material-icons theme--light"
                      aria-hidden="true"
                   >
                     $dropdown
@@ -12890,7 +12890,7 @@ exports[`VDataTable.ts should render with showSelect 1`] = `
               aria-label="Previous page"
       >
         <span class="v-btn__content">
-          <i class="v-icon notranslate theme--light material-icons"
+          <i class="v-icon notranslate material-icons theme--light"
              aria-hidden="true"
           >
             $prev
@@ -12904,7 +12904,7 @@ exports[`VDataTable.ts should render with showSelect 1`] = `
               aria-label="Next page"
       >
         <span class="v-btn__content">
-          <i class="v-icon notranslate theme--light material-icons"
+          <i class="v-icon notranslate material-icons theme--light"
              aria-hidden="true"
           >
             $next
@@ -12938,12 +12938,12 @@ exports[`VDataTable.ts should render with single-select checkboxes 1`] = `
                   <div role="button"
                        aria-haspopup="listbox"
                        aria-expanded="false"
-                       aria-owns="list-846"
+                       aria-owns="list-707"
                        class="v-input__slot"
                   >
                     <div class="v-select__slot">
                       <label class="v-label theme--light"
-                             for="input-846"
+                             for="input-707"
                              aria-hidden="false"
                              style="right: 0px; position: absolute;"
                       >
@@ -12952,14 +12952,14 @@ exports[`VDataTable.ts should render with single-select checkboxes 1`] = `
                       <div class="v-select__selections">
                         <input aria-readonly="false"
                                autocomplete="off"
-                               id="input-846"
+                               id="input-707"
                                readonly
                                type="text"
                         >
                       </div>
                       <div class="v-input__append-inner">
                         <div class="v-input__icon v-input__icon--append">
-                          <i class="v-icon notranslate theme--light material-icons"
+                          <i class="v-icon notranslate material-icons theme--light"
                              aria-hidden="true"
                           >
                             $dropdown
@@ -12985,7 +12985,7 @@ exports[`VDataTable.ts should render with single-select checkboxes 1`] = `
             <div class="v-data-table__mobile-row__cell">
               <div class="v-simple-checkbox v-data-table__checkbox v-data-table__checkbox">
                 <div class="v-input--selection-controls__input">
-                  <i class="v-icon notranslate theme--light material-icons"
+                  <i class="v-icon notranslate material-icons theme--light"
                      aria-hidden="true"
                   >
                     $checkboxOn
@@ -13052,7 +13052,7 @@ exports[`VDataTable.ts should render with single-select checkboxes 1`] = `
             <div class="v-data-table__mobile-row__cell">
               <div class="v-simple-checkbox v-data-table__checkbox v-data-table__checkbox">
                 <div class="v-input--selection-controls__input">
-                  <i class="v-icon notranslate theme--light material-icons"
+                  <i class="v-icon notranslate material-icons theme--light"
                      aria-hidden="true"
                   >
                     $checkboxOff
@@ -13125,7 +13125,7 @@ exports[`VDataTable.ts should render with single-select checkboxes 1`] = `
           <div role="button"
                aria-haspopup="listbox"
                aria-expanded="false"
-               aria-owns="list-860"
+               aria-owns="list-718"
                class="v-input__slot"
           >
             <div class="v-select__slot">
@@ -13136,14 +13136,14 @@ exports[`VDataTable.ts should render with single-select checkboxes 1`] = `
                 <input aria-label="Rows per page:"
                        aria-readonly="false"
                        autocomplete="off"
-                       id="input-860"
+                       id="input-718"
                        readonly
                        type="text"
                 >
               </div>
               <div class="v-input__append-inner">
                 <div class="v-input__icon v-input__icon--append">
-                  <i class="v-icon notranslate theme--light material-icons"
+                  <i class="v-icon notranslate material-icons theme--light"
                      aria-hidden="true"
                   >
                     $dropdown
@@ -13170,7 +13170,7 @@ exports[`VDataTable.ts should render with single-select checkboxes 1`] = `
               aria-label="Previous page"
       >
         <span class="v-btn__content">
-          <i class="v-icon notranslate theme--light material-icons"
+          <i class="v-icon notranslate material-icons theme--light"
              aria-hidden="true"
           >
             $prev
@@ -13185,7 +13185,7 @@ exports[`VDataTable.ts should render with single-select checkboxes 1`] = `
               aria-label="Next page"
       >
         <span class="v-btn__content">
-          <i class="v-icon notranslate theme--light material-icons"
+          <i class="v-icon notranslate material-icons theme--light"
              aria-hidden="true"
           >
             $next
@@ -13213,12 +13213,12 @@ exports[`VDataTable.ts should respect mustSort property on options 1`] = `
                   <div role="button"
                        aria-haspopup="listbox"
                        aria-expanded="false"
-                       aria-owns="list-1250"
+                       aria-owns="list-1038"
                        class="v-input__slot"
                   >
                     <div class="v-select__slot">
                       <label class="v-label theme--light"
-                             for="input-1250"
+                             for="input-1038"
                              aria-hidden="false"
                              style="right: 0px; position: absolute;"
                       >
@@ -13227,14 +13227,14 @@ exports[`VDataTable.ts should respect mustSort property on options 1`] = `
                       <div class="v-select__selections">
                         <input aria-readonly="false"
                                autocomplete="off"
-                               id="input-1250"
+                               id="input-1038"
                                readonly
                                type="text"
                         >
                       </div>
                       <div class="v-input__append-inner">
                         <div class="v-input__icon v-input__icon--append">
-                          <i class="v-icon notranslate theme--light material-icons"
+                          <i class="v-icon notranslate material-icons theme--light"
                              aria-hidden="true"
                           >
                             $dropdown
@@ -13366,7 +13366,7 @@ exports[`VDataTable.ts should respect mustSort property on options 1`] = `
           <div role="button"
                aria-haspopup="listbox"
                aria-expanded="false"
-               aria-owns="list-1266"
+               aria-owns="list-1053"
                class="v-input__slot"
           >
             <div class="v-select__slot">
@@ -13377,14 +13377,14 @@ exports[`VDataTable.ts should respect mustSort property on options 1`] = `
                 <input aria-label="Rows per page:"
                        aria-readonly="false"
                        autocomplete="off"
-                       id="input-1266"
+                       id="input-1053"
                        readonly
                        type="text"
                 >
               </div>
               <div class="v-input__append-inner">
                 <div class="v-input__icon v-input__icon--append">
-                  <i class="v-icon notranslate theme--light material-icons"
+                  <i class="v-icon notranslate material-icons theme--light"
                      aria-hidden="true"
                   >
                     $dropdown
@@ -13411,7 +13411,7 @@ exports[`VDataTable.ts should respect mustSort property on options 1`] = `
               aria-label="Previous page"
       >
         <span class="v-btn__content">
-          <i class="v-icon notranslate theme--light material-icons"
+          <i class="v-icon notranslate material-icons theme--light"
              aria-hidden="true"
           >
             $prev
@@ -13426,7 +13426,7 @@ exports[`VDataTable.ts should respect mustSort property on options 1`] = `
               aria-label="Next page"
       >
         <span class="v-btn__content">
-          <i class="v-icon notranslate theme--light material-icons"
+          <i class="v-icon notranslate material-icons theme--light"
              aria-hidden="true"
           >
             $next
@@ -13455,12 +13455,12 @@ exports[`VDataTable.ts should search group-by column 1`] = `
                   <div role="button"
                        aria-haspopup="listbox"
                        aria-expanded="false"
-                       aria-owns="list-942"
+                       aria-owns="list-783"
                        class="v-input__slot"
                   >
                     <div class="v-select__slot">
                       <label class="v-label theme--light"
-                             for="input-942"
+                             for="input-783"
                              aria-hidden="false"
                              style="right: 0px; position: absolute;"
                       >
@@ -13469,14 +13469,14 @@ exports[`VDataTable.ts should search group-by column 1`] = `
                       <div class="v-select__selections">
                         <input aria-readonly="false"
                                autocomplete="off"
-                               id="input-942"
+                               id="input-783"
                                readonly
                                type="text"
                         >
                       </div>
                       <div class="v-input__append-inner">
                         <div class="v-input__icon v-input__icon--append">
-                          <i class="v-icon notranslate theme--light material-icons"
+                          <i class="v-icon notranslate material-icons theme--light"
                              aria-hidden="true"
                           >
                             $dropdown
@@ -13501,7 +13501,7 @@ exports[`VDataTable.ts should search group-by column 1`] = `
                     type="button"
             >
               <span class="v-btn__content">
-                <i class="v-icon notranslate theme--light material-icons"
+                <i class="v-icon notranslate material-icons theme--light"
                    aria-hidden="true"
                 >
                   $minus
@@ -13513,7 +13513,7 @@ exports[`VDataTable.ts should search group-by column 1`] = `
                     type="button"
             >
               <span class="v-btn__content">
-                <i class="v-icon notranslate theme--light material-icons"
+                <i class="v-icon notranslate material-icons theme--light"
                    aria-hidden="true"
                 >
                   $close
@@ -13546,7 +13546,7 @@ exports[`VDataTable.ts should search group-by column 1`] = `
                     type="button"
             >
               <span class="v-btn__content">
-                <i class="v-icon notranslate theme--light material-icons"
+                <i class="v-icon notranslate material-icons theme--light"
                    aria-hidden="true"
                 >
                   $minus
@@ -13558,7 +13558,7 @@ exports[`VDataTable.ts should search group-by column 1`] = `
                     type="button"
             >
               <span class="v-btn__content">
-                <i class="v-icon notranslate theme--light material-icons"
+                <i class="v-icon notranslate material-icons theme--light"
                    aria-hidden="true"
                 >
                   $close
@@ -13598,7 +13598,7 @@ exports[`VDataTable.ts should search group-by column 1`] = `
           <div role="button"
                aria-haspopup="listbox"
                aria-expanded="false"
-               aria-owns="list-964"
+               aria-owns="list-800"
                class="v-input__slot"
           >
             <div class="v-select__slot">
@@ -13609,14 +13609,14 @@ exports[`VDataTable.ts should search group-by column 1`] = `
                 <input aria-label="Rows per page:"
                        aria-readonly="false"
                        autocomplete="off"
-                       id="input-964"
+                       id="input-800"
                        readonly
                        type="text"
                 >
               </div>
               <div class="v-input__append-inner">
                 <div class="v-input__icon v-input__icon--append">
-                  <i class="v-icon notranslate theme--light material-icons"
+                  <i class="v-icon notranslate material-icons theme--light"
                      aria-hidden="true"
                   >
                     $dropdown
@@ -13643,7 +13643,7 @@ exports[`VDataTable.ts should search group-by column 1`] = `
               aria-label="Previous page"
       >
         <span class="v-btn__content">
-          <i class="v-icon notranslate theme--light material-icons"
+          <i class="v-icon notranslate material-icons theme--light"
              aria-hidden="true"
           >
             $prev
@@ -13658,7 +13658,7 @@ exports[`VDataTable.ts should search group-by column 1`] = `
               aria-label="Next page"
       >
         <span class="v-btn__content">
-          <i class="v-icon notranslate theme--light material-icons"
+          <i class="v-icon notranslate material-icons theme--light"
              aria-hidden="true"
           >
             $next
@@ -13686,12 +13686,12 @@ exports[`VDataTable.ts should search group-by column 2`] = `
                   <div role="button"
                        aria-haspopup="listbox"
                        aria-expanded="false"
-                       aria-owns="list-942"
+                       aria-owns="list-783"
                        class="v-input__slot"
                   >
                     <div class="v-select__slot">
                       <label class="v-label theme--light"
-                             for="input-942"
+                             for="input-783"
                              aria-hidden="false"
                              style="right: 0px; position: absolute;"
                       >
@@ -13700,14 +13700,14 @@ exports[`VDataTable.ts should search group-by column 2`] = `
                       <div class="v-select__selections">
                         <input aria-readonly="false"
                                autocomplete="off"
-                               id="input-942"
+                               id="input-783"
                                readonly
                                type="text"
                         >
                       </div>
                       <div class="v-input__append-inner">
                         <div class="v-input__icon v-input__icon--append">
-                          <i class="v-icon notranslate theme--light material-icons"
+                          <i class="v-icon notranslate material-icons theme--light"
                              aria-hidden="true"
                           >
                             $dropdown
@@ -13732,7 +13732,7 @@ exports[`VDataTable.ts should search group-by column 2`] = `
                     type="button"
             >
               <span class="v-btn__content">
-                <i class="v-icon notranslate theme--light material-icons"
+                <i class="v-icon notranslate material-icons theme--light"
                    aria-hidden="true"
                 >
                   $minus
@@ -13744,7 +13744,7 @@ exports[`VDataTable.ts should search group-by column 2`] = `
                     type="button"
             >
               <span class="v-btn__content">
-                <i class="v-icon notranslate theme--light material-icons"
+                <i class="v-icon notranslate material-icons theme--light"
                    aria-hidden="true"
                 >
                   $close
@@ -13776,7 +13776,7 @@ exports[`VDataTable.ts should search group-by column 2`] = `
           <div role="button"
                aria-haspopup="listbox"
                aria-expanded="false"
-               aria-owns="list-964"
+               aria-owns="list-800"
                class="v-input__slot"
           >
             <div class="v-select__slot">
@@ -13787,14 +13787,14 @@ exports[`VDataTable.ts should search group-by column 2`] = `
                 <input aria-label="Rows per page:"
                        aria-readonly="false"
                        autocomplete="off"
-                       id="input-964"
+                       id="input-800"
                        readonly
                        type="text"
                 >
               </div>
               <div class="v-input__append-inner">
                 <div class="v-input__icon v-input__icon--append">
-                  <i class="v-icon notranslate theme--light material-icons"
+                  <i class="v-icon notranslate material-icons theme--light"
                      aria-hidden="true"
                   >
                     $dropdown
@@ -13821,7 +13821,7 @@ exports[`VDataTable.ts should search group-by column 2`] = `
               aria-label="Previous page"
       >
         <span class="v-btn__content">
-          <i class="v-icon notranslate theme--light material-icons"
+          <i class="v-icon notranslate material-icons theme--light"
              aria-hidden="true"
           >
             $prev
@@ -13836,7 +13836,7 @@ exports[`VDataTable.ts should search group-by column 2`] = `
               aria-label="Next page"
       >
         <span class="v-btn__content">
-          <i class="v-icon notranslate theme--light material-icons"
+          <i class="v-icon notranslate material-icons theme--light"
              aria-hidden="true"
           >
             $next
@@ -13869,12 +13869,12 @@ exports[`VDataTable.ts should show correct aria-labels when sorting 1`] = `
                   <div role="button"
                        aria-haspopup="listbox"
                        aria-expanded="false"
-                       aria-owns="list-1064"
+                       aria-owns="list-881"
                        class="v-input__slot"
                   >
                     <div class="v-select__slot">
                       <label class="v-label v-label--active theme--light"
-                             for="input-1064"
+                             for="input-881"
                              aria-hidden="false"
                              style="right: 0px; position: absolute;"
                       >
@@ -13885,7 +13885,7 @@ exports[`VDataTable.ts should show correct aria-labels when sorting 1`] = `
                           <span class="v-chip__content">
                             Calories
                             <div class="v-chip__close sortable active desc">
-                              <i class="v-icon notranslate theme--light material-icons v-data-table-header__icon"
+                              <i class="v-icon notranslate material-icons theme--light v-data-table-header__icon"
                                  aria-hidden="true"
                                  style="font-size: 18px;"
                               >
@@ -13896,14 +13896,14 @@ exports[`VDataTable.ts should show correct aria-labels when sorting 1`] = `
                         </span>
                         <input aria-readonly="false"
                                autocomplete="off"
-                               id="input-1064"
+                               id="input-881"
                                readonly
                                type="text"
                         >
                       </div>
                       <div class="v-input__append-inner">
                         <div class="v-input__icon v-input__icon--append">
-                          <i class="v-icon notranslate theme--light material-icons"
+                          <i class="v-icon notranslate material-icons theme--light"
                              aria-hidden="true"
                           >
                             $dropdown
@@ -14187,7 +14187,7 @@ exports[`VDataTable.ts should show correct aria-labels when sorting 1`] = `
           <div role="button"
                aria-haspopup="listbox"
                aria-expanded="false"
-               aria-owns="list-1078"
+               aria-owns="list-893"
                class="v-input__slot"
           >
             <div class="v-select__slot">
@@ -14198,14 +14198,14 @@ exports[`VDataTable.ts should show correct aria-labels when sorting 1`] = `
                 <input aria-label="Rows per page:"
                        aria-readonly="false"
                        autocomplete="off"
-                       id="input-1078"
+                       id="input-893"
                        readonly
                        type="text"
                 >
               </div>
               <div class="v-input__append-inner">
                 <div class="v-input__icon v-input__icon--append">
-                  <i class="v-icon notranslate theme--light material-icons"
+                  <i class="v-icon notranslate material-icons theme--light"
                      aria-hidden="true"
                   >
                     $dropdown
@@ -14232,7 +14232,7 @@ exports[`VDataTable.ts should show correct aria-labels when sorting 1`] = `
               aria-label="Previous page"
       >
         <span class="v-btn__content">
-          <i class="v-icon notranslate theme--light material-icons"
+          <i class="v-icon notranslate material-icons theme--light"
              aria-hidden="true"
           >
             $prev
@@ -14247,7 +14247,7 @@ exports[`VDataTable.ts should show correct aria-labels when sorting 1`] = `
               aria-label="Next page"
       >
         <span class="v-btn__content">
-          <i class="v-icon notranslate theme--light material-icons"
+          <i class="v-icon notranslate material-icons theme--light"
              aria-hidden="true"
           >
             $next
@@ -14280,12 +14280,12 @@ exports[`VDataTable.ts should show correct aria-labels when sorting 2`] = `
                   <div role="button"
                        aria-haspopup="listbox"
                        aria-expanded="false"
-                       aria-owns="list-1064"
+                       aria-owns="list-881"
                        class="v-input__slot"
                   >
                     <div class="v-select__slot">
                       <label class="v-label v-label--active theme--light"
-                             for="input-1064"
+                             for="input-881"
                              aria-hidden="false"
                              style="right: 0px; position: absolute;"
                       >
@@ -14296,7 +14296,7 @@ exports[`VDataTable.ts should show correct aria-labels when sorting 2`] = `
                           <span class="v-chip__content">
                             Calories
                             <div class="v-chip__close sortable active desc">
-                              <i class="v-icon notranslate theme--light material-icons v-data-table-header__icon"
+                              <i class="v-icon notranslate material-icons theme--light v-data-table-header__icon"
                                  aria-hidden="true"
                                  style="font-size: 18px;"
                               >
@@ -14307,14 +14307,14 @@ exports[`VDataTable.ts should show correct aria-labels when sorting 2`] = `
                         </span>
                         <input aria-readonly="false"
                                autocomplete="off"
-                               id="input-1064"
+                               id="input-881"
                                readonly
                                type="text"
                         >
                       </div>
                       <div class="v-input__append-inner">
                         <div class="v-input__icon v-input__icon--append">
-                          <i class="v-icon notranslate theme--light material-icons"
+                          <i class="v-icon notranslate material-icons theme--light"
                              aria-hidden="true"
                           >
                             $dropdown
@@ -14598,7 +14598,7 @@ exports[`VDataTable.ts should show correct aria-labels when sorting 2`] = `
           <div role="button"
                aria-haspopup="listbox"
                aria-expanded="false"
-               aria-owns="list-1078"
+               aria-owns="list-893"
                class="v-input__slot"
           >
             <div class="v-select__slot">
@@ -14609,14 +14609,14 @@ exports[`VDataTable.ts should show correct aria-labels when sorting 2`] = `
                 <input aria-label="Rows per page:"
                        aria-readonly="false"
                        autocomplete="off"
-                       id="input-1078"
+                       id="input-893"
                        readonly
                        type="text"
                 >
               </div>
               <div class="v-input__append-inner">
                 <div class="v-input__icon v-input__icon--append">
-                  <i class="v-icon notranslate theme--light material-icons"
+                  <i class="v-icon notranslate material-icons theme--light"
                      aria-hidden="true"
                   >
                     $dropdown
@@ -14643,7 +14643,7 @@ exports[`VDataTable.ts should show correct aria-labels when sorting 2`] = `
               aria-label="Previous page"
       >
         <span class="v-btn__content">
-          <i class="v-icon notranslate theme--light material-icons"
+          <i class="v-icon notranslate material-icons theme--light"
              aria-hidden="true"
           >
             $prev
@@ -14658,7 +14658,7 @@ exports[`VDataTable.ts should show correct aria-labels when sorting 2`] = `
               aria-label="Next page"
       >
         <span class="v-btn__content">
-          <i class="v-icon notranslate theme--light material-icons"
+          <i class="v-icon notranslate material-icons theme--light"
              aria-hidden="true"
           >
             $next

@@ -3,12 +3,12 @@
 exports[`VRadio.ts should be render colored radio 1`] = `
 <div class="v-radio theme--light">
   <div class="v-input--selection-controls__input">
-    <i class="v-icon notranslate theme--light mdi mdi-radiobox-blank"
+    <i class="v-icon notranslate mdi mdi-radiobox-blank theme--light"
        aria-hidden="true"
     >
     </i>
     <input aria-checked="false"
-           id="input-29"
+           id="input-22"
            role="radio"
            type="radio"
     >
@@ -21,12 +21,12 @@ exports[`VRadio.ts should be render colored radio 1`] = `
 exports[`VRadio.ts should not render aria-label attribute with no label value on input group 1`] = `
 <div class="v-radio theme--light">
   <div class="v-input--selection-controls__input">
-    <i class="v-icon notranslate theme--light mdi mdi-radiobox-blank"
+    <i class="v-icon notranslate mdi mdi-radiobox-blank theme--light"
        aria-hidden="true"
     >
     </i>
     <input aria-checked="false"
-           id="input-5"
+           id="input-4"
            role="radio"
            type="radio"
            name="name"
@@ -40,12 +40,12 @@ exports[`VRadio.ts should not render aria-label attribute with no label value on
 exports[`VRadio.ts should render proper input name 1`] = `
 <div class="v-radio theme--light">
   <div class="v-input--selection-controls__input">
-    <i class="v-icon notranslate theme--light mdi mdi-radiobox-blank"
+    <i class="v-icon notranslate mdi mdi-radiobox-blank theme--light"
        aria-hidden="true"
     >
     </i>
     <input aria-checked="false"
-           id="input-9"
+           id="input-7"
            role="radio"
            type="radio"
            name="name"
@@ -59,7 +59,7 @@ exports[`VRadio.ts should render proper input name 1`] = `
 exports[`VRadio.ts should render role and aria-checked attributes on input group 1`] = `
 <div class="v-radio theme--light">
   <div class="v-input--selection-controls__input">
-    <i class="v-icon notranslate theme--light mdi mdi-radiobox-blank"
+    <i class="v-icon notranslate mdi mdi-radiobox-blank theme--light"
        aria-hidden="true"
     >
     </i>
@@ -80,13 +80,13 @@ exports[`VRadio.ts should render role and aria-checked attributes on input group
 exports[`VRadio.ts should use custom icons 1`] = `
 <div class="v-radio theme--light">
   <div class="v-input--selection-controls__input">
-    <i class="v-icon notranslate theme--light material-icons"
+    <i class="v-icon notranslate material-icons theme--light"
        aria-hidden="true"
     >
       bar
     </i>
     <input aria-checked="false"
-           id="input-17"
+           id="input-13"
            role="radio"
            type="radio"
            modelvalue="test"
@@ -101,13 +101,13 @@ exports[`VRadio.ts should use custom icons 1`] = `
 exports[`VRadio.ts should use custom icons 2`] = `
 <div class="v-radio theme--light">
   <div class="v-input--selection-controls__input">
-    <i class="v-icon notranslate theme--light material-icons"
+    <i class="v-icon notranslate material-icons theme--light"
        aria-hidden="true"
     >
       bar
     </i>
     <input aria-checked="false"
-           id="input-17"
+           id="input-13"
            role="radio"
            type="radio"
            modelvalue="test"
