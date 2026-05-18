@@ -46,6 +46,8 @@ describe('VItemGroup', () => {
     expect(getValue({ value: undefined }, 1)).toBe(1)
     expect(getValue({ value: '' }, 2)).toBe('')
     expect(getValue({ value: 'foo' }, 'foo')).toBe('foo')
+    expect(getValue({ modelValue: 'foo' }, 0)).toBe('foo')
+    expect(getValue({ modelValue: 4 }, 3)).toBe(4)
   })
 
   it('should register elements', () => {
