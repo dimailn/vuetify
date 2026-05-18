@@ -20,6 +20,7 @@ export type GroupableInstance = any & {
   id?: string
   to?: any
   value?: any
+  modelValue?: any
 }
 
 export const BaseItemGroup = mixins(
@@ -124,9 +125,11 @@ export const BaseItemGroup = mixins(
       }
     },
     getValue (item: GroupableInstance, i: number): unknown {
-      return item.value === undefined
+      const identity = item.value !== undefined ? item.value : item.modelValue
+
+      return identity === undefined
         ? i
-        : item.value
+        : identity
     },
     onClick (item: GroupableInstance) {
       this.updateInternalValue(

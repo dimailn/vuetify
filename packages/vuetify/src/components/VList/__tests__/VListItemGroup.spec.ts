@@ -1,4 +1,8 @@
+// Libraries
+import { h } from 'vue'
+
 // Components
+import VListItem from '../VListItem'
 import VListItemGroup from '../VListItemGroup'
 
 // Utilities
@@ -26,5 +30,32 @@ describe('VListItemGroup.ts', () => {
     const wrapper = mountFunction()
 
     expect(wrapper.element.getAttribute('role')).toBe('listbox')
+  })
+
+  // ui-autocomplete: :model-value="index" из filteredItems при divider между пунктами
+  it('should activate items by modelValue when non-list nodes break registration index', async () => {
+    const wrapper = mountFunction({
+      props: {
+        multiple: true,
+        modelValue: [4, 5],
+      },
+      slots: {
+        default: () => [
+          h(VListItem, { modelValue: 0 }),
+          h(VListItem, { modelValue: 1 }),
+          h(VListItem, { modelValue: 2 }),
+          h('hr', { class: 'v-divider' }),
+          h(VListItem, { modelValue: 4 }),
+          h(VListItem, { modelValue: 5 }),
+        ],
+      },
+    })
+
+    await wrapper.vm.$nextTick()
+
+    const items = wrapper.findAllComponents({ name: 'v-list-item' })
+    expect(items).toHaveLength(5)
+    expect(items[3].vm.isActive).toBe(true)
+    expect(items[4].vm.isActive).toBe(true)
   })
 })
