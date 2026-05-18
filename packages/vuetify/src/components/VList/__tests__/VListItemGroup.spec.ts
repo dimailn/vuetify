@@ -37,7 +37,7 @@ describe('VListItemGroup.ts', () => {
     const wrapper = mountFunction({
       props: {
         multiple: true,
-        modelValue: [4, 5],
+        modelValue: [4, 5]
       },
       slots: {
         default: () => [
@@ -46,9 +46,9 @@ describe('VListItemGroup.ts', () => {
           h(VListItem, { modelValue: 2 }),
           h('hr', { class: 'v-divider' }),
           h(VListItem, { modelValue: 4 }),
-          h(VListItem, { modelValue: 5 }),
-        ],
-      },
+          h(VListItem, { modelValue: 5 })
+        ]
+      }
     })
 
     await wrapper.vm.$nextTick()
