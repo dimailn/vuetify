@@ -31,6 +31,13 @@ jobs:
 
       - run: yarn --frozen-lockfile --non-interactive
 
+      - name: Verify NPM token
+        run: |
+          test -n "${NODE_AUTH_TOKEN:?NPM_TOKEN secret is not set}"
+          npm whoami
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
       - name: Bump version
         run: |
           node -e "
@@ -46,9 +53,10 @@ jobs:
 
       - name: Publish to NPM
         run: |
-          npm config set //registry.npmjs.org/:_authToken ${{ secrets.NPM_TOKEN }}
           cd packages/vuetify
-          npm publish --tag $(node ../../scripts/parse-npm-tag.js ${{ github.event.inputs.version }})
+          npm publish --access public --tag $(node ../../scripts/parse-npm-tag.js ${{ github.event.inputs.version }})
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Commit and tag
         run: |
