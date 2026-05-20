@@ -9,6 +9,7 @@ on:
 
 permissions:
   contents: write
+  id-token: write
 
 jobs:
   publish:
@@ -32,13 +33,6 @@ jobs:
 
       - run: yarn --frozen-lockfile --non-interactive
 
-      - name: Verify NPM token
-        run: |
-          test -n "${NODE_AUTH_TOKEN:?NPM_TOKEN secret is not set}"
-          npm whoami
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-
       - name: Bump version
         run: |
           node -e "
@@ -52,12 +46,16 @@ jobs:
         run: yarn build
         working-directory: ./packages/vuetify
 
+      - name: Use Node 24 for npm trusted publishing
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          registry-url: 'https://registry.npmjs.org'
+
       - name: Publish to NPM
         run: |
           cd packages/vuetify
-          npm publish --access public --tag $(node ../../scripts/parse-npm-tag.js ${{ github.event.inputs.version }})
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          npm publish --ignore-scripts --access public --tag $(node ../../scripts/parse-npm-tag.js ${{ github.event.inputs.version }})
 
       - name: Commit and tag
         run: |
