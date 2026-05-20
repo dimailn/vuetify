@@ -112,7 +112,17 @@ export default defineComponent({
 
       if (this.hideOverlay) return
 
-      if (!this.overlay) this.createOverlay()
+      if (!this.overlay?.$el?.isConnected) {
+        if (this.overlay) {
+          cancelAnimationFrame(this.animationFrame)
+          const container = this.overlay.$el?.parentNode as HTMLElement | null
+          this.overlayApp?.unmount()
+          this.overlayApp = null
+          if (container?.parentNode) container.parentNode.removeChild(container)
+          this.overlay = null
+        }
+        this.createOverlay()
+      }
 
       this.animationFrame = requestAnimationFrame(() => {
         if (!this.overlay) return
@@ -131,6 +141,15 @@ export default defineComponent({
     /** removeOverlay(false) will not restore the scollbar afterwards */
     removeOverlay (showScroll = true) {
       if (this.overlay) {
+        if (!this.overlay.$el?.isConnected) {
+          cancelAnimationFrame(this.animationFrame)
+          this.overlayApp?.unmount()
+          this.overlayApp = null
+          this.overlay = null
+          showScroll && this.showScroll()
+          return
+        }
+
         addOnceEventListener(this.overlay.$el, 'transitionend', () => {
           if (
             !this.overlay ||
