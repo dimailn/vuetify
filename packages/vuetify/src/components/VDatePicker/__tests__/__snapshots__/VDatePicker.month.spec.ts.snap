@@ -312,8 +312,6 @@ exports[`VDatePicker.ts should match snapshot with colored picker & header 1`] =
       </div>
     </div>
   </div>
-  <div class="v-picker__actions v-card__actions">
-  </div>
 </div>
 `;
 
@@ -499,8 +497,6 @@ exports[`VDatePicker.ts should match snapshot with colored picker 1`] = `
         </table>
       </div>
     </div>
-  </div>
-  <div class="v-picker__actions v-card__actions">
   </div>
 </div>
 `;
@@ -809,8 +805,6 @@ exports[`VDatePicker.ts should match snapshot with pick-month prop 1`] = `
       </div>
     </div>
   </div>
-  <div class="v-picker__actions v-card__actions">
-  </div>
 </div>
 `;
 
@@ -997,8 +991,6 @@ exports[`VDatePicker.ts should render flat picker 1`] = `
       </div>
     </div>
   </div>
-  <div class="v-picker__actions v-card__actions">
-  </div>
 </div>
 `;
 
@@ -1184,8 +1176,6 @@ exports[`VDatePicker.ts should render picker with elevation 1`] = `
         </table>
       </div>
     </div>
-  </div>
-  <div class="v-picker__actions v-card__actions">
   </div>
 </div>
 `;

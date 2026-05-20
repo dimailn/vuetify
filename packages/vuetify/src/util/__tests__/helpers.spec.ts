@@ -4,6 +4,8 @@ import {
   getPropertyFromItem,
   convertToUnit,
   getSlot,
+  flattenSlotContent,
+  hasSlotContent,
   getSlotType,
   arrayDiff,
   getObjectValueByPath,
@@ -579,5 +581,65 @@ describe('getSlot', () => {
     rawSlots.default = () => 'plain'
     const vm = { $slots: rawSlots } as any
     expect(getSlot(vm)).toBe('plain')
+  })
+})
+
+describe('flattenSlotContent', () => {
+  const span = h('span', 'a')
+  const button = h('button', 'OK')
+
+  it('возвращает [] для null и undefined', () => {
+    expect(flattenSlotContent(null)).toEqual([])
+    expect(flattenSlotContent(undefined)).toEqual([])
+  })
+
+  it('возвращает [] для пустого массива', () => {
+    expect(flattenSlotContent([])).toEqual([])
+  })
+
+  it('оборачивает один vnode в массив', () => {
+    expect(flattenSlotContent(span)).toEqual([span])
+  })
+
+  it('оставляет плоский массив vnode без изменений', () => {
+    expect(flattenSlotContent([span, button])).toEqual([span, button])
+  })
+
+  it('расплющивает вложенные массивы', () => {
+    expect(flattenSlotContent([span, [button]])).toEqual([span, button])
+    expect(flattenSlotContent([[span, button]])).toEqual([span, button])
+  })
+
+  it('отбрасывает null и undefined', () => {
+    expect(flattenSlotContent([undefined, null])).toEqual([])
+  })
+
+  it('отбрасывает vnode с флагом isComment', () => {
+    const commentLike = { ...span, isComment: true } as typeof span
+    expect(flattenSlotContent([commentLike, span])).toEqual([span])
+  })
+
+  it('регрессия picker: [[]] и [undefined] считаются пустым слотом', () => {
+    expect(flattenSlotContent([[]])).toEqual([])
+    expect(flattenSlotContent([undefined])).toEqual([])
+  })
+})
+
+describe('hasSlotContent', () => {
+  const span = h('span', 'a')
+
+  it('false для пустого и «мусорного» контента', () => {
+    expect(hasSlotContent(null)).toBe(false)
+    expect(hasSlotContent(undefined)).toBe(false)
+    expect(hasSlotContent([])).toBe(false)
+    expect(hasSlotContent([[]])).toBe(false)
+    expect(hasSlotContent([undefined])).toBe(false)
+    expect(hasSlotContent([{ ...span, isComment: true }])).toBe(false)
+  })
+
+  it('true если после flatten остался vnode', () => {
+    expect(hasSlotContent(span)).toBe(true)
+    expect(hasSlotContent([span])).toBe(true)
+    expect(hasSlotContent([{ ...span, isComment: true }, span])).toBe(true)
   })
 })

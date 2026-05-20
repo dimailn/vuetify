@@ -441,6 +441,22 @@ export function getSlot (vm: Vue, name = 'default', data?: object | (() => objec
   return undefined
 }
 
+export function flattenSlotContent (content: VNode | VNode[] | null | undefined): VNode[] {
+  if (content == null) return []
+
+  const items = Array.isArray(content) ? content : [content]
+
+  return items.flatMap((item) => {
+    if (item == null || item.isComment) return []
+    if (Array.isArray(item)) return flattenSlotContent(item)
+    return [item]
+  })
+}
+
+export function hasSlotContent (content: VNode | VNode[] | null | undefined): boolean {
+  return flattenSlotContent(content).length > 0
+}
+
 export function clamp (value: number, min = 0, max = 1) {
   return Math.max(min, Math.min(max, value))
 }

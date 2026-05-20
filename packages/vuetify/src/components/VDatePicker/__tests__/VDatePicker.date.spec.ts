@@ -407,6 +407,17 @@ describe('VDatePicker.ts', () => { // eslint-disable-line max-statements
     }
   })
 
+  it('should not render empty picker actions without default slot', () => {
+    const wrapper = mountFunction({
+      props: {
+        type: 'date',
+        modelValue: '2005-11-01',
+      },
+    })
+
+    expect(wrapper.find('.v-picker__actions').exists()).toBe(false)
+  })
+
   it('should match snapshot with slot', async () => {
     const wrapper = mountFunction({
       props: {

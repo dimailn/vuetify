@@ -9,7 +9,7 @@ import Elevatable from '../../mixins/elevatable'
 import Themeable from '../../mixins/themeable'
 
 // Helpers
-import { convertToUnit, getSlot } from '../../util/helpers'
+import { convertToUnit, getSlot, hasSlotContent } from '../../util/helpers'
 
 /* @vue/component */
 export default defineComponent({
@@ -76,6 +76,9 @@ export default defineComponent({
           'v-picker__actions--no-title': this.noTitle
         }]
       }, getSlot(this, 'actions'))
+    },
+    hasActions (): boolean {
+      return hasSlotContent(getSlot(this, 'actions'))
     }
   },
 
@@ -91,7 +94,7 @@ export default defineComponent({
     }, [
       this.$slots.title ? this.genTitle() : null,
       this.genBody(),
-      this.$slots.actions ? this.genActions() : null
+      this.hasActions() ? this.genActions() : null
     ])
   }
 })

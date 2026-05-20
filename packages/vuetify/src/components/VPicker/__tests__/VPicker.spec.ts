@@ -82,6 +82,28 @@ describe('VPicker.ts', () => {
     expect(wrapper.html()).toMatchSnapshot()
   })
 
+  it('should not render actions when actions slot is empty', () => {
+    const wrapper = mountFunction({
+      slots: {
+        default: '<span>default</span>',
+        actions: () => [],
+      },
+    })
+
+    expect(wrapper.find('.v-picker__actions').exists()).toBe(false)
+  })
+
+  it('should render actions when actions slot has content', () => {
+    const wrapper = mountFunction({
+      slots: {
+        default: '<span>default</span>',
+        actions: '<button type="button">OK</button>',
+      },
+    })
+
+    expect(wrapper.find('.v-picker__actions button').exists()).toBe(true)
+  })
+
   it('should render colored component', () => {
     const wrapper = mountFunction({
       props: {
