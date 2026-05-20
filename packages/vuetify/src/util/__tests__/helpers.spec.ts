@@ -15,7 +15,7 @@ import {
   normalizeClasses
 } from '../helpers'
 import { mount, enableAutoUnmount } from '@vue/test-utils'
-import { defineComponent, createApp, h } from 'vue'
+import { defineComponent, createApp, h, Comment } from 'vue'
 
 describe('createSimpleFunctional', () => {
   it('should render with a custom tag', () => {
@@ -614,9 +614,8 @@ describe('flattenSlotContent', () => {
     expect(flattenSlotContent([undefined, null])).toEqual([])
   })
 
-  it('отбрасывает vnode с флагом isComment', () => {
-    const commentLike = { ...span, isComment: true } as typeof span
-    expect(flattenSlotContent([commentLike, span])).toEqual([span])
+  it('отбрасывает comment-узлы Vue (type === Comment)', () => {
+    expect(flattenSlotContent([h(Comment, 'v-if'), span])).toEqual([span])
   })
 
   it('регрессия picker: [[]] и [undefined] считаются пустым слотом', () => {
@@ -634,12 +633,12 @@ describe('hasSlotContent', () => {
     expect(hasSlotContent([])).toBe(false)
     expect(hasSlotContent([[]])).toBe(false)
     expect(hasSlotContent([undefined])).toBe(false)
-    expect(hasSlotContent([{ ...span, isComment: true }])).toBe(false)
+    expect(hasSlotContent([h(Comment, 'v-if')])).toBe(false)
   })
 
   it('true если после flatten остался vnode', () => {
     expect(hasSlotContent(span)).toBe(true)
     expect(hasSlotContent([span])).toBe(true)
-    expect(hasSlotContent([{ ...span, isComment: true }, span])).toBe(true)
+    expect(hasSlotContent([h(Comment, 'x'), span])).toBe(true)
   })
 })

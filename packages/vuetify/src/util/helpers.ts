@@ -1,4 +1,4 @@
-import { defineComponent, h, resolveComponent } from 'vue'
+import { defineComponent, h, resolveComponent, Comment } from 'vue'
 import type { VNode, VNodeDirective } from '../types/vue-internal'
 import { VuetifyIcon } from 'vuetify/types/services/icons'
 import { DataTableCompareFunction, SelectItemKey, ItemGroup } from 'vuetify/types'
@@ -447,7 +447,7 @@ export function flattenSlotContent (content: VNode | VNode[] | null | undefined)
   const items = Array.isArray(content) ? content : [content]
 
   return items.flatMap((item) => {
-    if (item == null || item.isComment) return []
+    if (item == null || item.type === Comment) return []
     if (Array.isArray(item)) return flattenSlotContent(item)
     return [item]
   })
