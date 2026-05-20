@@ -1,4 +1,4 @@
-import { defineComponent, h, resolveComponent } from 'vue'
+import { defineComponent, h, resolveComponent, Comment } from 'vue'
 import type { VNode, VNodeDirective } from '../types/vue-internal'
 import { VuetifyIcon } from 'vuetify/types/services/icons'
 import { DataTableCompareFunction, SelectItemKey, ItemGroup } from 'vuetify/types'
@@ -439,6 +439,22 @@ export function getSlot (vm: Vue, name = 'default', data?: object | (() => objec
     return slot(data instanceof Function ? data() : data)
   }
   return undefined
+}
+
+export function flattenSlotContent (content: VNode | VNode[] | null | undefined): VNode[] {
+  if (content == null) return []
+
+  const items = Array.isArray(content) ? content : [content]
+
+  return items.flatMap((item) => {
+    if (item == null || item.type === Comment) return []
+    if (Array.isArray(item)) return flattenSlotContent(item)
+    return [item]
+  })
+}
+
+export function hasSlotContent (content: VNode | VNode[] | null | undefined): boolean {
+  return flattenSlotContent(content).length > 0
 }
 
 export function clamp (value: number, min = 0, max = 1) {

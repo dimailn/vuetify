@@ -8,7 +8,7 @@ import Themeable from '../themeable'
 
 // Utils
 import mixins from '../../util/mixins'
-import { getSlot } from '../../util/helpers'
+import { getSlot, hasSlotContent, flattenSlotContent } from '../../util/helpers'
 
 // Types
 import { VNode, h } from 'vue'
@@ -41,12 +41,10 @@ export default mixins(
       return null
     },
     genPickerActionsSlot () {
-      return this.$slots.default
-        ? this.$slots.default({
-          save: (this as any).save,
-          cancel: (this as any).cancel
-        })
-        : getSlot(this)
+      return getSlot(this, 'default', {
+        save: (this as any).save,
+        cancel: (this as any).cancel
+      })
     },
     genPicker (staticClass: string) {
       const children: Record<string, any> = {}
@@ -59,7 +57,10 @@ export default mixins(
       const body = this.genPickerBody()
       body && (children.default = () => [body])
 
-      children.actions = () => [this.genPickerActionsSlot()]
+      const actions = this.genPickerActionsSlot()
+      if (hasSlotContent(actions)) {
+        children.actions = () => flattenSlotContent(actions)
+      }
 
       return h(VPicker, {
         class: staticClass,
