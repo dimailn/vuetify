@@ -531,6 +531,38 @@ describe('VNavigationDrawer', () => { // eslint-disable-line max-statements
     expect(wrapper.vm.isActive).toBe(false)
   })
 
+  it('should restore overlay after [data-app] replace when drawer is reopened', async () => {
+    const oldApp = document.createElement('div')
+    oldApp.setAttribute('data-app', 'true')
+    document.body.appendChild(oldApp)
+    document.body.removeAttribute('data-app')
+
+    const wrapper = mountFunction({
+      attachTo: oldApp,
+      props: {
+        temporary: true,
+        modelValue: true
+      }
+    })
+
+    await wrapper.vm.$nextTick()
+    await new Promise(resolve => requestAnimationFrame(resolve))
+
+    const newApp = document.createElement('div')
+    newApp.setAttribute('data-app', 'true')
+    oldApp.parentNode!.replaceChild(newApp, oldApp)
+
+    await wrapper.setProps({ modelValue: false })
+    await wrapper.vm.$nextTick()
+    await wrapper.setProps({ modelValue: true })
+    await wrapper.vm.$nextTick()
+    await new Promise(resolve => requestAnimationFrame(resolve))
+
+    expect(wrapper.vm.isActive).toBe(true)
+    expect(newApp.querySelector('.v-overlay--active')).toBeTruthy()
+    expect(wrapper.vm.overlay!.$el.isConnected).toBe(true)
+  })
+
   it('should accept custom tag and have default based upon app prop', () => {
     const wrapper = mountFunction()
 
