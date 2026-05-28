@@ -724,6 +724,34 @@ describe('VDatePicker.ts', () => { // eslint-disable-line max-statements
     }
   })
 
+  it('should update tableDate to last range date month when range end is selected', async () => {
+    const wrapper = mountFunction({
+      props: {
+        range: true,
+        modelValue: ['2026-04-29']
+      }
+    })
+
+    expect(wrapper.vm.tableDate).toBe('2026-04')
+
+    await wrapper.setProps({
+      modelValue: ['2026-04-29', '2026-05-28']
+    })
+
+    expect(wrapper.vm.tableDate).toBe('2026-05')
+  })
+
+  it('should initialize tableDate from last selected range date', () => {
+    const wrapper = mountFunction({
+      props: {
+        range: true,
+        modelValue: ['2026-04-29', '2026-05-28']
+      }
+    })
+
+    expect(wrapper.vm.tableDate).toBe('2026-05')
+  })
+
   it('should add class for the first and last days in range', async () => {
     const wrapper = mountFunction({
       props: {

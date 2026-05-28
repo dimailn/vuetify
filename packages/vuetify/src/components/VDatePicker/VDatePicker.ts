@@ -277,12 +277,16 @@ export default mixins(
       }
     },
     modelValue (newValue: DatePickerValue, oldValue: DatePickerValue) {
+      const oldMultipleValue = wrapInArray(oldValue)
+      const oldLastValue = oldMultipleValue[oldMultipleValue.length - 1]
+
       this.checkMultipleProp()
       this.setInputDate()
 
       if (
         (!this.isMultiple && this.modelValue && !this.pickerDate) ||
-        (this.isMultiple && this.multipleValue.length && (!oldValue || !oldValue.length) && !this.pickerDate)
+        (this.isMultiple && this.multipleValue.length && (!oldValue || !oldValue.length) && !this.pickerDate) ||
+        (this.isMultiple && this.lastValue !== oldLastValue && !this.pickerDate)
       ) {
         this.tableDate = sanitizeDateString(this.inputDate, this.type === 'month' ? 'year' : 'month')
       }
