@@ -503,7 +503,11 @@ export function mergeDeep (
   source: Dictionary<any> = {},
   target: Dictionary<any> = {}
 ) {
+  const blockedKeys = ['__proto__', 'constructor', 'prototype']
+
   for (const key in target) {
+    if (blockedKeys.includes(key)) continue
+
     const sourceProperty = source[key]
     const targetProperty = target[key]
 

@@ -48,4 +48,17 @@ describe('$vuetify.presets', () => {
     expect(JSON.stringify(itheme.themes)).toMatchSnapshot()
     expect(JSON.stringify(breakpoints.thresholds)).toMatchSnapshot()
   })
+
+  it('should prevent prototype pollution from malicious presets', () => {
+    const polluted = {}
+
+    expect((polluted as any).isPolluted).toBeUndefined()
+
+    const vuetify = new Framework({
+      preset: JSON.parse('{"__proto__":{"isPolluted":"yes"}}')
+    })
+
+    expect(({} as any).isPolluted).toBeUndefined()
+    expect((vuetify.preset as any).isPolluted).toBeUndefined()
+  })
 })
