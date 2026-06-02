@@ -119,8 +119,8 @@ export default defineComponent({
         let exactActiveClass = this.exactActiveClass || activeClass
 
         if (this.proxyClass) {
-          activeClass = `${activeClass} ${this.proxyClass}`.trim()
-          exactActiveClass = `${exactActiveClass} ${this.proxyClass}`.trim()
+          activeClass = [activeClass, this.proxyClass].filter(Boolean).join(' ')
+          exactActiveClass = [exactActiveClass, this.proxyClass].filter(Boolean).join(' ')
         }
 
         tag = resolveComponent(this.nuxt ? 'nuxt-link' : 'router-link')
@@ -152,7 +152,8 @@ export default defineComponent({
 
       this.$nextTick(() => {
         /* istanbul ignore else */
-        if (!getObjectValueByPath(this.$refs.link, path) === this.isActive) {
+        const isLinkActive = Boolean(getObjectValueByPath(this.$refs.link, path))
+        if (isLinkActive !== this.isActive) {
           this.toggle()
         }
       })
