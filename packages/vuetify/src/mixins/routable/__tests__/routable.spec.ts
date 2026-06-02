@@ -1,7 +1,7 @@
 import Routable from '../'
 import { mount, Wrapper } from '@vue/test-utils'
 import { createRouter, createWebHistory } from 'vue-router'
-import { nextTick } from 'vue'
+import { defineComponent, h, nextTick } from 'vue'
 
 describe('routable.ts', () => {
   let mountFunction: (options?: object) => Wrapper<any>
@@ -101,5 +101,82 @@ describe('routable.ts', () => {
 
     expect(wrapper.vm.isLink).toBe(true)
     expect(wrapper.vm.isClickable).toBe(true)
+  })
+
+  it('should not include undefined in activeClass passed to router-link', async () => {
+    const RouterLinkCapture = defineComponent({
+      name: 'RouterLinkCapture',
+      props: {
+        to: { type: [String, Object], required: true },
+        activeClass: String,
+        exactActiveClass: String
+      },
+      template: '<a><slot /></a>'
+    })
+
+    const wrapper = mount({
+      mixins: [Routable],
+      data: () => ({
+        proxyClass: 'v-list-item--active'
+      }),
+      render () {
+        const { tag, data } = this.generateRouteLink()
+        return h(tag, data, { default: () => 'link' })
+      }
+    }, {
+      global: {
+        plugins: [router],
+        stubs: {
+          'router-link': RouterLinkCapture
+        }
+      },
+      props: {
+        to: '/'
+      }
+    })
+
+    const routerLink = wrapper.findComponent({ name: 'RouterLinkCapture' })
+
+    expect(routerLink.props('activeClass')).toBe('v-list-item--active')
+    expect(routerLink.props('activeClass')).not.toContain('undefined')
+    expect(routerLink.props('exactActiveClass')).toBe('v-list-item--active')
+  })
+
+  it('should sync isActive with router-link on route change', async () => {
+    const toggle = jest.fn()
+    const wrapper = mount({
+      mixins: [Routable],
+      data: () => ({
+        proxyClass: 'v-tab--active'
+      }),
+      methods: {
+        toggle
+      },
+      template: '<div ref="link" />'
+    }, {
+      global: {
+        plugins: [router]
+      },
+      props: {
+        to: '/foo',
+        activeClass: 'bar'
+      }
+    })
+
+    wrapper.vm.onRouteChange()
+    await nextTick()
+
+    expect(toggle).not.toHaveBeenCalled()
+
+    ;(wrapper.vm.$refs.link as any)._vnode = {
+      data: {
+        class: { 'bar v-tab--active': true }
+      }
+    }
+
+    wrapper.vm.onRouteChange()
+    await nextTick()
+
+    expect(toggle).toHaveBeenCalledTimes(1)
   })
 })

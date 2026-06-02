@@ -1,12 +1,16 @@
 // Components
 import VListItem from '../VListItem'
 
+// Libraries
+import { defineComponent, h, nextTick } from 'vue'
+
 // Utilities
 import {
   mount,
   VueWrapper,
   enableAutoUnmount
 } from '@vue/test-utils'
+import { createRouter, createWebHistory } from 'vue-router'
 import { Vue3RouterLinkStub } from '../../../../test/util/stubs'
 
 describe('VListItem.ts', () => {
@@ -324,5 +328,120 @@ describe('VListItem.ts', () => {
     })
 
     expect(wrapper.vm.isClickable).toBe(true)
+  })
+
+  it('passes active and toggle in default slot scope', async () => {
+    const wrapper = mountFunction({
+      props: { modelValue: true },
+      slots: {
+        default: ({ active, toggle }: { active: boolean, toggle: Function }) => h('div', [
+          h('span', { class: { 'link--text': active } }, String(active)),
+          h('button', { onClick: toggle }, 'toggle')
+        ])
+      }
+    })
+
+    expect(wrapper.find('.link--text').exists()).toBe(true)
+    expect(wrapper.find('span').text()).toBe('true')
+  })
+
+  it('does not pass undefined to activeClass when to is used without activeClass', () => {
+    const RouterLinkCapture = defineComponent({
+      name: 'RouterLinkCapture',
+      props: {
+        to: { type: [String, Object], required: true },
+        activeClass: String,
+        exactActiveClass: String
+      },
+      setup (props, { slots }) {
+        return () => h('a', { class: props.activeClass }, slots.default?.())
+      }
+    })
+
+    const wrapper = mountFunction({
+      props: { to: '/foo' },
+      global: {
+        stubs: {
+          'router-link': RouterLinkCapture
+        }
+      }
+    })
+
+    const routerLink = wrapper.findComponent({ name: 'RouterLinkCapture' })
+
+    expect(routerLink.props('activeClass')).toBe('v-list-item--active')
+    expect(routerLink.props('activeClass')).not.toContain('undefined')
+  })
+
+  it('syncs slot active with router-link when route matches', async () => {
+    const router = createRouter({
+      history: createWebHistory(),
+      routes: [
+        { path: '/products/:id', component: { template: '<div />' } }
+      ]
+    })
+
+    await router.push('/products/131830946')
+    await router.isReady()
+
+    const Host = defineComponent({
+      components: { VListItem },
+      props: { to: String },
+      template: `
+        <v-list-item :to="to">
+          <template #default="{ active }">
+            <span :class="{ 'link--text': active }">{{ active }}</span>
+          </template>
+        </v-list-item>
+      `
+    })
+
+    const wrapper = mount(Host, {
+      props: { to: '/products/131830946' },
+      global: {
+        plugins: [router],
+        provide: { isInGroup: true },
+        stubs: {
+          'router-link': Vue3RouterLinkStub
+        }
+      }
+    })
+
+    const listItem = wrapper.findComponent(VListItem)
+
+    ;(listItem.vm.$refs.link as any)._vnode = {
+      data: {
+        class: { 'v-list-item--active': true }
+      }
+    }
+
+    listItem.vm.onRouteChange()
+    await nextTick()
+    await nextTick()
+
+    expect(listItem.vm.isActive).toBe(true)
+    expect(wrapper.find('.link--text').exists()).toBe(true)
+    expect(listItem.element.getAttribute('aria-selected')).toBe('true')
+  })
+
+  it('syncs aria-selected with isActive in list item group', async () => {
+    const wrapper = mountFunction({
+      props: { modelValue: 'item-1' },
+      global: {
+        provide: {
+          isInGroup: true,
+          listItemGroup: {
+            activeClass: 'v-item--active',
+            register: () => {},
+            unregister: () => {}
+          }
+        }
+      }
+    })
+
+    wrapper.vm.isActive = true
+    await wrapper.vm.$nextTick()
+
+    expect(wrapper.element.getAttribute('aria-selected')).toBe('true')
   })
 })
