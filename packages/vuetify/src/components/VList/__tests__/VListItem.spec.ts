@@ -336,7 +336,7 @@ describe('VListItem.ts', () => {
       slots: {
         default: ({ active, toggle }: { active: boolean, toggle: Function }) => h('div', [
           h('span', { class: { 'link--text': active } }, String(active)),
-          h('button', { onClick: toggle }, 'toggle'),
+          h('button', { onClick: toggle }, 'toggle')
         ])
       }
     })
@@ -351,7 +351,7 @@ describe('VListItem.ts', () => {
       props: {
         to: { type: [String, Object], required: true },
         activeClass: String,
-        exactActiveClass: String,
+        exactActiveClass: String
       },
       setup (props, { slots }) {
         return () => h('a', { class: props.activeClass }, slots.default?.())
@@ -377,7 +377,7 @@ describe('VListItem.ts', () => {
     const router = createRouter({
       history: createWebHistory(),
       routes: [
-        { path: '/products/:id', component: { template: '<div />' } },
+        { path: '/products/:id', component: { template: '<div />' } }
       ]
     })
 

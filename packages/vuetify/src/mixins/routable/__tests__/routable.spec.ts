@@ -109,7 +109,7 @@ describe('routable.ts', () => {
       props: {
         to: { type: [String, Object], required: true },
         activeClass: String,
-        exactActiveClass: String,
+        exactActiveClass: String
       },
       template: '<a><slot /></a>'
     })
