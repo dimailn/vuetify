@@ -57,7 +57,7 @@ export default defineComponent({
   },
 
   beforeUnmount () {
-    this.removeOverlay()
+    this.destroyOverlay()
   },
 
   methods: {
@@ -113,14 +113,7 @@ export default defineComponent({
       if (this.hideOverlay) return
 
       if (!this.overlay?.$el?.isConnected) {
-        if (this.overlay) {
-          cancelAnimationFrame(this.animationFrame)
-          const container = this.overlay.$el?.parentNode as HTMLElement | null
-          this.overlayApp?.unmount()
-          this.overlayApp = null
-          if (container?.parentNode) container.parentNode.removeChild(container)
-          this.overlay = null
-        }
+        this.teardownOverlay()
         this.createOverlay()
       }
 
@@ -142,10 +135,7 @@ export default defineComponent({
     removeOverlay (showScroll = true) {
       if (this.overlay) {
         if (!this.overlay.$el?.isConnected) {
-          cancelAnimationFrame(this.animationFrame)
-          this.overlayApp?.unmount()
-          this.overlayApp = null
-          this.overlay = null
+          this.teardownOverlay()
           showScroll && this.showScroll()
           return
         }
@@ -159,16 +149,7 @@ export default defineComponent({
             this.isActive
           ) return
 
-          const overlayContainer = this.overlay.$el.parentNode as HTMLElement | null
-
-          this.overlayApp?.unmount()
-          this.overlayApp = null
-
-          if (overlayContainer?.parentNode) {
-            overlayContainer.parentNode.removeChild(overlayContainer)
-          }
-
-          this.overlay = null
+          this.teardownOverlay()
         })
 
         // Cancel animation frame in case
@@ -180,6 +161,27 @@ export default defineComponent({
       }
 
       showScroll && this.showScroll()
+    },
+    teardownOverlay () {
+      cancelAnimationFrame(this.animationFrame)
+
+      if (!this.overlay) return
+
+      const container = this.overlay.$el?.parentNode as HTMLElement | null
+
+      this.overlayApp?.unmount()
+      this.overlayApp = null
+
+      if (container?.parentNode) {
+        container.parentNode.removeChild(container)
+      }
+
+      this.overlay = null
+    },
+    /** Синхронно уничтожает оверлей независимо от isActive/анимации. Для unmount. */
+    destroyOverlay () {
+      this.teardownOverlay()
+      this.showScroll()
     },
     scrollListener (e: WheelEvent | KeyboardEvent) {
       if ('key' in e) {
