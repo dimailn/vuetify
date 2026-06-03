@@ -168,11 +168,8 @@ describe('routable.ts', () => {
 
     expect(toggle).not.toHaveBeenCalled()
 
-    ;(wrapper.vm.$refs.link as any)._vnode = {
-      data: {
-        class: { 'bar v-tab--active': true }
-      }
-    }
+    const linkEl = wrapper.vm.$refs.link as HTMLElement
+    linkEl.classList.add('bar', 'v-tab--active')
 
     wrapper.vm.onRouteChange()
     await nextTick()

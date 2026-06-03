@@ -409,11 +409,9 @@ describe('VListItem.ts', () => {
 
     const listItem = wrapper.findComponent(VListItem)
 
-    ;(listItem.vm.$refs.link as any)._vnode = {
-      data: {
-        class: { 'v-list-item--active': true }
-      }
-    }
+    const linkRef = listItem.vm.$refs.link as any
+    const linkEl = linkRef.$el || linkRef
+    linkEl.classList.add('v-list-item--active')
 
     listItem.vm.onRouteChange()
     await nextTick()

@@ -6,7 +6,6 @@ import { defineComponent, resolveComponent } from 'vue'
 import Ripple, { RippleOptions } from '../../directives/ripple'
 
 // Utilities
-import { getObjectValueByPath } from '../../util/helpers'
 
 export default defineComponent({
   name: 'routable',
@@ -148,11 +147,13 @@ export default defineComponent({
       const activeClass = `${this.activeClass || ''} ${this.proxyClass || ''}`.trim()
       const exactActiveClass = `${this.exactActiveClass || ''} ${this.proxyClass || ''}`.trim() || activeClass
 
-      const path = '_vnode.data.class.' + (this.exact ? exactActiveClass : activeClass)
+      const activeClasses = (this.exact ? exactActiveClass : activeClass).split(' ')
 
       this.$nextTick(() => {
         /* istanbul ignore else */
-        const isLinkActive = Boolean(getObjectValueByPath(this.$refs.link, path))
+        const el = (this.$refs.link as any).$el || this.$refs.link
+        const isLinkActive = activeClasses.every(c => el?.classList?.contains(c))
+
         if (isLinkActive !== this.isActive) {
           this.toggle()
         }
