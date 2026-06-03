@@ -1,5 +1,5 @@
 import type { PropType, VNode } from 'vue'
-import { h } from 'vue'
+import { h, markRaw } from 'vue'
 import type { VNodeChildrenArrayContents } from '../../types/vue-internal'
 // Styles
 import './VTreeview.sass'
@@ -320,7 +320,7 @@ export default mixins(
     register (node: VTreeviewNodeInstance) {
       const key = getObjectValueByPath(node.item, this.itemKey)
 
-      this.nodes[key].vnode = node
+      this.nodes[key].vnode = markRaw(node)
 
       this.updateVnodeState(key)
     },
