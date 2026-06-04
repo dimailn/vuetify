@@ -498,6 +498,7 @@ export default baseMixins.extend({
       const input = VTextField.methods.genInput.call(this)
 
       delete input.props.name
+      delete input.props.placeholder
 
       input.props = mergeData(input.props, {
         readonly: true,
