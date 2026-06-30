@@ -391,7 +391,7 @@ export default baseMixins.extend({
     genInput () {
       const listeners = Object.assign({}, this.listeners$)
       delete listeners.change // Change should not be bound externally
-      const { title, onChange: _onChange, ...inputAttrs } = this.attrs$ as Record<string, any>
+      const { title, onChange: _onChange, class: _class, style: _style, ...inputAttrs } = this.attrs$ as Record<string, any>
 
       const node = h('input', {
         style: {},

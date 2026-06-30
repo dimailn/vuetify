@@ -203,7 +203,7 @@ export default defineComponent({
       // Create input without calling VTextField.genInput to avoid value setting
       const listeners = Object.assign({}, this.listeners$)
       delete listeners.change // Change should not be bound externally
-      const { title, value, ...inputAttrs } = this.attrs$
+      const { title, value, class: _class, style: _style, ...inputAttrs } = this.attrs$
 
       const input = h('input', {
         ...inputAttrs,
