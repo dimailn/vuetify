@@ -7,14 +7,25 @@ const styleExtensions = ['.sass', '.scss', '.styl']
 for (const ext of styleExtensions) {
   require.extensions[ext] = () => null
 }
-const Vuetify = require(path.resolve(__dirname, '../../vuetify/es5')).default
+const vuetifyEs5 = path.resolve(__dirname, '../../vuetify/es5')
+const Vuetify = require(vuetifyEs5).default
+// entry-lib.ts делает `export * from './components'` и `export * from './directives'`,
+// поэтому в CJS-сборке es5 нет неймспейсов `components`/`directives` — отдельные
+// компоненты/директивы разложены как именованные экспорты верхнего уровня. Берём
+// реестры напрямую из соответствующих подмодулей, чтобы api-generator не хранил
+// хардкодный список директив и автоматически учитывал новые.
+const components = require(path.join(vuetifyEs5, 'components'))
+const directives = require(path.join(vuetifyEs5, 'directives'))
 const { components: excludes } = require('./helpers/excludes')
 const { camelCase, kebabCase, pascalize } = require('./helpers/text')
 const { parseComponent, parseSassVariables, parseGlobalSassVariables } = require('./helpers/parsing')
 const deepmerge = require('./helpers/merge')
 
+// install.ts регистрирует компоненты/директивы только из args.components и
+// args.directives. Без них app._context.directives остаётся пустым и генератор
+// падает на v-mutate/v-intersect и т.п. Передаём весь набор из es5-сборки.
 const app = Vue.createApp({})
-app.use(Vuetify)
+app.use(Vuetify, { components, directives })
 
 const registeredComponents = app._context.components
 const registeredDirectives = app._context.directives
