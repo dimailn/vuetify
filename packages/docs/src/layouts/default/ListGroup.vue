@@ -1,13 +1,12 @@
 <template>
   <v-list-group
-    :value="model"
+    v-model="model"
     :group="group"
     :prepend-icon="icon"
     append-icon="$mdiMenuDown"
     class="v-list-group--default"
     no-action
     v-bind="$attrs"
-    @input="model = $event"
   >
     <template #activator>
       <v-list-item-content>
