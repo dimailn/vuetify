@@ -3,7 +3,7 @@
     class="my-0"
     v-bind="$attrs"
   >
-    <prism
+    <prism-code
       ref="code"
       :code="code"
       :inline="inline"
@@ -27,12 +27,12 @@
   import 'prismjs/components/prism-typescript'
 
   // Components
-  import Prism from 'vue-prism-component'
+  import PrismCode from './PrismCode'
 
   export default {
     name: 'Markup',
 
-    components: { Prism },
+    components: { PrismCode },
 
     props: {
       code: String,

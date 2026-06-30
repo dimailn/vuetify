@@ -28,6 +28,10 @@
     )
   }
 
+  function normalizeMarkdownModule (md) {
+    return md?.default || md || {}
+  }
+
   export default {
     name: 'HomeView',
 
@@ -35,7 +39,8 @@
 
     async asyncData ({ route, store }) {
       const md = await load(route)
-      store.state.pages.md = md
+      const normalized = normalizeMarkdownModule(md)
+      store.state.pages.md = normalized
     },
   }
 </script>

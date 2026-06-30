@@ -14,9 +14,9 @@
       <thead>
         <tr>
           <th>
-            <i18n
+            <i18n-t
               class="text-h6"
-              path="features"
+              keypath="features"
               tag="strong"
             />
           </th>
@@ -49,8 +49,8 @@
           v-for="(key, i) in features"
           :key="i"
         >
-          <i18n
-            :path="`comparison.${key}`"
+          <i18n-t
+            :keypath="`comparison.${key}`"
             class="text--secondary text-left"
             tag="td"
           />
@@ -89,8 +89,8 @@
             class="text-caption font-italic text--disabled"
             colspan="7"
           >
-            <i18n
-              path="comparison.average"
+            <i18n-t
+              keypath="comparison.average"
               tag="div"
             />
           </td>

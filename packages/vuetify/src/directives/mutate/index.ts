@@ -17,6 +17,12 @@ type MutateModifiers = {
   char?: boolean
 };
 
+interface MutateState {
+  observer: MutationObserver
+}
+
+const mutateState = new WeakMap<HTMLElement, MutateState>()
+
 function mounted (
   el: HTMLElement,
   binding: DirectiveBinding<MutateValue>,
@@ -51,7 +57,7 @@ function mounted (
   const observer = new MutationObserver(
     (mutationsList: MutationRecord[], observer: MutationObserver) => {
       /* istanbul ignore if */
-      if (!el._mutate) return // Just in case, should never fire
+      if (!mutateState.has(el)) return // Just in case, should never fire
 
       callback(mutationsList, observer)
 
@@ -61,8 +67,7 @@ function mounted (
   )
 
   observer.observe(el, options)
-  el._mutate = Object(el._mutate)
-  el._mutate![vnode.ctx!.uid] = { observer }
+  mutateState.set(el, { observer })
 }
 
 function unmounted (
@@ -70,10 +75,11 @@ function unmounted (
   binding: DirectiveBinding<MutateValue>,
   vnode: VNode
 ) {
-  if (!el._mutate?.[vnode.ctx!.uid]) return
+  const state = mutateState.get(el)
+  if (!state) return
 
-  el._mutate[vnode.ctx!.uid]!.observer.disconnect()
-  delete el._mutate[vnode.ctx!.uid]
+  state.observer.disconnect()
+  mutateState.delete(el)
 }
 
 export const Mutate = {

@@ -1,12 +1,9 @@
 <template>
   <app-btn
-    :to="{
-      name: 'Documentation',
-      params: {
-        category: 'introduction',
-        page: 'why-vuetify'
-      }
-    }"
+    :to="withLocaleRoute('Documentation', {
+      category: 'introduction',
+      page: 'why-vuetify',
+    })"
     path="guide"
     @click="onClick"
   />

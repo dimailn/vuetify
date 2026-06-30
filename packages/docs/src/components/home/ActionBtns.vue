@@ -4,13 +4,10 @@
       <v-col cols="auto">
         <v-btn
           :min-width="btnWidth"
-          :to="{
-            name: 'Documentation',
-            params: {
-              category: 'getting-started',
-              page: 'installation'
-            }
-          }"
+          :to="withLocaleRoute('Documentation', {
+            category: 'getting-started',
+            page: 'installation',
+          })"
           color="primary"
           depressed
           x-large

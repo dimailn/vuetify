@@ -3,7 +3,6 @@
     <v-simple-table
       class="api-table"
       v-bind="$attrs"
-      v-on="$listeners"
     >
       <thead>
         <tr>

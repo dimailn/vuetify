@@ -11,7 +11,10 @@ export default async function (vuetify, store, to, from, savedPosition) {
   let scrollTo = 0
 
   if (to.hash) scrollTo = to.hash
-  else if (savedPosition) scrollTo = savedPosition.y
+  // Vue Router 4: { top, left }, не { x, y } как в старых примерах
+  else if (savedPosition && typeof savedPosition.top === 'number') {
+    scrollTo = savedPosition.top
+  }
 
   // TODO: https://github.com/vuejs/vue-router/pull/3199
   // scroll-behavior is not called on

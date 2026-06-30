@@ -9,12 +9,13 @@ function bootstrap (args?: object) {
   const shadowEl = document.createElement('div')
 
   const binding = {
+    instance: { $: { uid: 1 } },
     value: {
       handler: jest.fn(),
       ...args
     }
   } as any
-  const vnode = { ctx: { uid: 1 } } as any
+  const vnode = {} as any
 
   let shadowClickHandler
   let outsideClickHandler

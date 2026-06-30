@@ -1,6 +1,4 @@
 // Imports
-const { md } = require('../../../build/markdown-it')
-const Mode = require('frontmatter-markdown-loader/mode')
 const path = require('path')
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer')
   .BundleAnalyzerPlugin
@@ -27,16 +25,11 @@ module.exports = config => {
     .use('toc-loader')
     .loader(path.resolve('./build/toc-loader.js'))
     .end()
-    .use('frontmatter-markdown-loader')
-    .loader('frontmatter-markdown-loader')
-    .tap(() => ({
-      markdown: body => md.render(body),
-      mode: [Mode.HTML, Mode.BODY],
-      vue: { root: 'markdown-body' },
-    }))
+    .use('markdown-loader')
+    .loader(path.resolve('./build/markdown-loader.js'))
 
   config.resolve.alias
-    .set('vue$', 'vue/dist/vue.runtime.esm-browser.js')
+    .set('vue$', 'vue/dist/vue.esm-bundler.js')
 
   config.optimization
     .removeAvailableModules(IS_PROD)

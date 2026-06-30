@@ -3,10 +3,9 @@
     :items="items"
     min-width="180"
   >
-    <template #activator="{ attrs, on }">
+    <template #activator="{ attrs }">
       <app-btn
         v-bind="attrs"
-        v-on="on"
       >
         {{ $t('support') }}
 

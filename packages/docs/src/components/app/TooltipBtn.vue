@@ -10,10 +10,7 @@
           :aria-label="path"
           icon
           v-bind="$attrs"
-          v-on="{
-            ...on,
-            ...$listeners
-          }"
+          v-on="on"
         >
           <slot
             v-if="$slots.icon"
@@ -27,7 +24,7 @@
         </v-btn>
       </template>
 
-      <i18n :path="path" />
+      <i18n-t :keypath="path" />
     </v-tooltip>
   </span>
 </template>

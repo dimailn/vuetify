@@ -1,9 +1,9 @@
 <template>
-  <i18n
+  <i18n-t
+    :keypath="keypath || path"
     :class="`text-${size} font-weight-${weight} text--${color}`"
     :tag="tag"
-    v-bind="$attrs"
-    v-on="$listeners"
+    v-bind="attrsWithoutPath"
   />
 </template>
 
@@ -27,6 +27,16 @@
       weight: {
         type: String,
         default: 'medium',
+      },
+      path: String,
+      keypath: String,
+    },
+
+    computed: {
+      attrsWithoutPath () {
+        const attrs = { ...this.$attrs }
+        delete attrs.path
+        return attrs
       },
     },
   }

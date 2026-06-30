@@ -15,13 +15,13 @@
 
     <vuetify-logo-alt
       v-if="$vuetify.breakpoint.smOnly || $vuetify.breakpoint.mdOnly"
-      :to="{ name: 'Home' }"
+      :to="withLocaleRoute('Home')"
       class="ml-0 mr-2 ml-md-2"
     />
 
     <vuetify-logo
       v-else
-      :to="{ name: 'Home' }"
+      :to="withLocaleRoute('Home')"
       class="ml-2"
     />
 

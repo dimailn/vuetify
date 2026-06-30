@@ -16,12 +16,27 @@
 </template>
 
 <script>
+  import { computed } from 'vue'
+  import { useHead } from '@unhead/vue'
+  import { useStore } from 'vuex'
+
   // Utilities
   import { error } from '@/util/routes'
   import { genMetaInfo } from '@/util/metadata'
   import { get, sync } from 'vuex-pathify'
   import { IN_BROWSER } from '@/util/globals'
   import { localeLookup } from '@/i18n/util'
+
+  function normalizeMarkdownModule (md) {
+    return md?.default || md || {}
+  }
+
+  function createMarkdownFallbackComponent (md) {
+    const source = md?.body || md?.html || ''
+    if (!source) return undefined
+
+    return { template: `<div class="markdown-body">${source}</div>` }
+  }
 
   async function load (route) {
     const { category, page } = route.params
@@ -43,9 +58,11 @@
     if (!isApi) path.push(category)
 
     path.push(page)
+    const request = `${path.join('/')}.md`
 
     try {
-      return context.default(`${path.join('/')}.md`)
+      const loaded = normalizeMarkdownModule(context.default(request))
+      return loaded
     } catch (err) {
       return {
         vue: {
@@ -58,30 +75,27 @@
   export default {
     name: 'DocumentationView',
 
-    async asyncData ({ route, store }) {
-      const md = await load(route)
+    setup () {
+      const store = useStore()
+      useHead(computed(() => {
+        const fm = store.state.pages?.frontmatter
+        if (!fm?.meta) return {}
 
-      store.state.pages.md = md
+        const {
+          description = '',
+          keywords = '',
+          title = '',
+        } = fm.meta
+
+        return genMetaInfo(title, description, keywords)
+      }))
     },
 
-    metaInfo () {
-      if (!this.frontmatter) return {}
+    async asyncData ({ route, store }) {
+      const md = await load(route)
+      const normalized = normalizeMarkdownModule(md)
 
-      const { meta } = this.frontmatter
-
-      if (!meta) return
-
-      const {
-        description = '',
-        keywords = '',
-        title = '',
-      } = meta
-
-      return genMetaInfo(
-        title,
-        description,
-        keywords,
-      )
+      store.state.pages.md = normalized
     },
 
     data: () => ({ component: undefined }),
@@ -109,7 +123,7 @@
 
       this.init(this.md)
 
-      const { assets, actions = [] } = this.frontmatter
+      const { assets = [], actions = [] } = this.frontmatter || {}
 
       this.$load(assets)
 
@@ -119,20 +133,20 @@
     },
 
     methods: {
-      init (md) {
+      init (md = {}) {
+        md = normalizeMarkdownModule(md)
+
         const {
           attributes = {},
           toc = [],
           vue = {},
         } = md
 
-        console.log(md, this.page, vue)
-
         // vue.component.name = this.page
 
         this.frontmatter = attributes
         this.toc = toc
-        // this.component = vue.component
+        this.component = vue.component || createMarkdownFallbackComponent(md)
       },
     },
   }

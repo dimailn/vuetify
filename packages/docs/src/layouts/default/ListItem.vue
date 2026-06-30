@@ -1,16 +1,15 @@
 <template>
   <v-list-item
-    :href="item.href"
+    :href="item.href || undefined"
+    :to="item.href ? undefined : item.to || undefined"
     :rel="item.href ? 'nofollow' : undefined"
     :target="item.href ? '_blank' : undefined"
-    :to="item.to"
     class="v-list-item--default"
     color="primary"
-    v-bind="$attrs"
-    v-on="$listeners"
+    v-bind="forwardedAttrs"
   >
     <v-list-item-icon v-if="item.icon">
-      <v-icon v-text="item.icon" />
+      <v-icon>{{ item.icon }}</v-icon>
     </v-list-item-icon>
 
     <!-- <v-avatar
@@ -21,7 +20,7 @@
     /> -->
 
     <v-list-item-content>
-      <v-list-item-title v-text="item.title" />
+      <v-list-item-title>{{ item.title }}</v-list-item-title>
     </v-list-item-content>
   </v-list-item>
 </template>
@@ -30,10 +29,19 @@
   export default {
     name: 'DefaultListItem',
 
+    inheritAttrs: false,
+
     props: {
       item: {
         type: Object,
         default: () => ({}),
+      },
+    },
+
+    computed: {
+      forwardedAttrs () {
+        const { ref, ...attrs } = this.$attrs
+        return attrs
       },
     },
   }

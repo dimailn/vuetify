@@ -26,7 +26,7 @@
               flat
               @click="toggle"
             >
-              <i18n :path="text" />
+              <i18n-t :keypath="text" />
 
               <v-icon v-text="icon" />
             </v-card>

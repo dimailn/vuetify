@@ -13,6 +13,14 @@ interface ScrollDirectiveBinding extends Omit<DirectiveBinding, 'modifiers'> {
   }
 }
 
+interface ScrollState {
+  handler: EventListener | EventListenerObject
+  options: boolean | AddEventListenerOptions
+  target?: EventTarget
+}
+
+const scrollState = new WeakMap<HTMLElement, ScrollState>()
+
 function mounted (
   el: HTMLElement,
   binding: ScrollDirectiveBinding,
@@ -38,13 +46,12 @@ function mounted (
 
   target.addEventListener('scroll', handler, options)
 
-  el._onScroll = Object(el._onScroll)
-  el._onScroll![vnode.ctx!.uid] = {
+  scrollState.set(el, {
     handler,
     options,
     // Don't reference self
     target: self ? undefined : target
-  }
+  })
 }
 
 function unmounted (
@@ -52,12 +59,12 @@ function unmounted (
   binding: ScrollDirectiveBinding,
   vnode: VNode
 ) {
-  if (!el._onScroll?.[vnode.ctx!.uid]) return
-
-  const { handler, options, target = el } = el._onScroll[vnode.ctx!.uid]!
+  const state = scrollState.get(el)
+  if (!state) return
+  const { handler, options, target = el } = state
 
   target.removeEventListener('scroll', handler, options)
-  delete el._onScroll[vnode.ctx!.uid]
+  scrollState.delete(el)
 }
 
 export const Scroll: ObjectDirective = {

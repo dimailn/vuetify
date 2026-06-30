@@ -1,13 +1,8 @@
 // Imports
 import {createRouter as _createRouter, createWebHistory} from 'vue-router'
 import scrollBehavior from './scroll-behavior'
-import Vue from 'vue'
-import VueGtag from 'vue-gtag'
 import { localeLookup } from '@/i18n/util'
 import redirects from './301.json'
-
-// Globals
-import { IS_SERVER } from '@/util/globals'
 
 import {
   abort,
@@ -22,7 +17,6 @@ import {
 export function createRouter (vuetify, store, i18n) {
   const loadedLocales = ['en']
   const router = _createRouter({
-    mode: 'history',
     history: createWebHistory(),
     base: process.env.BASE_URL,
     scrollBehavior: (...args) => scrollBehavior(vuetify, store, ...args),

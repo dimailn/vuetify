@@ -1,10 +1,9 @@
 <template>
   <div class="text-center">
     <v-menu>
-      <template v-slot:activator="{ on, attrs }">
+      <template v-slot:activator="{ attrs }">
         <v-btn
           v-bind="attrs"
-          v-on="on"
         >
           Click me
         </v-btn>

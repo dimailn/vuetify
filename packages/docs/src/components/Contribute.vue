@@ -2,14 +2,14 @@
   <div v-if="category !== 'api'">
     <div class="blue-grey--text text--darken-1 d-flexalign-center justify-space-between">
       <div class="font-weight-medium d-flex align-baseline grow flex-wrap">
-        <i18n
+        <i18n-t
           class="mb-2 mb-md-0"
-          path="contribute.edit-page"
+          keypath="contribute.edit-page"
         >
           <template #url>
             <app-link :href="href">GitHub</app-link>
           </template>
-        </i18n>
+        </i18n-t>
 
         <v-spacer class="hidden-sm-and-down" />
 
@@ -17,10 +17,10 @@
           v-if="at"
           class="text-body-2"
         >
-          <i18n
+          <i18n-t
             tag="span"
             class="font-weight-medium mr-1"
-            path="contribute.last-updated"
+            keypath="contribute.last-updated"
           />
 
           <span

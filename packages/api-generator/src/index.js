@@ -1,11 +1,34 @@
-const Vue = require('vue')
-const Vuetify = require('vuetify')
+const path = require('path')
+const workspaceRoot = path.resolve(__dirname, '../../..')
+// api-generator исторически тянет vue@2 из своих deps, но docs уже на vue@3.
+// Для миграции генератора принудительно используем корневой Vue 3.
+const Vue = require(path.join(workspaceRoot, 'node_modules/vue'))
+const styleExtensions = ['.sass', '.scss', '.styl']
+for (const ext of styleExtensions) {
+  require.extensions[ext] = () => null
+}
+const vuetifyEs5 = path.resolve(__dirname, '../../vuetify/es5')
+const Vuetify = require(vuetifyEs5).default
+// entry-lib.ts делает `export * from './components'` и `export * from './directives'`,
+// поэтому в CJS-сборке es5 нет неймспейсов `components`/`directives` — отдельные
+// компоненты/директивы разложены как именованные экспорты верхнего уровня. Берём
+// реестры напрямую из соответствующих подмодулей, чтобы api-generator не хранил
+// хардкодный список директив и автоматически учитывал новые.
+const components = require(path.join(vuetifyEs5, 'components'))
+const directives = require(path.join(vuetifyEs5, 'directives'))
 const { components: excludes } = require('./helpers/excludes')
 const { camelCase, kebabCase, pascalize } = require('./helpers/text')
 const { parseComponent, parseSassVariables, parseGlobalSassVariables } = require('./helpers/parsing')
 const deepmerge = require('./helpers/merge')
 
-Vue.use(Vuetify)
+// install.ts регистрирует компоненты/директивы только из args.components и
+// args.directives. Без них app._context.directives остаётся пустым и генератор
+// падает на v-mutate/v-intersect и т.п. Передаём весь набор из es5-сборки.
+const app = Vue.createApp({})
+app.use(Vuetify, { components, directives })
+
+const registeredComponents = app._context.components
+const registeredDirectives = app._context.directives
 
 const loadLocale = (componentName, locale, fallback = {}) => {
   try {
@@ -114,9 +137,9 @@ const addGenericApiDescriptions = (name, api, locales, categories) => {
 const getComponentApi = (componentName, locales) => {
   const pascalName = pascalize(componentName)
 
-  let component = Vue.options._base.options.components[pascalName]
+  let component = registeredComponents[pascalName]
 
-  if (component.options.$_wrapperFor) {
+  if (component?.options?.$_wrapperFor) {
     component = component.options.$_wrapperFor
   }
 
@@ -139,7 +162,7 @@ const getComponentApi = (componentName, locales) => {
 const getDirectiveApi = (directiveName, locales) => {
   const pascalName = pascalize(directiveName.slice(2))
 
-  const directive = Vue.options._base.options.directives[pascalName]
+  const directive = registeredDirectives[pascalName]
 
   if (!directive) throw new Error(`Could not find directive: ${directiveName}`)
 
@@ -174,7 +197,7 @@ const getApi = (name, locales) => {
 
 const getComponentsApi = locales => {
   const components = []
-  const installedComponents = Vue.options._base.options.components
+  const installedComponents = registeredComponents
   const componentNameRegex = /^(?:V[A-Z]|v-[a-z])/
 
   for (const componentName in installedComponents) {

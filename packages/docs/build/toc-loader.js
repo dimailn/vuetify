@@ -33,7 +33,7 @@ function getPageHeadings (page) {
 
 function loader (source) {
   // Replace body string with toc headings
-  return source.replace(/body:\s"(.*)",/g, (_, markdown) => {
+  return source.replace(/body:\s*"(.*)",/g, (_, markdown) => {
     const headings = getPageHeadings(markdown.replace(/\\n/g, '\n'))
     return `toc: ${JSON.stringify(headings)},`
   })

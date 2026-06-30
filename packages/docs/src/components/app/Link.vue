@@ -1,4 +1,6 @@
 <script>
+  import { h } from 'vue'
+
   // Components
   import { VIcon } from 'vuetify/lib/components/VIcon'
 
@@ -61,31 +63,31 @@
       },
     },
 
-    render (h) {
+    render () {
       const children = []
+      const slot = this.$slots.default ? this.$slots.default() : []
 
       if (!this.isExternal && !this.attrs.to) {
         return null
       }
 
-      if (!this.isSamePage) children.push(this.$slots.default)
+      if (!this.isSamePage) children.push(...slot)
       if (this.icon) {
         children.push(h(VIcon, {
           class: `m${this.isSamePage ? 'r' : 'l'}-1`,
-          attrs: {
-            color: 'primary',
-            size: '.875rem',
-          },
+          color: 'primary',
+          size: '.875rem',
         }, [this.icon]))
       }
-      if (this.isSamePage) children.push(this.$slots.default)
+      if (this.isSamePage) children.push(...slot)
+
+      const props = this.isExternal
+        ? { ...this.attrs, onClick: this.onClick }
+        : { ...this.attrs, onClick: this.onClick }
 
       return h(this.isExternal ? 'a' : 'router-link', {
         class: 'app-link text-decoration-none primary--text font-weight-medium d-inline-block',
-        attrs: this.attrs,
-        [this.isExternal ? 'on' : 'nativeOn']: {
-          click: this.onClick,
-        },
+        ...props,
       }, children)
     },
   }

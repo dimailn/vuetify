@@ -39,7 +39,7 @@ module.exports = config => {
     .splitChunks({
       cacheGroups: {
         vuetify: {
-          test: /[\\/]vuetify[\\/]lib[\\/]/,
+          test: /[\\/]vuetify[\\/](lib|src)[\\/]/,
           enforce: true,
         },
       },

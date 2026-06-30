@@ -16,9 +16,9 @@
         class="mx-2 text-none font-weight-regular"
         @click="ignore"
       >
-        <i18n
+        <i18n-t
           class="white--text"
-          path="pwa.ignore"
+          keypath="pwa.ignore"
         />
       </v-btn>
       <app-btn
@@ -26,9 +26,9 @@
         v-bind="attrs"
         @click="update"
       >
-        <i18n
+        <i18n-t
           class="white--text"
-          path="pwa.refresh"
+          keypath="pwa.refresh"
         />
       </app-btn>
     </template>

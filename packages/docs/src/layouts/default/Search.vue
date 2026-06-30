@@ -5,13 +5,13 @@
     max-height="75vh"
     offset-y
     readonly
-    @input="resetSearch"
+    @update:modelValue="onMenuModelUpdate"
   >
-    <template #activator="{ attrs }">
+    <template #activator="{ props, attrs }">
       <v-text-field
         ref="searchInput"
         v-model="searchString"
-        v-bind="attrs"
+        v-bind="props || attrs"
         :background-color="(!theme.isDark && !isFocused) ? 'grey lighten-3' : undefined"
         :class="isSearching ? 'rounded-b-0' : ' rounded-lg'"
         :flat="!isFocused && !isSearching"
@@ -122,7 +122,7 @@
       document.addEventListener('keydown', this.onDocumentKeydown)
     },
 
-    beforeDestroy () {
+    beforeUnmount () {
       if (!IN_BROWSER) return
 
       document.removeEventListener('keydown', this.onDocumentKeydown)
@@ -185,6 +185,10 @@
           this.timeout = setTimeout(() => this.isFocused = false)
           this.menuModel = false
         })
+      },
+      onMenuModelUpdate (value) {
+        this.menuModel = value
+        if (!value) this.resetSearch()
       },
       onDocumentKeydown (e) {
         if (

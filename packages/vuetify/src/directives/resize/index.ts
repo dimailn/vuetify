@@ -5,17 +5,12 @@ interface ResizeDirectiveBinding extends DirectiveBinding {
   options?: boolean | AddEventListenerOptions
 }
 
-declare global {
-  interface HTMLElement {
-    _onResize?: Record<
-      number,
-      {
-        callback: () => void
-        options: boolean | AddEventListenerOptions
-      }
-    >
-  }
+interface ResizeState {
+  callback: () => void
+  options: boolean | AddEventListenerOptions
 }
+
+const resizeState = new WeakMap<HTMLElement, ResizeState>()
 
 function mounted (
   el: HTMLElement,
@@ -27,11 +22,10 @@ function mounted (
 
   window.addEventListener('resize', callback, options)
 
-  el._onResize = Object(el._onResize)
-  el._onResize![vnode.ctx!.uid] = {
+  resizeState.set(el, {
     callback,
     options
-  }
+  })
 
   if (!binding.modifiers || !binding.modifiers.quiet) {
     callback()
@@ -43,13 +37,12 @@ function unmounted (
   binding: ResizeDirectiveBinding,
   vnode: VNode
 ) {
-  if (!el._onResize?.[vnode.ctx!.uid]) return
-
-  const { callback, options } = el._onResize[vnode.ctx!.uid]!
+  const state = resizeState.get(el)
+  if (!state) return
+  const { callback, options } = state
 
   window.removeEventListener('resize', callback, options)
-
-  delete el._onResize[vnode.ctx!.uid]
+  resizeState.delete(el)
 }
 
 export const Resize: ObjectDirective = {

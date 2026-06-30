@@ -1,7 +1,9 @@
 // Packages
-import {createApp as _createApp, h} from 'vue'
-import Vuetify from 'vuetify'
-import InstantSearch from 'vue-instantsearch'
+import { createApp as _createApp, h } from 'vue'
+import Vuetify from 'vuetify/lib'
+import * as components from 'vuetify/lib/components'
+import * as directives from 'vuetify/lib/directives'
+import InstantSearch from 'vue-instantsearch/vue3/es'
 
 // Bootstrap
 import { registerPlugins } from './plugins'
@@ -10,6 +12,7 @@ import { createStore } from '@/store'
 import { createRouter } from '@/router'
 import { createI18n } from '@/i18n'
 import { sync } from 'vuex-router-sync'
+import { preferredLocale } from '@/util/routes'
 
 // Service Worker
 import './registerServiceWorker'
@@ -17,71 +20,60 @@ import './registerServiceWorker'
 // Application
 import App from './App.vue'
 
-// Globals
-import { IS_PROD } from '@/util/globals'
-
-// Vue.config.productionTip = false
-
-// Vue.use(InstantSearch)
-
-
-// Vue.config.performance = !IS_PROD
-
 // Expose a factory function that creates a fresh set of store, router,
 // app instances on each call (which is called for each SSR request)
 export async function createApp ({
   start = () => {},
 } = {}, ssrContext) {
-  // create store and router instances
   const store = createStore()
   const i18n = createI18n()
   const vuetify = createVuetify(store)
   const router = createRouter(vuetify, store, i18n)
 
-
   store.state.app.version = Vuetify.version
 
-  // sync the router with the vuex store.
-  // this registers `store.state.route`
   sync(store, router)
 
-  // create the app instance.
-  // here we inject the router, store and ssr context to all child components,
-  // making them available everywhere as `this.$router` and `this.$store`.
-  const app = _createApp({
-    render: () => h(App),
-  })
+  // Корень должен быть именно App.vue (не anonymous extends), иначе ломаются
+  // vuetify-loader и опция vuetify для install.ts (нет v-app / $vuetify).
+  App.vuetify = vuetify
 
-  console.log(Vuetify)
-  app.use(Vuetify)
-  app.config.globalProperties.$vuetify = vuetify.framework
+  const app = _createApp(App)
+
+  app.use(Vuetify, { components, directives })
+  app.use(InstantSearch)
   app.config.globalProperties.$createElement = h
-
-
 
   app.use(store)
   app.use(router)
   app.use(i18n)
+
   app.mixin({
     methods: {
-      $load(urls) {
+      /** Именованный маршрут с обязательным param locale (Vue Router 4) */
+      withLocaleRoute (name, params = {}, extra = {}) {
+        const locale = this.$route.params.locale || preferredLocale()
+        return {
+          name,
+          params: { locale, ...params },
+          ...extra,
+        }
+      },
+      $load (urls) {
         urls = urls instanceof Array ? urls : [urls]
         urls.forEach(url => {
-          const link = document.createElement('link');
-          link.rel = 'stylesheet';
-          link.href = url;
-          document.head.appendChild(link);
+          const link = document.createElement('link')
+          link.rel = 'stylesheet'
+          link.href = url
+          document.head.appendChild(link)
         })
-      }
-    }
+      },
+    },
   })
 
-  const metaManager = registerPlugins(app)
+  const head = registerPlugins(app)
 
-  // expose the app, the router and the store.
-  // note we are not mounting the app here, since bootstrapping will be
-  // different depending on whether we are in a browser or on the server.
-  const entry = { app, router, store, metaManager }
+  const entry = { app, router, store, head }
 
   await start(entry)
 

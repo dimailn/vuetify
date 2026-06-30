@@ -9,13 +9,10 @@
     <component
       :is="logo"
       :key="logo"
-      :to="{
-        name: 'Documentation',
-        params: {
-          category: 'introduction',
-          page: 'why-vuetify'
-        }
-      }"
+      :to="withLocaleRoute('Documentation', {
+        category: 'introduction',
+        page: 'why-vuetify',
+      })"
     />
 
     <v-spacer />
@@ -29,7 +26,7 @@
   import DefaultAppBarItems from '@/layouts/default/AppBarItems'
 
   // Utilities
-  import { get, sync } from 'vuex-pathify'
+  import { sync } from 'vuex-pathify'
 
   export default {
     name: 'HomeBar',
@@ -37,8 +34,12 @@
     components: { DefaultAppBarItems },
 
     computed: {
-      dark: sync('user/theme@dark'),
-      search: get('app/search'),
+      ...sync('user', ['theme@dark']),
+      search: {
+        get () {
+          return this.$store.state.app.search
+        },
+      },
       logo () {
         return this.$vuetify.breakpoint.lgAndUp
           ? 'vuetify-logo'

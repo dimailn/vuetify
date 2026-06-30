@@ -8,10 +8,10 @@ describe('resize.ts', () => {
     jest.spyOn(window, 'removeEventListener')
     const el = {}
 
-    Resize.mounted(el as HTMLElement, { value: callback } as any, { ctx: { uid: 1 } } as any)
+    Resize.mounted(el as HTMLElement, { instance: { $: { uid: 1 } }, value: callback } as any, {} as any)
     expect(callback).toHaveBeenCalled()
     expect(window.addEventListener).toHaveBeenCalledWith('resize', callback, { passive: true })
-    Resize.unmounted(el as HTMLElement, { value: callback } as any, { ctx: { uid: 1 } } as any)
+    Resize.unmounted(el as HTMLElement, { instance: { $: { uid: 1 } }, value: callback } as any, {} as any)
     expect(window.removeEventListener).toHaveBeenCalledWith('resize', callback, { passive: true })
   })
 
@@ -21,10 +21,10 @@ describe('resize.ts', () => {
     jest.spyOn(window, 'removeEventListener')
     const el = {}
 
-    Resize.mounted(el as HTMLElement, { value: callback, modifiers: { quiet: true } } as any, { ctx: { uid: 1 } } as any)
+    Resize.mounted(el as HTMLElement, { instance: { $: { uid: 1 } }, value: callback, modifiers: { quiet: true } } as any, {} as any)
     expect(callback).not.toHaveBeenCalled()
     expect(window.addEventListener).toHaveBeenCalledWith('resize', callback, { passive: true })
-    Resize.unmounted(el as HTMLElement, { value: callback, modifiers: { quiet: true } } as any, { ctx: { uid: 1 } } as any)
+    Resize.unmounted(el as HTMLElement, { instance: { $: { uid: 1 } }, value: callback, modifiers: { quiet: true } } as any, {} as any)
     expect(window.removeEventListener).toHaveBeenCalledWith('resize', callback, { passive: true })
   })
 })

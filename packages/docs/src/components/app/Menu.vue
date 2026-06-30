@@ -1,5 +1,6 @@
 <template>
   <v-menu
+    ref="menu"
     bottom
     close-delay="100"
     content-class="rounded"
@@ -9,8 +10,7 @@
     open-delay="60"
     :open-on-hover="openOnHover"
     transition="slide-y-transition"
-    v-bind="$attrs"
-    v-on="$listeners"
+    v-bind="{ ...menuModelProps, ...$attrs }"
   >
     <template #activator="props">
       <slot
@@ -49,7 +49,13 @@
 
     components: { DefaultList },
 
+    emits: ['update:modelValue'],
+
     props: {
+      modelValue: {
+        type: Boolean,
+        default: undefined,
+      },
       items: {
         type: Array,
         default: () => ([]),
@@ -57,6 +63,17 @@
       openOnHover: {
         type: Boolean,
         default: true,
+      },
+    },
+
+    computed: {
+      menuModelProps () {
+        if (this.modelValue === undefined) return {}
+
+        return {
+          modelValue: this.modelValue,
+          'onUpdate:modelValue': value => this.$emit('update:modelValue', value),
+        }
       },
     },
   }

@@ -6,11 +6,12 @@
       ...$attrs,
       ...$props,
     }"
-    v-on="$listeners"
   />
 </template>
 
 <script>
+  import { markRaw } from 'vue'
+
   export default {
     name: 'VueFile',
 
@@ -23,6 +24,8 @@
       },
     },
 
+    // markRaw: иначе динамически загруженный компонент становится реактивным
+    // объектом, и Vue 3 предупреждает «Component that was made a reactive object».
     data: () => ({ component: undefined }),
 
     created () {
@@ -47,7 +50,7 @@
           this.$emit('error', err)
         }
 
-        this.component = component.default
+        this.component = markRaw(component.default)
       },
     },
   }

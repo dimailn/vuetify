@@ -7,12 +7,12 @@
       <v-bottom-sheet
         v-model="sheet"
         v-bind="$attrs"
-        v-on="$listeners"
       >
-        <template v-slot:activator="{ on }">
+        <template v-slot:activator="{ on, attrs }">
           <v-btn
             color="purple"
             dark
+            v-bind="attrs"
             v-on="on"
           >
             Open Playground

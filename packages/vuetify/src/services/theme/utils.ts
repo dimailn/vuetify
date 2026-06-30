@@ -100,7 +100,7 @@ export function genStyles (theme: VuetifyParsedTheme, cssVar = false): string {
 
     const variants = keys(value)
     for (let i = 0; i < variants.length; ++i) {
-      const variant = variants[i]
+      const variant = variants[i] as string
       const variantValue = value[variant]
       if (variant === 'base') continue
 

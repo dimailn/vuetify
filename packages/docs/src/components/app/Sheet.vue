@@ -6,7 +6,6 @@
       rounded: true,
       ...$attrs,
     }"
-    v-on="$listeners"
   >
     <slot />
   </v-sheet>

@@ -7,7 +7,6 @@
     hide-details
     solo
     v-bind="$attrs"
-    v-on="$listeners"
   >
     <template
       v-if="$slots.icon || icon"

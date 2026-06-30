@@ -3,7 +3,6 @@
     <app-sheet :outlined="outlined">
       <app-img
         v-bind="$attrs"
-        v-on="$listeners"
       />
     </app-sheet>
 

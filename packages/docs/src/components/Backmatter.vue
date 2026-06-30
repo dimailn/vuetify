@@ -8,19 +8,19 @@
       level="2"
     />
 
-    <i18n
+    <i18n-t
       class="mb-3"
-      path="ready-text"
+      keypath="ready-text"
       tag="div"
     >
       <template #team>
-        <i18n
+        <i18n-t
           :href="url"
-          path="team"
+          keypath="team"
           tag="app-link"
         />
       </template>
-    </i18n>
+    </i18n-t>
 
     <app-divider class="mt-7 mb-5" />
 

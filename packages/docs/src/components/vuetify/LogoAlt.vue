@@ -2,7 +2,6 @@
   <router-link
     class="d-inline-block"
     v-bind="$attrs"
-    v-on="$listeners"
   >
     <v-img
       :src="`https://cdn.vuetifyjs.com/docs/images/logos/vuetify-logo-${theme.isDark ? 'dark' : 'light' }.svg`"
@@ -21,8 +20,5 @@
 
     inject: ['theme'],
 
-    created() {
-      console.log(this.$vuetify, this.theme, this)
-    }
   }
 </script>

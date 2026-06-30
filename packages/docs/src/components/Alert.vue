@@ -4,7 +4,6 @@
     class="v-alert--doc"
     text
     v-bind="$attrs"
-    v-on="$listeners"
   >
     <slot />
   </v-alert>
