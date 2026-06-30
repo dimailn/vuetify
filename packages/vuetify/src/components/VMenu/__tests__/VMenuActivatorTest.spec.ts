@@ -10,14 +10,14 @@ describe('activator test', () => {
 
     const wrapper = mount(VMenu, {
       props: {
-        attach: true,
+        attach: true
       },
       slots: {
         activator: (props: any) => h('button', { class: 'activator', ...props.attrs }, 'Activator'),
         default: () => h('div', 'Content')
       }
     })
-    
+
     const btn = wrapper.find('.activator')
     await btn.trigger('click')
     console.log('isActive:', (wrapper.vm as any).isActive)

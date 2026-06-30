@@ -5,7 +5,7 @@ const MyDir = { mounted: () => {} }
 
 const VBtn = defineComponent({
   name: 'v-btn',
-  render() {
+  render () {
     return withDirectives(h('button', { ref: 'btn' }, 'btn'), [[MyDir]])
   }
 })
@@ -13,7 +13,7 @@ const VBtn = defineComponent({
 const VMenu = defineComponent({
   name: 'v-menu',
   data: () => ({ activatorNode: [] as any[] }),
-  render() {
+  render () {
     const act = this.$slots.activator ? this.$slots.activator({ attrs: { class: 'act' } }) : []
     this.activatorNode = act
     return h('div', [this.activatorNode])
@@ -23,13 +23,13 @@ const VMenu = defineComponent({
 describe('test', () => {
   it('works', () => {
     const AppBtn = defineComponent({
-      setup(props, { slots, attrs }) {
+      setup (props, { slots, attrs }) {
         return () => h(VBtn, attrs, slots)
       }
     })
 
     const AppMenu = defineComponent({
-      setup(props, { slots }) {
+      setup (props, { slots }) {
         return () => h(VMenu, null, {
           activator: (props: any) => slots.activator ? slots.activator(props) : null
         })
@@ -37,7 +37,7 @@ describe('test', () => {
     })
 
     const App = defineComponent({
-      render() {
+      render () {
         return h(AppMenu, null, {
           activator: ({ attrs }: any) => h(AppBtn, attrs)
         })
