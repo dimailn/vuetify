@@ -28,7 +28,7 @@
     "prod": "ws -z -d dist"
   },
   "dependencies": {
-    "@dimailn/vuetify": "2.7.2-alpha46",
+    "@dimailn/vuetify": "2.7.2-alpha57",
     "@unhead/vue": "2.0.12",
     "@vee-validate/rules": "^4.15.1",
     "@vue/server-renderer": "^3.5.13",
