@@ -4,12 +4,14 @@ import './VRadioGroup.sass'
 
 // Extensions
 import VInput from '../VInput'
+import VLabel from '../VLabel'
 import { BaseItemGroup } from '../VItemGroup/VItemGroup'
 
 // Utilities
 import { mergeProps, h } from 'vue'
 import mixins from '../../util/mixins'
 import { breaking } from '../../util/console'
+import { getSlot } from '../../util/helpers'
 
 // Types
 import type { PropType } from 'vue'
@@ -87,16 +89,18 @@ export default baseMixins.extend({
       return render
     },
     genLabel () {
-      const label = VInput.methods.genLabel.call(this)
+      if (!this.hasLabel) return null
 
-      if (!label) return null
-
-      label.data!.attrs!.id = this.computedId
-      // WAI considers this an orphaned label
-      delete label.data!.attrs!.for
-      label.tag = 'legend'
-
-      return label
+      return h(VLabel, {
+        id: this.computedId,
+        color: this.validationState,
+        dark: this.dark,
+        disabled: this.isDisabled,
+        focused: this.hasState,
+        for: this.computedId,
+        light: this.light,
+        tag: 'legend'
+      }, () => getSlot(this, 'label') || this.label)
     },
     onClick: BaseItemGroup.methods.onClick
   },

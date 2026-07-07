@@ -36,6 +36,10 @@ export default mixins(Themeable).extend({
       type: [Number, String],
       default: 'auto'
     },
+    tag: {
+      type: String,
+      default: 'label'
+    },
     value: Boolean
   },
 
@@ -50,7 +54,7 @@ export default mixins(Themeable).extend({
         'v-label--is-disabled': this.disabled,
         ...functionalThemeClasses(this)
       },
-      for: props.for,
+      ...(props.tag === 'label' ? { for: props.for } : {}),
       'aria-hidden': !props.for,
       style: {
         left: convertToUnit(props.left),
@@ -60,6 +64,6 @@ export default mixins(Themeable).extend({
       ref: 'label'
     }, data)
 
-    return h('label', Colorable.methods.setTextColor(props.focused && props.color, newData), this.$slots.default?.())
+    return h(props.tag, Colorable.methods.setTextColor(props.focused && props.color, newData), this.$slots.default?.())
   }
 })
