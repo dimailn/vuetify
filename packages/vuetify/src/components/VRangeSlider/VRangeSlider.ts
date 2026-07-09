@@ -112,10 +112,11 @@ export default defineComponent({
       return createRange(2).map(i => {
         const input = VSlider.methods.genInput.call(this)
 
-        input.data = input.data || {}
-        input.data.attrs = input.data.attrs || {}
-        input.data.attrs.value = this.internalValue[i]
-        input.data.attrs.id = `input-${i ? 'max' : 'min'}-${this.$.uid}`
+        input.props = {
+          ...input.props,
+          value: this.internalValue[i],
+          id: `input-${i ? 'max' : 'min'}-${this.$.uid}`
+        }
 
         return input
       })

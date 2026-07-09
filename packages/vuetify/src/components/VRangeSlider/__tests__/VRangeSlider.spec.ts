@@ -191,7 +191,10 @@ describe('VRangeSlider', () => {
     const wrapper = mountFunction()
     const [min, max] = wrapper.vm.genInput()
 
-    expect(min.data.attrs.id).not.toEqual(max.data.attrs.id)
+    expect(min.props!.id).not.toEqual(max.props!.id)
+
+    const inputs = wrapper.findAll('input')
+    expect(inputs[0].attributes('id')).not.toEqual(inputs[1].attributes('id'))
   })
 
   // https://github.com/vuetifyjs/vuetify/issues/12733

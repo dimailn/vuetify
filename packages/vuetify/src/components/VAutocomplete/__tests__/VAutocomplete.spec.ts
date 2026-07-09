@@ -582,4 +582,21 @@ describe('VAutocomplete.ts', () => {
     await wrapper.vm.$nextTick()
     expect(wrapper.vm.selectedItems).toHaveLength(originalLength)
   })
+
+  it('should expose listData props at top level', () => {
+    const wrapper = mountFunction({
+      props: {
+        items: ['foo', 'bar'],
+        searchInput: 'foo',
+        noFilter: true
+      }
+    })
+
+    const listData = wrapper.vm.listData
+
+    expect(listData.props).toBeUndefined()
+    expect(listData.searchInput).toBe('foo')
+    expect(listData.noFilter).toBe(true)
+    expect(listData.items).toEqual(wrapper.vm.virtualizedItems)
+  })
 })
