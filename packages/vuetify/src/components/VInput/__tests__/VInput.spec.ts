@@ -206,7 +206,7 @@ describe('VInput.ts', () => {
 
   it('should render a label', () => {
     const wrapper = mountFunction({
-      props: { label: 'foo' }
+      props: { label: 'foo', id: 'test' }
     })
 
     expect(wrapper.vm.hasLabel).toBe(true)
@@ -216,6 +216,7 @@ describe('VInput.ts', () => {
   it('should apply theme to label, counter, messages and icons', () => {
     const wrapper = mountFunction({
       props: {
+        id: 'test',
         label: 'foo',
         hint: 'bar',
         persistentHint: true,
