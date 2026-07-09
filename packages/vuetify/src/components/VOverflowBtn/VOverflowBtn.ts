@@ -82,10 +82,12 @@ export default defineComponent({
 
       if (!label) return label
 
-      label.data = label.data || {}
+      label.props ||= {}
 
-      // Reset previously set styles from parent
-      label.data.style = {}
+      // Label must stay in document flow to size the control
+      // (.v-select__selections has width: 0)
+      label.props.absolute = false
+      label.props.style = {}
 
       return label
     },

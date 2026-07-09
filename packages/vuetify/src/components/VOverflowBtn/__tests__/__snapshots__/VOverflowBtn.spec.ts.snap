@@ -10,10 +10,10 @@ exports[`VOverflowBtn.js should show label with persistentPlaceholder property s
          class="v-input__slot"
     >
       <div class="v-select__slot">
-        <label class="v-label theme--light"
+        <label style="left: 0px; position: relative;"
+               class="v-label theme--light"
                for="input-15"
                aria-hidden="false"
-               style="left: 0px; position: absolute;"
         >
           Some label
         </label>
@@ -57,10 +57,10 @@ exports[`VOverflowBtn.js should show label with persistentPlaceholder property s
          class="v-input__slot"
     >
       <div class="v-select__slot">
-        <label class="v-label theme--light"
+        <label style="left: 0px; position: relative;"
+               class="v-label theme--light"
                for="input-15"
                aria-hidden="false"
-               style="left: 0px; position: absolute;"
         >
           Some label
         </label>
