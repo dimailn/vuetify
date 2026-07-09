@@ -272,4 +272,19 @@ describe('VTextarea.ts', () => {
     const textarea = wrapper.find('textarea')
     expect(textarea.attributes('rows')).toBe('5')
   })
+
+  it('should activate label when using legacy value prop with auto-grow', () => {
+    const wrapper = mountFunction({
+      props: {
+        autoGrow: true,
+        filled: true,
+        label: 'Label',
+        value: 'The Woodman set to work at once, and so sharp was his axe that the tree was soon chopped nearly through.'
+      }
+    })
+
+    expect(wrapper.element.classList).toContain('v-input--is-label-active')
+    expect(wrapper.element.classList).toContain('v-input--is-dirty')
+    expect(wrapper.find('.v-label').element.classList).toContain('v-label--active')
+  })
 })

@@ -58,14 +58,15 @@ export default baseMixins.extend({
     loading: Boolean,
     persistentHint: Boolean,
     prependIcon: String,
-    modelValue: null as any as PropType<any>
+    modelValue: null as any as PropType<any>,
+    value: null as any as PropType<any>
   },
 
   emits: ['click', 'mousedown', 'mouseup', 'touchstart', 'touchend', 'update:error', 'change', 'update:modelValue'],
 
   data () {
     return {
-      lazyValue: this.modelValue,
+      lazyValue: this.modelValue ?? this.value,
       hasMouseDown: false
     }
   },
@@ -145,12 +146,20 @@ export default baseMixins.extend({
   watch: {
     modelValue (val) {
       this.lazyValue = val
+    },
+    value (val) {
+      if (this.modelValue == null) {
+        this.lazyValue = val
+      }
     }
   },
 
   created () {
+    if (this.modelValue == null && this.value == null && this.$attrs.hasOwnProperty('value')) {
+      this.lazyValue = this.$attrs.value
+    }
+
     const breakingProps = [
-      ['value', 'modelValue'],
       ['onInput', 'onUpdate:modelValue']
     ]
 
@@ -339,7 +348,7 @@ export default baseMixins.extend({
   },
 
   render (): VNode {
-    const { class: additionalClasses, ...restAttrs } = this.$attrs as Record<string, any>
+    const { class: additionalClasses, value: _value, ...restAttrs } = this.$attrs as Record<string, any>
 
     return h('div', this.setTextColor(this.validationState, {
       class: { 'v-input': true, ...this.classes, ...normalizeClasses(additionalClasses) },

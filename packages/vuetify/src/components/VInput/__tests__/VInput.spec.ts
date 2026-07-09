@@ -68,6 +68,32 @@ describe('VInput.ts', () => {
     expect(wrapper.vm.lazyValue).toBe('bar')
   })
 
+  it('should initialize lazyValue from legacy value prop', async () => {
+    const wrapper = mountFunction({
+      props: {
+        value: 'foo'
+      }
+    })
+
+    expect(wrapper.vm.lazyValue).toBe('foo')
+    expect(wrapper.element.classList).toContain('v-input--is-dirty')
+
+    await wrapper.setProps({ value: 'bar' })
+
+    expect(wrapper.vm.lazyValue).toBe('bar')
+  })
+
+  it('should prefer modelValue over legacy value prop', async () => {
+    const wrapper = mountFunction({
+      props: {
+        modelValue: 'model',
+        value: 'legacy'
+      }
+    })
+
+    expect(wrapper.vm.lazyValue).toBe('model')
+  })
+
   it('should generate append and prepend slots', () => {
     const el = (slot: string) => h('div', slot)
     const wrapper = mountFunction({
