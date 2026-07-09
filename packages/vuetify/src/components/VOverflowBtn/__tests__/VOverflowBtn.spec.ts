@@ -109,6 +109,21 @@ describe('VOverflowBtn.js', () => {
     expect(callback).toHaveBeenCalled()
   })
 
+  it('should keep label in document flow without relative positioning', () => {
+    const wrapper = mountFunction({
+      props: {
+        items: ['foo'],
+        label: 'Select font'
+      }
+    })
+
+    const label = wrapper.find('label')
+
+    expect(label.exists()).toBe(true)
+    expect(label.element.style.position).toBe('')
+    expect(label.element.style.left).toBe('')
+  })
+
   it('should show label with persistentPlaceholder property set to true', async () => {
     const wrapper = mountFunction({
       props: {

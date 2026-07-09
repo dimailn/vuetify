@@ -6,19 +6,18 @@ exports[`VOverflowBtn.js should show label with persistentPlaceholder property s
     <div role="combobox"
          aria-haspopup="listbox"
          aria-expanded="false"
-         aria-owns="list-15"
+         aria-owns="list-22"
          class="v-input__slot"
     >
       <div class="v-select__slot">
-        <label style="left: 0px; position: relative;"
-               class="v-label theme--light"
-               for="input-15"
+        <label class="v-label theme--light"
+               for="input-22"
                aria-hidden="false"
         >
           Some label
         </label>
         <div class="v-select__selections">
-          <input id="input-15"
+          <input id="input-22"
                  readonly
                  type="text"
                  value
@@ -53,19 +52,18 @@ exports[`VOverflowBtn.js should show label with persistentPlaceholder property s
     <div role="combobox"
          aria-haspopup="listbox"
          aria-expanded="true"
-         aria-owns="list-15"
+         aria-owns="list-22"
          class="v-input__slot"
     >
       <div class="v-select__slot">
-        <label style="left: 0px; position: relative;"
-               class="v-label theme--light"
-               for="input-15"
+        <label class="v-label theme--light"
+               for="input-22"
                aria-hidden="false"
         >
           Some label
         </label>
         <div class="v-select__selections">
-          <input id="input-15"
+          <input id="input-22"
                  readonly
                  type="text"
                  value

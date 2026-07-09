@@ -59,7 +59,7 @@ export default mixins(Themeable).extend({
       style: {
         left: convertToUnit(props.left),
         right: convertToUnit(props.right),
-        position: props.absolute ? 'absolute' : 'relative'
+        ...(props.absolute ? { position: 'absolute' } : {}),
       },
       ref: 'label'
     }, data)

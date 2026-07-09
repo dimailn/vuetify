@@ -40,6 +40,16 @@ describe('VLabel', () => {
     expect(wrapper.element.style.position).toBe('absolute')
   })
 
+  it('should not set position when absolute is false', () => {
+    const wrapper = mountFunction({
+      props: {
+        absolute: false
+      }
+    })
+
+    expect(wrapper.element.style.position).toBe('')
+  })
+
   it('should render default slot content', () => {
     const wrapper = mountFunction({
       slots: {
