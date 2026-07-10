@@ -2,6 +2,7 @@
 import { h } from 'vue'
 
 // Components
+import VChip from '../../VChip/VChip'
 import VItem from '../VItem'
 import VItemGroup from '../VItemGroup'
 
@@ -396,6 +397,37 @@ describe('VItemGroup', () => {
 
     expect(wrapper.vm.selectedIndex).toBe(2)
     expect(wrapper.vm.selectedItem).toEqual(wrapper.vm.items[2])
+  })
+
+  it('should activate chips with legacy input-value binding', async () => {
+    const ChipMock = {
+      name: 'chip-mock',
+
+      render () {
+        return h(VItem, {}, {
+          default: ({ active, toggle }: { active: boolean, toggle: () => void }) => h(VChip, {
+            activeClass: 'purple--text',
+            inputValue: active,
+            onClick: toggle
+          }, () => 'Tag')
+        })
+      }
+    }
+
+    const wrapper = mountFunction({
+      props: { multiple: true },
+      slots: { default: [ChipMock, ChipMock] }
+    })
+
+    const chips = wrapper.findAllComponents({ name: 'v-chip' })
+    expect(chips).toHaveLength(2)
+
+    await chips[0].trigger('click')
+    await wrapper.vm.$nextTick()
+
+    expect(wrapper.vm.internalValue).toEqual([0])
+    expect(chips[0].classes()).toContain('v-chip--active')
+    expect(chips[0].classes()).toContain('purple--text')
   })
 
   it('should render with a specified tag when the tag prop is provided with a value', () => {

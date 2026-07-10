@@ -141,6 +141,24 @@ describe('VChip.ts', () => {
     expect(wrapper.findAll('.v-chip__filter')).toHaveLength(1)
   })
 
+  it('should support legacy input-value prop', async () => {
+    const wrapper = mountFunction({
+      props: {
+        inputValue: true,
+        activeClass: 'purple--text'
+      }
+    })
+
+    expect(wrapper.classes()).toContain('v-chip--active')
+    expect(wrapper.classes()).toContain('purple--text')
+
+    await wrapper.setProps({ inputValue: false })
+    await nextTick()
+
+    expect(wrapper.classes()).not.toContain('v-chip--active')
+    expect(wrapper.classes()).not.toContain('purple--text')
+  })
+
   it('should call toggle event when used in the group', async () => {
     const register = jest.fn()
     const unregister = jest.fn()

@@ -69,7 +69,11 @@ export default mixins(
       default: 'span'
     },
     textColor: String,
-    modelValue: null as any as PropType<any>
+    modelValue: null as any as PropType<any>,
+    inputValue: {
+      type: Boolean,
+      default: undefined
+    }
   },
 
   data: () => ({
@@ -114,6 +118,12 @@ export default mixins(
     }
   },
 
+  watch: {
+    inputValue () {
+      this.syncLegacyInputValue()
+    }
+  },
+
   created () {
     const breakingProps = [
       ['outline', 'outlined'],
@@ -126,9 +136,16 @@ export default mixins(
     breakingProps.forEach(([original, replacement]) => {
       if (this.$attrs.hasOwnProperty(original)) breaking(original, replacement, this)
     })
+
+    this.syncLegacyInputValue()
   },
 
   methods: {
+    syncLegacyInputValue () {
+      if (this.modelValue === undefined && this.inputValue !== undefined) {
+        this.isActive = !!this.inputValue
+      }
+    },
     click (e: MouseEvent): void {
       this.$emit('click', e)
 
