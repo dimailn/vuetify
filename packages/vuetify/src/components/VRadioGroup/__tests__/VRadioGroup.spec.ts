@@ -37,4 +37,23 @@ describe('VRadioGroup.ts', () => {
 
     expect(wrapper.html()).toMatchSnapshot()
   })
+
+  it('should render group label as legend without for attribute', () => {
+    const wrapper = mountFunction({
+      props: {
+        label: 'Radio group label'
+      },
+      slots: {
+        default: [VRadio]
+      }
+    })
+
+    const legend = wrapper.find('legend')
+
+    expect(legend.exists()).toBe(true)
+    expect(legend.text()).toBe('Radio group label')
+    expect(legend.attributes('id')).toBeTruthy()
+    expect(legend.attributes('for')).toBeUndefined()
+    expect(legend.attributes('aria-hidden')).toBe('false')
+  })
 })

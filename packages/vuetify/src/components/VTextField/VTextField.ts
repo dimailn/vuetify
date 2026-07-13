@@ -216,7 +216,6 @@ export default baseMixins.extend({
 
   created () {
     const breakingProps = [
-      ['value', 'modelValue'],
       ['onInput', 'onUpdate:modelValue']
     ]
 
@@ -391,12 +390,12 @@ export default baseMixins.extend({
     genInput () {
       const listeners = Object.assign({}, this.listeners$)
       delete listeners.change // Change should not be bound externally
-      const { title, onChange: _onChange, class: _class, style: _style, ...inputAttrs } = this.attrs$ as Record<string, any>
+      const { title, onChange: _onChange, class: _class, style: _style, value: _value, ...inputAttrs } = this.attrs$ as Record<string, any>
 
       const node = h('input', {
         style: {},
-        value: (this.type === 'number' && Object.is(this.lazyValue, -0)) ? '-0' : this.lazyValue,
         ...inputAttrs,
+        value: (this.type === 'number' && Object.is(this.lazyValue, -0)) ? '-0' : this.lazyValue,
         autofocus: this.autofocus,
         disabled: this.isDisabled,
         id: this.computedId,

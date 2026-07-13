@@ -32,9 +32,9 @@ exports[`VInput.ts should apply theme to label, counter, messages and icons 1`] 
   <div class="v-input__control">
     <div class="v-input__slot">
       <label class="v-label theme--light"
-             for="input-48"
+             for="test"
              aria-hidden="false"
-             style="left: 0px; position: relative;"
+             style="left: 0px;"
       >
         foo
       </label>
@@ -193,9 +193,9 @@ exports[`VInput.ts should render a label 1`] = `
   <div class="v-input__control">
     <div class="v-input__slot">
       <label class="v-label theme--light"
-             for="input-43"
+             for="test"
              aria-hidden="false"
-             style="left: 0px; position: relative;"
+             style="left: 0px;"
       >
         foo
       </label>
