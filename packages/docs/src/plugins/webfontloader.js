@@ -14,7 +14,7 @@ export async function loadFonts (app) {
     ? await import(/* webpackChunkName: "webfontloader" */'webfontloader')
     : { load: () => {} }
 
-  app.prototype.$load = pending => {
+  app.config.globalProperties.$load = pending => {
     if (!pending) return
 
     const urls = pending.filter(url => !loaded.includes(url))

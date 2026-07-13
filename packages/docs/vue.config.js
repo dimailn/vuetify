@@ -123,6 +123,7 @@ module.exports = {
         'unhead/utils': unheadDist('utils.mjs'),
         'unhead/types': unheadDist('types.mjs'),
         'unhead/scripts': unheadDist('scripts.mjs'),
+        'mitt/dist/mitt.es.js': path.resolve(__dirname, '../../node_modules/mitt/dist/mitt.es.js'),
       },
     },
   },
