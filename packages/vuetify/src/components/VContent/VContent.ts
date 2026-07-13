@@ -21,16 +21,18 @@ export default defineComponent({
     // Add the legacy class names
     const node = VMain.render.call(this, h)
 
-    const existingClasses = node.data?.class || ''
+    const existingClasses = node.props?.class || ''
     const contentClasses = normalizeClasses(`${existingClasses} v-content`)
-    node.data = { ...node.data, class: contentClasses }
 
-    if (node.children && node.children[0] && node.children[0].data) {
-      const childExistingClasses = node.children[0].data.class || ''
+    const children = (node.children as VNode[] | undefined)?.map((child, i) => {
+      if (i !== 0) return child
+
+      const childExistingClasses = child.props?.class || ''
       const wrapClasses = normalizeClasses(`${childExistingClasses} v-content__wrap`)
-      node.children[0].data = { ...node.children[0].data, class: wrapClasses }
-    }
 
-    return h(getTagValue(this.tag), node.data, node.children)
+      return h('div', { ...child.props, class: wrapClasses }, child.children as any)
+    })
+
+    return h(getTagValue(this.tag), { ...node.props, class: contentClasses }, children ?? node.children)
   }
 })

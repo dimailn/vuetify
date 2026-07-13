@@ -45,6 +45,10 @@ export const modes = {
   }
 } as { [key: string]: Mode }
 
+export function getValidMode (mode?: string | null): string {
+  return mode && Object.keys(modes).includes(mode) ? mode : 'rgba'
+}
+
 export default defineComponent({
   name: 'v-color-picker-edit',
 
@@ -67,19 +71,19 @@ export default defineComponent({
 
   data () {
     return {
-      internalMode: this.mode
+      internalMode: getValidMode(this.mode)
     }
   },
 
   computed: {
     currentMode (): Mode {
-      return modes[this.internalMode]
+      return modes[this.internalMode] || modes.rgba
     }
   },
 
   watch: {
     mode (mode: string) {
-      this.internalMode = mode
+      this.internalMode = getValidMode(mode)
     }
   },
 

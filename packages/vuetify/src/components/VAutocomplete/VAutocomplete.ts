@@ -167,8 +167,8 @@ export default defineComponent({
     listData () {
       const data = VSelect.computed.listData.call(this) as any
 
-      data.props = {
-        ...data.props,
+      return {
+        ...data,
         items: this.virtualizedItems,
         noFilter: (
           this.noFilter ||
@@ -177,8 +177,6 @@ export default defineComponent({
         ),
         searchInput: this.internalSearch
       }
-
-      return data
     }
   },
 

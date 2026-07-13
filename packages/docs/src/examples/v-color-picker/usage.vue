@@ -24,7 +24,7 @@
         'hide-canvas': false,
         'hide-inputs': false,
         'hide-mode-switch': false,
-        mode: null,
+        mode: 'rgba',
         'show-swatches': false,
         'swatches-max-height': 200,
       },
