@@ -68,6 +68,32 @@ describe('VInput.ts', () => {
     expect(wrapper.vm.lazyValue).toBe('bar')
   })
 
+  it('should initialize lazyValue from legacy value prop', async () => {
+    const wrapper = mountFunction({
+      props: {
+        value: 'foo'
+      }
+    })
+
+    expect(wrapper.vm.lazyValue).toBe('foo')
+    expect(wrapper.element.classList).toContain('v-input--is-dirty')
+
+    await wrapper.setProps({ value: 'bar' })
+
+    expect(wrapper.vm.lazyValue).toBe('bar')
+  })
+
+  it('should prefer modelValue over legacy value prop', async () => {
+    const wrapper = mountFunction({
+      props: {
+        modelValue: 'model',
+        value: 'legacy'
+      }
+    })
+
+    expect(wrapper.vm.lazyValue).toBe('model')
+  })
+
   it('should generate append and prepend slots', () => {
     const el = (slot: string) => h('div', slot)
     const wrapper = mountFunction({
@@ -180,7 +206,7 @@ describe('VInput.ts', () => {
 
   it('should render a label', () => {
     const wrapper = mountFunction({
-      props: { label: 'foo' }
+      props: { label: 'foo', id: 'test' }
     })
 
     expect(wrapper.vm.hasLabel).toBe(true)
@@ -190,6 +216,7 @@ describe('VInput.ts', () => {
   it('should apply theme to label, counter, messages and icons', () => {
     const wrapper = mountFunction({
       props: {
+        id: 'test',
         label: 'foo',
         hint: 'bar',
         persistentHint: true,

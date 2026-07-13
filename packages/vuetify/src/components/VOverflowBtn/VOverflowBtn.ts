@@ -82,10 +82,15 @@ export default defineComponent({
 
       if (!label) return label
 
-      label.data = label.data || {}
+      label.props ||= {}
 
-      // Reset previously set styles from parent
-      label.data.style = {}
+      // Label must stay in document flow to size the control
+      // (.v-select__selections has width: 0).
+      // Do not use position:relative — it activates CSS `top` and breaks alignment.
+      label.props.absolute = false
+      label.props.left = ''
+      label.props.right = ''
+      label.props.style = {}
 
       return label
     },

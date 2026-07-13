@@ -317,7 +317,7 @@ exports[`VSlider.ts should display label and have different aria-label 1`] = `
       <label class="v-label theme--light"
              for="input-98"
              aria-hidden="false"
-             style="left: 0px; position: relative;"
+             style="left: 0px;"
       >
         foo
       </label>
@@ -704,7 +704,7 @@ exports[`VSlider.ts should reverse label location when inverse 1`] = `
       <label class="v-label theme--light"
              for="input-89"
              aria-hidden="false"
-             style="left: 0px; position: relative;"
+             style="left: 0px;"
       >
         foo
       </label>
@@ -788,7 +788,7 @@ exports[`VSlider.ts should reverse label location when inverse 2`] = `
       <label class="v-label theme--light"
              for="input-89"
              aria-hidden="false"
-             style="left: 0px; position: relative;"
+             style="left: 0px;"
       >
         foo
       </label>
