@@ -95,21 +95,19 @@
 </template>
 
 <script>
+  import { h } from 'vue'
+
   export default {
     components: {
       // A simple helper component
       SheetFooter: {
-        functional: true,
-
-        render (h, { children }) {
+        render () {
           return h('v-sheet', {
             class: 'mt-auto align-center justify-center d-flex px-2',
-            props: {
-              color: 'rgba(0, 0, 0, .36)',
-              dark: true,
-              height: 50,
-            },
-          }, children)
+            color: 'rgba(0, 0, 0, .36)',
+            dark: true,
+            height: 50,
+          }, this.$slots.default?.())
         },
       },
     },
