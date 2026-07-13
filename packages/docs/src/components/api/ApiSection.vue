@@ -2,10 +2,10 @@
   <div>
     <div class="d-flex mb-2">
       <app-text-field
+        v-model="filter"
         clearable
         icon="$mdiMagnify"
         label="Filter"
-        @input="filter = $event"
       />
     </div>
     <api-table
