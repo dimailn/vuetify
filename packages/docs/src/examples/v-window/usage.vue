@@ -13,7 +13,7 @@
       >
         <div>
           <v-btn
-            :input-value="active"
+            :model-value="active"
             icon
             @click="toggle"
           >

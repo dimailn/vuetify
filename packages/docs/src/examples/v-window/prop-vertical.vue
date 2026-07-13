@@ -49,7 +49,7 @@
           v-slot="{ active, toggle }"
         >
           <v-btn
-            :input-value="active"
+            :model-value="active"
             icon
             @click="toggle"
           >

@@ -12,7 +12,7 @@
     <template v-slot:selection="{ attrs, item, select, selected }">
       <v-chip
         v-bind="attrs"
-        :input-value="selected"
+        :model-value="selected"
         close
         @click="select"
         @click:close="remove(item)"

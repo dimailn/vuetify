@@ -141,10 +141,10 @@ describe('VChip.ts', () => {
     expect(wrapper.findAll('.v-chip__filter')).toHaveLength(1)
   })
 
-  it('should support legacy input-value prop', async () => {
+  it('should activate chip with modelValue prop', async () => {
     const wrapper = mountFunction({
       props: {
-        inputValue: true,
+        modelValue: true,
         activeClass: 'purple--text'
       }
     })
@@ -152,11 +152,21 @@ describe('VChip.ts', () => {
     expect(wrapper.classes()).toContain('v-chip--active')
     expect(wrapper.classes()).toContain('purple--text')
 
-    await wrapper.setProps({ inputValue: false })
+    await wrapper.setProps({ modelValue: false })
     await nextTick()
 
     expect(wrapper.classes()).not.toContain('v-chip--active')
     expect(wrapper.classes()).not.toContain('purple--text')
+  })
+
+  it('should warn when input-value attr is used', () => {
+    mountFunction({
+      attrs: {
+        'input-value': true
+      }
+    })
+
+    expect('[Vuetify] [BREAKING] \'input-value\' has been removed, use \'model-value\' instead.').toHaveBeenWarned()
   })
 
   it('should call toggle event when used in the group', async () => {

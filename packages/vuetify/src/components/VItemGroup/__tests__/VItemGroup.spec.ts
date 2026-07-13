@@ -399,7 +399,7 @@ describe('VItemGroup', () => {
     expect(wrapper.vm.selectedItem).toEqual(wrapper.vm.items[2])
   })
 
-  it('should activate chips with legacy input-value binding', async () => {
+  it('should activate chips with model-value binding', async () => {
     const ChipMock = {
       name: 'chip-mock',
 
@@ -407,7 +407,7 @@ describe('VItemGroup', () => {
         return h(VItem, {}, {
           default: ({ active, toggle }: { active: boolean, toggle: () => void }) => h(VChip, {
             activeClass: 'purple--text',
-            inputValue: active,
+            modelValue: active,
             onClick: toggle
           }, () => 'Tag')
         })

@@ -8,7 +8,7 @@
     "draggable": "Makes the chip draggable",
     "filter": "Displays a selection icon when selected",
     "filterIcon": "Change the default icon used for **filter** chips",
-    "inputValue": "Controls the **active** state of the item. This is typically used to highlight the component.",
+    "modelValue": "Controls the **active** state of the item. This is typically used to highlight the component.",
     "label": "Removes circle edges",
     "link": "Explicitly define the chip as a link",
     "outlined": "Removes background and applies border and text color",

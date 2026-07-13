@@ -38,7 +38,7 @@
               >
                 <template #default="{ active, toggle }">
                   <v-btn
-                    :input-value="active"
+                    :model-value="active"
                     class="mr-2"
                     text
                     @click="toggle"

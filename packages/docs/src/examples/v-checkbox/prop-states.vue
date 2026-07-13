@@ -14,7 +14,7 @@
     <v-row>
       <v-col cols="4">
         <v-checkbox
-          input-value="true"
+          :model-value="true"
           value
         ></v-checkbox>
       </v-col>
@@ -39,7 +39,7 @@
     <v-row>
       <v-col cols="4">
         <v-checkbox
-          input-value="true"
+          :model-value="true"
           value
           disabled
         ></v-checkbox>

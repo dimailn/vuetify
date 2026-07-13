@@ -104,7 +104,7 @@
               <template v-slot:selection="data">
                 <v-chip
                   v-bind="data.attrs"
-                  :input-value="data.selected"
+                  :model-value="data.selected"
                   close
                   @click="data.select"
                   @click:close="remove(data.item)"
