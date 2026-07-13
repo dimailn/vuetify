@@ -59,15 +59,6 @@ export async function createApp ({
           ...extra,
         }
       },
-      $load (urls) {
-        urls = urls instanceof Array ? urls : [urls]
-        urls.forEach(url => {
-          const link = document.createElement('link')
-          link.rel = 'stylesheet'
-          link.href = url
-          document.head.appendChild(link)
-        })
-      },
     },
   })
 
