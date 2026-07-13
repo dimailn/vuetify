@@ -75,6 +75,12 @@ describe('Overlayable.ts', () => {
     expect(wrapper.vm.overlay).toBeFalsy()
   })
 
+  it('destroyOverlay безопасен когда оверлея нет', () => {
+    const wrapper = mountFunction()
+    expect(() => wrapper.vm.destroyOverlay()).not.toThrow()
+    expect(wrapper.vm.overlay).toBeFalsy()
+  })
+
   it('should remove overlay app container after close', async () => {
     const wrapper = mountFunction()
 
@@ -208,6 +214,24 @@ describe('Overlayable.ts', () => {
 
       expect(app.querySelector('.v-overlay--active')).toBeTruthy()
       expect(wrapper.vm.overlay!.$el.isConnected).toBe(true)
+    })
+
+    it('beforeUnmount уничтожает оверлей даже при isActive (фикс залипшего overlay)', async () => {
+      const wrapper = mountDrawerLike()
+
+      wrapper.vm.temporary = true
+      wrapper.vm.isActive = true
+      await nextTick()
+      await waitAnimationFrame()
+
+      const app = document.querySelector('[data-app]') as HTMLElement
+      expect(app.querySelector('.v-overlay')).toBeTruthy()
+      expect(document.querySelectorAll('[data-v-app]')).toHaveLength(1)
+
+      wrapper.unmount()
+
+      expect(app.querySelector('.v-overlay')).toBeNull()
+      expect(document.querySelectorAll('[data-v-app]')).toHaveLength(0)
     })
 
     it('showOverlay true→true не вызывает genOverlay после потери [data-app]', async () => {
