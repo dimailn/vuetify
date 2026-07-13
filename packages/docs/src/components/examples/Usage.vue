@@ -22,7 +22,7 @@
                 v-slot="{ active, toggle }"
               >
                 <v-btn
-                  :input-value="active"
+                  :model-value="active"
                   depressed
                   height="44"
                   text

@@ -13,7 +13,7 @@
         <v-switch
           color="primary"
           value
-          input-value="true"
+          :model-value="true"
         ></v-switch>
       </v-col>
       <v-col cols="6">
@@ -33,7 +33,7 @@
         <v-switch
           color="primary"
           value
-          input-value="true"
+          :model-value="true"
           disabled
         ></v-switch>
       </v-col>
@@ -54,7 +54,7 @@
         <v-switch
           loading="warning"
           value
-          input-value="true"
+          :model-value="true"
         ></v-switch>
       </v-col>
       <v-col cols="6">

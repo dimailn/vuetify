@@ -75,7 +75,7 @@ The **shift** prop hides button text when not active. This provides an alternati
 
 #### Toggle
 
-The display state of `v-bottom-navigation` can be toggled using the **input-value** prop. You can also control the currently active button using **v-model**.
+The display state of `v-bottom-navigation` can be toggled using the **model-value** prop or **v-model**. You can also control the currently active button using **v-model**.
 
 <example file="v-bottom-navigation/prop-toggle" />
 

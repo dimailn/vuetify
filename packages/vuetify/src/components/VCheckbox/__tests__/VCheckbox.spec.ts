@@ -390,4 +390,14 @@ describe('VCheckbox.ts', () => { // eslint-disable-line max-statements
     expect(input.element.classList.contains('mt-0')).toBe(false)
     expect(wrapper.html()).toMatchSnapshot()
   })
+
+  it('should warn when input-value attr is used', () => {
+    mountFunction({
+      attrs: {
+        'input-value': true
+      }
+    })
+
+    expect('[Vuetify] [BREAKING] \'input-value\' has been removed, use \'model-value\' instead.').toHaveBeenWarned()
+  })
 })

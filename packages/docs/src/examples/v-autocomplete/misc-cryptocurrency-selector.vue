@@ -29,7 +29,7 @@
       <template v-slot:selection="{ attr, on, item, selected }">
         <v-chip
           v-bind="attr"
-          :input-value="selected"
+          :model-value="selected"
           color="blue-grey"
           class="white--text"
           v-on="on"

@@ -117,7 +117,9 @@ export default mixins(
   created () {
     const breakingProps = [
       ['outline', 'outlined'],
-      ['selected', 'input-value'],
+      ['selected', 'model-value'],
+      ['inputValue', 'model-value'],
+      ['input-value', 'model-value'],
       ['value', 'modelValue'],
       ['onInput', 'onUpdate:modelValue']
     ]

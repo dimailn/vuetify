@@ -4,7 +4,7 @@
     "depressed": "Removes the button box shadow.",
     "fab": "Designates the button as a floating-action-button. Button will become _round_.",
     "icon": "Designates the button as icon. Button will become _round_ and applies the **text** prop.",
-    "inputValue": "Controls the button's active state.",
+    "modelValue": "Controls the button's active state.",
     "left": "Aligns the component towards the left. This should be used with the **absolute** or **fixed** props.",
     "loading": "Adds a loading icon animation.",
     "outlined": "Makes the background transparent and applies a thin border.",
