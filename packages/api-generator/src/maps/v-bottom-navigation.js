@@ -12,7 +12,7 @@ module.exports = {
         value: 'any',
       },
       {
-        name: 'update:input-value',
+        name: 'update:model-value',
         value: 'string | number',
       },
     ],

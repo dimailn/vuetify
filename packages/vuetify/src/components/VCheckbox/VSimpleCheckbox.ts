@@ -47,6 +47,8 @@ export default defineComponent({
   created () {
     const breakingProps = [
       ['value', 'modelValue'],
+      ['inputValue', 'model-value'],
+      ['input-value', 'model-value'],
       ['onInput', 'onUpdate:modelValue']
     ]
 

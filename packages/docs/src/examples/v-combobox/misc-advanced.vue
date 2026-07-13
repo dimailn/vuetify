@@ -29,7 +29,7 @@
           v-if="item === Object(item)"
           v-bind="attrs"
           :color="`${item.color} lighten-3`"
-          :input-value="selected"
+          :model-value="selected"
           label
           small
         >

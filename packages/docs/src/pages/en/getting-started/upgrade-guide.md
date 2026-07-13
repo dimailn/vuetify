@@ -559,7 +559,7 @@ export default new Vuetify({
 
 - The **value** prop is now **active**
 - **value** no longer controls visibility. **input** event emitted when clicking
-- The **selected** prop is now **input-value** or **v-model**
+- The **selected** prop is now **model-value** or **v-model**
 - The **close** event is now **click:close**
 
 #### v-data-iterator and v-data-table

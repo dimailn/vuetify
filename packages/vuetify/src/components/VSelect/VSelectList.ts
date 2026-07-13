@@ -95,11 +95,11 @@ export default mixins(Colorable, Themeable).extend({
   },
 
   methods: {
-    genAction (item: object, inputValue: any): VNode {
+    genAction (item: object, isSelected: any): VNode {
       return h(VListItemAction, {}, () => [
         h(VSimpleCheckbox, {
           color: this.color,
-          modelValue: inputValue,
+          modelValue: isSelected,
           ripple: false,
           'onUpdate:modelValue': () => this.$emit('select', item)
         })

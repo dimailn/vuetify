@@ -32,7 +32,7 @@
         >
           <v-chip
             active-class="purple--text"
-            :input-value="active"
+            :model-value="active"
             @click="toggle"
           >
             Tag {{ n }}
