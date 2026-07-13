@@ -13,10 +13,9 @@
       >
         <app-select
           v-if="apiComponents.length > 1"
-          :value="selectedComponent"
+          v-model="selectedComponent"
           icon="$mdiViewDashboardOutline"
           :items="apiComponents"
-          @input="selectedComponent = $event"
         />
       </v-col>
       <v-col
@@ -26,10 +25,10 @@
         md="4"
       >
         <app-text-field
+          v-model="filter"
           clearable
           icon="$mdiMagnify"
           label="Filter"
-          @input="filter = $event"
         />
       </v-col>
     </v-row>

@@ -1,5 +1,6 @@
 <template>
   <v-select
+    :model-value="modelValue"
     :background-color="(!theme.isDark && !isFocused) ? 'grey lighten-3' : undefined"
     :flat="!isFocused"
     class="rounded-lg"
@@ -7,6 +8,9 @@
     hide-details
     solo
     v-bind="$attrs"
+    @update:model-value="$emit('update:modelValue', $event)"
+    @focus="isFocused = true"
+    @blur="isFocused = false"
   >
     <template
       v-if="$slots.icon || icon"
@@ -37,7 +41,12 @@
 
     inject: ['theme'],
 
-    props: { icon: String },
+    props: {
+      icon: String,
+      modelValue: null,
+    },
+
+    emits: ['update:modelValue'],
 
     data: () => ({
       isFocused: false,
