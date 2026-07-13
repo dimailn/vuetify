@@ -132,6 +132,17 @@ describe('VColorPickerEdit.ts', () => {
     expect(wrapper.html()).toMatchSnapshot()
   })
 
+  it('should fallback to rgba mode when mode is null', () => {
+    const wrapper = mountFunction({
+      props: {
+        color: fromRGBA({ r: 0, g: 0, b: 0, a: 0 }),
+        mode: null as any
+      }
+    })
+
+    expect(wrapper.findAll('input')).toHaveLength(4)
+  })
+
   it('should hide mode switch button', () => {
     const wrapper = mountFunction({
       props: {

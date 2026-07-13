@@ -490,6 +490,7 @@ describe('VSelect.ts', () => {
     })
 
     expect(wrapper.vm.$attrs.autocomplete).toBe('on')
+    expect(wrapper.find('input').attributes('autocomplete')).toBe('on')
   })
 
   // Based on issue: https://github.com/vuetifyjs/vuetify/issues/12769

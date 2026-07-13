@@ -5,17 +5,17 @@ exports[`VRangeSlider should render a vertical slider 1`] = `
   <div class="v-input__control">
     <div class="v-input__slot">
       <div class="v-slider v-slider--vertical theme--light">
-        <input id="input-25"
+        <input id="input-min-25"
                disabled
                readonly
                tabindex="-1"
-               value="0,0"
+               value="0"
         >
-        <input id="input-25"
+        <input id="input-max-25"
                disabled
                readonly
                tabindex="-1"
-               value="0,0"
+               value="0"
         >
         <div class="v-slider__track-container">
           <div class="v-slider__track-background primary lighten-3">
@@ -66,17 +66,17 @@ exports[`VRangeSlider should render disabled slider 1`] = `
   <div class="v-input__control">
     <div class="v-input__slot">
       <div class="v-slider v-slider--horizontal v-slider--disabled theme--light">
-        <input id="input-29"
+        <input id="input-min-29"
                disabled
                readonly
                tabindex="-1"
-               value="0,0"
+               value="0"
         >
-        <input id="input-29"
+        <input id="input-max-29"
                disabled
                readonly
                tabindex="-1"
-               value="0,0"
+               value="0"
         >
         <div class="v-slider__track-container">
           <div class="v-slider__track-background">
