@@ -65,8 +65,8 @@
       >
         <v-simple-checkbox
           color="green"
-          :value="isSelected"
-          @input="select($event)"
+          :model-value="isSelected"
+          @update:model-value="select($event)"
         ></v-simple-checkbox>
       </template>
 
