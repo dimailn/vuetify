@@ -15,21 +15,21 @@ function mergeActivator ({ attrs, on }: { attrs: Record<string, unknown>, on: Re
 function renderActivatorSlot (
   props: { attrs: Record<string, unknown>, on: Record<string, Function> },
   selected: string | null,
-  captureSpy?: jest.Mock,
+  captureSpy?: jest.Mock
 ) {
   const customSlot = selected
     ? h('button', {
       type: 'button',
       class: 'selected-activator',
       ...mergeActivator(props),
-      ...(captureSpy ? { onClickCapture: captureSpy } : {}),
+      ...(captureSpy ? { onClickCapture: captureSpy } : {})
     }, selected)
     : h(Comment)
 
   const fallback = h('button', {
     type: 'button',
     class: 'fallback-activator',
-    ...mergeActivator(props),
+    ...mergeActivator(props)
   }, 'Open')
 
   const validContent = selected ? customSlot : null
@@ -44,19 +44,19 @@ const FallbackSwapHarness = defineComponent({
   components: { VMenu },
   data: () => ({
     selected: null as string | null,
-    captureCount: 0,
+    captureCount: 0
   }),
   methods: {
     onCapture () {
       this.captureCount += 1
-    },
+    }
   },
   render () {
     return h(VMenu, {
       modelValue: false,
       closeOnContentClick: true,
       attach: true,
-      'onUpdate:modelValue': () => {},
+      'onUpdate:modelValue': () => {}
     }, {
       activator: (props: { attrs: Record<string, unknown>, on: Record<string, Function> }) =>
         renderActivatorSlot(props, this.selected, this.onCapture),
@@ -64,10 +64,10 @@ const FallbackSwapHarness = defineComponent({
         class: 'menu-item',
         onClick: () => {
           this.selected = 'a'
-        },
-      }, 'Option A'),
+        }
+      }, 'Option A')
     })
-  },
+  }
 })
 
 const VIfSwapHarness = defineComponent({
@@ -79,29 +79,29 @@ const VIfSwapHarness = defineComponent({
       modelValue: false,
       closeOnContentClick: true,
       attach: true,
-      'onUpdate:modelValue': () => {},
+      'onUpdate:modelValue': () => {}
     }, {
       activator: (props: { attrs: Record<string, unknown>, on: Record<string, Function> }) => (
         this.selected
           ? h('button', {
             type: 'button',
             class: 'selected-activator',
-            ...mergeActivator(props),
+            ...mergeActivator(props)
           }, this.selected)
           : h('button', {
             type: 'button',
             class: 'default-activator',
-            ...mergeActivator(props),
+            ...mergeActivator(props)
           }, 'Open')
       ),
       default: () => h('div', {
         class: 'menu-item',
         onClick: () => {
           this.selected = 'a'
-        },
-      }, 'Option A'),
+        }
+      }, 'Option A')
     })
-  },
+  }
 })
 
 async function flushMenu () {
@@ -129,13 +129,13 @@ describe('VMenu activator swap', () => {
     const wrapper = mount(VMenu, {
       attachTo: document.body,
       props: {
-        attach: true,
+        attach: true
       },
       slots: {
         activator: (props: { attrs: Record<string, unknown>, on: Record<string, Function> }) =>
           h('button', { class: 'activator', ...mergeActivator(props) }, 'Activator'),
-        default: () => h('div', 'Content'),
-      },
+        default: () => h('div', 'Content')
+      }
     })
 
     await wrapper.find('.activator').trigger('click')
@@ -144,7 +144,7 @@ describe('VMenu activator swap', () => {
 
   it('replaces fallback activator after selection without stale DOM (TEM-15225)', async () => {
     const wrapper = mount(FallbackSwapHarness, {
-      attachTo: document.body,
+      attachTo: document.body
     })
 
     await flushMenu()
@@ -166,7 +166,7 @@ describe('VMenu activator swap', () => {
 
     expect(wrapper.vm.selected).toBe('a')
     expect(document.querySelector('.fallback-activator')).toBeNull()
-    expect(document.querySelectorAll('button').length).toBe(1)
+    expect(document.querySelectorAll('button')).toHaveLength(1)
 
     const selected = document.querySelector('.selected-activator') as HTMLElement
     expect(selected).toBeTruthy()
@@ -182,7 +182,7 @@ describe('VMenu activator swap', () => {
 
   it('reopens menu after v-if activator swap', async () => {
     const wrapper = mount(VIfSwapHarness, {
-      attachTo: document.body,
+      attachTo: document.body
     })
 
     await flushMenu()
