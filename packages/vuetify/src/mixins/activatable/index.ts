@@ -96,6 +96,10 @@ export default baseMixins.extend({
         return node.type === Symbol.for('v-fgt') ? (node.children as VNode[]) : node
       })
 
+      if (!this.activator) {
+        this.activatorElement = null
+      }
+
       return this.activatorNode
     },
     genActivatorAttributes () {

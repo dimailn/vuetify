@@ -63,22 +63,11 @@ export default mixins(Bootable).extend({
   },
 
   beforeMount () {
-    this.$nextTick(() => {
-      if (this.activatorNode) {
-        const activator = Array.isArray(this.activatorNode) ? this.activatorNode : [this.activatorNode]
+    this.$nextTick(this.hoistActivatorNodes)
+  },
 
-        activator.forEach(node => {
-          if (!node.el) return
-          if (!this.$el.parentNode) return
-
-          const target = this.$el === this.$el.parentNode.firstChild
-            ? this.$el
-            : this.$el.nextSibling
-
-          this.$el.parentNode.insertBefore(node.el, target)
-        })
-      }
-    })
+  updated () {
+    this.$nextTick(this.hoistActivatorNodes)
   },
 
   mounted () {
@@ -120,6 +109,25 @@ export default mixins(Bootable).extend({
   },
 
   methods: {
+    hoistActivatorNodes () {
+      if (this.$.isUnmounted || !this.activatorNode) return
+
+      const activator = Array.isArray(this.activatorNode)
+        ? this.activatorNode
+        : [this.activatorNode]
+
+      activator.forEach(node => {
+        if (!node.el) return
+        if (!this.$el?.parentNode) return
+        if (!this.$el.contains(node.el as Node)) return
+
+        const target = this.$el === this.$el.parentNode.firstChild
+          ? this.$el
+          : this.$el.nextSibling
+
+        this.$el.parentNode.insertBefore(node.el, target)
+      })
+    },
     getScopeIdAttrs () {
       if (!this.$attrs) return {}
 

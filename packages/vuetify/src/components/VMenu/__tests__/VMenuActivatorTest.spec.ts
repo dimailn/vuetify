@@ -39,27 +39,64 @@ function renderActivatorSlot (
   return h(Fragment, { key }, [content])
 }
 
-const FallbackSwapHarness = defineComponent({
-  name: 'FallbackSwapHarness',
-  components: { VMenu },
-  data: () => ({
-    selected: null as string | null,
-    captureCount: 0
-  }),
-  methods: {
-    onCapture () {
-      this.captureCount += 1
+function createFallbackSwapHarness (attach?: boolean) {
+  return defineComponent({
+    name: attach ? 'FallbackSwapHarness' : 'DefaultAttachFallbackSwapHarness',
+    components: { VMenu },
+    data: () => ({
+      selected: null as string | null,
+      captureCount: 0
+    }),
+    methods: {
+      onCapture () {
+        this.captureCount += 1
+      }
+    },
+    render () {
+      return h(VMenu, {
+        modelValue: false,
+        closeOnContentClick: true,
+        ...(attach ? { attach: true } : {}),
+        'onUpdate:modelValue': () => {}
+      }, {
+        activator: (props: { attrs: Record<string, unknown>, on: Record<string, Function> }) =>
+          renderActivatorSlot(props, this.selected, this.onCapture),
+        default: () => h('div', {
+          class: 'menu-item',
+          onClick: () => {
+            this.selected = 'a'
+          }
+        }, 'Option A')
+      })
     }
-  },
+  })
+}
+
+const FallbackSwapHarness = createFallbackSwapHarness(true)
+const DefaultAttachFallbackSwapHarness = createFallbackSwapHarness()
+
+const TypeSwapHarness = defineComponent({
+  name: 'TypeSwapHarness',
+  components: { VMenu },
+  data: () => ({ selected: null as string | null }),
   render () {
     return h(VMenu, {
       modelValue: false,
       closeOnContentClick: true,
-      attach: true,
       'onUpdate:modelValue': () => {}
     }, {
-      activator: (props: { attrs: Record<string, unknown>, on: Record<string, Function> }) =>
-        renderActivatorSlot(props, this.selected, this.onCapture),
+      activator: (props: { attrs: Record<string, unknown>, on: Record<string, Function> }) => (
+        this.selected
+          ? h('button', {
+            type: 'button',
+            class: 'selected-activator',
+            ...mergeActivator(props)
+          }, this.selected)
+          : h('span', {
+            class: 'fallback-activator',
+            ...mergeActivator(props)
+          }, 'Open')
+      ),
       default: () => h('div', {
         class: 'menu-item',
         onClick: () => {
@@ -120,9 +157,34 @@ function assertActivatorSibling (activator: HTMLElement) {
   expect(activator.nextElementSibling === vMenu || activator.previousElementSibling === vMenu).toBe(true)
 }
 
+function assertActivatorOutsideHiddenMenu (activator: HTMLElement) {
+  const vMenu = getVMenuEl()
+  expect(vMenu).toBeTruthy()
+  expect(vMenu!.classList.contains('v-menu--attached')).toBe(false)
+  expect(vMenu!.contains(activator)).toBe(false)
+  assertActivatorSibling(activator)
+}
+
+async function swapActivatorViaMenuItem (wrapper: ReturnType<typeof mount>) {
+  const menuItem = document.querySelector('.menu-item') as HTMLElement
+  expect(menuItem).toBeTruthy()
+  menuItem.click()
+  await flushMenu()
+  await wrapper.vm.$nextTick()
+}
+
 describe('VMenu activator swap', () => {
   beforeEach(() => {
     document.body.innerHTML = '<div data-app="true"></div>'
+
+    const style = document.createElement('style')
+    style.id = 'vmenu-regression-styles'
+    style.textContent = '.v-menu:not(.v-menu--attached) { display: none !important; }'
+    document.head.appendChild(style)
+  })
+
+  afterEach(() => {
+    document.getElementById('vmenu-regression-styles')?.remove()
   })
 
   it('passes onClick to the slot activator', async () => {
@@ -178,6 +240,74 @@ describe('VMenu activator swap', () => {
     await flushMenu()
     expect(wrapper.vm.captureCount).toBe(1)
     expect((wrapper.findComponent(VMenu).vm as any).isActive).toBe(true)
+  })
+
+  it('keeps swapped activator outside hidden .v-menu with default attach (TEM-15225)', async () => {
+    const wrapper = mount(DefaultAttachFallbackSwapHarness, {
+      attachTo: document.body
+    })
+
+    await flushMenu()
+
+    const fallback = document.querySelector('.fallback-activator') as HTMLElement
+    expect(fallback).toBeTruthy()
+    assertActivatorOutsideHiddenMenu(fallback)
+
+    fallback.click()
+    await flushMenu()
+    expect((wrapper.findComponent(VMenu).vm as any).isActive).toBe(true)
+
+    await swapActivatorViaMenuItem(wrapper)
+
+    expect(wrapper.vm.selected).toBe('a')
+    expect(document.querySelector('.fallback-activator')).toBeNull()
+    expect(document.querySelectorAll('button')).toHaveLength(1)
+
+    const selected = document.querySelector('.selected-activator') as HTMLElement
+    expect(selected).toBeTruthy()
+    expect(selected.isConnected).toBe(true)
+    assertActivatorOutsideHiddenMenu(selected)
+
+    const menuVm = wrapper.findComponent(VMenu).vm as any
+    expect(menuVm.getActivator()).toBe(selected)
+    expect(wrapper.vm.captureCount).toBe(0)
+
+    selected.click()
+    await flushMenu()
+    expect(wrapper.vm.captureCount).toBe(1)
+    expect(menuVm.isActive).toBe(true)
+  })
+
+  it('reopens menu after activator type swap with default attach', async () => {
+    const wrapper = mount(TypeSwapHarness, {
+      attachTo: document.body
+    })
+
+    await flushMenu()
+
+    const fallback = document.querySelector('.fallback-activator') as HTMLElement
+    expect(fallback).toBeTruthy()
+    assertActivatorOutsideHiddenMenu(fallback)
+
+    fallback.click()
+    await flushMenu()
+    expect((wrapper.findComponent(VMenu).vm as any).isActive).toBe(true)
+
+    await swapActivatorViaMenuItem(wrapper)
+
+    expect(document.querySelector('.fallback-activator')).toBeNull()
+
+    const selected = document.querySelector('.selected-activator') as HTMLElement
+    expect(selected).toBeTruthy()
+    expect(selected.isConnected).toBe(true)
+    assertActivatorOutsideHiddenMenu(selected)
+
+    const menuVm = wrapper.findComponent(VMenu).vm as any
+    expect(menuVm.getActivator()).toBe(selected)
+
+    selected.click()
+    await flushMenu()
+    expect(menuVm.isActive).toBe(true)
   })
 
   it('reopens menu after v-if activator swap', async () => {
