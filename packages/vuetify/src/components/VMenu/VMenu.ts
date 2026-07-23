@@ -523,7 +523,7 @@ export default baseMixins.extend({
     // console.log('vmenurender', this, this.activator, this.getActivator())
 
     return withDirectives(h('div', data, [
-      !this.activator && this.genActivator(),
+      ...(!this.activator ? this.genActivator() : []),
       this.showLazyContent(() => {
         const transition = this.genTransition()
         return [
