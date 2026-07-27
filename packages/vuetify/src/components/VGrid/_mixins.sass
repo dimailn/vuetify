@@ -6,9 +6,16 @@
 
 // For each breakpoint, define the maximum width of the container in a media query
 =make-container-max-widths($max-widths: $container-max-widths, $breakpoints: $grid-breakpoints)
+  // max-width without media query (custom keys, xs) — before any @media for Sass 1.92+ mixed-decls
   @each $breakpoint, $container-max-width in $max-widths
-    +media-breakpoint-up($breakpoint, $breakpoints)
+    $min: breakpoint-min($breakpoint, $breakpoints)
+    @if not $min
       max-width: $container-max-width
+
+  @each $breakpoint in map-keys($breakpoints)
+    @if map-has-key($max-widths, $breakpoint)
+      +media-breakpoint-up($breakpoint, $breakpoints)
+        max-width: map-get($max-widths, $breakpoint)
 
 =make-row($gutter: $grid-gutter)
   display: flex
