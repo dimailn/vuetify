@@ -599,4 +599,24 @@ describe('VAutocomplete.ts', () => {
     expect(listData.noFilter).toBe(true)
     expect(listData.items).toEqual(wrapper.vm.virtualizedItems)
   })
+
+  it('should emit click:append when append icon is clicked', async () => {
+    const onClickAppend = jest.fn()
+    const wrapper = mountFunction({
+      props: {
+        appendIcon: 'mdi-close',
+        items: [],
+        modelValue: null
+      },
+      attrs: {
+        'onClick:append': onClickAppend
+      }
+    })
+
+    const icon = wrapper.find('.v-input__icon--append button, .v-input__icon--append .v-icon--link')
+    expect(icon.exists()).toBe(true)
+    await icon.trigger('click')
+    expect(onClickAppend).toHaveBeenCalled()
+    expect(wrapper.emitted('click:append')).toBeTruthy()
+  })
 })

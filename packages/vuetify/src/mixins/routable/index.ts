@@ -6,6 +6,7 @@ import { defineComponent, resolveComponent } from 'vue'
 import Ripple, { RippleOptions } from '../../directives/ripple'
 
 // Utilities
+import { mergeListeners } from '../../util/mergeData'
 
 export default defineComponent({
   name: 'routable',
@@ -101,7 +102,7 @@ export default defineComponent({
         tabindex: 'tabindex' in this.$attrs ? this.$attrs.tabindex : undefined,
         class: this.classes,
         style: this.styles,
-        ...this.$listeners,
+        ...mergeListeners(this.$listeners),
         ...('click' in this ? { onClick: (this as any).click } : undefined), // #14447
         ref: 'link'
       }

@@ -8,6 +8,7 @@ import Themeable from '../../mixins/themeable'
 
 // Util
 import { convertToUnit, keys, remapInternalIcon } from '../../util/helpers'
+import { mergeListeners } from '../../util/mergeData'
 
 // Types
 import { defineComponent, VNode, h } from 'vue'
@@ -76,6 +77,7 @@ export default mixins(
     },
     hasClickListener (): boolean {
       return Boolean(
+        this.listeners$.click ||
         this.listeners$.onClick
       )
     }
@@ -113,7 +115,7 @@ export default mixins(
     },
     // Component data for both font icon and SVG wrapper span
     getDefaultData (): VNodeData {
-      const data = {
+      const data: VNodeData = {
         class: {
           'v-icon--disabled': this.disabled,
           'v-icon--left': this.left,
@@ -126,7 +128,7 @@ export default mixins(
         'aria-hidden': !this.hasClickListener,
         type: this.hasClickListener ? 'button' : undefined,
         // ...this.attrs$,
-        ...this.listeners$
+        ...mergeListeners(this.listeners$)
       }
 
       if (this.hasClickListener && this.disabled) {

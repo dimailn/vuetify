@@ -14,6 +14,7 @@ import ripple, { Ripple } from '../../directives/ripple'
 // Utilities
 import { getSlot } from '../../util/helpers'
 import mixins from '../../util/mixins'
+import { mergeListeners } from '../../util/mergeData'
 
 const baseMixins = mixins(
   Colorable,
@@ -108,7 +109,7 @@ export default baseMixins.extend({
       tabindex: this.isDisabled ? -1 : null,
       type: 'button',
       'aria-expanded': this.isActive,
-      ...this.$listeners,
+      ...mergeListeners(this.$listeners),
       onClick: this.onClick,
       onMousedown: () => (this.hasMousedown = true),
       onMouseup: () => (this.hasMousedown = false)

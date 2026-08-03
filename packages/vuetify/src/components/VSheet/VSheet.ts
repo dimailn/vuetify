@@ -13,6 +13,7 @@ import Themeable from '../../mixins/themeable'
 // Helpers
 import mixins from '../../util/mixins'
 import { getTagValue } from '../../util/helpers'
+import { mergeListeners } from '../../util/mergeData'
 
 // Types
 import { VNode, defineComponent } from 'vue'
@@ -58,7 +59,7 @@ export default defineComponent({
     const data = {
       class: this.classes,
       style: this.styles,
-      ...this.listeners$
+      ...mergeListeners(this.listeners$)
     }
 
     return h(

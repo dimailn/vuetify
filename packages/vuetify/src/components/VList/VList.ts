@@ -6,6 +6,7 @@ import VListGroup from './VListGroup'
 // Components
 import VSheet from '../VSheet/VSheet'
 import { getSlot, getTagValue } from '../../util/helpers'
+import { mergeListeners } from '../../util/mergeData'
 
 // Types
 import { VNode, defineComponent } from 'vue'
@@ -94,7 +95,7 @@ export default defineComponent({
       style: this.styles,
       role: this.isInNav || this.isInMenu ? undefined : 'list',
       // ...this.attrs$,
-      ...this.listeners$
+      ...mergeListeners(this.listeners$)
     }
 
     return h(getTagValue(this.tag), this.setBackgroundColor(this.color, data), getSlot(this))

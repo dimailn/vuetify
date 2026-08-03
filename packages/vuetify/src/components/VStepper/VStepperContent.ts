@@ -10,6 +10,7 @@ import { inject as RegistrableInject } from '../../mixins/registrable'
 
 // Helpers
 import { convertToUnit, getSlot } from '../../util/helpers'
+import { mergeListeners } from '../../util/mergeData'
 
 // Utilities
 import mixins from '../../util/mixins'
@@ -161,7 +162,7 @@ export default baseMixins.extend({
     }
 
     return h(this.computedTransition, {
-      ...this.$listeners
+      ...mergeListeners(this.$listeners)
     }, () => [content])
   }
 })

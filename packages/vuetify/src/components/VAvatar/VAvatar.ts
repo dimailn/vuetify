@@ -8,6 +8,7 @@ import Roundable from '../../mixins/roundable'
 
 // Utilities
 import { convertToUnit, getSlot } from '../../util/helpers'
+import { mergeListeners } from '../../util/mergeData'
 
 // Types
 import { VNode } from 'vue'
@@ -52,7 +53,7 @@ export default mixins(
     const data = {
       class: ['v-avatar', this.classes],
       style: this.styles,
-      ...this.$listeners
+      ...mergeListeners(this.$listeners)
     }
 
     return h('div', this.setBackgroundColor(this.color, data), getSlot(this))

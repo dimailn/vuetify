@@ -6,6 +6,7 @@ import './VSubheader.sass'
 import Themeable from '../../mixins/themeable'
 import mixins from '../../util/mixins'
 import { getSlot } from '../../util/helpers'
+import { mergeListeners } from '../../util/mergeData'
 
 // Types
 import { VNode } from 'vue'
@@ -27,7 +28,7 @@ export default mixins(
         'v-subheader--inset': this.inset,
         ...this.themeClasses
       }],
-      ...this.$listeners
+      ...mergeListeners(this.$listeners)
     }, getSlot(this))
   }
 })
