@@ -186,6 +186,30 @@ describe('VChip.ts', () => {
     expect(wrapper.emitted('click')).toBeTruthy()
   })
 
+  it('should call onClick prop on click and skip chipGroup toggle', async () => {
+    const onClick = jest.fn()
+    const toggle = jest.fn()
+    const wrapper = mountFunction({
+      props: { onClick },
+      global: {
+        provide: {
+          chipGroup: {
+            register: jest.fn(),
+            unregister: jest.fn()
+          }
+        }
+      }
+    })
+
+    wrapper.vm.toggle = toggle
+
+    await wrapper.trigger('click')
+
+    expect(onClick).toHaveBeenCalled()
+    expect(toggle).not.toHaveBeenCalled()
+    expect(wrapper.emitted('update:modelValue')).toBeFalsy()
+  })
+
   it('should conditionally show based on active prop', async () => {
     const wrapper = mountFunction({
       props: { close: true }

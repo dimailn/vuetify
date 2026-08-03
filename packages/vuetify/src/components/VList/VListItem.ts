@@ -138,6 +138,11 @@ export default baseMixins.extend({
     click (e: MouseEvent | KeyboardEvent) {
       if (e.detail) this.$el.blur()
 
+      if (typeof this.onClick === 'function') {
+        this.onClick(e as MouseEvent)
+        return
+      }
+
       this.$emit('click', e)
 
       this.to || this.toggle()

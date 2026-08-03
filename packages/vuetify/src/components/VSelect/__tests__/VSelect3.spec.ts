@@ -163,9 +163,7 @@ describe('VSelect.ts', () => {
     expect(selectItem).toHaveBeenCalledTimes(1)
   })
 
-  // TODO: this fails without sync, nextTick doesn't help
-  // https://github.com/vuejs/vue-test-utils/issues/1130
-  it.skip('should set selected index', async () => {
+  it('should set selected index', async () => {
     const wrapper = mountFunction({
       props: {
         chips: true,
@@ -179,17 +177,18 @@ describe('VSelect.ts', () => {
     expect(wrapper.vm.selectedIndex).toBe(-1)
 
     const foo = wrapper.find('.v-chip')
-    foo.trigger('click')
+    await foo.trigger('click')
 
     expect(wrapper.vm.selectedIndex).toBe(0)
 
-    wrapper.findAll('.v-chip')[1].trigger('click')
+    await wrapper.findAll('.v-chip')[1].trigger('click')
 
     expect(wrapper.vm.selectedIndex).toBe(1)
 
-    wrapper.setProps({ disabled: true })
+    await wrapper.setProps({ disabled: true })
+    await wrapper.vm.$nextTick()
 
-    wrapper.find('.v-chip').trigger('click')
+    await wrapper.find('.v-chip').trigger('click')
 
     expect(wrapper.vm.selectedIndex).toBe(1)
   })
