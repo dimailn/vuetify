@@ -132,6 +132,11 @@ export default mixins(
 
   methods: {
     click (e: MouseEvent): void {
+      if (typeof this.onClick === 'function') {
+        this.onClick(e)
+        return
+      }
+
       this.$emit('click', e)
 
       if (this.chipGroup) {

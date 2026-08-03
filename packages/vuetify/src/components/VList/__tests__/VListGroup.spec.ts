@@ -66,6 +66,22 @@ describe('VListGroup.ts', () => {
     expect(wrapper.vm.isActive).toBe(true)
   })
 
+  it('should toggle isActive when header is clicked', async () => {
+    const wrapper = mountFunction({
+      props: {
+        modelValue: false
+      }
+    })
+
+    const header = wrapper.find('.v-list-group__header')
+    await header.trigger('click')
+    await wrapper.vm.$nextTick()
+    await wrapper.vm.$nextTick()
+
+    expect(wrapper.emitted('click')).toBeTruthy()
+    expect(wrapper.vm.isActive).toBe(true)
+  })
+
   it('should register when mounted', () => {
     const register = jest.fn()
     const wrapper = mountFunction({

@@ -619,4 +619,35 @@ describe('VSelect.ts', () => {
     expect(dialogWrapper.emitted('click:outside')).toBeFalsy()
     expect(dialogWrapper.vm.isActive).toBe(true)
   })
+
+  it('should select item when clicking v-list-item in custom item slot (ui-kit pattern)', async () => {
+    const items = ['foo', 'bar']
+    const itemSlot = ({ item, attrs, on }: { item: string, attrs: object, on: object }) => h(VListItem, {
+      ...attrs,
+      ...on
+    }, () => [item])
+
+    const wrapper = mountFunction({
+      attachTo: el,
+      props: {
+        eager: true,
+        items,
+        modelValue: null
+      },
+      slots: {
+        item: itemSlot
+      }
+    })
+
+    await wrapper.find('.v-input__slot').trigger('click')
+    await wrapper.vm.$nextTick()
+
+    const listItem = document.querySelector('.v-list-item')
+    expect(listItem).toBeTruthy()
+    listItem!.click()
+    await wrapper.vm.$nextTick()
+
+    expect(wrapper.emitted('update:modelValue')).toBeTruthy()
+    expect(wrapper.emitted('update:modelValue')![0]).toEqual(['foo'])
+  })
 })

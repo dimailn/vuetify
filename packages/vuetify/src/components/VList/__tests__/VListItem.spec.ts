@@ -127,6 +127,42 @@ describe('VListItem.ts', () => {
     expect(click).toHaveBeenCalled()
   })
 
+  it('should call onClick prop on click and skip toggle', async () => {
+    const onClick = jest.fn()
+    const toggle = jest.fn()
+    const wrapper = mountFunction({
+      props: {
+        onClick,
+        link: true
+      }
+    })
+
+    wrapper.vm.toggle = toggle
+
+    await wrapper.trigger('click')
+
+    expect(onClick).toHaveBeenCalled()
+    expect(toggle).not.toHaveBeenCalled()
+  })
+
+  it('should call onClick prop on keydown.enter', async () => {
+    const onClick = jest.fn()
+    const toggle = jest.fn()
+    const wrapper = mountFunction({
+      props: {
+        onClick,
+        link: true
+      }
+    })
+
+    wrapper.vm.toggle = toggle
+
+    await wrapper.trigger('keydown.enter')
+
+    expect(onClick).toHaveBeenCalled()
+    expect(toggle).not.toHaveBeenCalled()
+  })
+
   it('should react to clicks', async () => {
     const blur = jest.fn()
     const toggle = jest.fn()

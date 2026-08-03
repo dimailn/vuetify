@@ -157,7 +157,7 @@ export default baseMixins.extend({
         },
         link: true,
         modelValue: this.isActive,
-        ...mergeListeners({ onClick: this.click }, this.listeners$)
+        ...mergeListeners({ onClick: (e: Event) => this.click(e) }, this.listeners$)
       }, () => [
         this.genPrependIcon(),
         getSlot(this, 'activator'),
