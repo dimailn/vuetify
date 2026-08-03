@@ -23,13 +23,13 @@ exports[`VTextField.ts should apply theme to label, counter, messages and icons 
       </div>
       <div class="v-text-field__slot">
         <label class="v-label theme--light"
-               for="input-185"
+               for="input-190"
                aria-hidden="false"
                style="left: 0px; position: absolute;"
         >
           foo
         </label>
-        <input id="input-185"
+        <input id="input-190"
                type="text"
         >
       </div>
@@ -75,7 +75,7 @@ exports[`VTextField.ts should have prefix and suffix 1`] = `
         <div class="v-text-field__prefix">
           $
         </div>
-        <input id="input-113"
+        <input id="input-118"
                type="text"
         >
         <div class="v-text-field__suffix">
@@ -98,7 +98,7 @@ exports[`VTextField.ts should hide messages if no messages and hide-details is a
   <div class="v-input__control">
     <div class="v-input__slot">
       <div class="v-text-field__slot">
-        <input id="input-199"
+        <input id="input-204"
                type="text"
         >
       </div>
@@ -112,7 +112,7 @@ exports[`VTextField.ts should hide messages if no messages and hide-details is a
   <div class="v-input__control">
     <div class="v-input__slot">
       <div class="v-text-field__slot">
-        <input id="input-199"
+        <input id="input-204"
                type="text"
         >
       </div>
@@ -135,7 +135,7 @@ exports[`VTextField.ts should hide messages if no messages and hide-details is a
   <div class="v-input__control">
     <div class="v-input__slot">
       <div class="v-text-field__slot">
-        <input id="input-199"
+        <input id="input-204"
                type="text"
         >
       </div>
@@ -229,7 +229,7 @@ exports[`VTextField.ts should render component with async loading and custom pro
   <div class="v-input__control">
     <div class="v-input__slot">
       <div class="v-text-field__slot">
-        <input id="input-96"
+        <input id="input-101"
                type="text"
         >
       </div>
@@ -268,7 +268,7 @@ exports[`VTextField.ts should render component with async loading and match snap
   <div class="v-input__control">
     <div class="v-input__slot">
       <div class="v-text-field__slot">
-        <input id="input-88"
+        <input id="input-93"
                type="text"
         >
       </div>

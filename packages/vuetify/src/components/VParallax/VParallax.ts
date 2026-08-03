@@ -6,6 +6,7 @@ import './VParallax.sass'
 import Translatable from '../../mixins/translatable'
 import mixins from '../../util/mixins'
 import { getSlot } from '../../util/helpers'
+import { mergeListeners } from '../../util/mergeData'
 
 // Types
 import type { VNode, VNodeData } from '../../types/vue-internal'
@@ -102,7 +103,7 @@ export default baseMixins.extend({
       style: {
         height: `${this.height}px`
       },
-      ...this.$listeners
+      ...mergeListeners(this.$listeners)
     }, [container, content])
   }
 })

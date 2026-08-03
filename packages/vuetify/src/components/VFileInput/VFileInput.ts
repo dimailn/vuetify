@@ -13,7 +13,7 @@ import { PropType } from 'vue'
 // Utilities
 import { deepEqual, humanReadableFileSize, wrapInArray } from '../../util/helpers'
 import { consoleError } from '../../util/console'
-import { mergeStyles } from '../../util/mergeData'
+import { mergeListeners, mergeStyles } from '../../util/mergeData'
 import { defineComponent, h } from 'vue'
 
 export default defineComponent({
@@ -214,7 +214,7 @@ export default defineComponent({
         readonly: this.isReadonly,
         type: this.type,
         multiple: this.multiple,
-        ...listeners,
+        ...mergeListeners(listeners),
         onChange: this.onInput,
         onKeyDown: this.onKeyDown,
         ref: 'input'

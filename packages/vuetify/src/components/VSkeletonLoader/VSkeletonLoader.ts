@@ -9,6 +9,7 @@ import Themeable from '../../mixins/themeable'
 
 // Utilities
 import mixins from '../../util/mixins'
+import { mergeListeners } from '../../util/mergeData'
 
 // Types
 import { VNode } from 'vue'
@@ -196,7 +197,7 @@ export default mixins(
     return h('div', {
       class: ['v-skeleton-loader', this.classes],
       ...this.attrs,
-      ...this.$listeners,
+      ...mergeListeners(this.$listeners),
       style: this.isLoading ? this.measurableStyles : undefined
     }, [this.genSkeleton()])
   }

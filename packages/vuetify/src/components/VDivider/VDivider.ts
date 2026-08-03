@@ -7,7 +7,7 @@ import { VNode, defineComponent } from 'vue'
 
 // Mixins
 import Themeable from '../../mixins/themeable'
-import mergeData from '../../util/mergeData'
+import mergeData, { mergeListeners } from '../../util/mergeData'
 
 export default defineComponent({
   name: 'v-divider',
@@ -33,7 +33,7 @@ export default defineComponent({
       },
       role: 'separator',
       'aria-orientation': orientation,
-      ...this.$listeners
+      ...mergeListeners(this.$listeners)
     }, this.$attrs))
   }
 })

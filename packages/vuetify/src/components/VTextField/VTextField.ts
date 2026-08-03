@@ -20,6 +20,7 @@ import ripple from '../../directives/ripple'
 // Utilities
 import { attachedRoot } from '../../util/dom'
 import { convertToUnit, getSlot, keyCodes } from '../../util/helpers'
+import { mergeListeners } from '../../util/mergeData'
 import { breaking, consoleWarn } from '../../util/console'
 
 // Types
@@ -406,7 +407,7 @@ export default baseMixins.extend({
         onInput: this.onInput,
         onFocus: this.onFocus,
         onKeydown: this.onKeyDown,
-        ...listeners,
+        ...mergeListeners(listeners),
         ref: 'input'
       })
 

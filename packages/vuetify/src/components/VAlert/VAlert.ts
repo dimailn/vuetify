@@ -18,6 +18,7 @@ import Transitionable from '../../mixins/transitionable'
 import mixins from '../../util/mixins'
 import { breaking } from '../../util/console'
 import { getSlot } from '../../util/helpers'
+import { mergeListeners } from '../../util/mergeData'
 
 // Types
 import type { VNode, VNodeData } from '../../types/vue-internal'
@@ -217,7 +218,7 @@ export default mixins(
       let data: VNodeData = {
         class: ['v-alert', this.classes],
         role: 'alert',
-        ...this.listeners$,
+        ...mergeListeners(this.listeners$),
         style: this.styles
       }
 

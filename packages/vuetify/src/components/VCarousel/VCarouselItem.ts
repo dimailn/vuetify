@@ -7,6 +7,7 @@ import { VImg } from '../VImg'
 // Utilities
 import mixins, { ExtractVue } from '../../util/mixins'
 import { getSlot, getTagValue } from '../../util/helpers'
+import { mergeListeners } from '../../util/mergeData'
 import Routable from '../../mixins/routable'
 import { vShow, withDirectives, h } from 'vue'
 
@@ -50,7 +51,7 @@ export default baseMixins.extend({
           class: 'v-carousel__item',
           ...this.$attrs,
           height: this.windowGroup.internalHeight,
-          ...this.$listeners
+          ...mergeListeners(this.$listeners)
         }, { default: () => getSlot(this), placeholder: this.$slots.placeholder })
       ]
     },

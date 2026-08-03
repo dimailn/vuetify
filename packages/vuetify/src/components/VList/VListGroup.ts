@@ -21,7 +21,7 @@ import ripple, { Ripple } from '../../directives/ripple'
 // Transitions
 import { VExpandTransition } from '../transitions'
 
-// Utils
+import { mergeListeners } from '../../util/mergeData'
 import mixins, { ExtractVue } from '../../util/mixins'
 import { getSlot } from '../../util/helpers'
 import { breaking } from '../../util/console'
@@ -157,8 +157,7 @@ export default baseMixins.extend({
         },
         link: true,
         modelValue: this.isActive,
-        ...this.listeners$,
-        onClick: this.click
+        ...mergeListeners({ onClick: this.click }, this.listeners$),
       }, () => [
         this.genPrependIcon(),
         getSlot(this, 'activator'),

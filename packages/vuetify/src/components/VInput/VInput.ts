@@ -18,6 +18,7 @@ import {
   normalizeClasses
 } from '../../util/helpers'
 import mergeData from '../../util/mergeData'
+import { vue2ListenerNameToVue3Attr } from '../../util/legacyEventsMixin'
 import { breaking } from '../../util/console'
 
 // Types
@@ -205,7 +206,13 @@ export default baseMixins.extend({
     ) {
       const icon = (this as any)[`${type}Icon`]
       const eventName = `click:${kebabCase(type)}`
-      const hasListener = !!(this.listeners$[eventName] || cb)
+      const vue3EventKey = vue2ListenerNameToVue3Attr(eventName)
+      const vnodeProps = (this as any).$?.vnode?.props
+      const hasListener = !!(
+        this.listeners$[eventName] ||
+        cb ||
+        (vnodeProps && vue3EventKey in vnodeProps)
+      )
 
       const localeKey = {
         prepend: 'prependAction',

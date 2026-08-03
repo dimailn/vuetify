@@ -10,6 +10,7 @@ import Themeable from '../../mixins/themeable'
 // Utilities
 import mixins from '../../util/mixins'
 import { convertToUnit, getSlot } from '../../util/helpers'
+import { mergeListeners } from '../../util/mergeData'
 
 // Types
 import type { VNode } from '../../types/vue-internal'
@@ -67,7 +68,7 @@ export default mixins(
     const data = {
       class: ['v-system-bar', this.classes],
       style: this.styles,
-      on: this.$listeners
+      ...mergeListeners(this.$listeners)
     }
 
     return h('div', this.setBackgroundColor(this.color, data), getSlot(this))

@@ -203,27 +203,42 @@ describe('VTextField.ts', () => { // eslint-disable-line max-statements
     }
   })
 
-  it('should not clear input if not clearable and has appended icon (with callback)', async () => {
-    const click = jest.fn()
+  it('should emit click:append when append icon is clicked', async () => {
+    const onClickAppend = jest.fn()
     const wrapper = mountFunction({
       props: {
         modelValue: 'foo',
-        appendIcon: 'block'
+        appendIcon: 'mdi-close'
       },
       attrs: {
-        'onClick:append': click
+        'onClick:append': onClickAppend
       }
     })
 
-    const icon = wrapper.findAll('.v-input__icon--append .v-icon')[0]
-    if (icon) {
-      icon.trigger('click')
-      await wrapper.vm.$nextTick()
-      // Check if the value is still there (internalValue might not be accessible)
-      expect(wrapper.exists()).toBe(true)
-      // In Vue 3, click events might not fire immediately
-      expect(wrapper.exists()).toBe(true)
-    }
+    const icon = wrapper.find('.v-input__icon--append button, .v-input__icon--append .v-icon--link')
+    expect(icon.exists()).toBe(true)
+    await icon.trigger('click')
+    expect(onClickAppend).toHaveBeenCalled()
+    expect('Component emitted event "click:append"').toHaveBeenTipped()
+  })
+
+  it('should emit click:prepend when prepend icon is clicked', async () => {
+    const onClickPrepend = jest.fn()
+    const wrapper = mountFunction({
+      props: {
+        modelValue: 'foo',
+        prependIcon: 'mdi-magnify'
+      },
+      attrs: {
+        'onClick:prepend': onClickPrepend
+      }
+    })
+
+    const icon = wrapper.find('.v-input__icon--prepend button, .v-input__icon--prepend .v-icon--link')
+    expect(icon.exists()).toBe(true)
+    await icon.trigger('click')
+    expect(onClickPrepend).toHaveBeenCalled()
+    expect('Component emitted event "click:prepend"').toHaveBeenTipped()
   })
 
   it('should not clear input if not clearable and has appended icon (without callback)', async () => {

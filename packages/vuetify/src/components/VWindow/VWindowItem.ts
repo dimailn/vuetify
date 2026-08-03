@@ -12,6 +12,7 @@ import Touch from '../../directives/touch'
 // Utilities
 import { convertToUnit, getSlot } from '../../util/helpers'
 import mixins, { ExtractVue } from '../../util/mixins'
+import { mergeListeners } from '../../util/mergeData'
 
 // Types
 import { VNode, Transition } from 'vue'
@@ -77,7 +78,7 @@ export default baseMixins.extend({
     genWindowItem () {
       return withDirectives(h('div', {
         class: ['v-window-item', this.classes],
-        ...this.$listeners
+        ...mergeListeners(this.$listeners)
       }, this.genDefaultSlot()), [
         [
           vShow,

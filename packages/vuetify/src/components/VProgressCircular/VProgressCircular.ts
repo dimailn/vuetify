@@ -10,6 +10,7 @@ import Colorable from '../../mixins/colorable'
 
 // Utils
 import { convertToUnit, getSlot } from '../../util/helpers'
+import { mergeListeners } from '../../util/mergeData'
 
 // Types
 import { VNode, VNodeChild, defineComponent } from 'vue'
@@ -149,7 +150,7 @@ export default defineComponent({
       'aria-valuemax': 100,
       'aria-valuenow': this.indeterminate ? undefined : this.normalizedValue,
       style: this.styles,
-      ...this.$listeners
+      ...mergeListeners(this.$listeners)
     }), [
       this.genSvg(),
       this.genInfo()
