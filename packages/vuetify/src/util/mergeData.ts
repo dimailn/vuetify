@@ -118,10 +118,9 @@ export function mergeClasses (target: any, source: any) {
   return target ? wrapInArray(target).concat(source) : source
 }
 
-export function mergeListeners (...args: [
-  { [key: string]: Function | Function[] } | undefined,
-  { [key: string]: Function | Function[] } | undefined
-]) {
+type ListenerMap = { [key: string]: Function | Function[] } | undefined
+
+export function mergeListeners (...args: ListenerMap[]): ListenerMap {
   if (!args[0] && !args[1]) return undefined
 
   const dest: { [key: string]: Function | Function[] } = {}

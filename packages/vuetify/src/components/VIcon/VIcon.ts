@@ -115,7 +115,7 @@ export default mixins(
     },
     // Component data for both font icon and SVG wrapper span
     getDefaultData (): VNodeData {
-      const data = {
+      const data: VNodeData = {
         class: {
           'v-icon--disabled': this.disabled,
           'v-icon--left': this.left,
