@@ -11,7 +11,7 @@ import Themeable from '../../mixins/themeable'
 // Utilities
 import mixins from '../../util/mixins'
 import { consoleWarn } from '../../util/console'
-import { getSlot, getTagValue } from '../../util/helpers'
+import { getSlot, getTagValue, asRawStore } from '../../util/helpers'
 
 // Types
 import type { VNode } from '../../types/vue-internal'
@@ -137,7 +137,7 @@ export const BaseItemGroup = mixins(
       )
     },
     register (item: GroupableInstance) {
-      const index = this.items.push(item) - 1
+      const index = this.items.push(asRawStore(item)) - 1
 
       // TODO!!!
       item.$on('change', () => this.onClick(item))

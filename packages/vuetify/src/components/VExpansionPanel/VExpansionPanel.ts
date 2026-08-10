@@ -9,7 +9,7 @@ import { factory as GroupableFactory } from '../../mixins/groupable'
 import { provide as RegistrableProvide } from '../../mixins/registrable'
 
 // Utilities
-import { getSlot } from '../../util/helpers'
+import { getSlot, asRawStore } from '../../util/helpers'
 import mixins from '../../util/mixins'
 
 // Types
@@ -62,13 +62,13 @@ export default mixins(
 
   methods: {
     registerContent (vm: VExpansionPanelContentInstance) {
-      this.content = vm
+      this.content = asRawStore(vm)
     },
     unregisterContent () {
       this.content = null
     },
     registerHeader (vm: VExpansionPanelHeaderInstance) {
-      this.header = vm
+      this.header = asRawStore(vm)
       vm.$on('click', this.onClick)
     },
     unregisterHeader () {

@@ -7,7 +7,8 @@ import {
   addOnceEventListener,
   addPassiveEventListener,
   getZIndex,
-  composedPath
+  composedPath,
+  asRawStore
 } from '../../util/helpers'
 
 // Types
@@ -104,8 +105,8 @@ export default defineComponent({
         parent.insertBefore(container, parent.firstChild)
       }
 
-      this.overlay = overlayInstance
-      this.overlayApp = overlayApp
+      this.overlay = asRawStore(overlayInstance)
+      this.overlayApp = asRawStore(overlayApp)
     },
     genOverlay () {
       this.hideScroll()

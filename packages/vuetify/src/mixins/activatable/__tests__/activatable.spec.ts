@@ -1,5 +1,5 @@
 // Libraries
-import { defineComponent, h } from 'vue'
+import { defineComponent, h, isReactive, nextTick } from 'vue'
 
 // Mixins
 import Activatable from '../'
@@ -34,6 +34,22 @@ describe('activatable.ts', () => {
   })
 
   toHaveBeenWarnedInit()
+
+  it('should store activator nodes as non-reactive references', async () => {
+    const wrapper = mountFunction({
+      slots: {
+        activator: ({ on, attrs }: any) => h('button', { ...attrs, onClick: on.onClick })
+      },
+      render () {
+        return h('div', [this.genActivator()])
+      }
+    })
+
+    await nextTick()
+
+    expect(wrapper.vm.activatorNode).toHaveLength(1)
+    expect(isReactive(wrapper.vm.activatorNode[0])).toBe(false)
+  })
 
   it('should render activator slot with listeners', async () => {
     const wrapper = mountFunction({

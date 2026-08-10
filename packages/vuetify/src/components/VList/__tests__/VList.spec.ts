@@ -1,7 +1,9 @@
 // Components
 import VList from '../VList'
+import VListGroup from '../VListGroup'
 
 // Utilities
+import { h, isReactive, nextTick } from 'vue'
 import { mount, VueWrapper } from '@vue/test-utils'
 
 describe('VList.ts', () => {
@@ -14,6 +16,19 @@ describe('VList.ts', () => {
         ...options
       })
     }
+  })
+
+  it('should store registered groups as non-reactive references', async () => {
+    const wrapper = mountFunction({
+      slots: {
+        default: () => [h(VListGroup, {}, () => 'Group')]
+      }
+    })
+
+    await nextTick()
+
+    expect(wrapper.vm.groups).toHaveLength(1)
+    expect(isReactive(wrapper.vm.groups[0])).toBe(false)
   })
 
   it('should render component and match snapshot', () => {

@@ -1,5 +1,5 @@
 // Libraries
-import { h } from 'vue'
+import { h, isReactive } from 'vue'
 
 // Components
 import VChip from '../../VChip/VChip'
@@ -49,6 +49,18 @@ describe('VItemGroup', () => {
     expect(getValue({ value: 'foo' }, 'foo')).toBe('foo')
     expect(getValue({ modelValue: 'foo' }, 0)).toBe('foo')
     expect(getValue({ modelValue: 4 }, 3)).toBe(4)
+  })
+
+  it('should store registered items as non-reactive references', () => {
+    const wrapper = mountFunction({
+      slots: {
+        default: [Mock, Mock]
+      }
+    })
+
+    expect(wrapper.vm.items).toHaveLength(2)
+    expect(isReactive(wrapper.vm.items[0])).toBe(false)
+    expect(isReactive(wrapper.vm.items[1])).toBe(false)
   })
 
   it('should register elements', () => {

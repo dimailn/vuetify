@@ -1,5 +1,5 @@
 // Libraries
-import { h } from 'vue'
+import { h, isReactive } from 'vue'
 
 // Components
 import VForm from '../VForm'
@@ -98,6 +98,20 @@ describe('VForm.ts', () => {
     if (emitted2) {
       expect(emitted2.length).toBeGreaterThan(1)
     }
+  })
+
+  it('should store registered inputs as non-reactive references', async () => {
+    const wrapper = mountFunction({
+      slots: {
+        default: () => [h(VTextField)]
+      }
+    })
+
+    await wrapper.vm.$nextTick()
+
+    expect(wrapper.vm.inputs).toHaveLength(1)
+    expect(isReactive(wrapper.vm.inputs[0])).toBe(false)
+    expect(isReactive(wrapper.vm.watchers[0])).toBe(false)
   })
 
   it('should register input child', async () => {
