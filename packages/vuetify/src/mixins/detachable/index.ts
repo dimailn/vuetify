@@ -121,11 +121,7 @@ export default mixins(Bootable).extend({
         if (!this.$el?.parentNode) return
         if (!this.$el.contains(node.el as Node)) return
 
-        const target = this.$el === this.$el.parentNode.firstChild
-          ? this.$el
-          : this.$el.nextSibling
-
-        this.$el.parentNode.insertBefore(node.el, target)
+        this.$el.parentNode.insertBefore(node.el, this.$el)
       })
     },
     getScopeIdAttrs () {

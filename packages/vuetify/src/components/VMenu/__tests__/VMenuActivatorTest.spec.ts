@@ -1,6 +1,7 @@
 import { defineComponent, h, Comment, Fragment } from 'vue'
 import { mount, enableAutoUnmount } from '@vue/test-utils'
 import VMenu from '../VMenu'
+import VTextField from '../../VTextField/VTextField'
 
 enableAutoUnmount(afterEach)
 
@@ -141,6 +142,54 @@ const VIfSwapHarness = defineComponent({
   }
 })
 
+const TextFieldAppendMenuHarness = defineComponent({
+  name: 'TextFieldAppendMenuHarness',
+  components: { VMenu, VTextField },
+  render () {
+    return h(VTextField, {}, {
+      append: () => [
+        h(Comment, 'append-leading-comment'),
+        h(VMenu, {
+          modelValue: false,
+          'onUpdate:modelValue': () => {}
+        }, {
+          activator: (props: { attrs: Record<string, unknown>, on: Record<string, Function> }) =>
+            h('button', {
+              type: 'button',
+              class: 'append-activator',
+              ...mergeActivator(props)
+            }, 'Open'),
+          default: () => h('div', 'Content')
+        })
+      ]
+    })
+  }
+})
+
+const TextFieldAppendMenuWithPrecedingElementHarness = defineComponent({
+  name: 'TextFieldAppendMenuWithPrecedingElementHarness',
+  components: { VMenu, VTextField },
+  render () {
+    return h(VTextField, {}, {
+      append: () => [
+        h('span', { class: 'append-preceding-element' }, 'Prefix'),
+        h(VMenu, {
+          modelValue: false,
+          'onUpdate:modelValue': () => {}
+        }, {
+          activator: (props: { attrs: Record<string, unknown>, on: Record<string, Function> }) =>
+            h('button', {
+              type: 'button',
+              class: 'append-activator',
+              ...mergeActivator(props)
+            }, 'Open'),
+          default: () => h('div', 'Content')
+        })
+      ]
+    })
+  }
+})
+
 async function flushMenu () {
   await Promise.resolve()
   await new Promise(resolve => setTimeout(resolve, 0))
@@ -202,6 +251,41 @@ describe('VMenu activator swap', () => {
 
     await wrapper.find('.activator').trigger('click')
     expect((wrapper.vm as any).isActive).toBe(true)
+  })
+
+  it('hoists append activator before v-menu with comment nodes', async () => {
+    const wrapper = mount(TextFieldAppendMenuHarness, {
+      attachTo: document.body
+    })
+
+    await flushMenu()
+
+    const appendInner = wrapper.find('.v-input__append-inner')
+    const children = Array.from(appendInner.element.children)
+
+    expect(children.map(child => child.className)).toEqual(['append-activator', 'v-menu'])
+    expect(appendInner.html()).toMatchSnapshot()
+
+    await appendInner.find('.append-activator').trigger('click')
+    await flushMenu()
+
+    expect(Array.from(appendInner.element.children).map(child => child.className))
+      .toEqual(['append-activator', 'v-menu'])
+    expect(appendInner.html()).toMatchSnapshot('after opening menu')
+  })
+
+  it('hoists activator before v-menu with a preceding element', async () => {
+    const wrapper = mount(TextFieldAppendMenuWithPrecedingElementHarness, {
+      attachTo: document.body
+    })
+
+    await flushMenu()
+
+    const appendInner = wrapper.find('.v-input__append-inner')
+    const children = Array.from(appendInner.element.children)
+
+    expect(children.map(child => child.className))
+      .toEqual(['append-preceding-element', 'append-activator', 'v-menu'])
   })
 
   it('replaces fallback activator after selection without stale DOM (TEM-15225)', async () => {

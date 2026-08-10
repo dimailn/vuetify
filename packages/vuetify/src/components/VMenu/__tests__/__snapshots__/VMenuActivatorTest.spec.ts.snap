@@ -1,0 +1,31 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`VMenu activator swap hoists append activator before v-menu with comment nodes 1`] = `
+<div class="v-input__append-inner">
+  <button type="button"
+          class="append-activator"
+          role="button"
+          aria-haspopup="true"
+          aria-expanded="false"
+  >
+    Open
+  </button>
+  <div class="v-menu">
+  </div>
+</div>
+`;
+
+exports[`VMenu activator swap hoists append activator before v-menu with comment nodes: after opening menu 1`] = `
+<div class="v-input__append-inner">
+  <button type="button"
+          class="append-activator"
+          role="button"
+          aria-haspopup="true"
+          aria-expanded="true"
+  >
+    Open
+  </button>
+  <div class="v-menu">
+  </div>
+</div>
+`;
