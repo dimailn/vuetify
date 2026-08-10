@@ -29,7 +29,7 @@ function generateNestedItems (depth: number, breadth: number): any[] {
   return Array.from({ length: breadth }, (_, i) => ({
     id: `d${depth}-${i}`,
     name: `Node d${depth}-${i}`,
-    children: depth > 1 ? generateNestedItems(depth - 1, breadth) : undefined,
+    children: depth > 1 ? generateNestedItems(depth - 1, breadth) : undefined
   }))
 }
 
@@ -62,8 +62,8 @@ describe('VTreeView.ts', () => { // eslint-disable-line max-statements
   it('should initialize large flat tree without reactive internal stores', async () => {
     const wrapper = mountFunction({
       props: {
-        items: generateFlatItems(200),
-      },
+        items: generateFlatItems(200)
+      }
     })
     await nextTick()
 
@@ -78,8 +78,8 @@ describe('VTreeView.ts', () => { // eslint-disable-line max-statements
     const wrapper = mountFunction({
       props: {
         items: generateNestedItems(4, 3),
-        openAll: true,
-      },
+        openAll: true
+      }
     })
     await nextTick()
 
@@ -90,8 +90,8 @@ describe('VTreeView.ts', () => { // eslint-disable-line max-statements
     const wrapper = mountFunction({
       props: {
         items: [{ id: 1, name: 'a' }, { id: 2, name: 'b' }],
-        modelValue: [2],
-      },
+        modelValue: [2]
+      }
     })
     await nextTick()
 
@@ -105,8 +105,8 @@ describe('VTreeView.ts', () => { // eslint-disable-line max-statements
   it('should store vnode as non-reactive reference', async () => {
     const wrapper = mountFunction({
       props: {
-        items: [{ id: 1, name: 'A' }],
-      },
+        items: [{ id: 1, name: 'A' }]
+      }
     })
     await nextTick()
 
@@ -122,11 +122,11 @@ describe('VTreeView.ts', () => { // eslint-disable-line max-statements
       props: {
         items: threeLevels,
         active: [2],
-        activatable: true,
+        activatable: true
       },
       attrs: {
-        'onUpdate:active': active,
-      },
+        'onUpdate:active': active
+      }
     })
     await nextTick()
 

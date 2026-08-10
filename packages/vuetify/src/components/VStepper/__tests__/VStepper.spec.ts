@@ -31,7 +31,7 @@ describe('VStepper.ts', () => {
       slots: {
         default: () => [
           h(VStepperStep, { step: 1 }, () => 'Step 1'),
-          h(VStepperContent, { step: 1 }, () => 'Content 1'),
+          h(VStepperContent, { step: 1 }, () => 'Content 1')
         ]
       }
     })
