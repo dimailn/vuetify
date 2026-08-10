@@ -16,7 +16,7 @@ import Proxyable from '../../mixins/proxyable'
 // Utilities
 import mixins from '../../util/mixins'
 import { breaking } from '../../util/console'
-import { getSlot, getTagValue } from '../../util/helpers'
+import { getSlot, getTagValue, asRawStore } from '../../util/helpers'
 
 // Types
 import { VNode } from 'vue'
@@ -107,10 +107,10 @@ export default baseMixins.extend({
   methods: {
     register (item: VStepperStepInstance | VStepperContentInstance) {
       if (item.$options.name === 'v-stepper-step') {
-        this.steps.push(item as VStepperStepInstance)
+        this.steps.push(asRawStore(item as VStepperStepInstance))
       } else if (item.$options.name === 'v-stepper-content') {
         (item as VStepperContentInstance).isVertical = this.vertical
-        this.content.push(item as VStepperContentInstance)
+        this.content.push(asRawStore(item as VStepperContentInstance))
       }
     },
     unregister (item: VStepperStepInstance | VStepperContentInstance) {

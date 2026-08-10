@@ -8,7 +8,7 @@ import BindsAttrs from '../../mixins/binds-attrs'
 import { provide as RegistrableProvide } from '../../mixins/registrable'
 
 // Helpers
-import { getSlot } from '../../util/helpers'
+import { getSlot, asRawStore } from '../../util/helpers'
 
 type ErrorBag = Record<number, boolean>
 type VInputInstance = InstanceType<typeof VInput>
@@ -136,8 +136,8 @@ export default mixins(
     },
 
     register (this: VFormContext, input: VInputInstance) {
-      this.inputs.push(input)
-      this.watchers.push(this.watchInput(input))
+      this.inputs.push(asRawStore(input))
+      this.watchers.push(asRawStore(this.watchInput(input)))
     },
 
     unregister (this: VFormContext, input: VInputInstance) {

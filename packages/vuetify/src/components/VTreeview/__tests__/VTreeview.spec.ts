@@ -6,7 +6,7 @@ import {
 } from '@vue/test-utils'
 import VTreeview from '../VTreeview'
 import { wait } from '../../../../test'
-import { h, nextTick } from 'vue'
+import { h, isReactive, nextTick } from 'vue'
 
 // Types
 import type { ComponentPublicInstance } from 'vue'
@@ -18,6 +18,20 @@ const singleRootTwoChildren = [
 const threeLevels = [
   { id: 0, name: 'Root', children: [{ id: 1, name: 'Child', children: [{ id: 2, name: 'Grandchild' }] }, { id: 3, name: 'Child' }] }
 ]
+
+function generateFlatItems (count: number) {
+  return Array.from({ length: count }, (_, i) => ({ id: i, name: `Item ${i}` }))
+}
+
+function generateNestedItems (depth: number, breadth: number): any[] {
+  if (depth <= 0) return []
+
+  return Array.from({ length: breadth }, (_, i) => ({
+    id: `d${depth}-${i}`,
+    name: `Node d${depth}-${i}`,
+    children: depth > 1 ? generateNestedItems(depth - 1, breadth) : undefined,
+  }))
+}
 
 describe('VTreeView.ts', () => { // eslint-disable-line max-statements
   type Instance = InstanceType<typeof VTreeview>
@@ -43,6 +57,86 @@ describe('VTreeView.ts', () => { // eslint-disable-line max-statements
         ...options
       })
     }
+  })
+
+  it('should initialize large flat tree without reactive internal stores', async () => {
+    const wrapper = mountFunction({
+      props: {
+        items: generateFlatItems(200),
+      },
+    })
+    await nextTick()
+
+    expect(Object.keys(wrapper.vm.nodes)).toHaveLength(200)
+    expect(isReactive(wrapper.vm.nodes)).toBe(false)
+    expect(isReactive(wrapper.vm.selectedCache)).toBe(false)
+    expect(isReactive(wrapper.vm.activeCache)).toBe(false)
+    expect(isReactive(wrapper.vm.openCache)).toBe(false)
+  })
+
+  it('should initialize nested tree and preserve node count', async () => {
+    const wrapper = mountFunction({
+      props: {
+        items: generateNestedItems(4, 3),
+        openAll: true,
+      },
+    })
+    await nextTick()
+
+    expect(Object.keys(wrapper.vm.nodes)).toHaveLength(12)
+  })
+
+  it('should clear selected cache when items are removed', async () => {
+    const wrapper = mountFunction({
+      props: {
+        items: [{ id: 1, name: 'a' }, { id: 2, name: 'b' }],
+        modelValue: [2],
+      },
+    })
+    await nextTick()
+
+    wrapper.setProps({ items: [{ id: 1, name: 'a' }] })
+    await nextTick()
+
+    expect(wrapper.vm.selectedCache.has(2)).toBe(false)
+    expect(Object.keys(wrapper.vm.nodes)).toHaveLength(1)
+  })
+
+  it('should store vnode as non-reactive reference', async () => {
+    const wrapper = mountFunction({
+      props: {
+        items: [{ id: 1, name: 'A' }],
+      },
+    })
+    await nextTick()
+
+    const vnode = wrapper.vm.nodes[1].vnode
+    expect(vnode).toBeTruthy()
+    expect(isReactive(vnode)).toBe(false)
+    expect(vnode).toBe(wrapper.findComponent({ name: 'v-treeview-node' }).vm)
+  })
+
+  it('should sync active cache when active prop changes', async () => {
+    const active = jest.fn()
+    const wrapper = mountFunction({
+      props: {
+        items: threeLevels,
+        active: [2],
+        activatable: true,
+      },
+      attrs: {
+        'onUpdate:active': active,
+      },
+    })
+    await nextTick()
+
+    wrapper.setProps({ active: [3] })
+    await nextTick()
+
+    expect(active).toHaveBeenCalledTimes(1)
+    expect(active).toHaveBeenLastCalledWith([3])
+    expect(wrapper.vm.activeCache.has(2)).toBe(false)
+    expect(wrapper.vm.activeCache.has(3)).toBe(true)
   })
 
   it('should render items', async () => {

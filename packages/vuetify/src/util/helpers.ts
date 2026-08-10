@@ -1,4 +1,4 @@
-import { defineComponent, h, resolveComponent, Comment } from 'vue'
+import { defineComponent, h, markRaw, resolveComponent, Comment, toRaw } from 'vue'
 import type { VNode, VNodeDirective } from '../types/vue-internal'
 import { VuetifyIcon } from 'vuetify/types/services/icons'
 import { DataTableCompareFunction, SelectItemKey, ItemGroup } from 'vuetify/types'
@@ -9,6 +9,15 @@ export const getTagValue = (tag: string) => (
     ? resolveComponent(tag)
     : tag
 )
+
+/** Помечает объект как нереактивный; повторный вызов безопасен */
+export function asRawStore<T extends object> (value: T): T {
+  const raw = toRaw(value) as T & { __v_skip?: boolean }
+
+  if (raw.__v_skip) return raw
+
+  return markRaw(raw)
+}
 
 export function createSimpleFunctional (
   c: string,

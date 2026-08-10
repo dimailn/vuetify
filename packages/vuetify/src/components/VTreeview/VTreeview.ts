@@ -1,5 +1,5 @@
 import type { PropType, VNode } from 'vue'
-import { h, markRaw } from 'vue'
+import { h } from 'vue'
 import type { VNodeChildrenArrayContents } from '../../types/vue-internal'
 // Styles
 import './VTreeview.sass'
@@ -15,6 +15,7 @@ import { provide as RegistrableProvide } from '../../mixins/registrable'
 // Utils
 import {
   arrayDiff,
+  asRawStore,
   deepEqual,
   getObjectValueByPath
 } from '../../util/helpers'
@@ -85,10 +86,10 @@ export default mixins(
 
   data: () => ({
     level: -1,
-    activeCache: new Set() as NodeCache,
-    nodes: {} as Record<string | number, NodeState>,
-    openCache: new Set() as NodeCache,
-    selectedCache: new Set() as NodeCache
+    activeCache: asRawStore(new Set()) as NodeCache,
+    nodes: asRawStore({}) as Record<string | number, NodeState>,
+    openCache: asRawStore(new Set()) as NodeCache,
+    selectedCache: asRawStore(new Set()) as NodeCache
   }),
 
   computed: {
@@ -127,9 +128,9 @@ export default mixins(
         diff.forEach(k => delete this.nodes[k])
 
         const oldSelectedCache = [...this.selectedCache]
-        this.selectedCache = new Set()
-        this.activeCache = new Set()
-        this.openCache = new Set()
+        this.selectedCache = asRawStore(new Set())
+        this.activeCache = asRawStore(new Set())
+        this.openCache = asRawStore(new Set())
         this.buildTree(this.items)
 
         // Only emit selected if selection has changed
@@ -320,7 +321,7 @@ export default mixins(
     register (node: VTreeviewNodeInstance) {
       const key = getObjectValueByPath(node.item, this.itemKey)
 
-      this.nodes[key].vnode = markRaw(node)
+      this.nodes[key].vnode = asRawStore(node)
 
       this.updateVnodeState(key)
     },

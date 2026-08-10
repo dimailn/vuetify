@@ -4,7 +4,7 @@ import Toggleable from '../toggleable'
 
 // Utilities
 import mixins from '../../util/mixins'
-import { getSlot, getSlotType } from '../../util/helpers'
+import { getSlot, getSlotType, asRawStore } from '../../util/helpers'
 import { consoleError } from '../../util/console'
 
 // Types
@@ -94,7 +94,7 @@ export default baseMixins.extend({
 
       this.activatorNode = normalized.flatMap(node => {
         return node.type === Symbol.for('v-fgt') ? (node.children as VNode[]) : node
-      })
+      }).map(node => asRawStore(node))
 
       if (!this.activator) {
         this.activatorElement = null
@@ -185,7 +185,7 @@ export default baseMixins.extend({
       }
 
       // The activator should only be a valid element (Ignore comments and text nodes)
-      this.activatorElement = activator?.nodeType === Node.ELEMENT_NODE ? activator : null
+      this.activatorElement = activator?.nodeType === Node.ELEMENT_NODE ? asRawStore(activator) : null
 
       return this.activatorElement
     },

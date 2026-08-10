@@ -5,7 +5,7 @@ import VListGroup from './VListGroup'
 
 // Components
 import VSheet from '../VSheet/VSheet'
-import { getSlot, getTagValue } from '../../util/helpers'
+import { getSlot, getTagValue, asRawStore } from '../../util/helpers'
 import { mergeListeners } from '../../util/mergeData'
 
 // Types
@@ -73,7 +73,7 @@ export default defineComponent({
 
   methods: {
     register (content: VListGroupInstance) {
-      this.groups.push(content)
+      this.groups.push(asRawStore(content))
     },
     unregister (content: VListGroupInstance) {
       const index = this.groups.findIndex(g => g.$.uid === content.$.uid)

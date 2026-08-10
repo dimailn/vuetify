@@ -4,7 +4,7 @@ import Overlayable from '../index'
 // Utilities
 import { mount, MountingOptions, VueWrapper, enableAutoUnmount } from '@vue/test-utils'
 import { waitAnimationFrame } from '../../../../test'
-import { defineComponent, h, nextTick } from 'vue'
+import { defineComponent, h, isReactive, nextTick } from 'vue'
 
 describe('Overlayable.ts', () => {
   enableAutoUnmount(afterEach)
@@ -35,6 +35,18 @@ describe('Overlayable.ts', () => {
         ...options
       })
     }
+  })
+
+  it('should store overlay references as non-reactive', async () => {
+    const wrapper = mountFunction()
+
+    wrapper.vm.genOverlay()
+    await waitAnimationFrame()
+
+    expect(wrapper.vm.overlay).toBeTruthy()
+    expect(wrapper.vm.overlayApp).toBeTruthy()
+    expect(isReactive(wrapper.vm.overlay)).toBe(false)
+    expect(isReactive(wrapper.vm.overlayApp)).toBe(false)
   })
 
   it('should avoid removing overlay', async () => {

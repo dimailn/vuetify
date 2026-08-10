@@ -4,7 +4,7 @@ import VExpansionPanelHeader from '../VExpansionPanelHeader'
 import VExpansionPanelContent from '../VExpansionPanelContent'
 
 // Utilities
-import { h } from 'vue'
+import { h, isReactive } from 'vue'
 import {
   mount,
   VueWrapper,
@@ -128,6 +128,15 @@ describe('VExpansionPanel', () => {
     expect(snapshot).toMatchSnapshot()
     expect(snapshot2).toMatchSnapshot()
     expect(snapshot).not.toEqual(snapshot2)
+  })
+
+  it('should store registered header and content as non-reactive references', () => {
+    const wrapper = mountFunction()
+
+    expect(wrapper.vm.header).toBeTruthy()
+    expect(wrapper.vm.content).toBeTruthy()
+    expect(isReactive(wrapper.vm.header)).toBe(false)
+    expect(isReactive(wrapper.vm.content)).toBe(false)
   })
 
   it('should register and unregister header/content', () => {
