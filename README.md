@@ -27,6 +27,71 @@
   </a>
 </p>
 
+## ⚠️ Disclaimer
+
+This is an **unofficial fork of Vuetify 2 ported to Vue 3**. It is not affiliated with or endorsed by the official Vuetify team.
+
+While it has been tested in several large business applications, the author takes no responsibility for any issues that may arise — use it at your own risk.
+
+## Installation
+
+To install the latest alpha, use the `v2-dev` dist-tag (the `latest` tag may lag behind):
+
+```bash
+npm install @dimailn/vuetify@v2-dev
+# or
+yarn add @dimailn/vuetify@v2-dev
+```
+
+Alternatively, install it under the `vuetify` alias so existing imports like `vuetify/lib` keep working without changes:
+
+```bash
+npm install vuetify@npm:@dimailn/vuetify@v2-dev
+```
+
+## Usage
+
+Initialization stays as close to Vuetify 2 as possible: you still create a Vuetify instance with `new Vuetify(...)` and pass it through the root component options. The only real change compared to Vuetify 2 is the Vue 3 application API — `createApp` and `app.use` instead of `new Vue` and `Vue.use`:
+
+```js
+import { createApp, h } from 'vue'
+import Vuetify from 'vuetify' // or 'vuetify/lib'
+import App from './App.vue'
+
+const vuetify = new Vuetify({
+  // the same options as in Vuetify 2: theme, icons, lang, breakpoint, ...
+})
+
+const app = createApp({
+  vuetify, // pass the instance via root component options, as in Vuetify 2
+  render: () => h(App),
+})
+
+app.use(Vuetify) // register the plugin on the app instead of Vue.use(Vuetify)
+app.mount('#app')
+```
+
+Unlike the official Vuetify 3, there is no `createVuetify()` — the Vuetify 2 options and `$vuetify` API are preserved.
+
+### Tree-shaking (vuetify-loader)
+
+For automatic à la carte component imports, use the [@dimailn/vuetify-loader](https://www.npmjs.com/package/@dimailn/vuetify-loader) fork instead of the original `vuetify-loader`:
+
+```bash
+npm install -D @dimailn/vuetify-loader
+```
+
+```js
+// webpack.config.js
+const { VuetifyLoaderPlugin } = require('@dimailn/vuetify-loader')
+
+module.exports = {
+  plugins: [
+    new VuetifyLoaderPlugin(),
+  ],
+}
+```
+
 <h2 align="center">Supporting Vuetify</h2>
 
 Vuetify is a [MIT licensed](http://opensource.org/licenses/MIT) project that is developed and maintained full-time by [John Leider](https://github.com/johnleider) and [Heather Leider](https://github.com/heatherleider); with support from the entire [Core Team](https://vuetifyjs.com/introduction/meet-the-team/). Sponsor Vuetify and receive some **awesome perks** and support Open Source Software at the same time! 🎉
