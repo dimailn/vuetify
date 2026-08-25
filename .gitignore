@@ -21,3 +21,6 @@ cypress/videos
 
 .vercel
 .now
+
+# generated on prepack from root README
+packages/vuetify/README.md

@@ -57,7 +57,8 @@
     "test:coverage": "yarn test --coverage",
     "test:types": "tsc -p ./types/test/tsconfig.json",
     "lint": "concurrently -n \"tsc,eslint,types\" --kill-others-on-fail \"tsc --noEmit --pretty\" \"eslint --ext .js,.ts src -f eslint-formatter-codeframe --max-warnings 0\" \"yarn test:types\"",
-    "lint:fix": "concurrently -n \"tsc,eslint,types\" \"tsc --noEmit --pretty\" \"eslint --fix --ext .js,.ts src\" \"yarn test:types\""
+    "lint:fix": "concurrently -n \"tsc,eslint,types\" \"tsc --noEmit --pretty\" \"eslint --fix --ext .js,.ts src\" \"yarn test:types\"",
+    "prepack": "node -e \"require('fs').copyFileSync('../../README.md', 'README.md')\""
   },
   "devDependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.30",

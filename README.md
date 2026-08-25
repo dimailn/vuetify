@@ -5,11 +5,11 @@
 </p>
 
 <p align="center">
-  <a href="https://www.npmjs.com/package/vuetify">
-    <img src="https://img.shields.io/npm/dt/vuetify.svg" alt="Downloads">
+  <a href="https://www.npmjs.com/package/@dimailn/vuetify">
+    <img src="https://img.shields.io/npm/dt/@dimailn/vuetify.svg" alt="Downloads">
   </a>
-  <a href="https://www.npmjs.com/package/vuetify">
-    <img src="https://img.shields.io/npm/dm/vuetify.svg" alt="Downloads">
+  <a href="https://www.npmjs.com/package/@dimailn/vuetify">
+    <img src="https://img.shields.io/npm/dm/@dimailn/vuetify.svg" alt="Downloads">
   </a>
   <br>
   <a href="https://github.com/vuetifyjs/vuetify/blob/master/LICENSE.md">
@@ -19,11 +19,8 @@
     <img src="https://discordapp.com/api/guilds/340160225338195969/widget.png" alt="Chat">
   </a>
   <br>
-  <a href="https://www.npmjs.com/package/vuetify/v/2.7.0">
-    <img src="https://img.shields.io/badge/npm-v2.7.0-blue" alt="Version">
-  </a>
-  <a href="https://cdnjs.com/libraries/vuetify/2.7.0">
-    <img src="https://img.shields.io/badge/cdnjs-v2.7.0-blue" alt="CDN">
+  <a href="https://www.npmjs.com/package/@dimailn/vuetify">
+    <img src="https://img.shields.io/npm/v/@dimailn/vuetify.svg" alt="Version">
   </a>
 </p>
 
@@ -35,18 +32,16 @@ While it has been tested in several large business applications, the author take
 
 ## Installation
 
-To install the latest alpha, use the `v2-dev` dist-tag (the `latest` tag may lag behind):
-
 ```bash
-npm install @dimailn/vuetify@v2-dev
+npm install @dimailn/vuetify
 # or
-yarn add @dimailn/vuetify@v2-dev
+yarn add @dimailn/vuetify
 ```
 
 Alternatively, install it under the `vuetify` alias so existing imports like `vuetify/lib` keep working without changes:
 
 ```bash
-npm install vuetify@npm:@dimailn/vuetify@v2-dev
+npm install vuetify@npm:@dimailn/vuetify
 ```
 
 ## Usage
