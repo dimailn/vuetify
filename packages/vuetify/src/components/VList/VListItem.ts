@@ -222,12 +222,7 @@ export default baseMixins.extend({
 
     const nodeData = this.isActive ? this.setTextColor(this.color, data) : data
 
-    const attrsClasses = this.$attrs.class
-    if (attrsClasses) {
-      nodeData.class = [this.classes, attrsClasses]
-    } else {
-      nodeData.class = this.classes
-    }
+    nodeData.class = mergeClasses(nodeData.class, this.$attrs.class)
 
     const node = typeof tag === 'string'
       ? h(getTagValue(tag), nodeData, children as any)
