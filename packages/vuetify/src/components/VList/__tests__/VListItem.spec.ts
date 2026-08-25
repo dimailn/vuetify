@@ -478,4 +478,95 @@ describe('VListItem.ts', () => {
 
     expect(wrapper.element.getAttribute('aria-selected')).toBe('true')
   })
+
+  describe('color prop and setTextColor', () => {
+    const mountActive = (options: any = {}) => {
+      const { props, ...rest } = options
+
+      return mountFunction({
+        ...rest,
+        props: {
+          modelValue: true,
+          ...props
+        }
+      })
+    }
+
+    it('applies emphasis--text when active with color="emphasis"', () => {
+      const wrapper = mountActive({ props: { color: 'emphasis' } })
+
+      expect(wrapper.classes('emphasis--text')).toBe(true)
+    })
+
+    it('applies primary--text when active with color="primary"', () => {
+      const wrapper = mountActive({ props: { color: 'primary' } })
+
+      expect(wrapper.classes('primary--text')).toBe(true)
+    })
+
+    it('applies red--text and text--darken-2 for color with modifier', () => {
+      const wrapper = mountActive({ props: { color: 'red darken-2' } })
+
+      expect(wrapper.classes('red--text')).toBe(true)
+      expect(wrapper.classes('text--darken-2')).toBe(true)
+    })
+
+    it('applies inline color style for css color when active', () => {
+      const wrapper = mountActive({ props: { color: '#ff0000' } })
+
+      expect(wrapper.classes('ff0000--text')).toBe(false)
+      expect(wrapper.element.style.color).toMatch(/^(#ff0000|rgb\(255,\s*0,\s*0\))$/)
+      expect(wrapper.element.style.caretColor).toMatch(/^(#ff0000|rgb\(255,\s*0,\s*0\))$/)
+    })
+
+    it('does not apply emphasis--text when inactive', () => {
+      const wrapper = mountFunction({
+        props: { color: 'emphasis' }
+      })
+
+      expect(wrapper.classes('emphasis--text')).toBe(false)
+    })
+
+    it('merges emphasis--text with $attrs.class fallthrough', () => {
+      const wrapper = mountActive({
+        props: { color: 'emphasis' },
+        attrs: { class: 'custom-item' }
+      })
+
+      expect(wrapper.classes('emphasis--text')).toBe(true)
+      expect(wrapper.classes('custom-item')).toBe(true)
+      expect(wrapper.classes('v-list-item')).toBe(true)
+    })
+
+    it('applies both group activeClass and color text class', async () => {
+      const wrapper = mountFunction({
+        props: { modelValue: true, color: 'emphasis' },
+        global: {
+          provide: {
+            isInGroup: true,
+            listItemGroup: {
+              activeClass: 'foobar',
+              register: () => {},
+              unregister: () => {}
+            }
+          }
+        }
+      })
+
+      wrapper.vm.isActive = true
+      await wrapper.vm.$nextTick()
+
+      expect(wrapper.classes('foobar')).toBe(true)
+      expect(wrapper.classes('emphasis--text')).toBe(true)
+    })
+
+    it('applies emphasis--text but not link class when inactive and active', () => {
+      const wrapper = mountActive({
+        props: { color: 'emphasis', inactive: true, link: true }
+      })
+
+      expect(wrapper.classes('emphasis--text')).toBe(true)
+      expect(wrapper.classes('v-list-item--link')).toBe(false)
+    })
+  })
 })
