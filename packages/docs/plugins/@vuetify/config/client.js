@@ -49,13 +49,17 @@ module.exports = config => {
       minSize: 20000,
     })
 
-  config.optimization
-    .minimize(IS_PROD)
-    .minimizer('css')
-    .use(require('terser-webpack-plugin'))
-    .use(require('optimize-css-assets-webpack-plugin'), [{
-      cssProcessorOptions: { safe: true },
-    }])
+  // Development doesn't minify assets. Production uses webpack 5 minimizers.
+  config.optimization.minimize(IS_PROD)
+
+  if (IS_PROD) {
+    config.optimization
+      .minimizer('terser')
+      .use(require('terser-webpack-plugin'))
+      .end()
+      .minimizer('css')
+      .use(require('css-minimizer-webpack-plugin'))
+  }
 
   config.target('web')
 
