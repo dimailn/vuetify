@@ -1,7 +1,8 @@
+@use "sass:map"
 @import './_variables.scss'
 
 +theme('v-toolbar.v-sheet') using ($material)
-  background-color: map-get($material, 'toolbar')
+  background-color: map.get($material, 'toolbar')
 
 
 // Sheet
@@ -34,10 +35,10 @@
   > .v-btn.v-btn--icon
     &:first-child
       +ltr()
-        margin-left: -$toolbar-btn-icon-size / 4
+        margin-left: -$toolbar-btn-icon-size * 0.25
 
       +rtl()
-        margin-right: -$toolbar-btn-icon-size / 4
+        margin-right: -$toolbar-btn-icon-size * 0.25
 
       + .v-toolbar__title
         +ltr()
@@ -48,10 +49,10 @@
 
     &:last-child
       +ltr()
-        margin-right: -$toolbar-btn-icon-size / 4
+        margin-right: -$toolbar-btn-icon-size * 0.25
 
       +rtl()
-        margin-left: -$toolbar-btn-icon-size / 4
+        margin-left: -$toolbar-btn-icon-size * 0.25
 
   > .v-tabs
     height: inherit

@@ -1,3 +1,5 @@
+@use "sass:map"
+@use "sass:math"
 // Imports
 @import './_variables.scss'
 
@@ -26,10 +28,10 @@
       background-color: map-deep-get($material, 'buttons', 'focused') !important
 
   &.v-btn--has-bg
-    background-color: map-get($material, 'app-bar')
+    background-color: map.get($material, 'app-bar')
 
   &.v-btn--outlined.v-btn--text
-    border-color: map-get($material, 'dividers')
+    border-color: map.get($material, 'dividers')
 
   &.v-btn--icon
     color: map-deep-get($material, 'icons', 'active')
@@ -79,8 +81,8 @@
     @each $name, $size in $btn-sizes
       &.v-size--#{$name}
         height: #{$size}px
-        min-width: #{round($size * 1.777777777777778)}px // default ratio
-        padding: 0 #{$size / 2.25}px
+        min-width: #{math.round($size * 1.777777777777778)}px // default ratio
+        padding: 0 #{math.div($size, 2.25)}px
 
   > .v-btn__content .v-icon
     color: inherit
@@ -141,16 +143,16 @@
 .v-btn--absolute,
 .v-btn--fixed
   &.v-btn--right
-    right: map-get($grid-gutters, 'lg')
+    right: map.get($grid-gutters, 'lg')
 
   &.v-btn--left
-    left: map-get($grid-gutters, 'lg')
+    left: map.get($grid-gutters, 'lg')
 
   &.v-btn--top
-    top: map-get($grid-gutters, 'lg')
+    top: map.get($grid-gutters, 'lg')
 
   &.v-btn--bottom
-    bottom: map-get($grid-gutters, 'lg')
+    bottom: map.get($grid-gutters, 'lg')
 
 .v-btn--absolute
   position: absolute
@@ -216,10 +218,10 @@
 
       &.v-btn--absolute
         &.v-btn--bottom
-          bottom: -#{$size / 2}px
+          bottom: -#{$size * 0.5}px
 
         &.v-btn--top
-          top: -#{$size / 2}px
+          top: -#{$size * 0.5}px
 
 .v-btn--loading
   pointer-events: none

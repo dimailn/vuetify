@@ -1,3 +1,4 @@
+@use "sass:map"
 // Imports
 @import './_variables.scss'
 
@@ -5,7 +6,7 @@
 +theme(v-alert) using ($material)
   .v-alert--prominent .v-alert__icon
     &:after
-      background: map-get($material, 'dividers')
+      background: map.get($material, 'dividers')
 
 // Sheet
 +sheet(v-alert, $alert-elevation, $alert-border-radius, $alert-shaped-border-radius)
@@ -138,8 +139,8 @@
         margin-right: $alert-border-icon-margin
 
 .v-alert--dense
-  padding-top: $alert-padding / 2
-  padding-bottom: $alert-padding / 2
+  padding-top: $alert-padding * 0.5
+  padding-bottom: $alert-padding * 0.5
 
   .v-alert__border
     border-width: $alert-dense-border-width

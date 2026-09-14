@@ -1,3 +1,4 @@
+@use "sass:map"
 // Imports
 @import './_variables.scss'
 
@@ -6,7 +7,7 @@
   .v-input
     .v-input__control
       .v-input__slot
-        background: map-get($material, 'bg-color')
+        background: map.get($material, 'bg-color')
 
 .v-otp-input
   display: flex

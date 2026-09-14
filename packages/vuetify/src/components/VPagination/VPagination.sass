@@ -1,16 +1,17 @@
+@use "sass:map"
 @import './_variables.scss'
 
 // Theme
 +theme(v-pagination) using ($material)
   .v-pagination__item
-    background: map-get($material, 'cards')
+    background: map.get($material, 'cards')
     color: map-deep-get($material, 'text', 'primary')
 
     &--active
       color: map-deep-get($material, 'text', 'theme')
 
   .v-pagination__navigation
-    background: map-get($material, 'cards')
+    background: map.get($material, 'cards')
 
 .v-pagination
   align-items: center
@@ -47,7 +48,7 @@
     min-width: $pagination-item-min-width
     padding: $pagination-item-padding
     text-decoration: none
-    transition: .3s map-get($transition, 'linear-out-slow-in')
+    transition: .3s map.get($transition, 'linear-out-slow-in')
     width: auto
     +elevation(2)
 

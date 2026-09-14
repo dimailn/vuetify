@@ -1,12 +1,13 @@
+@use "sass:map"
 @import './_variables.scss'
 
 +theme(v-stepper) using ($material)
-  background: map-get($material, 'bg-color')
+  background: map.get($material, 'bg-color')
 
   .v-stepper__step
     &:not(.v-stepper__step--active):not(.v-stepper__step--complete):not(.v-stepper__step--error)
       .v-stepper__step__step
-        background: rgba(map-get($material, 'fg-color'), map-get($material, 'disabledORhints-text-percent'))
+        background: rgba(map.get($material, 'fg-color'), map.get($material, 'disabledORhints-text-percent'))
 
     &__step
       color: map-deep-get($material, 'stepper', 'active')
@@ -16,18 +17,18 @@
 
   .v-stepper__header
     .v-divider
-      border-color: rgba(map-get($material, 'fg-color'), map-get($material, 'divider-percent'))
+      border-color: rgba(map.get($material, 'fg-color'), map.get($material, 'divider-percent'))
 
   .v-stepper__step
     &--active
       .v-stepper__label
-        text-shadow: 0px 0px 0px rgba(map-get($material, 'fg-color'), 1)
+        text-shadow: 0px 0px 0px rgba(map.get($material, 'fg-color'), 1)
 
     &--editable:hover
-      background: rgba(map-get($material, 'fg-color'), .06)
+      background: rgba(map.get($material, 'fg-color'), .06)
 
       .v-stepper__label
-        text-shadow: 0px 0px 0px rgba(map-get($material, 'fg-color'), 1)
+        text-shadow: 0px 0px 0px rgba(map.get($material, 'fg-color'), 1)
 
     &--complete
       .v-stepper__label
@@ -40,23 +41,23 @@
             background: map-deep-get($material, 'stepper', 'hover')
 
   .v-stepper__label
-    color: rgba(map-get($material, 'fg-color'), map-get($material, 'disabledORhints-text-percent'))
+    color: rgba(map.get($material, 'fg-color'), map.get($material, 'disabledORhints-text-percent'))
 
     small
-      color: rgba(map-get($material, 'fg-color'), map-get($material, 'secondary-text-percent'))
+      color: rgba(map.get($material, 'fg-color'), map.get($material, 'secondary-text-percent'))
 
   &--non-linear
     .v-stepper__step:not(.v-stepper__step--complete):not(.v-stepper__step--error)
       .v-stepper__label
-        color: rgba(map-get($material, 'fg-color'), map-get($material, 'secondary-text-percent'))
+        color: rgba(map.get($material, 'fg-color'), map.get($material, 'secondary-text-percent'))
 
   &--vertical
     .v-stepper__content:not(:last-child)
       +ltr()
-        border-left: 1px solid rgba(map-get($material, 'fg-color'), map-get($material, 'divider-percent'))
+        border-left: 1px solid rgba(map.get($material, 'fg-color'), map.get($material, 'divider-percent'))
 
       +rtl()
-        border-right: 1px solid rgba(map-get($material, 'fg-color'), map-get($material, 'divider-percent'))
+        border-right: 1px solid rgba(map.get($material, 'fg-color'), map.get($material, 'divider-percent'))
 
 +sheet(v-stepper, $stepper-elevation, $stepper-border-radius, $stepper-shaped-border-radius)
 
@@ -90,7 +91,7 @@
     height: $stepper-step-step-height
     min-width: $stepper-step-step-min-width
     width: $stepper-step-step-width
-    transition: .3s map-get($transition, 'fast-in-fast-out')
+    transition: .3s map.get($transition, 'fast-in-fast-out')
 
     +ltr()
       margin-right: $stepper-step-step-margin
@@ -114,7 +115,7 @@
 
     &--active
       .v-stepper__label
-        transition: .3s map-get($transition, 'ease-in-out')
+        transition: .3s map.get($transition, 'ease-in-out')
 
     &--editable
       cursor: pointer
@@ -176,7 +177,7 @@
 
   &--is-booted
     .v-stepper__content, .v-stepper__wrapper
-      transition: .3s map-get($transition, 'swing')
+      transition: .3s map.get($transition, 'swing')
 
   &--vertical
     padding-bottom: $stepper-vertical-padding-bottom
@@ -226,7 +227,7 @@
       margin-left: 0
       margin-right: 0
 
-@media #{map-get($display-breakpoints, 'sm-and-down')}
+@media #{map.get($display-breakpoints, 'sm-and-down')}
   .v-stepper:not(.v-stepper--vertical)
     .v-stepper__label
       display: none

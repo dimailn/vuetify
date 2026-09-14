@@ -1,3 +1,4 @@
+@use "sass:map";
 @import '../../styles/styles.sass';
 
 $snackbar-absolute-z-index: 1 !default;
@@ -17,7 +18,7 @@ $snackbar-elevation: 6 !default;
 $snackbar-left: 0 !default;
 $snackbar-multi-line-wrapper-min-height: 68px !default;
 $snackbar-right: 0 !default;
-$snackbar-shaped-border-radius: map-get($rounded, 'xl') $snackbar-border-radius !default;
+$snackbar-shaped-border-radius: map.get($rounded, 'xl') $snackbar-border-radius !default;
 $snackbar-top: 0 !default;
 $snackbar-transition-wrapper-transform: .8 !default;
 $snackbar-vertical-action-margin-bottom: 8px !default;

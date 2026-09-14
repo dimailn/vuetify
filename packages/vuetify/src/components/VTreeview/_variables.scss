@@ -1,6 +1,7 @@
+@use "sass:map";
 @import '../../styles/styles.sass';
 
-$treeview-transition: .2s map-get($transition, 'linear-out-slow-in') !default;
+$treeview-transition: .2s map.get($transition, 'linear-out-slow-in') !default;
 $treeview-label-font-size: inherit !default;
 $treeview-node-height: 48px !default;
 $treeview-node-height-dense: 40px !default;
