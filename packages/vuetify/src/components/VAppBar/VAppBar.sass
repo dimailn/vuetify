@@ -1,7 +1,8 @@
+@use "sass:map"
 @import './_variables.scss'
 
 +theme('v-app-bar.v-toolbar.v-sheet') using ($material)
-  background-color: map-get($material, 'app-bar')
+  background-color: map.get($material, 'app-bar')
 
 +sheet('v-app-bar.v-toolbar', $app-bar-elevation, $app-bar-border-radius, $app-bar-shaped-border-radius)
 

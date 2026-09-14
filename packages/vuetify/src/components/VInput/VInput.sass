@@ -1,3 +1,4 @@
+@use "sass:map"
 @import './_variables.scss'
 
 /* Theme */
@@ -121,7 +122,7 @@
 
   &--has-state
     &.error--text .v-label
-      animation: v-shake .6s map-get($transition, 'swing')
+      animation: v-shake .6s map.get($transition, 'swing')
 
   &--hide-spin-buttons
     input::-webkit-outer-spin-button,

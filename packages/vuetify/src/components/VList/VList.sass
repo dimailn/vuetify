@@ -1,3 +1,4 @@
+@use "sass:map"
 @import './_variables.scss'
 @import './_mixins.sass'
 
@@ -14,7 +15,7 @@
       color: map-deep-get($material-dark, 'text', 'primary')
 
 +theme(v-list) using ($material)
-  background: map-get($material, 'cards')
+  background: map.get($material, 'cards')
   color: map-deep-get($material, 'text','primary')
 
   .v-list--disabled
@@ -22,7 +23,7 @@
 
   .v-list-group--active:before,
   .v-list-group--active:after
-    background: map-get($material, 'dividers')
+    background: map.get($material, 'dividers')
 
 // Sheet
 +sheet(v-list, $list-elevation, $list-border-radius, $list-shaped-border-radius)

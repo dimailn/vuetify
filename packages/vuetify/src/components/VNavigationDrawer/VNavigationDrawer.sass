@@ -1,15 +1,16 @@
+@use "sass:map"
 @import './_variables.scss'
 
 // Theme
 +theme(v-navigation-drawer) using ($material)
-  background-color: map-get($material, 'navigation-drawer')
+  background-color: map.get($material, 'navigation-drawer')
 
   &:not(.v-navigation-drawer--floating)
     .v-navigation-drawer__border
-      background-color: map-get($material, 'dividers')
+      background-color: map.get($material, 'dividers')
 
   .v-divider
-    border-color: map-get($material, 'dividers')
+    border-color: map.get($material, 'dividers')
 
 // Block
 .v-navigation-drawer
@@ -22,7 +23,7 @@
   pointer-events: auto
   top: 0
   transition-duration: 0.2s
-  transition-timing-function: map-get($transition, 'fast-out-slow-in')
+  transition-timing-function: map.get($transition, 'fast-out-slow-in')
   transition-property: transform, visibility, width
   +bootable()
 

@@ -1,3 +1,4 @@
+@use "sass:map";
 @import '../../styles/styles.sass';
 
 $date-picker-years-font-size: 16px !default;
@@ -28,7 +29,7 @@ $date-picker-table-height: 242px !default;
 $date-picker-table-font-size: 12px !default;
 $date-picker-table-date-button-width: 32px !default;
 $date-picker-table-date-button-height: 32px !default;
-$date-picker-table-active-date-color: map-get($shades, 'white') !default;
+$date-picker-table-active-date-color: map.get($shades, 'white') !default;
 $date-picker-table-month-height: 56px !default;
 $date-picker-table-month-min-width: 40px !default;
 $date-picker-table-month-max-width: 140px !default;

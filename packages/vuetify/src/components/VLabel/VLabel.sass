@@ -1,3 +1,4 @@
+@use "sass:map"
 @import './_variables.scss'
 
 // Theme
@@ -11,4 +12,4 @@
   font-size: $label-font-size
   line-height: $label-line-height
   min-height: $label-min-height
-  transition: .3s map-get($transition, 'swing')
+  transition: .3s map.get($transition, 'swing')

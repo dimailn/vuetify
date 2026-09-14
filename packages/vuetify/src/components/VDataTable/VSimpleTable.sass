@@ -1,18 +1,19 @@
+@use "sass:map"
 // Imports
 @import './_variables.scss'
 
 // Theme
 +theme(v-data-table) using ($material)
-  background-color: map-get($material, 'cards')
+  background-color: map.get($material, 'cards')
   color: map-deep-get($material, 'text', 'primary')
 
   .v-data-table__divider
-    border-right: thin solid map-get($material, 'dividers')
+    border-right: thin solid map.get($material, 'dividers')
 
   &.v-data-table--fixed-header
     thead th
-      background: map-get($material, 'cards')
-      box-shadow: inset 0 -1px 0 map-get($material, 'dividers')
+      background: map.get($material, 'cards')
+      box-shadow: inset 0 -1px 0 map.get($material, 'dividers')
 
   > .v-data-table__wrapper
     > table
@@ -23,7 +24,7 @@
 
           &:last-child
             > th
-              border-bottom: thin solid map-get($material, 'dividers')
+              border-bottom: thin solid map.get($material, 'dividers')
 
   > .v-data-table__wrapper
     > table
@@ -33,10 +34,10 @@
             > td,
             > th
               &:not(.v-data-table__mobile-row)
-                border-bottom: thin solid map-get($material, 'dividers')
+                border-bottom: thin solid map.get($material, 'dividers')
 
               &:last-child
-                border-bottom: thin solid map-get($material, 'dividers')
+                border-bottom: thin solid map.get($material, 'dividers')
 
           &.active
             background: map-deep-get($material, 'table', 'active')
@@ -49,7 +50,7 @@
           > td,
           > th
             &:not(.v-data-table__mobile-row)
-              border-top: thin solid map-get($material, 'dividers')
+              border-top: thin solid map.get($material, 'dividers')
 
 // Block
 .v-data-table

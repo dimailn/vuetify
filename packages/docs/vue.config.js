@@ -34,8 +34,7 @@ Module._resolveFilename = function patchedVuetifyResolve (request, parent, isMai
 }
 
 /**
- * Vue CLI 4 для Vue 3 подключает `vue-loader-v16`; vuetify-loader не считает его vue-loader
- * → «No matching rule for vue-loader». Патчим до первого require plugin.
+ * Поддерживаем распознавание vue-loader legacy loader-ом Vuetify до первого require plugin.
  */
 const vuetifyLoaderGetVueRules = require('vuetify-loader/lib/getVueRules')
 const originalIsVueLoader = vuetifyLoaderGetVueRules.isVueLoader.bind(vuetifyLoaderGetVueRules)
@@ -44,7 +43,7 @@ try {
   vueLoaderV16Path = require.resolve('vue-loader-v16')
 } catch (e) {}
 
-function isVueLoaderCli4Vue3 (use) {
+function isVueLoader (use) {
   if (!use || !use.loader) return false
   const l = String(use.loader)
   return (
@@ -54,11 +53,11 @@ function isVueLoaderCli4Vue3 (use) {
   )
 }
 
-function getVueRulesCli4Vue3 (compiler) {
+function getVueRules (compiler) {
   const rules = compiler.options.module.rules
   const flat = rules
     .map((rule, index) =>
-      rule.use && rule.use.find && rule.use.find(isVueLoaderCli4Vue3)
+      rule.use && rule.use.find && rule.use.find(isVueLoader)
         ? { rule: { ...rule }, index }
         : null,
     )
@@ -70,7 +69,7 @@ function getVueRulesCli4Vue3 (compiler) {
   rules.forEach((rule, index) => {
     if (!rule.oneOf) return
     rule.oneOf.forEach(sub => {
-      if (sub.use && sub.use.find && sub.use.find(isVueLoaderCli4Vue3)) {
+      if (sub.use && sub.use.find && sub.use.find(isVueLoader)) {
         oneOfHits.push({ rule: { ...sub }, index })
       }
     })
@@ -78,13 +77,13 @@ function getVueRulesCli4Vue3 (compiler) {
   return oneOfHits
 }
 
-vuetifyLoaderGetVueRules.isVueLoader = isVueLoaderCli4Vue3
-vuetifyLoaderGetVueRules.getVueRules = getVueRulesCli4Vue3
+vuetifyLoaderGetVueRules.isVueLoader = isVueLoader
+vuetifyLoaderGetVueRules.getVueRules = getVueRules
 
 const VuetifyLoaderPlugin = require('vuetify-loader/lib/plugin')
 const { IS_SERVER } = require('./src/util/globals')
 
-/** Webpack 4 (Vue CLI 4) не резолвит `exports` у `@unhead/vue` / `unhead` — явные пути к `.mjs`. */
+/** Явные ESM entrypoints для @unhead/vue / unhead. */
 function unheadVueDist (file) {
   return path.join(path.dirname(require.resolve('@unhead/vue')), file)
 }
@@ -96,6 +95,22 @@ module.exports = {
   css: {
     extract: !IS_SERVER && { ignoreOrder: true },
     sourceMap: !IS_SERVER,
+    loaderOptions: {
+      sass: {
+        implementation: require('sass'),
+        api: 'modern',
+        sassOptions: {
+          syntax: 'indented',
+        },
+      },
+      scss: {
+        implementation: require('sass'),
+        api: 'modern',
+        sassOptions: {
+          syntax: 'scss',
+        },
+      },
+    },
   },
   configureWebpack: {
     devtool: 'source-map',
@@ -143,22 +158,19 @@ module.exports = {
       applyVueLoaderPatch(vueRule.use('vue-loader'))
     }
 
-    // In CLI4 + Vue3 setup vue-loader-v16 may be registered under this key.
+    // Старое имя сохраняем для совместимости с конфигурацией пакета.
     if (vueRule && vueRule.uses.has('vue-loader-v16')) {
       applyVueLoaderPatch(vueRule.use('vue-loader-v16'))
     }
   },
   devServer: {
-    publicPath: '/',
-    disableHostCheck: true,
+    allowedHosts: 'all',
     historyApiFallback: {
       rewrites: [
         { from: /eo-UY\/.*/, to: '/_crowdin.html' },
         { from: /.*/, to: '/_fallback.html' },
       ],
     },
-    serveIndex: true,
-    quiet: true,
   },
   pwa: {
     name: 'Vuetify Documentation',
@@ -198,7 +210,7 @@ module.exports = {
       // ...other Workbox options...
     },
   },
-  // Webpack 4 не понимает optional chaining в «голых» .mjs из node_modules — прогоняем через Babel
+  // Транспилируем внешние ESM-пакеты, используемые документацией.
   transpileDependencies: [
     '@dimailn/vuetify',
     'markdown-it-prism',

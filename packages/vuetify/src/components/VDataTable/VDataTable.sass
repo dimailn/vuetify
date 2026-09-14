@@ -1,3 +1,4 @@
+@use "sass:map"
 // Imports
 @import './_variables.scss'
 
@@ -13,7 +14,7 @@
       background: map-deep-get($material, 'table', 'group')
 
   .v-data-footer
-    border-top: thin solid map-get($material, 'dividers')
+    border-top: thin solid map.get($material, 'dividers')
 
   .v-data-table__empty-wrapper
     color: map-deep-get($material, 'text', 'disabled')

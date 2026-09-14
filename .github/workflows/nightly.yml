@@ -35,6 +35,9 @@ jobs:
         with:
           ref: ${{ matrix.branch }}
           fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20.19.4
       - run: |
           last=$(git show -s --format=%ct HEAD)
           now=$(date +%s)
@@ -48,7 +51,7 @@ jobs:
           path: |
             node_modules
             **/node_modules
-          key: ${{ runner.os }}-${{ hashFiles('./yarn.lock') }}
+          key: ${{ runner.os }}-node-20.19.4-${{ hashFiles('./yarn.lock') }}
       - run: yarn --frozen-lockfile --non-interactive
       - run: yarn lerna version --conventional-commits --conventional-prerelease --no-push --no-commit-hooks --preid "$RELEASE_BRANCH-$(date +'%Y%m%d')" --yes
       - run: yarn conventional-changelog -p angular --outfile ./packages/vuetify/CHANGELOG.md -r 2
@@ -78,6 +81,9 @@ jobs:
         with:
           ref: next
           fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20.19.4
       - run: |
           last=$(git show -s --format=%ct HEAD)
           now=$(date +%s)
@@ -92,7 +98,7 @@ jobs:
             node_modules
             **/node_modules
             /home/runner/.cache/Cypress
-          key: ${{ runner.os }}-${{ hashFiles('./yarn.lock') }}
+          key: ${{ runner.os }}-node-20.19.4-${{ hashFiles('./yarn.lock') }}
       - run: yarn --frozen-lockfile --non-interactive
       - run: echo "COMMIT=$(git rev-parse HEAD)" >> $GITHUB_ENV
       - run: yarn cy:run

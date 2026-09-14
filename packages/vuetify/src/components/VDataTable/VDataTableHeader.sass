@@ -1,3 +1,4 @@
+@use "sass:map"
 // Imports
 @import './_variables.scss'
 
@@ -17,7 +18,7 @@
           color: map-deep-get($material, 'text', 'primary')
 
     &__sort-badge
-      background-color: map-get($material, 'dividers')
+      background-color: map.get($material, 'dividers')
       color: map-deep-get($material, 'text', 'primary')
 
 // Block
@@ -42,7 +43,7 @@
 .v-data-table-header__icon
   display: inline-block
   opacity: 0
-  transition: .3s map-get($transition, 'swing')
+  transition: .3s map.get($transition, 'swing')
 
 .v-data-table-header__sort-badge
   display: inline-flex

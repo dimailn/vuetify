@@ -1,3 +1,4 @@
+@use "sass:map"
 @import './_variables.scss'
 
 +theme(v-snack) using ($material)
@@ -39,7 +40,7 @@
     position: relative
     transition-duration: .15s
     transition-property: opacity, transform
-    transition-timing-function: map-get($transition, 'linear-out-slow-in')
+    transition-timing-function: map.get($transition, 'linear-out-slow-in')
     z-index: 1
 
     &.theme--dark

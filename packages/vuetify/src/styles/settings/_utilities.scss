@@ -1,3 +1,4 @@
+@use "sass:map";
 @import '../tools/_functions.sass';
 
 $utilities: () !default;
@@ -162,55 +163,55 @@ $utilities: map-deep-merge(
       responsive: true,
       property: margin,
       class: ma,
-      values: map-merge($spacers, (auto: auto))
+      values: map.merge($spacers, (auto: auto))
     ),
     "margin-x": (
       responsive: true,
       property: margin-right margin-left,
       class: mx,
-      values: map-merge($spacers, (auto: auto))
+      values: map.merge($spacers, (auto: auto))
     ),
     "margin-y": (
       responsive: true,
       property: margin-top margin-bottom,
       class: my,
-      values: map-merge($spacers, (auto: auto))
+      values: map.merge($spacers, (auto: auto))
     ),
     "margin-top": (
       responsive: true,
       property: margin-top,
       class: mt,
-      values: map-merge($spacers, (auto: auto))
+      values: map.merge($spacers, (auto: auto))
     ),
     "margin-right": (
       responsive: true,
       property: margin-right,
       class: mr,
-      values: map-merge($spacers, (auto: auto))
+      values: map.merge($spacers, (auto: auto))
     ),
     "margin-bottom": (
       responsive: true,
       property: margin-bottom,
       class: mb,
-      values: map-merge($spacers, (auto: auto))
+      values: map.merge($spacers, (auto: auto))
     ),
     "margin-left": (
       responsive: true,
       property: margin-left,
       class: ml,
-      values: map-merge($spacers, (auto: auto))
+      values: map.merge($spacers, (auto: auto))
     ),
     "margin-start": (
       responsive: true,
       property: (ltr: margin-left, rtl: margin-right),
       class: ms,
-      values: map-merge($spacers, (auto: auto))
+      values: map.merge($spacers, (auto: auto))
     ),
     "margin-end": (
       responsive: true,
       property: (ltr: margin-right, rtl: margin-left),
       class: me,
-      values: map-merge($spacers, (auto: auto))
+      values: map.merge($spacers, (auto: auto))
     ),
 
     // Negative margin utilities

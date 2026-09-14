@@ -1,8 +1,8 @@
 const webpack = require('webpack')
-const merge = require('webpack-merge')
+const { merge } = require('webpack-merge')
 const TerserPlugin = require('terser-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
-const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin')
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin')
 
 const base = require('./webpack.prod.config')
 const version = process.env.VERSION || require('../package.json').version
@@ -14,7 +14,6 @@ const builds = {
       mode: 'development',
       output: {
         filename: 'vuetify.js',
-        libraryTarget: 'umd',
       },
       plugins: [
         new MiniCssExtractPlugin({
@@ -28,7 +27,6 @@ const builds = {
       mode: 'production',
       output: {
         filename: 'vuetify.min.js',
-        libraryTarget: 'umd',
       },
       plugins: [
         new MiniCssExtractPlugin({
@@ -44,7 +42,7 @@ const builds = {
 }
 
 function genConfig (opts) {
-  const config = merge({}, base, opts.config)
+  const config = merge(base, opts.config)
 
   config.plugins = config.plugins.concat([
     new webpack.DefinePlugin({
@@ -67,19 +65,17 @@ function genConfig (opts) {
     config.optimization = {
       minimizer: [
         new TerserPlugin({
-          cache: true,
           parallel: true,
-          sourceMap: true,
+          extractComments: false,
         }),
-        new OptimizeCssAssetsPlugin({
-          assetNameRegExp: /\.css$/g,
-          cssProcessor: require('cssnano'),
-          cssProcessorOptions: {
-            discardComments: { removeAll: true },
-            postcssZindex: false,
-            reduceIdents: false,
+        new CssMinimizerPlugin({
+          minimizerOptions: {
+            preset: ['default', {
+              discardComments: { removeAll: true },
+              zindex: false,
+              reduceIdents: false,
+            }],
           },
-          canPrint: false,
         }),
       ],
     }

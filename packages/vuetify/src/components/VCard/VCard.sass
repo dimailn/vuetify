@@ -1,8 +1,9 @@
+@use "sass:map"
 @import './_variables.scss'
 
 // Theme
 +theme(v-card) using ($material)
-  background-color: map-get($material, 'cards')
+  background-color: map.get($material, 'cards')
   color: map-deep-get($material, 'text', 'primary')
 
   > .v-card__text,
@@ -138,7 +139,7 @@
     position: absolute
     right: 0
     top: 0
-    transition: .2s opacity map-get($transition, 'fast-in-slow-out')
+    transition: .2s opacity map.get($transition, 'fast-in-slow-out')
 
 .v-card--disabled
   pointer-events: none

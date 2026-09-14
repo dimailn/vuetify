@@ -1,11 +1,8 @@
 const path = require('path')
-const merge = require('webpack-merge')
-const HappyPack = require('happypack')
+const { merge } = require('webpack-merge')
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin')
 const {VueLoaderPlugin} = require('vue-loader')
-// const { VuetifyProgressiveModule } = require('vuetify-loader')
-// const { VuetifyProgressiveModule } = require('webpack-plugin-vuetify')
-const { config: baseWebpackConfig, happyThreadPool } = require('./webpack.base.config')
+const { config: baseWebpackConfig } = require('./webpack.base.config')
 
 // Helpers
 const resolve = file => path.resolve(__dirname, file)
@@ -31,19 +28,26 @@ module.exports = merge(baseWebpackConfig, {
         test: /\.vue$/,
         loader: 'vue-loader',
         options: {
-          compilerOptions: {
-            // modules: [VuetifyProgressiveModule],
-          },
+          compilerOptions: {},
         },
       },
       {
         test: /\.ts$/,
-        use: 'happypack/loader?id=ts',
+        use: [
+          'babel-loader',
+          {
+            loader: 'ts-loader',
+            options: {
+              appendTsSuffixTo: [/\.vue$/],
+              transpileOnly: true,
+            },
+          },
+        ],
         exclude: /node_modules/,
       },
       {
         test: /\.js$/,
-        use: 'happypack/loader?id=js',
+        use: 'babel-loader',
         exclude: /node_modules/,
       },
       {
@@ -55,60 +59,38 @@ module.exports = merge(baseWebpackConfig, {
       },
       {
         test: /\.(png|jpe?g|gif|svg|eot|ttf|woff|woff2)$/,
-        oneOf: [
-          {
-            test: /\.(png|jpe?g|gif)$/,
-            resourceQuery: /vuetify-preload/,
-            use: [
-              'vuetify-loader/progressive-loader',
-              {
-                loader: 'url-loader',
-                options: { limit: 8000 },
-              },
-            ],
-          },
-          {
-            loader: 'url-loader',
-            options: {
-              limit: 10000,
-              name: 'img/[name].[hash:7].[ext]',
-            },
-          },
-        ],
+        type: 'asset',
+        parser: {
+          dataUrlCondition: { maxSize: 10000 },
+        },
+        generator: {
+          filename: 'img/[name].[contenthash:7][ext]',
+        },
       },
     ],
   },
   devServer: {
-    contentBase: resolve('../dev'),
-    publicPath: '/dev/',
+    static: {
+      directory: resolve('../dev'),
+      publicPath: '/dev/',
+    },
+    devMiddleware: {
+      publicPath: '/dev/',
+    },
     host: process.env.HOST || 'localhost',
     port: process.env.PORT || '8080',
-    disableHostCheck: true,
+    allowedHosts: 'all',
   },
   plugins: [
     new VueLoaderPlugin(),
     new ForkTsCheckerWebpackPlugin({
-      checkSyntacticErrors: true,
-      tsconfig: resolve('../tsconfig.json'),
-    }),
-    new HappyPack({
-      id: 'ts',
-      threadPool: happyThreadPool,
-      loaders: [
-        'babel-loader',
-        {
-          loader: 'ts-loader',
-          options: {
-            appendTsSuffixTo: [/\.vue$/],
-            happyPackMode: true,
-          },
+      typescript: {
+        configFile: resolve('../tsconfig.json'),
+        diagnosticOptions: {
+          syntactic: true,
+          semantic: true,
         },
-      ],
-    }),
-    new HappyPack({
-      id: 'js',
-      threadPool: happyThreadPool,
-      loaders: ['babel-loader'],
+      },
     }),
   ],
 })

@@ -1,3 +1,4 @@
+@use "sass:map"
 @import './_variables.scss'
 
 .v-speed-dial
@@ -18,16 +19,16 @@
       margin: 0
 
   &--top
-    top: map-get($grid-gutters, 'lg')
+    top: map.get($grid-gutters, 'lg')
 
   &--bottom
-    bottom: map-get($grid-gutters, 'lg')
+    bottom: map.get($grid-gutters, 'lg')
 
   &--left
-    left: map-get($grid-gutters, 'lg')
+    left: map.get($grid-gutters, 'lg')
 
   &--right
-    right: map-get($grid-gutters, 'lg')
+    right: map.get($grid-gutters, 'lg')
 
   &--direction
     &-left,
