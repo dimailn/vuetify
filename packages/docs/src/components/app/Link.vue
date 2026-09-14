@@ -1,5 +1,6 @@
 <script>
   import { h } from 'vue'
+  import { RouterLink } from 'vue-router'
 
   // Components
   import { VIcon } from 'vuetify/lib/components/VIcon'
@@ -85,7 +86,7 @@
         ? { ...this.attrs, onClick: this.onClick }
         : { ...this.attrs, onClick: this.onClick }
 
-      return h(this.isExternal ? 'a' : 'router-link', {
+      return h(this.isExternal ? 'a' : RouterLink, {
         class: 'app-link text-decoration-none primary--text font-weight-medium d-inline-block',
         ...props,
       }, children)
