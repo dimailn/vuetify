@@ -1,5 +1,3 @@
-@use "sass:math"
-
 @import '../../styles/styles.sass'
 
 .container
@@ -75,9 +73,9 @@
     $n: $grid-columns
     @while $n > 0
       .flex.#{$size}#{$n}
-        flex-basis: math.div($n, $grid-columns) * 100%
+        flex-basis: v-math-div($n, $grid-columns) * 100%
         flex-grow: 0
-        max-width: math.div($n, $grid-columns) * 100%
+        max-width: v-math-div($n, $grid-columns) * 100%
 
       .flex.order-#{$size}#{$n}
         order: $n
@@ -89,9 +87,9 @@
       .flex.offset-#{$size}#{$m}
         // Offsets can only ever work in row layouts
         +ltr()
-          margin-left: math.div($m, $grid-columns) * 100%
+          margin-left: v-math-div($m, $grid-columns) * 100%
         +rtl()
-          margin-right: math.div($m, $grid-columns) * 100%
+          margin-right: v-math-div($m, $grid-columns) * 100%
 
       $m: $m - 1
 

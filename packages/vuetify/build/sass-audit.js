@@ -114,10 +114,12 @@ async function main () {
   try {
     const toolbarEntry = path.join(sourceRoot, 'components/VToolbar/VToolbar.sass')
     const inputEntry = path.join(sourceRoot, 'components/VInput/VInput.sass')
+    const legacyGridEntry = path.join(sourceRoot, 'components/VGrid/_grid.sass')
     const result = await sass.compileStringAsync(`
       @import '${customVariablesEntry.replace(/\\/g, '/')}';
       @import '${toolbarEntry.replace(/\\/g, '/')}';
       @import '${inputEntry.replace(/\\/g, '/')}';
+      @import '${legacyGridEntry.replace(/\\/g, '/')}';
 
       .vuetify-sass-contract-audit {
         font-family: $body-font-family;
