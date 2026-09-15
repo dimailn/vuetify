@@ -1,4 +1,3 @@
-@use "sass:math"
 @import './_variables.scss'
 
 .v-tooltip
@@ -12,7 +11,7 @@
     color: $tooltip-text-color
     border-radius: $tooltip-border-radius
     font-size: $tooltip-font-size
-    line-height: math.round($tooltip-font-size * 1.6)
+    line-height: v-math-round($tooltip-font-size * 1.6)
     display: inline-block
     padding: $tooltip-padding
     position: absolute

@@ -1,9 +1,8 @@
-@use "sass:map"
 @import './_variables.scss'
 
 // Theme
 +theme(v-footer) using ($material)
-  background-color: map.get($material, 'app-bar')
+  background-color: v-map-get($material, 'app-bar')
   color: map-deep-get($material, 'text', 'primary')
 
 +sheet(v-footer, $footer-elevation, $footer-border-radius, $footer-shaped-border-radius)

@@ -1,4 +1,3 @@
-@use "sass:map"
 @import './_variables.scss'
 
 // Transition
@@ -20,5 +19,5 @@
   &.v-bottom-sheet--inset
     max-width: $bottom-sheet-inset-width
 
-    @media #{map.get($display-breakpoints, 'xs-only')}
+    @media #{v-map-get($display-breakpoints, 'xs-only')}
       max-width: none

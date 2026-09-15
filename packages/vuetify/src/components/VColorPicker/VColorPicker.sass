@@ -1,9 +1,8 @@
-@use "sass:map"
 @import './_variables.scss'
 
 +theme(v-color-picker) using ($material)
   .v-color-picker__input input
-    border: thin solid map.get($material, 'dividers')
+    border: thin solid v-map-get($material, 'dividers')
     color: map-deep-get($material, 'text', 'primary')
 
   span

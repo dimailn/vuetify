@@ -1,4 +1,3 @@
-@use "sass:map"
 // Imports
 @import './_variables.scss'
 
@@ -6,7 +5,7 @@
 +theme(v-alert) using ($material)
   .v-alert--prominent .v-alert__icon
     &:after
-      background: map.get($material, 'dividers')
+      background: v-map-get($material, 'dividers')
 
 // Sheet
 +sheet(v-alert, $alert-elevation, $alert-border-radius, $alert-shaped-border-radius)

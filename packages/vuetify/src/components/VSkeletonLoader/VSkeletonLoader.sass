@@ -1,4 +1,3 @@
-@use "sass:map"
 // Imports
 @import './_variables.scss'
 @import '../VAvatar/_variables.scss'
@@ -6,7 +5,7 @@
 // Theme
 +theme(v-skeleton-loader) using ($material)
   .v-skeleton-loader__bone::after
-    background: map.get($material, 'skeleton')
+    background: v-map-get($material, 'skeleton')
 
   .v-skeleton-loader__avatar,
   .v-skeleton-loader__button,
@@ -15,7 +14,7 @@
   .v-skeleton-loader__heading,
   .v-skeleton-loader__image,
   .v-skeleton-loader__text
-    background: map.get($material, 'dividers')
+    background: v-map-get($material, 'dividers')
 
   .v-skeleton-loader__actions,
   .v-skeleton-loader__article,
@@ -33,7 +32,7 @@
   .v-skeleton-loader__table-thead,
   .v-skeleton-loader__table-tbody,
   .v-skeleton-loader__table-tfoot
-    background: map.get($material, 'cards')
+    background: v-map-get($material, 'cards')
 
 .v-skeleton-loader
   border-radius: $skeleton-loader-border-radius

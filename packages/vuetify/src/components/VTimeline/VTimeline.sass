@@ -1,4 +1,3 @@
-@use "sass:map"
 // Imports
 @import './_variables.scss'
 @import './_mixins.sass'
@@ -12,11 +11,11 @@
 // Theme
 +theme(v-timeline) using ($material)
   &::before
-    background: map.get($material, 'dividers')
+    background: v-map-get($material, 'dividers')
 
   .v-timeline-item
     &__dot
-      background: map.get($material, 'cards')
+      background: v-map-get($material, 'cards')
 
     .v-card
       &:not(.v-card--link)::before

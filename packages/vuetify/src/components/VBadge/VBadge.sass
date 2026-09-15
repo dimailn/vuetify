@@ -1,10 +1,9 @@
-@use "sass:map"
 // Imports
 @import './_variables.scss'
 
 +theme(v-badge) using ($material)
   .v-badge__badge::after
-    border-color: map.get($material, 'cards')
+    border-color: v-map-get($material, 'cards')
 
 .v-badge
   display: inline-block

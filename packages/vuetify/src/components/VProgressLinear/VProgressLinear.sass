@@ -1,4 +1,3 @@
-@use "sass:map"
 @import './_variables.scss'
 
 +theme(v-progress-linear) using ($material)
@@ -9,7 +8,7 @@
   background: transparent
   overflow: hidden
   position: relative
-  transition: .2s map.get($transition, 'ease-in-out')
+  transition: .2s v-map-get($transition, 'ease-in-out')
   width: 100%
 
 // Element

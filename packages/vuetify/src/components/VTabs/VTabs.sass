@@ -1,22 +1,21 @@
-@use "sass:map"
 // Imports
 @import './_variables.scss'
 
 +theme(v-tabs) using ($material)
   > .v-tabs-bar
-    background-color: map.get($material, $tabs-bar-background-color)
+    background-color: v-map-get($material, $tabs-bar-background-color)
 
     .v-tab:not(.v-tab--active),
     .v-tab:not(.v-tab--active) > .v-icon,
     .v-tab:not(.v-tab--active) > .v-btn,
     .v-tab--disabled
-      color: map.get($material, 'tabs')
+      color: v-map-get($material, 'tabs')
 
   .v-tab
     +states($material)
 
 +theme(v-tabs-items) using ($material)
-  background-color: map.get($material, 'cards')
+  background-color: v-map-get($material, 'cards')
 
 .v-tabs-bar
   &.primary,

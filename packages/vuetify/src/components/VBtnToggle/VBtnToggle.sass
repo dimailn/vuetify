@@ -1,15 +1,14 @@
-@use "sass:map"
 // Imports
 @import './_variables.scss'
 
 // Theme
 +theme(v-btn-toggle) using ($material)
   &:not(.v-btn-toggle--group)
-    background: map.get($material, 'cards')
+    background: v-map-get($material, 'cards')
     color: map-deep-get($material, 'text', 'primary')
 
     .v-btn.v-btn
-      border-color: map.get($material, 'dividers') !important
+      border-color: v-map-get($material, 'dividers') !important
 
       &:focus:not(:active)
         border-color: map-deep-get($material, 'buttons', 'disabled')

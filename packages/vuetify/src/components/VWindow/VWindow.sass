@@ -1,4 +1,3 @@
-@use "sass:map"
 @import './_variables.scss'
 
 .v-window
@@ -45,7 +44,7 @@
 
     .v-window__next,
     .v-window__prev
-      transition: .2s transform map.get($transition, 'swing')
+      transition: .2s transform v-map-get($transition, 'swing')
 
     .v-window__prev
       +ltr()
