@@ -1,4 +1,3 @@
-@use "sass:map"
 @import './_variables.scss'
 
 // Theme
@@ -25,7 +24,7 @@
     margin: initial
 
 .v-picker__title
-  color: map.get($shades, 'white')
+  color: v-map-get($shades, 'white')
   border-top-left-radius: $picker-border-radius
   border-top-right-radius: $picker-border-radius
   padding: $picker-title-padding

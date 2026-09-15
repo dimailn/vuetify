@@ -1,4 +1,3 @@
-@use "sass:map"
 @import './_variables.scss'
 
 .v-menu
@@ -24,7 +23,7 @@
       .v-list-item
         transition-property: transform, opacity
         transition-duration: .3s
-        transition-timing-function: map.get($transition, 'fast-in-fast-out')
+        transition-timing-function: v-map-get($transition, 'fast-in-fast-out')
 
     &--fixed
       position: fixed
@@ -55,7 +54,7 @@
 
     &-enter-active,
     &-leave-active
-      transition: all .3s map.get($transition, 'fast-in-fast-out')
+      transition: all .3s v-map-get($transition, 'fast-in-fast-out')
 
 .v-menu-transition-enter
   &.v-menu__content--auto

@@ -1,15 +1,14 @@
-@use "sass:map"
 // Imports
 @import './_variables.scss'
 
 // Theme
 +theme(v-sheet) using ($material)
-  background-color: map.get($material, 'cards')
-  border-color: map.get($material, 'cards')
+  background-color: v-map-get($material, 'cards')
+  border-color: v-map-get($material, 'cards')
   color: map-deep-get($material, 'text', 'primary')
 
   &--outlined
-    border: $sheet-outlined-border-width solid map.get($material, 'dividers')
+    border: $sheet-outlined-border-width solid v-map-get($material, 'dividers')
 
 // Sheet
 .v-sheet

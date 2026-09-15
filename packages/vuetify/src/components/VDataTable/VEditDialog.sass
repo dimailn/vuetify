@@ -1,10 +1,9 @@
-@use "sass:map"
 @import './_variables.scss'
 
 +theme(v-small-dialog) using ($material)
   &__menu-content,
   &__actions
-    background: map.get($material, 'cards')
+    background: v-map-get($material, 'cards')
 
 .v-small-dialog
   display: block

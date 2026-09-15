@@ -7,6 +7,7 @@ const sass = require('sass')
 
 const sourceRoot = path.resolve(__dirname, '../src')
 const stylesEntry = path.join(sourceRoot, 'styles/styles.sass')
+const customVariablesEntry = path.resolve(__dirname, 'sass-audit-variables.scss')
 const forbidden = ['legacy-js-api', 'slash-div', 'global-builtin', 'if-function', 'color-functions']
 
 function walk (directory) {
@@ -105,6 +106,37 @@ async function main () {
     } catch (error) {
       errors.push(`${path.relative(sourceRoot, target.file)}: ${error.message}`)
     }
+  }
+
+  // Vuetify's public Sass contract allows a consumer variables file to be
+  // imported before individual component entries. Keep this separate from the
+  // per-file audit so an accidental top-level `@use` fails explicitly.
+  try {
+    const toolbarEntry = path.join(sourceRoot, 'components/VToolbar/VToolbar.sass')
+    const inputEntry = path.join(sourceRoot, 'components/VInput/VInput.sass')
+    const result = await sass.compileStringAsync(`
+      @import '${customVariablesEntry.replace(/\\/g, '/')}';
+      @import '${toolbarEntry.replace(/\\/g, '/')}';
+      @import '${inputEntry.replace(/\\/g, '/')}';
+
+      .vuetify-sass-contract-audit {
+        font-family: $body-font-family;
+        font-size: $font-size-root;
+      }
+    `, {
+      loadPaths: [sourceRoot],
+      quietDeps: false,
+      silenceDeprecations: ['import'],
+      fatalDeprecations: forbidden,
+      logger: { warn: () => {}, debug: () => {} },
+    })
+
+    if (!result.css.includes('font-family: "Vuetify Sass contract audit"') ||
+        !result.css.includes('font-size: 13px')) {
+      errors.push('custom variables contract: component entries ignored consumer variables')
+    }
+  } catch (error) {
+    errors.push(`custom variables contract: ${error.message}`)
   }
 
   console.log(`Sass files: ${files.length}; entries: ${entries.length}; reachable: ${reached.size}; wrappers: ${unreachable.length}`)

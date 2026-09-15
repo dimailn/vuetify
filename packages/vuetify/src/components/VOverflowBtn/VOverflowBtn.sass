@@ -1,18 +1,17 @@
-@use "sass:map"
 @import './_variables.scss'
 
 // Theme
 +theme(v-overflow-btn) using ($material)
   &#{&} > .v-input__control > .v-input__slot
-    border-color: map.get($material, 'dividers')
+    border-color: v-map-get($material, 'dividers')
 
   &:not(.v-input--is-focused):not(.v-input--has-state)
     > .v-input__control > .v-input__slot:hover
-      background: map.get($material, 'cards')
+      background: v-map-get($material, 'cards')
 
   &.v-overflow-btn--segmented
     .v-input__append-inner
-      border-left: thin solid map.get($material, 'dividers')
+      border-left: thin solid v-map-get($material, 'dividers')
 
 
 .v-autocomplete__content.v-menu__content
@@ -59,7 +58,7 @@
       margin-right: $overflow-selection-comma-margin-x
 
   .v-input__slot
-    transition: .3s map.get($transition, 'swing')
+    transition: .3s v-map-get($transition, 'swing')
 
     &::before,
     &::after

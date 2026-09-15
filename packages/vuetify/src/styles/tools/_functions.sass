@@ -1,6 +1,20 @@
 @use "sass:list"
 @use "sass:map"
+@use "sass:math"
 @use "sass:meta"
+
+// Keep Sass module namespaces inside the tools layer. Public component style
+// entries must remain importable after a consumer variables file; putting
+// `@use` in those entries makes Dart Sass reject the preceding `@import`.
+@function v-map-get($map, $keys...)
+  @return map.get($map, $keys...)
+
+@function v-math-div($number, $divisor)
+  @return math.div($number, $divisor)
+
+@function v-math-round($number)
+  @return math.round($number)
+
 @function map-deep-set($map, $keys, $value)
   $maps: ($map,)
   $result: null

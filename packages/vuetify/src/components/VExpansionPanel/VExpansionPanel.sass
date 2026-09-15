@@ -1,17 +1,16 @@
-@use "sass:map"
 @import './_variables.scss'
 
 // Theme
 +theme(v-expansion-panels) using ($material)
   .v-expansion-panel
-    background-color: map.get($material, 'cards')
+    background-color: v-map-get($material, 'cards')
     color: map-deep-get($material, 'text', 'primary')
 
     &--disabled
       color: map-deep-get($material, 'text', 'disabled')
 
     &:not(:first-child)::after
-      border-color: map.get($material, 'dividers')
+      border-color: v-map-get($material, 'dividers')
 
   .v-expansion-panel-header
     .v-expansion-panel-header__icon
@@ -73,7 +72,7 @@
   flex: 1 0 100%
   max-width: 100%
   position: relative
-  transition: .3s map.get($transition, 'swing')
+  transition: .3s v-map-get($transition, 'swing')
 
   &::before
     border-radius: inherit
@@ -94,7 +93,7 @@
     position: absolute
     right: 0
     top: 0
-    transition: .2s border-color map.get($transition, 'fast-out-slow-in'), .2s opacity map.get($transition, 'fast-out-slow-in')
+    transition: .2s border-color v-map-get($transition, 'fast-out-slow-in'), .2s opacity v-map-get($transition, 'fast-out-slow-in')
 
   &--disabled
     .v-expansion-panel-header
@@ -138,7 +137,7 @@
   outline: none
   padding: $expansion-panel-header-padding
   position: relative
-  transition: .3s min-height map.get($transition, 'swing')
+  transition: .3s min-height v-map-get($transition, 'swing')
   width: 100%
 
   +ltr()
@@ -161,7 +160,7 @@
     position: absolute
     right: 0
     top: 0
-    transition: .3s opacity map.get($transition, 'swing')
+    transition: .3s opacity v-map-get($transition, 'swing')
 
   > *:not(.v-expansion-panel-header__icon)
     flex: 1 1 auto

@@ -1,4 +1,3 @@
-@use "sass:map"
 // Imports
 @import './_variables.scss'
 
@@ -14,11 +13,11 @@
     color: map-deep-get($material-dark, 'text', 'primary')
 
 +theme(v-chip) using ($material)
-  border-color: map.get($material, 'dividers')
+  border-color: v-map-get($material, 'dividers')
   color: map-deep-get($material, 'text', 'primary')
 
   &:not(.v-chip--active)
-    background: map.get($material, 'chips')
+    background: v-map-get($material, 'chips')
 
   +states($material)
 
@@ -200,6 +199,6 @@
 .v-chip
   @each $name, $size in $icon-sizes
     &.v-size--#{$name}
-      border-radius: #{map.get($size, 'height') * 0.5}px
-      font-size: #{map.get($size, 'font-size')}px
-      height: #{map.get($size, 'height')}px
+      border-radius: #{v-map-get($size, 'height') * 0.5}px
+      font-size: #{v-map-get($size, 'font-size')}px
+      height: #{v-map-get($size, 'height')}px

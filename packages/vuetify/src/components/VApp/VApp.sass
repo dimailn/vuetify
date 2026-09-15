@@ -1,9 +1,8 @@
-@use "sass:map"
 @import '../../styles/styles.sass'
 
 // Theme
 +theme(v-application) using ($material)
-  background: map.get($material, 'background')
+  background: v-map-get($material, 'background')
   color: map-deep-get($material, 'text', 'primary')
 
   .text

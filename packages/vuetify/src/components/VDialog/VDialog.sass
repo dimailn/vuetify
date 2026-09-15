@@ -1,4 +1,3 @@
-@use "sass:map"
 @import './_variables.scss'
 
 // Block
@@ -7,7 +6,7 @@
   margin: $dialog-margin
   overflow-y: auto
   pointer-events: auto
-  transition: .3s map.get($transition, 'fast-in-fast-out')
+  transition: .3s v-map-get($transition, 'fast-in-fast-out')
   width: 100%
   z-index: inherit
   outline: none
@@ -45,7 +44,7 @@
   pointer-events: none
   position: fixed
   top: 0
-  transition: .2s map.get($transition, 'fast-in-fast-out'), z-index 1ms
+  transition: .2s v-map-get($transition, 'fast-in-fast-out'), z-index 1ms
   width: 100%
   z-index: 6
 
@@ -59,7 +58,7 @@
 .v-dialog--animated
   animation-duration: .15s
   animation-name: animate-dialog
-  animation-timing-function: map.get($transition, 'fast-in-fast-out')
+  animation-timing-function: v-map-get($transition, 'fast-in-fast-out')
 
 .v-dialog--fullscreen
   border-radius: 0

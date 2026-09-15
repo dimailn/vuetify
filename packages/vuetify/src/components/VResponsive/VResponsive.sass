@@ -1,4 +1,3 @@
-@use "sass:map"
 @import './_variables.scss'
 
 .v-responsive
@@ -20,5 +19,5 @@
       margin-right: -100%
 
   &__sizer
-    transition: padding-bottom 0.2s map.get($transition, 'swing')
+    transition: padding-bottom 0.2s v-map-get($transition, 'swing')
     flex: 1 0 0px

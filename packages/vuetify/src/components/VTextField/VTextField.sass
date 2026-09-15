@@ -1,10 +1,9 @@
-@use "sass:map"
 @import './_mixins.sass'
 @import './_variables.scss'
 
 +theme(v-text-field) using ($material)
   > .v-input__control > .v-input__slot:before
-    border-color: map.get($material, 'input-bottom-line')
+    border-color: v-map-get($material, 'input-bottom-line')
 
   &:not(.v-input--has-state):hover > .v-input__control > .v-input__slot:before
     border-color: map-deep-get($material, 'text', 'primary')
@@ -22,7 +21,7 @@
 
   &--solo
     > .v-input__control > .v-input__slot
-      background: map.get($material, 'cards')
+      background: v-map-get($material, 'cards')
 
   &--solo-inverted
     > .v-input__control > .v-input__slot
@@ -406,7 +405,7 @@
       top: $text-field-outlined-fieldset-top
       transition-duration: 0.15s
       transition-property: color
-      transition-timing-function: map.get($transition, 'fast-in-fast-out')
+      transition-timing-function: v-map-get($transition, 'fast-in-fast-out')
 
       +ltr()
         padding-left: $text-field-outlined-fieldset-padding
