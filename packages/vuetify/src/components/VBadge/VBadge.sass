@@ -1,5 +1,6 @@
+@use '../../styles/styles.sass' as *
 // Imports
-@import './_variables.scss'
+@use '_variables.scss' as variables
 
 +theme(v-badge) using ($material)
   .v-badge__badge::after
@@ -7,43 +8,43 @@
 
 .v-badge
   display: inline-block
-  line-height: $badge-line-height
+  line-height: variables.$badge-line-height
   position: relative
 
   &__badge
-    border-radius: $badge-border-radius
-    color: $badge-color
+    border-radius: variables.$badge-border-radius
+    color: variables.$badge-color
     display: inline-block
-    font-size: $badge-font-size
-    height: $badge-height
-    letter-spacing: $badge-letter-spacing
+    font-size: variables.$badge-font-size
+    height: variables.$badge-height
+    letter-spacing: variables.$badge-letter-spacing
     line-height: 1
-    min-width: $badge-min-width
-    padding: $badge-padding
+    min-width: variables.$badge-min-width
+    padding: variables.$badge-padding
     pointer-events: auto
     position: absolute
     text-align: center
     text-indent: 0
-    top: $badge-top
+    top: variables.$badge-top
     transition: $primary-transition
     white-space: nowrap
 
     +ltr()
-      right: $badge-right
+      right: variables.$badge-right
 
     +rtl()
-      left: $badge-right
+      left: variables.$badge-right
 
     .v-icon
       color: inherit
-      font-size: $badge-font-size
-      height: $badge-font-size
-      margin: $badge-icon-margin
-      width: $badge-font-size
+      font-size: variables.$badge-font-size
+      height: variables.$badge-font-size
+      margin: variables.$badge-icon-margin
+      width: variables.$badge-font-size
 
     .v-img
-      height: $badge-font-size
-      width: $badge-font-size
+      height: variables.$badge-font-size
+      width: variables.$badge-font-size
 
   &__wrapper
     flex: 0 1
@@ -59,14 +60,14 @@
       padding: 0
 
       .v-avatar
-        height: $badge-height !important
+        height: variables.$badge-height !important
         min-width: 0 !important
-        max-width: $badge-min-width !important
+        max-width: variables.$badge-min-width !important
 
   &--bordered
     .v-badge__badge::after
       border-radius: inherit
-      border-width: $badge-bordered-width
+      border-width: variables.$badge-bordered-width
       border-style: solid
       bottom: 0
       content: ''
@@ -78,18 +79,18 @@
 
   &--dot
     .v-badge__badge
-      border-radius: $badge-dot-border-radius
-      height: $badge-dot-height
+      border-radius: variables.$badge-dot-border-radius
+      height: variables.$badge-dot-height
       min-width: 0
       padding: 0
-      width: $badge-dot-width
+      width: variables.$badge-dot-width
 
       &::after
-        border-width: $badge-dot-border-width
+        border-width: variables.$badge-dot-border-width
 
   &--icon
     .v-badge__badge
-      padding: $badge-icon-padding
+      padding: variables.$badge-icon-padding
 
   &--inline
     align-items: center
@@ -101,7 +102,7 @@
       position: relative
 
     .v-badge__wrapper
-      margin: $badge-wrapper-margin
+      margin: variables.$badge-wrapper-margin
 
   &--tile
     .v-badge__badge

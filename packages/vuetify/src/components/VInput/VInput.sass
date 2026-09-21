@@ -1,4 +1,5 @@
-@import './_variables.scss'
+@use '../../styles/styles.sass' as *
+@use '_variables.scss' as variables
 
 /* Theme */
 +theme(v-input) using ($material)
@@ -23,17 +24,17 @@
   align-items: flex-start
   display: flex
   flex: 1 1 auto
-  font-size: $input-font-size
-  letter-spacing: $input-letter-spacing
+  font-size: variables.$input-font-size
+  letter-spacing: variables.$input-letter-spacing
   max-width: 100%
-  text-align: $input-text-align
+  text-align: variables.$input-text-align
 
   .v-progress-linear
     top: calc(100% - 1px)
     left: 0
 
   input
-    max-height: $input-max-height
+    max-height: variables.$input-max-height
 
   input,
   textarea
@@ -46,9 +47,9 @@
       outline: none
 
   .v-label
-    height: $input-label-height
-    line-height: $input-label-height
-    letter-spacing: $input-label-letter-spacing
+    height: variables.$input-label-height
+    line-height: variables.$input-label-height
+    letter-spacing: variables.$input-label-letter-spacing
 
   &__append-outer,
   &__prepend-outer
@@ -62,17 +63,17 @@
 
   &__append-outer
     +ltr()
-      margin-left: $input-prepend-append-outer-margin
+      margin-left: variables.$input-prepend-append-outer-margin
 
     +rtl()
-      margin-right: $input-prepend-append-outer-margin
+      margin-right: variables.$input-prepend-append-outer-margin
 
   &__prepend-outer
     +ltr()
-      margin-right: $input-prepend-append-outer-margin
+      margin-right: variables.$input-prepend-append-outer-margin
 
     +rtl()
-      margin-left: $input-prepend-append-outer-margin
+      margin-left: variables.$input-prepend-append-outer-margin
 
   &__control
     display: flex
@@ -86,11 +87,11 @@
   &__icon
     align-items: center
     display: inline-flex
-    height: $input-icon-height
+    height: variables.$input-icon-height
     flex: 1 0 auto
     justify-content: center
-    min-width: $input-icon-min-width
-    width: $input-icon-width
+    min-width: variables.$input-icon-min-width
+    width: variables.$input-icon-width
 
     &--clear
       border-radius: 50%
@@ -101,7 +102,7 @@
   &__slot
     align-items: center
     display: flex
-    margin-bottom: $input-slot-margin-bottom
+    margin-bottom: variables.$input-slot-margin-bottom
     min-height: inherit
     position: relative
     transition: $primary-transition
@@ -109,7 +110,7 @@
     width: 100%
 
   &--dense > .v-input__control > .v-input__slot
-    margin-bottom: $input-dense-slot-margin-bottom
+    margin-bottom: variables.$input-dense-slot-margin-bottom
 
   &--is-loading > .v-input__control > .v-input__slot
     &:before,

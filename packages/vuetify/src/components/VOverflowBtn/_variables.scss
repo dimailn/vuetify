@@ -1,4 +1,4 @@
-@import '../../styles/styles.sass';
+@use '../../styles/styles.sass' as *;
 
 $overflow-active-slot-border-radius: $border-radius-root $border-radius-root 0 0 !default;
 $overflow-append-inner-height: 48px !default;

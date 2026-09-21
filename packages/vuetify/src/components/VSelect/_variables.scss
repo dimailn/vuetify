@@ -1,4 +1,4 @@
-@import '../../styles/styles.sass';
+@use '../../styles/styles.sass' as *;
 
 $select-chip-margin: 4px !default;
 $select-dense-chip-margin: 0 4px 0 4px !default;

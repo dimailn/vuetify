@@ -1,4 +1,4 @@
-@import '../../styles/styles.sass';
+@use '../../styles/styles.sass' as *;
 
 $radio-margin-right: 16px !default;
 $radio-group-padding: 8px !default;

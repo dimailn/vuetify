@@ -1,4 +1,5 @@
-@import './_variables.scss'
+@use '../../styles/styles.sass' as *
+@use '_variables.scss' as variables
 
 .v-color-picker__canvas
   $root: &
@@ -10,14 +11,14 @@
     position: absolute
     top: 0
     left: 0
-    width: $color-picker-canvas-dot-size
-    height: $color-picker-canvas-dot-size
+    width: variables.$color-picker-canvas-dot-size
+    height: variables.$color-picker-canvas-dot-size
     background: transparent
     border-radius: 50%
-    box-shadow: $color-picker-canvas-dot-box-shadow
+    box-shadow: variables.$color-picker-canvas-dot-box-shadow
 
     &--disabled
-      box-shadow: $color-picker-canvas-dot-disabled-box-shadow
+      box-shadow: variables.$color-picker-canvas-dot-disabled-box-shadow
 
     #{$root}:hover &
       will-change: transform

@@ -1,4 +1,4 @@
 @use "sass:map";
-@import '../../styles/styles.sass';
+@use '../../styles/styles.sass' as *;
 
 $responsive-transition: padding-bottom 0.2s map.get($transition, 'swing') !default;

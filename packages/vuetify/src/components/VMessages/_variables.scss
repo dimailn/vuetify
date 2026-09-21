@@ -1,4 +1,4 @@
-@import '../../styles/styles.sass';
+@use '../../styles/styles.sass' as *;
 
 $messages-font-size: 12px !default;
 $messages-line-height: $messages-font-size !default;

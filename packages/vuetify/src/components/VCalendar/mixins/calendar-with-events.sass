@@ -1,9 +1,9 @@
-@import '../../../styles/styles.sass'
-@import '../_variables.scss'
+@use '../../../styles/styles.sass' as *
+@use '../_variables.scss'
 
 +theme(v-calendar-events) using ($material)
   .v-event-timed
-    border: $calendar-event-border-width solid !important
+    border: variables.$calendar-event-border-width solid !important
 
   .v-event-more
     background-color: map-deep-get($material, 'calendar', 'background-color')
@@ -17,18 +17,18 @@
     overflow: hidden
     text-overflow: ellipsis
     white-space: nowrap
-    font-size: $calendar-event-font-size
+    font-size: variables.$calendar-event-font-size
     cursor: pointer
-    line-height: $calendar-event-line-height
-    margin-right: -$calendar-line-width
+    line-height: variables.$calendar-event-line-height
+    margin-right: -(variables.$calendar-line-width)
     z-index: 1
-    border-radius: $calendar-event-border-radius
+    border-radius: variables.$calendar-event-border-radius
 
   .v-event-more
     overflow: hidden
     text-overflow: ellipsis
     white-space: nowrap
-    font-size: $calendar-event-font-size
+    font-size: variables.$calendar-event-font-size
     cursor: pointer
     font-weight: bold
     z-index: 1
@@ -40,16 +40,16 @@
     bottom: 0
     left: 0
     right: 0
-    margin-right: $calendar-event-right-empty
+    margin-right: variables.$calendar-event-right-empty
     pointer-events: none
 
   .v-event-timed
     position: absolute
     white-space: nowrap
     text-overflow: ellipsis
-    font-size: $calendar-event-font-size
+    font-size: variables.$calendar-event-font-size
     cursor: pointer
-    border-radius: $calendar-event-border-radius
+    border-radius: variables.$calendar-event-border-radius
     pointer-events: all
 
   .v-event-summary
@@ -61,7 +61,7 @@
 
   &.v-calendar-events
     .v-calendar-weekly__head-weekday
-      margin-right: -$calendar-line-width
+      margin-right: -(variables.$calendar-line-width)
     .v-calendar-weekly__day
       overflow: visible
-      margin-right: -$calendar-line-width
+      margin-right: -(variables.$calendar-line-width)

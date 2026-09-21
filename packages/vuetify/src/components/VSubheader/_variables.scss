@@ -1,4 +1,4 @@
-@import '../../styles/styles.sass';
+@use '../../styles/styles.sass' as *;
 
 $subheader-inset-margin: 56px !default;
 $subheader-item-single-height: 48px !default;

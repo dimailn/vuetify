@@ -1,4 +1,5 @@
-@import './_variables.scss'
+@use '../../styles/styles.sass' as *
+@use '_variables.scss' as variables
 
 +theme(v-select) using ($material)
   .v-select__selections
@@ -27,10 +28,10 @@
 
   .v-chip
     flex: 0 1 auto
-    margin: $select-chip-margin
+    margin: variables.$select-chip-margin
 
     &--selected:after
-      opacity: $select-selected-chip-opacity
+      opacity: variables.$select-selected-chip-opacity
 
   .fade-transition-leave-active
     position: absolute
@@ -43,21 +44,21 @@
   &:not(.v-input--is-dirty)
     &:not(.v-input--is-focused)
       .v-text-field__prefix
-          line-height: $select-prefix-line-height
-          top: $select-prefix-top
+          line-height: variables.$select-prefix-line-height
+          top: variables.$select-prefix-top
           transition: $primary-transition
 
   &.v-text-field--enclosed:not(.v-text-field--single-line):not(.v-text-field--outlined)
     .v-select__selections
-      padding-top: $select-selections-padding-top
+      padding-top: variables.$select-selections-padding-top
 
   &.v-text-field--outlined:not(.v-text-field--single-line)
     .v-select__selections
-      padding: $select-outlined-selections-padding-top
+      padding: variables.$select-outlined-selections-padding-top
 
     &.v-input--dense
       .v-select__selections
-        padding: $select-outlined-dense-selections-padding-top
+        padding: variables.$select-outlined-dense-selections-padding-top
 
   &.v-text-field
     input
@@ -68,7 +69,7 @@
     &:not(.v-text-field--single-line) input
       margin-top: 0
 
-  @if $select-active-icon-flip
+  @if variables.$select-active-icon-flip
     &.v-select--is-menu-active
       .v-input__icon--append .v-icon
         transform: rotate(180deg)
@@ -78,38 +79,38 @@
       margin: 0
 
     .v-select__selections
-      min-height: $select-chips-selections-padding-top
+      min-height: variables.$select-chips-selections-padding-top
 
     &.v-input--dense
       .v-select__selections
-        min-height: $select-chips-dense-selections-padding-top
+        min-height: variables.$select-chips-dense-selections-padding-top
 
     // Explicit override since active chips
     // in select are not focused
     .v-chip--select.v-chip--active::before
-      opacity: $select-active-chip-opacity
+      opacity: variables.$select-active-chip-opacity
 
     &.v-select--chips--small
       .v-select__selections
-        min-height: $select-small-chips-selections-min-height
+        min-height: variables.$select-small-chips-selections-min-height
 
     &:not(.v-text-field--single-line)
       &.v-text-field--box,
       &.v-text-field--enclosed
         .v-select__selections
-          min-height: $select-chips-box-enclosed-selections-min-height
+          min-height: variables.$select-chips-box-enclosed-selections-min-height
 
         &.v-input--dense
           .v-select__selections
-            min-height: $select-chips-dense-selections-min-height
+            min-height: variables.$select-chips-dense-selections-min-height
 
         &.v-select--chips--small
           .v-select__selections
-            min-height: $select-small-chips-selections-min-height
+            min-height: variables.$select-small-chips-selections-min-height
 
           &.v-input--dense
             .v-select__selections
-              min-height: $select-small-chips-dense-selections-min-height
+              min-height: variables.$select-small-chips-dense-selections-min-height
 
 
   &.v-text-field--reverse
@@ -125,7 +126,7 @@
     display: flex
     flex: 1 1
     flex-wrap: wrap
-    line-height: $select-selections-line-height
+    line-height: variables.$select-selections-line-height
     max-width: 100%
     min-width: 0
 
@@ -133,18 +134,18 @@
     max-width: 90%
 
     &--comma
-      margin: $select-selections-margin
-      min-height: $select-selections-min-height
+      margin: variables.$select-selections-margin
+      min-height: variables.$select-selections-min-height
       overflow: hidden
       text-overflow: ellipsis
       white-space: nowrap
 
   &.v-input--dense
     .v-select__selection--comma
-      margin: $select-dense-selections-margin
+      margin: variables.$select-dense-selections-margin
 
     .v-chip
-      margin: $select-dense-chip-margin
+      margin: variables.$select-dense-chip-margin
 
   &__slot
     position: relative

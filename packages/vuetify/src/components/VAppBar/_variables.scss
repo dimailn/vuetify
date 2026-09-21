@@ -1,5 +1,5 @@
 @use "sass:map";
-@import '../../styles/styles.sass';
+@use '../../styles/styles.sass' as *;
 
 $app-bar-border-radius: 0 !default;
 $app-bar-elevation: 4 !default;

@@ -1,4 +1,4 @@
-@import '../../styles/styles.sass';
+@use '../../styles/styles.sass' as *;
 
 $chip-group-content-padding: 4px 0 !default;
 $chip-group-margin: 4px 8px 4px 0 !default;

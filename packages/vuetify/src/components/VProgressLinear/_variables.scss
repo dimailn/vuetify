@@ -1,4 +1,4 @@
-@import '../../styles/styles.sass';
+@use '../../styles/styles.sass' as *;
 
 $progress-linear-border-radius: $border-radius-root !default;
 $progress-linear-stream-opacity: 0.3 !default;

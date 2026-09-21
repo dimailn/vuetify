@@ -1,4 +1,5 @@
-@import './_variables.scss'
+@use '../../styles/styles.sass' as *
+@use '_variables.scss' as variables
 
 +theme(v-progress-linear) using ($material)
   color: map-deep-get($material, 'text', 'primary')
@@ -103,14 +104,14 @@
   animation: stream-ltr .25s infinite linear
   animation-play-state: paused
   border-color: currentColor
-  border-top: $progress-linear-stream-border-width dotted
+  border-top: variables.$progress-linear-stream-border-width dotted
   bottom: 0
   left: auto
   right: -8px
-  opacity: $progress-linear-stream-opacity
+  opacity: variables.$progress-linear-stream-opacity
   pointer-events: none
   position: absolute
-  top: calc(50% - #{$progress-linear-stream-border-width * 0.5})
+  top: calc(50% - #{variables.$progress-linear-stream-border-width * 0.5})
   transition: inherit
 
 .v-progress-linear--reverse
@@ -141,12 +142,12 @@
     pointer-events: none
 
 .v-progress-linear--rounded
-  border-radius: $progress-linear-border-radius
+  border-radius: variables.$progress-linear-border-radius
 
 .v-progress-linear--striped
   .v-progress-linear__determinate
-    background-image: $progress-linear-stripe-gradient
-    background-size: $progress-linear-stripe-background-size
+    background-image: variables.$progress-linear-stripe-gradient
+    background-size: variables.$progress-linear-stripe-background-size
     background-repeat: repeat
 
 .v-progress-linear--query

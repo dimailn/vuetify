@@ -1,5 +1,6 @@
+@use '../../styles/styles.sass' as *
 // Imports
-@import './_variables.scss'
+@use '_variables.scss' as variables
 
 // Theme
 +theme(v-data-table) using ($material)
@@ -19,7 +20,7 @@
     color: map-deep-get($material, 'text', 'disabled')
 
 .v-data-table
-  border-radius: $data-table-border-radius
+  border-radius: variables.$data-table-border-radius
 
   &--mobile
     > .v-data-table__wrapper tbody
@@ -33,32 +34,32 @@
           border-bottom: 0
 
         &.v-data-table__expanded__content
-          box-shadow: $data-table-expanded-content-box-shadow
+          box-shadow: variables.$data-table-expanded-content-box-shadow
 
         &:first-child
           &:hover
             td
               &:first-child
-                border-top-left-radius: $data-table-border-radius
+                border-top-left-radius: variables.$data-table-border-radius
 
               &:last-child
-                border-top-right-radius: $data-table-border-radius
+                border-top-right-radius: variables.$data-table-border-radius
 
         &:last-child
           &:hover
             td
               &:first-child
-                border-bottom-left-radius: $data-table-border-radius
+                border-bottom-left-radius: variables.$data-table-border-radius
 
               &:last-child
-                border-bottom-right-radius: $data-table-border-radius
+                border-bottom-right-radius: variables.$data-table-border-radius
 
     .v-data-table__mobile-table-row
       display: initial
 
     .v-data-table__mobile-row
       height: initial
-      min-height: $data-table-mobile-row-min-height
+      min-height: variables.$data-table-mobile-row-min-height
 
 .v-data-table__empty-wrapper
   text-align: center
@@ -69,7 +70,7 @@
   justify-content: space-between
 
   &__header
-    font-weight: $data-table-mobile-row-header-font-weight
+    font-weight: variables.$data-table-mobile-row-header-font-weight
 
     +ltr()
       padding-right: 16px
@@ -88,7 +89,7 @@
   &__header, &__summary
 
     td
-      height: $data-table-row-group-children-td-height
+      height: variables.$data-table-row-group-children-td-height
 
 .v-data-table__expand-icon
   user-select: none

@@ -1,4 +1,5 @@
-@import './_variables.scss'
+@use '../../styles/styles.sass' as *
+@use '_variables.scss' as variables
 
 // Theme
 +theme(v-bottom-navigation) using ($material)
@@ -22,10 +23,10 @@
     border-radius: 0
     box-shadow: none
     flex: 0 1 auto
-    font-size: $bottom-nav-btn-font-size
+    font-size: variables.$bottom-nav-btn-font-size
     height: inherit
-    max-width: $bottom-nav-btn-max-width
-    min-width: $bottom-nav-btn-min-width
+    max-width: variables.$bottom-nav-btn-max-width
+    min-width: variables.$bottom-nav-btn-min-width
     position: relative
     text-transform: none
 
@@ -75,7 +76,7 @@
   .v-btn .v-btn__content > *:not(.v-icon)
     opacity: 0
     position: absolute
-    top: $bottom-nav-shift-btn-top
+    top: variables.$bottom-nav-shift-btn-top
     transform: scale(.9)
     transition: $primary-transition
 
@@ -85,5 +86,5 @@
 
     > *:not(.v-icon)
       opacity: 1
-      top: $bottom-nav-shift-btn-active-top
+      top: variables.$bottom-nav-shift-btn-active-top
       transform: scale(1)

@@ -1,9 +1,10 @@
-@import './_variables.scss'
+@use '../../styles/styles.sass' as *
+@use '_variables.scss' as variables
 
 +theme('v-app-bar.v-toolbar.v-sheet') using ($material)
   background-color: v-map-get($material, 'app-bar')
 
-+sheet('v-app-bar.v-toolbar', $app-bar-elevation, $app-bar-border-radius, $app-bar-shaped-border-radius)
++sheet('v-app-bar.v-toolbar', variables.$app-bar-elevation, variables.$app-bar-border-radius, variables.$app-bar-shaped-border-radius)
 
 // Block
 .v-app-bar
@@ -22,7 +23,7 @@
 
 .v-app-bar--fade-img-on-scroll
   .v-toolbar__image .v-image__image
-    transition: $app-bar-transition
+    transition: variables.$app-bar-transition
 
 .v-app-bar.v-toolbar--prominent.v-app-bar--shrink-on-scroll
   .v-toolbar__image
@@ -34,11 +35,11 @@
 
   &.v-app-bar--is-scrolled
     .v-toolbar__title
-      padding-top: $app-bar-scrolled-title-padding-bottom
+      padding-top: variables.$app-bar-scrolled-title-padding-bottom
 
     &:not(.v-app-bar--bottom)
       .v-toolbar__title
-        padding-bottom: $app-bar-scrolled-title-padding-bottom
+        padding-bottom: variables.$app-bar-scrolled-title-padding-bottom
 
 .v-app-bar.v-app-bar--shrink-on-scroll
   .v-toolbar__title

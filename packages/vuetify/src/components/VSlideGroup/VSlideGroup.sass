@@ -1,5 +1,6 @@
+@use '../../styles/styles.sass' as *
 // Imports
-@import './_variables.scss'
+@use '_variables.scss' as variables
 
 // Block
 .v-slide-group
@@ -27,9 +28,9 @@
 .v-slide-group__prev
   align-items: center
   display: flex
-  flex: 0 1 $slide-group-prev-basis
+  flex: 0 1 variables.$slide-group-prev-basis
   justify-content: center
-  min-width: $slide-group-prev-basis
+  min-width: variables.$slide-group-prev-basis
 
 .v-slide-group__content
   display: flex

@@ -1,6 +1,7 @@
+@use '../../styles/styles.sass' as *
 // Imports
-@import './_variables.scss'
-@import './_mixins.sass'
+@use '_variables.scss' as variables
+@use '_mixins.sass'
 
 /**
  * .v-timeline::before - center divider
@@ -23,7 +24,7 @@
 
 // Elements
 .v-timeline
-  padding-top: $timeline-item-padding
+  padding-top: variables.$timeline-item-padding
   position: relative
 
   &::before
@@ -32,11 +33,11 @@
     height: 100%
     position: absolute
     top: 0
-    width: $timeline-line-width
+    width: variables.$timeline-line-width
 
 .v-timeline-item
   display: flex
-  padding-bottom: $timeline-item-padding
+  padding-bottom: variables.$timeline-item-padding
 
 .v-timeline-item__body
   position: relative
@@ -45,7 +46,7 @@
 
 .v-timeline-item__divider
   position: relative
-  min-width: $timeline-divider-width
+  min-width: variables.$timeline-divider-width
   display: flex
   align-items: center
   justify-content: center
@@ -54,13 +55,13 @@
   z-index: 2
   border-radius: 50%
   +elevation(1)
-  +timeline-dots($timeline-dot-regular-size, $timeline-inner-dot-regular-size)
+  +mixins.timeline-dots(variables.$timeline-dot-regular-size, variables.$timeline-inner-dot-regular-size)
 
   &--small
-    +timeline-dots($timeline-dot-small-size, $timeline-inner-dot-small-size)
+    +mixins.timeline-dots(variables.$timeline-dot-small-size, variables.$timeline-inner-dot-small-size)
 
   &--large
-    +timeline-dots($timeline-dot-large-size, $timeline-inner-dot-large-size)
+    +mixins.timeline-dots(variables.$timeline-dot-large-size, variables.$timeline-inner-dot-large-size)
 
 .v-timeline-item__inner-dot
   border-radius: 50%
@@ -71,22 +72,22 @@
 .v-timeline-item__opposite
   flex: 1 1 auto
   align-self: center
-  max-width: calc(#{$timeline-divider-center} - #{$timeline-divider-width * 0.5})
+  max-width: calc(#{variables.$timeline-divider-center} - #{variables.$timeline-divider-width * 0.5})
 
 // Before/after directions
 .v-timeline:not(.v-timeline--dense):not(.v-timeline--reverse)
   .v-timeline-item
     &:nth-child(odd):not(.v-timeline-item--before), &--after
-      +timeline-item-align(left)
-      +timeline-wedge-align(left)
+      +mixins.timeline-item-align(left)
+      +mixins.timeline-wedge-align(left)
       .v-timeline-item__body
-        max-width: calc(#{100% - $timeline-divider-center} - #{$timeline-divider-width * 0.5})
+        max-width: calc(#{100% - variables.$timeline-divider-center} - #{variables.$timeline-divider-width * 0.5})
 
     &:nth-child(even):not(.v-timeline-item--after), &--before
-      +timeline-item-align(right)
-      +timeline-wedge-align(right)
+      +mixins.timeline-item-align(right)
+      +mixins.timeline-wedge-align(right)
       .v-timeline-item__body
-        max-width: calc(#{$timeline-divider-center} - #{$timeline-divider-width * 0.5})
+        max-width: calc(#{variables.$timeline-divider-center} - #{variables.$timeline-divider-width * 0.5})
 
 // Wedge
 .v-timeline-item__body
@@ -95,16 +96,16 @@
     &::after
       content: ''
       position: absolute
-      border-top: $timeline-wedge-size solid transparent
-      border-bottom: $timeline-wedge-size solid transparent
-      border-right: $timeline-wedge-size solid black
-      top: calc(50% - #{$timeline-wedge-size})
+      border-top: variables.$timeline-wedge-size solid transparent
+      border-bottom: variables.$timeline-wedge-size solid transparent
+      border-right: variables.$timeline-wedge-size solid black
+      top: calc(50% - #{variables.$timeline-wedge-size})
 
     &::after
       border-right-color: inherit
 
     &:not(.v-card--link)::before
-      top: calc(50% - #{$timeline-wedge-size} + 2px)
+      top: calc(50% - #{variables.$timeline-wedge-size} + 2px)
 
 // Modifiers
 .v-timeline--align-top
@@ -114,43 +115,43 @@
   .v-timeline-item__body
     > .v-card
       &::after
-        top: calc(0% + #{$timeline-wedge-size})
+        top: calc(0% + #{variables.$timeline-wedge-size})
 
       &:not(.v-card--link)::before
-        top: calc(0% + #{$timeline-wedge-size} + 2px)
+        top: calc(0% + #{variables.$timeline-wedge-size} + 2px)
 
 .v-timeline:not(.v-timeline--dense):not(.v-timeline--reverse)
-  +timeline-line-align($timeline-divider-center, left, right)
+  +mixins.timeline-line-align(variables.$timeline-divider-center, left, right)
 
 .v-timeline--reverse:not(.v-timeline--dense)
-  +timeline-line-align($timeline-divider-center, right, left)
+  +mixins.timeline-line-align(variables.$timeline-divider-center, right, left)
 
   .v-timeline-item
     &:nth-child(odd):not(.v-timeline-item--after), &--before
-      +timeline-item-align(right)
-      +timeline-wedge-align(right)
+      +mixins.timeline-item-align(right)
+      +mixins.timeline-wedge-align(right)
       .v-timeline-item__body
-        max-width: calc(#{100% - $timeline-divider-center} - #{$timeline-divider-width * 0.5})
+        max-width: calc(#{100% - variables.$timeline-divider-center} - #{variables.$timeline-divider-width * 0.5})
 
     &:nth-child(even):not(.v-timeline-item--before), &--after
-      +timeline-item-align(left)
-      +timeline-wedge-align(left)
+      +mixins.timeline-item-align(left)
+      +mixins.timeline-wedge-align(left)
       .v-timeline-item__body
-        max-width: calc(#{$timeline-divider-center} - #{$timeline-divider-width * 0.5})
+        max-width: calc(#{variables.$timeline-divider-center} - #{variables.$timeline-divider-width * 0.5})
 
 .v-timeline--reverse.v-timeline--dense
-  +timeline-line-align($timeline-divider-width * 0.5, right, left)
+  +mixins.timeline-line-align(variables.$timeline-divider-width * 0.5, right, left)
 
 .v-timeline--dense:not(.v-timeline--reverse)
-  +timeline-line-align($timeline-divider-width * 0.5, left, right)
+  +mixins.timeline-line-align(variables.$timeline-divider-width * 0.5, left, right)
 
 .v-timeline--dense
   .v-timeline-item
     flex-direction: row-reverse !important
-    +timeline-wedge-align(left)
+    +mixins.timeline-wedge-align(left)
 
   .v-timeline-item__body
-    max-width: calc(100% - #{$timeline-divider-width})
+    max-width: calc(100% - #{variables.$timeline-divider-width})
 
   .v-timeline-item__opposite
     display: none
@@ -158,7 +159,7 @@
 .v-timeline--reverse.v-timeline--dense
   .v-timeline-item
     flex-direction: row !important
-    +timeline-wedge-align(right)
+    +mixins.timeline-wedge-align(right)
 
 .v-timeline-item--fill-dot
   .v-timeline-item__inner-dot

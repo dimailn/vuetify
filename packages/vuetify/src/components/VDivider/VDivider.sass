@@ -1,4 +1,5 @@
-@import './_variables.scss'
+@use '../../styles/styles.sass' as *
+@use '_variables.scss' as variables
 
 +theme(v-divider) using ($material)
   border-color: v-map-get($material, 'dividers')
@@ -14,12 +15,12 @@
   transition: inherit
 
   &--inset:not(.v-divider--vertical)
-    max-width: calc(100% - #{$divider-inset-margin})
+    max-width: calc(100% - #{variables.$divider-inset-margin})
     +ltr()
-      margin-left: $divider-inset-margin
+      margin-left: variables.$divider-inset-margin
 
     +rtl()
-      margin-right: $divider-inset-margin
+      margin-right: variables.$divider-inset-margin
 
   &--vertical
     align-self: stretch
@@ -35,6 +36,6 @@
     margin: 0 -1px // Prevent wrapping in flex layouts
 
     &.v-divider--inset
-      margin-top: $divider-inset-margin-top
+      margin-top: variables.$divider-inset-margin-top
       min-height: 0
-      max-height: $divider-inset-max-height
+      max-height: variables.$divider-inset-max-height

@@ -1,8 +1,10 @@
+@use "../settings/variables";
+
 @use "sass:map";
 @mixin transition-default() {
   &-enter-active,
   &-leave-active {
-    transition: $primary-transition !important;
+    transition: variables.$primary-transition !important;
   }
 
   &-move {
@@ -67,7 +69,7 @@
 .picker-reverse-transition {
   &-enter-active,
   &-leave-active {
-    transition: .3s map.get($transition, 'linear-out-slow-in');
+    transition: .3s map.get(variables.$transition, 'linear-out-slow-in');
   }
 
   &-enter-from,

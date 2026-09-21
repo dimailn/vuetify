@@ -1,6 +1,6 @@
 @use "sass:map";
-@import '../../styles/styles.sass';
-@import '../../styles/tools/_functions.sass';
+@use '../../styles/styles.sass' as *;
+@use '../../styles/tools/_functions.sass';
 
 $chip-avatar-size: 24px !default;
 $chip-close-size: 18px !default;
@@ -26,7 +26,7 @@ $chip-filter-max-width: 24px !default;
 $chip-outlined-active-opacity: 0.08 !default;
 $chip-selected-opacity: 0.28 !default;
 $icon-sizes: () !default;
-$icon-sizes: map-deep-merge(
+$icon-sizes: functions.map-deep-merge(
   (
     'x-small': (
       'font-size': 10,

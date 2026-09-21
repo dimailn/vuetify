@@ -1,23 +1,24 @@
-@import './_variables.scss'
+@use '../../styles/styles.sass' as *
+@use '_variables.scss' as variables
 
 // Block
 .v-chip-group
   .v-chip
-    margin: $chip-group-margin
+    margin: variables.$chip-group-margin
 
   .v-chip--active
     color: inherit
 
     &.v-chip--no-color
       &:after
-        opacity: $chip-group-no-color-opacity
+        opacity: variables.$chip-group-no-color-opacity
 
       &:focus:after
-        opacity: $chip-group-no-color-focus-opacity
+        opacity: variables.$chip-group-no-color-focus-opacity
 
 // Element
 .v-chip-group .v-slide-group__content
-  padding: $chip-group-content-padding
+  padding: variables.$chip-group-content-padding
 
 // Modifiers
 .v-chip-group--column

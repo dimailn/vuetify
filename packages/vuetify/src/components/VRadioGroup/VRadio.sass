@@ -1,4 +1,5 @@
-@import './_variables.scss'
+@use '../../styles/styles.sass' as *
+@use '_variables.scss' as variables
 
 // Theme
 +theme(v-radio) using ($material)
@@ -18,4 +19,4 @@
 
 .v-input--radio-group.v-input--radio-group--row
   .v-radio
-    margin-right: $radio-margin-right
+    margin-right: variables.$radio-margin-right

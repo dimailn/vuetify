@@ -1,5 +1,6 @@
+@use '../../styles/styles.sass' as *
 // Imports
-@import './_variables.scss'
+@use '_variables.scss' as variables
 
 // Theme
 +theme('v-banner.v-sheet') using ($material)
@@ -9,7 +10,7 @@
     .v-banner__wrapper
       border-bottom: thin solid v-map-get($material, 'dividers')
 
-+sheet(v-banner, $banner-elevation, $banner-border-radius, $banner-shaped-border-radius)
++sheet(v-banner, variables.$banner-elevation, variables.$banner-border-radius, variables.$banner-shaped-border-radius)
 
 // Block
 .v-banner
@@ -23,20 +24,20 @@
   display: flex
   flex: 1 0 auto
   justify-content: flex-end
-  margin-bottom: -$banner-y-padding * 0.5
+  margin-bottom: -(variables.$banner-y-padding) * 0.5
 
   +ltr()
-    margin-left: $banner-actions-start-margin
+    margin-left: variables.$banner-actions-start-margin
 
   +rtl()
-    margin-right: $banner-actions-start-margin
+    margin-right: variables.$banner-actions-start-margin
 
   & > * // Margin between actions
     +ltr()
-      margin-left: $banner-actions-margin
+      margin-left: variables.$banner-actions-margin
 
     +rtl()
-      margin-right: $banner-actions-margin
+      margin-right: variables.$banner-actions-margin
 
 .v-banner__content
   align-items: center
@@ -46,7 +47,7 @@
 
 .v-banner__text
   flex: 1 1 auto
-  line-height: $banner-line-height
+  line-height: variables.$banner-line-height
   max-width: 100%
 
 .v-banner__icon
@@ -54,10 +55,10 @@
   flex: 0 0 auto
 
   +ltr()
-    margin-right: $banner-start-padding
+    margin-right: variables.$banner-start-padding
 
   +rtl()
-    margin-left: $banner-start-padding
+    margin-left: variables.$banner-start-padding
 
 .v-banner__wrapper
   align-items: center
@@ -65,10 +66,10 @@
   flex: 1 1 auto
 
   +ltr()
-    padding: $banner-y-padding $banner-end-padding $banner-y-padding $banner-start-padding
+    padding: variables.$banner-y-padding variables.$banner-end-padding variables.$banner-y-padding variables.$banner-start-padding
 
   +rtl()
-    padding: $banner-y-padding $banner-start-padding $banner-y-padding $banner-end-padding
+    padding: variables.$banner-y-padding variables.$banner-start-padding variables.$banner-y-padding variables.$banner-end-padding
 
 // Modifiers
 .v-banner--single-line
@@ -82,37 +83,37 @@
     text-overflow: ellipsis
 
   .v-banner__wrapper
-    padding-top: $banner-y-padding * 0.5
-    padding-bottom: $banner-y-padding * 0.5
+    padding-top: variables.$banner-y-padding * 0.5
+    padding-bottom: variables.$banner-y-padding * 0.5
 
 .v-banner--has-icon
   .v-banner__wrapper
     +ltr()
-      padding-left: $banner-icon-padding
+      padding-left: variables.$banner-icon-padding
 
     +rtl()
-      padding-right: $banner-icon-padding
+      padding-right: variables.$banner-icon-padding
 
 .v-banner--is-mobile
   .v-banner__actions
     flex: 1 0 100%
     margin-left: 0
     margin-right: 0
-    padding-top: $banner-mobile-actions-top-padding
+    padding-top: variables.$banner-mobile-actions-top-padding
 
   .v-banner__wrapper
     flex-wrap: wrap
-    padding-top: $banner-mobile-top-padding
+    padding-top: variables.$banner-mobile-top-padding
 
     +ltr()
-      padding-left: $banner-mobile-start-padding
+      padding-left: variables.$banner-mobile-start-padding
 
     +rtl()
-      padding-right: $banner-mobile-start-padding
+      padding-right: variables.$banner-mobile-start-padding
 
   &.v-banner--has-icon
     .v-banner__wrapper
-      padding-top: $banner-mobile-multiline-padding
+      padding-top: variables.$banner-mobile-multiline-padding
 
   &.v-banner--single-line
     .v-banner__actions
@@ -120,29 +121,29 @@
       padding-top: 0
 
       +ltr()
-        margin-left: $banner-mobile-singleline-padding
+        margin-left: variables.$banner-mobile-singleline-padding
 
       +rtl()
-        margin-right: $banner-mobile-singleline-padding
+        margin-right: variables.$banner-mobile-singleline-padding
 
     .v-banner__wrapper
       flex-wrap: nowrap
-      padding-top: $banner-mobile-padding
+      padding-top: variables.$banner-mobile-padding
 
   .v-banner__icon
     +ltr()
-      margin-right: $banner-icon-padding
+      margin-right: variables.$banner-icon-padding
 
     +rtl()
-      margin-left: $banner-icon-padding
+      margin-left: variables.$banner-icon-padding
 
   .v-banner__content
     +ltr()
-      padding-right: $banner-content-padding
+      padding-right: variables.$banner-content-padding
 
     +rtl()
-      padding-left: $banner-content-padding
+      padding-left: variables.$banner-content-padding
 
     .v-banner__wrapper
       flex-wrap: nowrap
-      padding-top: $banner-mobile-padding
+      padding-top: variables.$banner-mobile-padding

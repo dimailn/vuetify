@@ -1,4 +1,4 @@
-@import '../../styles/styles.sass';
+@use '../../styles/styles.sass' as *;
 
 $avatar-margin-x: 16px !default;
 $list-border-radius: 0 !default;

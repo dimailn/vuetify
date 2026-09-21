@@ -1,4 +1,4 @@
-@import '../../styles/styles.sass';
+@use '../../styles/styles.sass' as *;
 
 $text-field-border-radius: $border-radius-root !default;
 $text-field-line-height: 20px !default;

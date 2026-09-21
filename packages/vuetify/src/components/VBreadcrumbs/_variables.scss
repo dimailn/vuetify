@@ -1,4 +1,4 @@
-@import '../../styles/styles.sass';
+@use '../../styles/styles.sass' as *;
 
 $breadcrumbs-flex: 0 1 auto !default;
 $breadcrumbs-padding: 18px 12px !default;

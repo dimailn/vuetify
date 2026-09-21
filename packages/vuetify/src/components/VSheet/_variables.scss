@@ -1,5 +1,5 @@
 @use "sass:map";
-@import '../../styles/styles.sass';
+@use '../../styles/styles.sass' as *;
 
 $sheet-border-radius: 0 !default;
 $sheet-elevation: 0 !default;

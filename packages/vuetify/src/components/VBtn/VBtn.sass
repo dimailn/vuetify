@@ -1,5 +1,7 @@
+@use '../../styles/styles.sass' as *
 // Imports
-@import './_variables.scss'
+@use '_variables.scss' as variables
+@use '../../styles/tools/functions'
 
 // Theme
 .v-btn:not(.v-btn--outlined)
@@ -10,54 +12,54 @@
   &.error,
   &.warning,
   &.info
-    color: map-deep-get($material-dark, 'text', 'primary')
+    color: functions.map-deep-get($material-dark, 'text', 'primary')
 
 +theme(v-btn) using ($material)
-  color: map-deep-get($material, 'text', 'primary')
+  color: functions.map-deep-get($material, 'text', 'primary')
 
   &.v-btn--disabled
-    color: map-deep-get($material, 'buttons', 'disabled') !important
+    color: functions.map-deep-get($material, 'buttons', 'disabled') !important
 
     .v-icon,
     .v-btn__loading
-      color: map-deep-get($material, 'buttons', 'disabled') !important
+      color: functions.map-deep-get($material, 'buttons', 'disabled') !important
 
     &.v-btn--has-bg
-      background-color: map-deep-get($material, 'buttons', 'focused') !important
+      background-color: functions.map-deep-get($material, 'buttons', 'focused') !important
 
   &.v-btn--has-bg
-    background-color: v-map-get($material, 'app-bar')
+    background-color: functions.v-map-get($material, 'app-bar')
 
   &.v-btn--outlined.v-btn--text
-    border-color: v-map-get($material, 'dividers')
+    border-color: functions.v-map-get($material, 'dividers')
 
   &.v-btn--icon
-    color: map-deep-get($material, 'icons', 'active')
+    color: functions.map-deep-get($material, 'icons', 'active')
 
-  +states(map-deep-merge($material, $btn-states))
+  +states(functions.map-deep-merge($material, variables.$btn-states))
 
 // Block
 .v-btn
   align-items: center
-  border-radius: $btn-border-radius
+  border-radius: variables.$btn-border-radius
   display: inline-flex
   flex: 0 0 auto
-  font-weight: $btn-font-weight
-  letter-spacing: $btn-letter-spacing
+  font-weight: variables.$btn-font-weight
+  letter-spacing: variables.$btn-letter-spacing
   justify-content: center
   outline: 0
   position: relative
   text-decoration: none
-  text-indent: $btn-letter-spacing
-  text-transform: $btn-text-transform
-  transition-duration: $btn-transition-duration
+  text-indent: variables.$btn-letter-spacing
+  text-transform: variables.$btn-text-transform
+  transition-duration: variables.$btn-transition-duration
   transition-property: box-shadow, transform, opacity
-  transition-timing-function: $btn-transition-fn
+  transition-timing-function: variables.$btn-transition-fn
   user-select: none
   vertical-align: middle
   white-space: nowrap
 
-  @each $name, $size in $btn-font-sizes
+  @each $name, $size in variables.$btn-font-sizes
     &.v-size--#{$name}
       font-size: $size
 
@@ -73,14 +75,14 @@
     position: absolute
     right: 0
     top: 0
-    transition: $btn-transition
+    transition: variables.$btn-transition
 
   &:not(.v-btn--round)
-    @each $name, $size in $btn-sizes
+    @each $name, $size in variables.$btn-sizes
       &.v-size--#{$name}
         height: #{$size}px
-        min-width: #{v-math-round($size * 1.777777777777778)}px // default ratio
-        padding: 0 #{v-math-div($size, 2.25)}px
+        min-width: #{functions.v-math-round($size * 1.777777777777778)}px // default ratio
+        padding: 0 #{functions.v-math-div($size, 2.25)}px
 
   > .v-btn__content .v-icon
     color: inherit
@@ -105,9 +107,9 @@
   // iconfont css interference
   .v-icon.v-icon--left,
   .v-icon.v-icon--right
-    font-size: $btn-icon-font-size
-    height: $btn-icon-font-size
-    width: $btn-icon-font-size
+    font-size: variables.$btn-icon-font-size
+    height: variables.$btn-icon-font-size
+    width: variables.$btn-icon-font-size
 
   .v-icon--left
     +ltr()
@@ -141,16 +143,16 @@
 .v-btn--absolute,
 .v-btn--fixed
   &.v-btn--right
-    right: v-map-get($grid-gutters, 'lg')
+    right: functions.v-map-get($grid-gutters, 'lg')
 
   &.v-btn--left
-    left: v-map-get($grid-gutters, 'lg')
+    left: functions.v-map-get($grid-gutters, 'lg')
 
   &.v-btn--top
-    top: v-map-get($grid-gutters, 'lg')
+    top: functions.v-map-get($grid-gutters, 'lg')
 
   &.v-btn--bottom
-    bottom: v-map-get($grid-gutters, 'lg')
+    bottom: functions.v-map-get($grid-gutters, 'lg')
 
 .v-btn--absolute
   position: absolute
@@ -191,7 +193,7 @@
   min-width: 0
   padding: 0
 
-  @each $name, $size in $fab-icon-sizes
+  @each $name, $size in variables.$fab-icon-sizes
     &.v-size--#{$name}
       .v-icon
         height: #{$size}px
@@ -199,7 +201,7 @@
         width: #{$size}px
 
 .v-btn--icon
-  @each $name, $size in $btn-sizes
+  @each $name, $size in variables.$btn-sizes
     &.v-size--#{$name}
       height: #{$size}px
       width: #{$size}px
@@ -209,7 +211,7 @@
   &.v-btn--fixed
     z-index: 4
 
-  @each $name, $size in $fab-sizes
+  @each $name, $size in variables.$fab-sizes
     &.v-size--#{$name}
       height: #{$size}px
       width: #{$size}px
@@ -229,7 +231,7 @@
     opacity: 0
 
 .v-btn--outlined
-  border: $btn-outline-border-width solid currentColor
+  border: variables.$btn-outline-border-width solid currentColor
 
 .v-btn--plain
   &::before
@@ -240,10 +242,10 @@
       opacity: .62
 
 .v-btn--round
-  +radius($btn-round-border-radius)
+  +radius(variables.$btn-round-border-radius)
 
 .v-btn--rounded
-  +radius($btn-rounded-border-radius)
+  +radius(variables.$btn-rounded-border-radius)
 
 .v-btn--tile
-  +radius($btn-tile-border-radius)
+  +radius(variables.$btn-tile-border-radius)

@@ -1,4 +1,5 @@
-@import './_variables.scss'
+@use '../../styles/styles.sass' as *
+@use '_variables.scss' as variables
 
 // Theme
 +theme(v-pagination) using ($material)
@@ -36,16 +37,16 @@
 
   &--disabled
     pointer-events: none
-    opacity: $pagination-disabled-opacity
+    opacity: variables.$pagination-disabled-opacity
 
   &__item
     background: transparent
-    border-radius: $pagination-border-radius
-    font-size: $pagination-item-font-size
-    height: $pagination-item-height
-    margin: $pagination-item-margin
-    min-width: $pagination-item-min-width
-    padding: $pagination-item-padding
+    border-radius: variables.$pagination-border-radius
+    font-size: variables.$pagination-item-font-size
+    height: variables.$pagination-item-height
+    margin: variables.$pagination-item-margin
+    min-width: variables.$pagination-item-min-width
+    padding: variables.$pagination-item-padding
     text-decoration: none
     transition: .3s v-map-get($transition, 'linear-out-slow-in')
     width: auto
@@ -56,27 +57,27 @@
 
   &__navigation
     +elevation(2)
-    border-radius: $pagination-border-radius
+    border-radius: variables.$pagination-border-radius
     display: inline-flex
     justify-content: center
     align-items: center
     text-decoration: none
-    height: $pagination-navigation-height
-    width: $pagination-navigation-width
-    margin: $pagination-navigation-margin
+    height: variables.$pagination-navigation-height
+    width: variables.$pagination-navigation-width
+    margin: variables.$pagination-navigation-margin
 
     .v-icon
       transition: $secondary-transition
       vertical-align: middle
 
     &--disabled
-      opacity: $pagination-navigation-disabled-opacity
+      opacity: variables.$pagination-navigation-disabled-opacity
       pointer-events: none
 
   &__more
-    margin: $pagination-more-margin
+    margin: variables.$pagination-more-margin
     display: inline-flex
     align-items: flex-end
     justify-content: center
-    height: $pagination-more-height
-    width: $pagination-more-width
+    height: variables.$pagination-more-height
+    width: variables.$pagination-more-width

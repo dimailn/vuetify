@@ -1,12 +1,13 @@
-@import './_variables.scss'
-@import './_mixins.sass'
+@use '../../styles/styles.sass' as *
+@use '_variables.scss' as variables
+@use '_mixins.sass'
 
 // Element
 .v-list-group .v-list-group__header
   .v-list-item__icon.v-list-group__header__append-icon
     align-self: center
     margin: 0
-    min-width: $list-group-header-icon-min-width
+    min-width: variables.$list-group-header-icon-min-width
     justify-content: flex-end
 
 .v-list-group--sub-group
@@ -45,26 +46,26 @@
   .v-list-item__icon
     &:first-child
       +ltr()
-        margin-right: $list-group-sub-group-child-margin
+        margin-right: variables.$list-group-sub-group-child-margin
 
       +rtl()
-        margin-left: $list-group-sub-group-child-margin
+        margin-left: variables.$list-group-sub-group-child-margin
 
   .v-list-group__header
     +ltr()
-      padding-left: $list-group-sub-group-header-margin
+      padding-left: variables.$list-group-sub-group-header-margin
 
     +rtl()
-      padding-right: $list-group-sub-group-header-margin
+      padding-right: variables.$list-group-sub-group-header-margin
 
 
   .v-list-group__items
     .v-list-item
       +ltr()
-        padding-left: $list-group-items-item-padding
+        padding-left: variables.$list-group-items-item-padding
 
       +rtl()
-        padding-right: $list-group-items-item-padding
+        padding-right: variables.$list-group-items-item-padding
 
   &.v-list-group--active
     .v-list-item__icon.v-list-group__header__prepend-icon .v-icon
@@ -73,39 +74,39 @@
 .v-list-group--no-action
   > .v-list-group__items > .v-list-item
     +ltr()
-      padding-left: $list-group-no-action-item-padding
+      padding-left: variables.$list-group-no-action-item-padding
 
     +rtl()
-      padding-right: $list-group-no-action-item-padding
+      padding-right: variables.$list-group-no-action-item-padding
 
   &.v-list-group--sub-group
     > .v-list-group__items > .v-list-item
       +ltr()
-        padding-left: $list-group-no-action-sub-group-item-padding
+        padding-left: variables.$list-group-no-action-sub-group-item-padding
 
       +rtl()
-        padding-right: $list-group-no-action-sub-group-item-padding
+        padding-right: variables.$list-group-no-action-sub-group-item-padding
 
 .v-list--dense
   .v-list-group--sub-group .v-list-group__header
     +ltr()
-      padding-left: $list-group-dense-sub-group-header-padding
+      padding-left: variables.$list-group-dense-sub-group-header-padding
 
     +rtl()
-      padding-right: $list-group-dense-sub-group-header-padding
+      padding-right: variables.$list-group-dense-sub-group-header-padding
 
   &.v-list--nav .v-list-group--no-action
     > .v-list-group__items > .v-list-item
       +ltr()
-        padding-left: $list-group-nav-no-action-item-padding
+        padding-left: variables.$list-group-nav-no-action-item-padding
 
       +rtl()
-        padding-right: $list-group-nav-no-action-item-padding
+        padding-right: variables.$list-group-nav-no-action-item-padding
 
     &.v-list-group--sub-group
       > .v-list-group__items > .v-list-item
         +ltr()
-          padding-left: $list-group-sub-group-item-padding
+          padding-left: variables.$list-group-sub-group-item-padding
 
         +rtl()
-          padding-right: $list-group-sub-group-item-padding
+          padding-right: variables.$list-group-sub-group-item-padding

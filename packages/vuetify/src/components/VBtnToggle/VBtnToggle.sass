@@ -1,5 +1,6 @@
+@use '../../styles/styles.sass' as *
 // Imports
-@import './_variables.scss'
+@use '_variables.scss' as variables
 
 // Theme
 +theme(v-btn-toggle) using ($material)
@@ -18,7 +19,7 @@
 
 // Block
 .v-btn-toggle
-  border-radius: $btn-toggle-border-radius
+  border-radius: variables.$btn-toggle-border-radius
   display: inline-flex
   max-width: 100%
 
@@ -28,8 +29,8 @@
     border-width: thin
     box-shadow: none
     box-shadow: none
-    opacity: $btn-toggle-btn-opacity
-    padding: $btn-toggle-btn-padding
+    opacity: variables.$btn-toggle-btn-opacity
+    padding: variables.$btn-toggle-btn-padding
 
     &:first-child
       +ltr()
@@ -65,12 +66,12 @@
         border-left-width: 0
 
   .v-btn.v-btn.v-size--default
-    min-width: $btn-toggle-btn-width
+    min-width: variables.$btn-toggle-btn-width
     min-height: 0
 
   &:not(.v-btn-toggle--dense)
     .v-btn.v-btn.v-size--default
-      height: $btn-toggle-btn-height
+      height: variables.$btn-toggle-btn-height
 
 .v-btn-toggle--borderless
   > .v-btn.v-btn
@@ -78,7 +79,7 @@
 
 .v-btn-toggle--dense
   > .v-btn.v-btn
-    padding: $btn-toggle-dense-btn-padding
+    padding: variables.$btn-toggle-dense-btn-padding
 
 .v-btn-toggle--group
   border-radius: 0
@@ -86,14 +87,14 @@
   > .v-btn.v-btn
     background-color: transparent !important
     border-color: transparent
-    margin: $btn-toggle-group-btn-margin
+    margin: variables.$btn-toggle-group-btn-margin
     min-width: auto
 
 .v-btn-toggle--rounded
-  border-radius: $btn-toggle-round-border-radius
+  border-radius: variables.$btn-toggle-round-border-radius
 
 .v-btn-toggle--shaped
-  border-radius: $btn-toggle-shaped-border-radius $btn-toggle-border-radius
+  border-radius: variables.$btn-toggle-shaped-border-radius variables.$btn-toggle-border-radius
 
 .v-btn-toggle--tile
   border-radius: 0

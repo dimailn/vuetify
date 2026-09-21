@@ -1,4 +1,4 @@
-@import '../../styles/styles.sass';
+@use '../../styles/styles.sass' as *;
 
 $carousel-controls-bg: rgba(0, 0, 0, .3) !default;
 $carousel-controls-size: 50px !default;

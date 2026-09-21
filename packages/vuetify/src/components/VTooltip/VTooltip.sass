@@ -1,4 +1,5 @@
-@import './_variables.scss'
+@use '../../styles/styles.sass' as *
+@use '_variables.scss' as variables
 
 .v-tooltip
   display: none
@@ -7,13 +8,13 @@
     display: inline
 
   &__content
-    background: $tooltip-background-color
-    color: $tooltip-text-color
-    border-radius: $tooltip-border-radius
-    font-size: $tooltip-font-size
-    line-height: v-math-round($tooltip-font-size * 1.6)
+    background: variables.$tooltip-background-color
+    color: variables.$tooltip-text-color
+    border-radius: variables.$tooltip-border-radius
+    font-size: variables.$tooltip-font-size
+    line-height: v-math-round(variables.$tooltip-font-size * 1.6)
     display: inline-block
-    padding: $tooltip-padding
+    padding: variables.$tooltip-padding
     position: absolute
     text-transform: initial
     width: auto
@@ -21,16 +22,16 @@
     pointer-events: none
 
     &.menuable__content__active
-      opacity: $tooltip-opacity
+      opacity: variables.$tooltip-opacity
 
     &--fixed
       position: fixed
 
     &[class*="-active"]
-      transition-timing-function: $tooltip-transition-timing-function
+      transition-timing-function: variables.$tooltip-transition-timing-function
 
     &[class*="enter-active"]
-      transition-duration: $tooltip-transition-enter-duration
+      transition-duration: variables.$tooltip-transition-enter-duration
 
     &[class*="leave-active"]
-      transition-duration: $tooltip-transition-leave-duration
+      transition-duration: variables.$tooltip-transition-leave-duration

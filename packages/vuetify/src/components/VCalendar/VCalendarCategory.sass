@@ -1,10 +1,11 @@
-@import './_variables.scss'
+@use '../../styles/styles.sass' as *
+@use '_variables.scss' as variables
 
 // Theme
 +theme(v-calendar-category) using ($material)
   .v-calendar-category__column,
   .v-calendar-category__column-header
-    border-right: map-deep-get($material, 'calendar', 'line-color') $calendar-line-width solid
+    border-right: map-deep-get($material, 'calendar', 'line-color') variables.$calendar-line-width solid
 
   .v-calendar-daily__head
     background: map-deep-get($material, 'calendar', 'background-color')
@@ -57,15 +58,15 @@
   .v-calendar-daily_head-weekday
     position: sticky
     left: 50%
-    width: $calendar-daily-head-weekday-size
+    width: variables.$calendar-daily-head-weekday-size
 
   .v-calendar-daily_head-day-label
-    width: $calendar-daily-head-day-label-size
+    width: variables.$calendar-daily-head-day-label-size
     position: sticky
     left: 50%
 
   .v-calendar-daily__day
-    min-width: $calendar-category-column-min-width
+    min-width: variables.$calendar-category-column-min-width
 
   .v-calendar-daily__intervals-body
     position: sticky
@@ -97,4 +98,4 @@
       position: relative
 
     .v-calendar-category__column-header
-      min-width: $calendar-category-column-min-width
+      min-width: variables.$calendar-category-column-min-width

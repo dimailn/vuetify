@@ -1,5 +1,5 @@
 @use "sass:map";
-@import '../../styles/styles.sass';
+@use '../../styles/styles.sass' as *;
 
 $progress-circular-rotate-animation: progress-circular-rotate 1.4s linear infinite !default;
 $progress-circular-rotate-dash: progress-circular-dash 1.4s ease-in-out infinite !default;

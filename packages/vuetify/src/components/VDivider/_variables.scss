@@ -1,4 +1,4 @@
-@import '../../styles/styles.sass';
+@use '../../styles/styles.sass' as *;
 
 $divider-inset-margin: 72px !default;
 $divider-inset-margin-top: 8px !default;

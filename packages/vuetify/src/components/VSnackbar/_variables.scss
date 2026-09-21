@@ -1,5 +1,5 @@
 @use "sass:map";
-@import '../../styles/styles.sass';
+@use '../../styles/styles.sass' as *;
 
 $snackbar-absolute-z-index: 1 !default;
 $snackbar-action-margin: 8px !default;

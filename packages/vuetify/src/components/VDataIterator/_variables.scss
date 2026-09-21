@@ -1,5 +1,5 @@
 // Imports
-@import '../../styles/styles.sass';
+@use '../../styles/styles.sass' as *;
 
 $data-footer-font-size: map-deep-get($headings, 'caption', 'size') !default;
 $data-footer-icons-after-btn-margin-start: 7px !default;

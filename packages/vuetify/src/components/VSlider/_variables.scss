@@ -1,5 +1,5 @@
 @use "sass:map";
-@import '../../styles/styles.sass';
+@use '../../styles/styles.sass' as *;
 
 $chip-group-no-color-opacity: .22 !default;
 $chip-group-opacity: .32 !default;

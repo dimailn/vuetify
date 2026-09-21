@@ -1,5 +1,7 @@
+@use "../settings/variables"
+
 html
-  font-size: $font-size-root
+  font-size: variables.$font-size-root
   overflow-x: hidden
   text-rendering: optimizeLegibility
   -webkit-font-smoothing: antialiased
@@ -10,8 +12,8 @@ html.overflow-y-hidden
   overflow-y: hidden !important
 
 .v-application
-  font-family: $body-font-family
-  line-height: $line-height-root
+  font-family: variables.$body-font-family
+  line-height: variables.$line-height-root
 
   ::-ms-clear,
   ::-ms-reveal

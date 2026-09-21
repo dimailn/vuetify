@@ -1,4 +1,4 @@
-@import '../../styles/styles.sass';
+@use '../../styles/styles.sass' as *;
 
 $skeleton-loader-actions-button-margin: 12px !default;
 $skeleton-loader-actions-padding: 16px 16px 8px !default;

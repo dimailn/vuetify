@@ -1,5 +1,5 @@
-@import './_variables'
-@import '../../styles/styles.sass'
+@use '_variables' as variables
+@use '../../styles/styles.sass' as *
 
 +theme(v-file-input) using ($material)
   .v-file-input__text
@@ -37,24 +37,24 @@
     flex-wrap: wrap
 
   .v-chip
-    margin: $file-input-chip-margin
+    margin: variables.$file-input-chip-margin
 
 .v-file-input .v-text-field__slot
-  min-height: $file-input-slot-min-height
+  min-height: variables.$file-input-slot-min-height
 
 .v-file-input
   &.v-input--dense
     .v-text-field__slot
-      min-height: $file-input-slot-dense-min-height
+      min-height: variables.$file-input-slot-dense-min-height
 
 .v-file-input.v-text-field--filled:not(.v-text-field--single-line)
   .v-file-input__text
-    padding-top: $file-input-filled-padding-top
+    padding-top: variables.$file-input-filled-padding-top
 
 .v-file-input.v-text-field--outlined
   .v-text-field__slot
-    padding: $file-input-outlined-padding
+    padding: variables.$file-input-outlined-padding
 
   &.v-input--dense
     .v-text-field__slot
-      padding: $file-input-outlined-dense-padding
+      padding: variables.$file-input-outlined-dense-padding

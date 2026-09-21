@@ -1,4 +1,5 @@
-@import './_variables.scss'
+@use '../../styles/styles.sass' as *
+@use '_variables.scss' as variables
 
 // Theme
 +theme(v-picker__title) using ($material)
@@ -8,11 +9,11 @@
   background: map-deep-get($material, 'picker', 'body')
 
 .v-picker
-  border-radius: $picker-border-radius
+  border-radius: variables.$picker-border-radius
   contain: layout style
   display: inline-flex
   flex-direction: column
-  font-size: $picker-font-size
+  font-size: variables.$picker-font-size
   vertical-align: top
   position: relative
 
@@ -25,15 +26,15 @@
 
 .v-picker__title
   color: v-map-get($shades, 'white')
-  border-top-left-radius: $picker-border-radius
-  border-top-right-radius: $picker-border-radius
-  padding: $picker-title-padding
+  border-top-left-radius: variables.$picker-border-radius
+  border-top-right-radius: variables.$picker-border-radius
+  padding: variables.$picker-title-padding
 
 .v-picker__title__btn
   transition: $primary-transition
 
   &:not(.v-picker__title__btn--active)
-    opacity: $picker-inactive-btn-opacity
+    opacity: variables.$picker-inactive-btn-opacity
     cursor: pointer
 
     &:hover:not(:focus)
@@ -44,7 +45,7 @@
 
 
 .v-picker__title__btn--active
-    opacity: $picker-active-btn-opacity
+    opacity: variables.$picker-active-btn-opacity
 
 .v-picker__body
   height: auto
@@ -68,7 +69,7 @@
   .v-picker__title
     border-top-right-radius: 0
     border-bottom-right-radius: 0
-    width: $picker-landscape-title-width
+    width: variables.$picker-landscape-title-width
     position: absolute
     top: 0
     height: 100%
@@ -83,11 +84,11 @@
   .v-picker__body:not(.v-picker__body--no-title),
   .v-picker__actions:not(.v-picker__actions--no-title)
     +ltr()
-      margin-left: $picker-landscape-title-width
+      margin-left: variables.$picker-landscape-title-width
       margin-right: 0
 
     +rtl()
-      margin-right: $picker-landscape-title-width
+      margin-right: variables.$picker-landscape-title-width
       margin-left: 0
 
 .v-picker--flat

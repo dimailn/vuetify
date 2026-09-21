@@ -1,4 +1,5 @@
-@import './_variables.scss'
+@use '../../styles/styles.sass' as *
+@use '_variables.scss' as variables
 
 +theme(v-image) using ($material)
   color: map-deep-get($material, 'text', 'primary')
@@ -21,7 +22,7 @@
   background-repeat: no-repeat
 
   &--preload
-    filter: $img-preload-filter
+    filter: variables.$img-preload-filter
 
   &--contain
     background-size: contain

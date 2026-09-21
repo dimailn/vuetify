@@ -1,4 +1,4 @@
-@import '../../styles/styles.sass';
+@use '../../styles/styles.sass' as *;
 
 $otp-gutter: 4px !default;
 $otp-width: 24px !default;

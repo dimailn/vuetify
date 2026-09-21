@@ -1,5 +1,5 @@
 @use "sass:map";
-@import '../../styles/styles.sass';
+@use '../../styles/styles.sass' as *;
 
 $banner-actions-start-margin: 90px !default;
 $banner-actions-margin: 8px !default;

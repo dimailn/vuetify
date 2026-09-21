@@ -1,5 +1,5 @@
 @use "sass:map";
-@import '../../styles/styles.sass';
+@use '../../styles/styles.sass' as *;
 
 $tooltip-background-color: rgba(map.get($grey, 'darken-2'), 0.9) !default;
 $tooltip-text-color: map.get($shades, 'white') !default;

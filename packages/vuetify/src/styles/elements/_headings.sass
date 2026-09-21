@@ -1,8 +1,12 @@
+@use "../settings/dark"
+@use "../settings/light"
+@use "../tools/functions"
+
 @mixin heading($material)
-  color: map-deep-get($material, 'text', 'primary')
+  color: functions.map-deep-get($material, 'text', 'primary')
 
 .v-application .theme--light.heading
-  +heading($material-light)
+  +heading(light.$material-light)
 
 .v-application .theme--dark.heading
-  +heading($material-dark)
+  +heading(dark.$material-dark)

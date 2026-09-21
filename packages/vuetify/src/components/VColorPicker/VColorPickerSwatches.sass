@@ -1,4 +1,5 @@
-@import './_variables.scss'
+@use '../../styles/styles.sass' as *
+@use '_variables.scss' as variables
 
 .v-color-picker__swatches
   overflow-y: auto
@@ -7,23 +8,23 @@
     display: flex
     flex-wrap: wrap
     justify-content: center
-    padding: $color-picker-swatches-padding
+    padding: variables.$color-picker-swatches-padding
 
 .v-color-picker__swatch
   display: flex
   flex-direction: column
-  margin-bottom: $color-picker-swatch-margin-bottom
+  margin-bottom: variables.$color-picker-swatch-margin-bottom
 
 .v-color-picker__color
   position: relative
-  height: $color-picker-swatch-color-height
-  max-height: $color-picker-swatch-color-height
-  width: $color-picker-swatch-color-width
-  margin: $color-picker-swatch-color-margin
-  border-radius: $color-picker-swatch-color-border-radius
+  height: variables.$color-picker-swatch-color-height
+  max-height: variables.$color-picker-swatch-color-height
+  width: variables.$color-picker-swatch-color-width
+  margin: variables.$color-picker-swatch-color-margin
+  border-radius: variables.$color-picker-swatch-color-border-radius
   user-select: none
   overflow: hidden
-  background: $color-picker-checkerboard
+  background: variables.$color-picker-checkerboard
   cursor: pointer
 
   > div

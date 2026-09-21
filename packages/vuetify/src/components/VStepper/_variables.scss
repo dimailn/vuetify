@@ -1,5 +1,5 @@
 @use "sass:map";
-@import '../../styles/styles.sass';
+@use '../../styles/styles.sass' as *;
 
 $stepper-alt-labels-flex-basis : 175px !default;
 $stepper-alt-labels-header-divider: 35px -67px 0 !default;

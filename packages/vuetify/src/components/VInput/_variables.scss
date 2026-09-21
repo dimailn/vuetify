@@ -1,4 +1,4 @@
-@import '../../styles/styles.sass';
+@use '../../styles/styles.sass' as *;
 
 $input-font-size: 16px !default;
 $input-letter-spacing: normal !default;
