@@ -1,4 +1,4 @@
-@import '../../styles/styles.sass';
+@use '../../styles/styles.sass' as *;
 
 $rating-padding: 0.5rem !default;
 $rating-border-radius: 50% !default;

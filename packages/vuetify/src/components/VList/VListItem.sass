@@ -1,4 +1,5 @@
-@import './_variables.scss'
+@use '../../styles/styles.sass' as *
+@use '_variables.scss' as variables
 
 // Theme
 +theme(v-list-item) using ($material)
@@ -29,9 +30,9 @@
   display: flex
   flex: 1 1 100%
   letter-spacing: normal
-  min-height: $list-item-min-height
+  min-height: variables.$list-item-min-height
   outline: none
-  padding: $list-item-padding
+  padding: variables.$list-item-padding
   position: relative
   text-decoration: none
 
@@ -52,7 +53,7 @@
 // Element
 .v-list-item__action
   align-self: center
-  margin: $list-item-action-margin
+  margin: variables.$list-item-action-margin
 
   // Remove all margins when used
   // in an item action. If user
@@ -71,31 +72,31 @@
       display: none
 
 .v-list-item__action-text
-  font-size: $list-item-action-text-font-size
+  font-size: variables.$list-item-action-text-font-size
 
 .v-list-item__avatar
   align-self: center
   justify-content: flex-start
-  margin-bottom: $list-item-avatar-margin-y
-  margin-top: $list-item-avatar-margin-y
+  margin-bottom: variables.$list-item-avatar-margin-y
+  margin-top: variables.$list-item-avatar-margin-y
 
   &.v-list-item__avatar--horizontal
-    margin-bottom: $list-item-avatar-horizontal-margin
-    margin-top: $list-item-avatar-horizontal-margin
+    margin-bottom: variables.$list-item-avatar-horizontal-margin
+    margin-top: variables.$list-item-avatar-horizontal-margin
 
     &:first-child
       +ltr()
-        margin-left: $list-item-avatar-horizontal-margin-x
+        margin-left: variables.$list-item-avatar-horizontal-margin-x
 
       +rtl()
-        margin-right: $list-item-avatar-horizontal-margin-x
+        margin-right: variables.$list-item-avatar-horizontal-margin-x
 
     &:last-child
       +ltr()
-        margin-left: $list-item-avatar-horizontal-margin-x
+        margin-left: variables.$list-item-avatar-horizontal-margin-x
 
       +rtl()
-        margin-right: $list-item-avatar-horizontal-margin-x
+        margin-right: variables.$list-item-avatar-horizontal-margin-x
 
 .v-list-item__content
   align-items: center
@@ -104,18 +105,18 @@
   flex-wrap: wrap
   flex: 1 1
   overflow: hidden
-  padding: $list-item-content-padding
+  padding: variables.$list-item-content-padding
 
   > *
     line-height: 1.1
     flex: 1 0 100%
 
     &:not(:last-child)
-      margin-bottom: $list-item-content-children-margin-bottom
+      margin-bottom: variables.$list-item-content-children-margin-bottom
 
 .v-list-item__icon
   align-self: flex-start
-  margin: $list-item-icon-margin
+  margin: variables.$list-item-icon-margin
 
 // https://github.com/vuetifyjs/vuetify/issues/7930
 .v-list-item__action,
@@ -123,33 +124,33 @@
 .v-list-item__icon
   &:last-of-type:not(:only-child)
     +ltr()
-      margin-left: $list-item-child-last-type-margin
+      margin-left: variables.$list-item-child-last-type-margin
 
     +rtl()
-      margin-right: $list-item-child-last-type-margin
+      margin-right: variables.$list-item-child-last-type-margin
 
 .v-list-item__avatar
   &:first-child
     +ltr()
-      margin-right: $list-item-avatar-first-child-margin
+      margin-right: variables.$list-item-avatar-first-child-margin
 
     +rtl()
-      margin-left: $list-item-avatar-first-child-margin
+      margin-left: variables.$list-item-avatar-first-child-margin
 
 .v-list-item__action,
 .v-list-item__icon
   &:first-child
     +ltr()
-      margin-right: $list-item-action-icon-margin
+      margin-right: variables.$list-item-action-icon-margin
 
     +rtl()
-      margin-left: $list-item-action-icon-margin
+      margin-left: variables.$list-item-action-icon-margin
 
 .v-list-item__action,
 .v-list-item__avatar,
 .v-list-item__icon
   display: inline-flex
-  min-width: $list-item-child-min-width
+  min-width: variables.$list-item-child-min-width
 
 // Increased specificity to beat
 // out default typography rules
@@ -157,7 +158,7 @@
 // proper element sizing
 .v-list-item .v-list-item__title,
 .v-list-item .v-list-item__subtitle
-  line-height: $list-item-title-subtitle-line-height
+  line-height: variables.$list-item-title-subtitle-line-height
 
 .v-list-item__title,
 .v-list-item__subtitle
@@ -168,38 +169,38 @@
 
 .v-list-item__title
   align-self: center
-  font-size: $list-item-title-font-size
+  font-size: variables.$list-item-title-font-size
 
   > .v-badge
     margin-top: 16px
 
 .v-list-item__subtitle
-  font-size: $list-item-subtitle-font-size
+  font-size: variables.$list-item-subtitle-font-size
 
 // Modifier
 .v-list-item--dense,
 .v-list--dense .v-list-item
-  min-height: $list-dense-min-height
+  min-height: variables.$list-dense-min-height
 
   .v-list-item__icon
-    height: $list-dense-icon-height
-    margin-top: $list-dense-icon-margin
-    margin-bottom: $list-dense-icon-margin
+    height: variables.$list-dense-icon-height
+    margin-top: variables.$list-dense-icon-margin
+    margin-bottom: variables.$list-dense-icon-margin
 
   .v-list-item__content
-    padding: $list-dense-content-padding
+    padding: variables.$list-dense-content-padding
 
   .v-list-item__title,
   .v-list-item__subtitle
-    font-size: $list-item-dense-title-font-size
-    font-weight: $list-item-dense-title-font-weight
-    line-height: $list-item-dense-title-line-height
+    font-size: variables.$list-item-dense-title-font-size
+    font-weight: variables.$list-item-dense-title-font-weight
+    line-height: variables.$list-item-dense-title-line-height
 
   &.v-list-item--two-line
-    min-height: $list-item-dense-two-line-min-height
+    min-height: variables.$list-item-dense-two-line-min-height
 
   &.v-list-item--three-line
-    min-height: $list-item-dense-three-line-min-height
+    min-height: variables.$list-item-dense-three-line-min-height
 
 .v-list-item--link
   cursor: pointer
@@ -237,25 +238,25 @@
 .v-list-item--three-line
   .v-list-item__avatar:not(.v-list-item__avatar--horizontal),
   .v-list-item__icon
-    margin-bottom: $list-item-icon-margin-y
-    margin-top: $list-item-icon-margin-y
+    margin-bottom: variables.$list-item-icon-margin-y
+    margin-top: variables.$list-item-icon-margin-y
 
 .v-list--two-line .v-list-item,
 .v-list-item--two-line
-  min-height: $list-item-two-line-min-height
+  min-height: variables.$list-item-two-line-min-height
 
   .v-list-item__icon
-    margin-bottom: $list-item-two-line-icon-margin-bottom
+    margin-bottom: variables.$list-item-two-line-icon-margin-bottom
 
 .v-list--three-line .v-list-item,
 .v-list-item--three-line
-  min-height: $list-item-three-line-min-height
+  min-height: variables.$list-item-three-line-min-height
 
   .v-list-item__avatar,
   .v-list-item__action
     align-self: flex-start
-    margin-top: $list-item-three-line-avatar-action-margin
-    margin-bottom: $list-item-three-line-avatar-action-margin
+    margin-top: variables.$list-item-three-line-avatar-action-margin
+    margin-bottom: variables.$list-item-three-line-avatar-action-margin
 
   .v-list-item__content
     align-self: stretch

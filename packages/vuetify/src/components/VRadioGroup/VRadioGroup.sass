@@ -1,5 +1,5 @@
-@import './_variables'
-@import '../../styles/styles.sass'
+@use '_variables' as variables
+@use '../../styles/styles.sass' as *
 
 .v-input--radio-group
   legend.v-label
@@ -14,10 +14,10 @@
     width: 100%
 
   &--column .v-input--radio-group__input > .v-label
-    padding-bottom: $radio-group-padding
+    padding-bottom: variables.$radio-group-padding
 
   &--row .v-input--radio-group__input > .v-label
-    padding-right: $radio-group-padding
+    padding-right: variables.$radio-group-padding
 
   &--row
     legend
@@ -30,10 +30,10 @@
 
   &--column
     legend
-      padding-bottom: $radio-group-padding
+      padding-bottom: variables.$radio-group-padding
 
     .v-radio:not(:last-child):not(:only-child)
-      margin-bottom: $radio-group-padding
+      margin-bottom: variables.$radio-group-padding
 
     .v-input--radio-group__input
       flex-direction: column

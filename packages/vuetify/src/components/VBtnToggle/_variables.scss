@@ -1,4 +1,4 @@
-@import '../../styles/styles.sass';
+@use '../../styles/styles.sass' as *;
 
 $btn-toggle-border-radius: $border-radius-root !default;
 $btn-toggle-shaped-border-radius: 24px !default;

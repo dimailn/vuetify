@@ -1,5 +1,5 @@
 @use "sass:map";
-@import '../../styles/styles.sass';
+@use '../../styles/styles.sass' as *;
 
 $card-actions-padding: 8px !default;
 $card-adjacent-sibling-text-padding-top: 0 !default;

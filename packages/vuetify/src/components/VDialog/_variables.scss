@@ -1,4 +1,4 @@
-@import '../../styles/styles.sass';
+@use '../../styles/styles.sass' as *;
 
 $dialog-border-radius: $border-radius-root !default;
 $dialog-card-subtitle-padding: 0 24px 20px !default;

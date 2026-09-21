@@ -1,4 +1,5 @@
-@import './_variables.scss'
+@use '../../styles/styles.sass' as *
+@use '_variables.scss' as variables
 
 +theme(v-small-dialog) using ($material)
   &__menu-content,
@@ -14,9 +15,9 @@
       display: inline-block
 
   &__content
-    padding: $edit-dialog-content-padding
+    padding: variables.$edit-dialog-content-padding
 
   &__actions
-    padding: $edit-dialog-actions-padding
+    padding: variables.$edit-dialog-actions-padding
     text-align: right
     white-space: pre

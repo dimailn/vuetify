@@ -1,5 +1,8 @@
+@use "../settings/dark"
+@use "../settings/light"
+
 @mixin theme ($component)
   .theme--light.#{$component}
-    @content($material-light)
+    @content(light.$material-light)
   .theme--dark.#{$component}
-    @content($material-dark)
+    @content(dark.$material-dark)

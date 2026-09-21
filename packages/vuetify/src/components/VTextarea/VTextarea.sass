@@ -1,4 +1,5 @@
-@import './_variables.scss'
+@use '../../styles/styles.sass' as *
+@use '_variables.scss' as variables
 
 +theme(v-textarea) using ($material)
   &.v-text-field--solo-inverted
@@ -13,23 +14,23 @@
   textarea
     align-self: stretch
     flex: 1 1 auto
-    line-height: $textarea-line-height
+    line-height: variables.$textarea-line-height
     max-width: 100%
-    min-height: $textarea-min-height
+    min-height: variables.$textarea-min-height
     outline: none
-    padding: $textarea-padding
+    padding: variables.$textarea-padding
     width: 100%
 
   .v-text-field__prefix,
   .v-text-field__suffix
-    padding-top: $textarea-prefix-padding-top
+    padding-top: variables.$textarea-prefix-padding-top
     align-self: start
 
   &.v-text-field--box,
   &.v-text-field--enclosed
     .v-text-field__prefix,
     textarea
-      margin-top: $textarea-box-enclosed-prefix-margin-top
+      margin-top: variables.$textarea-box-enclosed-prefix-margin-top
 
     &.v-text-field--single-line,
     &.v-text-field--outlined
@@ -37,23 +38,23 @@
         .v-text-field__prefix,
         .v-text-field__suffix,
         textarea
-          margin-top: $textarea-box-enclosed-single-outlined-margin-top
+          margin-top: variables.$textarea-box-enclosed-single-outlined-margin-top
 
         .v-label
-          top: $textarea-box-enclosed-single-outlined-label-top
+          top: variables.$textarea-box-enclosed-single-outlined-label-top
 
       &.v-input--dense
         .v-text-field__prefix,
         .v-text-field__suffix,
         textarea
-          margin-top: $textarea-dense-box-enclosed-single-outlined-margin-top
+          margin-top: variables.$textarea-dense-box-enclosed-single-outlined-margin-top
 
         .v-input__prepend-inner,
         .v-input__prepend-outer,
         .v-input__append-inner,
         .v-input__append-outer
           align-self: flex-start
-          margin-top: $textarea-dense-append-prepend-margin-top
+          margin-top: variables.$textarea-dense-append-prepend-margin-top
 
   &.v-text-field--solo
     align-items: flex-start
@@ -69,14 +70,14 @@
     .v-input__append-inner,
     .v-input__append-outer
       align-self: flex-start
-      margin-top: $textarea-solo-append-prepend-margin-top
+      margin-top: variables.$textarea-solo-append-prepend-margin-top
 
     .v-input__append-inner
       +ltr()
-        padding-left: $textarea-solo-append-padding
+        padding-left: variables.$textarea-solo-append-padding
 
       +rtl()
-        padding-right: $textarea-solo-append-padding
+        padding-right: variables.$textarea-solo-append-padding
 
   &--auto-grow
     textarea
@@ -91,23 +92,23 @@
       align-self: stretch
 
       +ltr()
-        margin-right: $textarea-enclosed-text-slot-margin
+        margin-right: variables.$textarea-enclosed-text-slot-margin
 
       +rtl()
-        margin-left: $textarea-enclosed-text-slot-margin
+        margin-left: variables.$textarea-enclosed-text-slot-margin
 
       textarea
         +ltr()
-          padding-right: $textarea-enclosed-text-slot-padding
+          padding-right: variables.$textarea-enclosed-text-slot-padding
 
         +rtl()
-          padding-left: $textarea-enclosed-text-slot-padding
+          padding-left: variables.$textarea-enclosed-text-slot-padding
 
     &.v-text-field--reverse
       .v-text-field__slot
         .v-label
           +ltr()
-            margin-right: -$textarea-enclosed-text-slot-margin
+            margin-right: -(variables.$textarea-enclosed-text-slot-margin)
 
           +rtl()
-            margin-left: -$textarea-enclosed-text-slot-margin
+            margin-left: -(variables.$textarea-enclosed-text-slot-margin)

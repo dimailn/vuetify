@@ -1,5 +1,6 @@
+@use '../../styles/styles.sass' as *
 // Imports
-@import './_variables.scss'
+@use '_variables.scss' as variables
 
 // Theme
 +theme(v-data-table) using ($material)
@@ -50,10 +51,10 @@
   align-items: center
   border: 0px
   border-radius: 50%
-  min-width: $data-table-header-sort-badge-min-height
-  min-height: $data-table-header-sort-badge-min-width
-  height: $data-table-header-sort-badge-height
-  width: $data-table-header-sort-badge-width
+  min-width: variables.$data-table-header-sort-badge-min-height
+  min-height: variables.$data-table-header-sort-badge-min-width
+  height: variables.$data-table-header-sort-badge-height
+  width: variables.$data-table-header-sort-badge-width
 
 // Mobile
 .v-data-table-header-mobile
@@ -64,17 +65,17 @@
   display: flex
 
   .v-select
-    margin-bottom: $data-table-header-mobile-select-margin-bottom
+    margin-bottom: variables.$data-table-header-mobile-select-margin-bottom
 
     .v-chip
-      height: $data-table-header-mobile-select-chip-height
+      height: variables.$data-table-header-mobile-select-chip-height
 
     .v-chip__close.desc
       .v-icon
         transform: rotate(-180deg)
 
 .v-data-table-header-mobile__select
-  min-width: $data-table-header-mobile-select-max-width
+  min-width: variables.$data-table-header-mobile-select-max-width
   display: flex
   align-items: center
   justify-content: center

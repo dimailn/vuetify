@@ -1,4 +1,5 @@
-@import './_variables.scss'
+@use '../../styles/styles.sass' as *
+@use '_variables.scss' as variables
 
 .v-autocomplete
   &.v-input > .v-input__control > .v-input__slot
@@ -11,7 +12,7 @@
   // minimum-width default
   &.v-select.v-input--is-focused
     input
-      min-width: $autocomplete-focused-input
+      min-width: variables.$autocomplete-focused-input
 
   // Chips force input to wrap
   // so we remove height and
@@ -28,11 +29,11 @@
   // selections padding
   &.v-text-field--enclosed:not(.v-text-field--solo):not(.v-text-field--single-line):not(.v-text-field--outlined)
     .v-select__slot > input
-      margin-top: $autocomplete-enclosed-input-margin-top
+      margin-top: variables.$autocomplete-enclosed-input-margin-top
 
     &.v-input--dense
       .v-select__slot > input
-        margin-top: $autocomplete-dense-enclosed-input-margin-top
+        margin-top: variables.$autocomplete-dense-enclosed-input-margin-top
 
   &__content.v-menu__content
     border-radius: 0

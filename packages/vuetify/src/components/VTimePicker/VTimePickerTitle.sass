@@ -1,8 +1,9 @@
-@import './_variables.scss'
-@import '../VPicker/_variables.scss'
+@use '../../styles/styles.sass' as *
+@use '_variables.scss' as variables
+@use '../VPicker/_variables.scss' as VPicker-variables
 
 .v-time-picker-title
-  color: $time-picker-title-color
+  color: variables.$time-picker-title-color
   display: flex
   line-height: 1
   justify-content: flex-end
@@ -15,29 +16,29 @@
   span
     align-items: center
     display: inline-flex
-    height: $time-picker-title-btn-height
-    font-size: $time-picker-title-btn-height
+    height: variables.$time-picker-title-btn-height
+    font-size: variables.$time-picker-title-btn-height
     justify-content: center
 
 .v-time-picker-title__ampm
   align-self: flex-end
   display: flex
   flex-direction: column
-  font-size: $time-picker-ampm-title-font-size
+  font-size: variables.$time-picker-ampm-title-font-size
   text-transform: uppercase
 
   +ltr()
-    margin: $time-picker-ampm-title-margin-ltr
+    margin: variables.$time-picker-ampm-title-margin-ltr
 
   +rtl()
-    margin: $time-picker-ampm-title-margin-rtl
+    margin: variables.$time-picker-ampm-title-margin-rtl
 
   div:only-child
     flex-direction: row
 
   &--readonly
     .v-picker__title__btn.v-picker__title__btn--active
-      opacity: $picker-inactive-btn-opacity
+      opacity: VPicker-variables.$picker-inactive-btn-opacity
 
 .v-picker__title--landscape
   .v-time-picker-title
@@ -50,11 +51,11 @@
 
     .v-picker__title__btn,
     span
-      height: $time-picker-landscape-title-btn-height
-      font-size: $time-picker-landscape-title-btn-height
+      height: variables.$time-picker-landscape-title-btn-height
+      font-size: variables.$time-picker-landscape-title-btn-height
 
   .v-time-picker-title__ampm
-    margin: $time-picker-landscape-ampm-title-margin
+    margin: variables.$time-picker-landscape-ampm-title-margin
     align-self: initial
     text-align: center
 

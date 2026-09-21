@@ -1,4 +1,5 @@
-@import './_variables.scss'
+@use '../../styles/styles.sass' as *
+@use '_variables.scss' as variables
 
 // Theme
 +theme(v-time-picker-clock) using ($material)
@@ -34,7 +35,7 @@
     flex-direction: column
     flex-basis: 290px
     justify-content: center
-    padding: $time-picker-clock-padding
+    padding: variables.$time-picker-clock-padding
 
   &__ampm
     display: flex
@@ -47,13 +48,13 @@
     top: 0
     left: 0
     margin: 0
-    padding: $time-picker-ampm-padding
+    padding: variables.$time-picker-ampm-padding
 
   &__hand
-    height: $time-picker-clock-hand-height
-    width: $time-picker-clock-hand-width
+    height: variables.$time-picker-clock-hand-height
+    width: variables.$time-picker-clock-hand-width
     bottom: 50%
-    left: $time-picker-clock-hand-left
+    left: variables.$time-picker-clock-hand-left
     transform-origin: center bottom
     position: absolute
     will-change: transform
@@ -61,23 +62,23 @@
 
     &:before
       background: transparent
-      border-width: $time-picker-clock-end-border-width
-      border-style: $time-picker-clock-end-border-style
-      border-color: $time-picker-clock-end-border-color
+      border-width: variables.$time-picker-clock-end-border-width
+      border-style: variables.$time-picker-clock-end-border-style
+      border-color: variables.$time-picker-clock-end-border-color
       border-radius: 100%
-      width: $time-picker-clock-end-size
-      height: $time-picker-clock-end-size
+      width: variables.$time-picker-clock-end-size
+      height: variables.$time-picker-clock-end-size
       content: ''
       position: absolute
-      top: $time-picker-clock-end-top
+      top: variables.$time-picker-clock-end-top
       left: 50%
       transform: translate(-50%, -50%)
 
     &:after
       content: ''
       position: absolute
-      height: $time-picker-clock-center-size
-      width: $time-picker-clock-center-size
+      height: variables.$time-picker-clock-center-size
+      width: variables.$time-picker-clock-center-size
       top: 100%
       left: 50%
       border-radius: 100%
@@ -87,30 +88,30 @@
       transform: translate(-50%, -50%)
 
     &--inner:after
-      height: $time-picker-clock-inner-hand-height
+      height: variables.$time-picker-clock-inner-hand-height
 
 .v-picker--full-width
   .v-time-picker-clock__container
-    max-width: $time-picker-clock-max-width
+    max-width: variables.$time-picker-clock-max-width
 
 .v-time-picker-clock__inner
   position: absolute
-  bottom: $time-picker-clock-inner-offset
-  left: $time-picker-clock-inner-offset
-  right: $time-picker-clock-inner-offset
-  top: $time-picker-clock-inner-offset
+  bottom: variables.$time-picker-clock-inner-offset
+  left: variables.$time-picker-clock-inner-offset
+  right: variables.$time-picker-clock-inner-offset
+  top: variables.$time-picker-clock-inner-offset
 
 .v-time-picker-clock__item
   align-items: center
   border-radius: 100%
   cursor: default
   display: flex
-  font-size: $time-picker-number-font-size
+  font-size: variables.$time-picker-number-font-size
   justify-content: center
-  height: $time-picker-indicator-size
+  height: variables.$time-picker-indicator-size
   position: absolute
   text-align: center
-  width: $time-picker-indicator-size
+  width: variables.$time-picker-indicator-size
   user-select: none
   transform: translate(-50%, -50%)
 
@@ -128,8 +129,8 @@
     transform: translate(-50%, -50%)
 
   &:after, &:before
-    height: $time-picker-indicator-size
-    width: $time-picker-indicator-size
+    height: variables.$time-picker-indicator-size
+    width: variables.$time-picker-indicator-size
 
   &--active
     color: v-map-get($shades, 'white')

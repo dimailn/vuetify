@@ -1,5 +1,6 @@
-@import './_variables.scss'
-@import './_mixins.sass'
+@use '../../styles/styles.sass' as *
+@use '_variables.scss' as variables
+@use '_mixins.sass'
 
 // Theme
 .v-list
@@ -25,12 +26,12 @@
     background: v-map-get($material, 'dividers')
 
 // Sheet
-+sheet(v-list, $list-elevation, $list-border-radius, $list-shaped-border-radius)
++sheet(v-list, variables.$list-elevation, variables.$list-border-radius, variables.$list-shaped-border-radius)
 
 // Block
 .v-list
   display: block
-  padding: $list-padding
+  padding: variables.$list-padding
   position: static
   +elevationTransition()
 
@@ -44,55 +45,55 @@
 
 .v-list--dense
   .v-subheader
-    font-size: $list-dense-subheader-font-size
-    height: $list-dense-subheader-height
-    padding: $list-dense-subheader-padding
+    font-size: variables.$list-dense-subheader-font-size
+    height: variables.$list-dense-subheader-height
+    padding: variables.$list-dense-subheader-padding
 
 .v-list--nav,
 .v-list--rounded
   .v-list-item:not(:last-child):not(:only-child)
-    margin-bottom: $list-nav-rounded-item-margin-bottom
+    margin-bottom: variables.$list-nav-rounded-item-margin-bottom
 
   &.v-list--dense .v-list-item,
   .v-list-item--dense
     &:not(:last-child):not(:only-child)
-      margin-bottom: $list-nav-rounded-dense-item-margin-bottom
+      margin-bottom: variables.$list-nav-rounded-dense-item-margin-bottom
 
 .v-list--nav
-  padding-left: $list-nav-padding-left
-  padding-right: $list-nav-padding-right
+  padding-left: variables.$list-nav-padding-left
+  padding-right: variables.$list-nav-padding-right
 
   .v-list-item
-    padding: $list-nav-item-padding
+    padding: variables.$list-nav-item-padding
 
   .v-list-item,
   .v-list-item:before
-    border-radius: $list-nav-border-radius
+    border-radius: variables.$list-nav-border-radius
 
 .v-list.v-sheet--shaped
-  +list-shaped($list-item-min-height)
+  +mixins.list-shaped(variables.$list-item-min-height)
 
   &.v-list--two-line
-    +list-shaped($list-item-two-line-min-height)
+    +mixins.list-shaped(variables.$list-item-two-line-min-height)
 
   &.v-list--three-line
-    +list-shaped($list-item-three-line-min-height)
+    +mixins.list-shaped(variables.$list-item-three-line-min-height)
 
   +ltr()
-    padding-right: $list-shaped-padding
+    padding-right: variables.$list-shaped-padding
 
   +rtl()
-    padding-left: $list-shaped-padding
+    padding-left: variables.$list-shaped-padding
 
 .v-list--rounded
   padding: 8px
-  +list-rounded($list-item-min-height)
+  +mixins.list-rounded(variables.$list-item-min-height)
 
   &.v-list--two-line
-    +list-rounded($list-item-two-line-min-height)
+    +mixins.list-rounded(variables.$list-item-two-line-min-height)
 
   &.v-list--three-line
-    +list-rounded($list-item-three-line-min-height)
+    +mixins.list-rounded(variables.$list-item-three-line-min-height)
 
 .v-list--subheader
-  padding-top: $list-subheader-padding-top
+  padding-top: variables.$list-subheader-padding-top

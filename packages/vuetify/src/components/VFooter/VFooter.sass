@@ -1,22 +1,23 @@
-@import './_variables.scss'
+@use '../../styles/styles.sass' as *
+@use '_variables.scss' as variables
 
 // Theme
 +theme(v-footer) using ($material)
   background-color: v-map-get($material, 'app-bar')
   color: map-deep-get($material, 'text', 'primary')
 
-+sheet(v-footer, $footer-elevation, $footer-border-radius, $footer-shaped-border-radius)
++sheet(v-footer, variables.$footer-elevation, variables.$footer-border-radius, variables.$footer-shaped-border-radius)
 // Block
 .v-footer
   align-items: center
   display: flex
   flex: 0 1 auto !important // Don't let devs break their code
   flex-wrap: wrap
-  padding: $footer-padding
+  padding: variables.$footer-padding
   position: relative
-  transition-duration: $footer-transition-duration
-  transition-property: $footer-transition-property
-  transition-timing-function: $footer-transition-timing-function
+  transition-duration: variables.$footer-transition-duration
+  transition-property: variables.$footer-transition-property
+  transition-timing-function: variables.$footer-transition-timing-function
   +bootable()
 
 // Modifier
@@ -36,4 +37,4 @@
   position: fixed
 
 .v-footer--padless
-  padding: $footer-padless-padding
+  padding: variables.$footer-padless-padding

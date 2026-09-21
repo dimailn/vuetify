@@ -1,4 +1,4 @@
-@import '../../styles/styles.sass';
+@use '../../styles/styles.sass' as *;
 
 $picker-border-radius: $border-radius-root !default;
 $picker-title-padding: 16px !default;

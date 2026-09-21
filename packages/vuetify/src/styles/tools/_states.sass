@@ -1,9 +1,11 @@
+@use "functions"
+
 @mixin states ($material)
   &:hover::before
-    opacity: map-deep-get($material, 'states', 'hover')
+    opacity: functions.map-deep-get($material, 'states', 'hover')
 
   &:focus::before
-    opacity: map-deep-get($material, 'states', 'focus')
+    opacity: functions.map-deep-get($material, 'states', 'focus')
 
   &--active
     +active-states($material)
@@ -11,7 +13,7 @@
 @mixin active-states ($material)
   &:hover::before,
   &::before
-    opacity: map-deep-get($material, 'states', 'activated')
+    opacity: functions.map-deep-get($material, 'states', 'activated')
 
   &:focus::before
-    opacity: map-deep-get($material, 'states', 'pressed')
+    opacity: functions.map-deep-get($material, 'states', 'pressed')

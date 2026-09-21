@@ -1,4 +1,4 @@
-@import '../../styles/styles.sass';
+@use '../../styles/styles.sass' as *;
 
 $timeline-divider-center: 50% !default;
 $timeline-divider-width: 96px !default;

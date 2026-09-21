@@ -1,38 +1,39 @@
-@import './_variables.scss'
+@use '../../styles/styles.sass' as *
+@use '_variables.scss' as variables
 
 // Block
 .v-dialog
-  border-radius: $dialog-border-radius
-  margin: $dialog-margin
+  border-radius: variables.$dialog-border-radius
+  margin: variables.$dialog-margin
   overflow-y: auto
   pointer-events: auto
   transition: .3s v-map-get($transition, 'fast-in-fast-out')
   width: 100%
   z-index: inherit
   outline: none
-  +elevation($dialog-elevation)
+  +elevation(variables.$dialog-elevation)
 
   &:not(.v-dialog--fullscreen)
-    max-height: $dialog-max-height
+    max-height: variables.$dialog-max-height
 
   > *
     width: 100%
 
   > .v-card
     > .v-card__title
-      font-size: $dialog-card-title-font-size
-      font-weight: $dialog-card-title-font-weight
-      letter-spacing: $dialog-card-title-letter-spacing
-      padding: $dialog-card-title-padding
+      font-size: variables.$dialog-card-title-font-size
+      font-weight: variables.$dialog-card-title-font-weight
+      letter-spacing: variables.$dialog-card-title-letter-spacing
+      padding: variables.$dialog-card-title-padding
 
     > .v-card__text
-      padding: $dialog-card-text-padding
+      padding: variables.$dialog-card-text-padding
 
     > .v-card__subtitle
-      padding: $dialog-card-subtitle-padding
+      padding: variables.$dialog-card-subtitle-padding
 
     > .v-card__actions
-      padding: $dialog-card-actions-padding
+      padding: variables.$dialog-card-actions-padding
 
 // Element
 .v-dialog__content

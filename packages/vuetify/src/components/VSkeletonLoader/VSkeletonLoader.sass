@@ -1,6 +1,7 @@
+@use '../../styles/styles.sass' as *
 // Imports
-@import './_variables.scss'
-@import '../VAvatar/_variables.scss'
+@use '_variables.scss' as variables
+@use '../VAvatar/_variables.scss' as VAvatar-variables
 
 // Theme
 +theme(v-skeleton-loader) using ($material)
@@ -35,12 +36,12 @@
     background: v-map-get($material, 'cards')
 
 .v-skeleton-loader
-  border-radius: $skeleton-loader-border-radius
+  border-radius: variables.$skeleton-loader-border-radius
   position: relative
   vertical-align: top
 
   &__actions
-    padding: $skeleton-loader-actions-padding
+    padding: variables.$skeleton-loader-actions-padding
     text-align: right
 
     .v-skeleton-loader__button
@@ -48,10 +49,10 @@
 
       &:first-child
         +ltr()
-          margin-right: $skeleton-loader-actions-button-margin
+          margin-right: variables.$skeleton-loader-actions-button-margin
 
         +rtl()
-          margin-left: $skeleton-loader-actions-button-margin
+          margin-left: variables.$skeleton-loader-actions-button-margin
 
 
   .v-skeleton-loader__list-item,
@@ -61,7 +62,7 @@
   .v-skeleton-loader__list-item-avatar-two-line,
   .v-skeleton-loader__list-item-three-line,
   .v-skeleton-loader__list-item-avatar-three-line
-    border-radius: $skeleton-loader-border-radius
+    border-radius: variables.$skeleton-loader-border-radius
 
   .v-skeleton-loader__actions,
   .v-skeleton-loader__article,
@@ -95,13 +96,13 @@
   &__article
     .v-skeleton-loader__heading
       +ltr()
-        margin: $skeleton-loader-article-heading-margin-top-left 0 $skeleton-loader-article-heading-margin-x $skeleton-loader-article-heading-margin-top-left
+        margin: variables.$skeleton-loader-article-heading-margin-top-left 0 variables.$skeleton-loader-article-heading-margin-x variables.$skeleton-loader-article-heading-margin-top-left
 
       +rtl()
-        margin: $skeleton-loader-article-heading-margin-top-left $skeleton-loader-article-heading-margin-x 0 $skeleton-loader-article-heading-margin-top-left
+        margin: variables.$skeleton-loader-article-heading-margin-top-left variables.$skeleton-loader-article-heading-margin-x 0 variables.$skeleton-loader-article-heading-margin-top-left
 
     .v-skeleton-loader__paragraph
-      padding: $skeleton-loader-article-paragraph-padding
+      padding: variables.$skeleton-loader-article-paragraph-padding
 
   &__bone
     border-radius: inherit
@@ -109,25 +110,25 @@
     position: relative
 
     &::after
-      animation: $skeleton-loader-loading-animation
+      animation: variables.$skeleton-loader-loading-animation
       content: ''
       height: 100%
       left: 0
       position: absolute
       right: 0
       top: 0
-      transform: $skeleton-loader-loading-transform
+      transform: variables.$skeleton-loader-loading-transform
       z-index: 1
 
   &__avatar
-    border-radius: $avatar-border-radius
-    height: $skeleton-loader-avatar-height
-    width: $skeleton-loader-avatar-width
+    border-radius: VAvatar-variables.$avatar-border-radius
+    height: variables.$skeleton-loader-avatar-height
+    width: variables.$skeleton-loader-avatar-width
 
   &__button
-    border-radius: $skeleton-loader-button-border-radius
-    height: $skeleton-loader-button-height
-    width: $skeleton-loader-button-width
+    border-radius: variables.$skeleton-loader-button-border-radius
+    height: variables.$skeleton-loader-button-height
+    width: variables.$skeleton-loader-button-width
 
   &__card
     .v-skeleton-loader__image
@@ -135,18 +136,18 @@
 
   &__card-heading
     .v-skeleton-loader__heading
-      margin: $skeleton-loader-card-heading-loader-heading-margin
+      margin: variables.$skeleton-loader-card-heading-loader-heading-margin
 
   &__card-text
-    padding: $skeleton-loader-card-text-padding
+    padding: variables.$skeleton-loader-card-text-padding
 
   &__chip
-    border-radius: $skeleton-loader-chip-border-radius
-    height: $skeleton-loader-chip-height
-    width: $skeleton-loader-chip-width
+    border-radius: variables.$skeleton-loader-chip-border-radius
+    height: variables.$skeleton-loader-chip-height
+    width: variables.$skeleton-loader-chip-width
 
   &__date-picker
-    border-radius: $skeleton-loader-date-picker-border-radius
+    border-radius: variables.$skeleton-loader-date-picker-border-radius
 
     .v-skeleton-loader__list-item:first-child
       .v-skeleton-loader__text
@@ -160,33 +161,33 @@
   &__date-picker-days
     display: flex
     flex-wrap: wrap
-    padding: $skeleton-loader-date-picker-days-padding
+    padding: variables.$skeleton-loader-date-picker-days-padding
     margin: 0 auto
 
     .v-skeleton-loader__avatar
-      border-radius: $skeleton-loader-border-radius
+      border-radius: variables.$skeleton-loader-border-radius
       flex: 1 1 auto
-      margin: $skeleton-loader-date-picker-days-margin
-      height: $skeleton-loader-date-picker-days-height
-      width: $skeleton-loader-date-picker-days-width
+      margin: variables.$skeleton-loader-date-picker-days-margin
+      height: variables.$skeleton-loader-date-picker-days-height
+      width: variables.$skeleton-loader-date-picker-days-width
 
   &__date-picker-options
     align-items: center
     display: flex
-    padding: $skeleton-loader-date-picker-options-padding
+    padding: variables.$skeleton-loader-date-picker-options-padding
 
     .v-skeleton-loader__avatar
-      height: $skeleton-loader-date-picker-options-avatar-height
-      width: $skeleton-loader-date-picker-options-avatar-width
+      height: variables.$skeleton-loader-date-picker-options-avatar-height
+      width: variables.$skeleton-loader-date-picker-options-avatar-width
 
       &:nth-child(2)
         margin-left: auto
 
         +ltr()
-          margin-right: $skeleton-loader-date-picker-options-avatar-child-margin
+          margin-right: variables.$skeleton-loader-date-picker-options-avatar-child-margin
 
         +rtl()
-          margin-left: $skeleton-loader-date-picker-options-avatar-child-margin
+          margin-left: variables.$skeleton-loader-date-picker-options-avatar-child-margin
 
     .v-skeleton-loader__text.v-skeleton-loader__bone:first-child
       margin-bottom: 0px
@@ -194,16 +195,16 @@
       width: 456px
 
   &__divider
-    border-radius: $skeleton-loader-divider-border-radius
-    height: $skeleton-loader-divider-height
+    border-radius: variables.$skeleton-loader-divider-border-radius
+    height: variables.$skeleton-loader-divider-height
 
   &__heading
-    border-radius: $skeleton-loader-heading-border-radius
-    height: $skeleton-loader-heading-height
+    border-radius: variables.$skeleton-loader-heading-border-radius
+    height: variables.$skeleton-loader-heading-height
     width: 45%
 
   &__image
-    height: $skeleton-loader-image-height
+    height: variables.$skeleton-loader-image-height
     border-radius: 0
 
     ~ .v-skeleton-loader__card-heading
@@ -213,7 +214,7 @@
       border-radius: inherit
 
   &__list-item
-    height: $skeleton-loader-list-item-height
+    height: variables.$skeleton-loader-list-item-height
 
   &__list-item-three-line
     flex-wrap: wrap
@@ -226,19 +227,19 @@
   &__list-item-avatar-two-line,
   &__list-item-avatar-three-line
     .v-skeleton-loader__avatar
-      height: $skeleton-loader-item-avatar-height
-      width: $skeleton-loader-item-avatar-width
+      height: variables.$skeleton-loader-item-avatar-height
+      width: variables.$skeleton-loader-item-avatar-width
 
   &__list-item-avatar
-    height: $skeleton-loader-avatar-height
+    height: variables.$skeleton-loader-avatar-height
 
   &__list-item-two-line,
   &__list-item-avatar-two-line
-    height: $skeleton-loader-item-two-line-height
+    height: variables.$skeleton-loader-item-two-line-height
 
   &__list-item-three-line,
   &__list-item-avatar-three-line
-    height: $skeleton-loader-item-three-line-height
+    height: variables.$skeleton-loader-item-three-line-height
 
   &__list-item-avatar-three-line
     .v-skeleton-loader__avatar
@@ -254,14 +255,14 @@
     align-items: center
     display: flex
     flex-wrap: wrap
-    padding: $skeleton-loader-item-padding
+    padding: variables.$skeleton-loader-item-padding
 
     .v-skeleton-loader__avatar
       +ltr()
-        margin-right: $skeleton-loader-item-avatar-margin
+        margin-right: variables.$skeleton-loader-item-avatar-margin
 
       +rtl()
-        margin-left: $skeleton-loader-item-avatar-margin
+        margin-left: variables.$skeleton-loader-item-avatar-margin
 
     .v-skeleton-loader__text:last-child,
     .v-skeleton-loader__text:only-child
@@ -295,7 +296,7 @@
     align-items: center
     display: flex
     justify-content: space-between
-    padding: $skeleton-loader-table-heading-padding
+    padding: variables.$skeleton-loader-table-heading-padding
 
     .v-skeleton-loader__heading
       max-width: 15%
@@ -306,30 +307,30 @@
   &__table-thead
     display: flex
     justify-content: space-between
-    padding: $skeleton-loader-table-thead-padding
+    padding: variables.$skeleton-loader-table-thead-padding
 
     .v-skeleton-loader__heading
       max-width: 5%
 
   &__table-tbody
-    padding: $skeleton-loader-table-tbody-padding
+    padding: variables.$skeleton-loader-table-tbody-padding
 
   &__table-tfoot
     align-items: center
     display: flex
     justify-content: flex-end
-    padding: $skeleton-loader-table-tfoot-padding
+    padding: variables.$skeleton-loader-table-tfoot-padding
 
     > *
       +ltr()
-        margin-left: $skeleton-loader-table-tfoot-children-margin
+        margin-left: variables.$skeleton-loader-table-tfoot-children-margin
 
       +rtl()
-        margin-right: $skeleton-loader-table-tfoot-children-margin
+        margin-right: variables.$skeleton-loader-table-tfoot-children-margin
 
     .v-skeleton-loader__avatar
-      height: $skeleton-loader-table-tfoot-avatar-height
-      width: $skeleton-loader-table-tfoot-avatar-width
+      height: variables.$skeleton-loader-table-tfoot-avatar-height
+      width: variables.$skeleton-loader-table-tfoot-avatar-width
 
     .v-skeleton-loader__text
       margin-bottom: 0
@@ -347,16 +348,16 @@
   &__table-cell
     align-items: center
     display: flex
-    height: $skeleton-loader-table-cell-height
-    width: $skeleton-loader-table-cell-width
+    height: variables.$skeleton-loader-table-cell-height
+    width: variables.$skeleton-loader-table-cell-width
 
     .v-skeleton-loader__text
       margin-bottom: 0
 
   &__text
-    border-radius: $skeleton-loader-text-border-radius
+    border-radius: variables.$skeleton-loader-text-border-radius
     flex: 1 0 auto
-    height: $skeleton-loader-text-height
+    height: variables.$skeleton-loader-text-height
     margin-bottom: 6px
 
   &--boilerplate

@@ -1,5 +1,7 @@
+@use '../../styles/styles.sass' as *
 // Imports
-@import './_variables.scss'
+@use '_variables.scss' as variables
+@use '../../styles/tools/functions'
 
 // Theme
 .v-chip:not(.v-chip--outlined)
@@ -10,14 +12,14 @@
   &.error,
   &.warning,
   &.info
-    color: map-deep-get($material-dark, 'text', 'primary')
+    color: functions.map-deep-get($material-dark, 'text', 'primary')
 
 +theme(v-chip) using ($material)
-  border-color: v-map-get($material, 'dividers')
-  color: map-deep-get($material, 'text', 'primary')
+  border-color: functions.v-map-get($material, 'dividers')
+  color: functions.map-deep-get($material, 'text', 'primary')
 
   &:not(.v-chip--active)
-    background: v-map-get($material, 'chips')
+    background: functions.v-map-get($material, 'chips')
 
   +states($material)
 
@@ -26,18 +28,18 @@
   align-items: center
   cursor: default
   display: inline-flex
-  line-height: $chip-line-height
+  line-height: variables.$chip-line-height
   max-width: 100%
   outline: none
   overflow: hidden
-  padding: $chip-padding
+  padding: variables.$chip-padding
   position: relative
   text-decoration: none
-  transition-duration: $chip-transition-duration
+  transition-duration: variables.$chip-transition-duration
   transition-property: box-shadow, opacity
-  transition-timing-function: $chip-transition-fn
+  transition-timing-function: variables.$chip-transition-fn
   vertical-align: middle
-  white-space: $chip-white-space
+  white-space: variables.$chip-white-space
 
   &:before
     background-color: currentColor
@@ -53,32 +55,32 @@
 
   // Important is needed to account for new avatar structure
   .v-avatar
-    height: $chip-avatar-size !important
-    min-width: $chip-avatar-size !important
-    width: $chip-avatar-size !important
+    height: variables.$chip-avatar-size !important
+    min-width: variables.$chip-avatar-size !important
+    width: variables.$chip-avatar-size !important
 
   .v-icon
-    font-size: $chip-icon-size
+    font-size: variables.$chip-icon-size
 
   .v-avatar,
   .v-icon
     +ltr()
       &--left
-        margin-left: $chip-icon-margin-before
-        margin-right: $chip-icon-margin-after
+        margin-left: variables.$chip-icon-margin-before
+        margin-right: variables.$chip-icon-margin-after
 
       &--right
-        margin-left: $chip-icon-margin-after
-        margin-right: $chip-icon-margin-before
+        margin-left: variables.$chip-icon-margin-after
+        margin-right: variables.$chip-icon-margin-before
 
     +rtl()
       &--left
-        margin-left: $chip-icon-margin-after
-        margin-right: $chip-icon-margin-before
+        margin-left: variables.$chip-icon-margin-after
+        margin-right: variables.$chip-icon-margin-before
 
       &--right
-        margin-left: $chip-icon-margin-before
-        margin-right: $chip-icon-margin-after
+        margin-left: variables.$chip-icon-margin-before
+        margin-right: variables.$chip-icon-margin-after
 
   &:not(.v-chip--no-color)
     .v-icon
@@ -87,17 +89,17 @@
 // Elements
 .v-chip
   .v-chip__close.v-icon
-    font-size: $chip-close-size
-    max-height: $chip-close-size
-    max-width: $chip-close-size
+    font-size: variables.$chip-close-size
+    max-height: variables.$chip-close-size
+    max-width: variables.$chip-close-size
     user-select: none
 
     &.v-icon--right
       +ltr()
-        margin-right: $chip-icon-right-margin-after
+        margin-right: variables.$chip-icon-right-margin-after
 
       +rtl()
-        margin-left: $chip-icon-right-margin-after
+        margin-left: variables.$chip-icon-right-margin-after
 
     &:hover,
     &:focus,
@@ -120,7 +122,7 @@
     transition: opacity $primary-transition
 
   &:focus::before
-    opacity: $chip-link-focus-opacity
+    opacity: variables.$chip-link-focus-opacity
 
 .v-chip--clickable
   cursor: pointer
@@ -130,14 +132,14 @@
     +elevation(2)
 
 .v-chip--disabled
-  opacity: $chip-disabled-opacity
+  opacity: variables.$chip-disabled-opacity
   pointer-events: none
   user-select: none
 
 .v-chip__filter
   // TODO: Figure out why the absence
   // of this breaks the transition
-  max-width: $chip-filter-max-width
+  max-width: variables.$chip-filter-max-width
 
   // Increase specificity to
   // overwrite theme style
@@ -150,36 +152,36 @@
 
 .v-chip--pill
   .v-chip__filter
-    margin: $chip-pill-filter-margin
+    margin: variables.$chip-pill-filter-margin
 
   .v-avatar
-    height: $chip-pill-avatar-size !important
-    width: $chip-pill-avatar-size !important
+    height: variables.$chip-pill-avatar-size !important
+    width: variables.$chip-pill-avatar-size !important
 
   .v-avatar
     +ltr()
       &--left
-        margin-left: $chip-pill-avatar-margin-before
+        margin-left: variables.$chip-pill-avatar-margin-before
 
       &--right
-        margin-right: $chip-pill-avatar-margin-before
+        margin-right: variables.$chip-pill-avatar-margin-before
 
     +rtl()
       &--left
-        margin-right: $chip-pill-avatar-margin-before
+        margin-right: variables.$chip-pill-avatar-margin-before
 
       &--right
-        margin-left: $chip-pill-avatar-margin-before
+        margin-left: variables.$chip-pill-avatar-margin-before
 
 .v-chip--label
-  border-radius: $chip-label-border-radius !important
+  border-radius: variables.$chip-label-border-radius !important
 
 .v-chip.v-chip--outlined
-  border-width: $icon-outlined-border-width
+  border-width: variables.$icon-outlined-border-width
   border-style: solid
 
   &.v-chip--active:before
-    opacity: $chip-outlined-active-opacity
+    opacity: variables.$chip-outlined-active-opacity
 
   .v-icon
     color: inherit
@@ -194,11 +196,11 @@
   background: transparent
 
   &:after
-    opacity: $chip-selected-opacity
+    opacity: variables.$chip-selected-opacity
 
 .v-chip
-  @each $name, $size in $icon-sizes
+  @each $name, $size in variables.$icon-sizes
     &.v-size--#{$name}
-      border-radius: #{v-map-get($size, 'height') * 0.5}px
-      font-size: #{v-map-get($size, 'font-size')}px
-      height: #{v-map-get($size, 'height')}px
+      border-radius: #{functions.v-map-get($size, 'height') * 0.5}px
+      font-size: #{functions.v-map-get($size, 'font-size')}px
+      height: #{functions.v-map-get($size, 'height')}px

@@ -1,5 +1,5 @@
 @use "sass:map";
-@import '../../styles/styles.sass';
+@use '../../styles/styles.sass' as *;
 
 $badge-border-radius: 10px !default;
 $badge-bordered-width: 2px !default;

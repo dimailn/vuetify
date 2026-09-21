@@ -1,11 +1,12 @@
-@import './_variables.scss'
+@use '../../styles/styles.sass' as *
+@use '_variables.scss' as variables
 
 +theme('v-toolbar.v-sheet') using ($material)
   background-color: v-map-get($material, 'toolbar')
 
 
 // Sheet
-+sheet(v-toolbar, $toolbar-elevation, $toolbar-border-radius, $toolbar-shaped-border-radius)
++sheet(v-toolbar, variables.$toolbar-elevation, variables.$toolbar-border-radius, variables.$toolbar-shaped-border-radius)
 
 // Block
 .v-toolbar
@@ -13,7 +14,7 @@
   display: block
   flex: 1 1 auto
   max-width: 100%
-  transition: $toolbar-transition
+  transition: variables.$toolbar-transition
   position: relative
 
   +elevation(4)
@@ -25,48 +26,48 @@
 // Element
 .v-toolbar__content,
 .v-toolbar__extension
-  padding: $toolbar-content-padding-y $toolbar-content-padding-x
+  padding: variables.$toolbar-content-padding-y variables.$toolbar-content-padding-x
 
   .v-btn.v-btn--icon.v-size--default
-    height: $toolbar-btn-icon-size
-    width: $toolbar-btn-icon-size
+    height: variables.$toolbar-btn-icon-size
+    width: variables.$toolbar-btn-icon-size
 
   > .v-btn.v-btn--icon
     &:first-child
       +ltr()
-        margin-left: -$toolbar-btn-icon-size * 0.25
+        margin-left: -(variables.$toolbar-btn-icon-size) * 0.25
 
       +rtl()
-        margin-right: -$toolbar-btn-icon-size * 0.25
+        margin-right: -(variables.$toolbar-btn-icon-size) * 0.25
 
       + .v-toolbar__title
         +ltr()
-          padding-left: $toolbar-title-padding
+          padding-left: variables.$toolbar-title-padding
 
         +rtl()
-          padding-right: $toolbar-title-padding
+          padding-right: variables.$toolbar-title-padding
 
     &:last-child
       +ltr()
-        margin-right: -$toolbar-btn-icon-size * 0.25
+        margin-right: -(variables.$toolbar-btn-icon-size) * 0.25
 
       +rtl()
-        margin-left: -$toolbar-btn-icon-size * 0.25
+        margin-left: -(variables.$toolbar-btn-icon-size) * 0.25
 
   > .v-tabs
     height: inherit
-    margin-top: -$toolbar-content-padding-y
-    margin-bottom: -$toolbar-content-padding-y
+    margin-top: -(variables.$toolbar-content-padding-y)
+    margin-bottom: -(variables.$toolbar-content-padding-y)
 
     > .v-slide-group.v-tabs-bar
       background-color: inherit
       height: inherit
 
     &:first-child
-      margin-left: -$toolbar-content-padding-x
+      margin-left: -(variables.$toolbar-content-padding-x)
 
     &:last-child
-      margin-right: -$toolbar-content-padding-x
+      margin-right: -(variables.$toolbar-content-padding-x)
 
 .v-toolbar__content,
 .v-toolbar__extension
@@ -118,14 +119,14 @@
     white-space: nowrap
 
 .v-toolbar.v-toolbar--collapsed
-  max-width: $toolbar-collapsed-max-width
+  max-width: variables.$toolbar-collapsed-max-width
   overflow: hidden
 
   +ltr()
-    border-bottom-right-radius: $toolbar-collapsed-border-radius
+    border-bottom-right-radius: variables.$toolbar-collapsed-border-radius
 
   +rtl()
-    border-bottom-left-radius: $toolbar-collapsed-border-radius
+    border-bottom-left-radius: variables.$toolbar-collapsed-border-radius
 
   .v-toolbar__title,
   .v-toolbar__extension
@@ -151,10 +152,10 @@
 
   .v-toolbar__title
     font-size: 1.5rem
-    padding-top: $toolbar-prominent-padding
+    padding-top: variables.$toolbar-prominent-padding
 
   &:not(.v-toolbar--bottom)
     .v-toolbar__title
       align-self: flex-end
-      padding-bottom: $toolbar-prominent-padding
+      padding-bottom: variables.$toolbar-prominent-padding
       padding-top: 0

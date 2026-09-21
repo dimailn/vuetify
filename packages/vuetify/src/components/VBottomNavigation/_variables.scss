@@ -1,4 +1,4 @@
-@import '../../styles/styles.sass';
+@use '../../styles/styles.sass' as *;
 
 $bottom-nav-btn-font-size: map-deep-get($headings, 'caption', 'size') !default;
 $bottom-nav-btn-min-width: 80px !default;

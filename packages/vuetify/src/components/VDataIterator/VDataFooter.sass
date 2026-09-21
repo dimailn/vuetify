@@ -1,12 +1,13 @@
-@import './_variables.scss'
+@use '../../styles/styles.sass' as *
+@use '_variables.scss' as variables
 
 // Block
 .v-data-footer
   display: flex
   flex-wrap: wrap
   align-items: center
-  font-size: $data-footer-font-size
-  padding: $data-footer-padding
+  font-size: variables.$data-footer-font-size
+  padding: variables.$data-footer-padding
 
   .v-btn
     color: inherit
@@ -15,28 +16,28 @@
 .v-data-footer__icons-before
   .v-btn:last-child
     +ltr()
-      margin-right: $data-footer-icons-before-btn-margin-end
+      margin-right: variables.$data-footer-icons-before-btn-margin-end
 
     +rtl()
-      margin-left: $data-footer-icons-before-btn-margin-end
+      margin-left: variables.$data-footer-icons-before-btn-margin-end
 
 .v-data-footer__icons-after
   .v-btn:first-child
     +ltr()
-      margin-left: $data-footer-icons-after-btn-margin-start
+      margin-left: variables.$data-footer-icons-after-btn-margin-start
 
     +rtl()
-      margin-right: $data-footer-icons-after-btn-margin-start
+      margin-right: variables.$data-footer-icons-after-btn-margin-start
 
 .v-data-footer__pagination
   display: block
   text-align: center
 
   +ltr()
-    margin: 0 $data-footer-pagination-margin-end 0 $data-footer-pagination-margin-start
+    margin: 0 variables.$data-footer-pagination-margin-end 0 variables.$data-footer-pagination-margin-start
 
   +rtl()
-    margin: 0 $data-footer-pagination-margin-start 0 $data-footer-pagination-margin-end
+    margin: 0 variables.$data-footer-pagination-margin-start 0 variables.$data-footer-pagination-margin-end
 
 .v-data-footer__select
   display: flex
@@ -47,10 +48,10 @@
 
   +ltr()
     margin-left: auto
-    margin-right: $data-footer-select-margin-end
+    margin-right: variables.$data-footer-select-margin-end
 
   +rtl()
-    margin-left: $data-footer-select-margin-end
+    margin-left: variables.$data-footer-select-margin-end
     margin-right: auto
 
   .v-select
@@ -59,13 +60,13 @@
     position: initial
 
     +ltr()
-      margin: $data-footer-select-select-margin-y 0 $data-footer-select-select-margin-y $data-footer-select-select-margin-start
+      margin: variables.$data-footer-select-select-margin-y 0 variables.$data-footer-select-select-margin-y variables.$data-footer-select-select-margin-start
 
     +rtl()
-      margin: $data-footer-select-select-margin-y $data-footer-select-select-margin-start $data-footer-select-select-margin-y 0
+      margin: variables.$data-footer-select-select-margin-y variables.$data-footer-select-select-margin-start variables.$data-footer-select-select-margin-y 0
 
   .v-select__selections
     flex-wrap: nowrap
 
     .v-select__selection--comma
-      font-size: $data-footer-select-selections-comma-font-size
+      font-size: variables.$data-footer-select-selections-comma-font-size

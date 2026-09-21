@@ -8,7 +8,7 @@ const sass = require('sass')
 const sourceRoot = path.resolve(__dirname, '../src')
 const stylesEntry = path.join(sourceRoot, 'styles/styles.sass')
 const customVariablesEntry = path.resolve(__dirname, 'sass-audit-variables.scss')
-const forbidden = ['legacy-js-api', 'slash-div', 'global-builtin', 'if-function', 'color-functions']
+const forbidden = ['import', 'legacy-js-api', 'slash-div', 'global-builtin', 'if-function', 'color-functions']
 
 function walk (directory) {
   return fs.readdirSync(directory, { withFileTypes: true }).flatMap(entry => {
@@ -37,7 +37,7 @@ function resolveImport (from, request) {
 
 function dependencies (file) {
   const contents = fs.readFileSync(file, 'utf8')
-  return [...contents.matchAll(/@import\s+(?:url\()?['"]([^'"]+)['"]/g)]
+  return [...contents.matchAll(/@(?:import|use|forward)\s+(?:url\()?['"]([^'"]+)['"]/g)]
     .map(match => resolveImport(file, match[1]))
     .filter(Boolean)
 }
@@ -63,7 +63,7 @@ async function main () {
     ...entries.map(file => ({ file, source: null })),
     ...unreachable.map(file => ({
       file,
-      source: `@import '${stylesEntry.replace(/\\/g, '/')}';\n@import '${file.replace(/\\/g, '/')}';\n`,
+      source: `@use '${stylesEntry.replace(/\\/g, '/')}';\n@use '${file.replace(/\\/g, '/')}';\n`,
     })),
   ]
   const warnings = new Map()
@@ -116,19 +116,28 @@ async function main () {
     const inputEntry = path.join(sourceRoot, 'components/VInput/VInput.sass')
     const legacyGridEntry = path.join(sourceRoot, 'components/VGrid/_grid.sass')
     const result = await sass.compileStringAsync(`
-      @import '${customVariablesEntry.replace(/\\/g, '/')}';
-      @import '${toolbarEntry.replace(/\\/g, '/')}';
-      @import '${inputEntry.replace(/\\/g, '/')}';
-      @import '${legacyGridEntry.replace(/\\/g, '/')}';
+      @use '${customVariablesEntry.replace(/\\/g, '/')}' as config;
+      @use '${stylesEntry.replace(/\\/g, '/')}' with (
+        $body-font-family: config.$body-font-family,
+        $font-size-root: config.$font-size-root
+      );
+      @use '${toolbarEntry.replace(/\\/g, '/').replace('/VToolbar.sass', '/_variables.scss')}' as toolbarVariables with (
+        $toolbar-title-padding: config.$toolbar-title-padding
+      );
+      @use '${inputEntry.replace(/\\/g, '/').replace('/VInput.sass', '/_variables.scss')}' as inputVariables with (
+        $input-font-size: config.$input-font-size
+      );
+      @use '${toolbarEntry.replace(/\\/g, '/')}';
+      @use '${inputEntry.replace(/\\/g, '/')}';
+      @use '${legacyGridEntry.replace(/\\/g, '/')}';
 
       .vuetify-sass-contract-audit {
-        font-family: $body-font-family;
-        font-size: $font-size-root;
+        font-family: styles.$body-font-family;
+        font-size: styles.$font-size-root;
       }
     `, {
       loadPaths: [sourceRoot],
       quietDeps: false,
-      silenceDeprecations: ['import'],
       fatalDeprecations: forbidden,
       logger: { warn: () => {}, debug: () => {} },
     })
@@ -151,7 +160,7 @@ async function main () {
     errors.forEach(error => console.error(`  ${error}`))
   }
 
-  const disallowed = [...warnings].filter(([id, count]) => count && id !== 'import')
+  const disallowed = [...warnings].filter(([, count]) => count)
   if (errors.length || disallowed.length) process.exitCode = 1
 }
 

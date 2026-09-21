@@ -1,4 +1,6 @@
+@use "../settings/variables"
+
 .v-application
-  @each $name, $bezier in $transition
+  @each $name, $bezier in variables.$transition
     .transition-#{$name}
       transition: 0.3s $bezier !important

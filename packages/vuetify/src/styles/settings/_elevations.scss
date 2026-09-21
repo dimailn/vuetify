@@ -1,11 +1,11 @@
-@import '../tools/_functions.sass';
+@use '../tools/_functions.sass';
 
 $shadow-key-umbra-opacity: rgba(0, 0, 0, 0.2) !default;
 $shadow-key-penumbra-opacity: rgba(0, 0, 0, 0.14) !default;
 $shadow-key-ambient-opacity: rgba(0, 0, 0, 0.12) !default;
 
 $shadow-key-umbra: () !default;
-$shadow-key-umbra: map-deep-merge(
+$shadow-key-umbra: functions.map-deep-merge(
   (
     0: (0px 0px 0px 0px $shadow-key-umbra-opacity),
     1: (0px 2px 1px -1px $shadow-key-umbra-opacity),
@@ -37,7 +37,7 @@ $shadow-key-umbra: map-deep-merge(
 );
 
 $shadow-key-penumbra: () !default;
-$shadow-key-penumbra: map-deep-merge(
+$shadow-key-penumbra: functions.map-deep-merge(
   (
     0: (0px 0px 0px 0px $shadow-key-penumbra-opacity),
     1: (0px 1px 1px 0px $shadow-key-penumbra-opacity),
@@ -69,7 +69,7 @@ $shadow-key-penumbra: map-deep-merge(
 );
 
 $shadow-key-ambient: () !default;
-$shadow-key-ambient: map-deep-merge(
+$shadow-key-ambient: functions.map-deep-merge(
   (
     0: (0px 0px 0px 0px $shadow-key-ambient-opacity),
     1: (0px 1px 3px 0px $shadow-key-ambient-opacity),

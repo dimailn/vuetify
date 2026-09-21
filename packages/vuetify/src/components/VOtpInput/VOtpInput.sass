@@ -1,5 +1,6 @@
+@use '../../styles/styles.sass' as *
 // Imports
-@import './_variables.scss'
+@use '_variables.scss' as variables
 
 // Theme
 +theme(v-otp-input) using ($material)
@@ -12,18 +13,18 @@
   display: flex
   flex-wrap: wrap
   flex: 1 1 auto
-  margin-right: -$otp-gutter
-  margin-left: -$otp-gutter
+  margin-right: -(variables.$otp-gutter)
+  margin-left: -(variables.$otp-gutter)
 
   input
     text-align: center
 
   .v-input
     margin: 0
-    flex: 1 0 $otp-width + $otp-gutter * 2
+    flex: 1 0 variables.$otp-width + variables.$otp-gutter * 2
     max-width: 100%
     width: 100%
-    padding: $otp-gutter
+    padding: variables.$otp-gutter
 
     &.v-otp-input--plain
       fieldset

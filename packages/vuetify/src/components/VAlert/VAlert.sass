@@ -1,5 +1,6 @@
+@use '../../styles/styles.sass' as *
 // Imports
-@import './_variables.scss'
+@use '_variables.scss' as variables
 
 // Theme
 +theme(v-alert) using ($material)
@@ -8,27 +9,27 @@
       background: v-map-get($material, 'dividers')
 
 // Sheet
-+sheet(v-alert, $alert-elevation, $alert-border-radius, $alert-shaped-border-radius)
++sheet(v-alert, variables.$alert-elevation, variables.$alert-border-radius, variables.$alert-shaped-border-radius)
 
 // Block
 .v-alert
   display: block
-  font-size: $alert-font-size
-  margin-bottom: $alert-margin
-  padding: $alert-padding
+  font-size: variables.$alert-font-size
+  margin-bottom: variables.$alert-margin
+  padding: variables.$alert-padding
   position: relative
   transition: $primary-transition
 
   &:not(.v-sheet--tile)
-    border-radius: $alert-border-radius
+    border-radius: variables.$alert-border-radius
 
   > .v-icon,
   > .v-alert__content
     +ltr()
-      margin-right: $alert-margin
+      margin-right: variables.$alert-margin
 
     +rtl()
-      margin-left: $alert-margin
+      margin-left: variables.$alert-margin
 
   > .v-icon + .v-alert__content
     +ltr()
@@ -47,12 +48,12 @@
 // Elements
 .v-alert__border
   border-style: solid
-  border-width: $alert-border-width
+  border-width: variables.$alert-border-width
   content: ''
   position: absolute
 
   &:not(.v-alert__border--has-color)
-    opacity: $alert-border-opacity
+    opacity: variables.$alert-border-opacity
 
   &--left,
   &--right
@@ -109,8 +110,8 @@
 .v-alert__icon
   align-self: flex-start
   border-radius: 50%
-  height: $alert-icon-size
-  min-width: $alert-icon-size
+  height: variables.$alert-icon-size
+  min-width: variables.$alert-icon-size
   position: relative
 
   +ltr()
@@ -120,7 +121,7 @@
     margin-left: 16px
 
   &.v-icon
-    font-size: $alert-icon-size
+    font-size: variables.$alert-icon-size
 
 .v-alert__wrapper
   align-items: center
@@ -132,21 +133,21 @@
   &.v-alert--prominent
     .v-alert__icon
       +ltr()
-        margin-left: $alert-border-icon-margin
+        margin-left: variables.$alert-border-icon-margin
 
       +rtl()
-        margin-right: $alert-border-icon-margin
+        margin-right: variables.$alert-border-icon-margin
 
 .v-alert--dense
-  padding-top: $alert-padding * 0.5
-  padding-bottom: $alert-padding * 0.5
+  padding-top: variables.$alert-padding * 0.5
+  padding-bottom: variables.$alert-padding * 0.5
 
   .v-alert__border
-    border-width: $alert-dense-border-width
+    border-width: variables.$alert-dense-border-width
 
 .v-alert--outlined
   background: transparent !important
-  border: $alert-outline !important
+  border: variables.$alert-outline !important
 
   .v-alert__icon
     color: inherit !important
@@ -154,11 +155,11 @@
 .v-alert--prominent
   .v-alert__icon
     align-self: center
-    height: $alert-prominent-icon-size
-    min-width: $alert-prominent-icon-size
+    height: variables.$alert-prominent-icon-size
+    min-width: variables.$alert-prominent-icon-size
 
     &.v-icon
-      font-size: $alert-prominent-icon-font-size
+      font-size: variables.$alert-prominent-icon-font-size
 
       &:after
         background: currentColor !important

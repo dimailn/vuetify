@@ -1,13 +1,14 @@
-@import './_variables.scss'
+@use '../../styles/styles.sass' as *
+@use '_variables.scss' as variables
 
 // Theme
 +theme(v-calendar-weekly) using ($material)
   background-color: map-deep-get($material, 'calendar', 'background-color')
-  border-top: map-deep-get($material, 'calendar', 'line-color') $calendar-line-width solid
-  border-left: map-deep-get($material, 'calendar', 'line-color') $calendar-line-width solid
+  border-top: map-deep-get($material, 'calendar', 'line-color') variables.$calendar-line-width solid
+  border-left: map-deep-get($material, 'calendar', 'line-color') variables.$calendar-line-width solid
 
   .v-calendar-weekly__head-weekday
-    border-right: map-deep-get($material, 'calendar', 'line-color') $calendar-line-width solid
+    border-right: map-deep-get($material, 'calendar', 'line-color') variables.$calendar-line-width solid
     color: map-deep-get($material, 'calendar', 'text-color')
 
     &.v-past
@@ -18,11 +19,11 @@
 
   .v-calendar-weekly__head-weeknumber
     background-color:  map-deep-get($material, 'calendar', 'weeknumber-background-color')
-    border-right: map-deep-get($material, 'calendar', 'line-color') $calendar-line-width solid
+    border-right: map-deep-get($material, 'calendar', 'line-color') variables.$calendar-line-width solid
 
   .v-calendar-weekly__day
-    border-right: map-deep-get($material, 'calendar', 'line-color') $calendar-line-width solid
-    border-bottom: map-deep-get($material, 'calendar', 'line-color') $calendar-line-width solid
+    border-right: map-deep-get($material, 'calendar', 'line-color') variables.$calendar-line-width solid
+    border-bottom: map-deep-get($material, 'calendar', 'line-color') variables.$calendar-line-width solid
     color: map-deep-get($material, 'calendar', 'text-color')
 
     &.v-outside
@@ -30,8 +31,8 @@
 
   .v-calendar-weekly__weeknumber
       background-color:  map-deep-get($material, 'calendar', 'weeknumber-background-color')
-      border-right: map-deep-get($material, 'calendar', 'line-color') $calendar-line-width solid
-      border-bottom: map-deep-get($material, 'calendar', 'line-color') $calendar-line-width solid
+      border-right: map-deep-get($material, 'calendar', 'line-color') variables.$calendar-line-width solid
+      border-bottom: map-deep-get($material, 'calendar', 'line-color') variables.$calendar-line-width solid
       color: map-deep-get($material, 'calendar', 'text-color')
 
 .v-calendar-weekly
@@ -49,8 +50,8 @@
 .v-calendar-weekly__head-weekday
   flex: 1 0 20px
   user-select: none
-  padding: $calendar-weekly-weekday-padding
-  font-size: $calendar-weekly-weekday-font-size
+  padding: variables.$calendar-weekly-weekday-padding
+  font-size: variables.$calendar-weekly-weekday-font-size
   overflow: hidden
   text-align: center
   text-overflow: ellipsis
@@ -59,7 +60,7 @@
 
 .v-calendar-weekly__head-weeknumber
   position: relative
-  flex: 0 0 $calendar-weekly-weeknumber-flex-basis
+  flex: 0 0 variables.$calendar-weekly-weeknumber-flex-basis
 
 .v-calendar-weekly__week
   display: flex
@@ -70,10 +71,10 @@
 
 .v-calendar-weekly__weeknumber
   display: flex
-  flex: 0 0 $calendar-weekly-weeknumber-flex-basis
+  flex: 0 0 variables.$calendar-weekly-weeknumber-flex-basis
   height: unset
   min-height: 0
-  padding-top: $calendar-weekly-weeknumber-padding-top
+  padding-top: variables.$calendar-weekly-weeknumber-padding-top
   text-align: center
 
   > small
@@ -85,7 +86,7 @@
   overflow: hidden
   user-select: none
   position: relative
-  padding: $calendar-weekly-day-padding
+  padding: variables.$calendar-weekly-day-padding
   // https://github.com/vuetifyjs/vuetify/issues/9058
   // https://bugzilla.mozilla.org/show_bug.cgi?id=1114904
   min-width: 0
@@ -100,10 +101,10 @@
   cursor: pointer
   box-shadow: none
   text-align: center
-  margin: $calendar-weekly-day-label-margin
+  margin: variables.$calendar-weekly-day-label-margin
 
   .v-btn
-    font-size: $calendar-weekly-day-label-font-size
+    font-size: variables.$calendar-weekly-day-label-font-size
     text-transform: none
 
 .v-calendar-weekly__day-month
@@ -112,7 +113,7 @@
   user-select: none
   box-shadow: none
   top: 0
-  left: $calendar-weekly-day-month-left
-  height: $calendar-weekly-day-label-size
-  line-height: $calendar-weekly-day-label-size
+  left: variables.$calendar-weekly-day-month-left
+  height: variables.$calendar-weekly-day-label-size
+  line-height: variables.$calendar-weekly-day-label-size
 

@@ -1,4 +1,4 @@
-@import '../../styles/styles.sass';
+@use '../../styles/styles.sass' as *;
 
 $pagination-border-radius: $border-radius-root !default;
 $pagination-disabled-opacity: 0.6 !default;

@@ -1,5 +1,6 @@
-@import './_variables.scss'
-@import './_mixins.sass'
+@use '../../styles/styles.sass' as *
+@use '_variables.scss' as variables
+@use '_mixins.sass'
 
 // Theme
 +theme(v-treeview) using ($material)
@@ -18,10 +19,10 @@
 
 .v-treeview-node
   &.v-treeview-node--shaped
-    +treeview-shaped($treeview-node-height, $treeview-node-shaped-margin)
+    +mixins.treeview-shaped(variables.$treeview-node-height, variables.$treeview-node-shaped-margin)
 
   &.v-treeview-node--rounded
-    +treeview-rounded($treeview-node-height, $treeview-node-shaped-margin)
+    +mixins.treeview-rounded(variables.$treeview-node-height, variables.$treeview-node-shaped-margin)
 
   &--click
     > .v-treeview-node__root,
@@ -35,9 +36,9 @@
 .v-treeview-node__root
   display: flex
   align-items: center
-  min-height: $treeview-node-height
-  padding-left: $treeview-node-padding
-  padding-right: $treeview-node-padding
+  min-height: variables.$treeview-node-height
+  padding-left: variables.$treeview-node-padding
+  padding-right: variables.$treeview-node-padding
   position: relative
 
   &::before
@@ -61,29 +62,29 @@
     min-height: inherit
 
 .v-treeview-node__children
-  transition: all $treeview-transition
+  transition: all variables.$treeview-transition
 
 .v-treeview--dense
   .v-treeview-node__root
-    min-height: $treeview-node-height-dense
+    min-height: variables.$treeview-node-height-dense
 
   &.v-treeview-node--shaped
-    +treeview-shaped($treeview-node-height-dense, $treeview-node-shaped-margin)
+    +mixins.treeview-shaped(variables.$treeview-node-height-dense, variables.$treeview-node-shaped-margin)
 
   &.v-treeview-node--rounded
-    +treeview-rounded($treeview-node-height-dense, $treeview-node-shaped-margin)
+    +mixins.treeview-rounded(variables.$treeview-node-height-dense, variables.$treeview-node-shaped-margin)
 
 .v-treeview-node__checkbox
-  width: $treeview-node-level-width
+  width: variables.$treeview-node-level-width
   user-select: none
 
   +ltr()
-    margin-left: $treeview-node-margin
+    margin-left: variables.$treeview-node-margin
   +rtl()
-    margin-right: $treeview-node-margin
+    margin-right: variables.$treeview-node-margin
 
 .v-treeview-node__toggle
-  width: $treeview-node-level-width
+  width: variables.$treeview-node-level-width
   user-select: none
 
   &--loading
@@ -100,27 +101,27 @@
       transform: none
 
 .v-treeview-node__prepend
-  min-width: $treeview-node-level-width
+  min-width: variables.$treeview-node-level-width
 
   +ltr()
-    margin-right: $treeview-node-margin
+    margin-right: variables.$treeview-node-margin
   +rtl()
-    margin-left: $treeview-node-margin
+    margin-left: variables.$treeview-node-margin
 
 .v-treeview-node__append
-  min-width: $treeview-node-level-width
+  min-width: variables.$treeview-node-level-width
 
   +ltr()
-    margin-left: $treeview-node-margin
+    margin-left: variables.$treeview-node-margin
   +rtl()
-    margin-right: $treeview-node-margin
+    margin-right: variables.$treeview-node-margin
 
 .v-treeview-node__level
-  width: $treeview-node-level-width
+  width: variables.$treeview-node-level-width
 
 .v-treeview-node__label
   flex: 1
-  font-size: $treeview-label-font-size
+  font-size: variables.$treeview-label-font-size
   overflow: hidden
   text-overflow: ellipsis
   white-space: nowrap
@@ -139,6 +140,6 @@
     flex-shrink: 1 !important
 
   +ltr()
-    margin-left: $treeview-node-margin
+    margin-left: variables.$treeview-node-margin
   +rtl()
-    margin-right: $treeview-node-margin
+    margin-right: variables.$treeview-node-margin

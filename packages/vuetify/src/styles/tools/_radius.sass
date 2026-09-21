@@ -1,10 +1,12 @@
+@use "../settings/variables"
+
 @use "sass:map"
 @mixin radius($r, $important: false)
   $radius: $r
 
   // Key exists within the $rounded variable
-  @if (map.has-key($rounded, $r))
-    $radius: map.get($rounded, $r)
+  @if (map.has-key(variables.$rounded, $r))
+    $radius: map.get(variables.$rounded, $r)
 
   @if $important
     border-radius: $radius !important

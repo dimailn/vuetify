@@ -1,5 +1,5 @@
 @use "sass:map";
-@import '../../styles/styles.sass';
+@use '../../styles/styles.sass' as *;
 
 $toolbar-btn-icon-size: 48px !default;
 $toolbar-content-padding-y: 4px !default;

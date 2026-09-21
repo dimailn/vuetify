@@ -1,5 +1,5 @@
 @use "sass:map";
-@import '../../styles/styles.sass';
+@use '../../styles/styles.sass' as *;
 
 $footer-border-radius: 0 !default;
 $footer-elevation: 0 !default;

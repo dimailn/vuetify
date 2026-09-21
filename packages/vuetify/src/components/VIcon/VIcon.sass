@@ -1,5 +1,6 @@
+@use '../../styles/styles.sass' as *
 // Imports
-@import './_variables.scss'
+@use '_variables.scss' as variables
 
 // Theme
 +theme(v-icon) using ($material)
@@ -17,7 +18,7 @@
   align-items: center
   display: inline-flex
   font-feature-settings: 'liga'
-  font-size: $icon-size
+  font-size: variables.$icon-size
   justify-content: center
   letter-spacing: normal
   line-height: 1
@@ -43,7 +44,7 @@
     transition: opacity 0.2s v-map-get($transition, 'ease-in-out')
 
   &--dense
-    font-size: $icon-size-dense
+    font-size: variables.$icon-size-dense
 
 .v-icon
   &--right
@@ -61,13 +62,13 @@
   &--dense
     .v-icon__component,
     .v-icon__svg
-      height: $icon-size-dense
+      height: variables.$icon-size-dense
 
   &__component
-    height: $icon-size
-    width: $icon-size
+    height: variables.$icon-size
+    width: variables.$icon-size
 
   &__svg
-    height: $icon-size
-    width: $icon-size
+    height: variables.$icon-size
+    width: variables.$icon-size
     fill: currentColor

@@ -1,5 +1,6 @@
+@use '../../styles/styles.sass' as *
 // Imports
-@import './_variables.scss'
+@use '_variables.scss' as variables
 
 // Theme
 +theme(v-sheet) using ($material)
@@ -8,8 +9,8 @@
   color: map-deep-get($material, 'text', 'primary')
 
   &--outlined
-    border: $sheet-outlined-border-width solid v-map-get($material, 'dividers')
+    border: variables.$sheet-outlined-border-width solid v-map-get($material, 'dividers')
 
 // Sheet
 .v-sheet
-  +paper($sheet-elevation, $sheet-border-radius, $sheet-shaped-border-radius)
+  +paper(variables.$sheet-elevation, variables.$sheet-border-radius, variables.$sheet-shaped-border-radius)

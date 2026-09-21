@@ -1,5 +1,7 @@
+@use "../settings/variables"
+
 .v-application
-  @each $size, $media_query in $display-breakpoints
+  @each $size, $media_query in variables.$display-breakpoints
     .hidden
       &-#{$size}
         @media #{$media_query}

@@ -1,4 +1,5 @@
-@import './_variables.scss'
+@use '../../styles/styles.sass' as *
+@use '_variables.scss' as variables
 
 .v-menu
   display: none
@@ -13,8 +14,8 @@
     overflow-y: auto
     overflow-x: hidden
     contain: content
-    +elevation($menu-content-elevation)
-    +radius($menu-content-border-radius)
+    +elevation(variables.$menu-content-elevation)
+    +radius(variables.$menu-content-border-radius)
 
     &--active
       pointer-events: none

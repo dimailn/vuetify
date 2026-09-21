@@ -1,4 +1,4 @@
-@import '../../styles/styles.sass';
+@use '../../styles/styles.sass' as *;
 
 $switch-dirty-offset-x: 20px !default;
 $switch-disabled-opacity: .6 !default;

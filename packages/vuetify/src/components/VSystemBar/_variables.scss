@@ -1,4 +1,4 @@
-@import '../../styles/styles.sass';
+@use '../../styles/styles.sass' as *;
 
 $system-bar-font-size: map-deep-get($headings, 'body-2', 'size') !default;
 $system-bar-font-weight: map-deep-get($headings, 'body-2', 'weight') !default;

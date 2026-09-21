@@ -1,3 +1,6 @@
+@use '../../styles/styles.sass' as *
+@use "variables"
+
 @mixin timeline-dots($dot-size, $inner-dot-size)
   height: $dot-size
   left: calc(50% - #{$dot-size * 0.5})
@@ -22,13 +25,13 @@
     &::after
       +ltr()
         transform: rotate($ltr-rotation)
-        #{$direction}: -($timeline-wedge-size)
+        #{$direction}: -(variables.$timeline-wedge-size)
         #{$opposite}: initial
 
       +rtl()
         transform: rotate($rtl-rotation)
         #{$direction}: initial
-        #{$opposite}: -($timeline-wedge-size)
+        #{$opposite}: -(variables.$timeline-wedge-size)
 
 @mixin timeline-item-align($direction)
   $flex-direction: row
@@ -51,9 +54,9 @@
 @mixin timeline-line-align($center, $first, $second)
   &::before
     +ltr()
-      #{$first}: calc(#{$center} - #{$timeline-line-width * 0.5})
+      #{$first}: calc(#{$center} - #{variables.$timeline-line-width * 0.5})
       #{$second}: initial
 
     +rtl()
       #{$first}: initial
-      #{$second}: calc(#{$center} - #{$timeline-line-width * 0.5})
+      #{$second}: calc(#{$center} - #{variables.$timeline-line-width * 0.5})

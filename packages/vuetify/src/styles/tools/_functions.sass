@@ -61,13 +61,15 @@
 
   @return $map
 
-@function breakpoint-min($name, $breakpoints: $grid-breakpoints)
+// Settings depend on this module, so breakpoint helpers must receive their
+// breakpoint map explicitly. Every in-tree caller already does this.
+@function breakpoint-min($name, $breakpoints)
   $min: map.get($breakpoints, $name)
   @if $min != 0
     @return $min
   @return null
 
-@function breakpoint-infix($name, $breakpoints: $grid-breakpoints)
+@function breakpoint-infix($name, $breakpoints)
   @if breakpoint-min($name, $breakpoints) == null
     @return ""
   @return "-#{$name}"

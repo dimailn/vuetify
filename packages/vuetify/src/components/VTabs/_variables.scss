@@ -1,4 +1,4 @@
-@import '../../styles/styles.sass';
+@use '../../styles/styles.sass' as *;
 
 $tab-disabled-opacity: .5 !default;
 $tab-font-size: map-deep-get($headings, 'subtitle-2', 'size') !default;

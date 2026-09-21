@@ -1,8 +1,9 @@
-@import './_variables.scss'
+@use '../../styles/styles.sass' as *
+@use '_variables.scss' as variables
 
 .v-avatar
   align-items: center
-  border-radius: $avatar-border-radius
+  border-radius: variables.$avatar-border-radius
   display: inline-flex
   justify-content: center
   line-height: normal

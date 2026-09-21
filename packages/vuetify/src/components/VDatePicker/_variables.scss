@@ -1,5 +1,5 @@
 @use "sass:map";
-@import '../../styles/styles.sass';
+@use '../../styles/styles.sass' as *;
 
 $date-picker-years-font-size: 16px !default;
 $date-picker-years-font-weight: 400 !default;

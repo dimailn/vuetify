@@ -1,4 +1,4 @@
-@import '../../styles/styles.sass';
+@use '../../styles/styles.sass' as *;
 
 $speed-dial-padding: 16px !default;
 $speed-dial-button-margin: 6px !default;

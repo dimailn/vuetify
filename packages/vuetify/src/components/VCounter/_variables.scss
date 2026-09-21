@@ -1,4 +1,4 @@
-@import '../../styles/styles.sass';
+@use '../../styles/styles.sass' as *;
 
 $counter-font-size: 12px !default;
 $counter-line-height: $counter-font-size !default;

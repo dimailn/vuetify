@@ -1,5 +1,5 @@
 @use "sass:map";
-@import '../../styles/styles.sass';
+@use '../../styles/styles.sass' as *;
 
 $parallax-transition: .3s opacity map.get($transition, 'swing') !default;
 $parallax-padding: 0 1rem !default;

@@ -1,4 +1,5 @@
-@import './_variables.scss'
+@use '../../styles/styles.sass' as *
+@use '_variables.scss' as variables
 
 +theme(v-stepper) using ($material)
   background: v-map-get($material, 'bg-color')
@@ -58,24 +59,24 @@
       +rtl()
         border-right: 1px solid rgba(v-map-get($material, 'fg-color'), v-map-get($material, 'divider-percent'))
 
-+sheet(v-stepper, $stepper-elevation, $stepper-border-radius, $stepper-shaped-border-radius)
++sheet(v-stepper, variables.$stepper-elevation, variables.$stepper-border-radius, variables.$stepper-shaped-border-radius)
 
 .v-stepper
-  border-radius: $stepper-border-radius
+  border-radius: variables.$stepper-border-radius
   overflow: hidden
   position: relative
 
   &__header
-    height: $stepper-header-height
+    height: variables.$stepper-header-height
     align-items: stretch
     display: flex
     flex-wrap: wrap
     justify-content: space-between
-    +elevation($stepper-header-elevation)
+    +elevation(variables.$stepper-header-elevation)
 
     .v-divider
       align-self: center
-      margin: $stepper-header-divider-margin
+      margin: variables.$stepper-header-divider-margin
 
   &__items
     position: relative
@@ -85,31 +86,31 @@
     align-items: center
     border-radius: 50%
     display: inline-flex
-    font-size: $stepper-step-step-font-size
+    font-size: variables.$stepper-step-step-font-size
     justify-content: center
-    height: $stepper-step-step-height
-    min-width: $stepper-step-step-min-width
-    width: $stepper-step-step-width
+    height: variables.$stepper-step-step-height
+    min-width: variables.$stepper-step-step-min-width
+    width: variables.$stepper-step-step-width
     transition: .3s v-map-get($transition, 'fast-in-fast-out')
 
     +ltr()
-      margin-right: $stepper-step-step-margin
+      margin-right: variables.$stepper-step-step-margin
 
     +rtl()
-      margin-left: $stepper-step-step-margin
+      margin-left: variables.$stepper-step-step-margin
 
     .v-icon.v-icon
-      font-size: $stepper-step-step-icon-font-size
+      font-size: variables.$stepper-step-step-icon-font-size
 
       &.v-icon--svg
-        height: $stepper-step-step-icon-font-size
-        width: $stepper-step-step-icon-font-size
+        height: variables.$stepper-step-step-icon-font-size
+        width: variables.$stepper-step-step-icon-font-size
 
   &__step
     align-items: center
     display: flex
     flex-direction: row
-    padding: $stepper-step-padding
+    padding: variables.$stepper-step-padding
     position: relative
 
     &--active
@@ -125,7 +126,7 @@
         color: inherit
 
         .v-icon
-          font-size: $stepper-step-error-icon-font-size
+          font-size: variables.$stepper-step-error-icon-font-size
           color: inherit
 
       .v-stepper & .v-stepper__label
@@ -139,7 +140,7 @@
   &__label
     display: block
     flex-grow: 1
-    line-height: $stepper-label-line-height
+    line-height: variables.$stepper-label-line-height
 
     +ltr()
       text-align: left
@@ -149,8 +150,8 @@
 
     small
       display: block
-      font-size: $stepper-label-small-font-size
-      font-weight: $stepper-label-small-font-weight
+      font-size: variables.$stepper-label-small-font-size
+      font-weight: variables.$stepper-label-small-font-weight
       text-shadow: none
 
   &__wrapper
@@ -159,7 +160,7 @@
 
   &__content
     top: 0
-    padding: $stepper-content-padding
+    padding: variables.$stepper-content-padding
     flex: 1 0 auto
     // Chrome has an issue with overflow hidden for rendering
     // Originally used translateZ but this messes up fixed
@@ -169,7 +170,7 @@
     width: 100%
 
     > .v-btn
-      margin: $stepper-content-btn-margin
+      margin: variables.$stepper-content-btn-margin
 
   &--flat
     +elevation(0, true)
@@ -179,50 +180,50 @@
       transition: .3s v-map-get($transition, 'swing')
 
   &--vertical
-    padding-bottom: $stepper-vertical-padding-bottom
+    padding-bottom: variables.$stepper-vertical-padding-bottom
 
     .v-stepper__content
       +ltr()
-        padding: $stepper-vertical-content-ltr-padding
+        padding: variables.$stepper-vertical-content-ltr-padding
       +rtl()
-        padding: $stepper-vertical-content-rtl-padding
+        padding: variables.$stepper-vertical-content-rtl-padding
 
       width: auto
       +ltr()
-        margin: $stepper-vertical-content-ltr-margin
+        margin: variables.$stepper-vertical-content-ltr-margin
 
       +rtl()
-        margin: $stepper-vertical-content-rtl-margin
+        margin: variables.$stepper-vertical-content-rtl-margin
 
     .v-stepper__step
-      padding: $stepper-vertical-step-padding
+      padding: variables.$stepper-vertical-step-padding
 
     .v-stepper__step__step
       +ltr()
-        margin-right: $stepper-vertical-step-step-margin
+        margin-right: variables.$stepper-vertical-step-step-margin
 
       +rtl()
-        margin-left: $stepper-vertical-step-step-margin
+        margin-left: variables.$stepper-vertical-step-step-margin
 
   &--alt-labels
     .v-stepper__header
       height: auto
 
       .v-divider
-        margin: $stepper-alt-labels-header-divider
+        margin: variables.$stepper-alt-labels-header-divider
         align-self: flex-start
 
     .v-stepper__step
       flex-direction: column
       justify-content: flex-start
       align-items: center
-      flex-basis: $stepper-alt-labels-flex-basis
+      flex-basis: variables.$stepper-alt-labels-flex-basis
 
       small
         text-align: center
 
     .v-stepper__step__step
-      margin-bottom: $stepper-alt-labels-step-step-margin-bottom
+      margin-bottom: variables.$stepper-alt-labels-step-step-margin-bottom
       margin-left: 0
       margin-right: 0
 

@@ -1,9 +1,10 @@
+@use '../../styles/styles.sass' as *
 // Imports
-@import './_variables.scss'
+@use '_variables.scss' as variables
 
 +theme(v-tabs) using ($material)
   > .v-tabs-bar
-    background-color: v-map-get($material, $tabs-bar-background-color)
+    background-color: v-map-get($material, variables.$tabs-bar-background-color)
 
     .v-tab:not(.v-tab--active),
     .v-tab:not(.v-tab--active) > .v-icon,
@@ -61,7 +62,7 @@
 // Element
 .v-tabs-bar
   border-radius: inherit
-  height: $tabs-bar-height
+  height: variables.$tabs-bar-height
 
   &.v-item-group > *
     cursor: initial
@@ -71,19 +72,19 @@
   cursor: pointer
   display: flex
   flex: 0 1 auto
-  font-size: $tab-font-size
-  font-weight: $tab-font-weight
+  font-size: variables.$tab-font-size
+  font-weight: variables.$tab-font-weight
   justify-content: center
-  letter-spacing: $tabs-item-letter-spacing
-  line-height: $tab-line-height
-  min-width: $tabs-item-min-width
-  max-width: $tabs-item-max-width
+  letter-spacing: variables.$tabs-item-letter-spacing
+  line-height: variables.$tab-line-height
+  min-width: variables.$tabs-item-min-width
+  max-width: variables.$tabs-item-max-width
   outline: none
-  padding: $tabs-item-padding
+  padding: variables.$tabs-item-padding
   position: relative
   text-align: center
   text-decoration: none
-  text-transform: $tab-text-transform
+  text-transform: variables.$tab-text-transform
   transition: none
   user-select: none
 
@@ -121,10 +122,10 @@
   & > .v-tab:first-child,
   & > .v-tabs-slider-wrapper + .v-tab
     +ltr()
-      margin-left: $tabs-item-align-with-title-margin
+      margin-left: variables.$tabs-item-align-with-title-margin
 
     +rtl()
-      margin-right: $tabs-item-align-with-title-margin
+      margin-right: variables.$tabs-item-align-with-title-margin
 
 .v-tabs--fixed-tabs > .v-tabs-bar,
 .v-tabs--centered > .v-tabs-bar
@@ -154,13 +155,13 @@
     max-width: none
 
 .v-tabs--icons-and-text > .v-tabs-bar
-  height: $tabs-icons-and-text-bar-height
+  height: variables.$tabs-icons-and-text-bar-height
 
   .v-tab
     flex-direction: column-reverse
 
     > *:first-child
-      margin-bottom: $tabs-icons-and-text-first-tab-margin-bottom
+      margin-bottom: variables.$tabs-icons-and-text-first-tab-margin-bottom
 
 .v-tabs--overflow > .v-tabs-bar
   .v-tab
@@ -197,7 +198,7 @@
       flex-direction: column
 
     .v-tab
-      height: $tabs-item-vertical-height
+      height: variables.$tabs-item-vertical-height
 
     .v-tabs-slider
       height: 100%
@@ -208,7 +209,7 @@
   &.v-tabs--icons-and-text
     & > .v-tabs-bar
       .v-tab
-        height: $tabs-item-vertical-icons-and-text-height
+        height: variables.$tabs-item-vertical-icons-and-text-height
 
 .v-tab--active
   color: inherit
@@ -221,7 +222,7 @@
     color: inherit
 
 .v-tab--disabled
-  opacity: $tab-disabled-opacity
+  opacity: variables.$tab-disabled-opacity
 
   &,
   & *
